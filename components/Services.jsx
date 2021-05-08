@@ -59,7 +59,7 @@ const services = [
 export const Services = () => {
   return (
     <Grid
-      height='100vh'
+      minHeight='95vh'
       templateColumns='repeat(2, 1fr)'
       padding='0 4rem 0 4rem'
       background={`${theme.colors.blackLight}`}
@@ -110,6 +110,7 @@ export const Services = () => {
                 fontFamily={`${theme.font.texturina}`}
                 color={`${theme.colors.purple}`}
                 size='lg'
+                mb='1rem'
               >
                 {service.name}
               </Heading>

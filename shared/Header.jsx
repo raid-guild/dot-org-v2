@@ -41,6 +41,8 @@ export const NavButton = ({ onClick, children }) => (
   </StyledButton>
 );
 
+const navItems = ['Home', 'Hire Us', 'Join Us', 'HandBook', 'DAO'];
+
 export const Header = () => {
   const [isOpen, onOpen] = useState(false);
 
@@ -99,20 +101,26 @@ export const Header = () => {
             : 'circle(100px at 90% -20%)'
         }}
       >
-        <StyledButton
-          onClick={() => {
-            onOpen(false);
-          }}
-          transition='all 0.5s ease 0.4s'
-          my='1rem'
-          variant='link'
-          color={`${theme.colors.red}`}
-          fontWeight='normal'
-          fontSize='1.5rem'
-          fontFamily={`${theme.font.rubik}`}
-        >
-          HOME
-        </StyledButton>
+        {navItems.map((item, index) => {
+          return (
+            <StyledButton
+              key={index}
+              onClick={() => {
+                onOpen(false);
+              }}
+              transition='all 0.5s ease 0.4s'
+              my='1rem'
+              variant='link'
+              color={`${theme.colors.red}`}
+              fontWeight='normal'
+              fontSize='1.5rem'
+              fontFamily={`${theme.font.rubik}`}
+            >
+              {item}
+            </StyledButton>
+          );
+        })}
+
         <ChakraLink
           href='https://discord.gg/CanD2WcK7W'
           isExternal

@@ -54,12 +54,12 @@ const services = [
 export const Culture = () => {
   return (
     <Flex
-      height='100vh'
+      minHeight='95vh'
       direction='column'
       alignItems='center'
       justifyContent='center'
-      padding='0 4rem 0 4rem'
-      mt='2rem'
+      padding='4rem 4rem 4rem 4rem'
+      mt='1rem'
     >
       <VStack spacing={5} justifyContent='center'>
         <Heading

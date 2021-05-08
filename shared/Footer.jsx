@@ -20,6 +20,7 @@ export const Footer = () => {
         <Link>Hire Us</Link>
         <Link>Join Us</Link>
         <Link>HandBook</Link>
+        <Link>DAO</Link>
       </HStack>
     </Flex>
   );
