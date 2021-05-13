@@ -67,7 +67,7 @@ export const Header = () => {
         color={`${theme.colors.red}`}
       >
         <ChakraLink>DAO</ChakraLink>
-        <ChakraLink>Handbook</ChakraLink>
+        <ChakraLink>Portfolio</ChakraLink>
         <ChakraLink>Escrow</ChakraLink>
       </Flex>
 

@@ -19,7 +19,6 @@ export const Footer = () => {
       >
         <Link>Discord</Link>
         <Link>Github</Link>
-        <Link>Twitter</Link>
       </HStack>
       <img src='/assets/swords.png' alt='RaidGuild' width='100px' />
       <HStack
@@ -29,10 +28,8 @@ export const Footer = () => {
         color={`${theme.colors.red}`}
         fontSize='1.5rem'
       >
-        <Link>HireUs</Link>
-        <Link>JoinUs</Link>
-        <Link>HandBook</Link>
-        <Link>DAO</Link>
+        <Link>Twitter</Link>
+        <Link>Handbook</Link>
       </HStack>
     </Flex>
   );
