@@ -51,12 +51,13 @@ const services = [
 export const Culture = () => {
   return (
     <Flex
-      minHeight='95vh'
+      minHeight='100vh'
       direction='column'
       alignItems='center'
       justifyContent='center'
       padding='4rem 4rem 4rem 4rem'
-      mt='1rem'
+      margin='2rem 0 2rem 0'
+      background={`${theme.colors.blackLight}`}
     >
       <VStack spacing={5} justifyContent='center'>
         <Heading
@@ -70,7 +71,6 @@ export const Culture = () => {
           color={`${theme.colors.white}`}
           fontFamily={`${theme.font.jetbrains}`}
           fontSize='1.3rem'
-          textAlign='justify'
         >
           We believe workers should be self-sovereign and able to work when,
           where and how they want, as long as they create high value output.
@@ -78,18 +78,20 @@ export const Culture = () => {
           and bring unique value to the guild.
         </Text>
         <StyledButton>Join Us</StyledButton>
+        <br></br>
       </VStack>
-      <HStack padding='2rem' mt='2rem'>
+      <SimpleGrid columns={3} gap={5} padding='2rem'>
         {services.map((service, index) => {
           return (
             <Flex
               key={index}
+              maxWidth='300px'
               direction='column'
               alignItems='center'
               justifyContent='space-evenly'
-              background={`${theme.colors.blackLight}`}
+              background={`${theme.colors.blackDark}`}
               padding='1em'
-              maxW='300px'
+              boxShadow='4px 9px 18px -7px rgba(0,0,0,0.75);'
             >
               <Heading
                 fontFamily={`${theme.font.texturina}`}
@@ -112,7 +114,7 @@ export const Culture = () => {
             </Flex>
           );
         })}
-      </HStack>
+      </SimpleGrid>
     </Flex>
   );
 };

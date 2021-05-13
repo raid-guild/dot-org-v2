@@ -6,10 +6,22 @@ export const Footer = () => {
     <Flex
       direction='row'
       alignItems='center'
-      justifyContent='space-between'
+      justifyContent='space-evenly'
       padding='2rem'
+      mt='2rem'
     >
-      <img src='/assets/raidguild__logo.png' alt='RaidGuild' width='250px' />
+      <HStack
+        width='50%'
+        justifyContent='space-evenly'
+        fontFamily={`${theme.font.rubik}`}
+        color={`${theme.colors.red}`}
+        fontSize='1.5rem'
+      >
+        <Link>Discord</Link>
+        <Link>Github</Link>
+        <Link>Twitter</Link>
+      </HStack>
+      <img src='/assets/swords.png' alt='RaidGuild' width='100px' />
       <HStack
         width='50%'
         justifyContent='space-evenly'
