@@ -28,7 +28,7 @@ export const Portfolio = () => {
     <Flex
       minHeight='95vh'
       direction='column'
-      border={`2px solid ${theme.colors.purple}`}
+      border={`5px solid ${theme.colors.red}`}
       bgImage='url(/assets/raid__valhalla.png)'
       bgSize='cover'
       mt='2rem'

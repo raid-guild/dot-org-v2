@@ -33,26 +33,22 @@ const services = [
   {
     name: 'Consultations',
     img: '/assets/consultations.png',
-    text:
-      'Validate your ideas and get expert advice on how to build, ship and grow your product.'
+    text: 'Validate your ideas and get expert advice on how to build, ship and grow your product.'
   },
   {
     name: 'Design Sprints',
     img: '/assets/designsprints.png',
-    text:
-      'Fine tune your product market fit and nail your UX before writing a single line of code.'
+    text: 'Fine tune your product market fit and nail your UX before writing a single line of code.'
   },
   {
     name: 'Full Stack Dev',
     img: '/assets/fullstackdev.png',
-    text:
-      'Make your dApp ideas a reality. From contracts to front ends, our Raiders are the best in the biz.'
+    text: 'Make your dApp ideas a reality. From contracts to front ends, our Raiders are the best in the biz.'
   },
   {
     name: 'Marketing',
     img: '/assets/marketing.png',
-    text:
-      'Level up your meme game and build a compelling narrative for your brand / product.'
+    text: 'Level up your meme game and build a compelling narrative for your brand / product.'
   }
 ];
 
@@ -108,16 +104,17 @@ export const Services = () => {
             >
               <Heading
                 fontFamily={`${theme.font.texturina}`}
-                color={`${theme.colors.purple}`}
-                size='lg'
+                color={`${theme.colors.purpleLight}`}
+                size='md'
                 mb='1rem'
+                textTransform='uppercase'
               >
                 {service.name}
               </Heading>
               <img src={service.img} alt='consultations' />
               <br></br>
               <Text
-                color={`${theme.colors.white}`}
+                color={`${theme.colors.purpleLight}`}
                 fontFamily={`${theme.font.jetbrains}`}
                 textAlign='center'
               >

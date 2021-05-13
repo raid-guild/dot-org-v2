@@ -34,20 +34,17 @@ const services = [
   {
     name: 'Learn New Things',
     img: '/assets/learningnewthings.png',
-    text:
-      'Stay on top of the latest trends and developments while leveling up your skills.'
+    text: 'Stay on top of the latest trends and developments while leveling up your skills.'
   },
   {
     name: 'Cartel Culture',
     img: '/assets/cartelculture.png',
-    text:
-      "We're serious about our work and its impacts on society, but we also know how to have a good time."
+    text: "We're serious about our work and its impacts on society, but we also know how to have a good time."
   },
   {
     name: 'Tip of the Spear',
     img: '/assets/tipofthespear.png',
-    text:
-      'Join the ranks on the front lines and make a direct impact on the world around you.'
+    text: 'Join the ranks on the front lines and make a direct impact on the world around you.'
   }
 ];
 
@@ -92,19 +89,21 @@ export const Culture = () => {
               justifyContent='space-evenly'
               background={`${theme.colors.blackLight}`}
               padding='1em'
+              maxW='300px'
             >
               <Heading
                 fontFamily={`${theme.font.texturina}`}
-                color={`${theme.colors.yellow}`}
-                size='lg'
+                color={`${theme.colors.purpleLight}`}
+                size='md'
                 mb='1rem'
+                textTransform='uppercase'
               >
                 {service.name}
               </Heading>
               <img src={service.img} alt='consultations' />
               <br></br>
               <Text
-                color={`${theme.colors.white}`}
+                color={`${theme.colors.purpleLight}`}
                 fontFamily={`${theme.font.jetbrains}`}
                 textAlign='center'
               >

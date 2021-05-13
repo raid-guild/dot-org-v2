@@ -11,7 +11,7 @@ export const Layout = ({ children }) => {
         alignItems='center'
         justifyContent='center'
         padding='1rem'
-        backgroundColor={`${theme.colors.blackDark}`}
+        background='linear-gradient(328deg, rgba(10,10,10,1) 20%, rgba(130,46,166,1) 43%, rgba(173,36,66,1) 58%, rgba(10,10,10,1) 80%)'
       >
         {children}
       </Flex>

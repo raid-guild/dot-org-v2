@@ -30,38 +30,44 @@ export const FirstPaint = () => {
     <Flex
       height='95vh'
       direction='column'
-      border={`2px solid ${theme.colors.red}`}
-      bgImage='url(/assets/raid__cloud__castle.png)'
+      border={`5px solid ${theme.colors.red}`}
+      // bgImage='url(/assets/raid__cloud__castle.png)'
       bgSize='cover'
     >
       <Header />
       <Flex
-        maxWidth='45%'
-        direction='column'
-        justifyContent='center'
-        alignItems='start'
-        mt='auto'
-        mb='auto'
-        mr='auto'
-        ml='3rem'
-        style={{ backdropFilter: 'blur(.5rem)' }}
+        direction='row'
+        width='100%'
+        alignItems='center'
+        justifyContent='space-evenly'
       >
-        <Text
-          width='600px'
-          fontFamily={`${theme.font.uncial}`}
-          color={`${theme.colors.white}`}
-          fontSize='2.2rem'
-          lineHeight='3rem'
-          mb='2rem'
-          textAlign='justify'
+        <Flex
+          maxWidth='45%'
+          direction='column'
+          justifyContent='center'
+          alignItems='start'
         >
-          A Decentralized Collective of Mercenaries Ready to Slay Your Web3
-          Product Demons.
-        </Text>
-        <HStack width='100%'>
-          <StyledButton style={{ width: '60%' }}>Hire Us</StyledButton>
-          <StyledButton style={{ width: '40%' }}>Join Us</StyledButton>
-        </HStack>
+          <Text
+            width='600px'
+            fontFamily={`${theme.font.uncial}`}
+            color={`${theme.colors.red}`}
+            fontSize='2.2rem'
+            lineHeight='3rem'
+            mb='2rem'
+            textAlign='justify'
+            // backgroundImage='linear-gradient(41deg, rgba(255,56,100,1) 0%, rgba(130,46,166,1) 100%)'
+            // backgroundSize='100%'
+            // backgroundClip='text'
+          >
+            A Decentralized Collective of Mercenaries Ready to Slay Your Web3
+            Product Demons.
+          </Text>
+          <HStack width='100%'>
+            <StyledButton style={{ width: '60%' }}>Hire Us</StyledButton>
+            <StyledButton style={{ width: '40%' }}>Join Us</StyledButton>
+          </HStack>
+        </Flex>
+        <img src='/assets/raid__banner.png' alt='raid-banner' width='600px' />
       </Flex>
     </Flex>
   );

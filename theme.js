@@ -8,8 +8,10 @@ export const theme = {
     greyDark: '#4a4a4a',
     white: '#fffffe',
     purple: '#822EA6',
+    purpleLight: '#B66AD6',
     red: '#ff3864',
-    yellow: '#F2E857'
+    yellow: '#F2E857',
+    yellowDark: '#DCCF11'
   },
   font: {
     texturina: `'Texturina', serif`,

@@ -60,6 +60,18 @@ export const Header = () => {
       <Image src='/assets/raidguild__logo.png' alt='RaidGuild' width='250px' />
 
       <Flex
+        minWidth='50%'
+        direction='row'
+        justifyContent='space-around'
+        fontSize='1.5rem'
+        color={`${theme.colors.red}`}
+      >
+        <ChakraLink>DAO</ChakraLink>
+        <ChakraLink>Handbook</ChakraLink>
+        <ChakraLink>Escrow</ChakraLink>
+      </Flex>
+
+      {/* <Flex
         mr='1rem'
         align='center'
         height='8rem'
@@ -126,7 +138,7 @@ export const Header = () => {
           isExternal
           _hover={{}}
         ></ChakraLink>
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 };

@@ -17,8 +17,8 @@ export const Footer = () => {
         color={`${theme.colors.red}`}
         fontSize='1.5rem'
       >
-        <Link>Hire Us</Link>
-        <Link>Join Us</Link>
+        <Link>HireUs</Link>
+        <Link>JoinUs</Link>
         <Link>HandBook</Link>
         <Link>DAO</Link>
       </HStack>
