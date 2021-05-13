@@ -80,7 +80,13 @@ export const Culture = () => {
         <StyledButton>Join Us</StyledButton>
         <br></br>
       </VStack>
-      <SimpleGrid columns={3} gap={5} padding='2rem'>
+      <Flex
+        width='100%'
+        direction='row'
+        alignItems='center'
+        justifyContent='space-evenly'
+        padding='2rem'
+      >
         {services.map((service, index) => {
           return (
             <Flex
@@ -114,7 +120,7 @@ export const Culture = () => {
             </Flex>
           );
         })}
-      </SimpleGrid>
+      </Flex>
     </Flex>
   );
 };
