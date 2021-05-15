@@ -1,9 +1,9 @@
 import { ChakraProvider, Flex } from '@chakra-ui/react';
-import { theme } from '../theme';
+import { theme } from '../themes/theme';
 
 export const Layout = ({ children }) => {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Flex
         height='100%'
         width='100%'

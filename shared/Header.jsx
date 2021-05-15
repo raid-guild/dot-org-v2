@@ -66,9 +66,10 @@ export const Header = () => {
         fontSize='1.5rem'
         color={`${theme.colors.red}`}
       >
-        <ChakraLink>DAO</ChakraLink>
+        <ChakraLink>Manifesto</ChakraLink>
         <ChakraLink>Portfolio</ChakraLink>
-        <ChakraLink>Escrow</ChakraLink>
+        <ChakraLink>JoinUs</ChakraLink>
+        <ChakraLink>HireUs</ChakraLink>
       </Flex>
 
       {/* <Flex

@@ -4,30 +4,10 @@ import {
   Heading,
   Text,
   VStack,
-  SimpleGrid
+  SimpleGrid,
+  Button
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 import { theme } from '../theme';
-
-const StyledButton = styled.button`
-  height: '500px';
-  display: block;
-  font-family: ${theme.font.rubik};
-  font-size: 1.2rem;
-  font-weight: bold;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: ${theme.colors.blackDark};
-  background-color: ${theme.colors.red};
-  border: none;
-  border-radius: 3px;
-  padding: 12px;
-  &:hover {
-    cursor: pointer;
-    background-color: ${theme.colors.blackDark};
-    color: ${theme.colors.red};
-  }
-`;
 
 const services = [
   {
@@ -61,34 +41,22 @@ export const Services = () => {
       background={`${theme.colors.blackLight}`}
     >
       <VStack spacing={5} justifyContent='center'>
-        <Heading
-          color={`${theme.colors.red}`}
-          fontFamily={`${theme.font.uncial}`}
-          fontSize='2.4rem'
-        >
+        <Heading variant='primary' size='lg'>
           Our Services
         </Heading>
-        <Text
-          color={`${theme.colors.white}`}
-          fontFamily={`${theme.font.jetbrains}`}
-          fontSize='1.3rem'
-        >
+        <Text variant='medium' size='md'>
           RaidGuild is the premier design and dev agency of the Web3 ecosystem.
           We are deeply entrenched in the bleeding edge of DAOs, DeFi, dApps and
           everything else in between. Hailing from the MetaCartel network, our
           team consists of a diverse group of talent with over 9000 years of
           combined experience.
         </Text>
-        <Text
-          color={`${theme.colors.white}`}
-          fontFamily={`${theme.font.jetbrains}`}
-          fontSize='1.3rem'
-        >
+        <Text variant='medium' size='md'>
           We know how to buidl and have the connections, talent and experience
           to turn your ideas into reality. We are lean to the core and deliver
           high quality results with quick turnarounds.
         </Text>
-        <StyledButton>Hire Us</StyledButton>
+        <Button variant='primary'>Hire Us</Button>
       </VStack>
       <SimpleGrid columns={2} gap={5} padding='2rem'>
         {services.map((service, index) => {
@@ -102,22 +70,12 @@ export const Services = () => {
               padding='1em'
               boxShadow='4px 9px 18px -7px rgba(0,0,0,0.75);'
             >
-              <Heading
-                fontFamily={`${theme.font.texturina}`}
-                color={`${theme.colors.purpleLight}`}
-                size='md'
-                mb='1rem'
-                textTransform='uppercase'
-              >
+              <Heading variant='secondary' size='md'>
                 {service.name}
               </Heading>
               <img src={service.img} alt='consultations' />
               <br></br>
-              <Text
-                color={`${theme.colors.purpleLight}`}
-                fontFamily={`${theme.font.jetbrains}`}
-                textAlign='center'
-              >
+              <Text variant='small' size='sm'>
                 {service.text}
               </Text>
             </Flex>

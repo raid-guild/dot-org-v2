@@ -5,30 +5,11 @@ import {
   Text,
   VStack,
   SimpleGrid,
-  HStack
+  HStack,
+  Button
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { theme } from '../theme';
-
-const StyledButton = styled.button`
-  height: '500px';
-  display: block;
-  font-family: ${theme.font.rubik};
-  font-size: 1.2rem;
-  font-weight: bold;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: ${theme.colors.blackDark};
-  background-color: ${theme.colors.red};
-  border: none;
-  border-radius: 3px;
-  padding: 12px;
-  &:hover {
-    cursor: pointer;
-    background-color: ${theme.colors.blackDark};
-    color: ${theme.colors.red};
-  }
-`;
 
 const services = [
   {
@@ -60,24 +41,16 @@ export const Culture = () => {
       background={`${theme.colors.blackLight}`}
     >
       <VStack spacing={5} justifyContent='center'>
-        <Heading
-          color={`${theme.colors.red}`}
-          fontFamily={`${theme.font.uncial}`}
-          fontSize='2.4rem'
-        >
+        <Heading variant='primary' size='lg'>
           Join the Guild
         </Heading>
-        <Text
-          color={`${theme.colors.white}`}
-          fontFamily={`${theme.font.jetbrains}`}
-          fontSize='1.3rem'
-        >
+        <Text variant='medium' size='md'>
           We believe workers should be self-sovereign and able to work when,
           where and how they want, as long as they create high value output.
           We’re looking for top talent that can take things into their own hands
           and bring unique value to the guild.
         </Text>
-        <StyledButton>Join Us</StyledButton>
+        <Button variant='primary'>Join Us</Button>
         <br></br>
       </VStack>
       <Flex
@@ -91,7 +64,7 @@ export const Culture = () => {
           return (
             <Flex
               key={index}
-              maxWidth='300px'
+              maxWidth='350px'
               direction='column'
               alignItems='center'
               justifyContent='space-evenly'
@@ -99,22 +72,12 @@ export const Culture = () => {
               padding='1em'
               boxShadow='4px 9px 18px -7px rgba(0,0,0,0.75);'
             >
-              <Heading
-                fontFamily={`${theme.font.texturina}`}
-                color={`${theme.colors.purpleLight}`}
-                size='md'
-                mb='1rem'
-                textTransform='uppercase'
-              >
+              <Heading variant='secondary' size='md'>
                 {service.name}
               </Heading>
               <img src={service.img} alt='consultations' />
               <br></br>
-              <Text
-                color={`${theme.colors.purpleLight}`}
-                fontFamily={`${theme.font.jetbrains}`}
-                textAlign='center'
-              >
+              <Text variant='small' size='sm'>
                 {service.text}
               </Text>
             </Flex>

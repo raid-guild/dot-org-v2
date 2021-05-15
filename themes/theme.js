@@ -1,4 +1,10 @@
-export const theme = {
+import { extendTheme } from '@chakra-ui/react';
+
+import { Heading } from './components/Heading';
+import { Text } from './components/Text';
+import { Button } from './components/Button';
+
+export const theme = extendTheme({
   colors: {
     transparent: 'transparent',
     blackDark: 'rgba(10, 10, 10, 0.960784)',
@@ -13,11 +19,16 @@ export const theme = {
     yellow: '#F2E857',
     yellowDark: '#DCCF11'
   },
-  font: {
+  fonts: {
     texturina: `'Texturina', serif`,
     jetbrains: `'JetBrains Mono', monospace`,
     rubik: `'Rubik Mono One', sans-serif`,
     uncial: `'Uncial Antiqua', cursive`,
     spaceMono: `'Space Mono', monospace;`
+  },
+  components: {
+    Heading,
+    Text,
+    Button
   }
-};
+});
