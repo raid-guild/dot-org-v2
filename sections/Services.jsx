@@ -1,5 +1,4 @@
 import {
-  Grid,
   Flex,
   Heading,
   Text,
@@ -7,7 +6,7 @@ import {
   SimpleGrid,
   Button
 } from '@chakra-ui/react';
-import { theme } from '../theme';
+import { theme } from '../themes/theme';
 
 const services = [
   {
@@ -34,31 +33,33 @@ const services = [
 
 export const Services = () => {
   return (
-    <Grid
+    <SimpleGrid
       minHeight='95vh'
-      templateColumns='repeat(2, 1fr)'
-      padding='0 4rem 0 4rem'
+      columns={[1, 1, 2]}
+      padding={{ base: '2rem' }}
       background={`${theme.colors.blackLight}`}
     >
       <VStack spacing={5} justifyContent='center'>
-        <Heading variant='primary' size='lg'>
+        <Heading variant='primary' fontSize={{ base: '1.5rem', lg: '2rem' }}>
           Our Services
         </Heading>
-        <Text variant='medium' size='md'>
+        <Text variant='medium' fontSize={{ base: '1rem', lg: '1.3rem' }}>
           RaidGuild is the premier design and dev agency of the Web3 ecosystem.
           We are deeply entrenched in the bleeding edge of DAOs, DeFi, dApps and
           everything else in between. Hailing from the MetaCartel network, our
           team consists of a diverse group of talent with over 9000 years of
           combined experience.
         </Text>
-        <Text variant='medium' size='md'>
+        <Text variant='medium' fontSize={{ base: '1rem', lg: '1.3rem' }}>
           We know how to buidl and have the connections, talent and experience
           to turn your ideas into reality. We are lean to the core and deliver
           high quality results with quick turnarounds.
         </Text>
-        <Button variant='primary'>Hire Us</Button>
+        <Button variant='primary' fontSize={{ base: '1rem', lg: '1.5rem' }}>
+          Hire Us
+        </Button>
       </VStack>
-      <SimpleGrid columns={2} gap={5} padding='2rem'>
+      <SimpleGrid columns={[1, 2, 2]} gap={5} padding='2rem'>
         {services.map((service, index) => {
           return (
             <Flex
@@ -67,21 +68,21 @@ export const Services = () => {
               alignItems='center'
               justifyContent='space-evenly'
               background={`${theme.colors.blackDark}`}
-              padding='1em'
               boxShadow='4px 9px 18px -7px rgba(0,0,0,0.75);'
+              padding='1rem'
             >
-              <Heading variant='secondary' size='md'>
+              <Heading variant='secondary' fontSize={{ base: '1.2rem' }} mb={3}>
                 {service.name}
               </Heading>
               <img src={service.img} alt='consultations' />
               <br></br>
-              <Text variant='small' size='sm'>
+              <Text variant='small' fontSize={{ base: '1rem' }}>
                 {service.text}
               </Text>
             </Flex>
           );
         })}
       </SimpleGrid>
-    </Grid>
+    </SimpleGrid>
   );
 };

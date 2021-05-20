@@ -3,7 +3,7 @@ import { Box, Button, Flex, Image, Link as ChakraLink } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import { HamburgerIcon } from '../icons/HamburgerIcon';
-import { theme } from '../theme';
+import { theme } from '../themes/theme';
 
 const StyledButton = styled(Button)`
   &::after {
@@ -17,7 +17,7 @@ const StyledButton = styled(Button)`
     position: absolute;
     bottom: 0;
     left: 0;
-    font-family: ${theme.font.rubik};
+    font-family: ${theme.fonts.rubik};
   }
   &:hover {
     text-decoration: none;
@@ -49,30 +49,34 @@ export const Header = () => {
   return (
     <Flex
       w='100%'
-      h='7rem'
+      h={{ base: '4rem' }}
       color='white'
-      fontFamily={`${theme.font.rubik}`}
+      fontFamily={`${theme.fonts.rubik}`}
       justify='space-between'
       align='center'
       zIndex={5}
-      padding='1rem'
+      padding={[0, '1rem', '1rem']}
     >
-      <Image src='/assets/raidguild__logo.png' alt='RaidGuild' width='250px' />
+      <Image
+        src='/assets/raidguild__logo.png'
+        alt='RaidGuild'
+        width={{ base: '150px', lg: '250px' }}
+      />
 
-      <Flex
+      {/* <Flex
         minWidth='50%'
         direction='row'
         justifyContent='space-around'
-        fontSize='1.5rem'
+        fontSize='1.3rem'
         color={`${theme.colors.red}`}
       >
         <ChakraLink>Manifesto</ChakraLink>
         <ChakraLink>Portfolio</ChakraLink>
         <ChakraLink>JoinUs</ChakraLink>
         <ChakraLink>HireUs</ChakraLink>
-      </Flex>
+      </Flex> */}
 
-      {/* <Flex
+      <Flex
         mr='1rem'
         align='center'
         height='8rem'
@@ -127,7 +131,7 @@ export const Header = () => {
               color={`${theme.colors.red}`}
               fontWeight='normal'
               fontSize='1.5rem'
-              fontFamily={`${theme.font.rubik}`}
+              fontFamily={`${theme.fonts.rubik}`}
             >
               {item}
             </StyledButton>
@@ -139,7 +143,7 @@ export const Header = () => {
           isExternal
           _hover={{}}
         ></ChakraLink>
-      </Flex> */}
+      </Flex>
     </Flex>
   );
 };

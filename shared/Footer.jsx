@@ -1,5 +1,5 @@
-import { Flex, HStack, Link } from '@chakra-ui/layout';
-import { theme } from '../theme';
+import { Flex, HStack, Link, Image } from '@chakra-ui/react';
+import { theme } from '../themes/theme';
 
 export const Footer = () => {
   return (
@@ -8,25 +8,28 @@ export const Footer = () => {
       alignItems='center'
       justifyContent='space-evenly'
       padding='2rem'
-      mt='2rem'
     >
       <HStack
         width='50%'
         justifyContent='space-evenly'
-        fontFamily={`${theme.font.rubik}`}
+        fontFamily={`${theme.fonts.rubik}`}
         color={`${theme.colors.red}`}
-        fontSize='1.5rem'
+        fontSize={{ base: '.6rem', lg: '1.3rem' }}
       >
         <Link>Discord</Link>
         <Link>Github</Link>
       </HStack>
-      <img src='/assets/swords.png' alt='RaidGuild' width='100px' />
+      <Image
+        src='/assets/swords.png'
+        alt='RaidGuild'
+        width={{ base: '50px' }}
+      />
       <HStack
         width='50%'
         justifyContent='space-evenly'
-        fontFamily={`${theme.font.rubik}`}
+        fontFamily={`${theme.fonts.rubik}`}
         color={`${theme.colors.red}`}
-        fontSize='1.5rem'
+        fontSize={{ base: '.6rem', lg: '1.3rem' }}
       >
         <Link>Twitter</Link>
         <Link>Handbook</Link>

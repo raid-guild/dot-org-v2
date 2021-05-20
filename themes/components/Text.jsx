@@ -18,10 +18,9 @@ export const Text = {
   // Styles for the visual style variations
   variants: {
     large: {
-      width: '600px',
+      // width: '600px',
       fontFamily: 'uncial',
       color: 'red',
-      lineHeight: '3rem',
       textAlign: 'justify'
     },
     medium: {

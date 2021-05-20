@@ -9,7 +9,7 @@ import {
   Button
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { theme } from '../theme';
+import { theme } from '../themes/theme';
 
 const services = [
   {
@@ -36,54 +36,55 @@ export const Culture = () => {
       direction='column'
       alignItems='center'
       justifyContent='center'
-      padding='4rem 4rem 4rem 4rem'
+      padding={{ base: '2rem' }}
       margin='2rem 0 2rem 0'
       background={`${theme.colors.blackLight}`}
     >
       <VStack spacing={5} justifyContent='center'>
-        <Heading variant='primary' size='lg'>
+        <Heading variant='primary' fontSize={{ base: '1.5rem', lg: '2rem' }}>
           Join the Guild
         </Heading>
-        <Text variant='medium' size='md'>
+        <Text variant='medium' fontSize={{ base: '1rem', lg: '1.5rem' }}>
           We believe workers should be self-sovereign and able to work when,
           where and how they want, as long as they create high value output.
           We’re looking for top talent that can take things into their own hands
           and bring unique value to the guild.
         </Text>
-        <Button variant='primary'>Join Us</Button>
+        <Button variant='primary' fontSize={{ base: '1rem', lg: '1.5rem' }}>
+          Join Us
+        </Button>
         <br></br>
       </VStack>
-      <Flex
-        width='100%'
-        direction='row'
-        alignItems='center'
-        justifyContent='space-evenly'
-        padding='2rem'
-      >
+
+      <SimpleGrid columns={[1, 2, 3]} gap={5} padding='2rem'>
         {services.map((service, index) => {
           return (
             <Flex
               key={index}
-              maxWidth='350px'
               direction='column'
               alignItems='center'
               justifyContent='space-evenly'
               background={`${theme.colors.blackDark}`}
-              padding='1em'
               boxShadow='4px 9px 18px -7px rgba(0,0,0,0.75);'
+              padding='1rem'
             >
-              <Heading variant='secondary' size='md'>
+              <Heading
+                variant='secondary'
+                fontSize={{ base: '1.2rem' }}
+                mb={3}
+                textAlign='center'
+              >
                 {service.name}
               </Heading>
               <img src={service.img} alt='consultations' />
               <br></br>
-              <Text variant='small' size='sm'>
+              <Text variant='small' fontSize={{ base: '1rem' }}>
                 {service.text}
               </Text>
             </Flex>
           );
         })}
-      </Flex>
+      </SimpleGrid>
     </Flex>
   );
 };
