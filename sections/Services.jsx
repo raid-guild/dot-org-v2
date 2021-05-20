@@ -36,7 +36,7 @@ export const Services = () => {
     <SimpleGrid
       minHeight='95vh'
       columns={[1, 1, 2]}
-      padding={{ base: '2rem' }}
+      padding={{ base: '2rem', lg: '2rem 4rem' }}
       background={`${theme.colors.blackLight}`}
     >
       <VStack spacing={5} justifyContent='center'>

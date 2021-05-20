@@ -4,7 +4,7 @@ export const Manifesto = () => {
   return (
     <SimpleGrid
       columns={[1, 1, 2]}
-      padding={{ base: '2rem' }}
+      padding={{ base: '2rem', lg: '2rem 4rem' }}
       placeItems='center'
     >
       <Image

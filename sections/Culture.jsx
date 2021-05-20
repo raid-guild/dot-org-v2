@@ -36,7 +36,7 @@ export const Culture = () => {
       direction='column'
       alignItems='center'
       justifyContent='center'
-      padding={{ base: '2rem' }}
+      padding={{ base: '2rem', lg: '2rem 4rem' }}
       margin='2rem 0 2rem 0'
       background={`${theme.colors.blackLight}`}
     >
