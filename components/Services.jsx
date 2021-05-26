@@ -8,28 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { theme } from '../themes/theme';
 
-const services = [
-  {
-    name: 'Consultations',
-    img: '/assets/consultations.png',
-    text: 'Validate your ideas and get expert advice on how to build, ship and grow your product.'
-  },
-  {
-    name: 'Design Sprints',
-    img: '/assets/designsprints.png',
-    text: 'Fine tune your product market fit and nail your UX before writing a single line of code.'
-  },
-  {
-    name: 'Full Stack Dev',
-    img: '/assets/fullstackdev.png',
-    text: 'Make your dApp ideas a reality. From contracts to front ends, our Raiders are the best in the biz.'
-  },
-  {
-    name: 'Marketing',
-    img: '/assets/marketing.png',
-    text: 'Level up your meme game and build a compelling narrative for your brand / product.'
-  }
-];
+import { services } from '../utils/constants';
 
 export const Services = () => {
   return (
@@ -40,27 +19,27 @@ export const Services = () => {
       background={`${theme.colors.blackLight}`}
     >
       <VStack spacing={5} justifyContent='center'>
-        <Heading variant='primary' fontSize={{ base: '1.5rem', lg: '2rem' }}>
+        <Heading variant='uncial' fontSize={{ base: '1.5rem', lg: '2rem' }}>
           Our Services
         </Heading>
-        <Text variant='medium' fontSize={{ base: '1rem', lg: '1.3rem' }}>
+        <Text variant='texturina' fontSize={{ base: '1rem', lg: '1.3rem' }}>
           RaidGuild is the premier design and dev agency of the Web3 ecosystem.
           We are deeply entrenched in the bleeding edge of DAOs, DeFi, dApps and
           everything else in between. Hailing from the MetaCartel network, our
           team consists of a diverse group of talent with over 9000 years of
           combined experience.
         </Text>
-        <Text variant='medium' fontSize={{ base: '1rem', lg: '1.3rem' }}>
+        <Text variant='texturina' fontSize={{ base: '1rem', lg: '1.3rem' }}>
           We know how to buidl and have the connections, talent and experience
           to turn your ideas into reality. We are lean to the core and deliver
           high quality results with quick turnarounds.
         </Text>
-        <Button variant='primary' fontSize={{ base: '1rem', lg: '1.5rem' }}>
+        <Button variant='spaceMono' fontSize={{ base: '1rem', lg: '1.5rem' }}>
           Hire Us
         </Button>
       </VStack>
       <SimpleGrid columns={[1, 2, 2]} gap={5} padding='2rem'>
-        {services.map((service, index) => {
+        {services.map((item, index) => {
           return (
             <Flex
               key={index}
@@ -71,13 +50,13 @@ export const Services = () => {
               boxShadow='4px 9px 18px -7px rgba(0,0,0,0.75);'
               padding='1rem'
             >
-              <Heading variant='secondary' fontSize={{ base: '1.2rem' }} mb={3}>
-                {service.name}
+              <Heading variant='texturina' fontSize={{ base: '1.2rem' }} mb={3}>
+                {item.name}
               </Heading>
-              <img src={service.img} alt='consultations' />
+              <img src={item.img} alt='consultations' />
               <br></br>
-              <Text variant='small' fontSize={{ base: '1rem' }}>
-                {service.text}
+              <Text variant='texturinaSmall' fontSize={{ base: '1rem' }}>
+                {item.text}
               </Text>
             </Flex>
           );

@@ -2,32 +2,19 @@ export const Text = {
   // Styles for the base style
   baseStyle: {},
   // Styles for the size variations
-  sizes: {
-    lg: {
-      fontSize: '2.2rem',
-      pb: '1rem'
-    },
-    md: {
-      fontSize: '1.4rem',
-      pb: '1rem'
-    },
-    sm: {
-      fontSize: '1.1rem'
-    }
-  },
+  sizes: {},
   // Styles for the visual style variations
   variants: {
-    large: {
-      // width: '600px',
+    uncial: {
       fontFamily: 'uncial',
       color: 'red',
       textAlign: 'justify'
     },
-    medium: {
+    texturina: {
       fontFamily: 'texturina',
       color: 'white'
     },
-    small: {
+    texturinaSmall: {
       fontFamily: 'texturina',
       color: 'purpleLight',
       textAlign: 'center'

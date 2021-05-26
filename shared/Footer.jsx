@@ -8,6 +8,7 @@ export const Footer = () => {
       alignItems='center'
       justifyContent='space-evenly'
       padding='2rem'
+      w='100%'
     >
       <HStack
         width='50%'

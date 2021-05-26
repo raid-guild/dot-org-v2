@@ -24,7 +24,7 @@ export const FirstPaint = () => {
       >
         <Flex direction='column' justifyContent='center' alignItems='start'>
           <Text
-            variant='large'
+            variant='uncial'
             fontSize={{ base: '1.2rem', lg: '2rem' }}
             maxWidth={{ lg: '600px' }}
           >
@@ -33,14 +33,14 @@ export const FirstPaint = () => {
           </Text>
           <HStack width='100%' mt={{ base: '2rem' }}>
             <Button
-              variant='primary'
+              variant='spaceMono'
               style={{ width: '60%' }}
               fontSize={{ base: '1rem', lg: '1.5rem' }}
             >
               Hire Us
             </Button>
             <Button
-              variant='primary'
+              variant='spaceMono'
               style={{ width: '40%' }}
               fontSize={{ base: '1rem', lg: '1.5rem' }}
             >

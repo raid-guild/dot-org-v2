@@ -5,19 +5,13 @@ export const Button = {
   sizes: {},
   // Styles for the visual style variations
   variants: {
-    primary: {
-      height: 'auto',
-      display: 'block',
+    spaceMono: {
+      height: '50px',
       fontFamily: 'spaceMono',
-      fontSize: '1.6rem',
-      fontWeight: 'bold',
-      letterSpacing: '1.2px',
-      textTransform: 'uppercase',
       color: 'white',
       bg: 'red',
-      border: 'none',
-      borderRadius: '3px',
-      padding: '12px',
+      letterSpacing: '1.2px',
+      textTransform: 'uppercase',
       _hover: {
         cursor: 'pointer',
         bg: 'blackDark',

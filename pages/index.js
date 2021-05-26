@@ -2,11 +2,11 @@ import { Flex } from '@chakra-ui/react';
 
 import Head from 'next/head';
 
-import { FirstPaint } from '../sections/FirstPaint';
-import { Manifesto } from '../sections/Manifesto';
-import { Services } from '../sections/Services';
-import { Portfolio } from '../sections/Portfolio';
-import { Culture } from '../sections/Culture';
+import { FirstPaint } from '../components/FirstPaint';
+import { Manifesto } from '../components/Manifesto';
+import { Services } from '../components/Services';
+import { Portfolio } from '../components/Portfolio';
+import { Culture } from '../components/Culture';
 
 import { Footer } from '../shared/Footer';
 

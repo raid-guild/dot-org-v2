@@ -1,33 +1,14 @@
 import {
-  Grid,
   Flex,
   Heading,
   Text,
   VStack,
   SimpleGrid,
-  HStack,
   Button
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 import { theme } from '../themes/theme';
 
-const services = [
-  {
-    name: 'Learn New Things',
-    img: '/assets/learningnewthings.png',
-    text: 'Stay on top of the latest trends and developments while leveling up your skills.'
-  },
-  {
-    name: 'Cartel Culture',
-    img: '/assets/cartelculture.png',
-    text: "We're serious about our work and its impacts on society, but we also know how to have a good time."
-  },
-  {
-    name: 'Tip of the Spear',
-    img: '/assets/tipofthespear.png',
-    text: 'Join the ranks on the front lines and make a direct impact on the world around you.'
-  }
-];
+import { culture } from '../utils/constants';
 
 export const Culture = () => {
   return (
@@ -41,23 +22,23 @@ export const Culture = () => {
       background={`${theme.colors.blackLight}`}
     >
       <VStack spacing={5} justifyContent='center'>
-        <Heading variant='primary' fontSize={{ base: '1.5rem', lg: '2rem' }}>
+        <Heading variant='uncial' fontSize={{ base: '1.5rem', lg: '2rem' }}>
           Join the Guild
         </Heading>
-        <Text variant='medium' fontSize={{ base: '1rem', lg: '1.5rem' }}>
+        <Text variant='texturina' fontSize={{ base: '1rem', lg: '1.3rem' }}>
           We believe workers should be self-sovereign and able to work when,
           where and how they want, as long as they create high value output.
           We’re looking for top talent that can take things into their own hands
           and bring unique value to the guild.
         </Text>
-        <Button variant='primary' fontSize={{ base: '1rem', lg: '1.5rem' }}>
+        <Button variant='spaceMono' fontSize={{ base: '1rem', lg: '1.5rem' }}>
           Join Us
         </Button>
         <br></br>
       </VStack>
 
       <SimpleGrid columns={[1, 2, 3]} gap={5} padding='2rem'>
-        {services.map((service, index) => {
+        {culture.map((item, index) => {
           return (
             <Flex
               key={index}
@@ -69,17 +50,21 @@ export const Culture = () => {
               padding='1rem'
             >
               <Heading
-                variant='secondary'
+                variant='texturina'
                 fontSize={{ base: '1.2rem' }}
                 mb={3}
                 textAlign='center'
               >
-                {service.name}
+                {item.name}
               </Heading>
-              <img src={service.img} alt='consultations' />
+              <img src={item.img} alt='consultations' />
               <br></br>
-              <Text variant='small' fontSize={{ base: '1rem' }}>
-                {service.text}
+              <Text
+                variant='texturinaSmall'
+                fontSize={{ base: '1rem' }}
+                px='1rem'
+              >
+                {item.text}
               </Text>
             </Flex>
           );

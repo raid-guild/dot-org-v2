@@ -1,4 +1,5 @@
 import { Flex, Heading, HStack, Text, Button } from '@chakra-ui/react';
+import Link from 'next/link';
 
 export const Portfolio = () => {
   return (
@@ -25,22 +26,24 @@ export const Portfolio = () => {
         p='1rem'
       >
         <Heading
-          variant='primary'
+          variant='uncial'
           fontSize={{ base: '1.5rem', lg: '2rem' }}
           mb='1rem'
         >
           Our Portfolio
         </Heading>
         <Text
-          variant='medium'
+          variant='texturina'
           fontSize={{ base: '1rem', lg: '1.3rem' }}
           mb='1rem'
         >
           A Decentralized Collective of Mercenaries Ready to Slay Your Web3
           Product Demons.
         </Text>
-        <Button variant='primary' fontSize={{ base: '1rem', lg: '1.5rem' }}>
-          View Projects
+        <Button variant='spaceMono' fontSize={{ base: '1rem', lg: '1.5rem' }}>
+          <Link href='/portfolio'>
+            <a>View Projects</a>
+          </Link>
         </Button>
       </Flex>
     </Flex>

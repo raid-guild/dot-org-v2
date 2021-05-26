@@ -2,23 +2,14 @@ export const Heading = {
   // Styles for the base style
   baseStyle: {},
   // Styles for the size variations
-  sizes: {
-    lg: {
-      fontSize: '2.2rem',
-      mb: '1.5rem'
-    },
-    md: {
-      fontSize: '1.2rem',
-      mb: '1rem'
-    }
-  },
+  sizes: {},
   // Styles for the visual style variations
   variants: {
-    primary: {
+    uncial: {
       fontFamily: 'uncial',
       color: 'red'
     },
-    secondary: {
+    texturina: {
       fontFamily: 'texturina',
       color: 'purpleLight',
       textTransform: 'uppercase'
