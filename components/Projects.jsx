@@ -1,9 +1,18 @@
-import { Heading, Text, Image, Tag, Box } from '@chakra-ui/react';
+import {
+  Heading,
+  Text,
+  Image,
+  Tag,
+  Box,
+  Avatar,
+  Tooltip,
+  HStack
+} from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import { Footer } from '../shared/Footer';
 import { theme } from '../themes/theme';
-import { projects } from '../utils/constants';
+import { projects, icons, roleConversions } from '../utils/constants';
 
 const StyledGridChild = styled.div`
   width: 100%;
@@ -15,6 +24,8 @@ const StyledGridChild = styled.div`
   flex-direction: column;
   align-items: center;
   background: rgba(0, 0, 0, 0.8);
+  box-shadow: 4px 9px 18px -7px rgba(0, 0, 0, 0.75);
+
   &:hover {
     cursor: pointer;
     background-color: ${theme.colors.blackLight};
@@ -66,9 +77,19 @@ export const Projects = () => {
                 color='white'
                 fontSize='1rem'
                 textAlign='justify'
+                letterSpacing='1.1px'
               >
                 {item.desc}
               </Text>
+              <HStack w='100%' mt='1.5rem'>
+                {item.roles.map((role, index) => {
+                  return (
+                    <Tooltip key={index} label={roleConversions[role]}>
+                      <Avatar size='md' src={icons.roles[role]} />
+                    </Tooltip>
+                  );
+                })}
+              </HStack>
             </StyledGridChild>
           );
         })}

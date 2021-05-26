@@ -24,6 +24,19 @@ export const icons = {
       'https://res.cloudinary.com/saimano/image/upload/v1622037331/RaidGuild/icons/purple/cartelculture__one_njxbae.png',
     tip_of_spear:
       'https://res.cloudinary.com/saimano/image/upload/v1622037333/RaidGuild/icons/purple/tipofthespear_k2lkvk.png'
+  },
+  roles: {
+    warrior:
+      'https://res.cloudinary.com/saimano/image/upload/v1622047192/RaidGuild/icons/roles/warrior_czafpt.png',
+    paladin:
+      'https://res.cloudinary.com/saimano/image/upload/v1622047191/RaidGuild/icons/roles/paladin_hsw5zu.png',
+    wizard:
+      'https://res.cloudinary.com/saimano/image/upload/v1622047192/RaidGuild/icons/roles/wizard_agjssn.png',
+    monk: 'https://res.cloudinary.com/saimano/image/upload/v1622047191/RaidGuild/icons/roles/monk_zpvpfu.png',
+    ranger:
+      'https://res.cloudinary.com/saimano/image/upload/v1622047191/RaidGuild/icons/roles/ranger_nqqek5.png',
+    archer:
+      'https://res.cloudinary.com/saimano/image/upload/v1622047190/RaidGuild/icons/roles/archer_tysz1n.png'
   }
 };
 
@@ -73,6 +86,7 @@ export const projects = [
     name: 'Aragon Network Metrics',
     desc: 'The Aragon Network is a digital jurisdiction that offers services to DAOs. It does so via linked protocols like Aragon Court with ANJ. All these linked protocols have their tokens linked to ANT — the native token of the Aragon Network. The Metrics Dashboard is a project for providing insight to data regarding the ANT and ANJ tokens.',
     type: 'fullstack',
+    roles: ['warrior', 'paladin', 'monk', 'archer'],
     img: icons.red.fullstack_dev,
     color: theme.colors.red
   },
@@ -80,6 +94,7 @@ export const projects = [
     name: 'Stake On Me',
     desc: 'Design and build the frontend for a personal token launcher built on the meToken contracts.',
     type: 'design sprint',
+    roles: ['ranger', 'warrior', 'paladin', 'archer'],
     img: icons.purple.design_sprints,
     color: theme.colors.purpleLight
   },
@@ -87,6 +102,7 @@ export const projects = [
     name: 'Tellor',
     desc: 'Design and build the Tellor Dispute Center, along with its Price Feed, for visual cohesion and to simplify both user and dev experience for ease of use and future maintainability.',
     type: 'design sprint',
+    roles: ['warrior', 'paladin', 'archer'],
     img: icons.purple.design_sprints,
     color: theme.colors.purpleLight
   },
@@ -94,6 +110,7 @@ export const projects = [
     name: '1Up World',
     desc: '1UP World provides community tracking as an MMO coordination game. Giving a 1UP helps track value added activities within your community via a Discord or Telegram chat bot.',
     type: 'wizadry',
+    roles: ['archer', 'warrior', 'paladin', 'monk'],
     img: icons.yellow.experimentation,
     color: theme.colors.yellowDark
   },
@@ -101,6 +118,7 @@ export const projects = [
     name: 'Moloch Minion',
     desc: 'Moloch DAOs needed a way to execute arbitrary contract calls through a passing proposal. To do this we did a RaidGuild Improvement Proposal (RIP) to explore a proof of concept for new contracts and getting a minimal frontend UI to test inside the RaidGuild DAO.',
     type: 'wizadry',
+    roles: ['warrior', 'wizard'],
     img: icons.yellow.experimentation,
     color: theme.colors.yellowDark
   },
@@ -108,21 +126,33 @@ export const projects = [
     name: 'Senary Blockchain Ventures',
     desc: 'SBV is a multidisciplinary innovation firm devoted to decentralized technology. SBV supports web-based public utilities that democratize opportunity and promote greater humanity.',
     type: 'fullstack',
+    roles: ['archer', 'warrior', 'monk'],
     img: icons.red.fullstack_dev,
     color: theme.colors.red
   },
   {
-    name: 'Moloch Minion',
+    name: 'Omni Bridge',
     desc: 'Moloch DAOs needed a way to execute arbitrary contract calls through a passing proposal. To do this we did a RaidGuild Improvement Proposal (RIP) to explore a proof of concept for new contracts and getting a minimal frontend UI to test inside the RaidGuild DAO.',
     type: 'wizadry',
+    roles: ['warrior', 'wizard'],
     img: icons.yellow.experimentation,
     color: theme.colors.yellowDark
   },
   {
-    name: 'Senary Blockchain Ventures',
+    name: 'Consensus Trade',
     desc: 'SBV is a multidisciplinary innovation firm devoted to decentralized technology. SBV supports web-based public utilities that democratize opportunity and promote greater humanity.',
     type: 'fullstack',
+    roles: ['archer', 'warrior', 'monk'],
     img: icons.red.fullstack_dev,
     color: theme.colors.red
   }
 ];
+
+export const roleConversions = {
+  warrior: 'FrontEnd',
+  paladin: 'BackEnd',
+  wizard: 'Solidity',
+  monk: 'Project Management',
+  archer: 'UI Design',
+  ranger: 'UX Design'
+};
