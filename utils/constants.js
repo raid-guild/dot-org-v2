@@ -79,14 +79,14 @@ export const projects = [
   {
     name: 'Stake On Me',
     desc: 'Design and build the frontend for a personal token launcher built on the meToken contracts.',
-    type: 'desing sprint',
+    type: 'design sprint',
     img: icons.purple.design_sprints,
     color: theme.colors.purpleLight
   },
   {
     name: 'Tellor',
     desc: 'Design and build the Tellor Dispute Center, along with its Price Feed, for visual cohesion and to simplify both user and dev experience for ease of use and future maintainability.',
-    type: 'desing sprint',
+    type: 'design sprint',
     img: icons.purple.design_sprints,
     color: theme.colors.purpleLight
   },

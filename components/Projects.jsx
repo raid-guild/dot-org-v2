@@ -1,4 +1,4 @@
-import { Heading, Text, Image, Tag } from '@chakra-ui/react';
+import { Heading, Text, Image, Tag, Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import { Footer } from '../shared/Footer';
@@ -24,15 +24,14 @@ const StyledGridChild = styled.div`
 export const Projects = () => {
   return (
     <>
-      <div
-        className='grid'
+      <Box
+        w='100%'
+        margin='0 auto'
+        p='2rem'
         style={{
-          width: '100%',
-          margin: '0 auto',
           display: 'column',
-          columns: 4,
-          gap: '2em',
-          padding: '2rem'
+          columns: '4',
+          gap: '2em'
         }}
       >
         {projects.map((item, index) => {
@@ -45,7 +44,7 @@ export const Projects = () => {
             >
               <Image src={item.img} w='130px' mb='1rem' alt='picture' />
               <Heading
-                variant='secondary'
+                variant='texturina'
                 fontSize='1.5rem'
                 mb='1rem'
                 color={item.color}
@@ -63,7 +62,7 @@ export const Projects = () => {
                 {item.type}
               </Tag>
               <Text
-                variant='medium'
+                variant='texturina'
                 color='white'
                 fontSize='1rem'
                 textAlign='justify'
@@ -73,7 +72,7 @@ export const Projects = () => {
             </StyledGridChild>
           );
         })}
-      </div>
+      </Box>
       <Footer />
     </>
   );
