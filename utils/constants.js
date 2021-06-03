@@ -83,7 +83,7 @@ export const culture = [
 
 export const projects = [
   {
-    name: 'Aragon Network Metrics',
+    name: 'Araboard',
     desc: 'The Aragon Network is a digital jurisdiction that offers services to DAOs. It does so via linked protocols like Aragon Court with ANJ. All these linked protocols have their tokens linked to ANT — the native token of the Aragon Network. The Metrics Dashboard is a project for providing insight to data regarding the ANT and ANJ tokens.',
     type: 'fullstack',
     roles: ['warrior', 'paladin', 'monk', 'archer'],

@@ -6,7 +6,9 @@ import {
   Box,
   Avatar,
   Tooltip,
-  HStack
+  HStack,
+  Flex,
+  VStack
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
@@ -19,7 +21,7 @@ const StyledGridChild = styled.div`
   break-inside: avoid;
   margin-bottom: 1em;
   padding: 2rem;
-  border: 5px solid;
+  /* border: 5px solid; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,31 +49,45 @@ export const Projects = () => {
       >
         {projects.map((item, index) => {
           return (
-            <StyledGridChild
-              key={index}
-              style={{
-                borderColor: item.color
-              }}
-            >
-              <Image src={item.img} w='130px' mb='1rem' alt='picture' />
-              <Heading
-                variant='texturina'
-                fontSize='1.5rem'
-                mb='1rem'
-                color={item.color}
-                textAlign='center'
+            <StyledGridChild key={index}>
+              <Flex
+                minHeight='200px'
+                w='100%'
+                direction='row'
+                alignItems='center'
+                border='3px solid'
+                borderColor={item.color}
+                p='.7rem'
+                mb='2rem'
               >
-                {item.name}
-              </Heading>
-              <Tag
-                bg={item.color}
-                fontFamily='jetbrains'
-                color='black'
-                fontWeight='bold'
-                mb='1rem'
-              >
-                {item.type}
-              </Tag>
+                <Image
+                  src={item.img}
+                  w='auto'
+                  mb='1rem'
+                  alt='picture'
+                  mr='2rem'
+                />
+                <VStack alignItems='flex-start'>
+                  <Heading
+                    variant='texturina'
+                    fontSize='1.5rem'
+                    color={item.color}
+                    textAlign='left'
+                  >
+                    {item.name}
+                  </Heading>
+                  <Tag
+                    fontSize='.7rem'
+                    bg={item.color}
+                    fontFamily='jetbrains'
+                    color='black'
+                    fontWeight='bold'
+                  >
+                    {item.type}
+                  </Tag>
+                </VStack>
+              </Flex>
+
               <Text
                 variant='texturina'
                 color='white'
@@ -81,11 +97,23 @@ export const Projects = () => {
               >
                 {item.desc}
               </Text>
-              <HStack w='100%' mt='1.5rem'>
+              <Text
+                w='100%'
+                variant='texturina'
+                fontFamily='spaceMono'
+                color={item.color}
+                textAlign='left'
+                mt='2rem'
+                mb='.5rem'
+                fontWeight='bold'
+              >
+                Roles
+              </Text>
+              <HStack w='100%'>
                 {item.roles.map((role, index) => {
                   return (
                     <Tooltip key={index} label={roleConversions[role]}>
-                      <Avatar size='md' src={icons.roles[role]} />
+                      <Avatar size='sm' src={icons.roles[role]} />
                     </Tooltip>
                   );
                 })}
