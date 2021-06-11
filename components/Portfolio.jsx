@@ -1,29 +1,15 @@
-import { Flex, Heading, HStack, Text, Button } from '@chakra-ui/react';
+import { Flex, Heading, Text, Button, Container } from '@chakra-ui/react';
 import Link from 'next/link';
 
 export const Portfolio = () => {
   return (
-    <Flex
-      minHeight='95vh'
-      bgImage='url(/assets/raid__valhalla.png)'
-      bgSize='cover'
-      justify='center'
-      align='center'
-      direction='column'
-      w='calc(100% - 2rem)'
-      flex={1}
-      m='1rem'
-      border='5px solid'
-      borderColor='red'
-    >
+    <Container bgImage='url(/assets/clouds.png)' minW='100%'>
       <Flex
-        height={{ base: '95vh' }}
-        width='100%'
+        minHeight='95vh'
         direction='column'
         justifyContent='center'
         alignItems='center'
-        style={{ backdropFilter: 'blur(.5rem)' }}
-        p='1rem'
+        bg='rgba(0,0,0, 0.5)'
       >
         <Heading
           variant='uncial'
@@ -37,8 +23,7 @@ export const Portfolio = () => {
           fontSize={{ base: '1rem', lg: '1.3rem' }}
           mb='1rem'
         >
-          A Decentralized Collective of Mercenaries Ready to Slay Your Web3
-          Product Demons.
+          Checkout some of our products built for the community
         </Text>
         <Button variant='spaceMono' fontSize={{ base: '1rem', lg: '1.5rem' }}>
           <Link href='/portfolio'>
@@ -46,6 +31,6 @@ export const Portfolio = () => {
           </Link>
         </Button>
       </Flex>
-    </Flex>
+    </Container>
   );
 };

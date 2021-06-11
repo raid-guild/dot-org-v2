@@ -47,6 +47,19 @@ export const FirstPaint = () => {
               Join Us
             </Button>
           </HStack>
+
+          {/* <Text
+            fontFamily='spaceMono'
+            color='white'
+            fontSize='1rem'
+            mt='2rem'
+            py='.5rem'
+            px='1rem'
+            bg='rgba(53, 50, 50, 0.5)'
+            textAlign='center'
+          >
+            A Moloch DAO initiative with 100 unique raiders
+          </Text> */}
         </Flex>
         <Image
           src='/assets/raid__banner.png'

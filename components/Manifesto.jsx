@@ -6,6 +6,8 @@ export const Manifesto = () => {
       columns={[1, 1, 2]}
       padding={{ base: '2rem', lg: '2rem 4rem' }}
       placeItems='center'
+      bg='rgba(0,0,0, 0.7)'
+      m='1rem'
     >
       <Image
         src='/assets/raid__fantasy.png'
@@ -16,7 +18,7 @@ export const Manifesto = () => {
         <Heading variant='uncial' fontSize={{ base: '1.5rem', lg: '2rem' }}>
           Manifesto
         </Heading>
-        <div>
+        <div style={{ lineHeight: '1.8' }}>
           <Text variant='texturina' fontSize={{ base: '1rem', lg: '1.3rem' }}>
             We believe that DAOs will power the future of work. Through the
             MetaCartel network, we assembled a fellowship of the best builders,
