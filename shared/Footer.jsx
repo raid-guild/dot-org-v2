@@ -48,19 +48,27 @@ export const Footer = () => {
             For All
           </Text>
           <HStack fontSize='1rem'>
-            <i className='fab fa-twitter'></i>
+            <span>
+              <i className='fab fa-twitter'></i>
+            </span>
             <Link>Twitter</Link>
           </HStack>
           <HStack fontSize='1rem'>
-            <i className='fab fa-github'></i>
+            <span>
+              <i className='fab fa-github'></i>
+            </span>
             <Link>Github</Link>
           </HStack>
           <HStack fontSize='1rem'>
-            <i className='fab fa-discord'></i>
+            <span>
+              <i className='fab fa-discord'></i>
+            </span>
             <Link>Discord</Link>
           </HStack>
           <HStack fontSize='1rem'>
-            <i className='fas fa-newspaper'></i>
+            <span>
+              <i className='fas fa-newspaper'></i>
+            </span>
             <Link>Newsletter</Link>
           </HStack>
         </VStack>
