@@ -45,7 +45,7 @@ export default function Home() {
       <Box
         px='5rem'
         py='2rem'
-        minH='20vh'
+        minH='25vh'
         bgImage='url(/assets/layered-steps.png)'
       ></Box>
 

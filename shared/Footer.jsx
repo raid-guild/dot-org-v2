@@ -1,4 +1,12 @@
-import { Flex, Link, Image, SimpleGrid, VStack, Text } from '@chakra-ui/react';
+import {
+  Flex,
+  Link,
+  Image,
+  SimpleGrid,
+  VStack,
+  HStack,
+  Text
+} from '@chakra-ui/react';
 
 export const Footer = () => {
   return (
@@ -9,6 +17,7 @@ export const Footer = () => {
       px='5rem'
       py='2rem'
       w='100%'
+      bg='black'
     >
       <Image src='/assets/raidguild__logo.png' alt='raidguild logo' w='250px' />
 
@@ -38,18 +47,22 @@ export const Footer = () => {
           <Text fontWeight='bold' fontSize='1.2rem' color='red'>
             For All
           </Text>
-          <Link>
-            <i className='fab fa-twitter'></i> Twitter
-          </Link>
-          <Link>
-            <i className='fab fa-github'></i> Github
-          </Link>
-          <Link>
-            <i className='fab fa-discord'></i> Discord
-          </Link>
-          <Link>
-            <i className='fas fa-newspaper'></i> Newsletter
-          </Link>
+          <HStack>
+            <i className='fab fa-twitter'></i>
+            <Link>Twitter</Link>
+          </HStack>
+          <HStack>
+            <i className='fab fa-github'></i>
+            <Link>Github</Link>
+          </HStack>
+          <HStack>
+            <i className='fab fa-discord'></i>
+            <Link>Discord</Link>
+          </HStack>
+          <HStack>
+            <i className='fas fa-newspaper'></i>
+            <Link>Newsletter</Link>
+          </HStack>
         </VStack>
       </SimpleGrid>
     </Flex>

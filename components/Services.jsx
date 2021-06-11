@@ -16,15 +16,16 @@ export const Services = () => {
       minHeight='95vh'
       columns={[1, 1]}
       padding={{ base: '2rem', lg: '2rem 4rem' }}
+      bg='blackLighter'
     >
-      <VStack spacing={5} justifyContent='center' lineHeight='1.8' mb='2rem'>
+      <VStack spacing={5} justifyContent='center' lineHeight='1.8' my='5rem'>
         <Heading variant='uncial' fontSize={{ base: '1.5rem', lg: '2rem' }}>
           Our Services
         </Heading>
         <Text
           variant='texturina'
-          fontSize={{ base: '1rem', lg: '1.3rem' }}
-          textAlign='center'
+          fontSize={{ base: '1rem', lg: '1.4rem' }}
+          textAlign='justify'
           maxW='80%'
         >
           RaidGuild is the premier design and dev agency of the Web3 ecosystem.
@@ -35,8 +36,8 @@ export const Services = () => {
         </Text>
         <Text
           variant='texturina'
-          fontSize={{ base: '1rem', lg: '1.3rem' }}
-          textAlign='center'
+          fontSize={{ base: '1rem', lg: '1.4rem' }}
+          textAlign='justify'
           maxW='80%'
         >
           We know how to buidl and have the connections, talent and experience
@@ -47,7 +48,7 @@ export const Services = () => {
           Hire Us
         </Button>
       </VStack>
-      <SimpleGrid columns={[1, 4]} gap={5} padding='2rem'>
+      <SimpleGrid maxW='80%' columns={[1, 4]} gap={5} mx='auto' my='2rem'>
         {services.map((item, index) => {
           return (
             <Flex
@@ -55,16 +56,29 @@ export const Services = () => {
               direction='column'
               alignItems='center'
               justifyContent='space-evenly'
-              background='blackLighter'
               py='2rem'
               px='1.5rem'
+              bg='blackLighter'
+              borderTop='2px solid'
+              borderColor='purple'
             >
-              <Heading variant='texturina' fontSize={{ base: '1.4rem' }} mb={3}>
+              <Heading
+                variant='texturina'
+                fontSize={{ base: '1.4rem' }}
+                mb={3}
+                textAlign='center'
+              >
                 {item.name}
               </Heading>
-              <img src={item.img} alt='consultations' />
-              <br></br>
-              <Text variant='texturinaSmall' fontSize={{ base: '1.2rem' }}>
+
+              <img src={item.img} alt='consultations' my='.5rem' />
+
+              <Text
+                variant='texturinaSmall'
+                fontSize={{ base: '1.2rem' }}
+                textAlign='justify'
+                minH='120px'
+              >
                 {item.text}
               </Text>
             </Flex>

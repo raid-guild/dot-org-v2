@@ -51,7 +51,7 @@ export const Header = () => {
       w='100%'
       h={{ base: '4rem' }}
       color='white'
-      fontFamily={`${theme.fonts.rubik}`}
+      fontFamily='spaceMono'
       justify='space-between'
       align='center'
       zIndex={5}
@@ -63,20 +63,21 @@ export const Header = () => {
         width={{ base: '150px', lg: '250px' }}
       />
 
-      {/* <Flex
+      <Flex
         minWidth='50%'
         direction='row'
         justifyContent='space-around'
         fontSize='1.3rem'
-        color={`${theme.colors.red}`}
+        color='red'
       >
         <ChakraLink>Manifesto</ChakraLink>
+        <ChakraLink>Services</ChakraLink>
         <ChakraLink>Portfolio</ChakraLink>
-        <ChakraLink>JoinUs</ChakraLink>
-        <ChakraLink>HireUs</ChakraLink>
-      </Flex> */}
+        <ChakraLink>Join</ChakraLink>
+        <ChakraLink>Hire</ChakraLink>
+      </Flex>
 
-      <Flex
+      {/* <Flex
         mr='1rem'
         align='center'
         height='8rem'
@@ -143,7 +144,7 @@ export const Header = () => {
           isExternal
           _hover={{}}
         ></ChakraLink>
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 };
