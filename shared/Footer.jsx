@@ -47,19 +47,19 @@ export const Footer = () => {
           <Text fontWeight='bold' fontSize='1.2rem' color='red'>
             For All
           </Text>
-          <HStack>
+          <HStack fontSize='1rem'>
             <i className='fab fa-twitter'></i>
             <Link>Twitter</Link>
           </HStack>
-          <HStack>
+          <HStack fontSize='1rem'>
             <i className='fab fa-github'></i>
             <Link>Github</Link>
           </HStack>
-          <HStack>
+          <HStack fontSize='1rem'>
             <i className='fab fa-discord'></i>
             <Link>Discord</Link>
           </HStack>
-          <HStack>
+          <HStack fontSize='1rem'>
             <i className='fas fa-newspaper'></i>
             <Link>Newsletter</Link>
           </HStack>
