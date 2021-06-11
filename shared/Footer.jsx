@@ -47,30 +47,41 @@ export const Footer = () => {
           <Text fontWeight='bold' fontSize='1.2rem' color='red'>
             For All
           </Text>
-          <HStack fontSize='1rem'>
-            <span>
-              <i className='fab fa-twitter'></i>
-            </span>
-            <Link>Twitter</Link>
-          </HStack>
-          <HStack fontSize='1rem'>
-            <span>
-              <i className='fab fa-github'></i>
-            </span>
-            <Link>Github</Link>
-          </HStack>
-          <HStack fontSize='1rem'>
-            <span>
-              <i className='fab fa-discord'></i>
-            </span>
-            <Link>Discord</Link>
-          </HStack>
-          <HStack fontSize='1rem'>
-            <span>
-              <i className='fas fa-newspaper'></i>
-            </span>
-            <Link>Newsletter</Link>
-          </HStack>
+          <Link>
+            <HStack>
+              <span style={{ width: '15px', marginRight: '5px' }}>
+                <i className='fab fa-twitter'></i>
+              </span>
+              <p>Twitter</p>
+            </HStack>
+          </Link>
+
+          <Link>
+            <HStack>
+              <span style={{ width: '15px', marginRight: '5px' }}>
+                <i className='fab fa-github'></i>
+              </span>
+              <p>Github</p>
+            </HStack>
+          </Link>
+
+          <Link>
+            <HStack>
+              <span style={{ width: '15px', marginRight: '5px' }}>
+                <i className='fab fa-discord'></i>
+              </span>
+              <p>Discord</p>
+            </HStack>
+          </Link>
+
+          <Link>
+            <HStack>
+              <span style={{ width: '15px', marginRight: '5px' }}>
+                <i className='fas fa-newspaper'></i>
+              </span>
+              <p>Newsletter</p>
+            </HStack>
+          </Link>
         </VStack>
       </SimpleGrid>
     </Flex>
