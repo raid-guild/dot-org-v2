@@ -4,7 +4,8 @@ import {
   Text,
   VStack,
   SimpleGrid,
-  Button
+  Button,
+  Image
 } from '@chakra-ui/react';
 
 import { services } from '../utils/constants';
@@ -44,6 +45,7 @@ export const Services = () => {
           to turn your ideas into reality. We are lean to the core and deliver
           high quality results with quick turnarounds.
         </Text>
+        <br />
         <Button variant='spaceMono' fontSize={{ base: '1rem', lg: '1.5rem' }}>
           Hire Us
         </Button>
@@ -71,7 +73,7 @@ export const Services = () => {
                 {item.name}
               </Heading>
 
-              <img src={item.img} alt='consultations' my='.5rem' />
+              <Image src={item.img} alt='consultations' my='.5rem' />
 
               <Text
                 variant='texturinaSmall'

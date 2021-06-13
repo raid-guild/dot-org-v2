@@ -5,7 +5,8 @@ import { Header } from '../shared/Header';
 export const FirstPaint = () => {
   return (
     <Flex
-      justify='center'
+      minH='95vh'
+      justify='space-between'
       align='center'
       direction='column'
       w='calc(100% - 2rem)'
@@ -62,9 +63,9 @@ export const FirstPaint = () => {
           </Text> */}
         </Flex>
         <Image
-          src='/assets/raid__banner.png'
+          src='/assets/3d.png'
           alt='raid-banner'
-          width={{ base: '300px', md: '500px', lg: '600px' }}
+          width={{ base: '300px', md: '500px', lg: '500px' }}
         />
       </Flex>
     </Flex>
