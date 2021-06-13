@@ -21,7 +21,11 @@ export const Services = () => {
       bg='blackLighter'
     >
       <VStack spacing={5} justifyContent='center' lineHeight='1.8' my='5rem'>
-        <Heading variant='uncial' fontSize={{ base: '1.5rem', lg: '2rem' }}>
+        <Heading
+          variant='uncial'
+          fontSize={{ base: '1.5rem', lg: '2rem' }}
+          mb='1rem'
+        >
           Our Services
         </Heading>
         <Text

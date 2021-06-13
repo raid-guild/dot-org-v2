@@ -24,7 +24,11 @@ export const Culture = () => {
         bgSize='cover'
       >
         <VStack spacing={5} justifyContent='center'>
-          <Heading variant='uncial' fontSize={{ base: '1.5rem', lg: '2rem' }}>
+          <Heading
+            variant='uncial'
+            fontSize={{ base: '1.5rem', lg: '2rem' }}
+            mb='1rem'
+          >
             Join the Guild
           </Heading>
           <Text
