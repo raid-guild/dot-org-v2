@@ -55,7 +55,6 @@ export const Header = () => {
       justify='space-between'
       align='center'
       zIndex={5}
-      padding={[0, '1rem', '1rem']}
     >
       <Image
         src='/assets/raidguild__logo.png'

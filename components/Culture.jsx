@@ -18,18 +18,18 @@ export const Culture = () => {
         direction='column'
         alignItems='center'
         justifyContent='center'
-        padding={{ base: '2rem', lg: '2rem 4rem' }}
+        px='8rem'
+        py='6rem'
         bgImage='url(/assets/layered-waves.svg)'
         bgSize='cover'
       >
-        <VStack spacing={5} justifyContent='center' mb='2rem' my='5rem'>
+        <VStack spacing={5} justifyContent='center'>
           <Heading variant='uncial' fontSize={{ base: '1.5rem', lg: '2rem' }}>
             Join the Guild
           </Heading>
           <Text
             variant='texturina'
             fontSize={{ base: '1rem', lg: '1.4rem' }}
-            maxW='80%'
             textAlign='justify'
             lineHeight='1.8'
           >
@@ -38,12 +38,13 @@ export const Culture = () => {
             We’re looking for top talent that can take things into their own
             hands and bring unique value to the guild.
           </Text>
+          <br />
           <Button variant='spaceMono' fontSize={{ base: '1rem', lg: '1.5rem' }}>
             Join Us
           </Button>
         </VStack>
 
-        <SimpleGrid columns={[1, 2, 3]} gap={5} maxW='80%' my='2rem'>
+        <SimpleGrid columns={[1, 2, 3]} gap={5} mt='6rem'>
           {culture.map((item, index) => {
             return (
               <Flex

@@ -13,10 +13,11 @@ import { services } from '../utils/constants';
 export const Services = () => {
   return (
     <SimpleGrid
-      w='100%'
       minHeight='95vh'
       columns={[1, 1]}
-      padding={{ base: '2rem', lg: '2rem 4rem' }}
+      px='8rem'
+      py='2rem'
+      my='4rem'
       bg='blackLighter'
     >
       <VStack spacing={5} justifyContent='center' lineHeight='1.8' my='5rem'>
@@ -27,7 +28,6 @@ export const Services = () => {
           variant='texturina'
           fontSize={{ base: '1rem', lg: '1.4rem' }}
           textAlign='justify'
-          maxW='80%'
         >
           RaidGuild is the premier design and dev agency of the Web3 ecosystem.
           We are deeply entrenched in the bleeding edge of DAOs, DeFi, dApps and
@@ -39,7 +39,6 @@ export const Services = () => {
           variant='texturina'
           fontSize={{ base: '1rem', lg: '1.4rem' }}
           textAlign='justify'
-          maxW='80%'
         >
           We know how to buidl and have the connections, talent and experience
           to turn your ideas into reality. We are lean to the core and deliver
@@ -50,7 +49,7 @@ export const Services = () => {
           Hire Us
         </Button>
       </VStack>
-      <SimpleGrid maxW='80%' columns={[1, 4]} gap={5} mx='auto' my='2rem'>
+      <SimpleGrid columns={[1, 4]} gap={5} my='2rem'>
         {services.map((item, index) => {
           return (
             <Flex

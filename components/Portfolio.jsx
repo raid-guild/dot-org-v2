@@ -38,8 +38,9 @@ export const Portfolio = () => {
         justifyContent='center'
         alignItems='center'
         style={{ backdropFilter: 'blur(5px)' }}
-        py='5rem'
-        mt='1rem'
+        px='8rem'
+        pt='4rem'
+        pb='6rem'
       >
         <Heading
           variant='uncial'
@@ -52,9 +53,8 @@ export const Portfolio = () => {
         <Text
           variant='texturina'
           fontSize={{ base: '1rem', lg: '1.4rem' }}
-          mb='1rem'
+          mb='2rem'
           color='blackLighter'
-          maxW='70%'
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -75,7 +75,7 @@ export const Portfolio = () => {
           </Link>
         </Button>
 
-        <Flex w='100%' p='3rem' justifyContent='center' mt='1rem'>
+        <Flex w='100%' p='3rem' justifyContent='center' mt='3rem'>
           <StyledCard bgColor='blackLighter'>
             <Image src='/assets/wrap__eth.png' alt='wrapeth' mb='1rem' />
             <Text

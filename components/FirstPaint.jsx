@@ -9,30 +9,30 @@ export const FirstPaint = () => {
       justify='space-between'
       align='center'
       direction='column'
-      w='calc(100% - 2rem)'
-      flex={1}
-      m='1rem'
       border='5px solid'
       borderColor='red'
-      p={{ base: '1rem' }}
+      py='2rem'
+      px='4rem'
+      mx='1rem'
     >
       <Header />
       <Flex
+        w='100%'
         direction={{ base: 'column-reverse', lg: 'row' }}
-        width='100%'
         alignItems='center'
-        justifyContent='space-evenly'
+        justifyContent='space-between'
       >
-        <Flex direction='column' justifyContent='center' alignItems='start'>
-          <Text
-            variant='uncial'
-            fontSize={{ base: '1.2rem', lg: '2rem' }}
-            maxWidth={{ lg: '600px' }}
-          >
+        <Flex
+          direction='column'
+          justifyContent='center'
+          alignItems='start'
+          maxW='50%'
+        >
+          <Text variant='uncial' fontSize={{ base: '1.2rem', lg: '2.5rem' }}>
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3
             Product Demons.
           </Text>
-          <HStack width='100%' mt={{ base: '2rem' }}>
+          <HStack w='100%' mt={{ base: '2rem' }}>
             <Button
               variant='spaceMono'
               style={{ width: '60%' }}
