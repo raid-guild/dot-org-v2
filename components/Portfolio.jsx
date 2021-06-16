@@ -17,7 +17,7 @@ const StyledCard = styled(Flex)`
   box-shadow: -1rem 0 3rem #000;
   padding: 1.5rem;
   transition: 0.2s;
-  :not(:first-child) {
+  :not(:first-of-type) {
     margin-left: -130px;
   }
   :hover {
