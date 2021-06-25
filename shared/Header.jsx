@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Button, Flex, Image, Link as ChakraLink } from '@chakra-ui/react';
+import { Button, Flex, Image, Link as ChakraLink } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import { HamburgerIcon } from '../icons/HamburgerIcon';
@@ -43,7 +43,7 @@ export const NavButton = ({ onClick, children }) => (
 
 const navItems = ['Home', 'Hire Us', 'Join Us', 'HandBook', 'DAO'];
 
-export const Header = () => {
+export const Header = ({ windowWidth }) => {
   const [isOpen, onOpen] = useState(false);
 
   return (
@@ -52,6 +52,7 @@ export const Header = () => {
       h={{ base: '4rem' }}
       color='white'
       fontFamily='spaceMono'
+      fontWeight='bold'
       justify='space-between'
       align='center'
       zIndex={5}
@@ -62,88 +63,94 @@ export const Header = () => {
         width={{ base: '150px', lg: '250px' }}
       />
 
-      <Flex
-        minWidth='50%'
-        direction='row'
-        justifyContent='space-around'
-        fontSize='1.3rem'
-        color='red'
-      >
-        <ChakraLink>Manifesto</ChakraLink>
-        <ChakraLink>Services</ChakraLink>
-        <ChakraLink>Portfolio</ChakraLink>
-        <ChakraLink>Join</ChakraLink>
-        <ChakraLink>Hire</ChakraLink>
-      </Flex>
-
-      {/* <Flex
-        mr='1rem'
-        align='center'
-        height='8rem'
-        transition='width 1s ease-out'
-      >
-        <Button
-          onClick={() => onOpen((o) => !o)}
-          variant='link'
-          ml={{ base: '0.5rem', sm: '1rem' }}
-          zIndex={7}
+      {windowWidth > 750 && (
+        <Flex
+          minWidth='50%'
+          direction='row'
+          justifyContent='space-around'
+          fontSize='1.3rem'
+          color='red'
         >
-          <HamburgerIcon
-            boxSize={{ base: '2rem', sm: '2.75rem' }}
-            transition='all 1s ease-out'
-            _hover={{
-              transition: 'all 1s ease-out',
-              transform: 'rotateZ(90deg)'
-            }}
-            color={`${theme.colors.red}`}
-          />
-        </Button>
-      </Flex>
-      <Flex
-        zIndex={6}
-        position='fixed'
-        left='0'
-        top='0'
-        bg='black'
-        h='100%'
-        w='100%'
-        direction='column'
-        justify='center'
-        align='center'
-        transition='all 2s ease-out'
-        pointerEvents={isOpen ? 'all' : 'none'}
-        css={{
-          clipPath: isOpen
-            ? 'circle(calc(100vw + 100vh) at 90% -10%)'
-            : 'circle(100px at 90% -20%)'
-        }}
-      >
-        {navItems.map((item, index) => {
-          return (
-            <StyledButton
-              key={index}
-              onClick={() => {
-                onOpen(false);
-              }}
-              transition='all 0.5s ease 0.4s'
-              my='1rem'
-              variant='link'
-              color={`${theme.colors.red}`}
-              fontWeight='normal'
-              fontSize='1.5rem'
-              fontFamily={`${theme.fonts.rubik}`}
-            >
-              {item}
-            </StyledButton>
-          );
-        })}
+          <ChakraLink>Manifesto</ChakraLink>
+          <ChakraLink>Services</ChakraLink>
+          <ChakraLink>Portfolio</ChakraLink>
+          <ChakraLink>Join</ChakraLink>
+          <ChakraLink>Hire</ChakraLink>
+        </Flex>
+      )}
 
-        <ChakraLink
-          href='https://discord.gg/CanD2WcK7W'
-          isExternal
-          _hover={{}}
-        ></ChakraLink>
-      </Flex> */}
+      {windowWidth < 750 && (
+        <>
+          <Flex
+            mr='1rem'
+            align='center'
+            height='8rem'
+            transition='width 1s ease-out'
+          >
+            <Button
+              onClick={() => onOpen((o) => !o)}
+              variant='link'
+              ml={{ base: '0.5rem', sm: '1rem' }}
+              zIndex={7}
+            >
+              <HamburgerIcon
+                boxSize={{ base: '2rem', sm: '2.75rem' }}
+                transition='all 1s ease-out'
+                _hover={{
+                  transition: 'all 1s ease-out',
+                  transform: 'rotateZ(90deg)'
+                }}
+                color={`${theme.colors.red}`}
+              />
+            </Button>
+          </Flex>
+          <Flex
+            zIndex={6}
+            position='fixed'
+            left='0'
+            top='0'
+            bg='black'
+            h='100%'
+            w='100%'
+            direction='column'
+            justify='center'
+            align='center'
+            transition='all 2s ease-out'
+            pointerEvents={isOpen ? 'all' : 'none'}
+            css={{
+              clipPath: isOpen
+                ? 'circle(calc(100vw + 100vh) at 90% -10%)'
+                : 'circle(100px at 90% -20%)'
+            }}
+          >
+            {navItems.map((item, index) => {
+              return (
+                <StyledButton
+                  key={index}
+                  onClick={() => {
+                    onOpen(false);
+                  }}
+                  transition='all 0.5s ease 0.4s'
+                  my='1rem'
+                  variant='link'
+                  color={`${theme.colors.red}`}
+                  fontWeight='normal'
+                  fontSize='1.5rem'
+                  fontFamily={`${theme.fonts.rubik}`}
+                >
+                  {item}
+                </StyledButton>
+              );
+            })}
+
+            <ChakraLink
+              href='https://discord.gg/CanD2WcK7W'
+              isExternal
+              _hover={{}}
+            ></ChakraLink>
+          </Flex>
+        </>
+      )}
     </Flex>
   );
 };

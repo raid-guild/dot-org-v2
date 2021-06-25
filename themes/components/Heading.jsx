@@ -5,14 +5,28 @@ export const Heading = {
   sizes: {},
   // Styles for the visual style variations
   variants: {
-    uncial: {
+    headingOne: {
       fontFamily: 'uncial',
+      letterSpacing: '1.2px',
+      textShadow: '0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.20em red',
+      color: 'white'
+    },
+    headingTwo: {
+      fontFamily: 'uncial',
+      letterSpacing: '1.2px',
+      textShadow: '0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.20em red',
+      color: 'white'
+    },
+    headingThree: {
+      fontFamily: 'uncial',
+      letterSpacing: '1.2px',
       color: 'red'
     },
-    texturina: {
+    labels: {
       fontFamily: 'texturina',
-      color: 'purpleLight',
-      textTransform: 'uppercase'
+      letterSpacing: '2px',
+      textTransform: 'uppercase',
+      color: 'white'
     }
   },
   // The default `size` or `variant` values

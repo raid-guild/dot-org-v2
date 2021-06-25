@@ -1,21 +1,21 @@
-import { Flex, HStack, Text, Button, Image } from '@chakra-ui/react';
+import { Flex, HStack, Heading, Button, Image } from '@chakra-ui/react';
 
 import { Header } from '../shared/Header';
 
-export const FirstPaint = () => {
+export const FirstPaint = ({ windowWidth }) => {
   return (
     <Flex
       minH='95vh'
-      justify='space-between'
+      justify={{ base: 'space-evenly', lg: 'space-between' }}
       align='center'
       direction='column'
-      border='5px solid'
+      border='2px solid'
       borderColor='red'
-      py='2rem'
-      px='4rem'
+      py={{ lg: '2rem' }}
+      px={{ base: '1rem', lg: '4rem' }}
       mx='1rem'
     >
-      <Header />
+      <Header windowWidth={windowWidth} />
       <Flex
         w='100%'
         direction={{ base: 'column-reverse', lg: 'row' }}
@@ -26,46 +26,34 @@ export const FirstPaint = () => {
           direction='column'
           justifyContent='center'
           alignItems='start'
-          maxW='50%'
+          maxW={{ lg: '50%' }}
         >
-          <Text variant='uncial' fontSize={{ base: '1.2rem', lg: '2.5rem' }}>
+          <Heading
+            variant='headingOne'
+            lineHeight='1.5'
+            fontSize={{ lg: '36px' }}
+            textShadow='0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.20em red'
+          >
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3
             Product Demons.
-          </Text>
-          <HStack w='100%' mt={{ base: '2rem' }}>
-            <Button
-              variant='spaceMono'
-              style={{ width: '60%' }}
-              fontSize={{ base: '1rem', lg: '1.5rem' }}
-            >
+          </Heading>
+          <HStack
+            w='100%'
+            mt={{ base: '2rem' }}
+            justifyContent={{ base: 'center', lg: 'flex-start' }}
+          >
+            <Button variant='primary' fontSize='18px' mr='1rem'>
               Hire Us
             </Button>
-            <Button
-              variant='spaceMono'
-              style={{ width: '40%' }}
-              fontSize={{ base: '1rem', lg: '1.5rem' }}
-            >
+            <Button variant='secondary' fontSize='18px'>
               Join Us
             </Button>
           </HStack>
-
-          {/* <Text
-            fontFamily='spaceMono'
-            color='white'
-            fontSize='1rem'
-            mt='2rem'
-            py='.5rem'
-            px='1rem'
-            bg='rgba(53, 50, 50, 0.5)'
-            textAlign='center'
-          >
-            A Moloch DAO initiative with 100 unique raiders
-          </Text> */}
         </Flex>
         <Image
-          src='/assets/3d.png'
+          src='/assets/raid__banner.png'
           alt='raid-banner'
-          width={{ base: '300px', md: '500px', lg: '500px' }}
+          width={{ base: '300px', md: '500px', lg: '550px' }}
         />
       </Flex>
     </Flex>

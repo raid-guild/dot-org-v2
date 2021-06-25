@@ -25,6 +25,22 @@ export const icons = {
     tip_of_spear:
       'https://res.cloudinary.com/saimano/image/upload/v1622037333/RaidGuild/icons/purple/tipofthespear_k2lkvk.png'
   },
+  red: {
+    consultations:
+      'https://res.cloudinary.com/saimano/image/upload/v1622036153/RaidGuild/icons/red/consultations_lr6ef4.png',
+    design_sprints:
+      'https://res.cloudinary.com/saimano/image/upload/v1622036154/RaidGuild/icons/red/designsprints__one_zuzzjt.png',
+    fullstack_dev:
+      'https://res.cloudinary.com/saimano/image/upload/v1622036154/RaidGuild/icons/red/fullstackdev_pvshh4.png',
+    marketing:
+      'https://res.cloudinary.com/saimano/image/upload/v1622036155/RaidGuild/icons/red/marketing_ge6ikg.png',
+    learning:
+      'https://res.cloudinary.com/saimano/image/upload/v1622036154/RaidGuild/icons/red/learning__two_j9vgyw.png',
+    cartel_culture:
+      'https://res.cloudinary.com/saimano/image/upload/v1622036153/RaidGuild/icons/red/cartelculture__one_fgz9va.png',
+    tip_of_spear:
+      'https://res.cloudinary.com/saimano/image/upload/v1622036154/RaidGuild/icons/red/tipofthespear_a4qqnj.png'
+  },
   roles: {
     warrior:
       'https://res.cloudinary.com/saimano/image/upload/v1622047192/RaidGuild/icons/roles/warrior_czafpt.png',
@@ -43,22 +59,22 @@ export const icons = {
 export const services = [
   {
     name: 'Consultations',
-    img: icons.purple.consultations,
+    img: icons.red.consultations,
     text: 'Validate your ideas and get expert advice on how to build, ship and grow your product.'
   },
   {
     name: 'Design Sprints',
-    img: icons.purple.design_sprints,
+    img: icons.red.design_sprints,
     text: 'Fine tune your product market fit and nail your UX before writing a single line of code.'
   },
   {
     name: 'Full Stack Dev',
-    img: icons.purple.fullstack_dev,
+    img: icons.red.fullstack_dev,
     text: 'Make your dApp ideas a reality. From contracts to front ends, our Raiders are the best in the biz.'
   },
   {
     name: 'Marketing',
-    img: icons.purple.marketing,
+    img: icons.red.marketing,
     text: 'Level up your meme game and build a compelling narrative for your brand / product.'
   }
 ];
@@ -66,17 +82,17 @@ export const services = [
 export const culture = [
   {
     name: 'Learn New Things',
-    img: icons.purple.learning,
+    img: icons.red.learning,
     text: 'Stay on top of the latest trends and developments while leveling up your skills.'
   },
   {
     name: 'Cartel Culture',
-    img: icons.purple.cartel_culture,
+    img: icons.red.cartel_culture,
     text: "We're serious about our work and its impacts on society, but we also know how to have a good time."
   },
   {
     name: 'Tip of the Spear',
-    img: icons.purple.tip_of_spear,
+    img: icons.red.tip_of_spear,
     text: 'Join the ranks on the front lines and make a direct impact on the world around you.'
   }
 ];

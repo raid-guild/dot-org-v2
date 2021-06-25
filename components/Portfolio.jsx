@@ -17,15 +17,19 @@ const StyledCard = styled(Flex)`
   box-shadow: -1rem 0 3rem #000;
   padding: 1.5rem;
   transition: 0.2s;
-  :not(:first-of-type) {
-    margin-left: -130px;
-  }
-  :hover {
-    transform: translateY(-1rem);
-    cursor: pointer;
-  }
-  :hover ~ div {
-    transform: translateX(130px);
+  background: black;
+  margin-bottom: 1rem;
+  @media only screen and (min-width: 600px) {
+    :not(:first-of-type) {
+      margin-left: -130px;
+    }
+    :hover {
+      transform: translateY(-1rem);
+      cursor: pointer;
+    }
+    :hover ~ div {
+      transform: translateX(130px);
+    }
   }
 `;
 
@@ -37,24 +41,22 @@ export const Portfolio = () => {
         direction='column'
         justifyContent='center'
         alignItems='center'
-        style={{ backdropFilter: 'blur(5px)' }}
-        px='8rem'
+        // style={{ backdropFilter: 'blur(5px)' }}
+        px={{ base: '2rem', lg: '8rem' }}
         pt='4rem'
         pb='6rem'
       >
         <Heading
-          variant='uncial'
-          fontSize={{ base: '1.5rem', lg: '2rem' }}
-          color='blackDark'
+          variant='headingTwo'
+          fontSize={{ base: '1.5rem', lg: '36px' }}
           mb='1rem'
         >
           Our Portfolio
         </Heading>
         <Text
-          variant='texturina'
-          fontSize={{ base: '1rem', lg: '1.4rem' }}
+          variant='textOne'
+          fontSize={{ base: '1rem', lg: '18px' }}
           mb='2rem'
-          color='blackLighter'
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -62,56 +64,40 @@ export const Portfolio = () => {
           aliquip ex ea commodo consequat.
         </Text>
 
-        <Button
-          variant='spaceMono'
-          fontFamily='spaceMono'
-          bgColor='black'
-          color='purpleLight'
-          fontSize={{ base: '1rem', lg: '1.5rem' }}
-          _hover={{ backgroundColor: 'blackLight' }}
-        >
+        <Button variant='primary' fontSize={{ base: '1rem', lg: '18px' }}>
           <Link href='/portfolio'>
             <a>View Projects</a>
           </Link>
         </Button>
 
-        <Flex w='100%' p='3rem' justifyContent='center' mt='3rem'>
-          <StyledCard bgColor='blackLighter'>
+        <Flex
+          w='100%'
+          p={{ base: '1rem 0', lg: '3rem' }}
+          justifyContent='center'
+          mt='3rem'
+          direction={{ base: 'column', lg: 'row' }}
+        >
+          <StyledCard borderLeft='2px solid' borderColor='red'>
             <Image src='/assets/wrap__eth.png' alt='wrapeth' mb='1rem' />
-            <Text
-              variant='jetbrains'
-              color='greyLight'
-              fontSize='1rem'
-              maxW='300px'
-            >
+            <Text variant='textTwo' fontSize='16px' maxW='300px'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Text>
           </StyledCard>
-          <StyledCard bgColor='blackLighter'>
+          <StyledCard borderLeft='2px solid' borderColor='red'>
             <Image
               src='/assets/smart__invoice.png'
               alt='smart invoice'
               mb='1rem'
             />
-            <Text
-              variant='jetbrains'
-              color='greyLight'
-              fontSize='1rem'
-              maxW='300px'
-            >
+            <Text variant='textTwo' fontSize='16px' maxW='300px'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Text>
           </StyledCard>
-          <StyledCard bgColor='blackLighter'>
+          <StyledCard borderLeft='2px solid' borderColor='red'>
             <Image src='/assets/wrap__eth.png' alt='wrapeth' mb='1rem' />
-            <Text
-              variant='jetbrains'
-              color='greyLight'
-              fontSize='1rem'
-              maxW='300px'
-            >
+            <Text variant='textTwo' fontSize='16px' maxW='300px'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Text>

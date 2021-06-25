@@ -5,19 +5,17 @@ export const Text = {
   sizes: {},
   // Styles for the visual style variations
   variants: {
-    uncial: {
-      fontFamily: 'uncial',
-      color: 'red',
-      textAlign: 'justify'
-    },
-    texturina: {
+    textOne: {
+      maxWidth: '720px',
       fontFamily: 'texturina',
+      lineHeight: '1.8',
       color: 'white'
     },
-    texturinaSmall: {
+    textTwo: {
+      maxWidth: '720px',
       fontFamily: 'texturina',
-      color: 'purpleLight',
-      textAlign: 'center'
+      lineHeight: '1.8',
+      color: 'white'
     }
   },
   // The default `size` or `variant` values

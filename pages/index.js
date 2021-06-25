@@ -1,6 +1,6 @@
-import { Flex, Box } from '@chakra-ui/react';
-
+import { Flex, Box, Text } from '@chakra-ui/react';
 import Head from 'next/head';
+import { useState, useEffect } from 'react';
 
 import { FirstPaint } from '../components/FirstPaint';
 import { Manifesto } from '../components/Manifesto';
@@ -13,6 +13,16 @@ import { Community } from '../components/Community';
 import { Footer } from '../shared/Footer';
 
 export default function Home() {
+  const [windowWidth, setWindowWidth] = useState('');
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    window.removeEventListener('resize', () => {});
+    window.addEventListener('resize', (e) => {
+      setWindowWidth(window.innerWidth);
+    });
+  }, []);
+
   return (
     <Flex height='100%' width='100%' direction='column'>
       <Head>
@@ -32,7 +42,7 @@ export default function Home() {
         ></script>
       </Head>
 
-      <FirstPaint />
+      <FirstPaint windowWidth={windowWidth} />
       <Manifesto />
       <Services />
       <Portfolio />
@@ -42,17 +52,19 @@ export default function Home() {
 
       <Community />
 
-      <Box
-        px='5rem'
-        py='2rem'
-        minH='25vh'
-        bgImage='url(/assets/layered-steps.png)'
-      ></Box>
+      {windowWidth > 500 && (
+        <Box
+          px='5rem'
+          py='2rem'
+          minH='20vh'
+          bgImage='url(/assets/layered-steps.svg)'
+        ></Box>
+      )}
 
       <Footer />
-      {/* <Text fontFamily='jetbrains' color='red' py='.5rem' ml='auto' mr='auto'>
+      <Text fontFamily='jetbrains' color='red' py='.5rem' ml='auto' mr='auto'>
         &copy; 2021, RaidGuild
-      </Text> */}
+      </Text>
     </Flex>
   );
 }

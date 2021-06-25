@@ -18,24 +18,23 @@ export const Culture = () => {
         direction='column'
         alignItems='center'
         justifyContent='center'
-        px='8rem'
+        px={{ base: '2rem', lg: '8rem' }}
         py='6rem'
-        bgImage='url(/assets/layered-waves.svg)'
+        bgImage='url(/assets/layered-waves-red.svg)'
         bgSize='cover'
       >
         <VStack spacing={5} justifyContent='center'>
           <Heading
-            variant='uncial'
-            fontSize={{ base: '1.5rem', lg: '2rem' }}
+            variant='headingTwo'
+            fontSize={{ base: '1.5rem', lg: '36px' }}
             mb='1rem'
           >
             Join the Guild
           </Heading>
           <Text
-            variant='texturina'
-            fontSize={{ base: '1rem', lg: '1.4rem' }}
+            variant='textOne'
+            fontSize={{ base: '1rem', lg: '18px' }}
             textAlign='justify'
-            lineHeight='1.8'
           >
             We believe workers should be self-sovereign and able to work when,
             where and how they want, as long as they create high value output.
@@ -43,7 +42,7 @@ export const Culture = () => {
             hands and bring unique value to the guild.
           </Text>
           <br />
-          <Button variant='spaceMono' fontSize={{ base: '1rem', lg: '1.5rem' }}>
+          <Button variant='primary' fontSize={{ base: '1rem', lg: '18px' }}>
             Join Us
           </Button>
         </VStack>
@@ -52,20 +51,20 @@ export const Culture = () => {
           {culture.map((item, index) => {
             return (
               <Flex
-                maxWidth='400px'
+                maxWidth='350px'
                 key={index}
                 direction='column'
                 alignItems='center'
                 justifyContent='space-evenly'
                 py='2rem'
                 px='1.5rem'
-                bg='blackLighter'
+                bg='black'
                 borderTop='2px solid'
-                borderColor='purple'
+                borderColor='red'
               >
                 <Heading
-                  variant='texturina'
-                  fontSize={{ base: '1.4rem' }}
+                  variant='labels'
+                  fontSize={{ base: '16px' }}
                   mb={5}
                   textAlign='center'
                 >
@@ -76,8 +75,8 @@ export const Culture = () => {
                 <br></br>
 
                 <Text
-                  variant='texturinaSmall'
-                  fontSize={{ base: '1.2rem' }}
+                  variant='textTwo'
+                  fontSize={{ base: '16px' }}
                   textAlign='justify'
                   px='1rem'
                   mt='auto'

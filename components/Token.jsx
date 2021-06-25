@@ -10,6 +10,7 @@ export const Token = () => {
       justifyContent='center'
       bg='blackLighter'
       py='5rem'
+      px={{ base: '2rem', lg: '8rem' }}
     >
       <Heading
         mb='2rem'
@@ -20,14 +21,7 @@ export const Token = () => {
       >
         RAID Token
       </Heading>
-      <Text
-        variant='texturina'
-        fontSize='1.5rem'
-        lineHeight='2'
-        textAlign='center'
-        maxW='70%'
-        mb='2rem'
-      >
+      <Text variant='textOne' fontSize='18px' textAlign='center' mb='2rem'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea

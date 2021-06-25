@@ -1,4 +1,4 @@
-import { Flex, Image, HStack, Heading } from '@chakra-ui/react';
+import { Flex, Image, Heading } from '@chakra-ui/react';
 
 export const Community = () => {
   return (
@@ -9,14 +9,36 @@ export const Community = () => {
       padding={{ base: '2rem', lg: '2rem 4rem' }}
       bg='#201F1D'
     >
-      <Heading variant='uncial' mb='2rem' mt='2rem'>
+      <Heading
+        variant='headingTwo'
+        mb='2rem'
+        mt='2rem'
+        fontSize={{ base: '1.5rem', lg: '36px' }}
+      >
         Supported by
       </Heading>
-      <HStack w='100%' justifyContent='space-evenly'>
-        <Image src='/assets/meta__chilli.png' alt='metacartel' w='200px' />
-        <Image src='/assets/daohaus__logo.png' alt='daohaus' w='200px' />
-        <Image src='/assets/moloch__logo.png' alt='molochdao' w='200px' />
-      </HStack>
+      <Flex
+        w='100%'
+        justifyContent='space-evenly'
+        alignItems='center'
+        direction={{ base: 'column', lg: 'row' }}
+      >
+        <Image
+          src='/assets/meta__chilli.png'
+          alt='metacartel'
+          w={{ base: '150px', lg: '200px' }}
+        />
+        <Image
+          src='/assets/daohaus__logo.png'
+          alt='daohaus'
+          w={{ base: '150px', lg: '200px' }}
+        />
+        <Image
+          src='/assets/moloch__logo.png'
+          alt='molochdao'
+          w={{ base: '150px', lg: '200px' }}
+        />
+      </Flex>
     </Flex>
   );
 };

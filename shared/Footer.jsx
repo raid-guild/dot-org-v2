@@ -11,19 +11,25 @@ import {
 export const Footer = () => {
   return (
     <Flex
-      direction='row'
+      direction={{ base: 'column-reverse', lg: 'row' }}
       alignItems='flex-start'
       justifyContent='space-between'
-      px='5rem'
+      px={{ base: '2rem', lg: '5rem' }}
       py='2rem'
       w='100%'
       bg='black'
     >
-      <Image src='/assets/raidguild__logo.png' alt='raidguild logo' w='250px' />
+      <Image
+        src='/assets/raidguild__logo.png'
+        alt='raidguild logo'
+        w={{ base: '150px', lg: '200px' }}
+        mx='auto'
+        mt='2rem'
+      />
 
       <SimpleGrid
-        columns='3'
-        spacing='5rem'
+        columns={[1, 3]}
+        spacing={{ base: '2rem', lg: '5rem' }}
         fontFamily='spaceMono'
         fontSize='1rem'
         color='greyLight'

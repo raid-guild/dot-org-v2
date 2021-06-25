@@ -4,7 +4,7 @@ export const Manifesto = () => {
   return (
     <SimpleGrid
       columns={[1, 1, 2]}
-      px='8rem'
+      px={{ base: '2rem', lg: '8rem' }}
       my='4rem'
       mb='0'
       placeItems='center'
@@ -16,16 +16,16 @@ export const Manifesto = () => {
       />
       <VStack spacing={5} justifyContent='center'>
         <Heading
-          variant='uncial'
-          fontSize={{ base: '1.5rem', lg: '2rem' }}
+          variant='headingTwo'
+          fontSize={{ base: '1.5rem', lg: '36px' }}
           mb='1rem'
         >
           Manifesto
         </Heading>
-        <div style={{ lineHeight: '1.8' }}>
+        <div>
           <Text
-            variant='texturina'
-            fontSize={{ base: '1rem', lg: '1.4rem' }}
+            variant='textOne'
+            fontSize={{ base: '1rem', lg: '18px' }}
             textAlign='justify'
           >
             We believe that DAOs will power the future of work. Through the
@@ -37,8 +37,8 @@ export const Manifesto = () => {
           </Text>
           <br></br>
           <Text
-            variant='texturina'
-            fontSize={{ base: '1rem', lg: '1.4rem' }}
+            variant='textOne'
+            fontSize={{ base: '1rem', lg: '18px' }}
             textAlign='justify'
           >
             We believe in Web3 and are here to build it, use it, and propogate
@@ -49,8 +49,8 @@ export const Manifesto = () => {
           </Text>
           <br></br>
           <Text
-            variant='texturina'
-            fontSize={{ base: '1rem', lg: '1.4rem' }}
+            variant='textOne'
+            fontSize={{ base: '1rem', lg: '18px' }}
             textAlign='justify'
           >
             "If you want to go fast, go alone. If you want to go far, go

@@ -14,23 +14,23 @@ export const Services = () => {
   return (
     <SimpleGrid
       minHeight='95vh'
-      columns={[1, 1]}
-      px='8rem'
+      columns={[1, 2]}
+      px={{ base: '2rem', lg: '8rem' }}
       py='2rem'
       my='4rem'
-      bg='blackLighter'
+      bg='linear-gradient(157.1deg, #2B0000 0%, #39040D 29.17%, #48093A 61.98%, #1F0442 100%)'
     >
       <VStack spacing={5} justifyContent='center' lineHeight='1.8' my='5rem'>
         <Heading
-          variant='uncial'
-          fontSize={{ base: '1.5rem', lg: '2rem' }}
+          variant='headingTwo'
+          fontSize={{ base: '1.5rem', lg: '36px' }}
           mb='1rem'
         >
           Our Services
         </Heading>
         <Text
-          variant='texturina'
-          fontSize={{ base: '1rem', lg: '1.4rem' }}
+          variant='textOne'
+          fontSize={{ base: '1rem', lg: '18px' }}
           textAlign='justify'
         >
           RaidGuild is the premier design and dev agency of the Web3 ecosystem.
@@ -40,8 +40,8 @@ export const Services = () => {
           combined experience.
         </Text>
         <Text
-          variant='texturina'
-          fontSize={{ base: '1rem', lg: '1.4rem' }}
+          variant='textOne'
+          fontSize={{ base: '1rem', lg: '18px' }}
           textAlign='justify'
         >
           We know how to buidl and have the connections, talent and experience
@@ -49,11 +49,11 @@ export const Services = () => {
           high quality results with quick turnarounds.
         </Text>
         <br />
-        <Button variant='spaceMono' fontSize={{ base: '1rem', lg: '1.5rem' }}>
+        <Button variant='primary' fontSize={{ base: '1rem', lg: '18px' }}>
           Hire Us
         </Button>
       </VStack>
-      <SimpleGrid columns={[1, 4]} gap={5} my='2rem'>
+      <SimpleGrid columns={[1, 2]} gap={5} my='2rem' ml={{ lg: '3rem' }}>
         {services.map((item, index) => {
           return (
             <Flex
@@ -63,15 +63,15 @@ export const Services = () => {
               justifyContent='space-evenly'
               py='2rem'
               px='1.5rem'
-              bg='blackLighter'
+              bg='black'
               borderTop='2px solid'
-              borderColor='purple'
+              borderColor='red'
             >
               <Heading
-                variant='texturina'
-                fontSize={{ base: '1.4rem' }}
-                mb={3}
+                variant='labels'
+                fontSize={{ base: '16px' }}
                 textAlign='center'
+                mb={3}
               >
                 {item.name}
               </Heading>
@@ -79,10 +79,9 @@ export const Services = () => {
               <Image src={item.img} alt='consultations' my='.5rem' />
 
               <Text
-                variant='texturinaSmall'
-                fontSize={{ base: '1.2rem' }}
-                textAlign='justify'
-                minH='120px'
+                variant='textTwo'
+                fontSize={{ base: '16px' }}
+                textAlign='left'
               >
                 {item.text}
               </Text>
