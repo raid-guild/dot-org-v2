@@ -23,7 +23,7 @@ export const Footer = () => {
         src='/assets/raidguild__logo.png'
         alt='raidguild logo'
         w={{ base: '150px', lg: '200px' }}
-        mx='auto'
+        mr='auto'
         mt='2rem'
       />
 

@@ -62,9 +62,9 @@ export default function Home() {
       )}
 
       <Footer />
-      <Text fontFamily='jetbrains' color='red' py='.5rem' ml='auto' mr='auto'>
+      {/* <Text fontFamily='jetbrains' color='red' py='.5rem' ml='auto' mr='auto'>
         &copy; 2021, RaidGuild
-      </Text>
+      </Text> */}
     </Flex>
   );
 }
