@@ -42,10 +42,15 @@ export const FirstPaint = ({ windowWidth }) => {
             mt={{ base: '2rem' }}
             justifyContent={{ base: 'center', lg: 'flex-start' }}
           >
-            <Button variant='primary' fontSize='18px' mr='1rem'>
+            <Button
+              variant='primary'
+              fontSize='18px'
+              mr={{ lg: '1rem' }}
+              minW={{ lg: '160px' }}
+            >
               Hire Us
             </Button>
-            <Button variant='secondary' fontSize='18px'>
+            <Button variant='secondary' fontSize='18px' minW={{ lg: '160px' }}>
               Join Us
             </Button>
           </HStack>
