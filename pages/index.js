@@ -1,4 +1,4 @@
-import { Flex, Box, Text } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 
@@ -59,9 +59,6 @@ export default function Home() {
       )}
 
       <Footer />
-      {/* <Text fontFamily='jetbrains' color='red' py='.5rem' ml='auto' mr='auto'>
-        &copy; 2021, RaidGuild
-      </Text> */}
     </Flex>
   );
 }

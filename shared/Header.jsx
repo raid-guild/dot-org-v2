@@ -41,7 +41,13 @@ export const NavButton = ({ onClick, children }) => (
   </StyledButton>
 );
 
-const navItems = ['Manifesto', 'Services', 'Portfolio', 'Join', 'Hire'];
+const navItems = [
+  { name: 'Manifesto', href: '/#manifesto' },
+  { name: 'Services', href: '/#services' },
+  { name: 'Portfolio', href: '/#portfolio' },
+  { name: 'Join', href: '/#culture' },
+  { name: 'Hire', href: '/#services' }
+];
 
 export const Header = ({ windowWidth }) => {
   const [isOpen, onOpen] = useState(false);
@@ -70,11 +76,11 @@ export const Header = ({ windowWidth }) => {
           fontSize='1.3rem'
           color='red'
         >
-          <ChakraLink>Manifesto</ChakraLink>
-          <ChakraLink>Services</ChakraLink>
-          <ChakraLink>Portfolio</ChakraLink>
-          <ChakraLink>Join</ChakraLink>
-          <ChakraLink>Hire</ChakraLink>
+          <ChakraLink href='/#manifesto'>Manifesto</ChakraLink>
+          <ChakraLink href='/#services'>Services</ChakraLink>
+          <ChakraLink href='/#portfolio'>Portfolio</ChakraLink>
+          <ChakraLink href='/#culture'>Join</ChakraLink>
+          <ChakraLink href='/#hire'>Hire</ChakraLink>
         </Flex>
       )}
 
@@ -122,16 +128,16 @@ export const Header = ({ windowWidth }) => {
                 <StyledButton
                   key={index}
                   onClick={() => {
-                    onOpen(false);
+                    onOpen((o) => !o);
+                    document.location.href = item.href;
                   }}
-                  transition='all 0.5s ease 0.4s'
                   my='1rem'
                   variant='link'
                   color={`${theme.colors.red}`}
                   fontWeight='normal'
                   fontSize='1.5rem'
                 >
-                  {item}
+                  {item.name}
                 </StyledButton>
               );
             })}

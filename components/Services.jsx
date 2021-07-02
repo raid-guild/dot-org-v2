@@ -13,6 +13,7 @@ import { services } from '../utils/constants';
 export const Services = () => {
   return (
     <SimpleGrid
+      id='services'
       minHeight='95vh'
       columns={{ base: 1, md: 1, lg: 2 }}
       px={{ base: '2rem', lg: '8rem' }}
@@ -49,7 +50,11 @@ export const Services = () => {
           high quality results with quick turnarounds.
         </Text>
         <br />
-        <Button variant='primary' fontSize={{ base: '16pxrem', lg: '18px' }}>
+        <Button
+          variant='primary'
+          fontSize={{ base: '16px', lg: '18px' }}
+          onClick={() => window.open('https://hireus.raidguild.org', '_blank')}
+        >
           Hire Us
         </Button>
       </VStack>

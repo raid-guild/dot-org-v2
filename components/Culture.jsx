@@ -12,6 +12,7 @@ import { culture } from '../utils/constants';
 export const Culture = () => {
   return (
     <Flex
+      id='culture'
       minHeight='100vh'
       direction='column'
       alignItems='center'

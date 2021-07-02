@@ -10,6 +10,7 @@ import {
 export const Manifesto = () => {
   return (
     <SimpleGrid
+      id='manifesto'
       columns={{ base: 1, md: 1, lg: 2 }}
       px={{ base: '2rem', lg: '8rem' }}
       my='4rem'
@@ -65,7 +66,15 @@ export const Manifesto = () => {
           </Text>
         </div>
         <br />
-        <Button variant='primary'>Handbook</Button>
+        <Button
+          variant='primary'
+          fontSize={{ base: '16px', lg: '18px' }}
+          onClick={() =>
+            window.open('https://handbook.raidguild.org', '_blank')
+          }
+        >
+          Handbook
+        </Button>
       </VStack>
     </SimpleGrid>
   );

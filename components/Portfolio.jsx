@@ -44,7 +44,12 @@ const StyledBox = styled(Box)`
 
 export const Portfolio = () => {
   return (
-    <Container bgImage='url(/assets/clouds.png)' minW='100%' p='0'>
+    <Container
+      id='portfolio'
+      bgImage='url(/assets/clouds.png)'
+      minW='100%'
+      p='0'
+    >
       <Flex
         w='100%'
         direction='column'
@@ -72,10 +77,14 @@ export const Portfolio = () => {
           raids we've completed.
         </Text>
 
-        <Button variant='primary' fontSize={{ base: '16px', lg: '18px' }}>
-          <Link href='/portfolio'>
-            <a>View Projects</a>
-          </Link>
+        <Button
+          variant='primary'
+          fontSize={{ base: '16px', lg: '18px' }}
+          onClick={() =>
+            window.open('https://portfolio.raidguild.org', '_blank')
+          }
+        >
+          <a>View Projects</a>
         </Button>
 
         <Flex

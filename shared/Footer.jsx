@@ -38,15 +38,21 @@ export const Footer = () => {
           <Text fontWeight='bold' fontSize='1.2rem' color='red'>
             For Clients
           </Text>
-          <Link>Hire Us</Link>
-          <Link>Our Portfolio</Link>
+          <Link href='#services'>Hire Us</Link>
+          <Link href='#portfolio'>Our Portfolio</Link>
         </VStack>
         <VStack alignItems='flex-start'>
           <Text fontWeight='bold' fontSize='1.2rem' color='red'>
             For Raiders
           </Text>
-          <Link>Join Us</Link>
-          <Link>Our Handbook</Link>
+          <Link href='#culture'>Join Us</Link>
+          <Link
+            href='https://handbook.raidguild.org'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Our Handbook
+          </Link>
         </VStack>
         <VStack alignItems='flex-start'>
           <Text fontWeight='bold' fontSize='1.2rem' color='red'>
@@ -57,7 +63,13 @@ export const Footer = () => {
               <span style={{ width: '15px', marginRight: '5px' }}>
                 <i className='fab fa-twitter'></i>
               </span>
-              <p>Twitter</p>
+              <Link
+                href='https://twitter.com/RaidGuild'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Twitter
+              </Link>
             </HStack>
           </Link>
 
@@ -66,7 +78,13 @@ export const Footer = () => {
               <span style={{ width: '15px', marginRight: '5px' }}>
                 <i className='fab fa-github'></i>
               </span>
-              <p>Github</p>
+              <Link
+                href='https://github.com/orgs/raid-guild/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Github
+              </Link>
             </HStack>
           </Link>
 
@@ -75,7 +93,13 @@ export const Footer = () => {
               <span style={{ width: '15px', marginRight: '5px' }}>
                 <i className='fab fa-discord'></i>
               </span>
-              <p>Discord</p>
+              <Link
+                href='https://discord.gg/rGFpfQf'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Discord
+              </Link>
             </HStack>
           </Link>
 
@@ -84,7 +108,13 @@ export const Footer = () => {
               <span style={{ width: '15px', marginRight: '5px' }}>
                 <i className='fas fa-newspaper'></i>
               </span>
-              <p>Newsletter</p>
+              <Link
+                href='https://raidguild.substack.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Newsletter
+              </Link>
             </HStack>
           </Link>
         </VStack>

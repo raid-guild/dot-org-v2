@@ -42,6 +42,9 @@ export const FirstPaint = ({ windowWidth }) => {
             justifyContent={{ base: 'center', lg: 'flex-start' }}
           >
             <Button
+              onClick={() =>
+                window.open('https://hireus.raidguild.org', '_blank')
+              }
               minW={{ base: 'auto' }}
               variant='primary'
               fontSize={{ base: '16px', lg: '18px' }}
@@ -50,6 +53,7 @@ export const FirstPaint = ({ windowWidth }) => {
               Hire Us
             </Button>
             <Button
+              onClick={() => window.open('/join')}
               minW={{ base: 'auto' }}
               variant='secondary'
               fontSize={{ base: '16px', lg: '18px' }}
