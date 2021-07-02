@@ -66,10 +66,10 @@ export const Portfolio = () => {
           fontSize={{ base: '1rem', lg: '18px' }}
           mb='2rem'
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          No demon is too large or smol for Raid Guild. We've launched
+          everything from DeFi dashboards, dApps, and tokens to new DAOs and
+          public good projects. Check out our gallery of trophies from the 50+
+          raids we've completed.
         </Text>
 
         <Button variant='primary' fontSize={{ base: '16px', lg: '18px' }}>
