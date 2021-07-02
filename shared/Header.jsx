@@ -41,7 +41,7 @@ export const NavButton = ({ onClick, children }) => (
   </StyledButton>
 );
 
-const navItems = ['Home', 'Hire Us', 'Join Us', 'HandBook', 'DAO'];
+const navItems = ['Manifesto', 'Services', 'Portfolio', 'Join', 'Hire'];
 
 export const Header = ({ windowWidth }) => {
   const [isOpen, onOpen] = useState(false);
@@ -52,7 +52,6 @@ export const Header = ({ windowWidth }) => {
       h={{ base: '4rem' }}
       color='white'
       fontFamily='spaceMono'
-      fontWeight='bold'
       justify='space-between'
       align='center'
       zIndex={5}
@@ -60,10 +59,10 @@ export const Header = ({ windowWidth }) => {
       <Image
         src='/assets/raidguild__logo.png'
         alt='RaidGuild'
-        width={{ base: '150px', lg: '250px' }}
+        width={{ base: '150px', lg: '168px' }}
       />
 
-      {windowWidth > 750 && (
+      {windowWidth > 1200 && (
         <Flex
           minWidth='50%'
           direction='row'
@@ -79,14 +78,9 @@ export const Header = ({ windowWidth }) => {
         </Flex>
       )}
 
-      {windowWidth < 750 && (
+      {windowWidth < 1200 && (
         <>
-          <Flex
-            mr='1rem'
-            align='center'
-            height='8rem'
-            transition='width 1s ease-out'
-          >
+          <Flex align='center' height='8rem' transition='width 1s ease-out'>
             <Button
               onClick={() => onOpen((o) => !o)}
               variant='link'
@@ -136,7 +130,6 @@ export const Header = ({ windowWidth }) => {
                   color={`${theme.colors.red}`}
                   fontWeight='normal'
                   fontSize='1.5rem'
-                  fontFamily={`${theme.fonts.rubik}`}
                 >
                   {item}
                 </StyledButton>

@@ -1,9 +1,16 @@
-import { SimpleGrid, Heading, Text, VStack, Image } from '@chakra-ui/react';
+import {
+  SimpleGrid,
+  Heading,
+  Text,
+  VStack,
+  Image,
+  Button
+} from '@chakra-ui/react';
 
 export const Manifesto = () => {
   return (
     <SimpleGrid
-      columns={[1, 1, 2]}
+      columns={{ base: 1, md: 1, lg: 2 }}
       px={{ base: '2rem', lg: '8rem' }}
       my='4rem'
       mb='0'
@@ -14,7 +21,7 @@ export const Manifesto = () => {
         alt='raid fantasy'
         width={{ base: '250px', lg: '400px' }}
       />
-      <VStack spacing={5} justifyContent='center'>
+      <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }}>
         <Heading
           variant='headingTwo'
           fontSize={{ base: '1.5rem', lg: '36px' }}
@@ -57,6 +64,8 @@ export const Manifesto = () => {
             together."
           </Text>
         </div>
+        <br />
+        <Button variant='primary'>Handbook</Button>
       </VStack>
     </SimpleGrid>
   );

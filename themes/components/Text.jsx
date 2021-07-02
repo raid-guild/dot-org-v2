@@ -9,13 +9,15 @@ export const Text = {
       maxWidth: '720px',
       fontFamily: 'texturina',
       lineHeight: '1.8',
-      color: 'white'
+      color: 'white',
+      textAlign: 'left'
     },
     textTwo: {
       maxWidth: '720px',
       fontFamily: 'texturina',
       lineHeight: '1.8',
-      color: 'white'
+      color: 'white',
+      textAlign: 'left'
     }
   },
   // The default `size` or `variant` values

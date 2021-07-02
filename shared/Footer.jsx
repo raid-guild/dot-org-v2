@@ -11,7 +11,7 @@ import {
 export const Footer = () => {
   return (
     <Flex
-      direction={{ base: 'column-reverse', lg: 'row' }}
+      direction={{ base: 'column-reverse', md: 'row', lg: 'row' }}
       alignItems='flex-start'
       justifyContent='space-between'
       px={{ base: '2rem', lg: '5rem' }}
@@ -22,13 +22,13 @@ export const Footer = () => {
       <Image
         src='/assets/raidguild__logo.png'
         alt='raidguild logo'
-        w={{ base: '150px', lg: '200px' }}
+        width={{ base: '150px', lg: '168px' }}
         mr='auto'
         mt='2rem'
       />
 
       <SimpleGrid
-        columns={[1, 3]}
+        columns={{ base: 1, md: 3, lg: 3 }}
         spacing={{ base: '2rem', lg: '5rem' }}
         fontFamily='spaceMono'
         fontSize='1rem'
@@ -40,7 +40,6 @@ export const Footer = () => {
           </Text>
           <Link>Hire Us</Link>
           <Link>Our Portfolio</Link>
-          <Link>FAQ</Link>
         </VStack>
         <VStack alignItems='flex-start'>
           <Text fontWeight='bold' fontSize='1.2rem' color='red'>

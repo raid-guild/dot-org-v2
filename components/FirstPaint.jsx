@@ -1,23 +1,20 @@
-import { Flex, HStack, Heading, Button, Image } from '@chakra-ui/react';
+import { Flex, SimpleGrid, Heading, Button, Image } from '@chakra-ui/react';
 
 import { Header } from '../shared/Header';
 
 export const FirstPaint = ({ windowWidth }) => {
   return (
-    <Flex
-      minH='95vh'
-      justify={{ base: 'space-evenly', lg: 'space-between' }}
-      align='center'
-      direction='column'
+    <SimpleGrid
+      rows='1'
+      placeItems='center'
       border='2px solid'
       borderColor='red'
-      py={{ lg: '2rem' }}
+      py='2rem'
       px={{ base: '1rem', lg: '4rem' }}
       mx='1rem'
     >
       <Header windowWidth={windowWidth} />
       <Flex
-        w='100%'
         direction={{ base: 'column-reverse', lg: 'row' }}
         alignItems='center'
         justifyContent='space-between'
@@ -29,6 +26,7 @@ export const FirstPaint = ({ windowWidth }) => {
           maxW={{ lg: '50%' }}
         >
           <Heading
+            maxW='720px'
             variant='headingOne'
             lineHeight='1.5'
             fontSize={{ lg: '36px' }}
@@ -37,30 +35,35 @@ export const FirstPaint = ({ windowWidth }) => {
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3
             Product Demons.
           </Heading>
-          <HStack
+          <Flex
             w='100%'
             mt={{ base: '2rem' }}
+            direction='row'
             justifyContent={{ base: 'center', lg: 'flex-start' }}
           >
             <Button
+              minW={{ base: 'auto' }}
               variant='primary'
-              fontSize='18px'
-              mr={{ lg: '1rem' }}
-              minW={{ lg: '160px' }}
+              fontSize={{ base: '16px', lg: '18px' }}
+              mr='1rem'
             >
               Hire Us
             </Button>
-            <Button variant='secondary' fontSize='18px' minW={{ lg: '160px' }}>
+            <Button
+              minW={{ base: 'auto' }}
+              variant='secondary'
+              fontSize={{ base: '16px', lg: '18px' }}
+            >
               Join Us
             </Button>
-          </HStack>
+          </Flex>
         </Flex>
         <Image
           src='/assets/raid__banner.png'
           alt='raid-banner'
-          width={{ base: '300px', md: '500px', lg: '550px' }}
+          width={{ base: '450px', md: '500px', lg: '550px' }}
         />
       </Flex>
-    </Flex>
+    </SimpleGrid>
   );
 };

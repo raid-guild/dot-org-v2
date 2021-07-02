@@ -25,7 +25,6 @@ export const Heading = {
     labels: {
       fontFamily: 'texturina',
       letterSpacing: '2px',
-      textTransform: 'uppercase',
       color: 'white'
     }
   },

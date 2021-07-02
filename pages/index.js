@@ -7,7 +7,6 @@ import { Manifesto } from '../components/Manifesto';
 import { Services } from '../components/Services';
 import { Portfolio } from '../components/Portfolio';
 import { Culture } from '../components/Culture';
-import { Token } from '../components/Token';
 import { Community } from '../components/Community';
 
 import { Footer } from '../shared/Footer';
@@ -47,8 +46,6 @@ export default function Home() {
       <Services />
       <Portfolio />
       <Culture />
-
-      <Token />
 
       <Community />
 

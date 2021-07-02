@@ -21,22 +21,22 @@ export const Community = () => {
         w='100%'
         justifyContent='space-evenly'
         alignItems='center'
-        direction={{ base: 'column', lg: 'row' }}
+        direction={{ base: 'column', md: 'row', lg: 'row' }}
       >
         <Image
           src='/assets/meta__chilli.png'
           alt='metacartel'
-          w={{ base: '150px', lg: '200px' }}
+          w={{ base: '120px', lg: '200px' }}
         />
         <Image
           src='/assets/daohaus__logo.png'
           alt='daohaus'
-          w={{ base: '150px', lg: '200px' }}
+          w={{ base: '120px', lg: '200px' }}
         />
         <Image
           src='/assets/moloch__logo.png'
           alt='molochdao'
-          w={{ base: '150px', lg: '200px' }}
+          w={{ base: '120px', lg: '200px' }}
         />
       </Flex>
     </Flex>

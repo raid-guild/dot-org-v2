@@ -14,7 +14,7 @@ export const Services = () => {
   return (
     <SimpleGrid
       minHeight='95vh'
-      columns={[1, 2]}
+      columns={{ base: 1, md: 1, lg: 2 }}
       px={{ base: '2rem', lg: '8rem' }}
       py='2rem'
       my='4rem'
@@ -49,11 +49,16 @@ export const Services = () => {
           high quality results with quick turnarounds.
         </Text>
         <br />
-        <Button variant='primary' fontSize={{ base: '1rem', lg: '18px' }}>
+        <Button variant='primary' fontSize={{ base: '16pxrem', lg: '18px' }}>
           Hire Us
         </Button>
       </VStack>
-      <SimpleGrid columns={[1, 2]} gap={5} my='2rem' ml={{ lg: '3rem' }}>
+      <SimpleGrid
+        columns={{ base: 1, md: 2, lg: 2 }}
+        gap={5}
+        my='2rem'
+        ml={{ lg: '3rem' }}
+      >
         {services.map((item, index) => {
           return (
             <Flex

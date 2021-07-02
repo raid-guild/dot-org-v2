@@ -4,33 +4,42 @@ import {
   Text,
   Container,
   Image,
-  Button
+  Button,
+  Box,
+  HStack,
+  Link
 } from '@chakra-ui/react';
-
-import Link from 'next/link';
 
 import styled from '@emotion/styled';
 
-const StyledCard = styled(Flex)`
-  min-width: 300px;
-  flex-direction: column;
-  box-shadow: -1rem 0 3rem #000;
-  padding: 1.5rem;
-  transition: 0.2s;
-  background: black;
-  margin-bottom: 1rem;
-  @media only screen and (min-width: 600px) {
-    :not(:first-of-type) {
-      margin-left: -130px;
-    }
-    :hover {
-      transform: translateY(-1rem);
-      cursor: pointer;
-    }
-    :hover ~ div {
-      transform: translateX(130px);
-    }
-  }
+import { theme } from '../themes/theme';
+
+// const StyledCard = styled(Flex)`
+//   min-width: 300px;
+//   flex-direction: column;
+//   box-shadow: -1rem 0 3rem #000;
+//   padding: 1.5rem;
+//   transition: 0.2s;
+//   background: black;
+//   margin-bottom: 1rem;
+//   @media only screen and (min-width: 600px) {
+//     :not(:first-of-type) {
+//       margin-left: -130px;
+//     }
+//     :hover {
+//       transform: translateY(-1rem);
+//       cursor: pointer;
+//     }
+//     :hover ~ div {
+//       transform: translateX(130px);
+//     }
+//   }
+// `;
+
+const StyledBox = styled(Box)`
+  background-color: black;
+  padding: 24px;
+  border-radius: 3px;
 `;
 
 export const Portfolio = () => {
@@ -41,7 +50,6 @@ export const Portfolio = () => {
         direction='column'
         justifyContent='center'
         alignItems='center'
-        // style={{ backdropFilter: 'blur(5px)' }}
         px={{ base: '2rem', lg: '8rem' }}
         pt='4rem'
         pb='6rem'
@@ -64,7 +72,7 @@ export const Portfolio = () => {
           aliquip ex ea commodo consequat.
         </Text>
 
-        <Button variant='primary' fontSize={{ base: '1rem', lg: '18px' }}>
+        <Button variant='primary' fontSize={{ base: '16px', lg: '18px' }}>
           <Link href='/portfolio'>
             <a>View Projects</a>
           </Link>
@@ -72,36 +80,46 @@ export const Portfolio = () => {
 
         <Flex
           w='100%'
-          p={{ base: '1rem 0', lg: '3rem' }}
-          justifyContent='center'
-          mt='3rem'
+          alignItems='center'
+          justifyContent='space-between'
+          mt='5rem'
           direction={{ base: 'column', lg: 'row' }}
         >
-          <StyledCard borderLeft='2px solid' borderColor='red'>
-            <Image src='/assets/wrap__eth.png' alt='wrapeth' mb='1rem' />
-            <Text variant='textTwo' fontSize='16px' maxW='300px'>
+          <StyledBox mx='1rem'>
+            <HStack mb='2rem' justifyContent='space-between'>
+              <Image
+                src='/assets/wrap__eth.png'
+                alt='wrapeth'
+                w='250px'
+                maxW='70%'
+              />
+              <Link color='red' fontSize='26px'>
+                <i className='fas fa-binoculars'></i>
+              </Link>
+            </HStack>
+            <Text variant='textTwo' fontSize='16px'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Text>
-          </StyledCard>
-          <StyledCard borderLeft='2px solid' borderColor='red'>
-            <Image
-              src='/assets/smart__invoice.png'
-              alt='smart invoice'
-              mb='1rem'
-            />
-            <Text variant='textTwo' fontSize='16px' maxW='300px'>
+          </StyledBox>
+          <br />
+          <StyledBox mx='1rem'>
+            <HStack mb='2rem' justifyContent='space-between'>
+              <Image
+                src='/assets/smart__invoice.png'
+                alt='smart invoice'
+                w='250px'
+                maxW='70%'
+              />
+              <Link color='red' fontSize='26px'>
+                <i className='fas fa-binoculars'></i>
+              </Link>
+            </HStack>
+            <Text variant='textTwo' fontSize='16px'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Text>
-          </StyledCard>
-          <StyledCard borderLeft='2px solid' borderColor='red'>
-            <Image src='/assets/wrap__eth.png' alt='wrapeth' mb='1rem' />
-            <Text variant='textTwo' fontSize='16px' maxW='300px'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Text>
-          </StyledCard>
+          </StyledBox>
         </Flex>
       </Flex>
     </Container>
