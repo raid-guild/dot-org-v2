@@ -36,10 +36,11 @@ export const Button = {
       backgroundClip: 'text',
       paddingLeft: '24px',
       paddingRight: '24px',
+      transistion: 'all .8s ease-out',
       _hover: {
         background:
-          'linear-gradient(95.58deg, #FF3864 0%, #8B1DBA 53.65%, #4353DF 100%)',
-        color: 'black'
+          'linear-gradient(96.18deg, #e26f88 0%, #a15ebe 53.65%, #6c77db 100%)',
+        backgroundClip: 'text'
       }
     }
   },
