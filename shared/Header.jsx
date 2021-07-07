@@ -94,12 +94,16 @@ export const Header = ({ windowWidth }) => {
             >
               {!isOpen && (
                 <Box color='red' fontSize={{ base: '2rem', sm: '2.75rem' }}>
-                  <i className='fas fa-bars' />
+                  <span>
+                    <i className='fas fa-bars' />
+                  </span>
                 </Box>
               )}
               {isOpen && (
                 <Box color='red' fontSize={{ base: '2rem', sm: '2.75rem' }}>
-                  <i className='fas fa-times' />
+                  <span>
+                    <i className='fas fa-times' />
+                  </span>
                 </Box>
               )}
             </Button>
