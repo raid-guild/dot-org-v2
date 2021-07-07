@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Button, Flex, Image, Link as ChakraLink } from '@chakra-ui/react';
+import { Button, Flex, Image, Link as ChakraLink, Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
-import { HamburgerIcon } from '../icons/HamburgerIcon';
 import { theme } from '../themes/theme';
 
 const StyledButton = styled(Button)`
@@ -86,22 +85,23 @@ export const Header = ({ windowWidth }) => {
 
       {windowWidth < 1200 && (
         <>
-          <Flex align='center' height='8rem' transition='width 1s ease-out'>
+          <Flex align='center' height='8rem'>
             <Button
               onClick={() => onOpen((o) => !o)}
               variant='link'
               ml={{ base: '0.5rem', sm: '1rem' }}
               zIndex={7}
             >
-              <HamburgerIcon
-                boxSize={{ base: '2rem', sm: '2.75rem' }}
-                transition='all 1s ease-out'
-                _hover={{
-                  transition: 'all 1s ease-out',
-                  transform: 'rotateZ(90deg)'
-                }}
-                color={`${theme.colors.red}`}
-              />
+              {!isOpen && (
+                <Box color='red' fontSize={{ base: '2rem', sm: '2.75rem' }}>
+                  <i className='fas fa-bars' />
+                </Box>
+              )}
+              {isOpen && (
+                <Box color='red' fontSize={{ base: '2rem', sm: '2.75rem' }}>
+                  <i className='fas fa-times' />
+                </Box>
+              )}
             </Button>
           </Flex>
           <Flex
@@ -115,7 +115,7 @@ export const Header = ({ windowWidth }) => {
             direction='column'
             justify='center'
             align='center'
-            transition='all 2s ease-out'
+            transition='all .8s ease-out'
             pointerEvents={isOpen ? 'all' : 'none'}
             css={{
               clipPath: isOpen

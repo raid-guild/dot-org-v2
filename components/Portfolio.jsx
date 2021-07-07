@@ -102,7 +102,13 @@ export const Portfolio = () => {
                 w='250px'
                 maxW='70%'
               />
-              <Link color='red' fontSize='26px'>
+              <Link
+                color='red'
+                fontSize='26px'
+                href='https://wrapeth.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <i className='fas fa-binoculars'></i>
               </Link>
             </HStack>
@@ -120,7 +126,13 @@ export const Portfolio = () => {
                 w='250px'
                 maxW='70%'
               />
-              <Link color='red' fontSize='26px'>
+              <Link
+                color='red'
+                fontSize='26px'
+                href='https://smartinvoice.xyz/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <i className='fas fa-binoculars'></i>
               </Link>
             </HStack>

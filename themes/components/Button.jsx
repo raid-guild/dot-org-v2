@@ -15,7 +15,11 @@ export const Button = {
       background:
         'linear-gradient(94.89deg, #FF5A00 0%, #D62789 70.2%, #AD17AD 100%)',
       paddingLeft: '24px',
-      paddingRight: '24px'
+      paddingRight: '24px',
+      _hover: {
+        background:
+          'linear-gradient(94.89deg, #f78040 0%, #dd459b 70.2%, #ad3bad 100%)'
+      }
     },
     secondary: {
       minWidth: '160px',
@@ -31,7 +35,12 @@ export const Button = {
         'linear-gradient(96.18deg, #FF3864 -44.29%, #8B1DBA 53.18%, #4353DF 150.65%);',
       backgroundClip: 'text',
       paddingLeft: '24px',
-      paddingRight: '24px'
+      paddingRight: '24px',
+      _hover: {
+        background:
+          'linear-gradient(95.58deg, #FF3864 0%, #8B1DBA 53.65%, #4353DF 100%)',
+        color: 'black'
+      }
     }
   },
   // The default `size` or `variant` values
