@@ -93,18 +93,14 @@ export const Header = ({ windowWidth }) => {
               zIndex={7}
             >
               {!isOpen && (
-                <Box color='red' fontSize={{ base: '2rem', sm: '2.75rem' }}>
-                  <span style={{ width: '15px' }}>
-                    <i className='fas fa-bars' />
-                  </span>
-                </Box>
+                <span style={{ fontSize: '2rem', color: theme.colors.red }}>
+                  <i className='fas fa-bars' />
+                </span>
               )}
               {isOpen && (
-                <Box color='red' fontSize={{ base: '2rem', sm: '2.75rem' }}>
-                  <span style={{ width: '15px' }}>
-                    <i className='fas fa-times' />
-                  </span>
-                </Box>
+                <span style={{ fontSize: '2rem', color: theme.colors.red }}>
+                  <i className='fas fa-times' />
+                </span>
               )}
             </Button>
           </Flex>
