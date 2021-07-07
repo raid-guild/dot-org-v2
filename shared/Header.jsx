@@ -87,18 +87,19 @@ export const Header = ({ windowWidth }) => {
         <>
           <Flex align='center' height='8rem'>
             <Button
+              fontSize='2rem'
               onClick={() => onOpen((o) => !o)}
               variant='link'
               ml={{ base: '0.5rem', sm: '1rem' }}
               zIndex={7}
             >
               {!isOpen && (
-                <span style={{ fontSize: '2rem', color: theme.colors.red }}>
+                <span style={{ width: '25px', color: theme.colors.red }}>
                   <i className='fas fa-bars' />
                 </span>
               )}
               {isOpen && (
-                <span style={{ fontSize: '2rem', color: theme.colors.red }}>
+                <span style={{ width: '25px', color: theme.colors.red }}>
                   <i className='fas fa-times' />
                 </span>
               )}
