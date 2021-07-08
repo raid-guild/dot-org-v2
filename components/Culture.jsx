@@ -36,7 +36,11 @@ export const Culture = () => {
           and bring unique value to the guild.
         </Text>
         <br />
-        <Button variant='primary' fontSize={{ base: '16px', lg: '18px' }}>
+        <Button
+          variant='primary'
+          fontSize={{ base: '16px', lg: '18px' }}
+          onClick={() => window.open('/join')}
+        >
           Join Us
         </Button>
       </VStack>
