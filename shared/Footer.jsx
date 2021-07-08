@@ -8,6 +8,8 @@ import {
   Text
 } from '@chakra-ui/react';
 
+import { theme } from '../themes/theme';
+
 export const Footer = () => {
   return (
     <Flex
@@ -20,7 +22,7 @@ export const Footer = () => {
       bg='black'
     >
       <Image
-        src='/assets/raidguild__logo.png'
+        src={theme.images.raidguild}
         alt='raidguild logo'
         width={{ base: '150px', lg: '168px' }}
         mr='auto'

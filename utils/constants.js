@@ -1,5 +1,3 @@
-import { theme } from '../themes/theme';
-
 export const icons = {
   red: {
     fullstack_dev:
@@ -56,6 +54,34 @@ export const icons = {
   }
 };
 
+export const logos = {
+  meta_chilli:
+    'https://res.cloudinary.com/saimano/image/upload/v1625725337/RaidGuild/logos/meta__chilli_sjlvlp.png',
+  moloch:
+    'https://res.cloudinary.com/saimano/image/upload/v1625725338/RaidGuild/logos/moloch__logo_hhnx6q.png',
+  raidguild:
+    'https://res.cloudinary.com/saimano/image/upload/v1625725337/RaidGuild/logos/raidguild__logo_pjogts.png',
+  swords:
+    'https://res.cloudinary.com/saimano/image/upload/v1625725336/RaidGuild/logos/swords_ztjlko.png',
+  smart_invoice:
+    'https://res.cloudinary.com/saimano/image/upload/v1625725336/RaidGuild/logos/smart__invoice_iufa3r.png',
+  wrapeth:
+    'https://res.cloudinary.com/saimano/image/upload/v1625725337/RaidGuild/logos/wrap__eth_q0rbrw.png',
+  daohaus:
+    'https://res.cloudinary.com/saimano/image/upload/v1625725311/RaidGuild/logos/daohaus__logo_kmg2ev.png'
+};
+
+export const illustrations = {
+  raid_banner:
+    'https://res.cloudinary.com/saimano/image/upload/v1625726562/RaidGuild/illustrations/raid__banner_raur7g.png',
+  raid_fantasy:
+    'https://res.cloudinary.com/saimano/image/upload/v1625726561/RaidGuild/illustrations/raid__fantasy_y7elsc.png',
+  clouds:
+    'https://res.cloudinary.com/saimano/image/upload/v1625726560/RaidGuild/illustrations/clouds_xjm3yu.png',
+  steps:
+    'https://res.cloudinary.com/saimano/image/upload/v1625726559/RaidGuild/illustrations/layered-steps_umqxyf.svg'
+};
+
 export const services = [
   {
     name: 'Consultations',
@@ -104,7 +130,7 @@ export const projects = [
     type: 'fullstack',
     roles: ['warrior', 'paladin', 'monk', 'archer'],
     img: icons.red.fullstack_dev,
-    color: theme.colors.red
+    color: '#ff3864'
   },
   {
     name: 'Stake On Me',
@@ -112,7 +138,7 @@ export const projects = [
     type: 'design sprint',
     roles: ['ranger', 'warrior', 'paladin', 'archer'],
     img: icons.purple.design_sprints,
-    color: theme.colors.purpleLight
+    color: '#B66AD6'
   },
   {
     name: 'Tellor',
@@ -120,7 +146,7 @@ export const projects = [
     type: 'design sprint',
     roles: ['warrior', 'paladin', 'archer'],
     img: icons.purple.design_sprints,
-    color: theme.colors.purpleLight
+    color: '#B66AD6'
   },
   {
     name: '1Up World',
@@ -128,7 +154,7 @@ export const projects = [
     type: 'wizadry',
     roles: ['archer', 'warrior', 'paladin', 'monk'],
     img: icons.yellow.experimentation,
-    color: theme.colors.yellowDark
+    color: '#DCCF11'
   },
   {
     name: 'Moloch Minion',
@@ -136,7 +162,7 @@ export const projects = [
     type: 'wizadry',
     roles: ['warrior', 'wizard'],
     img: icons.yellow.experimentation,
-    color: theme.colors.yellowDark
+    color: '#DCCF11'
   },
   {
     name: 'Senary Blockchain Ventures',
@@ -144,7 +170,7 @@ export const projects = [
     type: 'fullstack',
     roles: ['archer', 'warrior', 'monk'],
     img: icons.red.fullstack_dev,
-    color: theme.colors.red
+    color: '#ff3864'
   },
   {
     name: 'Omni Bridge',
@@ -152,7 +178,7 @@ export const projects = [
     type: 'wizadry',
     roles: ['warrior', 'wizard'],
     img: icons.yellow.experimentation,
-    color: theme.colors.yellowDark
+    color: '#DCCF11'
   },
   {
     name: 'Consensus Trade',
@@ -160,7 +186,7 @@ export const projects = [
     type: 'fullstack',
     roles: ['archer', 'warrior', 'monk'],
     img: icons.red.fullstack_dev,
-    color: theme.colors.red
+    color: '#ff3864'
   }
 ];
 

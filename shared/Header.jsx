@@ -62,7 +62,7 @@ export const Header = ({ windowWidth }) => {
       zIndex={5}
     >
       <Image
-        src='/assets/raidguild__logo.png'
+        src={theme.images.raidguild}
         alt='RaidGuild'
         width={{ base: '150px', lg: '168px' }}
       />

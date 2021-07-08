@@ -7,6 +7,8 @@ import {
   Button
 } from '@chakra-ui/react';
 
+import { theme } from '../themes/theme';
+
 export const Manifesto = () => {
   return (
     <SimpleGrid
@@ -18,7 +20,7 @@ export const Manifesto = () => {
       placeItems='center'
     >
       <Image
-        src='/assets/raid__fantasy.png'
+        src={theme.images.raidFantasy}
         alt='raid fantasy'
         width={{ base: '250px', lg: '400px' }}
       />

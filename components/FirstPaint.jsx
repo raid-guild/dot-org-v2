@@ -1,5 +1,6 @@
 import { Flex, SimpleGrid, Heading, Button, Image } from '@chakra-ui/react';
 
+import { theme } from '../themes/theme';
 import { Header } from '../shared/Header';
 
 export const FirstPaint = ({ windowWidth }) => {
@@ -63,7 +64,7 @@ export const FirstPaint = ({ windowWidth }) => {
           </Flex>
         </Flex>
         <Image
-          src='/assets/raid__banner.png'
+          src={theme.images.raidBanner}
           alt='raid-banner'
           width={{ base: '450px', md: '500px', lg: '550px' }}
         />

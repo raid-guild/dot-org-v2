@@ -1,6 +1,8 @@
 import { Flex, Box } from '@chakra-ui/react';
-import Head from 'next/head';
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
+
+import { theme } from '../themes/theme';
 
 import { FirstPaint } from '../components/FirstPaint';
 import { Manifesto } from '../components/Manifesto';
@@ -58,7 +60,7 @@ export default function Home() {
           px='5rem'
           py='2rem'
           minH='20vh'
-          bgImage='url(/assets/layered-steps.svg)'
+          bgImage={`url(${theme.images.steps})`}
         ></Box>
       )}
 

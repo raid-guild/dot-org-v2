@@ -12,6 +12,8 @@ import {
 
 import styled from '@emotion/styled';
 
+import { theme } from '../themes/theme';
+
 // const StyledCard = styled(Flex)`
 //   min-width: 300px;
 //   flex-direction: column;
@@ -49,7 +51,7 @@ export const Portfolio = () => {
   return (
     <Container
       id='portfolio'
-      bgImage='url(/assets/clouds.png)'
+      bgImage={`url(${theme.images.clouds})`}
       minW='100%'
       p='0'
     >
@@ -100,7 +102,7 @@ export const Portfolio = () => {
           <StyledFlex minH='250px'>
             <HStack mb='2rem' justifyContent='space-between'>
               <Image
-                src='/assets/wrap__eth.png'
+                src={theme.images.wrapeth}
                 alt='wrapeth'
                 w='250px'
                 maxW='70%'
@@ -126,7 +128,7 @@ export const Portfolio = () => {
           <StyledFlex minH='250px'>
             <HStack mb='2rem' justifyContent='space-between'>
               <Image
-                src='/assets/smart__invoice.png'
+                src={theme.images.smartinvoice}
                 alt='smart invoice'
                 w='250px'
                 maxW='70%'

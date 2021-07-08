@@ -1,4 +1,5 @@
 import { Flex, Image, Heading } from '@chakra-ui/react';
+import { theme } from '../themes/theme';
 
 export const Community = () => {
   return (
@@ -24,17 +25,17 @@ export const Community = () => {
         direction={{ base: 'column', md: 'row', lg: 'row' }}
       >
         <Image
-          src='/assets/meta__chilli.png'
+          src={theme.images.metachilli}
           alt='metacartel'
           w={{ base: '120px', lg: '200px' }}
         />
         <Image
-          src='/assets/daohaus__logo.png'
+          src={theme.images.daohaus}
           alt='daohaus'
           w={{ base: '120px', lg: '200px' }}
         />
         <Image
-          src='/assets/moloch__logo.png'
+          src={theme.images.moloch}
           alt='molochdao'
           w={{ base: '120px', lg: '200px' }}
         />
