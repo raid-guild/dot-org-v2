@@ -80,7 +80,13 @@ export const Header = ({ windowWidth }) => {
           <ChakraLink href='/#services'>Services</ChakraLink>
           <ChakraLink href='/#portfolio'>Portfolio</ChakraLink>
           <ChakraLink href='/#culture'>Join</ChakraLink>
-          <ChakraLink href='/#hire'>Hire</ChakraLink>
+          <ChakraLink
+            href='https://hireus.raidguild.org'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Hire
+          </ChakraLink>
         </Flex>
       )}
 
