@@ -45,7 +45,7 @@ export const Services = () => {
           fontSize={{ base: '1rem', lg: '18px' }}
           textAlign='justify'
         >
-          We know how to buidl and have the connections, talent and experience
+          We know how to build and have the connections, talent and experience
           to turn your ideas into reality. We are lean to the core and deliver
           high quality results with quick turnarounds.
         </Text>
