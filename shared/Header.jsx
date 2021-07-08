@@ -63,6 +63,7 @@ export const Header = ({ windowWidth }) => {
     >
       <Image
         src={theme.images.raidguild}
+        fallbackSrc='/assets/raidguild__logo.png'
         alt='RaidGuild'
         width={{ base: '150px', lg: '168px' }}
       />

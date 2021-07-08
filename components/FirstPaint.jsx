@@ -65,6 +65,7 @@ export const FirstPaint = ({ windowWidth }) => {
         </Flex>
         <Image
           src={theme.images.raidBanner}
+          fallbackSrc='/assets/raid__banner.png'
           alt='raid-banner'
           width={{ base: '450px', md: '500px', lg: '550px' }}
         />
