@@ -12,8 +12,6 @@ import {
 
 import styled from '@emotion/styled';
 
-import { theme } from '../themes/theme';
-
 // const StyledCard = styled(Flex)`
 //   min-width: 300px;
 //   flex-direction: column;
@@ -36,10 +34,15 @@ import { theme } from '../themes/theme';
 //   }
 // `;
 
-const StyledBox = styled(Box)`
+const StyledFlex = styled(Flex)`
   background-color: black;
   padding: 24px;
   border-radius: 3px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  max-width: 450px;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const Portfolio = () => {
@@ -90,17 +93,19 @@ export const Portfolio = () => {
         <Flex
           w='100%'
           alignItems='center'
-          justifyContent='space-between'
+          justifyContent='center'
           mt='5rem'
           direction={{ base: 'column', lg: 'row' }}
         >
-          <StyledBox mx='1rem'>
+          <StyledFlex minH='250px'>
             <HStack mb='2rem' justifyContent='space-between'>
               <Image
                 src='/assets/wrap__eth.png'
                 alt='wrapeth'
                 w='250px'
                 maxW='70%'
+                onClick={() => window.open('https://wrapeth.com/', '_blank')}
+                cursor='pointer'
               />
               <Link
                 color='red'
@@ -113,18 +118,22 @@ export const Portfolio = () => {
               </Link>
             </HStack>
             <Text variant='textTwo' fontSize='16px'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Easily wrap ETH or xDAI for trading with any ERC-20 token. No
+              fees, no frills.
             </Text>
-          </StyledBox>
+          </StyledFlex>
           <br />
-          <StyledBox mx='1rem'>
+          <StyledFlex minH='250px'>
             <HStack mb='2rem' justifyContent='space-between'>
               <Image
                 src='/assets/smart__invoice.png'
                 alt='smart invoice'
                 w='250px'
                 maxW='70%'
+                cursor='pointer'
+                onClick={() =>
+                  window.open('https://smartinvoice.xyz/', '_blank')
+                }
               />
               <Link
                 color='red'
@@ -137,10 +146,11 @@ export const Portfolio = () => {
               </Link>
             </HStack>
             <Text variant='textTwo' fontSize='16px'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Part of the future of payment, Smart Invoice builds trust between
+              payer and payee by creating a secure neutral channel for
+              transferring money.
             </Text>
-          </StyledBox>
+          </StyledFlex>
         </Flex>
       </Flex>
     </Container>
