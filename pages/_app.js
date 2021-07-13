@@ -1,12 +1,15 @@
-import { useEffect } from "react";
+import Script from "next/script";
 import { Layout } from "../shared/Layout";
 import "../globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <Script src='/sw.js' strategy='beforeInteractive' />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   );
 }
 
