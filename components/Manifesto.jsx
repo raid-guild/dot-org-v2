@@ -1,23 +1,43 @@
-import { SimpleGrid, Heading, Text, VStack, Image } from '@chakra-ui/react';
+import {
+  SimpleGrid,
+  Heading,
+  Text,
+  VStack,
+  Image,
+  Button
+} from '@chakra-ui/react';
+
+import { theme } from '../themes/theme';
 
 export const Manifesto = () => {
   return (
     <SimpleGrid
-      columns={[1, 1, 2]}
-      padding={{ base: '2rem', lg: '2rem 4rem' }}
+      id='manifesto'
+      columns={{ base: 1, md: 1, lg: 2 }}
+      px={{ base: '2rem', lg: '8rem' }}
+      my='4rem'
+      mb='0'
       placeItems='center'
     >
       <Image
-        src='/assets/raid__fantasy.png'
+        src={theme.images.raidFantasy}
         alt='raid fantasy'
-        width={{ base: '250px', lg: '500px' }}
+        width={{ base: '250px', lg: '400px' }}
       />
-      <VStack spacing={5} justifyContent='center'>
-        <Heading variant='uncial' fontSize={{ base: '1.5rem', lg: '2rem' }}>
+      <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }}>
+        <Heading
+          variant='headingTwo'
+          fontSize={{ base: '1.5rem', lg: '36px' }}
+          mb='1rem'
+        >
           Manifesto
         </Heading>
         <div>
-          <Text variant='texturina' fontSize={{ base: '1rem', lg: '1.3rem' }}>
+          <Text
+            variant='textOne'
+            fontSize={{ base: '1rem', lg: '18px' }}
+            textAlign='justify'
+          >
             We believe that DAOs will power the future of work. Through the
             MetaCartel network, we assembled a fellowship of the best builders,
             designers and hustlers in the space in order to make this future a
@@ -26,7 +46,11 @@ export const Manifesto = () => {
             that has never been possible before the advent of DAOs.
           </Text>
           <br></br>
-          <Text variant='texturina' fontSize={{ base: '1rem', lg: '1.3rem' }}>
+          <Text
+            variant='textOne'
+            fontSize={{ base: '1rem', lg: '18px' }}
+            textAlign='justify'
+          >
             We believe in Web3 and are here to build it, use it, and propogate
             it. The profits from our work will be used to fund development of
             open source tooling and public goods. We will share the learnings
@@ -34,11 +58,25 @@ export const Manifesto = () => {
             to learn and build from.
           </Text>
           <br></br>
-          <Text variant='texturina' fontSize={{ base: '1rem', lg: '1.3rem' }}>
+          <Text
+            variant='textOne'
+            fontSize={{ base: '1rem', lg: '18px' }}
+            textAlign='justify'
+          >
             "If you want to go fast, go alone. If you want to go far, go
             together."
           </Text>
         </div>
+        <br />
+        <Button
+          variant='primary'
+          fontSize={{ base: '16px', lg: '18px' }}
+          onClick={() =>
+            window.open('https://handbook.raidguild.org', '_blank')
+          }
+        >
+          Handbook
+        </Button>
       </VStack>
     </SimpleGrid>
   );

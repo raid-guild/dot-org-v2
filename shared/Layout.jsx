@@ -5,8 +5,13 @@ export const Layout = ({ children }) => {
   return (
     <ChakraProvider theme={theme}>
       <Flex
+        py='1rem'
         overflowX='hidden'
-        background='linear-gradient(328deg, rgba(10,10,10,1) 20%, rgba(130,46,166,1) 43%, rgba(173,36,66,1) 58%, rgba(10,10,10,1) 80%)'
+        background='radial-gradient(97.27% 170.54% at 98.7% 2.73%, #24003A 0%, rgba(0, 0, 0, 0) 100%),
+        radial-gradient(100% 350.19% at 100% 100%, #170011 0%, rgba(23, 0, 17, 0) 100%),
+        radial-gradient(50% 175.1% at 0% 100%, #130000 0%, rgba(31, 0, 0, 0) 100%),
+        radial-gradient(50% 175.1% at 0% 0%, #330F00 0%, rgba(51, 15, 0, 0) 100%),
+        linear-gradient(0deg, #000000, #000000)'
       >
         {children}
       </Flex>

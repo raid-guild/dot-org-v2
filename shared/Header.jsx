@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Box, Button, Flex, Image, Link as ChakraLink } from '@chakra-ui/react';
+import { Button, Flex, Image, Link as ChakraLink, Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
-import { HamburgerIcon } from '../icons/HamburgerIcon';
 import { theme } from '../themes/theme';
 
 const StyledButton = styled(Button)`
@@ -41,9 +40,15 @@ export const NavButton = ({ onClick, children }) => (
   </StyledButton>
 );
 
-const navItems = ['Home', 'Hire Us', 'Join Us', 'HandBook', 'DAO'];
+const navItems = [
+  { name: 'Manifesto', href: '/#manifesto' },
+  { name: 'Services', href: '/#services' },
+  { name: 'Portfolio', href: '/#portfolio' },
+  { name: 'Join', href: '/#culture' },
+  { name: 'Hire', href: '/#services' }
+];
 
-export const Header = () => {
+export const Header = ({ windowWidth }) => {
   const [isOpen, onOpen] = useState(false);
 
   return (
@@ -51,99 +56,110 @@ export const Header = () => {
       w='100%'
       h={{ base: '4rem' }}
       color='white'
-      fontFamily={`${theme.fonts.rubik}`}
+      fontFamily='spaceMono'
       justify='space-between'
       align='center'
       zIndex={5}
-      padding={[0, '1rem', '1rem']}
     >
       <Image
-        src='/assets/raidguild__logo.png'
+        src={theme.images.raidguild}
+        fallbackSrc='/assets/raidguild__logo.png'
         alt='RaidGuild'
-        width={{ base: '150px', lg: '250px' }}
+        width={{ base: '150px', lg: '168px' }}
       />
 
-      {/* <Flex
-        minWidth='50%'
-        direction='row'
-        justifyContent='space-around'
-        fontSize='1.3rem'
-        color={`${theme.colors.red}`}
-      >
-        <ChakraLink>Manifesto</ChakraLink>
-        <ChakraLink>Portfolio</ChakraLink>
-        <ChakraLink>JoinUs</ChakraLink>
-        <ChakraLink>HireUs</ChakraLink>
-      </Flex> */}
-
-      <Flex
-        mr='1rem'
-        align='center'
-        height='8rem'
-        transition='width 1s ease-out'
-      >
-        <Button
-          onClick={() => onOpen((o) => !o)}
-          variant='link'
-          ml={{ base: '0.5rem', sm: '1rem' }}
-          zIndex={7}
+      {windowWidth > 1200 && (
+        <Flex
+          minWidth='50%'
+          direction='row'
+          justifyContent='space-around'
+          fontSize='1.3rem'
+          color='red'
         >
-          <HamburgerIcon
-            boxSize={{ base: '2rem', sm: '2.75rem' }}
-            transition='all 1s ease-out'
-            _hover={{
-              transition: 'all 1s ease-out',
-              transform: 'rotateZ(90deg)'
-            }}
-            color={`${theme.colors.red}`}
-          />
-        </Button>
-      </Flex>
-      <Flex
-        zIndex={6}
-        position='fixed'
-        left='0'
-        top='0'
-        bg='black'
-        h='100%'
-        w='100%'
-        direction='column'
-        justify='center'
-        align='center'
-        transition='all 2s ease-out'
-        pointerEvents={isOpen ? 'all' : 'none'}
-        css={{
-          clipPath: isOpen
-            ? 'circle(calc(100vw + 100vh) at 90% -10%)'
-            : 'circle(100px at 90% -20%)'
-        }}
-      >
-        {navItems.map((item, index) => {
-          return (
-            <StyledButton
-              key={index}
-              onClick={() => {
-                onOpen(false);
-              }}
-              transition='all 0.5s ease 0.4s'
-              my='1rem'
-              variant='link'
-              color={`${theme.colors.red}`}
-              fontWeight='normal'
-              fontSize='1.5rem'
-              fontFamily={`${theme.fonts.rubik}`}
-            >
-              {item}
-            </StyledButton>
-          );
-        })}
+          <ChakraLink href='/#manifesto'>Manifesto</ChakraLink>
+          <ChakraLink href='/#services'>Services</ChakraLink>
+          <ChakraLink href='/#portfolio'>Portfolio</ChakraLink>
+          <ChakraLink href='/join' target='_blank' rel='noopener noreferrer'>
+            Join
+          </ChakraLink>
+          <ChakraLink
+            href='https://hireus.raidguild.org'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Hire
+          </ChakraLink>
+        </Flex>
+      )}
 
-        <ChakraLink
-          href='https://discord.gg/CanD2WcK7W'
-          isExternal
-          _hover={{}}
-        ></ChakraLink>
-      </Flex>
+      {windowWidth < 1200 && (
+        <>
+          <Flex align='center' height='8rem'>
+            <Button
+              fontSize='2rem'
+              onClick={() => onOpen((o) => !o)}
+              variant='link'
+              ml={{ base: '0.5rem', sm: '1rem' }}
+              zIndex={7}
+            >
+              {!isOpen && (
+                <span style={{ width: '25px', color: theme.colors.red }}>
+                  <i className='fas fa-bars' />
+                </span>
+              )}
+              {isOpen && (
+                <span style={{ width: '25px', color: theme.colors.red }}>
+                  <i className='fas fa-times' />
+                </span>
+              )}
+            </Button>
+          </Flex>
+          <Flex
+            zIndex={6}
+            position='fixed'
+            left='0'
+            top='0'
+            bg='black'
+            h='100%'
+            w='100%'
+            direction='column'
+            justify='center'
+            align='center'
+            transition='all .8s ease-out'
+            pointerEvents={isOpen ? 'all' : 'none'}
+            css={{
+              clipPath: isOpen
+                ? 'circle(calc(100vw + 100vh) at 90% -10%)'
+                : 'circle(100px at 90% -20%)'
+            }}
+          >
+            {navItems.map((item, index) => {
+              return (
+                <StyledButton
+                  key={index}
+                  onClick={() => {
+                    onOpen((o) => !o);
+                    document.location.href = item.href;
+                  }}
+                  my='1rem'
+                  variant='link'
+                  color={`${theme.colors.red}`}
+                  fontWeight='normal'
+                  fontSize='1.5rem'
+                >
+                  {item.name}
+                </StyledButton>
+              );
+            })}
+
+            <ChakraLink
+              href='https://discord.gg/CanD2WcK7W'
+              isExternal
+              _hover={{}}
+            ></ChakraLink>
+          </Flex>
+        </>
+      )}
     </Flex>
   );
 };

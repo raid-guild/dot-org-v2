@@ -6,63 +6,77 @@ import {
   SimpleGrid,
   Button
 } from '@chakra-ui/react';
-import { theme } from '../themes/theme';
 
 import { culture } from '../utils/constants';
 
 export const Culture = () => {
   return (
     <Flex
+      id='culture'
       minHeight='100vh'
       direction='column'
       alignItems='center'
       justifyContent='center'
-      padding={{ base: '2rem', lg: '2rem 4rem' }}
-      margin='2rem 0 2rem 0'
-      background={`${theme.colors.blackLight}`}
+      bg='linear-gradient(157.1deg, #22002b 0%, #390418 29.17%, #48093A 61.98%, #1F0442 100%)'
+      px={{ base: '2rem', lg: '8rem' }}
+      py='6rem'
     >
       <VStack spacing={5} justifyContent='center'>
-        <Heading variant='uncial' fontSize={{ base: '1.5rem', lg: '2rem' }}>
+        <Heading
+          variant='headingTwo'
+          fontSize={{ base: '1.5rem', lg: '36px' }}
+          mb='1rem'
+        >
           Join the Guild
         </Heading>
-        <Text variant='texturina' fontSize={{ base: '1rem', lg: '1.3rem' }}>
+        <Text variant='textOne' fontSize={{ base: '1rem', lg: '18px' }}>
           We believe workers should be self-sovereign and able to work when,
           where and how they want, as long as they create high value output.
           We’re looking for top talent that can take things into their own hands
           and bring unique value to the guild.
         </Text>
-        <Button variant='spaceMono' fontSize={{ base: '1rem', lg: '1.5rem' }}>
+        <br />
+        <Button
+          variant='primary'
+          fontSize={{ base: '16px', lg: '18px' }}
+          onClick={() => window.open('/join')}
+        >
           Join Us
         </Button>
-        <br></br>
       </VStack>
 
-      <SimpleGrid columns={[1, 2, 3]} gap={5} padding='2rem'>
+      <SimpleGrid columns={{ base: 1, md: 3, lg: 3 }} gap={5} mt='6rem'>
         {culture.map((item, index) => {
           return (
             <Flex
+              maxWidth='350px'
               key={index}
               direction='column'
               alignItems='center'
               justifyContent='space-evenly'
-              background={`${theme.colors.blackDark}`}
-              boxShadow='4px 9px 18px -7px rgba(0,0,0,0.75);'
-              padding='1rem'
+              py='2rem'
+              px='1.5rem'
+              bg='black'
+              borderTop='2px solid'
+              borderColor='red'
             >
               <Heading
-                variant='texturina'
-                fontSize={{ base: '1.2rem' }}
-                mb={3}
+                variant='labels'
+                fontSize={{ base: '16px' }}
+                mb={5}
                 textAlign='center'
               >
                 {item.name}
               </Heading>
               <img src={item.img} alt='consultations' />
+
               <br></br>
+
               <Text
-                variant='texturinaSmall'
-                fontSize={{ base: '1rem' }}
+                variant='textTwo'
+                fontSize={{ base: '16px' }}
                 px='1rem'
+                mt='auto'
               >
                 {item.text}
               </Text>
