@@ -7,7 +7,7 @@ import {
   Button
 } from '@chakra-ui/react';
 
-import { culture } from '../utils/constants';
+import { culture } from '../../utils/constants';
 
 export const Culture = () => {
   return (
@@ -39,7 +39,7 @@ export const Culture = () => {
         <Button
           variant='primary'
           fontSize={{ base: '16px', lg: '18px' }}
-          onClick={() => window.open('/join')}
+          onClick={() => (window.location.href = '/join')}
         >
           Join Us
         </Button>

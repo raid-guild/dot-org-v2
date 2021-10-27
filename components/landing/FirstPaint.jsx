@@ -1,7 +1,7 @@
 import { Flex, SimpleGrid, Heading, Button, Image } from '@chakra-ui/react';
 
-import { theme } from '../themes/theme';
-import { Header } from '../shared/Header';
+import { theme } from '../../themes/theme';
+import { Header } from '../../shared/Header';
 
 export const FirstPaint = ({ windowWidth }) => {
   return (
@@ -54,7 +54,7 @@ export const FirstPaint = ({ windowWidth }) => {
               Hire Us
             </Button>
             <Button
-              onClick={() => window.open('/join')}
+              onClick={() => (window.location.href = '/join')}
               minW={{ base: 'auto' }}
               variant='secondary'
               fontSize={{ base: '16px', lg: '18px' }}

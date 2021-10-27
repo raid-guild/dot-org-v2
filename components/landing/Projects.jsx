@@ -12,9 +12,9 @@ import {
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
-import { Footer } from '../shared/Footer';
-import { theme } from '../themes/theme';
-import { projects, icons, roleConversions } from '../utils/constants';
+import { Footer } from '../../shared/Footer';
+import { theme } from '../../themes/theme';
+import { projects, icons, roleConversions } from '../../utils/constants';
 
 const StyledGridChild = styled.div`
   width: 100%;

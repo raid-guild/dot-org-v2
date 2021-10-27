@@ -1,11 +1,26 @@
-import { useState, useEffect } from 'react';
-import { Container, Flex } from '@chakra-ui/react';
+import { useState, useEffect, useContext } from 'react';
+import { Box, Flex } from '@chakra-ui/react';
+
+import { AppContext } from '../context/AppContext';
 
 import { Header } from '../shared/Header';
 import { Footer } from '../shared/Footer';
+import { FAQ } from '../shared/Faq';
+
+import { Intro } from '../components/joinus/Intro';
+import { StepOne } from '../components/joinus/StepOne';
+import { StepTwo } from '../components/joinus/StepTwo';
+import { StepThree } from '../components/joinus/StepThree';
+import { StepFour } from '../components/joinus/StepFour';
+import { StepFive } from '../components/joinus/StepFive';
+import { StepSix } from '../components/joinus/StepSix';
+import { Confirmation } from '../components/joinus/Confirmation';
 
 const Join = () => {
+  const context = useContext(AppContext);
+
   const [windowWidth, setWindowWidth] = useState('');
+
   useEffect(() => {
     setWindowWidth(window.innerWidth);
     window.removeEventListener('resize', () => {});
@@ -13,6 +28,7 @@ const Join = () => {
       setWindowWidth(window.innerWidth);
     });
   }, []);
+
   return (
     <Flex
       width='100vw'
@@ -21,26 +37,20 @@ const Join = () => {
       justifyContent='center'
       alignItems='center'
     >
-      <Flex
-        width='100%'
-        direction='column'
-        px={{ base: '1rem', lg: '4rem' }}
-        mb='2rem'
-      >
+      <Box px={{ base: '2rem', lg: '5rem' }} w='100%'>
         <Header windowWidth={windowWidth} />
-        <script src='https://static.airtable.com/js/embed/embed_snippet_v1.js'></script>
-        <Container mt='4rem'>
-          <iframe
-            title='join form'
-            class='airtable-embed airtable-dynamic-height'
-            src='https://airtable.com/embed/shrXzU17CaPJIPeXl?backgroundColor=red'
-            frameborder='0'
-            onmousewheel=''
-            width='100%'
-            height='2046'
-          ></iframe>
-        </Container>
-      </Flex>
+      </Box>
+
+      {context.stage === 1 && <Intro />}
+      {context.stage === 2 && <StepOne />}
+      {context.stage === 3 && <StepTwo />}
+      {context.stage === 4 && <StepThree />}
+      {context.stage === 5 && <StepFour />}
+      {context.stage === 6 && <StepFive />}
+      {context.stage === 7 && <StepSix />}
+      {context.stage === 8 && <Confirmation />}
+
+      <FAQ />
       <Footer />
     </Flex>
   );
