@@ -1,4 +1,8 @@
 import React, { Component, createContext } from 'react';
+import {
+  submitApplicationToAirtable
+  // submitApplicationToMongo
+} from '../utils/apis';
 
 export const AppContext = createContext();
 
@@ -30,10 +34,8 @@ class AppContextProvider extends Component {
     daoFamiliarity: '',
     availability: '',
     comments: '',
-    //Feedback Info state
-    feedbackOne: '',
-    feedbackTwo: '',
-    rating: ''
+    handbookRead: false,
+    pledgeReadiness: false
   };
 
   inputChangeHandler = (e) => {
@@ -67,6 +69,18 @@ class AppContextProvider extends Component {
     });
   };
 
+  submitData = async (handbookRead, pledgeReadiness) => {
+    this.setState(
+      { handbookRead, pledgeReadiness, submitting: !this.state.submitting },
+      async () => {
+        await submitApplicationToAirtable(this.state);
+        // await submitApplicationToMongo(this.state);
+        this.setState({ submitting: !this.state.submitting });
+        this.updateStage('next');
+      }
+    );
+  };
+
   render() {
     return (
       <AppContext.Provider
@@ -75,6 +89,7 @@ class AppContextProvider extends Component {
           updateStage: this.updateStage,
           setSkillSets: this.setSkillSets,
           setCryptoData: this.setCryptoData,
+          submitData: this.submitData,
           inputChangeHandler: this.inputChangeHandler,
           updateFaqModalStatus: this.updateFaqModalStatus
         }}

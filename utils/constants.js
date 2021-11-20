@@ -198,3 +198,42 @@ export const roleConversions = {
   archer: 'UI Design',
   ranger: 'UX Design'
 };
+
+export const faq_items = [
+  {
+    q: 'How do I get notified when the next cohort starts?',
+    a: 'Open to getting better about that! Currently just via email, but they’ve been basically run once a quarter so far. Imagine we’d keep that same cadence for 2022 - but also exploring how to run a “in between” cohort.'
+  },
+  {
+    q: 'What does the raid guild onboarding journey look like and where am I at in it?',
+    a: 'If you are following along all the episodes this should be pretty clear, we can do better about helping people that may miss an episode or two, but that’s kinda the point?'
+  },
+  {
+    q: 'How many hours should I devote to raids?',
+    a: 'Dependent on Raids ultimately, but largely difficult to assess currently.'
+  },
+  {
+    q: 'What are the expectation on the quality of my work?',
+    a: 'We are Guild of professionals and will only expect the highest quality! We must maintain high standards and strive for the best.'
+  },
+  {
+    q: 'What is the single source of truth in Discord so I can get oriented?',
+    a: 'Syncronous conversations is the best place to sort out the most up to date information.'
+  },
+  {
+    q: 'What stacks can I expect to encounter on Raid Guild projects?',
+    a: 'Project dependent!'
+  },
+  {
+    q: 'How much is my time worth?',
+    a: 'You tell us! Web3 should make us all question what we are “worth” and what we value.'
+  },
+  {
+    q: 'When am I compensated for the work I contribute?',
+    a: 'Upon delivery.'
+  },
+  {
+    q: 'Once I am accepted into a cohort what is the next small step I can take to start getting paid?',
+    a: 'Participating and tackling a task.'
+  }
+];

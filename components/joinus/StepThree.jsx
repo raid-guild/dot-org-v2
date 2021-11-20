@@ -22,7 +22,7 @@ const skills = [
   'BizDev',
   'Community',
   'Project Management',
-  'Finance,',
+  'Finance',
   'Product Design',
   'UX Research',
   'Game Theory',
@@ -68,9 +68,8 @@ export const StepThree = () => {
         Step 3 of 6: Your SkillSet
       </Heading>
 
-      <Stack direction='row' spacing={5}>
+      <Stack direction={{ base: 'column', lg: 'row' }} mb={10} spacing={5}>
         <FormControl
-          mb={10}
           isRequired
           isInvalid={primarySkills.length === 0 && buttonClick ? true : false}
           fontFamily='spaceMono'
@@ -101,7 +100,6 @@ export const StepThree = () => {
         </FormControl>
 
         <FormControl
-          mb={10}
           isInvalid={secondarySkills.length === 0 && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
@@ -145,17 +143,24 @@ export const StepThree = () => {
         </FormControl>
       </Stack>
 
-      <Flex direction='row' justifyContent='space-between'>
+      <Flex
+        direction={{ base: 'column-reverse', lg: 'row' }}
+        justifyContent='space-between'
+      >
         {context.stage !== 1 && context.stage !== 8 && (
-          <Flex>
+          <Flex direction={{ base: 'column', md: 'row' }}>
             <Button
+              w='100%'
               mr='1rem'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
             </Button>
             <Button
+              w='100%'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateFaqModalStatus(true)}
             >

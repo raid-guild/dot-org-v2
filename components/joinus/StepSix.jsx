@@ -129,17 +129,25 @@ export const StepSix = () => {
         </AlertDialogOverlay>
       </AlertDialog>
 
-      <Flex direction='row' justifyContent='space-between' mt='2rem'>
+      <Flex
+        direction={{ base: 'column-reverse', lg: 'row' }}
+        justifyContent='space-between'
+        mt='2rem'
+      >
         {context.stage !== 1 && context.stage !== 8 && (
-          <Flex>
+          <Flex direction={{ base: 'column', md: 'row' }}>
             <Button
+              w='100%'
               mr='1rem'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
             </Button>
             <Button
+              w='100%'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateFaqModalStatus(true)}
             >
@@ -152,7 +160,7 @@ export const StepSix = () => {
           isLoading={context.submitting}
           loadingText='Submitting'
           onClick={() => {
-            context.updateStage('next');
+            context.submitData(handbookCheckBoxStatus, pledgeCheckBoxStatus);
           }}
         >
           Submit

@@ -40,9 +40,8 @@ export const StepFour = () => {
       >
         Step 4 of 6: Tell Us More
       </Heading>
-      <Stack direction='row' spacing={5}>
+      <Stack direction={{ base: 'column', lg: 'row' }} spacing={5} mb={10}>
         <FormControl
-          mb={10}
           isRequired
           isInvalid={context.passion === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
@@ -60,7 +59,6 @@ export const StepFour = () => {
         </FormControl>
 
         <FormControl
-          mb={10}
           isRequired
           isInvalid={context.favoriteMedia === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
@@ -79,9 +77,8 @@ export const StepFour = () => {
         </FormControl>
       </Stack>
 
-      <Stack direction='row' spacing={5}>
+      <Stack direction={{ base: 'column', lg: 'row' }} spacing={5} mb={10}>
         <FormControl
-          mb={10}
           isRequired
           isInvalid={context.thrills === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
@@ -98,7 +95,6 @@ export const StepFour = () => {
           />
         </FormControl>
         <FormControl
-          mb={10}
           isRequired
           isInvalid={context.interest === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
@@ -116,17 +112,24 @@ export const StepFour = () => {
         </FormControl>
       </Stack>
 
-      <Flex direction='row' justifyContent='space-between'>
+      <Flex
+        direction={{ base: 'column-reverse', lg: 'row' }}
+        justifyContent='space-between'
+      >
         {context.stage !== 1 && context.stage !== 8 && (
-          <Flex>
+          <Flex direction={{ base: 'column', md: 'row' }}>
             <Button
+              w='100%'
               mr='1rem'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
             </Button>
             <Button
+              w='100%'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateFaqModalStatus(true)}
             >

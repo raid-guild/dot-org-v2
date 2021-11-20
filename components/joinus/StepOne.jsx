@@ -47,7 +47,7 @@ export const StepOne = () => {
       >
         Step 1 of 6: A Quick Intro
       </Heading>
-      <Stack mb={10} direction='row'>
+      <Stack mb={10} direction={{ base: 'column', lg: 'row' }}>
         <FormControl
           isRequired
           isInvalid={context.name === '' && buttonClick ? true : false}
@@ -114,17 +114,24 @@ export const StepOne = () => {
         />
       </FormControl>
 
-      <Flex direction='row' justifyContent='space-between'>
+      <Flex
+        direction={{ base: 'column-reverse', lg: 'row' }}
+        justifyContent='space-between'
+      >
         {context.stage !== 1 && context.stage !== 8 && (
-          <Flex>
+          <Flex direction={{ base: 'column', md: 'row' }}>
             <Button
+              w='100%'
               mr='1rem'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
             </Button>
             <Button
+              w='100%'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateFaqModalStatus(true)}
             >

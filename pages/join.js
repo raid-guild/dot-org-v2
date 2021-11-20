@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
+import Head from 'next/head';
 
 import { AppContext } from '../context/AppContext';
 
@@ -37,6 +38,19 @@ const Join = () => {
       justifyContent='center'
       alignItems='center'
     >
+      <Head>
+        <link
+          rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'
+          integrity='sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=='
+          crossorigin='anonymous'
+        />
+        <script
+          src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js'
+          integrity='sha512-YSdqvJoZr83hj76AIVdOcvLWYMWzy6sJyIMic2aQz5kh2bPTd9dzY3NtdeEAzPp/PhgZqr4aJObB3ym/vsItMg=='
+          crossorigin='anonymous'
+        ></script>
+      </Head>
       <Box px={{ base: '2rem', lg: '5rem' }} w='100%'>
         <Header windowWidth={windowWidth} />
       </Box>
@@ -46,7 +60,7 @@ const Join = () => {
       {context.stage === 3 && <StepTwo />}
       {context.stage === 4 && <StepThree />}
       {context.stage === 5 && <StepFour />}
-      {context.stage === 6 && <StepFive />}
+      {context.stage === 6 && <StepFive windowWidth={windowWidth} />}
       {context.stage === 7 && <StepSix />}
       {context.stage === 8 && <Confirmation />}
 

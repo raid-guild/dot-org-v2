@@ -32,7 +32,7 @@ const StyledTextArea = styled(Textarea)`
   border-radius: 0;
 `;
 
-export const StepFive = () => {
+export const StepFive = ({ windowWidth }) => {
   const context = useContext(AppContext);
   const toast = useToast();
 
@@ -60,14 +60,14 @@ export const StepFive = () => {
       >
         Step 5 of 6: Your Crypto Journey
       </Heading>
-      <Stack direction='row' spacing={5} mb='2rem'>
+      <Stack direction={{ base: 'column', lg: 'row' }} spacing={5} mb='2rem'>
         <FormControl isRequired fontFamily='spaceMono' color='white'>
           <FormLabel as='legend'>
             Our power is a DAO (a 'Decentralized Autonomous Organization'). Of
             this term you are familiar?
           </FormLabel>
           <RadioBox
-            stack='horizontal'
+            stack={windowWidth < 400 ? 'vertical' : 'horizontal'}
             options={['Expert', 'Familiar', 'A Little', 'None']}
             updateRadio={setDaoFamiliarity}
             name='daoFamiliarity'
@@ -92,7 +92,7 @@ export const StepFive = () => {
         </FormControl>
       </Stack>
 
-      <Stack direction='row' spacing={5}>
+      <Stack direction={{ base: 'column', lg: 'row' }} spacing={5}>
         <FormControl isRequired fontFamily='spaceMono' color='white'>
           <FormLabel as='legend'>
             What say you to your status, within our RaidGuild here?{' '}
@@ -106,7 +106,7 @@ export const StepFive = () => {
             </Tooltip>
           </FormLabel>
           <RadioBox
-            stack='horizontal'
+            stack={windowWidth < 400 ? 'vertical' : 'horizontal'}
             options={['0-5 hours', '6-12 hours', '13-35 hours', '36+ hours']}
             updateRadio={setAvailability}
             name='daoFamiliarity'
@@ -124,17 +124,25 @@ export const StepFive = () => {
         </FormControl>
       </Stack>
 
-      <Flex direction='row' justifyContent='space-between' mt='2rem'>
+      <Flex
+        direction={{ base: 'column-reverse', lg: 'row' }}
+        justifyContent='space-between'
+        mt='2rem'
+      >
         {context.stage !== 1 && context.stage !== 8 && (
-          <Flex>
+          <Flex direction={{ base: 'column', md: 'row' }}>
             <Button
+              w='100%'
               mr='1rem'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
             </Button>
             <Button
+              w='100%'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateFaqModalStatus(true)}
             >

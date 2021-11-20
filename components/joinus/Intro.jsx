@@ -6,7 +6,12 @@ import { AppContext } from '../../context/AppContext';
 export const Intro = () => {
   const context = useContext(AppContext);
   return (
-    <Flex direction='column' py='5rem'>
+    <Flex
+      direction='column'
+      py='2rem'
+      px={{ base: '1rem', lg: '4rem' }}
+      mx='1rem'
+    >
       <Heading
         variant='headingTwo'
         fontSize={{ base: '1.5rem', lg: '36px' }}

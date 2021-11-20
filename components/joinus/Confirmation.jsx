@@ -25,6 +25,7 @@ export const Confirmation = () => {
         variant='headingThree'
         fontSize={{ base: '1.5rem', lg: '26px' }}
         mb='2rem'
+        textAlign='center'
       >
         The Fires Have Been Lit!
       </Heading>

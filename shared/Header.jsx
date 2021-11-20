@@ -66,6 +66,7 @@ export const Header = ({ windowWidth }) => {
         fallbackSrc='/assets/raidguild__logo.png'
         alt='RaidGuild'
         width={{ base: '150px', lg: '168px' }}
+        onClick={() => (window.location.href = '/')}
       />
 
       {windowWidth > 1200 && (

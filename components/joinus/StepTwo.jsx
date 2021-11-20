@@ -41,7 +41,7 @@ export const StepTwo = () => {
         Step 2 of 6: Your Social Presence
       </Heading>
 
-      <Stack mb={10} direction='row'>
+      <Stack mb={10} direction={{ base: 'column', lg: 'row' }}>
         <FormControl
           isRequired
           isInvalid={context.discordHandle === '' && buttonClick ? true : false}
@@ -67,7 +67,7 @@ export const StepTwo = () => {
         </FormControl>
       </Stack>
 
-      <Stack mb={10} direction='row'>
+      <Stack mb={10} direction={{ base: 'column', lg: 'row' }}>
         <FormControl fontFamily='spaceMono' color='white'>
           <FormLabel>And of Telegram?</FormLabel>
           <StyledInput
@@ -88,7 +88,7 @@ export const StepTwo = () => {
         </FormControl>
       </Stack>
 
-      <Stack mb={10} direction='row'>
+      <Stack mb={10} direction={{ base: 'column', lg: 'row' }}>
         <FormControl
           isRequired
           isInvalid={
@@ -116,17 +116,24 @@ export const StepTwo = () => {
         </FormControl>
       </Stack>
 
-      <Flex direction='row' justifyContent='space-between'>
+      <Flex
+        direction={{ base: 'column-reverse', lg: 'row' }}
+        justifyContent='space-between'
+      >
         {context.stage !== 1 && context.stage !== 8 && (
-          <Flex>
+          <Flex direction={{ base: 'column', md: 'row' }}>
             <Button
+              w='100%'
               mr='1rem'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
             </Button>
             <Button
+              w='100%'
+              mt={{ base: '.5rem' }}
               variant='secondary'
               onClick={() => context.updateFaqModalStatus(true)}
             >
