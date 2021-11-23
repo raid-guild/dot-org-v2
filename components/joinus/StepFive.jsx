@@ -8,8 +8,8 @@ import {
   useToast,
   Input,
   Tooltip,
-  Heading,
-  Button
+  Button,
+  Box
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
@@ -51,17 +51,14 @@ export const StepFive = ({ windowWidth }) => {
       w='100%'
       direction='column'
       px={{ base: '2rem', lg: '5rem' }}
-      py='5rem'
+      py='2rem'
     >
-      <Heading
-        variant='headingThree'
-        fontSize={{ base: '1.5rem', lg: '26px' }}
-        mb='1rem'
+      <Stack
+        direction={{ base: 'column', lg: 'row' }}
+        mb={{ base: 10, lg: 0 }}
+        spacing={{ base: 0, lg: 5 }}
       >
-        Step 5 of 6: Your Crypto Journey
-      </Heading>
-      <Stack direction={{ base: 'column', lg: 'row' }} spacing={5} mb='2rem'>
-        <FormControl isRequired fontFamily='spaceMono' color='white'>
+        <FormControl isRequired fontFamily='spaceMono' color='white' mb={10}>
           <FormLabel as='legend'>
             Our power is a DAO (a 'Decentralized Autonomous Organization'). Of
             this term you are familiar?
@@ -92,8 +89,12 @@ export const StepFive = ({ windowWidth }) => {
         </FormControl>
       </Stack>
 
-      <Stack direction={{ base: 'column', lg: 'row' }} spacing={5}>
-        <FormControl isRequired fontFamily='spaceMono' color='white'>
+      <Stack
+        direction={{ base: 'column', lg: 'row' }}
+        mb={{ base: 10, lg: 0 }}
+        spacing={{ base: 0, lg: 5 }}
+      >
+        <FormControl isRequired fontFamily='spaceMono' color='white' mb={10}>
           <FormLabel as='legend'>
             What say you to your status, within our RaidGuild here?{' '}
             <Tooltip
@@ -160,10 +161,13 @@ export const StepFive = ({ windowWidth }) => {
             } else {
               setButtonClickStatus(true);
               toast({
-                title: 'Please fill in all the required fields.',
-                status: 'warning',
                 duration: 3000,
-                position: 'top'
+                position: 'top',
+                render: () => (
+                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
+                    Please fill in all the required fields.
+                  </Box>
+                )
               });
             }
           }}

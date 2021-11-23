@@ -1,5 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
-import { Box, Flex } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  CircularProgress,
+  CircularProgressLabel,
+  Heading
+} from '@chakra-ui/react';
 import Head from 'next/head';
 
 import { AppContext } from '../context/AppContext';
@@ -16,6 +22,15 @@ import { StepFour } from '../components/joinus/StepFour';
 import { StepFive } from '../components/joinus/StepFive';
 import { StepSix } from '../components/joinus/StepSix';
 import { Confirmation } from '../components/joinus/Confirmation';
+
+const stageHeadings = {
+  1: 'A Quick Intro',
+  2: 'Your Social Presence',
+  3: 'Your SkillSet',
+  4: 'Tell Us More',
+  5: 'Your Crypto Journey',
+  6: 'Guild Readiness'
+};
 
 const Join = () => {
   const context = useContext(AppContext);
@@ -55,6 +70,38 @@ const Join = () => {
         <Header windowWidth={windowWidth} />
       </Box>
 
+      {context.stage > 1 && (
+        <Flex
+          direction='row'
+          alignItems='center'
+          mt='2rem'
+          mr='auto'
+          px={{ base: '2rem', lg: '5rem' }}
+        >
+          <CircularProgress
+            value={context.stage - 1}
+            thickness='4px'
+            max={6}
+            color='red'
+          >
+            <CircularProgressLabel
+              color='red'
+              fontFamily='jetbrains'
+              fontSize={{ base: '20px', lg: '26px' }}
+            >
+              {context.stage - 1}
+            </CircularProgressLabel>
+          </CircularProgress>{' '}
+          <Heading
+            variant='headingThree'
+            fontSize={{ base: '20px', lg: '26px' }}
+            fontFamily='uncial'
+            ml='1rem'
+          >
+            {stageHeadings[context.stage - 1]}
+          </Heading>
+        </Flex>
+      )}
       {context.stage === 1 && <Intro />}
       {context.stage === 2 && <StepOne />}
       {context.stage === 3 && <StepTwo />}

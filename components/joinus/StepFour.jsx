@@ -6,8 +6,8 @@ import {
   Textarea,
   Stack,
   useToast,
-  Heading,
-  Button
+  Button,
+  Box
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
@@ -31,24 +31,22 @@ export const StepFour = () => {
       w='100%'
       direction='column'
       px={{ base: '2rem', lg: '5rem' }}
-      py='5rem'
+      py='2rem'
     >
-      <Heading
-        variant='headingThree'
-        fontSize={{ base: '1.5rem', lg: '26px' }}
-        mb='1rem'
+      <Stack
+        direction={{ base: 'column', lg: 'row' }}
+        spacing={{ base: 0, lg: 5 }}
+        mb={{ base: 10, lg: 0 }}
       >
-        Step 4 of 6: Tell Us More
-      </Heading>
-      <Stack direction={{ base: 'column', lg: 'row' }} spacing={5} mb={10}>
         <FormControl
           isRequired
           isInvalid={context.passion === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
+          mb={10}
         >
           <FormLabel>
-            Now prithee, Apprentice; tell us of your passions!
+            Now prithee, Apprentice; tell us of your passions & desires!
           </FormLabel>
           <StyledTextArea
             placeholder='What are you into?'
@@ -77,12 +75,17 @@ export const StepFour = () => {
         </FormControl>
       </Stack>
 
-      <Stack direction={{ base: 'column', lg: 'row' }} spacing={5} mb={10}>
+      <Stack
+        direction={{ base: 'column', lg: 'row' }}
+        mb={{ base: 10, lg: 0 }}
+        spacing={{ base: 0, lg: 5 }}
+      >
         <FormControl
           isRequired
           isInvalid={context.thrills === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
+          mb={10}
         >
           <FormLabel>
             Of the unnumber'd idle pebbles, what of Crypto thrills you most?{' '}
@@ -151,10 +154,13 @@ export const StepFour = () => {
             } else {
               setButtonClickStatus(true);
               toast({
-                title: 'Please fill in all the required fields.',
-                status: 'warning',
                 duration: 3000,
-                position: 'top'
+                position: 'top',
+                render: () => (
+                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
+                    Please fill in all the required fields.
+                  </Box>
+                )
               });
             }
           }}

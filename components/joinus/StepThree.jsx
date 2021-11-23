@@ -8,34 +8,14 @@ import {
   CheckboxGroup,
   useToast,
   Button,
-  Heading
+  Box
 } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
 
 import RadioBox from '../../shared/RadioBox';
 
-const skills = [
-  'Frontend Dev',
-  'Backend Dev',
-  'Solidity',
-  'BizDev',
-  'Community',
-  'Project Management',
-  'Finance',
-  'Product Design',
-  'UX Research',
-  'Game Theory',
-  'DevOps',
-  'Tokenomics',
-  'Content',
-  'Memes',
-  'Visual Design',
-  'UI Design',
-  'Illustration',
-  'Legal',
-  'Accounting'
-];
+import { skills } from '../../utils/constants';
 
 export const StepThree = () => {
   const context = useContext(AppContext);
@@ -58,17 +38,9 @@ export const StepThree = () => {
       w='100%'
       direction='column'
       px={{ base: '2rem', lg: '5rem' }}
-      py='5rem'
+      py='2rem'
     >
-      <Heading
-        variant='headingThree'
-        fontSize={{ base: '1.5rem', lg: '26px' }}
-        mb='1rem'
-      >
-        Step 3 of 6: Your SkillSet
-      </Heading>
-
-      <Stack direction={{ base: 'column', lg: 'row' }} mb={10} spacing={5}>
+      <Stack direction={{ base: 'column', lg: 'row' }} mb={10} spacing={10}>
         <FormControl
           isRequired
           isInvalid={primarySkills.length === 0 && buttonClick ? true : false}
@@ -178,10 +150,13 @@ export const StepThree = () => {
             } else {
               setButtonClickStatus(true);
               toast({
-                title: 'Please fill in all the required fields.',
-                status: 'warning',
                 duration: 3000,
-                position: 'top'
+                position: 'top',
+                render: () => (
+                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
+                    Please fill in all the required fields.
+                  </Box>
+                )
               });
             }
           }}

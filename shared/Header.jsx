@@ -67,6 +67,7 @@ export const Header = ({ windowWidth }) => {
         alt='RaidGuild'
         width={{ base: '150px', lg: '168px' }}
         onClick={() => (window.location.href = '/')}
+        cursor='pointer'
       />
 
       {windowWidth > 1200 && (

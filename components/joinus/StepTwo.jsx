@@ -7,7 +7,7 @@ import {
   Stack,
   useToast,
   Button,
-  Heading
+  Box
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
@@ -31,22 +31,19 @@ export const StepTwo = () => {
       w='100%'
       direction='column'
       px={{ base: '2rem', lg: '5rem' }}
-      py='5rem'
+      py='2rem'
     >
-      <Heading
-        variant='headingThree'
-        fontSize={{ base: '1.5rem', lg: '26px' }}
-        mb='1rem'
+      <Stack
+        mb={{ base: 10, lg: 0 }}
+        direction={{ base: 'column', lg: 'row' }}
+        spacing={{ base: 0, lg: 5 }}
       >
-        Step 2 of 6: Your Social Presence
-      </Heading>
-
-      <Stack mb={10} direction={{ base: 'column', lg: 'row' }}>
         <FormControl
           isRequired
           isInvalid={context.discordHandle === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
+          mb={10}
         >
           <FormLabel>What is your Discord handle?</FormLabel>
           <StyledInput
@@ -67,8 +64,12 @@ export const StepTwo = () => {
         </FormControl>
       </Stack>
 
-      <Stack mb={10} direction={{ base: 'column', lg: 'row' }}>
-        <FormControl fontFamily='spaceMono' color='white'>
+      <Stack
+        mb={{ base: 10, lg: 0 }}
+        direction={{ base: 'column', lg: 'row' }}
+        spacing={{ base: 0, lg: 5 }}
+      >
+        <FormControl fontFamily='spaceMono' color='white' mb={10}>
           <FormLabel>And of Telegram?</FormLabel>
           <StyledInput
             placeholder="no '@'"
@@ -88,7 +89,7 @@ export const StepTwo = () => {
         </FormControl>
       </Stack>
 
-      <Stack mb={10} direction={{ base: 'column', lg: 'row' }}>
+      <Stack mb={{ base: 10, lg: 0 }} direction={{ base: 'column', lg: 'row' }}>
         <FormControl
           isRequired
           isInvalid={
@@ -96,6 +97,7 @@ export const StepTwo = () => {
           }
           fontFamily='spaceMono'
           color='white'
+          mb={10}
         >
           <FormLabel>Pray tell, what is your Ethereum address?</FormLabel>
           <StyledInput
@@ -150,10 +152,13 @@ export const StepTwo = () => {
             } else {
               setButtonClickStatus(true);
               toast({
-                title: 'Please fill in all the required fields.',
-                status: 'warning',
                 duration: 3000,
-                position: 'top'
+                position: 'top',
+                render: () => (
+                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
+                    Please fill in all the required fields.
+                  </Box>
+                )
               });
             }
           }}

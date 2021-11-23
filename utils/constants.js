@@ -202,38 +202,72 @@ export const roleConversions = {
 export const faq_items = [
   {
     q: 'How do I get notified when the next cohort starts?',
-    a: 'Open to getting better about that! Currently just via email, but they’ve been basically run once a quarter so far. Imagine we’d keep that same cadence for 2022 - but also exploring how to run a “in between” cohort.'
+    a: 'After filling out this form you will be notified by email (👋 boomer) when the next cohort starts.'
   },
   {
-    q: 'What does the raid guild onboarding journey look like and where am I at in it?',
-    a: 'If you are following along all the episodes this should be pretty clear, we can do better about helping people that may miss an episode or two, but that’s kinda the point?'
+    q: 'What does the Raid Guild onboarding journey look like and where am I at in it?',
+    a: 'If your are filling out this form your journey has just begun. The next step is attending the upcoming season. Seasons are our cohort process for introducing the ways of the guild and testing your abilities. After you have completed the cohort and finished a Raid and RIP you are eligible to pledge membership.'
   },
   {
-    q: 'How many hours should I devote to raids?',
-    a: 'Dependent on Raids ultimately, but largely difficult to assess currently.'
+    q: 'How many hours should I devote to Raids?',
+    a: 'Choose your own adventure. This is ultimately up to you. Time requirements are specific to the skills required for each Raid and RIP. Some Raiders are only available a few hours per week while others rarely leave the guild.'
   },
   {
     q: 'What are the expectation on the quality of my work?',
-    a: 'We are Guild of professionals and will only expect the highest quality! We must maintain high standards and strive for the best.'
+    a: 'We are a guild of professionals and expect the highest quality! We maintain high standards and strive for the best. However, we are also here to help you improve and expand your abilities.'
   },
   {
     q: 'What is the single source of truth in Discord so I can get oriented?',
-    a: 'Syncronous conversations is the best place to sort out the most up to date information.'
+    a: 'Prior to the season TOWN SQUARE is the most important category to follow. During the season COHORT will be relevant. After you become a member GUILD HQ contains the most up-to-date messages.'
   },
   {
     q: 'What stacks can I expect to encounter on Raid Guild projects?',
-    a: 'Project dependent!'
+    a: 'We allow project teams to determine what tools they deem appropriate for the mission. However, HackMD, GitHub, Figma and React are pretty common and good to get familiar with.'
+  },
+  {
+    q: 'What standards should I expect with regards to backends?',
+    a: 'The majority of our contracts are written in Solidity. You should also be familiar with the Hardhat development environment and OpenZeppelin libraries.'
+  },
+  {
+    q: 'Is TypeScript necessary and how strict should Prettier be?',
+    a: 'While TypeScript is beneficial when deploying production code it is not required to ship an MVP. Raid parties should decide when to sacrifice speed for the benefits of TypeScript. Pretty code with strict rules helps hone our craft and encourage consistency within teams.'
+  },
+  {
+    q: 'Is there a preferred system for QA or bug tracking?',
+    a: 'Teams can determine what tools they are most comfortable with. However, we encourage using GiHub Issues and Projects to keep everyone collaborating using the same tools.'
   },
   {
     q: 'How much is my time worth?',
-    a: 'You tell us! Web3 should make us all question what we are “worth” and what we value.'
+    a: 'You tell us! Web3 should make us all question what we are “worth” and what we value. You will agree to an hourly rate when joining a Raid or RIP.'
   },
   {
     q: 'When am I compensated for the work I contribute?',
-    a: 'Upon delivery.'
+    a: 'The spoils of Raids are distributed upon delivery of each milestone. We only get paid to ship!'
   },
   {
     q: 'Once I am accepted into a cohort what is the next small step I can take to start getting paid?',
-    a: 'Participating and tackling a task.'
+    a: 'Look around the guild and identify ways you can help us improve. Update a doc, complete an issue, write a blog post. Share your work in the 📈│shill-your-stuff channel on Discord and guild members can reward you with tips of $RAID.'
   }
+];
+
+export const skills = [
+  'Frontend Dev',
+  'Backend Dev',
+  'Solidity',
+  'BizDev',
+  'Community',
+  'Project Management',
+  'Finance',
+  'Product Design',
+  'UX Research',
+  'Game Theory',
+  'DevOps',
+  'Tokenomics',
+  'Content',
+  'Memes',
+  'Visual Design',
+  'UI Design',
+  'Illustration',
+  'Legal',
+  'Accounting'
 ];

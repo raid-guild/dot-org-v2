@@ -31,9 +31,9 @@ export const Confirmation = () => {
       </Heading>
 
       <Text fontFamily='spaceMono' color='white' textAlign='center'>
-        Your submission has went through. An intimation will be sent to your
-        email address prior to the commencement of next season. Wish you luck!
-        Stay Curious!
+        Your submission has been received. An invitation will be sent to your
+        email address prior to the commencement of next season. We wish you
+        luck! Stay Curious!
       </Text>
 
       <Button

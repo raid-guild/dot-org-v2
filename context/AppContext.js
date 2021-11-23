@@ -47,6 +47,7 @@ class AppContextProvider extends Component {
   };
 
   updateStage = (type) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     this.setState((prevState) => {
       return {
         stage: type === 'previous' ? prevState.stage - 1 : prevState.stage + 1

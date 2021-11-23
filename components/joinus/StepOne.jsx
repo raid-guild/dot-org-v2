@@ -7,7 +7,7 @@ import {
   Textarea,
   Stack,
   useToast,
-  Heading,
+  Box,
   Button
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
@@ -38,21 +38,19 @@ export const StepOne = () => {
       w='100%'
       direction='column'
       px={{ base: '2rem', lg: '5rem' }}
-      py='5rem'
+      py='2rem'
     >
-      <Heading
-        variant='headingThree'
-        fontSize={{ base: '1.5rem', lg: '26px' }}
-        mb='1rem'
+      <Stack
+        mb={{ base: 10, lg: 0 }}
+        direction={{ base: 'column', lg: 'row' }}
+        spacing={{ base: 0, lg: 5 }}
       >
-        Step 1 of 6: A Quick Intro
-      </Heading>
-      <Stack mb={10} direction={{ base: 'column', lg: 'row' }}>
         <FormControl
           isRequired
           isInvalid={context.name === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
+          mb={10}
         >
           <FormLabel>Enter, Apprentice! What is your name?</FormLabel>
           <StyledInput
@@ -148,10 +146,13 @@ export const StepOne = () => {
             } else {
               setButtonClickStatus(true);
               toast({
-                title: 'Please fill in all the required fields.',
-                status: 'warning',
                 duration: 3000,
-                position: 'top'
+                position: 'top',
+                render: () => (
+                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
+                    Please fill in all the required fields.
+                  </Box>
+                )
               });
             }
           }}

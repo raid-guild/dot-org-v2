@@ -10,8 +10,8 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-  Heading,
-  Button
+  Button,
+  Link
 } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
@@ -50,16 +50,8 @@ export const StepSix = () => {
       w='100%'
       direction='column'
       px={{ base: '2rem', lg: '5rem' }}
-      py='5rem'
+      py='2rem'
     >
-      <Heading
-        variant='headingThree'
-        fontSize={{ base: '1.5rem', lg: '26px' }}
-        mb='1rem'
-      >
-        Step 6 of 6: Guild Readiness
-      </Heading>
-
       <Stack direction='column' spacing={5}>
         <FormControl fontFamily='spaceMono' color='white'>
           <Checkbox
@@ -67,7 +59,14 @@ export const StepSix = () => {
             isChecked={handbookCheckBoxStatus}
             onChange={handbookCheckBoxChangeHandler}
           >
-            Have you read through the RaidGuild Handbook?
+            Have you read through the{' '}
+            <Link
+              href='https://handbook.raidguild.org/'
+              isExternal
+              color='purple'
+            >
+              RaidGuild Handbook?
+            </Link>
           </Checkbox>
         </FormControl>
 
