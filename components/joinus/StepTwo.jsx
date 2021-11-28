@@ -99,21 +99,29 @@ export const StepTwo = () => {
           color='white'
           mb={10}
         >
-          <FormLabel>Pray tell, what is your Ethereum address?</FormLabel>
-          <StyledInput
-            placeholder='0x...'
-            name='ethereumAddress'
-            onChange={context.inputChangeHandler}
-            value={context.ethereumAddress}
-          />
+          <FormLabel>Your Ethereum address</FormLabel>
+          {!context.ethereumAddress ? (
+            <Button variant='primary' onClick={context.connectAccount}>
+              Fetch from Wallet
+            </Button>
+          ) : (
+            <StyledInput
+              placeholder='0x...'
+              name='ethereumAddress'
+              value={context.ethereumAddress}
+              isReadOnly={true}
+              isDisabled={true}
+            />
+          )}
         </FormControl>
         <FormControl fontFamily='spaceMono' color='white'>
-          <FormLabel>At last, what is your ENS address?</FormLabel>
+          <FormLabel>Your ENS address</FormLabel>
           <StyledInput
             placeholder='no .eth'
             name='ensAddress'
-            onChange={context.inputChangeHandler}
             value={context.ensAddress}
+            isReadOnly={true}
+            isDisabled={true}
           />
         </FormControl>
       </Stack>

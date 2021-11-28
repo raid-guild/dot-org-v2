@@ -271,3 +271,6 @@ export const skills = [
   'Legal',
   'Accounting'
 ];
+
+export const message_to_sign_join =
+  'I hereby with the information provided would like to submit my cohort application to RaidGuild.';

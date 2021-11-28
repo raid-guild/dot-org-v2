@@ -70,7 +70,7 @@ const Join = () => {
         <Header windowWidth={windowWidth} />
       </Box>
 
-      {context.stage > 1 && (
+      {context.stage > 1 && context.stage < 8 && (
         <Flex
           direction='row'
           alignItems='center'
@@ -102,6 +102,7 @@ const Join = () => {
           </Heading>
         </Flex>
       )}
+
       {context.stage === 1 && <Intro />}
       {context.stage === 2 && <StepOne />}
       {context.stage === 3 && <StepTwo />}

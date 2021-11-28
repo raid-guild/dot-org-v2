@@ -38,6 +38,7 @@ export const Intro = () => {
         variant='primary'
         fontSize={{ base: '16px', lg: '18px' }}
         onClick={() => {
+          // context.connectAccount();
           context.updateStage('next');
         }}
       >
