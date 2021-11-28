@@ -13,4 +13,4 @@ const initAirtableClient = () => {
   return submissions_table;
 };
 
-module.exports = { initAirtableClient, JWT_SECRET };
+module.exports = { initAirtableClient };
