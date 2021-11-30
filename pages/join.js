@@ -50,7 +50,7 @@ const Join = () => {
       width='100vw'
       minHeight='100vh'
       direction='column'
-      justifyContent='center'
+      justifyContent='space-between'
       alignItems='center'
     >
       <Head>
