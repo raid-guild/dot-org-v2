@@ -5,7 +5,10 @@ import { ethers, utils } from 'ethers';
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
-import { submitApplicationToAirtable } from '../utils/requests';
+import {
+  submitApplicationToMongo,
+  submitApplicationToAirtable
+} from '../utils/requests';
 import { getENSFromAddress, getSignature } from '../utils/web3';
 
 export const AppContext = createContext();
@@ -80,15 +83,18 @@ class AppContextProvider extends Component {
     this.setState(
       { handbookRead, pledgeReadiness, submitting: !this.state.submitting },
       async () => {
-        const signature = await getSignature(this.state.ethersProvider);
+        try {
+          const signature = await getSignature(this.state.ethersProvider);
+          if (signature) {
+            await submitApplicationToAirtable(this.state, signature);
+            await submitApplicationToMongo(this.state, signature);
+          }
 
-        if (signature) {
-          await submitApplicationToAirtable(this.state, signature);
-          // await submitApplicationToMongo(this.state);
+          this.setState({ submitting: !this.state.submitting });
+          this.updateStage('next');
+        } catch (err) {
+          this.setState({ submitting: !this.state.submitting });
         }
-
-        this.setState({ submitting: !this.state.submitting });
-        this.updateStage('next');
       }
     );
   };

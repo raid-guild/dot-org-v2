@@ -1,4 +1,13 @@
-export default handler = async (req, res) => {
+import axios from 'axios';
+import { withToken } from '../../../middlewares/withToken';
+
+const handler = async (req, res) => {
+  const { method } = req;
+
+  if (method !== 'POST') {
+    return res.status(405).json('Method not allowed');
+  }
+
   if (req.method === 'POST') {
     try {
       await axios.post(process.env.DM_ENDPOINT, req.body);
@@ -7,7 +16,7 @@ export default handler = async (req, res) => {
       console.error(err);
       res.status(500).json('Internal server error');
     }
-  } else {
-    res.status(405).json('Method not allowed');
   }
 };
+
+export default withToken(handler);

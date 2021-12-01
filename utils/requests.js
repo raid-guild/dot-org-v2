@@ -3,9 +3,15 @@ import jwt from 'jsonwebtoken';
 
 import { formatJoinUsData } from './helpers';
 
-export const submitApplicationToMongo = async (state) => {
+export const submitApplicationToMongo = async (state, signature) => {
   const formattedData = formatJoinUsData(state, 'mongo');
-  await axios.post('/api/join/primary', formattedData);
+  const signedToken = jwt.sign(signature, process.env.NEXT_PUBLIC_JWT_SECRET);
+
+  await axios.post('/api/join/primary', formattedData, {
+    headers: {
+      Authorization: 'Bearer ' + signedToken
+    }
+  });
 };
 
 export const submitApplicationToAirtable = async (state, signature) => {

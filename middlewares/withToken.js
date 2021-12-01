@@ -16,7 +16,10 @@ export const withToken = (handler) => {
       const msgHashBytes = utils.arrayify(msgHash);
       const account = utils.recoverAddress(msgHashBytes, signature);
 
-      if (account !== req.body['ETH Address'])
+      if (
+        account !== req.body['ETH Address'] &&
+        account !== req.body['eth_address']
+      )
         return res.status(401).json('Invalid Signature.');
 
       return handler(req, res);
