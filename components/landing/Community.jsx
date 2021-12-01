@@ -1,5 +1,5 @@
 import { Flex, Image, Heading } from '@chakra-ui/react';
-import { theme } from '../themes/theme';
+import { theme } from '../../themes/theme';
 
 export const Community = () => {
   return (

@@ -8,7 +8,7 @@ import {
   Image
 } from '@chakra-ui/react';
 
-import { services } from '../utils/constants';
+import { services } from '../../utils/constants';
 
 export const Services = () => {
   return (

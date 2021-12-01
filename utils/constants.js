@@ -198,3 +198,79 @@ export const roleConversions = {
   archer: 'UI Design',
   ranger: 'UX Design'
 };
+
+export const faq_items = [
+  {
+    q: 'How do I get notified when the next cohort starts?',
+    a: 'After filling out this form you will be notified by email (👋 boomer) when the next cohort starts.'
+  },
+  {
+    q: 'What does the Raid Guild onboarding journey look like and where am I at in it?',
+    a: 'If your are filling out this form your journey has just begun. The next step is attending the upcoming season. Seasons are our cohort process for introducing the ways of the guild and testing your abilities. After you have completed the cohort and finished a Raid and RIP you are eligible to pledge membership.'
+  },
+  {
+    q: 'How many hours should I devote to Raids?',
+    a: 'Choose your own adventure. This is ultimately up to you. Time requirements are specific to the skills required for each Raid and RIP. Some Raiders are only available a few hours per week while others rarely leave the guild.'
+  },
+  {
+    q: 'What are the expectation on the quality of my work?',
+    a: 'We are a guild of professionals and expect the highest quality! We maintain high standards and strive for the best. However, we are also here to help you improve and expand your abilities.'
+  },
+  {
+    q: 'What is the single source of truth in Discord so I can get oriented?',
+    a: 'Prior to the season TOWN SQUARE is the most important category to follow. During the season COHORT will be relevant. After you become a member GUILD HQ contains the most up-to-date messages.'
+  },
+  {
+    q: 'What stacks can I expect to encounter on Raid Guild projects?',
+    a: 'We allow project teams to determine what tools they deem appropriate for the mission. However, HackMD, GitHub, Figma and React are pretty common and good to get familiar with.'
+  },
+  {
+    q: 'What standards should I expect with regards to backends?',
+    a: 'The majority of our contracts are written in Solidity. You should also be familiar with the Hardhat development environment and OpenZeppelin libraries.'
+  },
+  {
+    q: 'Is TypeScript necessary and how strict should Prettier be?',
+    a: 'While TypeScript is beneficial when deploying production code it is not required to ship an MVP. Raid parties should decide when to sacrifice speed for the benefits of TypeScript. Pretty code with strict rules helps hone our craft and encourage consistency within teams.'
+  },
+  {
+    q: 'Is there a preferred system for QA or bug tracking?',
+    a: 'Teams can determine what tools they are most comfortable with. However, we encourage using GiHub Issues and Projects to keep everyone collaborating using the same tools.'
+  },
+  {
+    q: 'How much is my time worth?',
+    a: 'You tell us! Web3 should make us all question what we are “worth” and what we value. You will agree to an hourly rate when joining a Raid or RIP.'
+  },
+  {
+    q: 'When am I compensated for the work I contribute?',
+    a: 'The spoils of Raids are distributed upon delivery of each milestone. We only get paid to ship!'
+  },
+  {
+    q: 'Once I am accepted into a cohort what is the next small step I can take to start getting paid?',
+    a: 'Look around the guild and identify ways you can help us improve. Update a doc, complete an issue, write a blog post. Share your work in the 📈│shill-your-stuff channel on Discord and guild members can reward you with tips of $RAID.'
+  }
+];
+
+export const skills = [
+  'Frontend Dev',
+  'Backend Dev',
+  'Solidity',
+  'BizDev',
+  'Community',
+  'Project Management',
+  'Finance',
+  'Product Design',
+  'UX Research',
+  'Game Theory',
+  'DevOps',
+  'Tokenomics',
+  'Content',
+  'Memes',
+  'Visual Design',
+  'UI Design',
+  'Illustration',
+  'Legal',
+  'Accounting'
+];
+
+export const message_to_sign_join =
+  'I hereby with the information provided would like to submit my cohort application to RaidGuild.';
