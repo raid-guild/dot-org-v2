@@ -12,7 +12,7 @@ import {
 
 import styled from '@emotion/styled';
 
-import { theme } from '../themes/theme';
+import { theme } from '../../themes/theme';
 
 // const StyledCard = styled(Flex)`
 //   min-width: 300px;

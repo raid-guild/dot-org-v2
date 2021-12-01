@@ -1,25 +1,25 @@
-import { Flex, Box } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
-import Head from "next/head";
+import { Flex, Box } from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
+import Head from 'next/head';
 
-import { theme } from "../themes/theme";
+import { theme } from '../themes/theme';
 
-import { FirstPaint } from "../components/FirstPaint";
-import { Manifesto } from "../components/Manifesto";
-import { Services } from "../components/Services";
-import { Portfolio } from "../components/Portfolio";
-import { Culture } from "../components/Culture";
-import { Community } from "../components/Community";
+import { FirstPaint } from '../components/landing/FirstPaint';
+import { Manifesto } from '../components/landing/Manifesto';
+import { Services } from '../components/landing/Services';
+import { Portfolio } from '../components/landing/Portfolio';
+import { Culture } from '../components/landing/Culture';
+import { Community } from '../components/landing/Community';
 
-import { Footer } from "../shared/Footer";
+import { Footer } from '../shared/Footer';
 
 export default function Home() {
-  const [windowWidth, setWindowWidth] = useState("");
+  const [windowWidth, setWindowWidth] = useState('');
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
-    window.removeEventListener("resize", () => {});
-    window.addEventListener("resize", (e) => {
+    window.removeEventListener('resize', () => {});
+    window.addEventListener('resize', (e) => {
       setWindowWidth(window.innerWidth);
     });
   }, []);
