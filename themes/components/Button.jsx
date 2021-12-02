@@ -30,12 +30,12 @@ export const Button = {
       borderRadius: '3px',
       color: '#FF3864',
       borderColor: '#FF3864',
-      borderImageSlice: 1,
-      borderImageSource:
-        'linear-gradient(95.58deg, #FF3864 0%, #8B1DBA 53.65%, #4353DF 100%)',
-      background:
-        'linear-gradient(96.18deg, #FF3864 -44.29%, #8B1DBA 53.18%, #4353DF 150.65%);',
-      backgroundClip: 'text',
+      // borderImageSlice: 1,
+      // borderImageSource:
+      //   'linear-gradient(95.58deg, #FF3864 0%, #8B1DBA 53.65%, #4353DF 100%)',
+      // background:
+      //   'linear-gradient(96.18deg, #FF3864 -44.29%, #8B1DBA 53.18%, #4353DF 150.65%);',
+      // backgroundClip: 'text',
       boxDecorationBreak: 'clone',
       paddingLeft: '24px',
       paddingRight: '24px',
