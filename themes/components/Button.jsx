@@ -36,6 +36,7 @@ export const Button = {
       background:
         'linear-gradient(96.18deg, #FF3864 -44.29%, #8B1DBA 53.18%, #4353DF 150.65%);',
       backgroundClip: 'text',
+      boxDecorationBreak: 'clone',
       paddingLeft: '24px',
       paddingRight: '24px',
       transistion: 'all .8s ease-out',
