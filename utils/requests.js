@@ -24,3 +24,14 @@ export const submitApplicationToAirtable = async (state, signature) => {
     }
   });
 };
+
+export const notifyApplicationSubmission = async (state, signature) => {
+  const formattedData = formatJoinUsData(state, 'discord');
+  const signedToken = jwt.sign(signature, process.env.NEXT_PUBLIC_JWT_SECRET);
+
+  await axios.post('/api/join/notify', formattedData, {
+    headers: {
+      Authorization: 'Bearer ' + signedToken
+    }
+  });
+};
