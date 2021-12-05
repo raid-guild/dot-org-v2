@@ -7,7 +7,8 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 
 import {
   submitApplicationToMongo,
-  submitApplicationToAirtable
+  submitApplicationToAirtable,
+  notifyApplicationSubmission
 } from '../utils/requests';
 import { getENSFromAddress, getSignature } from '../utils/web3';
 
@@ -88,6 +89,7 @@ class AppContextProvider extends Component {
           if (signature) {
             await submitApplicationToAirtable(this.state, signature);
             await submitApplicationToMongo(this.state, signature);
+            await notifyApplicationSubmission(this.state, signature);
           }
 
           this.setState({ submitting: !this.state.submitting });
