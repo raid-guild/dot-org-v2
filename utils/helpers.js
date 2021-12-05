@@ -58,4 +58,23 @@ export const formatJoinUsData = (state, type) => {
 
     return data;
   }
+
+  if (type === 'discord') {
+    const data = {
+      key: process.env.NEXT_PUBLIC_ACCESS_KEY,
+      name: state.name,
+      bio: state.bio,
+      goals: state.goals,
+      discord: state.discordHandle,
+      twitter: state.twitterHandle,
+      primary_skills: state.primarySkills.toString(),
+      class_type: state.classType,
+      passion: state.passion,
+      crypto_exp: state.cryptoExp,
+      availability: state.availability,
+      eth_address: state.ethereumAddress
+    };
+
+    return data;
+  }
 };
