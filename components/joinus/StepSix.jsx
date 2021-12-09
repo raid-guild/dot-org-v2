@@ -11,7 +11,13 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
   Button,
-  Link
+  Link,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverArrow
 } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
@@ -154,16 +160,30 @@ export const StepSix = () => {
             </Button>
           </Flex>
         )}
-        <Button
-          variant='primary'
-          isLoading={context.submitting}
-          loadingText='Submitting'
-          onClick={() => {
-            context.submitData(handbookCheckBoxStatus, pledgeCheckBoxStatus);
-          }}
-        >
-          Submit
-        </Button>
+        <Popover placement='top'>
+          <PopoverTrigger>
+            <Button
+              variant='primary'
+              isLoading={context.submitting}
+              loadingText={context.submitLoadingText}
+              onClick={() => {
+                context.submitData(
+                  handbookCheckBoxStatus,
+                  pledgeCheckBoxStatus
+                );
+              }}
+            >
+              Submit
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverBody fontFamily='spaceMono'>
+              Check you wallet & sign the message to confirm your submission.
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
       </Flex>
     </Flex>
   );
