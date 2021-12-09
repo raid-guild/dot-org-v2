@@ -19,6 +19,7 @@ class AppContextProvider extends Component {
     // UX state
     stage: 1,
     submitting: false,
+    submitLoadingText: '',
     faqModalStatus: false,
     //web3 state
     ethersProvider: null,
@@ -85,10 +86,14 @@ class AppContextProvider extends Component {
       { handbookRead, pledgeReadiness, submitting: !this.state.submitting },
       async () => {
         try {
+          this.setState({ submitLoadingText: 'Awaiting signature..' });
           const signature = await getSignature(this.state.ethersProvider);
           if (signature) {
+            this.setState({ submitLoadingText: 'Verifying..' });
             await submitApplicationToAirtable(this.state, signature);
+            this.setState({ submitLoadingText: 'Sending..' });
             await submitApplicationToMongo(this.state, signature);
+            this.setState({ submitLoadingText: 'Notifying..' });
             await notifyApplicationSubmission(this.state, signature);
           }
 

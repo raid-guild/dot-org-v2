@@ -10,6 +10,7 @@ import {
   Box,
   Button
 } from '@chakra-ui/react';
+// import { Magic } from 'magic-sdk';
 import styled from '@emotion/styled';
 
 import { AppContext } from '../../context/AppContext';
@@ -29,6 +30,7 @@ const StyledTextArea = styled(Textarea)`
 
 export const StepOne = () => {
   const context = useContext(AppContext);
+  const [emailVerifyStatus, setEmailVerifyStatus] = useState(false);
   const toast = useToast();
 
   const [buttonClick, setButtonClickStatus] = useState(false);
@@ -137,12 +139,41 @@ export const StepOne = () => {
             </Button>
           </Flex>
         )}
+
         <Button
           variant='primary'
-          onClick={() => {
+          isLoading={emailVerifyStatus}
+          loadingText='Verifying Email'
+          onClick={async () => {
             if (context.name && context.email && context.bio && context.goals) {
               setButtonClickStatus(false);
+              setEmailVerifyStatus(true);
               context.updateStage('next');
+              // try {
+              //   const magic = new Magic(
+              //     process.env.NEXT_PUBLIC_MAGIC_PUBLIC_KEY
+              //   );
+              //   const did = await magic.auth.loginWithMagicLink({
+              //     email: context.email
+              //   });
+
+              //   if (did) {
+              //     setEmailVerifyStatus(false);
+              //     context.updateStage('next');
+              //   }
+              // } catch (err) {
+              //   setEmailVerifyStatus(false);
+              //   setButtonClickStatus(true);
+              //   toast({
+              //     duration: 3000,
+              //     position: 'top',
+              //     render: () => (
+              //       <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
+              //         Please provide a valid email address.
+              //       </Box>
+              //     )
+              //   });
+              // }
             } else {
               setButtonClickStatus(true);
               toast({
