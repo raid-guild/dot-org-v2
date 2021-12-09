@@ -1,5 +1,6 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
+// import sgMail from '@sendgrid/mail';
 
 import { formatJoinUsData } from './helpers';
 
@@ -35,3 +36,20 @@ export const notifyApplicationSubmission = async (state, signature) => {
     }
   });
 };
+
+// export const applicationConfirmationEmail = async (name, email) => {
+//   sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_KEY);
+//   try {
+//     const msg = {
+//       to: email,
+//       from: process.env.NEXT_PUBLIC_FROM_MAIL,
+//       template_id: process.env.NEXT_PUBLIC_SENDGRID_JOINUS_TEMPLATE_ID,
+//       dynamic_template_data: {
+//         name
+//       }
+//     };
+//     sgMail.send(msg);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
