@@ -30,7 +30,7 @@ const StyledTextArea = styled(Textarea)`
 
 export const StepOne = () => {
   const context = useContext(AppContext);
-  const [emailVerifyStatus, setEmailVerifyStatus] = useState(false);
+  // const [emailVerifyStatus, setEmailVerifyStatus] = useState(false);
   const toast = useToast();
 
   const [buttonClick, setButtonClickStatus] = useState(false);
@@ -142,12 +142,12 @@ export const StepOne = () => {
 
         <Button
           variant='primary'
-          isLoading={emailVerifyStatus}
-          loadingText='Verifying Email'
+          // isLoading={emailVerifyStatus}
+          // loadingText='Verifying Email'
           onClick={async () => {
             if (context.name && context.email && context.bio && context.goals) {
               setButtonClickStatus(false);
-              setEmailVerifyStatus(true);
+              // setEmailVerifyStatus(true);
               context.updateStage('next');
               // try {
               //   const magic = new Magic(
