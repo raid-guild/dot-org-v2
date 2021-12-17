@@ -9,6 +9,13 @@ import {
 
 import { theme } from '../../themes/theme';
 
+const image_ref_styles = {
+  width: '400px',
+  height: '585px',
+  //paddingBottom: '60%',
+  //backgroundColor: 'yellow',
+}
+
 export const Manifesto = () => {
   return (
     <SimpleGrid
@@ -19,11 +26,12 @@ export const Manifesto = () => {
       mb='0'
       placeItems='center'
     >
-      <Image
+      <div style={image_ref_styles} id="raid-fantasy"></div>
+      {/* <Image
         src={theme.images.raidFantasy}
         alt='raid fantasy'
         width={{ base: '250px', lg: '400px' }}
-      />
+      /> */}
       <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }}>
         <Heading
           variant='headingTwo'

@@ -8,7 +8,7 @@ export const Community = () => {
       alignItems='center'
       justifyContent='center'
       padding={{ base: '2rem', lg: '2rem 4rem' }}
-      bg='#201F1D'
+      // bg='#201F1D'
     >
       <Heading
         variant='headingTwo'

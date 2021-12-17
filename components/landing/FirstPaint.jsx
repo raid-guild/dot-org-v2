@@ -3,6 +3,12 @@ import { Flex, SimpleGrid, Heading, Button, Image } from '@chakra-ui/react';
 import { theme } from '../../themes/theme';
 import { Header } from '../../shared/Header';
 
+const image_ref_styles = {
+  width: '550px',
+  paddingBottom: '50%',
+  // backgroundColor: 'yellow',
+}
+
 export const FirstPaint = ({ windowWidth }) => {
   return (
     <SimpleGrid
@@ -63,12 +69,14 @@ export const FirstPaint = ({ windowWidth }) => {
             </Button>
           </Flex>
         </Flex>
-        <Image
+        <div style={image_ref_styles} id="raid-banner"></div>
+
+        {/* <Image
           src={theme.images.raidBanner}
           fallbackSrc='/assets/raid__banner.png'
           alt='raid-banner'
           width={{ base: '450px', md: '500px', lg: '550px' }}
-        />
+        /> */}
       </Flex>
     </SimpleGrid>
   );

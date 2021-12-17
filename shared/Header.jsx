@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { Button, Flex, Image, Link as ChakraLink, Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router'
 
 import { theme } from '../themes/theme';
+
+const logo_ref_styles = {
+  width: '168px',
+  height: '44px',
+  cursor: 'pointer',
+}
 
 const StyledButton = styled(Button)`
   &::after {
@@ -50,7 +57,7 @@ const navItems = [
 
 export const Header = ({ windowWidth }) => {
   const [isOpen, onOpen] = useState(false);
-
+  const router = useRouter()
   return (
     <Flex
       w='100%'
@@ -61,15 +68,21 @@ export const Header = ({ windowWidth }) => {
       align='center'
       zIndex={5}
     >
-      <Image
-        src={theme.images.raidguild}
-        fallbackSrc='/assets/raidguild__logo.png'
-        alt='RaidGuild'
-        width={{ base: '150px', lg: '168px' }}
-        onClick={() => (window.location.href = '/')}
-        cursor='pointer'
-      />
-
+      {(router.pathname == '/') ?
+        <div id="raid-logo"
+          style={logo_ref_styles}
+          onClick={() => (window.location.href = '/')}
+        ></div>
+      :
+        <Image
+          src={theme.images.raidguild}
+          fallbackSrc='/assets/raidguild__logo.png'
+          alt='RaidGuild'
+          width={{ base: '150px', lg: '168px' }}
+          onClick={() => (window.location.href = '/')}
+          cursor='pointer'
+        />  
+      }
       {windowWidth > 1200 && (
         <Flex
           minWidth='50%'
