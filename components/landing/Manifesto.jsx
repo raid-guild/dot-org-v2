@@ -8,6 +8,21 @@ import {
 } from '@chakra-ui/react';
 
 import { theme } from '../../themes/theme';
+import styled from '@emotion/styled'
+
+
+
+const StyledAnimationReferenceElement = styled('div')`
+  width: 400px;
+  > div {
+    width: 100%;
+    padding-bottom: 146%;
+  }
+  @media only screen and (max-width: 600px) {
+    width: 250px;
+  }
+`
+
 
 const image_ref_styles = {
   width: '400px',
@@ -26,7 +41,7 @@ export const Manifesto = () => {
       mb='0'
       placeItems='center'
     >
-      <div style={image_ref_styles} id="raid-fantasy"></div>
+      <StyledAnimationReferenceElement id="raid-fantasy"><div></div></StyledAnimationReferenceElement>
       {/* <Image
         src={theme.images.raidFantasy}
         alt='raid fantasy'

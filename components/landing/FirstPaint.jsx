@@ -1,13 +1,20 @@
 import { Flex, SimpleGrid, Heading, Button, Image } from '@chakra-ui/react';
+import styled from '@emotion/styled'
 
 import { theme } from '../../themes/theme';
 import { Header } from '../../shared/Header';
 
-const image_ref_styles = {
-  width: '550px',
-  paddingBottom: '50%',
-  // backgroundColor: 'yellow',
-}
+const StyledAnimationReferenceElement = styled('div')`  
+  width: 550px;
+  > div {
+    width: 100%;
+    padding-bottom: 114%;
+  }
+  @media only screen and (max-width: 600px) {
+    width: 80%;
+    margin: 0 auto;
+  }
+`
 
 export const FirstPaint = ({ windowWidth }) => {
   return (
@@ -19,12 +26,14 @@ export const FirstPaint = ({ windowWidth }) => {
       py='2rem'
       px={{ base: '1rem', lg: '4rem' }}
       mx='1rem'
+      minHeight='calc(100vh - 2em)'
     >
       <Header windowWidth={windowWidth} />
       <Flex
         direction={{ base: 'column-reverse', lg: 'row' }}
         alignItems='center'
         justifyContent='space-between'
+        alignSelf='flex-start'
       >
         <Flex
           direction='column'
@@ -69,7 +78,7 @@ export const FirstPaint = ({ windowWidth }) => {
             </Button>
           </Flex>
         </Flex>
-        <div style={image_ref_styles} id="raid-banner"></div>
+        <StyledAnimationReferenceElement id="raid-banner"><div></div></StyledAnimationReferenceElement>
 
         {/* <Image
           src={theme.images.raidBanner}

@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "static": "next build && next export"
+
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.16",

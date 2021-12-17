@@ -5,11 +5,17 @@ import { useRouter } from 'next/router'
 
 import { theme } from '../themes/theme';
 
-const logo_ref_styles = {
-  width: '168px',
-  height: '44px',
-  cursor: 'pointer',
-}
+
+
+const StyledAnimationReferenceElement = styled('div')`
+  width: 168px;
+  height: 44px;
+  @media only screen and (max-width: 600px) {
+    width: 150px;
+    height: 40px;
+  }
+`
+
 
 const StyledButton = styled(Button)`
   &::after {
@@ -59,49 +65,28 @@ export const Header = ({ windowWidth }) => {
   const [isOpen, onOpen] = useState(false);
   const router = useRouter()
   return (
-    <Flex
-      w='100%'
-      h={{ base: '4rem' }}
-      color='white'
-      fontFamily='spaceMono'
-      justify='space-between'
-      align='center'
-      zIndex={5}
-    >
-      {(router.pathname == '/') ?
-        <div id="raid-logo"
-          style={logo_ref_styles}
-          onClick={() => (window.location.href = '/')}
-        ></div>
-      :
+    <Flex w="100%" h={{ base: '4rem' }} color="white" fontFamily="spaceMono" justify="space-between" align="center" alignSelf="flex-start" zIndex={5}>
+      {router.pathname == '/' ? (
+        <StyledAnimationReferenceElement id="raid-logo" onClick={() => (window.location.href = '/')}></StyledAnimationReferenceElement>
+      ) : (
         <Image
           src={theme.images.raidguild}
-          fallbackSrc='/assets/raidguild__logo.png'
-          alt='RaidGuild'
+          fallbackSrc="/assets/raidguild__logo.png"
+          alt="RaidGuild"
           width={{ base: '150px', lg: '168px' }}
           onClick={() => (window.location.href = '/')}
-          cursor='pointer'
-        />  
-      }
+          cursor="pointer"
+        />
+      )}
       {windowWidth > 1200 && (
-        <Flex
-          minWidth='50%'
-          direction='row'
-          justifyContent='space-around'
-          fontSize='1.3rem'
-          color='red'
-        >
-          <ChakraLink href='/#manifesto'>Manifesto</ChakraLink>
-          <ChakraLink href='/#services'>Services</ChakraLink>
-          <ChakraLink href='/#portfolio'>Portfolio</ChakraLink>
-          <ChakraLink href='/join' target='_blank' rel='noopener noreferrer'>
+        <Flex minWidth="50%" direction="row" justifyContent="space-around" fontSize="1.3rem" color="red">
+          <ChakraLink href="/#manifesto">Manifesto</ChakraLink>
+          <ChakraLink href="/#services">Services</ChakraLink>
+          <ChakraLink href="/#portfolio">Portfolio</ChakraLink>
+          <ChakraLink href="/join" target="_blank" rel="noopener noreferrer">
             Join
           </ChakraLink>
-          <ChakraLink
-            href='https://hireus.raidguild.org'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
+          <ChakraLink href="https://hireus.raidguild.org" target="_blank" rel="noopener noreferrer">
             Hire
           </ChakraLink>
         </Flex>
@@ -109,43 +94,35 @@ export const Header = ({ windowWidth }) => {
 
       {windowWidth < 1200 && (
         <>
-          <Flex align='center' height='8rem'>
-            <Button
-              fontSize='2rem'
-              onClick={() => onOpen((o) => !o)}
-              variant='link'
-              ml={{ base: '0.5rem', sm: '1rem' }}
-              zIndex={7}
-            >
+          <Flex align="center" height="8rem">
+            <Button fontSize="2rem" onClick={() => onOpen((o) => !o)} variant="link" ml={{ base: '0.5rem', sm: '1rem' }} zIndex={7}>
               {!isOpen && (
                 <span style={{ width: '25px', color: theme.colors.red }}>
-                  <i className='fas fa-bars' />
+                  <i className="fas fa-bars" />
                 </span>
               )}
               {isOpen && (
                 <span style={{ width: '25px', color: theme.colors.red }}>
-                  <i className='fas fa-times' />
+                  <i className="fas fa-times" />
                 </span>
               )}
             </Button>
           </Flex>
           <Flex
             zIndex={6}
-            position='fixed'
-            left='0'
-            top='0'
-            bg='black'
-            h='100%'
-            w='100%'
-            direction='column'
-            justify='center'
-            align='center'
-            transition='all .8s ease-out'
+            position="fixed"
+            left="0"
+            top="0"
+            bg="black"
+            h="100%"
+            w="100%"
+            direction="column"
+            justify="center"
+            align="center"
+            transition="all .8s ease-out"
             pointerEvents={isOpen ? 'all' : 'none'}
             css={{
-              clipPath: isOpen
-                ? 'circle(calc(100vw + 100vh) at 90% -10%)'
-                : 'circle(100px at 90% -20%)'
+              clipPath: isOpen ? 'circle(calc(100vw + 100vh) at 90% -10%)' : 'circle(100px at 90% -20%)',
             }}
           >
             {navItems.map((item, index) => {
@@ -153,28 +130,24 @@ export const Header = ({ windowWidth }) => {
                 <StyledButton
                   key={index}
                   onClick={() => {
-                    onOpen((o) => !o);
-                    document.location.href = item.href;
+                    onOpen((o) => !o)
+                    document.location.href = item.href
                   }}
-                  my='1rem'
-                  variant='link'
+                  my="1rem"
+                  variant="link"
                   color={`${theme.colors.red}`}
-                  fontWeight='normal'
-                  fontSize='1.5rem'
+                  fontWeight="normal"
+                  fontSize="1.5rem"
                 >
                   {item.name}
                 </StyledButton>
-              );
+              )
             })}
 
-            <ChakraLink
-              href='https://discord.gg/CanD2WcK7W'
-              isExternal
-              _hover={{}}
-            ></ChakraLink>
+            <ChakraLink href="https://discord.gg/CanD2WcK7W" isExternal _hover={{}}></ChakraLink>
           </Flex>
         </>
       )}
     </Flex>
-  );
+  )
 };
