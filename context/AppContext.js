@@ -21,9 +21,10 @@ class AppContextProvider extends Component {
     submitting: false,
     submitLoadingText: '',
     faqModalStatus: false,
+    faqType: '',
     //web3 state
     ethersProvider: null,
-    // Personal Info state
+    //join state
     name: '',
     email: '',
     bio: '',
@@ -46,15 +47,32 @@ class AppContextProvider extends Component {
     availability: '',
     comments: '',
     handbookRead: false,
-    pledgeReadiness: false
+    pledgeReadiness: false,
+    // hire state
+    h_name: '',
+    h_email: '',
+    h_bio: '',
+    h_discordHandle: '',
+    h_telegramHandle: '',
+    h_twitterHandle: '',
+    h_githubHandle: '',
+    h_projectType: '',
+    h_specsType: '',
+    h_projectName: '',
+    h_projectLink: '',
+    h_servicesNeeded: [],
+    h_budgetRange: '',
+    h_expectedDeadline: '',
+    h_specificNeed: '',
+    h_priorities: ''
   };
 
   inputChangeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  updateFaqModalStatus = (status) => {
-    this.setState({ faqModalStatus: status });
+  updateFaqModalStatus = (status, faqType) => {
+    this.setState({ faqModalStatus: status, faqType });
   };
 
   updateStage = (type) => {
@@ -78,6 +96,27 @@ class AppContextProvider extends Component {
     this.setState({
       daoFamiliarity,
       availability
+    });
+  };
+
+  setProjectData = (h_projectType, h_specsType) => {
+    this.setState({
+      h_projectType,
+      h_specsType
+    });
+  };
+
+  setServicesData = (h_servicesNeeded, h_budgetRange, h_expectedDeadline) => {
+    this.setState({
+      h_servicesNeeded,
+      h_budgetRange,
+      h_expectedDeadline
+    });
+  };
+
+  setPriorities = (h_priorities) => {
+    this.setState({
+      h_priorities
     });
   };
 
@@ -106,7 +145,84 @@ class AppContextProvider extends Component {
     );
   };
 
-  connectAccount = async () => {
+  submitConsultation = async () => {
+    try {
+      this.setState({
+        submitting: !this.state.submitting,
+        submitLoadingText: 'Awaiting connection..'
+      });
+      await this.connectAccount('hire');
+      this.setState({ submitting: !this.state.submitting });
+      this.updateStage('next');
+    } catch (err) {
+      console.log(err);
+      this.setState({ submitting: !this.state.submitting });
+    }
+  };
+
+  setChains = async (
+    chainId,
+    provider,
+    ethersProvider,
+    address,
+    web3,
+    requestFrom
+  ) => {
+    if (requestFrom === 'join') {
+      if (chainId === 1 || chainId === '0x1') {
+        ethersProvider = new ethers.providers.Web3Provider(
+          web3.currentProvider
+        );
+        const ens = await getENSFromAddress(ethersProvider, address);
+        this.setState({ ensAddress: ens, ethersProvider });
+      } else {
+        try {
+          await ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x1' }]
+          });
+
+          const ethersProvider = new ethers.providers.Web3Provider(
+            web3.currentProvider
+          );
+          const ens = await ethersProvider.lookupAddress(address);
+          this.setState({ ethersProvider: ethersProvider, ensAddress: ens });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    }
+
+    if (requestFrom === 'hire') {
+      if (chainId === 100 || chainId === '0x64') {
+        ethersProvider = new ethers.providers.Web3Provider(
+          web3.currentProvider
+        );
+        this.setState({ ethersProvider });
+      } else {
+        try {
+          await ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x64' }]
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    }
+
+    provider.on('accountsChanged', async (accounts) => {
+      ethersProvider = new ethers.providers.Web3Provider(web3.currentProvider);
+      const ens = await getENSFromAddress(ethersProvider, accounts[0]);
+      this.setState({
+        ethersProvider: ethersProvider,
+        ethereumAddress: accounts[0],
+        ensAddress: ens
+      });
+    });
+  };
+
+  connectAccount = async (requestFrom) => {
     const providerOptions = {
       walletconnect: {
         package: WalletConnectProvider,
@@ -130,37 +246,14 @@ class AppContextProvider extends Component {
 
     let ethersProvider;
     const chainId = await web3.eth.net.getId();
-
-    if (chainId === 1 || chainId === '0x1') {
-      ethersProvider = new ethers.providers.Web3Provider(web3.currentProvider);
-      const ens = await getENSFromAddress(ethersProvider, address);
-      this.setState({ ensAddress: ens, ethersProvider });
-    } else {
-      try {
-        await ethereum.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: '0x1' }]
-        });
-
-        const ethersProvider = new ethers.providers.Web3Provider(
-          web3.currentProvider
-        );
-        const ens = await ethersProvider.lookupAddress(address);
-        this.setState({ ethersProvider: ethersProvider, ensAddress: ens });
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
-    provider.on('accountsChanged', async (accounts) => {
-      ethersProvider = new ethers.providers.Web3Provider(web3.currentProvider);
-      const ens = await getENSFromAddress(ethersProvider, accounts[0]);
-      this.setState({
-        ethersProvider: ethersProvider,
-        ethereumAddress: accounts[0],
-        ensAddress: ens
-      });
-    });
+    await this.setChains(
+      chainId,
+      provider,
+      ethersProvider,
+      address,
+      web3,
+      requestFrom
+    );
   };
 
   render() {
@@ -171,7 +264,11 @@ class AppContextProvider extends Component {
           updateStage: this.updateStage,
           setSkillSets: this.setSkillSets,
           setCryptoData: this.setCryptoData,
+          setProjectData: this.setProjectData,
+          setServicesData: this.setServicesData,
+          setPriorities: this.setPriorities,
           submitData: this.submitData,
+          submitConsultation: this.submitConsultation,
           inputChangeHandler: this.inputChangeHandler,
           updateFaqModalStatus: this.updateFaqModalStatus,
           connectAccount: this.connectAccount

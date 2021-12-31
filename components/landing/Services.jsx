@@ -53,7 +53,7 @@ export const Services = () => {
         <Button
           variant='primary'
           fontSize={{ base: '16px', lg: '18px' }}
-          onClick={() => window.open('https://hireus.raidguild.org', '_blank')}
+          onClick={() => (window.location.href = '/join')}
         >
           Hire Us
         </Button>

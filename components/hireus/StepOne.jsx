@@ -49,23 +49,23 @@ export const StepOne = () => {
       >
         <FormControl
           isRequired
-          isInvalid={context.name === '' && buttonClick ? true : false}
+          isInvalid={context.h_name === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
           mb={10}
         >
-          <FormLabel>Enter, Apprentice! What is your name?</FormLabel>
+          <FormLabel>What is your name?</FormLabel>
           <StyledInput
             placeholder='Your Name'
             onChange={context.inputChangeHandler}
-            name='name'
-            value={context.name}
+            name='h_name'
+            value={context.h_name}
           />
         </FormControl>
 
         <FormControl
           isRequired
-          isInvalid={context.email === '' && buttonClick ? true : false}
+          isInvalid={context.h_email === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
         >
@@ -74,8 +74,8 @@ export const StepOne = () => {
             type='email'
             placeholder='Your email address'
             onChange={context.inputChangeHandler}
-            name='email'
-            value={context.email}
+            name='h_email'
+            value={context.h_email}
           />
         </FormControl>
       </Stack>
@@ -83,36 +83,76 @@ export const StepOne = () => {
       <FormControl
         mb={10}
         isRequired
-        isInvalid={context.bio === '' && buttonClick ? true : false}
+        isInvalid={context.h_bio === '' && buttonClick ? true : false}
         fontFamily='spaceMono'
         color='white'
       >
-        <FormLabel>
-          What is your profession? How do you busy yourself?{' '}
-        </FormLabel>
+        <FormLabel>Your Bio </FormLabel>
         <StyledTextArea
           placeholder='A short introduction'
           onChange={context.inputChangeHandler}
-          name='bio'
-          value={context.bio}
+          name='h_bio'
+          value={context.h_bio}
         />
       </FormControl>
 
-      <FormControl
-        mb={10}
-        isRequired
-        isInvalid={context.bio === '' && buttonClick ? true : false}
-        fontFamily='spaceMono'
-        color='white'
+      <Stack
+        mb={{ base: 10, lg: 0 }}
+        direction={{ base: 'column', lg: 'row' }}
+        spacing={{ base: 0, lg: 5 }}
       >
-        <FormLabel color='white'>How do you like to learn?</FormLabel>
-        <StyledTextArea
-          placeholder='Your learning goals'
-          onChange={context.inputChangeHandler}
-          name='goals'
-          value={context.goals}
-        />
-      </FormControl>
+        <FormControl
+          isRequired
+          isInvalid={
+            context.h_discordHandle === '' && buttonClick ? true : false
+          }
+          fontFamily='spaceMono'
+          color='white'
+          mb={10}
+        >
+          <FormLabel>What is your Discord handle?</FormLabel>
+          <StyledInput
+            placeholder="Include the unique identifier after the #, no '@'"
+            onChange={context.inputChangeHandler}
+            name='h_discordHandle'
+            value={context.h_discordHandle}
+          />
+        </FormControl>
+        <FormControl fontFamily='spaceMono' color='white'>
+          <FormLabel>What say of your Github Handle?</FormLabel>
+          <StyledInput
+            placeholder="no '@"
+            name='h_githubHandle'
+            onChange={context.inputChangeHandler}
+            value={context.h_githubHandle}
+          />
+        </FormControl>
+      </Stack>
+
+      <Stack
+        mb={{ base: 10, lg: 0 }}
+        direction={{ base: 'column', lg: 'row' }}
+        spacing={{ base: 0, lg: 5 }}
+      >
+        <FormControl fontFamily='spaceMono' color='white' mb={10}>
+          <FormLabel>And of Telegram?</FormLabel>
+          <StyledInput
+            placeholder="no '@'"
+            name='h_telegramHandle'
+            onChange={context.inputChangeHandler}
+            value={context.h_telegramHandle}
+          />
+        </FormControl>
+        <FormControl fontFamily='spaceMono' color='white'>
+          <FormLabel>Your well flown Twitter bird?</FormLabel>
+          <StyledInput
+            placeholder="no '@'"
+            name='h_twitterHandle'
+            onChange={context.inputChangeHandler}
+            value={context.h_twitterHandle}
+          />
+        </FormControl>
+      </Stack>
 
       <Flex
         direction={{ base: 'column-reverse', lg: 'row' }}
@@ -133,7 +173,7 @@ export const StepOne = () => {
               w='100%'
               mt={{ base: '.5rem' }}
               variant='secondary'
-              onClick={() => context.updateFaqModalStatus(true, 'join')}
+              onClick={() => context.updateFaqModalStatus(true, 'hire')}
             >
               Read FAQ
             </Button>
@@ -145,7 +185,12 @@ export const StepOne = () => {
           // isLoading={emailVerifyStatus}
           // loadingText='Verifying Email'
           onClick={async () => {
-            if (context.name && context.email && context.bio && context.goals) {
+            if (
+              context.h_name &&
+              context.h_email &&
+              context.h_bio &&
+              context.h_discordHandle
+            ) {
               setButtonClickStatus(false);
               // setEmailVerifyStatus(true);
               context.updateStage('next');

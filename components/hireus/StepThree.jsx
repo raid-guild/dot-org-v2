@@ -8,28 +8,37 @@ import {
   CheckboxGroup,
   useToast,
   Button,
-  Box
+  Box,
+  Input
 } from '@chakra-ui/react';
+import styled from '@emotion/styled';
 
 import { AppContext } from '../../context/AppContext';
+import { theme } from '../../themes/theme';
 
 import RadioBox from '../../shared/RadioBox';
 
-import { skills } from '../../utils/constants';
+import { hireus_services } from '../../utils/constants';
+
+const StyledInput = styled(Input)`
+  border: none;
+  border-radius: 0;
+  background-color: ${theme.colors.blackLight};
+`;
 
 export const StepThree = () => {
   const context = useContext(AppContext);
   const toast = useToast();
 
-  const [primarySkills, setPrimarySkills] = useState(
-    context.primarySkills || []
+  const [servicesNeeded, setServicesNeeded] = useState(
+    context.h_servicesNeeded || []
   );
-
-  const [secondarySkills, setSecondarySkills] = useState(
-    context.secondarySkills || []
+  const [budgetRange, setBudgetRange] = useState(
+    context.h_budgetRange || '$5k - $20k'
   );
-
-  const [classType, setClassType] = useState(context.classType || 'Technical');
+  const [expectedDeadline, setExpectedDeadline] = useState(
+    context.h_expectedDeadline
+  );
 
   const [buttonClick, setButtonClickStatus] = useState(false);
 
@@ -43,19 +52,19 @@ export const StepThree = () => {
       <Stack direction={{ base: 'column', lg: 'row' }} mb={10} spacing={10}>
         <FormControl
           isRequired
-          isInvalid={primarySkills.length === 0 && buttonClick ? true : false}
+          isInvalid={servicesNeeded.length === 0 && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
         >
-          <FormLabel mb={5}>What say'st are your primary skills?</FormLabel>
+          <FormLabel mb={5}>What services are needed?</FormLabel>
           <CheckboxGroup
             color='red'
-            onChange={(e) => setPrimarySkills(e)}
-            name='primarySkills'
-            value={primarySkills}
+            onChange={(e) => setServicesNeeded(e)}
+            name='h_servicesNeeded'
+            value={servicesNeeded}
           >
             <Stack direction='column' maxH='350px' overflowY='scroll'>
-              {skills.map((value, index) => {
+              {hireus_services.map((value, index) => {
                 return (
                   <Checkbox
                     key={index}
@@ -71,48 +80,37 @@ export const StepThree = () => {
           </CheckboxGroup>
         </FormControl>
 
-        <FormControl
-          isInvalid={secondarySkills.length === 0 && buttonClick ? true : false}
-          fontFamily='spaceMono'
-          color='white'
-        >
-          <FormLabel mb={5}>And your secondary skills?</FormLabel>
-          <CheckboxGroup
-            color='red'
-            onChange={(e) => setSecondarySkills(e)}
-            name='secondarySkills'
-            value={secondarySkills}
-          >
-            <Stack direction='column' maxH='350px' overflowY='scroll'>
-              {skills.map((value, index) => {
-                return (
-                  <Checkbox
-                    key={index}
-                    value={value}
-                    color='red'
-                    fontFamily='jetbrains'
-                  >
-                    {value}
-                  </Checkbox>
-                );
-              })}
-            </Stack>
-          </CheckboxGroup>
-        </FormControl>
+        <Stack direction='column' mb={10} spacing={10}>
+          <FormControl isRequired fontFamily='spaceMono' color='white'>
+            <FormLabel as='legend'>What's your budget range?</FormLabel>
+            <RadioBox
+              stack='vertical'
+              options={[
+                '< $5k',
+                '$5k - $20k',
+                '$20k - $50k',
+                '$50k +',
+                'Not Sure'
+              ]}
+              updateRadio={setBudgetRange}
+              name='h_budgetRange'
+              defaultValue={context.h_budgetRange || budgetRange}
+              value={context.h_budgetRange || budgetRange}
+            />
+          </FormControl>
 
-        <FormControl isRequired fontFamily='spaceMono' color='white'>
-          <FormLabel as='legend'>
-            Do you bethink yourself as technical, or non-technical?
-          </FormLabel>
-          <RadioBox
-            stack='vertical'
-            options={['Technical', 'Non - Technical', 'Other']}
-            updateRadio={setClassType}
-            name='classType'
-            defaultValue={context.classType || classType}
-            value={context.classType || classType}
-          />
-        </FormControl>
+          <FormControl isRequired fontFamily='spaceMono' color='white'>
+            <FormLabel>Safety Valve Date</FormLabel>
+
+            <StyledInput
+              type='date'
+              color='white'
+              name='h_expectedDeadline'
+              onChange={(e) => setExpectedDeadline(e.target.value)}
+              value={expectedDeadline}
+            />
+          </FormControl>
+        </Stack>
       </Stack>
 
       <Flex
@@ -134,7 +132,7 @@ export const StepThree = () => {
               w='100%'
               mt={{ base: '.5rem' }}
               variant='secondary'
-              onClick={() => context.updateFaqModalStatus(true, 'join')}
+              onClick={() => context.updateFaqModalStatus(true, 'hire')}
             >
               Read FAQ
             </Button>
@@ -143,9 +141,13 @@ export const StepThree = () => {
         <Button
           variant='primary'
           onClick={() => {
-            if (primarySkills.length !== 0) {
+            if (servicesNeeded.length !== 0 && expectedDeadline) {
               setButtonClickStatus(false);
-              context.setSkillSets(primarySkills, secondarySkills, classType);
+              context.setServicesData(
+                servicesNeeded,
+                budgetRange,
+                expectedDeadline
+              );
               context.updateStage('next');
             } else {
               setButtonClickStatus(true);

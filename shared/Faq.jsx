@@ -17,10 +17,13 @@ import {
 
 import { AppContext } from '../context/AppContext';
 
-import { faq_items } from '../utils/constants';
+import { join_faq_items, hire_faq_items } from '../utils/constants';
 
 export const FAQ = () => {
   const context = useContext(AppContext);
+  const faq_items =
+    context.faqType === 'join' ? join_faq_items : hire_faq_items;
+
   return (
     <Modal
       onClose={() => context.updateFaqModalStatus(false)}

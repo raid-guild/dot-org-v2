@@ -43,9 +43,7 @@ export const FirstPaint = ({ windowWidth }) => {
             justifyContent={{ base: 'center', lg: 'flex-start' }}
           >
             <Button
-              onClick={() =>
-                window.open('https://hireus.raidguild.org', '_blank')
-              }
+              onClick={() => (window.location.href = '/hire')}
               minW={{ base: 'auto' }}
               variant='primary'
               fontSize={{ base: '16px', lg: '18px' }}

@@ -134,7 +134,7 @@ export const StepFour = () => {
               w='100%'
               mt={{ base: '.5rem' }}
               variant='secondary'
-              onClick={() => context.updateFaqModalStatus(true)}
+              onClick={() => context.updateFaqModalStatus(true, 'join')}
             >
               Read FAQ
             </Button>

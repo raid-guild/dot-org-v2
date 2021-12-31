@@ -7,14 +7,23 @@ import {
   Stack,
   useToast,
   Button,
-  Box
+  Box,
+  Textarea
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import { AppContext } from '../../context/AppContext';
 import { theme } from '../../themes/theme';
 
+import RadioBox from '../../shared/RadioBox';
+
 const StyledInput = styled(Input)`
+  background: ${theme.colors.blackLight};
+  border: none;
+  border-radius: 0;
+`;
+
+const StyledTextArea = styled(Textarea)`
   background: ${theme.colors.blackLight};
   border: none;
   border-radius: 0;
@@ -24,6 +33,10 @@ export const StepTwo = () => {
   const context = useContext(AppContext);
   const toast = useToast();
 
+  const [projectType, setProjectType] = useState(
+    context.h_projectType || 'New'
+  );
+  const [specsType, setSpecsType] = useState(context.h_specsType || 'Yes');
   const [buttonClick, setButtonClickStatus] = useState(false);
 
   return (
@@ -38,28 +51,26 @@ export const StepTwo = () => {
         direction={{ base: 'column', lg: 'row' }}
         spacing={{ base: 0, lg: 5 }}
       >
-        <FormControl
-          isRequired
-          isInvalid={context.discordHandle === '' && buttonClick ? true : false}
-          fontFamily='spaceMono'
-          color='white'
-          mb={10}
-        >
-          <FormLabel>What is your Discord handle?</FormLabel>
-          <StyledInput
-            placeholder="Include the unique identifier after the #, no '@'"
-            onChange={context.inputChangeHandler}
-            name='discordHandle'
-            value={context.discordHandle}
+        <FormControl isRequired fontFamily='spaceMono' color='white' mb={10}>
+          <FormLabel as='legend'>New or Existing Project?</FormLabel>
+          <RadioBox
+            stack='horizontal'
+            options={['New', 'Existing']}
+            updateRadio={setProjectType}
+            name='h_projectType'
+            defaultValue={context.h_projectType || projectType}
+            value={context.h_projectType || projectType}
           />
         </FormControl>
-        <FormControl fontFamily='spaceMono' color='white'>
-          <FormLabel>What say of your Github Handle?</FormLabel>
-          <StyledInput
-            placeholder="no '@"
-            name='githubHandle'
-            onChange={context.inputChangeHandler}
-            value={context.githubHandle}
+        <FormControl isRequired fontFamily='spaceMono' color='white'>
+          <FormLabel as='legend'>Have the project specs ready?</FormLabel>
+          <RadioBox
+            stack='horizontal'
+            options={['Yes', 'Partial', 'None']}
+            updateRadio={setSpecsType}
+            name='h_specsType'
+            defaultValue={context.h_specsType || specsType}
+            value={context.h_specsType || specsType}
           />
         </FormControl>
       </Stack>
@@ -69,62 +80,41 @@ export const StepTwo = () => {
         direction={{ base: 'column', lg: 'row' }}
         spacing={{ base: 0, lg: 5 }}
       >
-        <FormControl fontFamily='spaceMono' color='white' mb={10}>
-          <FormLabel>And of Telegram?</FormLabel>
+        <FormControl isRequired fontFamily='spaceMono' color='white' mb={10}>
+          <FormLabel>Project Name?</FormLabel>
           <StyledInput
-            placeholder="no '@'"
-            name='telegramHandle'
+            placeholder='Project Name'
+            name='h_projectName'
             onChange={context.inputChangeHandler}
-            value={context.telegramHandle}
+            value={context.h_projectName}
           />
         </FormControl>
         <FormControl fontFamily='spaceMono' color='white'>
-          <FormLabel>Your well flown Twitter bird?</FormLabel>
+          <FormLabel>Link to Specs</FormLabel>
           <StyledInput
-            placeholder="no '@'"
-            name='twitterHandle'
+            placeholder='Any link related to the project'
+            name='h_projectLink'
             onChange={context.inputChangeHandler}
-            value={context.twitterHandle}
+            value={context.h_projectLink}
           />
         </FormControl>
       </Stack>
 
-      <Stack mb={{ base: 10, lg: 0 }} direction={{ base: 'column', lg: 'row' }}>
-        <FormControl
-          isRequired
-          isInvalid={
-            context.ethereumAddress === '' && buttonClick ? true : false
-          }
-          fontFamily='spaceMono'
-          color='white'
-          mb={10}
-        >
-          <FormLabel>Your Ethereum address</FormLabel>
-          {!context.ethereumAddress ? (
-            <Button variant='primary' onClick={context.connectAccount('join')}>
-              Fetch from Wallet
-            </Button>
-          ) : (
-            <StyledInput
-              placeholder='0x...'
-              name='ethereumAddress'
-              value={context.ethereumAddress}
-              isReadOnly={true}
-              isDisabled={true}
-            />
-          )}
-        </FormControl>
-        <FormControl fontFamily='spaceMono' color='white'>
-          <FormLabel>Your ENS address</FormLabel>
-          <StyledInput
-            placeholder='no .eth'
-            name='ensAddress'
-            value={context.ensAddress}
-            isReadOnly={true}
-            isDisabled={true}
-          />
-        </FormControl>
-      </Stack>
+      <FormControl
+        mb={10}
+        isRequired
+        isInvalid={context.h_projectDesc === '' && buttonClick ? true : false}
+        fontFamily='spaceMono'
+        color='white'
+      >
+        <FormLabel>Project Description</FormLabel>
+        <StyledTextArea
+          placeholder='Describe your project, goals, vision, etc.'
+          onChange={context.inputChangeHandler}
+          name='h_projectDesc'
+          value={context.h_projectDesc}
+        />
+      </FormControl>
 
       <Flex
         direction={{ base: 'column-reverse', lg: 'row' }}
@@ -145,7 +135,7 @@ export const StepTwo = () => {
               w='100%'
               mt={{ base: '.5rem' }}
               variant='secondary'
-              onClick={() => context.updateFaqModalStatus(true, 'join')}
+              onClick={() => context.updateFaqModalStatus(true, 'hire')}
             >
               Read FAQ
             </Button>
@@ -154,8 +144,9 @@ export const StepTwo = () => {
         <Button
           variant='primary'
           onClick={() => {
-            if (context.discordHandle && context.ethereumAddress) {
+            if (context.h_projectName && context.h_projectDesc) {
               setButtonClickStatus(false);
+              context.setProjectData(projectType, specsType);
               context.updateStage('next');
             } else {
               setButtonClickStatus(true);
