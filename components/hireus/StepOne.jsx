@@ -3,30 +3,20 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Input,
-  Textarea,
   Stack,
   useToast,
-  Box,
-  Button
+  Box
 } from '@chakra-ui/react';
 // import { Magic } from 'magic-sdk';
-import styled from '@emotion/styled';
 
 import { AppContext } from '../../context/AppContext';
-import { theme } from '../../themes/theme';
 
-const StyledInput = styled(Input)`
-  background: ${theme.colors.blackLight};
-  border: none;
-  border-radius: 0;
-`;
-
-const StyledTextArea = styled(Textarea)`
-  background: ${theme.colors.blackLight};
-  border: none;
-  border-radius: 0;
-`;
+import {
+  StyledPrimaryButton,
+  StyledSecondaryButton,
+  StyledInput,
+  StyledTextArea
+} from '../../themes/styled';
 
 export const StepOne = () => {
   const context = useContext(AppContext);
@@ -160,28 +150,25 @@ export const StepOne = () => {
       >
         {context.stage !== 1 && context.stage !== 8 && (
           <Flex direction={{ base: 'column', md: 'row' }}>
-            <Button
+            <StyledSecondaryButton
               w='100%'
               mr='1rem'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
-            </Button>
-            <Button
+            </StyledSecondaryButton>
+            <StyledSecondaryButton
               w='100%'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateFaqModalStatus(true, 'hire')}
             >
               Read FAQ
-            </Button>
+            </StyledSecondaryButton>
           </Flex>
         )}
 
-        <Button
-          variant='primary'
+        <StyledPrimaryButton
           // isLoading={emailVerifyStatus}
           // loadingText='Verifying Email'
           onClick={async () => {
@@ -234,7 +221,7 @@ export const StepOne = () => {
           }}
         >
           Next
-        </Button>
+        </StyledPrimaryButton>
       </Flex>
     </Flex>
   );

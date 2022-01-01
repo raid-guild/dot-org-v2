@@ -1,5 +1,4 @@
 import {
-  Heading,
   Text,
   Image,
   Tag,
@@ -10,29 +9,12 @@ import {
   Flex,
   VStack
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 
 import { Footer } from '../../shared/Footer';
-import { theme } from '../../themes/theme';
+
 import { projects, icons, roleConversions } from '../../utils/constants';
 
-const StyledGridChild = styled.div`
-  width: 100%;
-  break-inside: avoid;
-  margin-bottom: 1em;
-  padding: 2rem;
-  /* border: 5px solid; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.8);
-  box-shadow: 4px 9px 18px -7px rgba(0, 0, 0, 0.75);
-
-  &:hover {
-    cursor: pointer;
-    background-color: ${theme.colors.blackLight};
-  }
-`;
+import { StyledGridChild } from '../../themes/styled';
 
 export const Projects = () => {
   return (
@@ -68,14 +50,6 @@ export const Projects = () => {
                   mr='2rem'
                 />
                 <VStack alignItems='flex-start'>
-                  <Heading
-                    variant='texturina'
-                    fontSize='1.5rem'
-                    color={item.color}
-                    textAlign='left'
-                  >
-                    {item.name}
-                  </Heading>
                   <Tag
                     fontSize='.7rem'
                     bg={item.color}
@@ -89,7 +63,6 @@ export const Projects = () => {
               </Flex>
 
               <Text
-                variant='texturina'
                 color='white'
                 fontSize='1rem'
                 textAlign='justify'
@@ -99,7 +72,6 @@ export const Projects = () => {
               </Text>
               <Text
                 w='100%'
-                variant='texturina'
                 fontFamily='spaceMono'
                 color={item.color}
                 textAlign='left'

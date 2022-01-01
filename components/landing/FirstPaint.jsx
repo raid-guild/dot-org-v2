@@ -1,7 +1,13 @@
-import { Flex, SimpleGrid, Heading, Button, Image } from '@chakra-ui/react';
+import { Flex, SimpleGrid, Image } from '@chakra-ui/react';
 
 import { theme } from '../../themes/theme';
 import { Header } from '../../shared/Header';
+
+import {
+  StyledPrimaryButton,
+  StyledSecondaryButton,
+  StyledHeadingOne
+} from '../../themes/styled';
 
 export const FirstPaint = ({ windowWidth }) => {
   return (
@@ -26,39 +32,36 @@ export const FirstPaint = ({ windowWidth }) => {
           alignItems='start'
           maxW={{ lg: '50%' }}
         >
-          <Heading
+          <StyledHeadingOne
             maxW='720px'
-            variant='headingOne'
             lineHeight='1.5'
             fontSize={{ lg: '36px' }}
             textShadow='0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.20em red'
           >
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3
             Product Demons.
-          </Heading>
+          </StyledHeadingOne>
           <Flex
             w='100%'
             mt={{ base: '2rem' }}
             direction='row'
             justifyContent={{ base: 'center', lg: 'flex-start' }}
           >
-            <Button
+            <StyledPrimaryButton
               onClick={() => (window.location.href = '/hire')}
               minW={{ base: 'auto' }}
-              variant='primary'
               fontSize={{ base: '16px', lg: '18px' }}
               mr='1rem'
             >
               Hire Us
-            </Button>
-            <Button
+            </StyledPrimaryButton>
+            <StyledSecondaryButton
               onClick={() => (window.location.href = '/join')}
               minW={{ base: 'auto' }}
-              variant='secondary'
               fontSize={{ base: '16px', lg: '18px' }}
             >
               Join Us
-            </Button>
+            </StyledSecondaryButton>
           </Flex>
         </Flex>
         <Image

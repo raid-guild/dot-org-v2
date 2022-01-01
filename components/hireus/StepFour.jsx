@@ -3,24 +3,20 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Textarea,
   Stack,
   useToast,
-  Button,
   Box
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 
 import { AppContext } from '../../context/AppContext';
-import { theme } from '../../themes/theme';
 
 import RadioBox from '../../shared/RadioBox';
 
-const StyledTextArea = styled(Textarea)`
-  background: ${theme.colors.blackLight};
-  border: none;
-  border-radius: 0;
-`;
+import {
+  StyledPrimaryButton,
+  StyledSecondaryButton,
+  StyledTextArea
+} from '../../themes/styled';
 
 export const StepFour = ({ windowWidth }) => {
   const context = useContext(AppContext);
@@ -81,27 +77,24 @@ export const StepFour = ({ windowWidth }) => {
       >
         {context.stage !== 1 && context.stage !== 6 && (
           <Flex direction={{ base: 'column', md: 'row' }}>
-            <Button
+            <StyledSecondaryButton
               w='100%'
               mr='1rem'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
-            </Button>
-            <Button
+            </StyledSecondaryButton>
+            <StyledSecondaryButton
               w='100%'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateFaqModalStatus(true, 'hire')}
             >
               Read FAQ
-            </Button>
+            </StyledSecondaryButton>
           </Flex>
         )}
-        <Button
-          variant='primary'
+        <StyledPrimaryButton
           isLoading={context.submitting}
           loadingText={context.submitLoadingText}
           onClick={() => {
@@ -124,7 +117,7 @@ export const StepFour = ({ windowWidth }) => {
           }}
         >
           Pay 500 $RAID & SUBMIT
-        </Button>
+        </StyledPrimaryButton>
       </Flex>
     </Flex>
   );

@@ -3,8 +3,7 @@ import {
   Box,
   Flex,
   CircularProgress,
-  CircularProgressLabel,
-  Heading
+  CircularProgressLabel
 } from '@chakra-ui/react';
 import Head from 'next/head';
 
@@ -22,6 +21,8 @@ import { StepFour } from '../components/joinus/StepFour';
 import { StepFive } from '../components/joinus/StepFive';
 import { StepSix } from '../components/joinus/StepSix';
 import { Confirmation } from '../components/joinus/Confirmation';
+
+import { StyledHeadingTwo } from '../themes/styled';
 
 const stageHeadings = {
   1: 'A Quick Intro',
@@ -92,14 +93,13 @@ const Join = () => {
               {context.stage - 1}
             </CircularProgressLabel>
           </CircularProgress>{' '}
-          <Heading
-            variant='headingThree'
+          <StyledHeadingTwo
             fontSize={{ base: '20px', lg: '26px' }}
             fontFamily='uncial'
             ml='1rem'
           >
             {stageHeadings[context.stage - 1]}
-          </Heading>
+          </StyledHeadingTwo>
         </Flex>
       )}
 

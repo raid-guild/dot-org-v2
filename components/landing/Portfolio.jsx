@@ -1,51 +1,12 @@
-import {
-  Flex,
-  Heading,
-  Text,
-  Container,
-  Image,
-  Button,
-  Box,
-  HStack,
-  Link
-} from '@chakra-ui/react';
-
-import styled from '@emotion/styled';
+import { Flex, Container, Image, HStack, Link } from '@chakra-ui/react';
 
 import { theme } from '../../themes/theme';
-
-// const StyledCard = styled(Flex)`
-//   min-width: 300px;
-//   flex-direction: column;
-//   box-shadow: -1rem 0 3rem #000;
-//   padding: 1.5rem;
-//   transition: 0.2s;
-//   background: black;
-//   margin-bottom: 1rem;
-//   @media only screen and (min-width: 600px) {
-//     :not(:first-of-type) {
-//       margin-left: -130px;
-//     }
-//     :hover {
-//       transform: translateY(-1rem);
-//       cursor: pointer;
-//     }
-//     :hover ~ div {
-//       transform: translateX(130px);
-//     }
-//   }
-// `;
-
-const StyledFlex = styled(Flex)`
-  background-color: black;
-  padding: 24px;
-  border-radius: 3px;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  max-width: 450px;
-  flex-direction: column;
-  justify-content: center;
-`;
+import {
+  StyledPrimaryButton,
+  StyledHeadingOne,
+  StyledText,
+  StyledFlex
+} from '../../themes/styled';
 
 export const Portfolio = () => {
   return (
@@ -64,33 +25,24 @@ export const Portfolio = () => {
         pt='4rem'
         pb='6rem'
       >
-        <Heading
-          variant='headingTwo'
-          fontSize={{ base: '1.5rem', lg: '36px' }}
-          mb='1rem'
-        >
+        <StyledHeadingOne fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
           Our Portfolio
-        </Heading>
-        <Text
-          variant='textOne'
-          fontSize={{ base: '1rem', lg: '18px' }}
-          mb='2rem'
-        >
+        </StyledHeadingOne>
+        <StyledText fontSize={{ base: '1rem', lg: '18px' }} mb='2rem'>
           No demon is too large or smol for Raid Guild. We've launched
           everything from DeFi dashboards, dApps, and tokens to new DAOs and
           public good projects. Check out our gallery of trophies from the 50+
           raids we've completed.
-        </Text>
+        </StyledText>
 
-        <Button
-          variant='primary'
+        <StyledPrimaryButton
           fontSize={{ base: '16px', lg: '18px' }}
           onClick={() =>
             window.open('https://portfolio.raidguild.org', '_blank')
           }
         >
           <a>View Projects</a>
-        </Button>
+        </StyledPrimaryButton>
 
         <Flex
           w='100%'
@@ -119,10 +71,10 @@ export const Portfolio = () => {
                 <i className='fas fa-binoculars'></i>
               </Link>
             </HStack>
-            <Text variant='textTwo' fontSize='16px'>
+            <StyledText fontSize='16px'>
               Easily wrap ETH or xDAI for trading with any ERC-20 token. No
               fees, no frills.
-            </Text>
+            </StyledText>
           </StyledFlex>
           <br />
           <StyledFlex minH='250px'>
@@ -147,11 +99,11 @@ export const Portfolio = () => {
                 <i className='fas fa-binoculars'></i>
               </Link>
             </HStack>
-            <Text variant='textTwo' fontSize='16px'>
+            <StyledText fontSize='16px'>
               Part of the future of payment, Smart Invoice builds trust between
               payer and payee by creating a secure neutral channel for
               transferring money.
-            </Text>
+            </StyledText>
           </StyledFlex>
         </Flex>
       </Flex>

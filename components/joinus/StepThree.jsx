@@ -7,7 +7,6 @@ import {
   Checkbox,
   CheckboxGroup,
   useToast,
-  Button,
   Box
 } from '@chakra-ui/react';
 
@@ -16,6 +15,11 @@ import { AppContext } from '../../context/AppContext';
 import RadioBox from '../../shared/RadioBox';
 
 import { skills } from '../../utils/constants';
+
+import {
+  StyledPrimaryButton,
+  StyledSecondaryButton
+} from '../../themes/styled';
 
 export const StepThree = () => {
   const context = useContext(AppContext);
@@ -121,27 +125,24 @@ export const StepThree = () => {
       >
         {context.stage !== 1 && context.stage !== 8 && (
           <Flex direction={{ base: 'column', md: 'row' }}>
-            <Button
+            <StyledSecondaryButton
               w='100%'
               mr='1rem'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
-            </Button>
-            <Button
+            </StyledSecondaryButton>
+            <StyledSecondaryButton
               w='100%'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateFaqModalStatus(true, 'join')}
             >
               Read FAQ
-            </Button>
+            </StyledSecondaryButton>
           </Flex>
         )}
-        <Button
-          variant='primary'
+        <StyledPrimaryButton
           onClick={() => {
             if (primarySkills.length !== 0) {
               setButtonClickStatus(false);
@@ -162,7 +163,7 @@ export const StepThree = () => {
           }}
         >
           Next
-        </Button>
+        </StyledPrimaryButton>
       </Flex>
     </Flex>
   );

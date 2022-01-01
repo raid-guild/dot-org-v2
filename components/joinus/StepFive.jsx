@@ -3,34 +3,24 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Textarea,
   Stack,
   useToast,
-  Input,
   Tooltip,
-  Button,
   Box
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 
 import { InfoIcon } from '@chakra-ui/icons';
 
 import RadioBox from '../../shared/RadioBox';
 
 import { AppContext } from '../../context/AppContext';
-import { theme } from '../../themes/theme';
 
-const StyledInput = styled(Input)`
-  background: ${theme.colors.blackLight};
-  border: none;
-  border-radius: 0;
-`;
-
-const StyledTextArea = styled(Textarea)`
-  background: ${theme.colors.blackLight};
-  border: none;
-  border-radius: 0;
-`;
+import {
+  StyledPrimaryButton,
+  StyledSecondaryButton,
+  StyledInput,
+  StyledTextArea
+} from '../../themes/styled';
 
 export const StepFive = ({ windowWidth }) => {
   const context = useContext(AppContext);
@@ -132,27 +122,24 @@ export const StepFive = ({ windowWidth }) => {
       >
         {context.stage !== 1 && context.stage !== 8 && (
           <Flex direction={{ base: 'column', md: 'row' }}>
-            <Button
+            <StyledSecondaryButton
               w='100%'
               mr='1rem'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
-            </Button>
-            <Button
+            </StyledSecondaryButton>
+            <StyledSecondaryButton
               w='100%'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateFaqModalStatus(true, 'join')}
             >
               Read FAQ
-            </Button>
+            </StyledSecondaryButton>
           </Flex>
         )}
-        <Button
-          variant='primary'
+        <StyledPrimaryButton
           onClick={() => {
             if (context.cryptoExp !== '') {
               setButtonClickStatus(false);
@@ -173,7 +160,7 @@ export const StepFive = ({ windowWidth }) => {
           }}
         >
           Next
-        </Button>
+        </StyledPrimaryButton>
       </Flex>
     </Flex>
   );

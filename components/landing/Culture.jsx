@@ -1,11 +1,11 @@
+import { Flex, VStack, SimpleGrid } from '@chakra-ui/react';
+
 import {
-  Flex,
-  Heading,
-  Text,
-  VStack,
-  SimpleGrid,
-  Button
-} from '@chakra-ui/react';
+  StyledPrimaryButton,
+  StyledHeadingOne,
+  StyledHeadingLabels,
+  StyledText
+} from '../../themes/styled';
 
 import { culture } from '../../utils/constants';
 
@@ -22,27 +22,22 @@ export const Culture = () => {
       py='6rem'
     >
       <VStack spacing={5} justifyContent='center'>
-        <Heading
-          variant='headingTwo'
-          fontSize={{ base: '1.5rem', lg: '36px' }}
-          mb='1rem'
-        >
+        <StyledHeadingOne fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
           Join the Guild
-        </Heading>
-        <Text variant='textOne' fontSize={{ base: '1rem', lg: '18px' }}>
+        </StyledHeadingOne>
+        <StyledText fontSize={{ base: '1rem', lg: '18px' }}>
           We believe workers should be self-sovereign and able to work when,
           where and how they want, as long as they create high value output.
           We’re looking for top talent that can take things into their own hands
           and bring unique value to the guild.
-        </Text>
+        </StyledText>
         <br />
-        <Button
-          variant='primary'
+        <StyledPrimaryButton
           fontSize={{ base: '16px', lg: '18px' }}
           onClick={() => (window.location.href = '/join')}
         >
           Join Us
-        </Button>
+        </StyledPrimaryButton>
       </VStack>
 
       <SimpleGrid columns={{ base: 1, md: 3, lg: 3 }} gap={5} mt='6rem'>
@@ -60,26 +55,20 @@ export const Culture = () => {
               borderTop='2px solid'
               borderColor='red'
             >
-              <Heading
-                variant='labels'
+              <StyledHeadingLabels
                 fontSize={{ base: '16px' }}
                 mb={5}
                 textAlign='center'
               >
                 {item.name}
-              </Heading>
+              </StyledHeadingLabels>
               <img src={item.img} alt='consultations' />
 
               <br></br>
 
-              <Text
-                variant='textTwo'
-                fontSize={{ base: '16px' }}
-                px='1rem'
-                mt='auto'
-              >
+              <StyledText fontSize={{ base: '16px' }} px='1rem' mt='auto'>
                 {item.text}
-              </Text>
+              </StyledText>
             </Flex>
           );
         })}

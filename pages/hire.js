@@ -3,8 +3,7 @@ import {
   Box,
   Flex,
   CircularProgress,
-  CircularProgressLabel,
-  Heading
+  CircularProgressLabel
 } from '@chakra-ui/react';
 import Head from 'next/head';
 
@@ -20,6 +19,8 @@ import { StepTwo } from '../components/hireus/StepTwo';
 import { StepThree } from '../components/hireus/StepThree';
 import { StepFour } from '../components/hireus/StepFour';
 import { Confirmation } from '../components/hireus/Confirmation';
+
+import { StyledHeadingTwo } from '../themes/styled';
 
 const stageHeadings = {
   1: 'Personal Details',
@@ -88,14 +89,13 @@ const Hire = () => {
               {context.stage - 1}
             </CircularProgressLabel>
           </CircularProgress>{' '}
-          <Heading
-            variant='headingThree'
+          <StyledHeadingTwo
             fontSize={{ base: '20px', lg: '26px' }}
             fontFamily='uncial'
             ml='1rem'
           >
             {stageHeadings[context.stage - 1]}
-          </Heading>
+          </StyledHeadingTwo>
         </Flex>
       )}
 

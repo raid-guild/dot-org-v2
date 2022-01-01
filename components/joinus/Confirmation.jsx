@@ -1,11 +1,9 @@
-import React, { useContext } from 'react';
-import { Flex, Heading, Button, Text, Image } from '@chakra-ui/react';
+import React from 'react';
+import { Flex, Text, Image } from '@chakra-ui/react';
 
-import { AppContext } from '../../context/AppContext';
+import { StyledSecondaryButton, StyledHeadingTwo } from '../../themes/styled';
 
 export const Confirmation = () => {
-  const context = useContext(AppContext);
-
   return (
     <Flex
       w='100%'
@@ -21,14 +19,13 @@ export const Confirmation = () => {
         mb='2rem'
       />
 
-      <Heading
-        variant='headingThree'
+      <StyledHeadingTwo
         fontSize={{ base: '1.5rem', lg: '26px' }}
         mb='2rem'
         textAlign='center'
       >
         The Fires Have Been Lit!
-      </Heading>
+      </StyledHeadingTwo>
 
       <Text fontFamily='spaceMono' color='white' textAlign='center'>
         Your submission has been received. An invitation will be sent to your
@@ -36,13 +33,12 @@ export const Confirmation = () => {
         luck! Stay Curious!
       </Text>
 
-      <Button
-        variant='secondary'
+      <StyledSecondaryButton
         mt='2rem'
         onClick={() => (window.location.href = 'https://discord.gg/rGFpfQf')}
       >
         Join Discord
-      </Button>
+      </StyledSecondaryButton>
     </Flex>
   );
 };

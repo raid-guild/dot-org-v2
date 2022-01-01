@@ -3,22 +3,18 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Textarea,
   Stack,
   useToast,
-  Button,
   Box
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 
 import { AppContext } from '../../context/AppContext';
-import { theme } from '../../themes/theme';
 
-const StyledTextArea = styled(Textarea)`
-  background: ${theme.colors.blackLight};
-  border: none;
-  border-radius: 0;
-`;
+import {
+  StyledPrimaryButton,
+  StyledSecondaryButton,
+  StyledTextArea
+} from '../../themes/styled';
 
 export const StepFour = () => {
   const context = useContext(AppContext);
@@ -121,27 +117,24 @@ export const StepFour = () => {
       >
         {context.stage !== 1 && context.stage !== 8 && (
           <Flex direction={{ base: 'column', md: 'row' }}>
-            <Button
+            <StyledSecondaryButton
               w='100%'
               mr='1rem'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
-            </Button>
-            <Button
+            </StyledSecondaryButton>
+            <StyledSecondaryButton
               w='100%'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateFaqModalStatus(true, 'join')}
             >
               Read FAQ
-            </Button>
+            </StyledSecondaryButton>
           </Flex>
         )}
-        <Button
-          variant='primary'
+        <StyledPrimaryButton
           onClick={() => {
             if (
               context.passion !== '' &&
@@ -166,7 +159,7 @@ export const StepFour = () => {
           }}
         >
           Next
-        </Button>
+        </StyledPrimaryButton>
       </Flex>
     </Flex>
   );

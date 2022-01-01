@@ -3,22 +3,18 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Input,
   Stack,
   useToast,
-  Button,
   Box
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 
 import { AppContext } from '../../context/AppContext';
-import { theme } from '../../themes/theme';
 
-const StyledInput = styled(Input)`
-  background: ${theme.colors.blackLight};
-  border: none;
-  border-radius: 0;
-`;
+import {
+  StyledPrimaryButton,
+  StyledSecondaryButton,
+  StyledInput
+} from '../../themes/styled';
 
 export const StepTwo = () => {
   const context = useContext(AppContext);
@@ -101,9 +97,9 @@ export const StepTwo = () => {
         >
           <FormLabel>Your Ethereum address</FormLabel>
           {!context.ethereumAddress ? (
-            <Button variant='primary' onClick={context.connectAccount('join')}>
+            <StyledPrimaryButton onClick={context.connectAccount('join')}>
               Fetch from Wallet
-            </Button>
+            </StyledPrimaryButton>
           ) : (
             <StyledInput
               placeholder='0x...'
@@ -132,27 +128,24 @@ export const StepTwo = () => {
       >
         {context.stage !== 1 && context.stage !== 8 && (
           <Flex direction={{ base: 'column', md: 'row' }}>
-            <Button
+            <StyledSecondaryButton
               w='100%'
               mr='1rem'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
-            </Button>
-            <Button
+            </StyledSecondaryButton>
+            <StyledSecondaryButton
               w='100%'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateFaqModalStatus(true, 'join')}
             >
               Read FAQ
-            </Button>
+            </StyledSecondaryButton>
           </Flex>
         )}
-        <Button
-          variant='primary'
+        <StyledPrimaryButton
           onClick={() => {
             if (context.discordHandle && context.ethereumAddress) {
               setButtonClickStatus(false);
@@ -172,7 +165,7 @@ export const StepTwo = () => {
           }}
         >
           Next
-        </Button>
+        </StyledPrimaryButton>
       </Flex>
     </Flex>
   );

@@ -1,7 +1,13 @@
 import React, { useContext } from 'react';
-import { Flex, Heading, Text, Button } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
+
+import {
+  StyledPrimaryButton,
+  StyledHeadingOne,
+  StyledText
+} from '../../themes/styled';
 
 export const Intro = () => {
   const context = useContext(AppContext);
@@ -13,36 +19,32 @@ export const Intro = () => {
         px={{ base: '1rem', lg: '4rem' }}
         mx='1rem'
       >
-        <Heading
-          variant='headingTwo'
-          fontSize={{ base: '1.5rem', lg: '36px' }}
-          mb='1rem'
-        >
+        <StyledHeadingOne fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
           Hiring RaidGuild
-        </Heading>
+        </StyledHeadingOne>
 
-        <Text variant='textOne' fontSize={{ base: '1rem', lg: '18px' }}>
+        <StyledText fontSize={{ base: '1rem', lg: '18px' }}>
           To request a consultation, please fill out the form starting on the
           next screen (click Start). The more information you can provide about
           the work you want to hire Raid Guild for, the better. The form will
           have space for information about you / your team, background and
           description for your project, specs for the work, as well as a few
           questions to give us an initial feel for your needs.
-        </Text>
+        </StyledText>
         <br />
 
-        <Text variant='textOne' fontSize={{ base: '1rem', lg: '18px' }}>
+        <StyledText fontSize={{ base: '1rem', lg: '18px' }}>
           Once you’ve filled out the form, you will also have an opportunity to
           add the 500 DAI fee to be added to the consultation queue. After that,
           you can return to the queue page itself to add a $RAID bid to move up
           in the queue.
-        </Text>
+        </StyledText>
         <br />
 
-        <Text variant='textOne' fontSize={{ base: '1rem', lg: '18px' }}>
+        <StyledText fontSize={{ base: '1rem', lg: '18px' }}>
           For more info about the consultation process, please refer to our
           DOCS.
-        </Text>
+        </StyledText>
         <br />
 
         <Flex
@@ -50,11 +52,10 @@ export const Intro = () => {
           bgColor='white'
           borderRadius='0.5rem'
           p='0.5rem 1rem'
+          maxW='720px'
         >
           <Text
-            variant='textOne'
             fontSize={{ base: '1rem', lg: '18px' }}
-            color='black'
             fontFamily='jetbrains'
             fontWeight='bold'
             mb='.5rem'
@@ -62,7 +63,6 @@ export const Intro = () => {
             Status: PAUSED FOR THE HOLIDAYS
           </Text>
           <Text
-            variant='textOne'
             fontSize={{ base: '1rem', lg: '16px' }}
             color='black'
             fontFamily='jetbrains'
@@ -81,15 +81,14 @@ export const Intro = () => {
         </Flex>
         <br />
 
-        <Button
-          variant='primary'
+        <StyledPrimaryButton
           fontSize={{ base: '16px', lg: '18px' }}
           onClick={() => {
             context.updateStage('next');
           }}
         >
           New Consultation
-        </Button>
+        </StyledPrimaryButton>
       </Flex>
     </>
   );

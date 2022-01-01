@@ -11,11 +11,12 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
-  Button
+  ModalFooter
 } from '@chakra-ui/react';
 
 import { AppContext } from '../context/AppContext';
+
+import { StyledPrimaryButton } from '../themes/styled';
 
 import { join_faq_items, hire_faq_items } from '../utils/constants';
 
@@ -52,14 +53,13 @@ export const FAQ = () => {
           </Accordion>
         </ModalBody>
         <ModalFooter>
-          <Button
-            variant='primary'
+          <StyledPrimaryButton
             onClick={() => {
               context.updateFaqModalStatus(false);
             }}
           >
             Close
-          </Button>
+          </StyledPrimaryButton>
         </ModalFooter>
       </ModalContent>
     </Modal>

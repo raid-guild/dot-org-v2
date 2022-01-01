@@ -10,7 +10,6 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-  Button,
   Link,
   Popover,
   PopoverTrigger,
@@ -21,6 +20,11 @@ import {
 } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
+
+import {
+  StyledPrimaryButton,
+  StyledSecondaryButton
+} from '../../themes/styled';
 
 export const StepSix = () => {
   const context = useContext(AppContext);
@@ -113,22 +117,20 @@ export const StepSix = () => {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button
-                variant='secondary'
+              <StyledSecondaryButton
                 className='dialog-button-cancel'
                 ref={cancelRef}
                 onClick={onClose}
               >
                 Cancel
-              </Button>
-              <Button
-                variant='primary'
+              </StyledSecondaryButton>
+              <StyledPrimaryButton
                 className='dialog-button-select'
                 onClick={modalConfirmHandler}
                 ml={3}
               >
                 Continue
-              </Button>
+              </StyledPrimaryButton>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialogOverlay>
@@ -141,29 +143,26 @@ export const StepSix = () => {
       >
         {context.stage !== 1 && context.stage !== 8 && (
           <Flex direction={{ base: 'column', md: 'row' }}>
-            <Button
+            <StyledSecondaryButton
               w='100%'
               mr='1rem'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
-            </Button>
-            <Button
+            </StyledSecondaryButton>
+            <StyledSecondaryButton
               w='100%'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateFaqModalStatus(true, 'join')}
             >
               Read FAQ
-            </Button>
+            </StyledSecondaryButton>
           </Flex>
         )}
         <Popover placement='top'>
           <PopoverTrigger>
-            <Button
-              variant='primary'
+            <StyledPrimaryButton
               isLoading={context.submitting}
               loadingText={context.submitLoadingText}
               onClick={() => {
@@ -174,7 +173,7 @@ export const StepSix = () => {
               }}
             >
               Submit
-            </Button>
+            </StyledPrimaryButton>
           </PopoverTrigger>
           <PopoverContent>
             <PopoverArrow />

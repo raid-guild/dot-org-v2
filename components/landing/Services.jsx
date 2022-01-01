@@ -1,13 +1,11 @@
-import {
-  Flex,
-  Heading,
-  Text,
-  VStack,
-  SimpleGrid,
-  Button,
-  Image
-} from '@chakra-ui/react';
+import { Flex, VStack, SimpleGrid, Image } from '@chakra-ui/react';
 
+import {
+  StyledPrimaryButton,
+  StyledHeadingOne,
+  StyledHeadingLabels,
+  StyledText
+} from '../../themes/styled';
 import { services } from '../../utils/constants';
 
 export const Services = () => {
@@ -22,41 +20,28 @@ export const Services = () => {
       bg='linear-gradient(157.1deg, #2B0000 0%, #39040D 29.17%, #48093A 61.98%, #1F0442 100%)'
     >
       <VStack spacing={5} justifyContent='center' lineHeight='1.8' my='5rem'>
-        <Heading
-          variant='headingTwo'
-          fontSize={{ base: '1.5rem', lg: '36px' }}
-          mb='1rem'
-        >
+        <StyledHeadingOne fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
           Our Services
-        </Heading>
-        <Text
-          variant='textOne'
-          fontSize={{ base: '1rem', lg: '18px' }}
-          textAlign='justify'
-        >
+        </StyledHeadingOne>
+        <StyledText fontSize={{ base: '1rem', lg: '18px' }} textAlign='justify'>
           RaidGuild is the premier design and dev agency of the Web3 ecosystem.
           We are deeply entrenched in the bleeding edge of DAOs, DeFi, dApps and
           everything else in between. Hailing from the MetaCartel network, our
           team consists of a diverse group of talent with over 9000 years of
           combined experience.
-        </Text>
-        <Text
-          variant='textOne'
-          fontSize={{ base: '1rem', lg: '18px' }}
-          textAlign='justify'
-        >
+        </StyledText>
+        <StyledText fontSize={{ base: '1rem', lg: '18px' }} textAlign='justify'>
           We know how to buidl and have the connections, talent and experience
           to turn your ideas into reality. We are lean to the core and deliver
           high quality results with quick turnarounds.
-        </Text>
+        </StyledText>
         <br />
-        <Button
-          variant='primary'
+        <StyledPrimaryButton
           fontSize={{ base: '16px', lg: '18px' }}
-          onClick={() => (window.location.href = '/join')}
+          onClick={() => (window.location.href = '/hire')}
         >
           Hire Us
-        </Button>
+        </StyledPrimaryButton>
       </VStack>
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 2 }}
@@ -77,24 +62,19 @@ export const Services = () => {
               borderTop='2px solid'
               borderColor='red'
             >
-              <Heading
-                variant='labels'
+              <StyledHeadingLabels
                 fontSize={{ base: '16px' }}
                 textAlign='center'
                 mb={3}
               >
                 {item.name}
-              </Heading>
+              </StyledHeadingLabels>
 
               <Image src={item.img} alt='consultations' my='.5rem' />
 
-              <Text
-                variant='textTwo'
-                fontSize={{ base: '16px' }}
-                textAlign='left'
-              >
+              <StyledText fontSize={{ base: '16px' }} textAlign='left'>
                 {item.text}
-              </Text>
+              </StyledText>
             </Flex>
           );
         })}

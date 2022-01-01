@@ -7,24 +7,20 @@ import {
   Checkbox,
   CheckboxGroup,
   useToast,
-  Button,
-  Box,
-  Input
+  Box
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 
 import { AppContext } from '../../context/AppContext';
-import { theme } from '../../themes/theme';
 
 import RadioBox from '../../shared/RadioBox';
 
 import { hireus_services } from '../../utils/constants';
 
-const StyledInput = styled(Input)`
-  border: none;
-  border-radius: 0;
-  background-color: ${theme.colors.blackLight};
-`;
+import {
+  StyledPrimaryButton,
+  StyledSecondaryButton,
+  StyledInput
+} from '../../themes/styled';
 
 export const StepThree = () => {
   const context = useContext(AppContext);
@@ -119,27 +115,24 @@ export const StepThree = () => {
       >
         {context.stage !== 1 && context.stage !== 8 && (
           <Flex direction={{ base: 'column', md: 'row' }}>
-            <Button
+            <StyledSecondaryButton
               w='100%'
               mr='1rem'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateStage('previous')}
             >
               Back
-            </Button>
-            <Button
+            </StyledSecondaryButton>
+            <StyledSecondaryButton
               w='100%'
               mt={{ base: '.5rem' }}
-              variant='secondary'
               onClick={() => context.updateFaqModalStatus(true, 'hire')}
             >
               Read FAQ
-            </Button>
+            </StyledSecondaryButton>
           </Flex>
         )}
-        <Button
-          variant='primary'
+        <StyledPrimaryButton
           onClick={() => {
             if (servicesNeeded.length !== 0 && expectedDeadline) {
               setButtonClickStatus(false);
@@ -164,7 +157,7 @@ export const StepThree = () => {
           }}
         >
           Next
-        </Button>
+        </StyledPrimaryButton>
       </Flex>
     </Flex>
   );
