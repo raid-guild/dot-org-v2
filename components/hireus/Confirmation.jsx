@@ -1,9 +1,9 @@
 import React from 'react';
-import { Flex, Text, Image } from '@chakra-ui/react';
+import { Flex, Image } from '@chakra-ui/react';
 
 import { StyledSecondaryButton } from '../../themes/styled';
 
-import { StyledHeadingTwo } from '../../themes/styled';
+import { StyledSecondaryHeading, StyledBodyText } from '../../themes/styled';
 
 export const Confirmation = () => {
   return (
@@ -21,15 +21,15 @@ export const Confirmation = () => {
         mb='2rem'
       />
 
-      <StyledHeadingTwo
-        fontSize={{ base: '1.5rem', lg: '26px' }}
+      <StyledSecondaryHeading
+        fontSize={{ base: '20px', lg: '26px' }}
         mb='2rem'
         textAlign='center'
       >
         The Fires Have Been Lit!
-      </StyledHeadingTwo>
+      </StyledSecondaryHeading>
 
-      <Text fontFamily='spaceMono' color='white' textAlign='center'>
+      <StyledBodyText>
         Your request has been added to the end of the queue. A member of the
         Guild will be in touch with you once we’ve worked our way down the
         queue. For a faster response, you are welcome to{' '}
@@ -37,7 +37,7 @@ export const Confirmation = () => {
           add a $RAID token bid to your submission
         </a>{' '}
         to move higher up the queue.
-      </Text>
+      </StyledBodyText>
 
       <StyledSecondaryButton
         mt='2rem'

@@ -114,12 +114,6 @@ class AppContextProvider extends Component {
     });
   };
 
-  setPriorities = (h_priorities) => {
-    this.setState({
-      h_priorities
-    });
-  };
-
   submitData = async (handbookRead, pledgeReadiness) => {
     this.setState(
       { handbookRead, pledgeReadiness, submitting: !this.state.submitting },
@@ -145,9 +139,10 @@ class AppContextProvider extends Component {
     );
   };
 
-  submitConsultation = async () => {
+  submitConsultation = async (h_priorities) => {
     try {
       this.setState({
+        h_priorities,
         submitting: !this.state.submitting,
         submitLoadingText: 'Awaiting connection..'
       });
@@ -266,7 +261,6 @@ class AppContextProvider extends Component {
           setCryptoData: this.setCryptoData,
           setProjectData: this.setProjectData,
           setServicesData: this.setServicesData,
-          setPriorities: this.setPriorities,
           submitData: this.submitData,
           submitConsultation: this.submitConsultation,
           inputChangeHandler: this.inputChangeHandler,

@@ -20,7 +20,7 @@ import { StepThree } from '../components/hireus/StepThree';
 import { StepFour } from '../components/hireus/StepFour';
 import { Confirmation } from '../components/hireus/Confirmation';
 
-import { StyledHeadingTwo } from '../themes/styled';
+import { StyledSecondaryHeading } from '../themes/styled';
 
 const stageHeadings = {
   1: 'Personal Details',
@@ -89,13 +89,12 @@ const Hire = () => {
               {context.stage - 1}
             </CircularProgressLabel>
           </CircularProgress>{' '}
-          <StyledHeadingTwo
+          <StyledSecondaryHeading
             fontSize={{ base: '20px', lg: '26px' }}
-            fontFamily='uncial'
             ml='1rem'
           >
             {stageHeadings[context.stage - 1]}
-          </StyledHeadingTwo>
+          </StyledSecondaryHeading>
         </Flex>
       )}
 

@@ -1,7 +1,7 @@
 import { Flex, Image } from '@chakra-ui/react';
 import { theme } from '../../themes/theme';
 
-import { StyledHeadingOne } from '../../themes/styled';
+import { StyledPrimaryHeading } from '../../themes/styled';
 
 export const Community = () => {
   return (
@@ -12,13 +12,13 @@ export const Community = () => {
       padding={{ base: '2rem', lg: '2rem 4rem' }}
       bg='#201F1D'
     >
-      <StyledHeadingOne
+      <StyledPrimaryHeading
         mb='2rem'
         mt='2rem'
         fontSize={{ base: '1.5rem', lg: '36px' }}
       >
         Supported by
-      </StyledHeadingOne>
+      </StyledPrimaryHeading>
       <Flex
         w='100%'
         justifyContent='space-evenly'

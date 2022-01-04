@@ -2,9 +2,10 @@ import { Flex, VStack, SimpleGrid, Image } from '@chakra-ui/react';
 
 import {
   StyledPrimaryButton,
-  StyledHeadingOne,
+  StyledPrimaryHeading,
   StyledHeadingLabels,
-  StyledText
+  StyledBodyText,
+  StyledCardText
 } from '../../themes/styled';
 import { services } from '../../utils/constants';
 
@@ -20,21 +21,21 @@ export const Services = () => {
       bg='linear-gradient(157.1deg, #2B0000 0%, #39040D 29.17%, #48093A 61.98%, #1F0442 100%)'
     >
       <VStack spacing={5} justifyContent='center' lineHeight='1.8' my='5rem'>
-        <StyledHeadingOne fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
+        <StyledPrimaryHeading fontSize={{ base: '1.5rem', lg: '36px' }}>
           Our Services
-        </StyledHeadingOne>
-        <StyledText fontSize={{ base: '1rem', lg: '18px' }} textAlign='justify'>
+        </StyledPrimaryHeading>
+        <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
           RaidGuild is the premier design and dev agency of the Web3 ecosystem.
           We are deeply entrenched in the bleeding edge of DAOs, DeFi, dApps and
           everything else in between. Hailing from the MetaCartel network, our
           team consists of a diverse group of talent with over 9000 years of
           combined experience.
-        </StyledText>
-        <StyledText fontSize={{ base: '1rem', lg: '18px' }} textAlign='justify'>
+        </StyledBodyText>
+        <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
           We know how to buidl and have the connections, talent and experience
           to turn your ideas into reality. We are lean to the core and deliver
           high quality results with quick turnarounds.
-        </StyledText>
+        </StyledBodyText>
         <br />
         <StyledPrimaryButton
           fontSize={{ base: '16px', lg: '18px' }}
@@ -62,19 +63,15 @@ export const Services = () => {
               borderTop='2px solid'
               borderColor='red'
             >
-              <StyledHeadingLabels
-                fontSize={{ base: '16px' }}
-                textAlign='center'
-                mb={3}
-              >
+              <StyledHeadingLabels fontSize={{ base: '16px' }} mb={3}>
                 {item.name}
               </StyledHeadingLabels>
 
               <Image src={item.img} alt='consultations' my='.5rem' />
 
-              <StyledText fontSize={{ base: '16px' }} textAlign='left'>
+              <StyledCardText fontSize={{ base: '16px' }}>
                 {item.text}
-              </StyledText>
+              </StyledCardText>
             </Flex>
           );
         })}

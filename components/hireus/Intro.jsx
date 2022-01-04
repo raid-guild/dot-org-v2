@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
 
 import {
   StyledPrimaryButton,
-  StyledHeadingOne,
-  StyledText
+  StyledPrimaryHeading,
+  StyledBodyText,
+  StyledMessageText
 } from '../../themes/styled';
 
 export const Intro = () => {
@@ -19,32 +20,35 @@ export const Intro = () => {
         px={{ base: '1rem', lg: '4rem' }}
         mx='1rem'
       >
-        <StyledHeadingOne fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
+        <StyledPrimaryHeading
+          fontSize={{ base: '1.5rem', lg: '36px' }}
+          mb='1rem'
+        >
           Hiring RaidGuild
-        </StyledHeadingOne>
+        </StyledPrimaryHeading>
 
-        <StyledText fontSize={{ base: '1rem', lg: '18px' }}>
+        <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
           To request a consultation, please fill out the form starting on the
           next screen (click Start). The more information you can provide about
           the work you want to hire Raid Guild for, the better. The form will
           have space for information about you / your team, background and
           description for your project, specs for the work, as well as a few
           questions to give us an initial feel for your needs.
-        </StyledText>
+        </StyledBodyText>
         <br />
 
-        <StyledText fontSize={{ base: '1rem', lg: '18px' }}>
+        <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
           Once you’ve filled out the form, you will also have an opportunity to
           add the 500 DAI fee to be added to the consultation queue. After that,
           you can return to the queue page itself to add a $RAID bid to move up
           in the queue.
-        </StyledText>
+        </StyledBodyText>
         <br />
 
-        <StyledText fontSize={{ base: '1rem', lg: '18px' }}>
+        <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
           For more info about the consultation process, please refer to our
           DOCS.
-        </StyledText>
+        </StyledBodyText>
         <br />
 
         <Flex
@@ -54,20 +58,14 @@ export const Intro = () => {
           p='0.5rem 1rem'
           maxW='720px'
         >
-          <Text
+          <StyledMessageText
             fontSize={{ base: '1rem', lg: '18px' }}
-            fontFamily='jetbrains'
             fontWeight='bold'
             mb='.5rem'
           >
             Status: PAUSED FOR THE HOLIDAYS
-          </Text>
-          <Text
-            fontSize={{ base: '1rem', lg: '16px' }}
-            color='black'
-            fontFamily='jetbrains'
-            lineHeight='1.4'
-          >
+          </StyledMessageText>
+          <StyledMessageText fontSize={{ base: '1rem', lg: '16px' }}>
             Hello prospective clients! Thank you for your interest in working
             with the Guild, as we approach the holiday season, we want you to
             know that we will pause additional consultations for the remainder
@@ -77,7 +75,7 @@ export const Intro = () => {
             off this season to reflect upon this wild year and spend time with
             our friends and loved ones. We look forward to working with you and
             learning more about your project in the New Year! ⚔️
-          </Text>
+          </StyledMessageText>
         </Flex>
         <br />
 

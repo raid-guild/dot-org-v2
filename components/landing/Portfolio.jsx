@@ -3,8 +3,9 @@ import { Flex, Container, Image, HStack, Link } from '@chakra-ui/react';
 import { theme } from '../../themes/theme';
 import {
   StyledPrimaryButton,
-  StyledHeadingOne,
-  StyledText,
+  StyledPrimaryHeading,
+  StyledBodyText,
+  StyledCardText,
   StyledFlex
 } from '../../themes/styled';
 
@@ -25,18 +26,22 @@ export const Portfolio = () => {
         pt='4rem'
         pb='6rem'
       >
-        <StyledHeadingOne fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
+        <StyledPrimaryHeading
+          fontSize={{ base: '1.5rem', lg: '36px' }}
+          mb='1rem'
+        >
           Our Portfolio
-        </StyledHeadingOne>
-        <StyledText fontSize={{ base: '1rem', lg: '18px' }} mb='2rem'>
+        </StyledPrimaryHeading>
+        <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
           No demon is too large or smol for Raid Guild. We've launched
           everything from DeFi dashboards, dApps, and tokens to new DAOs and
           public good projects. Check out our gallery of trophies from the 50+
           raids we've completed.
-        </StyledText>
+        </StyledBodyText>
 
         <StyledPrimaryButton
           fontSize={{ base: '16px', lg: '18px' }}
+          mt='2rem'
           onClick={() =>
             window.open('https://portfolio.raidguild.org', '_blank')
           }
@@ -71,10 +76,10 @@ export const Portfolio = () => {
                 <i className='fas fa-binoculars'></i>
               </Link>
             </HStack>
-            <StyledText fontSize='16px'>
+            <StyledBodyText fontSize='16px'>
               Easily wrap ETH or xDAI for trading with any ERC-20 token. No
               fees, no frills.
-            </StyledText>
+            </StyledBodyText>
           </StyledFlex>
           <br />
           <StyledFlex minH='250px'>
@@ -99,11 +104,11 @@ export const Portfolio = () => {
                 <i className='fas fa-binoculars'></i>
               </Link>
             </HStack>
-            <StyledText fontSize='16px'>
+            <StyledCardText fontSize='16px'>
               Part of the future of payment, Smart Invoice builds trust between
               payer and payee by creating a secure neutral channel for
               transferring money.
-            </StyledText>
+            </StyledCardText>
           </StyledFlex>
         </Flex>
       </Flex>

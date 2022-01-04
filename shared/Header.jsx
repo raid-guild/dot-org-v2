@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Flex, Image, Link as ChakraLink, Box } from '@chakra-ui/react';
+import { Button, Flex, Image, Link as ChakraLink } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import { theme } from '../themes/theme';

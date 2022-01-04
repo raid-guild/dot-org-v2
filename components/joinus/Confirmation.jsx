@@ -1,7 +1,11 @@
 import React from 'react';
-import { Flex, Text, Image } from '@chakra-ui/react';
+import { Flex, Image } from '@chakra-ui/react';
 
-import { StyledSecondaryButton, StyledHeadingTwo } from '../../themes/styled';
+import {
+  StyledSecondaryButton,
+  StyledSecondaryHeading,
+  StyledBodyText
+} from '../../themes/styled';
 
 export const Confirmation = () => {
   return (
@@ -19,19 +23,19 @@ export const Confirmation = () => {
         mb='2rem'
       />
 
-      <StyledHeadingTwo
-        fontSize={{ base: '1.5rem', lg: '26px' }}
+      <StyledSecondaryHeading
+        fontSize={{ base: '20px', lg: '26px' }}
         mb='2rem'
         textAlign='center'
       >
         The Fires Have Been Lit!
-      </StyledHeadingTwo>
+      </StyledSecondaryHeading>
 
-      <Text fontFamily='spaceMono' color='white' textAlign='center'>
+      <StyledBodyText>
         Your submission has been received. An invitation will be sent to your
         email address prior to the commencement of next season. We wish you
         luck! Stay Curious!
-      </Text>
+      </StyledBodyText>
 
       <StyledSecondaryButton
         mt='2rem'

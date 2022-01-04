@@ -1,10 +1,11 @@
-import { Flex, VStack, SimpleGrid } from '@chakra-ui/react';
+import { Flex, VStack, SimpleGrid, Image } from '@chakra-ui/react';
 
 import {
   StyledPrimaryButton,
-  StyledHeadingOne,
+  StyledPrimaryHeading,
   StyledHeadingLabels,
-  StyledText
+  StyledBodyText,
+  StyledCardText
 } from '../../themes/styled';
 
 import { culture } from '../../utils/constants';
@@ -22,15 +23,18 @@ export const Culture = () => {
       py='6rem'
     >
       <VStack spacing={5} justifyContent='center'>
-        <StyledHeadingOne fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
+        <StyledPrimaryHeading
+          fontSize={{ base: '1.5rem', lg: '36px' }}
+          mb='1rem'
+        >
           Join the Guild
-        </StyledHeadingOne>
-        <StyledText fontSize={{ base: '1rem', lg: '18px' }}>
+        </StyledPrimaryHeading>
+        <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
           We believe workers should be self-sovereign and able to work when,
           where and how they want, as long as they create high value output.
           We’re looking for top talent that can take things into their own hands
           and bring unique value to the guild.
-        </StyledText>
+        </StyledBodyText>
         <br />
         <StyledPrimaryButton
           fontSize={{ base: '16px', lg: '18px' }}
@@ -55,20 +59,14 @@ export const Culture = () => {
               borderTop='2px solid'
               borderColor='red'
             >
-              <StyledHeadingLabels
-                fontSize={{ base: '16px' }}
-                mb={5}
-                textAlign='center'
-              >
+              <StyledHeadingLabels fontSize={{ base: '16px' }} mb={3}>
                 {item.name}
               </StyledHeadingLabels>
-              <img src={item.img} alt='consultations' />
+              <Image src={item.img} alt='culture' my='.5rem' />
 
-              <br></br>
-
-              <StyledText fontSize={{ base: '16px' }} px='1rem' mt='auto'>
+              <StyledCardText fontSize={{ base: '16px' }}>
                 {item.text}
-              </StyledText>
+              </StyledCardText>
             </Flex>
           );
         })}

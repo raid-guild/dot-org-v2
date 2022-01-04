@@ -1,26 +1,15 @@
 import React, { useState, useContext } from 'react';
-import {
-  Flex,
-  FormControl,
-  FormLabel,
-  Stack,
-  useToast,
-  Box
-} from '@chakra-ui/react';
+import { Flex, FormControl, FormLabel, Stack } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
 
 import RadioBox from '../../shared/RadioBox';
+import StageButtonGroup from '../../shared/StageButtonGroup';
 
-import {
-  StyledPrimaryButton,
-  StyledSecondaryButton,
-  StyledTextArea
-} from '../../themes/styled';
+import { StyledTextArea } from '../../themes/styled';
 
 export const StepFour = ({ windowWidth }) => {
   const context = useContext(AppContext);
-  const toast = useToast();
 
   const [priorities, setPriorities] = useState(
     context.h_priorities || 'Fast & Polished'
@@ -71,54 +60,18 @@ export const StepFour = ({ windowWidth }) => {
         </FormControl>
       </Stack>
 
-      <Flex
-        direction={{ base: 'column-reverse', lg: 'row' }}
-        justifyContent='space-between'
-      >
-        {context.stage !== 1 && context.stage !== 6 && (
-          <Flex direction={{ base: 'column', md: 'row' }}>
-            <StyledSecondaryButton
-              w='100%'
-              mr='1rem'
-              mt={{ base: '.5rem' }}
-              onClick={() => context.updateStage('previous')}
-            >
-              Back
-            </StyledSecondaryButton>
-            <StyledSecondaryButton
-              w='100%'
-              mt={{ base: '.5rem' }}
-              onClick={() => context.updateFaqModalStatus(true, 'hire')}
-            >
-              Read FAQ
-            </StyledSecondaryButton>
-          </Flex>
-        )}
-        <StyledPrimaryButton
-          isLoading={context.submitting}
-          loadingText={context.submitLoadingText}
-          onClick={() => {
-            if (context.h_specificNeed !== '') {
-              setButtonClickStatus(false);
-              context.setPriorities(priorities);
-              context.submitConsultation();
-            } else {
-              setButtonClickStatus(true);
-              toast({
-                duration: 3000,
-                position: 'top',
-                render: () => (
-                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
-                    Please fill in all the required fields.
-                  </Box>
-                )
-              });
-            }
-          }}
-        >
-          Pay 500 $RAID & SUBMIT
-        </StyledPrimaryButton>
-      </Flex>
+      <StageButtonGroup
+        formType={'hire'}
+        updateStage={context.updateStage}
+        updateFaqModalStatus={context.updateFaqModalStatus}
+        setButtonClickStatus={setButtonClickStatus}
+        stageRule={context.h_specificNeed !== ''}
+        setData={context.submitConsultation}
+        dataValues={[priorities]}
+        isLoading={context.submitting}
+        loadingText={context.submitLoadingText}
+        buttonText={'Pay 500 $RAID & SUBMIT'}
+      />
     </Flex>
   );
 };

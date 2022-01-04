@@ -1,30 +1,17 @@
 import React, { useState, useContext } from 'react';
-import {
-  Flex,
-  FormControl,
-  FormLabel,
-  Stack,
-  useToast,
-  Tooltip,
-  Box
-} from '@chakra-ui/react';
+import { Flex, FormControl, FormLabel, Stack, Tooltip } from '@chakra-ui/react';
 
 import { InfoIcon } from '@chakra-ui/icons';
 
 import RadioBox from '../../shared/RadioBox';
+import StageButtonGroup from '../../shared/StageButtonGroup';
 
 import { AppContext } from '../../context/AppContext';
 
-import {
-  StyledPrimaryButton,
-  StyledSecondaryButton,
-  StyledInput,
-  StyledTextArea
-} from '../../themes/styled';
+import { StyledInput, StyledTextArea } from '../../themes/styled';
 
 export const StepFive = ({ windowWidth }) => {
   const context = useContext(AppContext);
-  const toast = useToast();
 
   const [daoFamiliarity, setDaoFamiliarity] = useState(
     context.daoFamiliarity || 'Expert'
@@ -115,53 +102,15 @@ export const StepFive = ({ windowWidth }) => {
         </FormControl>
       </Stack>
 
-      <Flex
-        direction={{ base: 'column-reverse', lg: 'row' }}
-        justifyContent='space-between'
-        mt='2rem'
-      >
-        {context.stage !== 1 && context.stage !== 8 && (
-          <Flex direction={{ base: 'column', md: 'row' }}>
-            <StyledSecondaryButton
-              w='100%'
-              mr='1rem'
-              mt={{ base: '.5rem' }}
-              onClick={() => context.updateStage('previous')}
-            >
-              Back
-            </StyledSecondaryButton>
-            <StyledSecondaryButton
-              w='100%'
-              mt={{ base: '.5rem' }}
-              onClick={() => context.updateFaqModalStatus(true, 'join')}
-            >
-              Read FAQ
-            </StyledSecondaryButton>
-          </Flex>
-        )}
-        <StyledPrimaryButton
-          onClick={() => {
-            if (context.cryptoExp !== '') {
-              setButtonClickStatus(false);
-              context.setCryptoData(daoFamiliarity, availability);
-              context.updateStage('next');
-            } else {
-              setButtonClickStatus(true);
-              toast({
-                duration: 3000,
-                position: 'top',
-                render: () => (
-                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
-                    Please fill in all the required fields.
-                  </Box>
-                )
-              });
-            }
-          }}
-        >
-          Next
-        </StyledPrimaryButton>
-      </Flex>
+      <StageButtonGroup
+        formType={'join'}
+        updateStage={context.updateStage}
+        updateFaqModalStatus={context.updateFaqModalStatus}
+        setButtonClickStatus={setButtonClickStatus}
+        stageRule={context.cryptoExp !== ''}
+        setData={context.setCryptoData}
+        dataValues={[daoFamiliarity, availability]}
+      />
     </Flex>
   );
 };

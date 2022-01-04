@@ -4,11 +4,12 @@ import {
   Image,
   SimpleGrid,
   VStack,
-  HStack,
-  Text
+  HStack
 } from '@chakra-ui/react';
 
 import { theme } from '../themes/theme';
+
+import { StyledFooterHeaderText } from '../themes/styled';
 
 export const Footer = () => {
   return (
@@ -37,16 +38,16 @@ export const Footer = () => {
         color='greyLight'
       >
         <VStack alignItems='flex-start'>
-          <Text fontWeight='bold' fontSize='1.2rem' color='red'>
+          <StyledFooterHeaderText fontSize='1.2rem'>
             For Clients
-          </Text>
+          </StyledFooterHeaderText>
           <Link href='#services'>Hire Us</Link>
           <Link href='#portfolio'>Our Portfolio</Link>
         </VStack>
         <VStack alignItems='flex-start'>
-          <Text fontWeight='bold' fontSize='1.2rem' color='red'>
+          <StyledFooterHeaderText fontSize='1.2rem'>
             For Raiders
-          </Text>
+          </StyledFooterHeaderText>
           <Link href='#culture'>Join Us</Link>
           <Link
             href='https://handbook.raidguild.org'
@@ -57,9 +58,9 @@ export const Footer = () => {
           </Link>
         </VStack>
         <VStack alignItems='flex-start'>
-          <Text fontWeight='bold' fontSize='1.2rem' color='red'>
+          <StyledFooterHeaderText fontSize='1.2rem'>
             For All
-          </Text>
+          </StyledFooterHeaderText>
           <Link>
             <HStack>
               <span style={{ width: '15px', marginRight: '5px' }}>

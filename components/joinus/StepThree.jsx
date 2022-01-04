@@ -5,25 +5,18 @@ import {
   FormLabel,
   Stack,
   Checkbox,
-  CheckboxGroup,
-  useToast,
-  Box
+  CheckboxGroup
 } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
 
 import RadioBox from '../../shared/RadioBox';
+import StageButtonGroup from '../../shared/StageButtonGroup';
 
 import { skills } from '../../utils/constants';
 
-import {
-  StyledPrimaryButton,
-  StyledSecondaryButton
-} from '../../themes/styled';
-
 export const StepThree = () => {
   const context = useContext(AppContext);
-  const toast = useToast();
 
   const [primarySkills, setPrimarySkills] = useState(
     context.primarySkills || []
@@ -119,52 +112,15 @@ export const StepThree = () => {
         </FormControl>
       </Stack>
 
-      <Flex
-        direction={{ base: 'column-reverse', lg: 'row' }}
-        justifyContent='space-between'
-      >
-        {context.stage !== 1 && context.stage !== 8 && (
-          <Flex direction={{ base: 'column', md: 'row' }}>
-            <StyledSecondaryButton
-              w='100%'
-              mr='1rem'
-              mt={{ base: '.5rem' }}
-              onClick={() => context.updateStage('previous')}
-            >
-              Back
-            </StyledSecondaryButton>
-            <StyledSecondaryButton
-              w='100%'
-              mt={{ base: '.5rem' }}
-              onClick={() => context.updateFaqModalStatus(true, 'join')}
-            >
-              Read FAQ
-            </StyledSecondaryButton>
-          </Flex>
-        )}
-        <StyledPrimaryButton
-          onClick={() => {
-            if (primarySkills.length !== 0) {
-              setButtonClickStatus(false);
-              context.setSkillSets(primarySkills, secondarySkills, classType);
-              context.updateStage('next');
-            } else {
-              setButtonClickStatus(true);
-              toast({
-                duration: 3000,
-                position: 'top',
-                render: () => (
-                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
-                    Please fill in all the required fields.
-                  </Box>
-                )
-              });
-            }
-          }}
-        >
-          Next
-        </StyledPrimaryButton>
-      </Flex>
+      <StageButtonGroup
+        formType={'join'}
+        updateStage={context.updateStage}
+        updateFaqModalStatus={context.updateFaqModalStatus}
+        setButtonClickStatus={setButtonClickStatus}
+        stageRule={primarySkills.length !== 0}
+        setData={context.setSkillSets}
+        dataValues={[primarySkills, secondarySkills, classType]}
+      />
     </Flex>
   );
 };

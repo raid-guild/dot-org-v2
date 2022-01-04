@@ -6,7 +6,7 @@ import { Header } from '../../shared/Header';
 import {
   StyledPrimaryButton,
   StyledSecondaryButton,
-  StyledHeadingOne
+  StyledPrimaryHeading
 } from '../../themes/styled';
 
 export const FirstPaint = ({ windowWidth }) => {
@@ -32,15 +32,10 @@ export const FirstPaint = ({ windowWidth }) => {
           alignItems='start'
           maxW={{ lg: '50%' }}
         >
-          <StyledHeadingOne
-            maxW='720px'
-            lineHeight='1.5'
-            fontSize={{ lg: '36px' }}
-            textShadow='0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.20em red'
-          >
+          <StyledPrimaryHeading maxW='720px' fontSize={{ lg: '36px' }}>
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3
             Product Demons.
-          </StyledHeadingOne>
+          </StyledPrimaryHeading>
           <Flex
             w='100%'
             mt={{ base: '2rem' }}

@@ -1,24 +1,14 @@
 import React, { useState, useContext } from 'react';
-import {
-  Flex,
-  FormControl,
-  FormLabel,
-  Stack,
-  useToast,
-  Box
-} from '@chakra-ui/react';
+import { Flex, FormControl, FormLabel, Stack } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
 
-import {
-  StyledPrimaryButton,
-  StyledSecondaryButton,
-  StyledInput
-} from '../../themes/styled';
+import StageButtonGroup from '../../shared/StageButtonGroup';
+
+import { StyledPrimaryButton, StyledInput } from '../../themes/styled';
 
 export const StepTwo = () => {
   const context = useContext(AppContext);
-  const toast = useToast();
 
   const [buttonClick, setButtonClickStatus] = useState(false);
 
@@ -97,7 +87,7 @@ export const StepTwo = () => {
         >
           <FormLabel>Your Ethereum address</FormLabel>
           {!context.ethereumAddress ? (
-            <StyledPrimaryButton onClick={context.connectAccount('join')}>
+            <StyledPrimaryButton onClick={() => context.connectAccount('join')}>
               Fetch from Wallet
             </StyledPrimaryButton>
           ) : (
@@ -122,51 +112,13 @@ export const StepTwo = () => {
         </FormControl>
       </Stack>
 
-      <Flex
-        direction={{ base: 'column-reverse', lg: 'row' }}
-        justifyContent='space-between'
-      >
-        {context.stage !== 1 && context.stage !== 8 && (
-          <Flex direction={{ base: 'column', md: 'row' }}>
-            <StyledSecondaryButton
-              w='100%'
-              mr='1rem'
-              mt={{ base: '.5rem' }}
-              onClick={() => context.updateStage('previous')}
-            >
-              Back
-            </StyledSecondaryButton>
-            <StyledSecondaryButton
-              w='100%'
-              mt={{ base: '.5rem' }}
-              onClick={() => context.updateFaqModalStatus(true, 'join')}
-            >
-              Read FAQ
-            </StyledSecondaryButton>
-          </Flex>
-        )}
-        <StyledPrimaryButton
-          onClick={() => {
-            if (context.discordHandle && context.ethereumAddress) {
-              setButtonClickStatus(false);
-              context.updateStage('next');
-            } else {
-              setButtonClickStatus(true);
-              toast({
-                duration: 3000,
-                position: 'top',
-                render: () => (
-                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
-                    Please fill in all the required fields.
-                  </Box>
-                )
-              });
-            }
-          }}
-        >
-          Next
-        </StyledPrimaryButton>
-      </Flex>
+      <StageButtonGroup
+        formType={'join'}
+        updateStage={context.updateStage}
+        updateFaqModalStatus={context.updateFaqModalStatus}
+        setButtonClickStatus={setButtonClickStatus}
+        stageRule={context.discordHandle && context.ethereumAddress}
+      />
     </Flex>
   );
 };

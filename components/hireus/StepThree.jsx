@@ -5,26 +5,20 @@ import {
   FormLabel,
   Stack,
   Checkbox,
-  CheckboxGroup,
-  useToast,
-  Box
+  CheckboxGroup
 } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
 
 import RadioBox from '../../shared/RadioBox';
+import StageButtonGroup from '../../shared/StageButtonGroup';
 
 import { hireus_services } from '../../utils/constants';
 
-import {
-  StyledPrimaryButton,
-  StyledSecondaryButton,
-  StyledInput
-} from '../../themes/styled';
+import { StyledInput } from '../../themes/styled';
 
 export const StepThree = () => {
   const context = useContext(AppContext);
-  const toast = useToast();
 
   const [servicesNeeded, setServicesNeeded] = useState(
     context.h_servicesNeeded || []
@@ -109,56 +103,15 @@ export const StepThree = () => {
         </Stack>
       </Stack>
 
-      <Flex
-        direction={{ base: 'column-reverse', lg: 'row' }}
-        justifyContent='space-between'
-      >
-        {context.stage !== 1 && context.stage !== 8 && (
-          <Flex direction={{ base: 'column', md: 'row' }}>
-            <StyledSecondaryButton
-              w='100%'
-              mr='1rem'
-              mt={{ base: '.5rem' }}
-              onClick={() => context.updateStage('previous')}
-            >
-              Back
-            </StyledSecondaryButton>
-            <StyledSecondaryButton
-              w='100%'
-              mt={{ base: '.5rem' }}
-              onClick={() => context.updateFaqModalStatus(true, 'hire')}
-            >
-              Read FAQ
-            </StyledSecondaryButton>
-          </Flex>
-        )}
-        <StyledPrimaryButton
-          onClick={() => {
-            if (servicesNeeded.length !== 0 && expectedDeadline) {
-              setButtonClickStatus(false);
-              context.setServicesData(
-                servicesNeeded,
-                budgetRange,
-                expectedDeadline
-              );
-              context.updateStage('next');
-            } else {
-              setButtonClickStatus(true);
-              toast({
-                duration: 3000,
-                position: 'top',
-                render: () => (
-                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
-                    Please fill in all the required fields.
-                  </Box>
-                )
-              });
-            }
-          }}
-        >
-          Next
-        </StyledPrimaryButton>
-      </Flex>
+      <StageButtonGroup
+        formType={'hire'}
+        updateStage={context.updateStage}
+        updateFaqModalStatus={context.updateFaqModalStatus}
+        setButtonClickStatus={setButtonClickStatus}
+        stageRule={servicesNeeded.length !== 0 && expectedDeadline}
+        setData={context.setServicesData}
+        dataValues={[servicesNeeded, budgetRange, expectedDeadline]}
+      />
     </Flex>
   );
 };

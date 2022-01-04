@@ -22,7 +22,7 @@ import { StepFive } from '../components/joinus/StepFive';
 import { StepSix } from '../components/joinus/StepSix';
 import { Confirmation } from '../components/joinus/Confirmation';
 
-import { StyledHeadingTwo } from '../themes/styled';
+import { StyledSecondaryHeading } from '../themes/styled';
 
 const stageHeadings = {
   1: 'A Quick Intro',
@@ -93,13 +93,12 @@ const Join = () => {
               {context.stage - 1}
             </CircularProgressLabel>
           </CircularProgress>{' '}
-          <StyledHeadingTwo
+          <StyledSecondaryHeading
             fontSize={{ base: '20px', lg: '26px' }}
-            fontFamily='uncial'
             ml='1rem'
           >
             {stageHeadings[context.stage - 1]}
-          </StyledHeadingTwo>
+          </StyledSecondaryHeading>
         </Flex>
       )}
 
