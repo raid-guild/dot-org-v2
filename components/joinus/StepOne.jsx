@@ -26,7 +26,7 @@ export const StepOne = () => {
       >
         <FormControl
           isRequired
-          isInvalid={context.name === '' && buttonClick ? true : false}
+          isInvalid={context.j_name === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
           mb={10}
@@ -35,14 +35,14 @@ export const StepOne = () => {
           <StyledInput
             placeholder='Your Name'
             onChange={context.inputChangeHandler}
-            name='name'
-            value={context.name}
+            name='j_name'
+            value={context.j_name}
           />
         </FormControl>
 
         <FormControl
           isRequired
-          isInvalid={context.email === '' && buttonClick ? true : false}
+          isInvalid={context.j_email === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
         >
@@ -51,8 +51,8 @@ export const StepOne = () => {
             type='email'
             placeholder='Your email address'
             onChange={context.inputChangeHandler}
-            name='email'
-            value={context.email}
+            name='j_email'
+            value={context.j_email}
           />
         </FormControl>
       </Stack>
@@ -60,7 +60,7 @@ export const StepOne = () => {
       <FormControl
         mb={10}
         isRequired
-        isInvalid={context.bio === '' && buttonClick ? true : false}
+        isInvalid={context.j_bio === '' && buttonClick ? true : false}
         fontFamily='spaceMono'
         color='white'
       >
@@ -70,15 +70,15 @@ export const StepOne = () => {
         <StyledTextArea
           placeholder='A short introduction'
           onChange={context.inputChangeHandler}
-          name='bio'
-          value={context.bio}
+          name='j_bio'
+          value={context.j_bio}
         />
       </FormControl>
 
       <FormControl
         mb={10}
         isRequired
-        isInvalid={context.bio === '' && buttonClick ? true : false}
+        isInvalid={context.j_bio === '' && buttonClick ? true : false}
         fontFamily='spaceMono'
         color='white'
       >
@@ -86,8 +86,8 @@ export const StepOne = () => {
         <StyledTextArea
           placeholder='Your learning goals'
           onChange={context.inputChangeHandler}
-          name='goals'
-          value={context.goals}
+          name='j_goals'
+          value={context.j_goals}
         />
       </FormControl>
 
@@ -97,7 +97,7 @@ export const StepOne = () => {
         updateFaqModalStatus={context.updateFaqModalStatus}
         setButtonClickStatus={setButtonClickStatus}
         stageRule={
-          context.name && context.email && context.bio && context.goals
+          context.j_name && context.j_email && context.j_bio && context.j_goals
         }
       />
     </Flex>

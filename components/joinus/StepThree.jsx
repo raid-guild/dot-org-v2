@@ -19,14 +19,16 @@ export const StepThree = () => {
   const context = useContext(AppContext);
 
   const [primarySkills, setPrimarySkills] = useState(
-    context.primarySkills || []
+    context.j_primarySkills || []
   );
 
   const [secondarySkills, setSecondarySkills] = useState(
-    context.secondarySkills || []
+    context.j_secondarySkills || []
   );
 
-  const [classType, setClassType] = useState(context.classType || 'Technical');
+  const [classType, setClassType] = useState(
+    context.j_classType || 'Technical'
+  );
 
   const [buttonClick, setButtonClickStatus] = useState(false);
 
@@ -105,9 +107,9 @@ export const StepThree = () => {
             stack='vertical'
             options={['Technical', 'Non - Technical', 'Other']}
             updateRadio={setClassType}
-            name='classType'
-            defaultValue={context.classType || classType}
-            value={context.classType || classType}
+            name='j_classType'
+            defaultValue={context.j_classType || classType}
+            value={context.j_classType || classType}
           />
         </FormControl>
       </Stack>
@@ -118,7 +120,7 @@ export const StepThree = () => {
         updateFaqModalStatus={context.updateFaqModalStatus}
         setButtonClickStatus={setButtonClickStatus}
         stageRule={primarySkills.length !== 0}
-        setData={context.setSkillSets}
+        setData={context.setJoinStepThreeData}
         dataValues={[primarySkills, secondarySkills, classType]}
       />
     </Flex>

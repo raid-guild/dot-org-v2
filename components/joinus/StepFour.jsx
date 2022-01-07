@@ -26,7 +26,7 @@ export const StepFour = () => {
       >
         <FormControl
           isRequired
-          isInvalid={context.passion === '' && buttonClick ? true : false}
+          isInvalid={context.j_passion === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
           mb={10}
@@ -37,14 +37,16 @@ export const StepFour = () => {
           <StyledTextArea
             placeholder='What are you into?'
             onChange={context.inputChangeHandler}
-            name='passion'
-            value={context.passion}
+            name='j_passion'
+            value={context.j_passion}
           />
         </FormControl>
 
         <FormControl
           isRequired
-          isInvalid={context.favoriteMedia === '' && buttonClick ? true : false}
+          isInvalid={
+            context.j_favoriteMedia === '' && buttonClick ? true : false
+          }
           fontFamily='spaceMono'
           color='white'
         >
@@ -55,8 +57,8 @@ export const StepFour = () => {
           <StyledTextArea
             placeholder='Favorite media'
             onChange={context.inputChangeHandler}
-            name='favoriteMedia'
-            value={context.favoriteMedia}
+            name='j_favoriteMedia'
+            value={context.j_favoriteMedia}
           />
         </FormControl>
       </Stack>
@@ -68,7 +70,7 @@ export const StepFour = () => {
       >
         <FormControl
           isRequired
-          isInvalid={context.thrills === '' && buttonClick ? true : false}
+          isInvalid={context.j_thrills === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
           mb={10}
@@ -79,13 +81,13 @@ export const StepFour = () => {
           <StyledTextArea
             placeholder='Tell us which subset of Crypto excites you most'
             onChange={context.inputChangeHandler}
-            name='thrills'
-            value={context.thrills}
+            name='j_thrills'
+            value={context.j_thrills}
           />
         </FormControl>
         <FormControl
           isRequired
-          isInvalid={context.interest === '' && buttonClick ? true : false}
+          isInvalid={context.j_interest === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
         >
@@ -95,8 +97,8 @@ export const StepFour = () => {
           <StyledTextArea
             placeholder="Let us be well inform'd of your intentions"
             onChange={context.inputChangeHandler}
-            name='interest'
-            value={context.interest}
+            name='j_interest'
+            value={context.j_interest}
           />
         </FormControl>
       </Stack>
@@ -107,10 +109,10 @@ export const StepFour = () => {
         updateFaqModalStatus={context.updateFaqModalStatus}
         setButtonClickStatus={setButtonClickStatus}
         stageRule={
-          context.passion !== '' &&
-          context.favoriteMedia !== '' &&
-          context.thrills !== '' &&
-          context.interest !== ''
+          context.j_passion !== '' &&
+          context.j_favoriteMedia !== '' &&
+          context.j_thrills !== '' &&
+          context.j_interest !== ''
         }
       />
     </Flex>

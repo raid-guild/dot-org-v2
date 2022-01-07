@@ -25,7 +25,9 @@ export const StepTwo = () => {
       >
         <FormControl
           isRequired
-          isInvalid={context.discordHandle === '' && buttonClick ? true : false}
+          isInvalid={
+            context.j_discordHandle === '' && buttonClick ? true : false
+          }
           fontFamily='spaceMono'
           color='white'
           mb={10}
@@ -34,17 +36,17 @@ export const StepTwo = () => {
           <StyledInput
             placeholder="Include the unique identifier after the #, no '@'"
             onChange={context.inputChangeHandler}
-            name='discordHandle'
-            value={context.discordHandle}
+            name='j_discordHandle'
+            value={context.j_discordHandle}
           />
         </FormControl>
         <FormControl fontFamily='spaceMono' color='white'>
           <FormLabel>What say of your Github Handle?</FormLabel>
           <StyledInput
             placeholder="no '@"
-            name='githubHandle'
+            name='j_githubHandle'
             onChange={context.inputChangeHandler}
-            value={context.githubHandle}
+            value={context.j_githubHandle}
           />
         </FormControl>
       </Stack>
@@ -58,18 +60,18 @@ export const StepTwo = () => {
           <FormLabel>And of Telegram?</FormLabel>
           <StyledInput
             placeholder="no '@'"
-            name='telegramHandle'
+            name='j_telegramHandle'
             onChange={context.inputChangeHandler}
-            value={context.telegramHandle}
+            value={context.j_telegramHandle}
           />
         </FormControl>
         <FormControl fontFamily='spaceMono' color='white'>
           <FormLabel>Your well flown Twitter bird?</FormLabel>
           <StyledInput
             placeholder="no '@'"
-            name='twitterHandle'
+            name='j_twitterHandle'
             onChange={context.inputChangeHandler}
-            value={context.twitterHandle}
+            value={context.j_twitterHandle}
           />
         </FormControl>
       </Stack>
@@ -92,7 +94,7 @@ export const StepTwo = () => {
           ) : (
             <StyledInput
               placeholder='0x...'
-              name='ethereumAddress'
+              name='signerAddress'
               value={context.signerAddress}
               isReadOnly={true}
               isDisabled={true}
@@ -103,7 +105,7 @@ export const StepTwo = () => {
           <FormLabel>Your ENS address</FormLabel>
           <StyledInput
             placeholder='no .eth'
-            name='ensAddress'
+            name='signerEns'
             value={context.signerEns}
             isReadOnly={true}
             isDisabled={true}
@@ -116,7 +118,7 @@ export const StepTwo = () => {
         updateStage={context.updateStage}
         updateFaqModalStatus={context.updateFaqModalStatus}
         setButtonClickStatus={setButtonClickStatus}
-        stageRule={context.discordHandle && context.signerAddress}
+        stageRule={context.j_discordHandle && context.signerAddress}
       />
     </Flex>
   );

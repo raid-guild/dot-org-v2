@@ -15,29 +15,27 @@ class AppContextProvider extends Component {
     signerEns: null,
     chainId: null,
     //join state
-    name: '',
-    email: '',
-    bio: '',
-    goals: '',
-    discordHandle: '',
-    telegramHandle: '',
-    twitterHandle: '',
-    githubHandle: '',
-    ethereumAddress: '',
-    ensAddress: 'Not Found',
-    primarySkills: [],
-    secondarySkills: [],
-    classType: '',
-    passion: '',
-    favoriteMedia: '',
-    thrills: '',
-    interest: '',
-    cryptoExp: '',
-    daoFamiliarity: '',
-    availability: '',
-    comments: '',
-    handbookRead: false,
-    pledgeReadiness: false,
+    j_name: '',
+    j_email: '',
+    j_bio: '',
+    j_goals: '',
+    j_discordHandle: '',
+    j_telegramHandle: '',
+    j_twitterHandle: '',
+    j_githubHandle: '',
+    j_primarySkills: [],
+    j_secondarySkills: [],
+    j_classType: '',
+    j_passion: '',
+    j_favoriteMedia: '',
+    j_thrills: '',
+    j_interest: '',
+    j_cryptoExp: '',
+    j_daoFamiliarity: '',
+    j_availability: '',
+    j_comments: '',
+    j_handbookRead: false,
+    j_pledgeReadiness: false,
     // hire state
     h_name: '',
     h_email: '',
@@ -75,33 +73,47 @@ class AppContextProvider extends Component {
     });
   };
 
-  setSkillSets = (primarySkills, secondarySkills, classType) => {
+  setJoinStepThreeData = (j_primarySkills, j_secondarySkills, j_classType) => {
     this.setState({
-      primarySkills,
-      secondarySkills,
-      classType
+      j_primarySkills,
+      j_secondarySkills,
+      j_classType
     });
   };
 
-  setCryptoData = (daoFamiliarity, availability) => {
+  setJoinStepFiveData = (j_daoFamiliarity, j_availability) => {
     this.setState({
-      daoFamiliarity,
-      availability
+      j_daoFamiliarity,
+      j_availability
     });
   };
 
-  setProjectData = (h_projectType, h_specsType) => {
+  setJoinStepSixData = (j_handbookRead, j_pledgeReadiness) => {
+    this.setState({ j_handbookRead, j_pledgeReadiness });
+  };
+
+  setHireStepTwoData = (h_projectType, h_specsType) => {
     this.setState({
       h_projectType,
       h_specsType
     });
   };
 
-  setServicesData = (h_servicesNeeded, h_budgetRange, h_expectedDeadline) => {
+  setHireStepThreeData = (
+    h_servicesNeeded,
+    h_budgetRange,
+    h_expectedDeadline
+  ) => {
     this.setState({
       h_servicesNeeded,
       h_budgetRange,
       h_expectedDeadline
+    });
+  };
+
+  setHireStepFourData = (h_priorities) => {
+    this.setState({
+      h_priorities
     });
   };
 
@@ -111,71 +123,21 @@ class AppContextProvider extends Component {
     });
   };
 
-  setJoinStepSixData = (handbookRead, pledgeReadiness) => {
-    this.setState({ handbookRead, pledgeReadiness });
-  };
-
-  setHireStepFourData = (h_priorities) => {
-    this.setState({
-      h_priorities
-    });
-  };
-
-  // submitData = async (handbookRead, pledgeReadiness) => {
-  //   this.setState(
-  //     { handbookRead, pledgeReadiness, submitting: !this.state.submitting },
-  //     async () => {
-  //       try {
-  //         this.setState({ submitLoadingText: 'Awaiting signature..' });
-  //         const signature = await getSignature(this.state.ethersProvider);
-  //         if (signature) {
-  //           this.setState({ submitLoadingText: 'Verifying..' });
-  //           await submitApplicationToAirtable(this.state, signature);
-  //           this.setState({ submitLoadingText: 'Sending..' });
-  //           await submitApplicationToMongo(this.state, signature);
-  //           this.setState({ submitLoadingText: 'Notifying..' });
-  //           await notifyApplicationSubmission(this.state, signature);
-  //         }
-
-  //         this.setState({ submitting: !this.state.submitting });
-  //         this.updateStage('next');
-  //       } catch (err) {
-  //         this.setState({ submitting: !this.state.submitting });
-  //       }
-  //     }
-  //   );
-  // };
-
-  // submitConsultation = async (h_priorities) => {
-  //   try {
-  //     this.setState({
-  //       h_priorities,
-  //       submitting: !this.state.submitting,
-  //       submitLoadingText: 'Awaiting connection..'
-  //     });
-  //     this.setState({ submitting: !this.state.submitting });
-  //     this.updateStage('next');
-  //   } catch (err) {
-  //     console.log(err);
-  //     this.setState({ submitting: !this.state.submitting });
-  //   }
-  // };
-
   render() {
     return (
       <AppContext.Provider
         value={{
           ...this.state,
           updateStage: this.updateStage,
-          setSkillSets: this.setSkillSets,
-          setCryptoData: this.setCryptoData,
-          setProjectData: this.setProjectData,
-          setServicesData: this.setServicesData,
-          setWeb3Data: this.setWeb3Data,
-          setJoinStepSixData: this.setJoinStepSixData,
-          setHireStepFourData: this.setHireStepFourData,
           inputChangeHandler: this.inputChangeHandler,
-          updateFaqModalStatus: this.updateFaqModalStatus
+          updateFaqModalStatus: this.updateFaqModalStatus,
+          setJoinStepThreeData: this.setJoinStepThreeData,
+          setJoinStepFiveData: this.setJoinStepFiveData,
+          setJoinStepSixData: this.setJoinStepSixData,
+          setHireStepTwoData: this.setHireStepTwoData,
+          setHireStepThreeData: this.setHireStepThreeData,
+          setHireStepFourData: this.setHireStepFourData,
+          setWeb3Data: this.setWeb3Data
         }}
       >
         {this.props.children}

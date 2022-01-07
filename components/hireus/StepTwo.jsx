@@ -101,7 +101,7 @@ export const StepTwo = () => {
         updateFaqModalStatus={context.updateFaqModalStatus}
         setButtonClickStatus={setButtonClickStatus}
         stageRule={context.h_projectName && context.h_projectDesc}
-        setData={context.setProjectData}
+        setData={context.setHireStepTwoData}
         dataValues={[projectType, specsType]}
       />
     </Flex>

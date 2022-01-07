@@ -48,7 +48,8 @@ const useWallet = (requireEns) => {
       }
     }
 
-    const signerEns = await fetchEns(chainId, ethersProvider, signerAddress);
+    const signerEns =
+      (await fetchEns(chainId, ethersProvider, signerAddress)) || 'Not Found';
 
     setConnectionInfo({
       ...connectionInfo,
@@ -82,11 +83,14 @@ const useWallet = (requireEns) => {
     modalProvider.on('accountsChanged', async () => {
       const ethersProvider = new providers.Web3Provider(modalProvider);
       const signerAddress = await ethersProvider.getSigner().getAddress();
-      const signerEns = await fetchEns(
-        Number(modalProvider.chainId),
-        ethersProvider,
-        signerAddress
-      );
+      const signerEns =
+        (await fetchEns(
+          Number(modalProvider.chainId),
+          ethersProvider,
+          signerAddress
+        )) || 'Not Found';
+
+      console.log(signerEns);
 
       setConnectionInfo({
         ...connectionInfo,

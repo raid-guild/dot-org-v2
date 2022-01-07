@@ -109,7 +109,7 @@ export const StepThree = () => {
         updateFaqModalStatus={context.updateFaqModalStatus}
         setButtonClickStatus={setButtonClickStatus}
         stageRule={servicesNeeded.length !== 0 && expectedDeadline}
-        setData={context.setServicesData}
+        setData={context.setHireStepThreeData}
         dataValues={[servicesNeeded, budgetRange, expectedDeadline]}
       />
     </Flex>

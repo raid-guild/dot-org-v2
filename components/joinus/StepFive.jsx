@@ -14,11 +14,11 @@ export const StepFive = ({ windowWidth }) => {
   const context = useContext(AppContext);
 
   const [daoFamiliarity, setDaoFamiliarity] = useState(
-    context.daoFamiliarity || 'Expert'
+    context.j_daoFamiliarity || 'Expert'
   );
 
   const [availability, setAvailability] = useState(
-    context.availability || '6-12 hours'
+    context.j_availability || '6-12 hours'
   );
 
   const [buttonClick, setButtonClickStatus] = useState(false);
@@ -44,15 +44,15 @@ export const StepFive = ({ windowWidth }) => {
             stack={windowWidth < 400 ? 'vertical' : 'horizontal'}
             options={['Expert', 'Familiar', 'A Little', 'None']}
             updateRadio={setDaoFamiliarity}
-            name='daoFamiliarity'
-            defaultValue={context.daoFamiliarity || daoFamiliarity}
-            value={context.daoFamiliarity || daoFamiliarity}
+            name='j_daoFamiliarity'
+            defaultValue={context.j_daoFamiliarity || daoFamiliarity}
+            value={context.j_daoFamiliarity || daoFamiliarity}
           />
         </FormControl>
 
         <FormControl
           isRequired
-          isInvalid={context.cryptoExp === '' && buttonClick ? true : false}
+          isInvalid={context.j_cryptoExp === '' && buttonClick ? true : false}
           fontFamily='spaceMono'
           color='white'
         >
@@ -60,8 +60,8 @@ export const StepFive = ({ windowWidth }) => {
           <StyledInput
             placeholder='In years'
             onChange={context.inputChangeHandler}
-            name='cryptoExp'
-            value={context.cryptoExp}
+            name='j_cryptoExp'
+            value={context.j_cryptoExp}
           />
         </FormControl>
       </Stack>
@@ -87,17 +87,17 @@ export const StepFive = ({ windowWidth }) => {
             stack={windowWidth < 400 ? 'vertical' : 'horizontal'}
             options={['0-5 hours', '6-12 hours', '13-35 hours', '36+ hours']}
             updateRadio={setAvailability}
-            name='daoFamiliarity'
-            defaultValue={context.availability || availability}
-            value={context.availability || availability}
+            name='j_daoFamiliarity'
+            defaultValue={context.j_availability || availability}
+            value={context.j_availability || availability}
           />
         </FormControl>
         <FormControl mb={10} fontFamily='spaceMono' color='white'>
           <FormLabel>Any comments that still remain, Apprentice?</FormLabel>
           <StyledTextArea
             onChange={context.inputChangeHandler}
-            name='comments'
-            value={context.comments}
+            name='j_comments'
+            value={context.j_comments}
           />
         </FormControl>
       </Stack>
@@ -107,8 +107,8 @@ export const StepFive = ({ windowWidth }) => {
         updateStage={context.updateStage}
         updateFaqModalStatus={context.updateFaqModalStatus}
         setButtonClickStatus={setButtonClickStatus}
-        stageRule={context.cryptoExp !== ''}
-        setData={context.setCryptoData}
+        stageRule={context.j_cryptoExp !== ''}
+        setData={context.setJoinStepFiveData}
         dataValues={[daoFamiliarity, availability]}
       />
     </Flex>

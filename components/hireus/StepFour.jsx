@@ -5,13 +5,7 @@ import {
   FormLabel,
   Stack,
   Box,
-  useToast,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverArrow
+  useToast
 } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
@@ -24,12 +18,14 @@ import {
   StyledSecondaryButton
 } from '../../themes/styled';
 
+import useWallet from '../../hooks/useWallet';
 import useSubmit from '../../hooks/useSubmit';
 
 export const StepFour = ({ windowWidth }) => {
   const context = useContext(AppContext);
   const toast = useToast();
 
+  const { connectWallet } = useWallet(false);
   const { submissionTextUpdates, submissionPendingStatus, submitApplication } =
     useSubmit('hire');
 
@@ -106,41 +102,44 @@ export const StepFour = ({ windowWidth }) => {
             </StyledSecondaryButton>
           </Flex>
         )}
-        <Popover placement='top'>
-          <PopoverTrigger>
-            <StyledPrimaryButton
-              isLoading={submissionPendingStatus}
-              loadingText={submissionTextUpdates}
-              onClick={() => {
-                if (context.h_specificNeed !== '') {
-                  setButtonClickStatus(false);
-                  context.setHireStepFourData(priorities);
-                  submitApplication();
-                } else {
-                  setButtonClickStatus(true);
-                  toast({
-                    duration: 3000,
-                    position: 'top',
-                    render: () => (
-                      <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
-                        Please fill in all the required fields.
-                      </Box>
-                    )
-                  });
-                }
-              }}
-            >
-              Pay 500 $RAID & SUBMIT
-            </StyledPrimaryButton>
-          </PopoverTrigger>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverCloseButton />
-            <PopoverBody fontFamily='spaceMono'>
-              Check you wallet & sign the message to confirm your submission.
-            </PopoverBody>
-          </PopoverContent>
-        </Popover>
+
+        <StyledPrimaryButton
+          isLoading={submissionPendingStatus}
+          loadingText={submissionTextUpdates}
+          onClick={() => {
+            if (context.h_specificNeed !== '') {
+              setButtonClickStatus(false);
+              context.setHireStepFourData(priorities);
+              connectWallet();
+              if (context.chainId !== 4) {
+                toast({
+                  duration: 3000,
+                  position: 'top',
+                  render: () => (
+                    <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
+                      Switch to Rinkeby Network
+                    </Box>
+                  )
+                });
+                return;
+              }
+              submitApplication();
+            } else {
+              setButtonClickStatus(true);
+              toast({
+                duration: 3000,
+                position: 'top',
+                render: () => (
+                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
+                    Please fill in all the required fields.
+                  </Box>
+                )
+              });
+            }
+          }}
+        >
+          Pay 500 $RAID & SUBMIT
+        </StyledPrimaryButton>
       </Flex>
     </Flex>
   );
