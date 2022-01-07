@@ -1,14 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { Flex, FormControl, FormLabel, Stack } from '@chakra-ui/react';
-
 import { AppContext } from '../../context/AppContext';
-
-import StageButtonGroup from '../../shared/StageButtonGroup';
-
 import { StyledPrimaryButton, StyledInput } from '../../themes/styled';
+import StageButtonGroup from '../../shared/StageButtonGroup';
+import useWallet from '../../hooks/useWallet';
 
 export const StepTwo = () => {
   const context = useContext(AppContext);
+  const { connectionInfo, connectWallet } = useWallet(true);
 
   const [buttonClick, setButtonClickStatus] = useState(false);
 
@@ -79,22 +78,22 @@ export const StepTwo = () => {
         <FormControl
           isRequired
           isInvalid={
-            context.ethereumAddress === '' && buttonClick ? true : false
+            context.signerAddress === null && buttonClick ? true : false
           }
           fontFamily='spaceMono'
           color='white'
           mb={10}
         >
           <FormLabel>Your Ethereum address</FormLabel>
-          {!context.ethereumAddress ? (
-            <StyledPrimaryButton onClick={() => context.connectAccount('join')}>
+          {!context.signerAddress ? (
+            <StyledPrimaryButton onClick={connectWallet}>
               Fetch from Wallet
             </StyledPrimaryButton>
           ) : (
             <StyledInput
               placeholder='0x...'
               name='ethereumAddress'
-              value={context.ethereumAddress}
+              value={context.signerAddress}
               isReadOnly={true}
               isDisabled={true}
             />
@@ -105,7 +104,7 @@ export const StepTwo = () => {
           <StyledInput
             placeholder='no .eth'
             name='ensAddress'
-            value={context.ensAddress}
+            value={context.signerEns}
             isReadOnly={true}
             isDisabled={true}
           />
@@ -117,7 +116,7 @@ export const StepTwo = () => {
         updateStage={context.updateStage}
         updateFaqModalStatus={context.updateFaqModalStatus}
         setButtonClickStatus={setButtonClickStatus}
-        stageRule={context.discordHandle && context.ethereumAddress}
+        stageRule={context.discordHandle && context.signerAddress}
       />
     </Flex>
   );

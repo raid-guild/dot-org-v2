@@ -1,15 +1,37 @@
 import React, { useState, useContext } from 'react';
-import { Flex, FormControl, FormLabel, Stack } from '@chakra-ui/react';
+import {
+  Flex,
+  FormControl,
+  FormLabel,
+  Stack,
+  Box,
+  useToast,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverArrow
+} from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
 
 import RadioBox from '../../shared/RadioBox';
-import StageButtonGroup from '../../shared/StageButtonGroup';
 
-import { StyledTextArea } from '../../themes/styled';
+import {
+  StyledTextArea,
+  StyledPrimaryButton,
+  StyledSecondaryButton
+} from '../../themes/styled';
+
+import useSubmit from '../../hooks/useSubmit';
 
 export const StepFour = ({ windowWidth }) => {
   const context = useContext(AppContext);
+  const toast = useToast();
+
+  const { submissionTextUpdates, submissionPendingStatus, submitApplication } =
+    useSubmit('hire');
 
   const [priorities, setPriorities] = useState(
     context.h_priorities || 'Fast & Polished'
@@ -60,18 +82,66 @@ export const StepFour = ({ windowWidth }) => {
         </FormControl>
       </Stack>
 
-      <StageButtonGroup
-        formType={'hire'}
-        updateStage={context.updateStage}
-        updateFaqModalStatus={context.updateFaqModalStatus}
-        setButtonClickStatus={setButtonClickStatus}
-        stageRule={context.h_specificNeed !== ''}
-        setData={context.submitConsultation}
-        dataValues={[priorities]}
-        isLoading={context.submitting}
-        loadingText={context.submitLoadingText}
-        buttonText={'Pay 500 $RAID & SUBMIT'}
-      />
+      <Flex
+        direction={{ base: 'column-reverse', lg: 'row' }}
+        justifyContent='space-between'
+        mt='2rem'
+      >
+        {context.stage !== 1 && context.stage !== 8 && (
+          <Flex direction={{ base: 'column', md: 'row' }}>
+            <StyledSecondaryButton
+              w='100%'
+              mr='1rem'
+              mt={{ base: '.5rem' }}
+              onClick={() => context.updateStage('previous')}
+            >
+              Back
+            </StyledSecondaryButton>
+            <StyledSecondaryButton
+              w='100%'
+              mt={{ base: '.5rem' }}
+              onClick={() => context.updateFaqModalStatus(true, 'join')}
+            >
+              Read FAQ
+            </StyledSecondaryButton>
+          </Flex>
+        )}
+        <Popover placement='top'>
+          <PopoverTrigger>
+            <StyledPrimaryButton
+              isLoading={submissionPendingStatus}
+              loadingText={submissionTextUpdates}
+              onClick={() => {
+                if (context.h_specificNeed !== '') {
+                  setButtonClickStatus(false);
+                  context.setHireStepFourData(priorities);
+                  submitApplication();
+                } else {
+                  setButtonClickStatus(true);
+                  toast({
+                    duration: 3000,
+                    position: 'top',
+                    render: () => (
+                      <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
+                        Please fill in all the required fields.
+                      </Box>
+                    )
+                  });
+                }
+              }}
+            >
+              Pay 500 $RAID & SUBMIT
+            </StyledPrimaryButton>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverBody fontFamily='spaceMono'>
+              Check you wallet & sign the message to confirm your submission.
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </Flex>
     </Flex>
   );
 };

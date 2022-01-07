@@ -26,8 +26,13 @@ import {
   StyledSecondaryButton
 } from '../../themes/styled';
 
+import useSubmit from '../../hooks/useSubmit';
+
 export const StepSix = () => {
   const context = useContext(AppContext);
+
+  const { submissionTextUpdates, submissionPendingStatus, submitApplication } =
+    useSubmit('join');
 
   const [handbookCheckBoxStatus, setHandBookCheckBoxStatus] = useState(false);
   const [pledgeCheckBoxStatus, setPledgeCheckBoxStatus] = useState(false);
@@ -163,13 +168,14 @@ export const StepSix = () => {
         <Popover placement='top'>
           <PopoverTrigger>
             <StyledPrimaryButton
-              isLoading={context.submitting}
-              loadingText={context.submitLoadingText}
+              isLoading={submissionPendingStatus}
+              loadingText={submissionTextUpdates}
               onClick={() => {
-                context.submitData(
+                context.setJoinStepSixData(
                   handbookCheckBoxStatus,
                   pledgeCheckBoxStatus
                 );
+                submitApplication();
               }}
             >
               Submit
