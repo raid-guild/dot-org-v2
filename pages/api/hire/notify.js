@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { withToken } from '../../../middlewares/withToken';
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -11,7 +10,7 @@ const handler = async (req, res) => {
   if (req.method === 'POST') {
     try {
       await axios.post(
-        `${process.env.DM_ENDPOINT}/create/application`,
+        `${process.env.SENTRY_WEBHOOK}/hireus/consultation`,
         req.body
       );
       res.status(201).json(req.body);
@@ -22,4 +21,4 @@ const handler = async (req, res) => {
   }
 };
 
-export default withToken(handler);
+export default handler;

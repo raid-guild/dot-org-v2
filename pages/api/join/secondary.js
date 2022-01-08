@@ -1,4 +1,4 @@
-import { initAirtableClient } from '../../../config';
+import { joinTable } from '../../../config';
 import { withToken } from '../../../middlewares/withToken';
 
 const handler = async (req, res) => {
@@ -10,7 +10,7 @@ const handler = async (req, res) => {
 
   if (req.method === 'POST') {
     try {
-      const submissions_table = initAirtableClient();
+      const submissions_table = await joinTable();
       await submissions_table.create(req.body);
       res.status(201).json(req.body);
     } catch (err) {

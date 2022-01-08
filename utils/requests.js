@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 // import sgMail from '@sendgrid/mail';
 
-import { formatJoinUsData } from './helpers';
+import { formatJoinUsData, formatHireUsData } from './helpers';
 
 export const submitApplicationToMongo = async (state, signature) => {
   const formattedData = formatJoinUsData(state, 'mongo');
@@ -35,6 +35,21 @@ export const notifyApplicationSubmission = async (state, signature) => {
       Authorization: 'Bearer ' + signedToken
     }
   });
+};
+
+export const submitConsultationToMongo = async (state) => {
+  const formattedData = formatHireUsData(state, 'mongo');
+  await axios.post('/api/hire/primary', formattedData);
+};
+
+export const submitConsultationToAirtable = async (state) => {
+  const formattedData = formatHireUsData(state, 'airtable');
+  await axios.post('/api/hire/secondary', formattedData);
+};
+
+export const notifyConsultationRequest = async (state, signature) => {
+  const formattedData = formatHireUsData(state, 'discord');
+  await axios.post('/api/hire/notify', formattedData);
 };
 
 // export const applicationConfirmationEmail = async (name, email) => {

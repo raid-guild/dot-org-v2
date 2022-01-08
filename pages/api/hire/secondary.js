@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { withToken } from '../../../middlewares/withToken';
+import { hireTable } from '../../../config';
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -10,16 +9,14 @@ const handler = async (req, res) => {
 
   if (req.method === 'POST') {
     try {
-      await axios.post(
-        `${process.env.DM_ENDPOINT}/create/application`,
-        req.body
-      );
+      const submissions_table = await hireTable();
+      await submissions_table.create(req.body);
       res.status(201).json(req.body);
     } catch (err) {
-      console.error(err);
+      console.log(err);
       res.status(500).json('Internal server error');
     }
   }
 };
 
-export default withToken(handler);
+export default handler;

@@ -78,3 +78,70 @@ export const formatJoinUsData = (state, type) => {
     return data;
   }
 };
+
+export const formatHireUsData = (state, type) => {
+  if (type === 'airtable') {
+    const data = {
+      Name: state.h_name,
+      'Signer Address': state.signerAddress,
+      Email: state.h_email,
+      Bio: state.h_bio,
+      Discord: state.h_discordHandle,
+      Telegram: state.h_telegramHandle,
+      Twitter: state.h_twitterHandle,
+      Github: state.h_githubHandle,
+      'Project Name': state.h_projectName,
+      'Project Type': state.h_projectType,
+      'Specs Availability': state.h_specsType,
+      'Project Link': state.h_projectLink,
+      'Project Description': state.h_projectDesc,
+      'Services Needed': state.h_servicesNeeded,
+      'Budget Range': state.h_budgetRange,
+      'Expected Deadline': state.h_expectedDeadline,
+      'Specific Needs': state.h_specificNeed,
+      Priorities: state.h_priorities,
+      'Consultation Request Hash': state.h_consultationRequestHash
+    };
+
+    return data;
+  }
+
+  if (type === 'mongo') {
+    const data = {
+      contact_name: state.h_name,
+      contact_email: state.h_email,
+      contact_bio: state.h_bio,
+      contact_discord: state.h_discordHandle,
+      contact_telegram: state.h_telegramHandle,
+      project_name: state.h_projectName,
+      project_type: state.h_projectType,
+      project_specs: state.h_specsType,
+      specs_link: state.h_projectLink,
+      project_desc: state.h_projectDesc,
+      services_req: state.h_servicesNeeded,
+      budget: state.h_budgetRange,
+      desired_delivery: state.h_expectedDeadline,
+      additional_info: state.h_specificNeed,
+      delivery_priorities: state.h_priorities
+    };
+
+    return data;
+  }
+
+  if (type === 'discord') {
+    const data = {
+      key: process.env.NEXT_PUBLIC_ACCESS_KEY,
+      name: state.h_name,
+      bio: state.h_bio,
+      discord: state.h_discordHandle,
+      project_name: state.h_projectName,
+      project_type: state.h_projectType,
+      project_link: state.h_projectLink,
+      project_description: state.h_projectDesc,
+      services_needed: state.h_servicesNeeded,
+      budget_range: state.h_budgetRange
+    };
+
+    return data;
+  }
+};

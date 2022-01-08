@@ -8,11 +8,11 @@ import useWarnings from './useWarnings';
 import {
   submitApplicationToAirtable,
   submitApplicationToMongo,
-  notifyApplicationSubmission
+  notifyApplicationSubmission,
+  submitConsultationToAirtable
 } from '../utils/requests';
-import { getSignature } from '../utils/web3';
-import { balanceOf } from '../utils/web3';
-import { NETWORK_CONFIG } from '../config';
+import { getSignature, balanceOf, payWithRaidToken } from '../utils/web3';
+import { NETWORK_CONFIG, CONSULTATION_REQUEST_FEE } from '../config';
 
 const useSubmit = (formType) => {
   const context = useContext(AppContext);
@@ -61,13 +61,29 @@ const useSubmit = (formType) => {
           context.signerAddress
         );
 
-        if (
-          utils.formatEther(tokenBalance) < NETWORK_CONFIG['PAYMENT_AMOUNT']
-        ) {
+        if (utils.formatEther(tokenBalance) < CONSULTATION_REQUEST_FEE) {
           context.updateAlertModalStatus();
           setSubmissionPendingStatus((prevState) => !prevState);
           return;
         }
+
+        setSubmissionTextUpdates('Paying..');
+        const tx = await payWithRaidToken(
+          NETWORK_CONFIG[context.chainId]['TOKEN_ADDRESS'],
+          context.ethersProvider,
+          context.signerAddress,
+          context.web3.utils.toWei(CONSULTATION_REQUEST_FEE.toString())
+        );
+
+        if (!tx) {
+          useWarnings('Error paying for consultation.');
+          setSubmissionPendingStatus((prevState) => !prevState);
+          return;
+        }
+
+        context.setWeb3Data({ h_consultationRequestHash: tx.hash });
+        setSubmissionTextUpdates('Sending request..');
+        await submitConsultationToAirtable(context);
 
         setSubmissionPendingStatus((prevState) => !prevState);
         context.updateStage('next');

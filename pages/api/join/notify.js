@@ -10,7 +10,10 @@ const handler = async (req, res) => {
 
   if (req.method === 'POST') {
     try {
-      await axios.post(process.env.SENTRY_WEBHOOK, req.body);
+      await axios.post(
+        `${process.env.SENTRY_WEBHOOK}/joinus/application`,
+        req.body
+      );
       res.status(201).json(req.body);
     } catch (err) {
       console.error(err);
