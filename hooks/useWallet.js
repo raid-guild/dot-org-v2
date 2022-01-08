@@ -17,13 +17,6 @@ const providerOptions = {
 
 const useWallet = (requireEns) => {
   const context = useContext(AppContext);
-  const [connectionInfo, setConnectionInfo] = useState({
-    ethersProvider: context.ethersProvider,
-    web3: context.web3,
-    chainId: context.chainId,
-    signerAddress: context.signerAddress,
-    signerEns: context.signerEns
-  });
 
   const fetchEns = async (chainId, ethersProvider, address) => {
     if (chainId !== 1) return null;
@@ -51,15 +44,6 @@ const useWallet = (requireEns) => {
     const signerEns =
       (await fetchEns(chainId, ethersProvider, signerAddress)) || 'Not Found';
 
-    setConnectionInfo({
-      ...connectionInfo,
-      ethersProvider,
-      web3,
-      signerAddress,
-      signerEns,
-      chainId
-    });
-
     context.setWeb3Data({
       ethersProvider,
       web3,
@@ -70,46 +54,42 @@ const useWallet = (requireEns) => {
   };
 
   const connectWallet = async () => {
-    const web3Modal = new Web3Modal({
-      network: 'mainnet',
-      cacheProvider: false,
-      providerOptions
-    });
-
-    const modalProvider = await web3Modal.connect();
-
-    await setWeb3Provider(modalProvider);
-
-    modalProvider.on('accountsChanged', async () => {
-      const ethersProvider = new providers.Web3Provider(modalProvider);
-      const signerAddress = await ethersProvider.getSigner().getAddress();
-      const signerEns =
-        (await fetchEns(
-          Number(modalProvider.chainId),
-          ethersProvider,
-          signerAddress
-        )) || 'Not Found';
-
-      console.log(signerEns);
-
-      setConnectionInfo({
-        ...connectionInfo,
-        ethersProvider,
-        signerAddress,
-        signerEns
+    try {
+      const web3Modal = new Web3Modal({
+        network: 'mainnet',
+        cacheProvider: false,
+        providerOptions
       });
 
-      context.setWeb3Data({ ethersProvider, signerAddress, signerEns });
-    });
+      const modalProvider = await web3Modal.connect();
 
-    modalProvider.on('chainChanged', () => {
-      const chainId = Number(modalProvider.chainId);
-      setConnectionInfo({ ...connectionInfo, chainId });
-      context.setWeb3Data({ chainId });
-    });
+      await setWeb3Provider(modalProvider);
+
+      modalProvider.on('accountsChanged', async () => {
+        const ethersProvider = new providers.Web3Provider(modalProvider);
+        const signerAddress = await ethersProvider.getSigner().getAddress();
+        const signerEns =
+          (await fetchEns(
+            Number(modalProvider.chainId),
+            ethersProvider,
+            signerAddress
+          )) || 'Not Found';
+
+        context.setWeb3Data({ ethersProvider, signerAddress, signerEns });
+      });
+
+      modalProvider.on('chainChanged', (_chainId) => {
+        const chainId = Number(_chainId);
+        const ethersProvider = new providers.Web3Provider(modalProvider);
+
+        context.setWeb3Data({ chainId, ethersProvider });
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  return { connectionInfo, connectWallet };
+  return { connectWallet };
 };
 
 export default useWallet;

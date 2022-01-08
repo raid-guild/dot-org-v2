@@ -7,7 +7,7 @@ import useWallet from '../../hooks/useWallet';
 
 export const StepTwo = () => {
   const context = useContext(AppContext);
-  const { connectionInfo, connectWallet } = useWallet(true);
+  const { connectWallet } = useWallet(true);
 
   const [buttonClick, setButtonClickStatus] = useState(false);
 

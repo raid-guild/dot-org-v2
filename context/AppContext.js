@@ -7,6 +7,7 @@ class AppContextProvider extends Component {
     // UX state
     stage: 1,
     faqModalStatus: false,
+    showAlertModal: false,
     faqType: '',
     //web3 state
     ethersProvider: null,
@@ -62,6 +63,12 @@ class AppContextProvider extends Component {
 
   updateFaqModalStatus = (status, faqType) => {
     this.setState({ faqModalStatus: status, faqType });
+  };
+
+  updateAlertModalStatus = () => {
+    this.setState((prevState) => {
+      return { showAlertModal: !prevState.showAlertModal };
+    });
   };
 
   updateStage = (type) => {
@@ -131,6 +138,7 @@ class AppContextProvider extends Component {
           updateStage: this.updateStage,
           inputChangeHandler: this.inputChangeHandler,
           updateFaqModalStatus: this.updateFaqModalStatus,
+          updateAlertModalStatus: this.updateAlertModalStatus,
           setJoinStepThreeData: this.setJoinStepThreeData,
           setJoinStepFiveData: this.setJoinStepFiveData,
           setJoinStepSixData: this.setJoinStepSixData,

@@ -3,6 +3,8 @@ import { utils } from 'ethers';
 
 import { AppContext } from '../context/AppContext';
 
+import useWarnings from './useWarnings';
+
 import {
   submitApplicationToAirtable,
   submitApplicationToMongo,
@@ -14,6 +16,8 @@ import { NETWORK_CONFIG } from '../config';
 
 const useSubmit = (formType) => {
   const context = useContext(AppContext);
+
+  const { triggerToast } = useWarnings();
 
   const [submissionTextUpdates, setSubmissionTextUpdates] = useState('');
   const [submissionPendingStatus, setSubmissionPendingStatus] = useState(false);
@@ -42,9 +46,13 @@ const useSubmit = (formType) => {
 
   const submitConsultationApplication = async () => {
     try {
-      setSubmissionPendingStatus(!submissionPendingStatus);
+      if (context.signerAddress && context.chainId !== 4) {
+        triggerToast('Please switch to the Rinkeby Network.');
+        return;
+      }
 
       if (context.chainId === 4) {
+        setSubmissionPendingStatus((prevState) => !prevState);
         setSubmissionTextUpdates('Checking Balance..');
 
         const tokenBalance = await balanceOf(
@@ -53,18 +61,20 @@ const useSubmit = (formType) => {
           context.signerAddress
         );
 
-        if (utils.formatEther(tokenBalance) < 1000) {
-          console.log('Not enough tokens');
-          setSubmissionPendingStatus(!submissionPendingStatus);
+        if (
+          utils.formatEther(tokenBalance) < NETWORK_CONFIG['PAYMENT_AMOUNT']
+        ) {
+          context.updateAlertModalStatus();
+          setSubmissionPendingStatus((prevState) => !prevState);
           return;
         }
 
-        setSubmissionPendingStatus(!submissionPendingStatus);
+        setSubmissionPendingStatus((prevState) => !prevState);
         context.updateStage('next');
       }
     } catch (err) {
       console.log(err);
-      setSubmissionPendingStatus(!submissionPendingStatus);
+      setSubmissionPendingStatus((prevState) => !prevState);
     }
   };
 

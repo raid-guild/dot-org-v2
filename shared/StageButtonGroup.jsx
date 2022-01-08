@@ -2,6 +2,8 @@ import { Flex, Box, useToast } from '@chakra-ui/react';
 
 import { StyledPrimaryButton, StyledSecondaryButton } from '../themes/styled';
 
+import useWarnings from '../hooks/useWarnings';
+
 const StageButtonGroup = ({
   formType,
   updateStage,
@@ -14,7 +16,7 @@ const StageButtonGroup = ({
   isLoading = false,
   buttonText = 'Next'
 }) => {
-  const toast = useToast();
+  const { triggerToast } = useWarnings();
   return (
     <Flex
       direction={{ base: 'column-reverse', lg: 'row' }}
@@ -49,15 +51,7 @@ const StageButtonGroup = ({
             buttonText === 'Next' && updateStage('next');
           } else {
             setButtonClickStatus(true);
-            toast({
-              duration: 3000,
-              position: 'top',
-              render: () => (
-                <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
-                  Please fill in all the required fields.
-                </Box>
-              )
-            });
+            triggerToast('Please fill in all the required fields.');
           }
         }}
       >

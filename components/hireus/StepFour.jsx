@@ -1,16 +1,10 @@
 import React, { useState, useContext } from 'react';
-import {
-  Flex,
-  FormControl,
-  FormLabel,
-  Stack,
-  Box,
-  useToast
-} from '@chakra-ui/react';
+import { Flex, FormControl, FormLabel, Stack } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
 
 import RadioBox from '../../shared/RadioBox';
+import AlertModal from '../../shared/AlertModal';
 
 import {
   StyledTextArea,
@@ -20,20 +14,38 @@ import {
 
 import useWallet from '../../hooks/useWallet';
 import useSubmit from '../../hooks/useSubmit';
+import useWarnings from '../../hooks/useWarnings';
 
 export const StepFour = ({ windowWidth }) => {
   const context = useContext(AppContext);
-  const toast = useToast();
 
-  const { connectWallet } = useWallet(false);
+  const { connectWallet } = useWallet();
   const { submissionTextUpdates, submissionPendingStatus, submitApplication } =
     useSubmit('hire');
+  const { triggerToast } = useWarnings();
 
   const [priorities, setPriorities] = useState(
     context.h_priorities || 'Fast & Polished'
   );
 
   const [buttonClick, setButtonClickStatus] = useState(false);
+
+  const submitHandler = async () => {
+    if (context.h_specificNeed === '') {
+      setButtonClickStatus(true);
+      triggerToast('Please fill in all the fields');
+      return;
+    }
+    if (context.h_specificNeed !== '') {
+      setButtonClickStatus(false);
+      context.setHireStepFourData(priorities);
+      if (context.signerAddress) {
+        submitApplication();
+      } else {
+        await connectWallet();
+      }
+    }
+  };
 
   return (
     <Flex
@@ -96,7 +108,7 @@ export const StepFour = ({ windowWidth }) => {
             <StyledSecondaryButton
               w='100%'
               mt={{ base: '.5rem' }}
-              onClick={() => context.updateFaqModalStatus(true, 'join')}
+              onClick={() => context.updateFaqModalStatus(true, 'hire')}
             >
               Read FAQ
             </StyledSecondaryButton>
@@ -106,41 +118,18 @@ export const StepFour = ({ windowWidth }) => {
         <StyledPrimaryButton
           isLoading={submissionPendingStatus}
           loadingText={submissionTextUpdates}
-          onClick={() => {
-            if (context.h_specificNeed !== '') {
-              setButtonClickStatus(false);
-              context.setHireStepFourData(priorities);
-              connectWallet();
-              if (context.chainId !== 4) {
-                toast({
-                  duration: 3000,
-                  position: 'top',
-                  render: () => (
-                    <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
-                      Switch to Rinkeby Network
-                    </Box>
-                  )
-                });
-                return;
-              }
-              submitApplication();
-            } else {
-              setButtonClickStatus(true);
-              toast({
-                duration: 3000,
-                position: 'top',
-                render: () => (
-                  <Box color='white' p={3} bg='red' fontFamily='jetbrains'>
-                    Please fill in all the required fields.
-                  </Box>
-                )
-              });
-            }
-          }}
+          onClick={submitHandler}
         >
-          Pay 500 $RAID & SUBMIT
+          {context.signerAddress ? 'PAY 500 $RAID' : 'CONNECT WALLET'}
         </StyledPrimaryButton>
       </Flex>
+
+      <AlertModal
+        alertTitle='INSUFFICIENT $RAID'
+        alertMessage='You need at least 1 $RAID to submit the application & get into the
+            consultation queue. You can buy more $RAID from honeyswap on xDai.'
+        alertAction='https://app.honeyswap.org/#/swap?inputCurrency=0x18e9262e68cc6c6004db93105cc7c001bb103e49&outputCurrency=0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1&chainId=100'
+      />
     </Flex>
   );
 };

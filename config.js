@@ -15,6 +15,7 @@ export const initAirtableClient = () => {
 
 export const NETWORK_CONFIG = {
   RG_XDAI_DAO: '0xfe1084bc16427e5eb7f13fc19bcd4e641f7d571f'.toLowerCase(),
+  PAYMENT_AMOUNT: 1000,
   100: {
     PAYMENT_TOKEN: 'RAID',
     TOKEN_ADDRESS: '0x18e9262e68cc6c6004db93105cc7c001bb103e49'.toLowerCase()
