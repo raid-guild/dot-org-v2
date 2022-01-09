@@ -51,7 +51,7 @@ export const Intro = () => {
             fontWeight='bold'
             mb='.5rem'
           >
-            Status: Season 3
+            Status: Season 3 Complete
           </Text>
           <Text
             variant='textOne'
@@ -60,14 +60,12 @@ export const Intro = () => {
             fontFamily='jetbrains'
             lineHeight='1.4'
           >
-            Cohorts are being trained & building cool stuff. Applications are
-            closed for season 3 but open for next season. Selected applicants
-            will be notified via email when it's time.
+            Applications are now closed. Check back later for updates.
           </Text>
         </Flex>
         <br />
 
-        <Button
+        {/* <Button
           variant='primary'
           fontSize={{ base: '16px', lg: '18px' }}
           onClick={() => {
@@ -75,7 +73,7 @@ export const Intro = () => {
           }}
         >
           Start Application
-        </Button>
+        </Button> */}
       </Flex>
     </>
   );
