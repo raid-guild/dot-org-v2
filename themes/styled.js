@@ -52,7 +52,7 @@ export const StyledSecondaryHeading = styled(Heading)`
 export const StyledHeadingLabels = styled(Heading)`
   font-family: ${theme.fonts.texturina};
   letter-spacing: 2px;
-  text-align: center;
+  text-align: ${({ textAlign }) => (textAlign ? textAlign : 'center')};
   color: white;
 `;
 
@@ -75,9 +75,9 @@ export const StyledCardText = styled(Text)`
 `;
 
 export const StyledMessageText = styled(Text)`
-  font-family: ${theme.fonts.jetbrains};
+  font-family: ${({ font }) => (font ? font : theme.fonts.jetbrains)};
+  color: ${({ color }) => (color ? color : 'black')};
   line-height: 1.4;
-  color: black;
 `;
 
 export const StyledFooterHeaderText = styled(Text)`

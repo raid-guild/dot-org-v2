@@ -47,9 +47,27 @@ export const submitConsultationToAirtable = async (state) => {
   await axios.post('/api/hire/secondary', formattedData);
 };
 
-export const notifyConsultationRequest = async (state, signature) => {
+export const notifyConsultationRequest = async (state) => {
   const formattedData = formatHireUsData(state, 'discord');
   await axios.post('/api/hire/notify', formattedData);
+};
+
+export const fetchClientInfoFromAirtable = async (signerAddress) => {
+  const signedToken = jwt.sign(
+    signerAddress,
+    process.env.NEXT_PUBLIC_JWT_SECRET
+  );
+
+  const result = await axios.post(
+    '/api/fetch/client',
+    {},
+    {
+      headers: {
+        Authorization: 'Bearer ' + signedToken
+      }
+    }
+  );
+  return result;
 };
 
 // export const applicationConfirmationEmail = async (name, email) => {

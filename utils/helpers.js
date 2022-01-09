@@ -83,7 +83,7 @@ export const formatHireUsData = (state, type) => {
   if (type === 'airtable') {
     const data = {
       Name: state.h_name,
-      'Signer Address': state.signerAddress,
+      Address: state.signerAddress,
       Email: state.h_email,
       Bio: state.h_bio,
       Discord: state.h_discordHandle,
