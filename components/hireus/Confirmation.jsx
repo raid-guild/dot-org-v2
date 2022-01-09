@@ -39,12 +39,25 @@ export const Confirmation = () => {
         to move higher up the queue.
       </StyledBodyText>
 
-      <StyledSecondaryButton
+      <Flex
+        w='100%'
+        justifyContent='center'
+        direction={{ base: 'column', md: 'row', lg: 'row' }}
         mt='2rem'
-        onClick={() => (window.location.href = 'https://discord.gg/rGFpfQf')}
       >
-        Join Discord
-      </StyledSecondaryButton>
+        <StyledSecondaryButton
+          mr='1rem'
+          mb='1rem'
+          onClick={() => (window.location.href = '/dashboard')}
+        >
+          View My Submissions
+        </StyledSecondaryButton>
+        <StyledSecondaryButton
+          onClick={() => (window.location.href = 'https://discord.gg/rGFpfQf')}
+        >
+          Join Discord
+        </StyledSecondaryButton>
+      </Flex>
     </Flex>
   );
 };

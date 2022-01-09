@@ -1,8 +1,18 @@
-import { useState } from 'react';
-import { Button, Flex, Image, Link as ChakraLink } from '@chakra-ui/react';
+import { useState, useContext, useEffect } from 'react';
+import {
+  Button,
+  Flex,
+  Image,
+  Link as ChakraLink,
+  Text
+} from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
+import { AppContext } from '../context/AppContext';
+import { StyledPrimaryButton } from '../themes/styled';
 import { theme } from '../themes/theme';
+
+import useWallet from '../hooks/useWallet';
 
 const StyledButton = styled(Button)`
   &::after {
@@ -40,6 +50,13 @@ export const NavButton = ({ onClick, children }) => (
   </StyledButton>
 );
 
+const getAccountString = (account) => {
+  const len = account.length;
+  return `0x${account.substr(2, 3).toUpperCase()}...${account
+    .substr(len - 3, len - 1)
+    .toUpperCase()}`;
+};
+
 const navItems = [
   { name: 'Manifesto', href: '/#manifesto' },
   { name: 'Services', href: '/#services' },
@@ -48,7 +65,9 @@ const navItems = [
   { name: 'Hire', href: '/#services' }
 ];
 
-export const Header = ({ windowWidth }) => {
+export const Header = ({ windowWidth, navLinks = true }) => {
+  const context = useContext(AppContext);
+  const { connectWallet } = useWallet();
   const [isOpen, onOpen] = useState(false);
 
   return (
@@ -70,7 +89,24 @@ export const Header = ({ windowWidth }) => {
         cursor='pointer'
       />
 
-      {windowWidth > 1200 && (
+      {!navLinks && !context.signerAddress && (
+        <StyledPrimaryButton onClick={connectWallet}>
+          CONNECT
+        </StyledPrimaryButton>
+      )}
+
+      {!navLinks && context.signerAddress && (
+        <Text
+          px={2}
+          display={{ base: 'none', md: 'flex' }}
+          fontFamily='jetbrains'
+          color='red'
+        >
+          {getAccountString(context.signerAddress)}
+        </Text>
+      )}
+
+      {windowWidth > 1200 && navLinks && (
         <Flex
           minWidth='50%'
           direction='row'
@@ -90,7 +126,7 @@ export const Header = ({ windowWidth }) => {
         </Flex>
       )}
 
-      {windowWidth < 1200 && (
+      {windowWidth < 1200 && navLinks && (
         <>
           <Flex align='center' height='8rem'>
             <Button

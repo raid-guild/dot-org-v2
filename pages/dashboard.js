@@ -8,10 +8,7 @@ import { Header } from '../shared/Header';
 import { Footer } from '../shared/Footer';
 import { Loader } from '../shared/Loader';
 
-import useWallet from '../hooks/useWallet';
-
 import {
-  StyledPrimaryButton,
   StyledPrimaryHeading,
   StyledSecondaryHeading,
   StyledHeadingLabels,
@@ -24,10 +21,10 @@ import { fetchClientInfoFromAirtable } from '../utils/requests';
 
 const Hire = () => {
   const context = useContext(AppContext);
-  const { connectWallet } = useWallet();
 
   const [windowWidth, setWindowWidth] = useState('');
-  const [clientInfo, setClientInfo] = useState();
+  const [clientInfo, setClientInfo] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -42,8 +39,10 @@ const Hire = () => {
   }, [context.signerAddress]);
 
   const getClientInfo = async () => {
+    setIsFetching(true);
     const result = await fetchClientInfoFromAirtable(context.signerAddress);
     setClientInfo(result.data);
+    setIsFetching(false);
   };
 
   return (
@@ -68,123 +67,121 @@ const Hire = () => {
         ></script>
       </Head>
       <Box px={{ base: '2rem', lg: '5rem' }} w='100%'>
-        <Header windowWidth={windowWidth} />
+        <Header windowWidth={windowWidth} navLinks={false} />
       </Box>
 
       <Flex
         direction='column'
-        alignItems='center'
         px={{ base: '2rem', lg: '5rem' }}
         w='100%'
-        my='2rem'
+        my='4rem'
       >
         {!context.signerAddress && (
-          <StyledPrimaryButton onClick={connectWallet}>
-            CONNECT WALLET
-          </StyledPrimaryButton>
+          <StyledHeadingLabels>
+            Connect your wallet to see your submissions.
+          </StyledHeadingLabels>
         )}
 
-        {!clientInfo && context.signerAddress && <Loader />}
+        {isFetching && <Loader />}
 
-        {clientInfo && (
-          <>
-            <StyledPrimaryHeading mb='1rem'>
-              Your Consultations
-            </StyledPrimaryHeading>
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} gap={5} w='100%'>
-              {clientInfo.map((item) => (
-                <Flex
-                  key={item}
-                  direction='column'
-                  justifyContent='space-evenly'
-                  py='2rem'
-                  px='1.5rem'
-                  bg='black'
-                  borderTop='2px solid'
-                  borderColor='red'
+        {!isFetching && !clientInfo.length && (
+          <StyledHeadingLabels>
+            No submissions found for this address.
+          </StyledHeadingLabels>
+        )}
+
+        {clientInfo.length && !isFetching && (
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={5} w='100%'>
+            {clientInfo.map((item) => (
+              <Flex
+                key={item}
+                direction='column'
+                justifyContent='space-evenly'
+                py='2rem'
+                px='1.5rem'
+                bg='black'
+                borderTop='2px solid'
+                borderColor='red'
+              >
+                <StyledSecondaryHeading
+                  fontSize={{ base: '16px' }}
+                  color={theme.colors.red}
+                  mb='1rem'
                 >
-                  <StyledSecondaryHeading
+                  {item['fields']['Project Name']}
+                </StyledSecondaryHeading>
+
+                <Flex direction='column' mb='.5rem'>
+                  <StyledHeadingLabels
+                    fontSize={{ base: '16px' }}
+                    textAlign='left'
+                    mb='.2rem'
+                  >
+                    Submission Date
+                  </StyledHeadingLabels>
+
+                  <StyledMessageText
                     fontSize={{ base: '16px' }}
                     color={theme.colors.red}
-                    mb='1rem'
                   >
-                    {item['fields']['Project Name']}
-                  </StyledSecondaryHeading>
-
-                  <Flex direction='column' mb='.5rem'>
-                    <StyledHeadingLabels
-                      fontSize={{ base: '16px' }}
-                      textAlign='left'
-                      mb='.2rem'
-                    >
-                      Submission Date
-                    </StyledHeadingLabels>
-
-                    <StyledMessageText
-                      fontSize={{ base: '16px' }}
-                      color={theme.colors.red}
-                    >
-                      {new Date(
-                        item['fields']['Submission Time']
-                      ).toDateString()}
-                    </StyledMessageText>
-                  </Flex>
-
-                  <Flex direction='column' mb='.5rem'>
-                    <StyledHeadingLabels
-                      fontSize={{ base: '16px' }}
-                      textAlign='left'
-                      mb='.2rem'
-                    >
-                      Submission Hash
-                    </StyledHeadingLabels>
-                    <StyledMessageText
-                      fontSize={{ base: '16px' }}
-                      color={theme.colors.red}
-                      maxW='200px'
-                      isTruncated
-                    >
-                      {item['fields']['Consultation Request Hash']}
-                    </StyledMessageText>
-                  </Flex>
-
-                  <Flex direction='column' mb='.5rem'>
-                    <StyledHeadingLabels
-                      fontSize={{ base: '16px' }}
-                      textAlign='left'
-                      mb='.2rem'
-                    >
-                      Current Bid
-                    </StyledHeadingLabels>
-                    <StyledMessageText
-                      fontSize={{ base: '16px' }}
-                      color={theme.colors.red}
-                      maxW='150px'
-                      isTruncated
-                    >
-                      0 $RAID
-                    </StyledMessageText>
-                  </Flex>
-
-                  <Flex direction='column' mb='.5rem'>
-                    <StyledHeadingLabels
-                      fontSize={{ base: '16px' }}
-                      textAlign='left'
-                      mb='.2rem'
-                    >
-                      Bid Status
-                    </StyledHeadingLabels>
-                    <StyledMessageText
-                      fontSize={{ base: '16px' }}
-                      color={theme.colors.yellow}
-                    >
-                      <i className='fas fa-clock'></i> Pending
-                    </StyledMessageText>
-                  </Flex>
+                    {new Date(item['fields']['Submission Time']).toDateString()}
+                  </StyledMessageText>
                 </Flex>
-              ))}
-            </SimpleGrid>
-          </>
+
+                <Flex direction='column' mb='.5rem'>
+                  <StyledHeadingLabels
+                    fontSize={{ base: '16px' }}
+                    textAlign='left'
+                    mb='.2rem'
+                  >
+                    Submission Hash
+                  </StyledHeadingLabels>
+                  <StyledMessageText
+                    fontSize={{ base: '16px' }}
+                    color={theme.colors.red}
+                    maxW='200px'
+                    isTruncated
+                  >
+                    {item['fields']['Consultation Request Hash']}
+                  </StyledMessageText>
+                </Flex>
+
+                <Flex direction='column' mb='.5rem'>
+                  <StyledHeadingLabels
+                    fontSize={{ base: '16px' }}
+                    textAlign='left'
+                    mb='.2rem'
+                  >
+                    Current Bid
+                  </StyledHeadingLabels>
+                  <StyledMessageText
+                    fontSize={{ base: '16px' }}
+                    color={theme.colors.red}
+                    maxW='150px'
+                    isTruncated
+                  >
+                    0 $RAID
+                  </StyledMessageText>
+                </Flex>
+
+                <Flex direction='column' mb='.5rem'>
+                  <StyledHeadingLabels
+                    fontSize={{ base: '16px' }}
+                    textAlign='left'
+                    mb='.2rem'
+                  >
+                    Bid Status
+                  </StyledHeadingLabels>
+                  <StyledMessageText
+                    fontSize={{ base: '16px' }}
+                    color={theme.colors.yellow}
+                  >
+                    <i className='fas fa-clock'></i> Pending
+                  </StyledMessageText>
+                </Flex>
+              </Flex>
+            ))}
+          </SimpleGrid>
         )}
       </Flex>
 

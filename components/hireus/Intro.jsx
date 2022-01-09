@@ -7,7 +7,8 @@ import {
   StyledPrimaryButton,
   StyledPrimaryHeading,
   StyledBodyText,
-  StyledMessageText
+  StyledMessageText,
+  StyledSecondaryButton
 } from '../../themes/styled';
 
 export const Intro = () => {
@@ -79,14 +80,27 @@ export const Intro = () => {
         </Flex>
         <br />
 
-        <StyledPrimaryButton
-          fontSize={{ base: '16px', lg: '18px' }}
-          onClick={() => {
-            context.updateStage('next');
-          }}
-        >
-          New Consultation
-        </StyledPrimaryButton>
+        <Flex w='100%' direction={{ base: 'column', md: 'row', lg: 'row' }}>
+          <StyledPrimaryButton
+            w='100%'
+            mr='1rem'
+            mb='1rem'
+            fontSize={{ base: '16px', lg: '18px' }}
+            onClick={() => {
+              context.updateStage('next');
+            }}
+          >
+            New Consultation
+          </StyledPrimaryButton>
+
+          <StyledSecondaryButton
+            w='100%'
+            fontSize={{ base: '16px', lg: '18px' }}
+            onClick={() => (window.location.href = '/dashboard')}
+          >
+            View My Submissions
+          </StyledSecondaryButton>
+        </Flex>
       </Flex>
     </>
   );
