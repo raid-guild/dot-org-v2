@@ -6,6 +6,8 @@ import WalletConnectProvider from '@walletconnect/web3-provider';
 
 import { AppContext } from '../context/AppContext';
 
+import { theme } from '../themes/theme';
+
 const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider,
@@ -57,10 +59,17 @@ const useWallet = (requireEns) => {
     try {
       const web3Modal = new Web3Modal({
         network: 'mainnet',
-        cacheProvider: false,
-        providerOptions
+        cacheProvider: true,
+        providerOptions,
+        theme: {
+          background: theme.colors.blackLight,
+          main: theme.colors.red,
+          secondary: theme.colors.white,
+          hover: theme.colors.black
+        }
       });
 
+      web3Modal.clearCachedProvider();
       const modalProvider = await web3Modal.connect();
 
       await setWeb3Provider(modalProvider);
