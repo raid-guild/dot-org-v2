@@ -63,8 +63,8 @@ export const Manifesto = () => {
             fontSize={{ base: "1rem", lg: "18px" }}
             textAlign="justify"
           >
-            "If you want to go fast, go alone. If you want to go far, go
-            together."
+            'If you want to go fast, go alone. If you want to go far, go
+            together.'
           </Text>
         </div>
         <br />
