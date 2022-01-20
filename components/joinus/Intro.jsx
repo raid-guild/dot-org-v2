@@ -65,7 +65,7 @@ export const Intro = () => {
         </Flex>
         <br />
 
-        {/* <Button
+        <Button
           variant='primary'
           fontSize={{ base: '16px', lg: '18px' }}
           onClick={() => {
@@ -73,7 +73,7 @@ export const Intro = () => {
           }}
         >
           Start Application
-        </Button> */}
+        </Button>
       </Flex>
     </>
   );
