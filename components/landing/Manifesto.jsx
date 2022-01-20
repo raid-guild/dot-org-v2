@@ -51,7 +51,7 @@ export const Manifesto = () => {
             fontSize={{ base: '1rem', lg: '18px' }}
             textAlign='justify'
           >
-            We believe in Web3 and are here to build it, use it, and propogate
+            We believe in Web3 and are here to build it, use it, and propagate
             it. The profits from our work will be used to fund development of
             open source tooling and public goods. We will share the learnings
             from our experiments and open source our processes for the community
