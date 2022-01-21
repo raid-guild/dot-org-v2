@@ -37,33 +37,6 @@ export const Intro = () => {
         </Text>
 
         <br />
-        <Flex
-          direction='column'
-          bgColor='white'
-          borderRadius='0.5rem'
-          p='0.5rem 1rem'
-        >
-          <Text
-            variant='textOne'
-            fontSize={{ base: '1rem', lg: '18px' }}
-            color='black'
-            fontFamily='jetbrains'
-            fontWeight='bold'
-            mb='.5rem'
-          >
-            Status: Season 3 Complete
-          </Text>
-          <Text
-            variant='textOne'
-            fontSize={{ base: '1rem', lg: '16px' }}
-            color='black'
-            fontFamily='jetbrains'
-            lineHeight='1.4'
-          >
-            Applications are now closed. Check back later for updates.
-          </Text>
-        </Flex>
-        <br />
 
         <Button
           variant='primary'
