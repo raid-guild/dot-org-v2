@@ -66,18 +66,14 @@ export const Header = ({ windowWidth }) => {
   const router = useRouter()
   return (
     <Flex w="100%" h={{ base: '4rem' }} color="white" fontFamily="spaceMono" justify="space-between" align="center" alignSelf="flex-start" zIndex={5}>
-      {router.pathname == '/' ? (
-        <StyledAnimationReferenceElement id="raid-logo" onClick={() => (window.location.href = '/')}></StyledAnimationReferenceElement>
-      ) : (
-        <Image
-          src={theme.images.raidguild}
-          fallbackSrc="/assets/raidguild__logo.png"
-          alt="RaidGuild"
-          width={{ base: '150px', lg: '168px' }}
-          onClick={() => (window.location.href = '/')}
-          cursor="pointer"
-        />
-      )}
+      <Image
+        src={theme.images.raidguild}
+        fallbackSrc="/assets/raidguild__logo.png"
+        alt="RaidGuild"
+        width={{ base: '150px', lg: '168px' }}
+        onClick={() => (window.location.href = '/')}
+        cursor="pointer"
+      />
       {windowWidth > 1200 && (
         <Flex minWidth="50%" direction="row" justifyContent="space-around" fontSize="1.3rem" color="red">
           <ChakraLink href="/#manifesto">Manifesto</ChakraLink>

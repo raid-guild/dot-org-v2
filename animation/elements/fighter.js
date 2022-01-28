@@ -11,7 +11,7 @@ export default class Fighter extends PIXI.Sprite {
     this.interactive = true
     this.on('click', () => {
       this.strike()
-    })
+    })   
   }
   strike() {
     console.log('strike')

@@ -9,7 +9,7 @@ import { gsap } from 'gsap'
 const pixi_app = new PIXI.Application({
   width: window.innerWidth,
   height: window.innerHeight,
-  backgroundColor: 0x2b2c34
+  backgroundColor: 0x000000
 })
 
 
@@ -41,6 +41,10 @@ const colors = {
   purp: 0xb66ad6,
   grey: 0x2b2c34,
   black: 0x000000,
+  g1: 0x24003A,
+  g2: 0x170011,
+  g3: 0x130000,
+  g4: 0x330F00
 }
 
 const fighter_element = document.getElementById('raid-banner')
@@ -83,7 +87,7 @@ pixi_app.loader.onComplete.add(() => {
 
   
   scene_container.addChild(background_clouds)
-  scene_container.addChild(logo)
+  // scene_container.addChild(logo)
   scene_container.addChild(fighters)
   scene_container.addChild(fantasy)
 
@@ -99,9 +103,9 @@ pixi_app.loader.onComplete.add(() => {
     fantasy.x = fantasy_position.x
     fantasy.y = fantasy_position.y
 
-    const logo_position = logo_element.getBoundingClientRect()
-    logo.x = logo_position.x
-    logo.y = logo_position.y   
+    // const logo_position = logo_element.getBoundingClientRect()
+    // logo.x = logo_position.x
+    // logo.y = logo_position.y   
 
     //displacer.rotation -= 0.01 * delta
   })
@@ -122,15 +126,15 @@ pixi_app.loader.onComplete.add(() => {
     )
     fighters.scale.set(fighters_scale.scale)
 
-    const logo_scale = backgroundContain(
-      logo_element.offsetWidth,
-      logo_element.offsetHeight,
-      pixi_app.loader.resources.logo.texture.baseTexture.width,
-      pixi_app.loader.resources.logo.texture.baseTexture.height
-    )
-    logo.scale.set(logo_scale.scale)    
+    // const logo_scale = backgroundContain(
+    //   logo_element.offsetWidth,
+    //   logo_element.offsetHeight,
+    //   pixi_app.loader.resources.logo.texture.baseTexture.width,
+    //   pixi_app.loader.resources.logo.texture.baseTexture.height
+    // )
+    // logo.scale.set(logo_scale.scale)    
 
-    console.log(logo_element.offsetWidth, logo_element.offsetHeight)
+    // console.log(logo_element.offsetWidth, logo_element.offsetHeight)
   }
   scale_elements()
   window.addEventListener(

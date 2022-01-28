@@ -31,7 +31,7 @@ export default function Home() {
   }, [])
 
   return (
-    <Flex height="100%" width="100%" direction="column" background="#2b2c34">
+    <Flex height="100%" width="100%" direction="column" background="#000000">
       <Head>
         <title>RaidGuild</title>
         <meta
