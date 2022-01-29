@@ -64,12 +64,10 @@ export default class MolochFight extends PIXI.Container {
     }, 10000)
   }
   strike() {
-    console.log(this, 'strike')
 
     for (let i = 0; i < this.fighters.length; i++) {
       const fighter = this.fighters[i]
       const rando = Math.floor(Math.random() * 2) + 1
-      console.log(rando);
       setTimeout(() => {
          for (let j = 0; j < rando; j++) {
           setTimeout(() => {

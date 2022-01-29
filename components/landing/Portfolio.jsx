@@ -51,7 +51,7 @@ export const Portfolio = () => {
   return (
     <Container
       id='portfolio'
-      bgImage={`url(${theme.images.clouds})`}
+      // bgImage={`url(${theme.images.clouds})`}
       minW='100%'
       p='0'
     >

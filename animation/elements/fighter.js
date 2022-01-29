@@ -14,7 +14,6 @@ export default class Fighter extends PIXI.Sprite {
     })   
   }
   strike() {
-    console.log('strike')
     this.texture = this.textures[1]
     setTimeout(() => {
       this.texture = this.textures[0]

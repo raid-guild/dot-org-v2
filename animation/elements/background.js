@@ -77,7 +77,6 @@ export default class BackgroundClouds extends PIXI.Container {
     let loop_index = 0
     setInterval(() => {
     loop_index = (loop_index + 1) % positions.length
-    console.table(positions[loop_index])
     gsap.to(color_cloud_1, { duration: 10, ease: 'back.out(1.7)', x: positions[loop_index][0][0], y: positions[loop_index][0][1] })
     gsap.to(color_cloud_2, { duration: 10, ease: 'back.out(1.7)', x: positions[loop_index][1][0], y: positions[loop_index][1][1] })
     gsap.to(color_cloud_3, { duration: 10, ease: 'back.out(1.7)', x: positions[loop_index][2][0], y: positions[loop_index][2][1] })

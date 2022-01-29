@@ -33,6 +33,7 @@ pixi_app.loader
   .add('moloch_horns', '/animation/img/moloch__horns.png')
   .add('moloch_face', '/animation/img/moloch__face_2.png')
   .add('moloch_guide', '/animation/img/moloch-scene.png')
+  .add('clouds', '/animation/img/clouds.png')
   .load((loader, resources) => {})
 
 const colors = {
@@ -50,6 +51,7 @@ const colors = {
 const fighter_element = document.getElementById('raid-banner')
 const fantasy_element = document.getElementById('raid-fantasy')
 const logo_element = document.getElementById('raid-logo')
+const clouds_element = document.getElementById('portfolio')
 
 pixi_app.loader.onComplete.add(() => {
   const scene_container = new PIXI.Container()
@@ -68,11 +70,16 @@ pixi_app.loader.onComplete.add(() => {
   displacer.y = pixi_app.renderer.height / 2
   pixi_app.stage.addChild(displacer)
 
-  const logo = new PIXI.Sprite(pixi_app.loader.resources.logo.texture)
-  logo.tint = colors.red
+  // const logo = new PIXI.Sprite(pixi_app.loader.resources.logo.texture)
+  // logo.tint = colors.red
 
   var displacementFilter = new PIXI.filters.DisplacementFilter(displacer)
   scene_container.filters = [displacementFilter]
+
+
+  const clouds = new PIXI.Sprite(pixi_app.loader.resources.clouds.texture)
+  clouds.anchor.set(0.5)
+  clouds.x = pixi_app.renderer.width / 2
 
   const background_clouds = new BackgroundClouds();
 
@@ -90,9 +97,15 @@ pixi_app.loader.onComplete.add(() => {
   // scene_container.addChild(logo)
   scene_container.addChild(fighters)
   scene_container.addChild(fantasy)
+  scene_container.addChild(clouds)
 
   function onPointerMove(eventData) {
     gsap.to(displacer, { duration: 1, x: eventData.data.global.x, y: eventData.data.global.y })
+    const cloud_mover_x = mapRange(eventData.data.global.x, 0, pixi_app.renderer.width, pixi_app.renderer.width / 2 + 50, pixi_app.renderer.width / 2 - 50)
+    gsap.to(clouds, { x: cloud_mover_x, duration: 15})
+
+    // const cloud_scale = mapRange(eventData.data.global.y, 0, pixi_app.renderer.height, 1.2, 1.25)
+    // gsap.to(clouds.scale, { x: cloud_scale, y: cloud_scale, duration: 2 })    
   }
   pixi_app.ticker.add((delta) => {
     const fighter_position = fighter_element.getBoundingClientRect()
@@ -102,6 +115,10 @@ pixi_app.loader.onComplete.add(() => {
     const fantasy_position = fantasy_element.getBoundingClientRect()
     fantasy.x = fantasy_position.x
     fantasy.y = fantasy_position.y
+
+    const clouds_position = clouds_element.getBoundingClientRect()
+    // clouds.x = clouds_position.x
+    clouds.y = clouds_position.y + clouds_position.height / 2
 
     // const logo_position = logo_element.getBoundingClientRect()
     // logo.x = logo_position.x
@@ -126,6 +143,15 @@ pixi_app.loader.onComplete.add(() => {
     )
     fighters.scale.set(fighters_scale.scale)
 
+
+    const clouds_scale = backgroundSize(
+      clouds_element.offsetWidth,
+      clouds_element.offsetHeight,
+      pixi_app.loader.resources.clouds.texture.baseTexture.width,
+      pixi_app.loader.resources.clouds.texture.baseTexture.height
+    )
+    clouds.scale.set(clouds_scale.scale * 1.2)
+
     // const logo_scale = backgroundContain(
     //   logo_element.offsetWidth,
     //   logo_element.offsetHeight,
@@ -136,6 +162,9 @@ pixi_app.loader.onComplete.add(() => {
 
     // console.log(logo_element.offsetWidth, logo_element.offsetHeight)
   }
+
+
+
   scale_elements()
   window.addEventListener(
     'resize',
@@ -148,8 +177,8 @@ pixi_app.loader.onComplete.add(() => {
       pixi_app.renderer.view.style.height = h + 'px'
       pixi_app.renderer.resize(w, h)
 
-
       scale_elements()
+      clouds.x = pixi_app.renderer.width / 2      
     }, 10)
   )
 

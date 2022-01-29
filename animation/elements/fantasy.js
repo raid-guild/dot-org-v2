@@ -32,7 +32,6 @@ export default class Fantasy extends PIXI.Container {
       slice.y = this.height / 2
       this.addChild(slice)
       this.slices.push(slice)
-      console.log(slice, this.textures[i])
     }
 
     gsap.to(this.slices, { alpha: 1, stagger: 0.23, duration: 0.03 })
