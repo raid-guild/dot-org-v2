@@ -60,7 +60,7 @@ export default class MolochFight extends PIXI.Container {
       false
     )     
     setInterval(() => {
-      //this.strike()
+      this.strike()
     }, 10000)
   }
   strike() {
@@ -68,9 +68,15 @@ export default class MolochFight extends PIXI.Container {
 
     for (let i = 0; i < this.fighters.length; i++) {
       const fighter = this.fighters[i]
+      const rando = Math.floor(Math.random() * 2) + 1
+      console.log(rando);
       setTimeout(() => {
-        fighter.strike()
-      }, i * 100)
+         for (let j = 0; j < rando; j++) {
+          setTimeout(() => {
+            fighter.strike()
+          }, j * 300)
+         }
+      }, i * 30)
     }
   }
   init() {}
