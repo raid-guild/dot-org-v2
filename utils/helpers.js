@@ -100,7 +100,7 @@ export const formatHireUsData = (state, type) => {
       'Expected Deadline': state.h_expectedDeadline,
       'Specific Needs': state.h_specificNeed,
       Priorities: state.h_priorities,
-      'Consultation Request Hash': state.h_consultationRequestHash
+      'Submission Hash': state.h_consultationRequestHash
     };
 
     return data;
