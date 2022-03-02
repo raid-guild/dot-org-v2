@@ -6,22 +6,29 @@ import { theme } from '../../themes/theme';
 
 import { getBids } from '../../graphql/getBids';
 
+import useSubmit from '../../hooks/useSubmit';
+import { CONSULTATION_REQUEST_FEE } from '../../config';
+
 import {
   StyledPrimaryButton,
   StyledSecondaryHeading,
-  StyledMessageText
+  StyledMessageText,
+  StyledBodyText
 } from '../../themes/styled';
 
-export const AllSubmissions = ({ clientInfo, web3 }) => {
+export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
   const [loading, setLoading] = useState({});
   const [fetched, setFetched] = useState({});
   const [bids, setBids] = useState({});
 
+  const { submissionTextUpdates, submissionPendingStatus, bookConsultation } =
+    useSubmit();
+
   const fetchBidInfo = async (submissionHash) => {
     try {
       setLoading({ ...loading, [submissionHash]: true });
-      const hex = web3.utils.asciiToHex(submissionHash);
-      const data = await getBids(hex);
+      // const hex = web3.utils.asciiToHex(submissionHash);
+      const data = await getBids(submissionHash);
       console.log(data);
       setBids({ ...bids, [submissionHash]: data[data.length - 1] });
       setLoading({ ...loading, [submissionHash]: false });
@@ -31,19 +38,23 @@ export const AllSubmissions = ({ clientInfo, web3 }) => {
     }
   };
 
+  const submitHandler = async (submissionHash, airtableRecordId) => {
+    setLoading({ ...loading, [submissionHash]: true });
+    await bookConsultation(submissionHash, airtableRecordId);
+    await getClientInfo();
+    setLoading({ ...loading, [submissionHash]: false });
+  };
+
   return (
-    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={5} w='100%'>
-      {clientInfo.map((item) => (
+    <SimpleGrid columns={1} w='100%'>
+      {clientInfo.map((item, index) => (
         <Flex
-          minH='250px'
+          minH='200px'
           key={item}
           direction='column'
-          justifyContent='space-evenly'
           py='2rem'
           px='1.5rem'
-          bg='black'
-          borderTop='2px solid'
-          borderColor='red'
+          bg={(index + 1) % 2 === 0 ? 'blackLight' : 'blackLighter'}
         >
           <StyledSecondaryHeading
             fontSize={{ base: '16px' }}
@@ -53,18 +64,13 @@ export const AllSubmissions = ({ clientInfo, web3 }) => {
             {item['fields']['Project Name']}
           </StyledSecondaryHeading>
 
-          <StyledMessageText
-            fontSize={{ base: '12px' }}
-            color={theme.colors.greyLight}
-            cursor='pointer'
-            textDecoration='underline'
-            onClick={() =>
-              (window.location.href = `https://blockscout.com/xdai/mainnet/tx/${item['fields']['Submission Hash']}`)
-            }
+          <StyledBodyText
+            fontSize={{ base: '12px', lg: '16px' }}
+            maxWidth='100%'
+            mb='2rem'
           >
-            submitted on{' '}
-            {new Date(item['fields']['Submission Time']).toDateString()}
-          </StyledMessageText>
+            {item['fields']['Project Description']}
+          </StyledBodyText>
 
           {/* if none of the bids are accepted */}
           {fetched[item['fields']['Submission Hash']] &&
@@ -80,56 +86,98 @@ export const AllSubmissions = ({ clientInfo, web3 }) => {
               </StyledMessageText>
             )}
 
-          {/* if any of the bids are accepted */}
-          {bids[item['fields']['Submission Hash']] && (
-            <>
+          <Flex
+            direction={{ base: 'column', lg: 'row' }}
+            justifyContent='space-between'
+            alignItems='center'
+          >
+            <Flex direction='row'>
               <StyledMessageText
-                fontSize={{ base: '16px' }}
-                textAlign='left'
+                fontSize={{ base: '12px' }}
                 color={theme.colors.white}
-                mb='.2rem'
+                bg={theme.colors.blackDark}
+                p='5px 10px'
+                cursor='pointer'
+                borderRadius='5px'
+                mr='.5rem'
+                _hover={{
+                  bg: theme.colors.red
+                }}
+                onClick={() =>
+                  (window.location.href = `https://blockscout.com/xdai/mainnet/tx/${item['fields']['Submission Hash']}`)
+                }
               >
-                {utils.formatEther(
-                  bids[item['fields']['Submission Hash']]['amount']
-                )}{' '}
-                $RAID <i className='fas fa-external-link-square-alt'></i>
+                Application receipt
               </StyledMessageText>
-              <br />
+              {item['fields']['Consultation Hash'] && (
+                <StyledMessageText
+                  fontSize={{ base: '12px' }}
+                  color={theme.colors.white}
+                  bg={theme.colors.blackDark}
+                  p='5px 10px'
+                  cursor='pointer'
+                  borderRadius='5px'
+                  _hover={{
+                    bg: theme.colors.red
+                  }}
+                  onClick={() =>
+                    (window.location.href = `https://blockscout.com/xdai/mainnet/tx/${item['fields']['Submission Hash']}`)
+                  }
+                >
+                  Consultation receipt
+                </StyledMessageText>
+              )}
+            </Flex>
+            {/* check status of bids initially */}
+            {!item['fields']['Consultation Hash'] &&
+              !fetched[item['fields']['Submission Hash']] && (
+                <StyledPrimaryButton
+                  ml={{ lg: 'auto' }}
+                  mt='1rem'
+                  isLoading={loading[item['fields']['Submission Hash']]}
+                  onClick={() =>
+                    fetchBidInfo(item['fields']['Submission Hash'])
+                  }
+                >
+                  Check bid status
+                </StyledPrimaryButton>
+              )}
+            {bids[item['fields']['Submission Hash']] && (
+              <>
+                <StyledMessageText
+                  fontSize={{ base: '12px' }}
+                  color={theme.colors.white}
+                  bg={theme.colors.blackDark}
+                  p='5px 10px'
+                  cursor='pointer'
+                  borderRadius='5px'
+                  _hover={{
+                    bg: theme.colors.red
+                  }}
+                >
+                  {utils.formatEther(
+                    bids[item['fields']['Submission Hash']]['amount']
+                  )}{' '}
+                  $RAID <i className='fas fa-external-link-square-alt'></i>
+                </StyledMessageText>
+                <br />
 
-              <StyledPrimaryButton
-                isLoading={loading[item['fields']['Submission Hash']]}
-                onClick={() => fetchBidInfo(item['fields']['Submission Hash'])}
-              >
-                Book Consult
-              </StyledPrimaryButton>
-            </>
-          )}
-
-          {/* check status of bids initially */}
-          {!item['fields']['Consultation Hash'] &&
-            !fetched[item['fields']['Submission Hash']] && (
-              <StyledPrimaryButton
-                isLoading={loading[item['fields']['Submission Hash']]}
-                onClick={() => fetchBidInfo(item['fields']['Submission Hash'])}
-              >
-                Check Status
-              </StyledPrimaryButton>
+                <StyledPrimaryButton
+                  ml='auto'
+                  isLoading={loading[item['fields']['Submission Hash']]}
+                  loadingText={submissionTextUpdates}
+                  onClick={() => {
+                    submitHandler(
+                      item['fields']['Submission Hash'],
+                      item['fields']['ID']
+                    );
+                  }}
+                >
+                  Secure Consultation
+                </StyledPrimaryButton>
+              </>
             )}
-
-          {/* if consultation is already paid */}
-          {item['fields']['Consultation Hash'] && (
-            <StyledMessageText
-              fontSize={{ base: '12px' }}
-              color={theme.colors.greyLight}
-              cursor='pointer'
-              textDecoration='underline'
-              onClick={() =>
-                (window.location.href = `https://blockscout.com/xdai/mainnet/tx/${item['fields']['Submission Hash']}`)
-              }
-            >
-              Paid for consultation
-            </StyledMessageText>
-          )}
+          </Flex>
         </Flex>
       ))}
     </SimpleGrid>

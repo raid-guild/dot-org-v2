@@ -55,7 +55,8 @@ class AppContextProvider extends Component {
     h_expectedDeadline: '',
     h_specificNeed: '',
     h_priorities: '',
-    h_consultationRequestHash: ''
+    h_submissionHash: '',
+    h_consultationHash: ''
   };
 
   inputChangeHandler = (e) => {

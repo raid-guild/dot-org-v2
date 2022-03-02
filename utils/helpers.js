@@ -100,7 +100,7 @@ export const formatHireUsData = (state, type) => {
       'Expected Deadline': state.h_expectedDeadline,
       'Specific Needs': state.h_specificNeed,
       Priorities: state.h_priorities,
-      'Submission Hash': state.h_consultationRequestHash
+      'Submission Hash': state.h_submissionHash
     };
 
     return data;
@@ -113,6 +113,8 @@ export const formatHireUsData = (state, type) => {
       contact_bio: state.h_bio,
       contact_discord: state.h_discordHandle,
       contact_telegram: state.h_telegramHandle,
+      contact_twitter: state.h_twitterHandle,
+      contact_github: state.h_githubHandle,
       project_name: state.h_projectName,
       project_type: state.h_projectType,
       project_specs: state.h_specsType,
@@ -122,7 +124,9 @@ export const formatHireUsData = (state, type) => {
       budget: state.h_budgetRange,
       desired_delivery: state.h_expectedDeadline,
       additional_info: state.h_specificNeed,
-      delivery_priorities: state.h_priorities
+      delivery_priorities: state.h_priorities,
+      submission_hash: state.h_submissionHash,
+      submission_type: 'Paid'
     };
 
     return data;

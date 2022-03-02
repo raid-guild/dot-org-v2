@@ -59,7 +59,7 @@ export const StyledHeadingLabels = styled(Heading)`
 // --------- Texts ------------
 
 export const StyledBodyText = styled(Text)`
-  max-width: 720px;
+  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : '720px')};
   font-family: ${theme.fonts.texturina};
   line-height: 1.8;
   color: white;

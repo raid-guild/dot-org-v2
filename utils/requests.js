@@ -43,8 +43,31 @@ export const submitConsultationToMongo = async (state) => {
 };
 
 export const submitConsultationToAirtable = async (state) => {
+  console.log(state);
   const formattedData = formatHireUsData(state, 'airtable');
   await axios.post('/api/hire/secondary', formattedData);
+};
+
+export const updateConsultationToMongo = async (
+  submissionHash,
+  consultationHash
+) => {
+  const formattedData = {
+    submission_hash: submissionHash,
+    consultation_hash: consultationHash
+  };
+  await axios.post('/api/consult/primary', formattedData);
+};
+
+export const updateConsultationToAirtable = async (
+  airtableRecordId,
+  consultationHash
+) => {
+  const formattedData = {
+    id: airtableRecordId,
+    consultation_hash: consultationHash
+  };
+  await axios.post('/api/consult/secondary', formattedData);
 };
 
 export const notifyConsultationRequest = async (state) => {

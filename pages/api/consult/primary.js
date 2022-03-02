@@ -11,8 +11,8 @@ const handler = async (req, res) => {
   if (req.method === 'POST') {
     try {
       const token = sign(req.body, process.env.DUNGEON_MASTER_JWT_SECRET);
-      await axios.post(
-        `${process.env.DM_ENDPOINT}/create/consultation`,
+      await axios.patch(
+        `${process.env.DM_ENDPOINT}/update/consultation`,
         req.body,
         {
           headers: {

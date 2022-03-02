@@ -9,10 +9,14 @@ import {
   submitApplicationToAirtable,
   submitApplicationToMongo,
   notifyApplicationSubmission,
-  submitConsultationToAirtable
+  submitConsultationToAirtable,
+  submitConsultationToMongo,
+  updateConsultationToAirtable,
+  updateConsultationToMongo
 } from '../utils/requests';
 import { getSignature, balanceOf, payWithRaidToken } from '../utils/web3';
 import {
+  SUBMISSION_REQUEST_FEE,
   CONSULTATION_REQUEST_FEE,
   RAID_CONTRACT_ADDRESS,
   DAO_ADDRESS
@@ -65,7 +69,7 @@ const useSubmit = (formType) => {
           context.signerAddress
         );
 
-        if (utils.formatEther(tokenBalance) < CONSULTATION_REQUEST_FEE) {
+        if (utils.formatEther(tokenBalance) < SUBMISSION_REQUEST_FEE) {
           context.updateAlertModalStatus();
           setSubmissionPendingStatus((prevState) => !prevState);
           return;
@@ -76,18 +80,26 @@ const useSubmit = (formType) => {
           RAID_CONTRACT_ADDRESS[context.chainId],
           context.ethersProvider,
           DAO_ADDRESS[context.chainId],
-          context.web3.utils.toWei(CONSULTATION_REQUEST_FEE.toString())
+          context.web3.utils.toWei(SUBMISSION_REQUEST_FEE.toString())
         );
 
         if (!tx) {
-          useWarnings('Error paying for consultation.');
+          useWarnings('Error paying for submission.');
           setSubmissionPendingStatus((prevState) => !prevState);
           return;
         }
 
-        context.setWeb3Data({ h_consultationRequestHash: tx.hash });
+        // context.setWeb3Data({ h_submissionHash: tx.hash });
+        console.log(tx.hash);
         setSubmissionTextUpdates('Sending request..');
-        await submitConsultationToAirtable(context);
+        await submitConsultationToAirtable({
+          ...context,
+          h_submissionHash: tx.hash
+        });
+        await submitConsultationToMongo({
+          ...context,
+          h_submissionHash: tx.hash
+        });
 
         setSubmissionPendingStatus((prevState) => !prevState);
         context.updateStage('next');
@@ -98,12 +110,64 @@ const useSubmit = (formType) => {
     }
   };
 
+  const bookConsultation = async (submissionHash, airtableRecordId) => {
+    try {
+      if (context.signerAddress && context.chainId !== 100) {
+        triggerToast('Please switch to the Gnosis Network.');
+        return;
+      }
+
+      if (context.chainId === 100) {
+        setSubmissionTextUpdates('Checking Balance..');
+
+        const tokenBalance = await balanceOf(
+          context.ethersProvider,
+          RAID_CONTRACT_ADDRESS[context.chainId],
+          context.signerAddress
+        );
+
+        if (utils.formatEther(tokenBalance) < CONSULTATION_REQUEST_FEE) {
+          context.updateAlertModalStatus();
+
+          return;
+        }
+
+        setSubmissionTextUpdates('Paying..');
+        const tx = await payWithRaidToken(
+          RAID_CONTRACT_ADDRESS[context.chainId],
+          context.ethersProvider,
+          DAO_ADDRESS[context.chainId],
+          context.web3.utils.toWei(SUBMISSION_REQUEST_FEE.toString())
+        );
+
+        if (!tx) {
+          useWarnings('Error paying for consultation.');
+
+          return;
+        }
+
+        context.setWeb3Data({ h_consultationHash: tx.hash });
+        setSubmissionTextUpdates('Updating records..');
+
+        await updateConsultationToAirtable(airtableRecordId, tx.hash);
+        await updateConsultationToMongo(submissionHash, tx.hash);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const submitApplication = async () => {
     if (formType === 'join') submitCohortApplication();
     if (formType === 'hire') submitConsultationApplication();
   };
 
-  return { submissionTextUpdates, submissionPendingStatus, submitApplication };
+  return {
+    submissionTextUpdates,
+    submissionPendingStatus,
+    submitApplication,
+    bookConsultation
+  };
 };
 
 export default useSubmit;

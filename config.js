@@ -25,9 +25,7 @@ export const hireTable = async () => {
 const devMode = process.env.ENV_MODE === 'production' ? false : true;
 
 export const RAID_CONTRACT_ADDRESS = {
-  100: devMode
-    ? '0x662FDEB6A9421fAab224DA88AF75E6D8830CF3a2'
-    : '0x18e9262e68cc6c6004db93105cc7c001bb103e49'
+  100: '0x18e9262e68cc6c6004db93105cc7c001bb103e49'
 };
 
 export const DAO_ADDRESS = {
@@ -46,7 +44,8 @@ export const BLOCK_EXPLORER_URL = {
   100: 'https://blockscout.com/xdai/mainnet/'
 };
 
-export const CONSULTATION_REQUEST_FEE = devMode ? 1 : 500;
+export const SUBMISSION_REQUEST_FEE = devMode ? 0.001 : 500;
+export const CONSULTATION_REQUEST_FEE = devMode ? 0.001 : 15000;
 
 export const RG_XDAI_DAO =
   '0xfe1084bc16427e5eb7f13fc19bcd4e641f7d571f'.toLowerCase();

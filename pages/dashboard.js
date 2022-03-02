@@ -9,9 +9,14 @@ import { Footer } from '../shared/Footer';
 import { Loader } from '../shared/Loader';
 import { AllSubmissions } from '../components/dashboard/AllSubmissions';
 
-import { StyledHeadingLabels } from '../themes/styled';
+import {
+  StyledHeadingLabels,
+  StyledPrimaryHeading,
+  StyledBodyText
+} from '../themes/styled';
 
 import { fetchClientInfoFromAirtable } from '../utils/requests';
+import { CONSULTATION_REQUEST_FEE } from '../config';
 
 const Hire = () => {
   const context = useContext(AppContext);
@@ -49,7 +54,11 @@ const Hire = () => {
     >
       <Meta />
       <Box px={{ base: '2rem', lg: '5rem' }} w='100%'>
-        <Header windowWidth={windowWidth} navLinks={false} />
+        <Header
+          windowWidth={windowWidth}
+          navLinks={false}
+          getClientInfo={getClientInfo}
+        />
       </Box>
 
       <Flex
@@ -60,7 +69,7 @@ const Hire = () => {
       >
         {!context.signerAddress && !isFetching && (
           <StyledHeadingLabels my='auto' fontSize={{ base: '16px' }}>
-            Connect your wallet to see your submissions.
+            Connect wallet to view your hire applications.
           </StyledHeadingLabels>
         )}
 
@@ -68,12 +77,31 @@ const Hire = () => {
           <Loader />
         ) : context.signerAddress && !clientInfo.length ? (
           <StyledHeadingLabels>
-            No submissions found for this address.
+            No hire applications found for this address.
           </StyledHeadingLabels>
         ) : null}
 
         {clientInfo.length && !isFetching && (
-          <AllSubmissions clientInfo={clientInfo} web3={context.web3} />
+          <Flex direction='column'>
+            <StyledPrimaryHeading
+              fontSize={{ base: '1.5rem', lg: '36px' }}
+              mb='1rem'
+            >
+              Your hire applications
+            </StyledPrimaryHeading>
+            <StyledBodyText
+              fontSize={{ base: '12px', lg: '16px' }}
+              maxWidth='100%'
+              mb='2rem'
+            >
+              {`Find below all the applications that you have submitted to the guild for hire. Use the details below to make a bid on the bidding page to move your request to the top & secure your consultation with the guild by paying ${CONSULTATION_REQUEST_FEE} $RAID once a bid is accepted.`}
+            </StyledBodyText>
+            <AllSubmissions
+              clientInfo={clientInfo}
+              web3={context.web3}
+              getClientInfo={getClientInfo}
+            />
+          </Flex>
         )}
       </Flex>
 
