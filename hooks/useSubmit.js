@@ -12,7 +12,11 @@ import {
   submitConsultationToAirtable
 } from '../utils/requests';
 import { getSignature, balanceOf, payWithRaidToken } from '../utils/web3';
-import { NETWORK_CONFIG, CONSULTATION_REQUEST_FEE } from '../config';
+import {
+  CONSULTATION_REQUEST_FEE,
+  RAID_CONTRACT_ADDRESS,
+  DAO_ADDRESS
+} from '../config';
 
 const useSubmit = (formType) => {
   const context = useContext(AppContext);
@@ -46,18 +50,18 @@ const useSubmit = (formType) => {
 
   const submitConsultationApplication = async () => {
     try {
-      if (context.signerAddress && context.chainId !== 4) {
-        triggerToast('Please switch to the Rinkeby Network.');
+      if (context.signerAddress && context.chainId !== 100) {
+        triggerToast('Please switch to the Gnosis Network.');
         return;
       }
 
-      if (context.chainId === 4) {
+      if (context.chainId === 100) {
         setSubmissionPendingStatus((prevState) => !prevState);
         setSubmissionTextUpdates('Checking Balance..');
 
         const tokenBalance = await balanceOf(
           context.ethersProvider,
-          NETWORK_CONFIG[context.chainId]['TOKEN_ADDRESS'],
+          RAID_CONTRACT_ADDRESS[context.chainId],
           context.signerAddress
         );
 
@@ -69,9 +73,9 @@ const useSubmit = (formType) => {
 
         setSubmissionTextUpdates('Paying..');
         const tx = await payWithRaidToken(
-          NETWORK_CONFIG[context.chainId]['TOKEN_ADDRESS'],
+          RAID_CONTRACT_ADDRESS[context.chainId],
           context.ethersProvider,
-          context.signerAddress,
+          DAO_ADDRESS[context.chainId],
           context.web3.utils.toWei(CONSULTATION_REQUEST_FEE.toString())
         );
 

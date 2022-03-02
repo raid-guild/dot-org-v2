@@ -21,9 +21,7 @@ export const AllSubmissions = ({ clientInfo, web3 }) => {
     try {
       setLoading({ ...loading, [submissionHash]: true });
       const hex = web3.utils.asciiToHex(submissionHash);
-      const data = await getBids(
-        '0x7265635748576a365a484a317049756477000000000000000000000000000000'
-      );
+      const data = await getBids(hex);
       console.log(data);
       setBids({ ...bids, [submissionHash]: data[data.length - 1] });
       setLoading({ ...loading, [submissionHash]: false });

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { providers } from 'ethers';
 import Web3 from 'web3';
 import Web3Modal from 'web3modal';

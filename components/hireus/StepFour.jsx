@@ -16,6 +16,8 @@ import useWallet from '../../hooks/useWallet';
 import useSubmit from '../../hooks/useSubmit';
 import useWarnings from '../../hooks/useWarnings';
 
+import { CONSULTATION_REQUEST_FEE } from '../../config';
+
 export const StepFour = ({ windowWidth }) => {
   const context = useContext(AppContext);
 
@@ -120,14 +122,16 @@ export const StepFour = ({ windowWidth }) => {
           loadingText={submissionTextUpdates}
           onClick={submitHandler}
         >
-          {context.signerAddress ? 'PAY 500 $RAID' : 'CONNECT WALLET'}
+          {context.signerAddress
+            ? `PAY ${CONSULTATION_REQUEST_FEE} $RAID`
+            : 'CONNECT WALLET'}
         </StyledPrimaryButton>
       </Flex>
 
       <AlertModal
         alertTitle='INSUFFICIENT $RAID'
-        alertMessage='You need at least 1 $RAID to submit the application & get into the
-            consultation queue. You can buy more $RAID from honeyswap on xDai.'
+        alertMessage={`You need at least ${CONSULTATION_REQUEST_FEE} $RAID to submit the application & get into the
+            consultation queue. You can buy more $RAID from honeyswap on xDai.`}
         alertAction='https://app.honeyswap.org/#/swap?inputCurrency=0x18e9262e68cc6c6004db93105cc7c001bb103e49&outputCurrency=0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1&chainId=100'
       />
     </Flex>

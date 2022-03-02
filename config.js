@@ -22,18 +22,32 @@ export const hireTable = async () => {
   return hire_table;
 };
 
-export const NETWORK_CONFIG = {
-  100: {
-    PAYMENT_TOKEN: 'RAID',
-    TOKEN_ADDRESS: '0x18e9262e68cc6c6004db93105cc7c001bb103e49'.toLowerCase()
-  },
-  4: {
-    PAYMENT_TOKEN: 'TEST',
-    TOKEN_ADDRESS: '0x982e00B16c313E979C0947b85230907Fce45d50e'.toLowerCase()
-  }
+const devMode = process.env.ENV_MODE === 'production' ? false : true;
+
+export const RAID_CONTRACT_ADDRESS = {
+  100: devMode
+    ? '0x662FDEB6A9421fAab224DA88AF75E6D8830CF3a2'
+    : '0x18e9262e68cc6c6004db93105cc7c001bb103e49'
 };
 
-export const CONSULTATION_REQUEST_FEE = 1;
+export const DAO_ADDRESS = {
+  100: devMode
+    ? '0x26ff888b86d18793fb1420f2a4108c19bfc65a6e'
+    : '0xfe1084bc16427e5eb7f13fc19bcd4e641f7d571f'
+};
+
+export const SUBGRAPH_URL = {
+  4: 'https://api.thegraph.com/subgraphs/name/slgraham/guildauctionqueues-rinkeby',
+  100: 'https://api.thegraph.com/subgraphs/name/slgraham/guildauctionqueues-xdai'
+};
+
+export const BLOCK_EXPLORER_URL = {
+  4: 'https://rinkeby.etherscan.io/',
+  100: 'https://blockscout.com/xdai/mainnet/'
+};
+
+export const CONSULTATION_REQUEST_FEE = devMode ? 1 : 500;
+
 export const RG_XDAI_DAO =
   '0xfe1084bc16427e5eb7f13fc19bcd4e641f7d571f'.toLowerCase();
 
