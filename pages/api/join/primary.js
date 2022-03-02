@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { sign } from 'jsonwebtoken';
 import { withToken } from '../../../middlewares/withToken';
 
 const handler = async (req, res) => {
@@ -10,7 +11,16 @@ const handler = async (req, res) => {
 
   if (req.method === 'POST') {
     try {
-      await axios.post(process.env.DM_ENDPOINT, req.body);
+      const token = sign(req.body, process.env.DUNGEON_MASTER_JWT_SECRET);
+      await axios.post(
+        `${process.env.DM_ENDPOINT}/create/application`,
+        req.body,
+        {
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
+        }
+      );
       res.status(201).json(req.body);
     } catch (err) {
       console.error(err);
