@@ -152,7 +152,7 @@ export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
                     : utils.formatEther(
                         bids[item['fields']['Submission Hash']]['amount']
                       )}{' '}
-                  $RAID <i className='fas fa-external-link-square-alt'></i>
+                  {/* $RAID <i className='fas fa-external-link-square-alt'></i> */}
                 </StyledMessageText>
               )}
             </Flex>
@@ -189,7 +189,7 @@ export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
                   }
                 >
                   No bids / Bid not accepted{' '}
-                  <i className='fas fa-external-link-square-alt'></i>
+                  {/* <i className='fas fa-external-link-square-alt'></i> */}
                 </StyledMessageText>
               )}
 
