@@ -12,7 +12,7 @@ const handler = async (req, res) => {
     try {
       const token = sign(req.body, process.env.DUNGEON_MASTER_JWT_SECRET);
       await axios.post(
-        `${process.env.DM_ENDPOINT}/create/consultation`,
+        `${process.env.DEV_DM_ENDPOINT}/create/consultation`,
         req.body,
         {
           headers: {

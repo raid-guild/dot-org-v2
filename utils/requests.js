@@ -70,6 +70,19 @@ export const updateConsultationToAirtable = async (
   await axios.post('/api/consult/secondary', formattedData);
 };
 
+export const updateBidToAirtable = async (
+  airtableRecordId,
+  bidHash,
+  bidAmount
+) => {
+  const formattedData = {
+    id: airtableRecordId,
+    bid_hash: bidHash,
+    bid_amount: bidAmount
+  };
+  await axios.post('/api/consult/bid', formattedData);
+};
+
 export const notifyConsultationRequest = async (state) => {
   const formattedData = formatHireUsData(state, 'discord');
   await axios.post('/api/hire/notify', formattedData);

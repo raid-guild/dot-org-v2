@@ -7,7 +7,8 @@ import { theme } from '../../themes/theme';
 import { getBids } from '../../graphql/getBids';
 
 import useSubmit from '../../hooks/useSubmit';
-import { CONSULTATION_REQUEST_FEE } from '../../config';
+
+import { updateBidToAirtable } from '../../utils/requests';
 
 import {
   StyledPrimaryButton,
@@ -21,15 +22,22 @@ export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
   const [fetched, setFetched] = useState({});
   const [bids, setBids] = useState({});
 
-  const { submissionTextUpdates, submissionPendingStatus, bookConsultation } =
-    useSubmit();
+  const { submissionTextUpdates, bookConsultation } = useSubmit();
 
-  const fetchBidInfo = async (submissionHash) => {
+  const fetchBidInfo = async (submissionHash, airtableRecordId) => {
     try {
       setLoading({ ...loading, [submissionHash]: true });
       // const hex = web3.utils.asciiToHex(submissionHash);
       const data = await getBids(submissionHash);
       console.log(data);
+      if (data.length > 0) {
+        await updateBidToAirtable(
+          airtableRecordId,
+          data[data.length - 1]['acceptTxHash'],
+          data[data.length - 1]['amount']
+        );
+      }
+
       setBids({ ...bids, [submissionHash]: data[data.length - 1] });
       setLoading({ ...loading, [submissionHash]: false });
       setFetched({ ...fetched, [submissionHash]: true });
@@ -72,20 +80,6 @@ export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
             {item['fields']['Project Description']}
           </StyledBodyText>
 
-          {/* if none of the bids are accepted */}
-          {fetched[item['fields']['Submission Hash']] &&
-            !bids[item['fields']['Submission Hash']] && (
-              <StyledMessageText
-                fontSize={{ base: '16px' }}
-                textAlign='left'
-                color={theme.colors.white}
-                mb='.2rem'
-              >
-                No bids / Bid not accepted{' '}
-                <i className='fas fa-external-link-square-alt'></i>
-              </StyledMessageText>
-            )}
-
           <Flex
             direction={{ base: 'column', lg: 'row' }}
             justifyContent='space-between'
@@ -104,7 +98,10 @@ export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
                   bg: theme.colors.red
                 }}
                 onClick={() =>
-                  (window.location.href = `https://blockscout.com/xdai/mainnet/tx/${item['fields']['Submission Hash']}`)
+                  window.open(
+                    `https://blockscout.com/xdai/mainnet/tx/${item['fields']['Submission Hash']}`,
+                    '_blank'
+                  )
                 }
               >
                 Application receipt
@@ -117,33 +114,22 @@ export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
                   p='5px 10px'
                   cursor='pointer'
                   borderRadius='5px'
+                  mr='.5rem'
                   _hover={{
                     bg: theme.colors.red
                   }}
                   onClick={() =>
-                    (window.location.href = `https://blockscout.com/xdai/mainnet/tx/${item['fields']['Submission Hash']}`)
+                    window.open(
+                      `https://blockscout.com/xdai/mainnet/tx/${item['fields']['Consultation Hash']}`,
+                      '_blank'
+                    )
                   }
                 >
                   Consultation receipt
                 </StyledMessageText>
               )}
-            </Flex>
-            {/* check status of bids initially */}
-            {!item['fields']['Consultation Hash'] &&
-              !fetched[item['fields']['Submission Hash']] && (
-                <StyledPrimaryButton
-                  ml={{ lg: 'auto' }}
-                  mt='1rem'
-                  isLoading={loading[item['fields']['Submission Hash']]}
-                  onClick={() =>
-                    fetchBidInfo(item['fields']['Submission Hash'])
-                  }
-                >
-                  Check bid status
-                </StyledPrimaryButton>
-              )}
-            {bids[item['fields']['Submission Hash']] && (
-              <>
+              {(item['fields']['Bid Hash'] ||
+                bids[item['fields']['Submission Hash']]) && (
                 <StyledMessageText
                   fontSize={{ base: '12px' }}
                   color={theme.colors.white}
@@ -154,14 +140,61 @@ export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
                   _hover={{
                     bg: theme.colors.red
                   }}
+                  onClick={() =>
+                    window.open(
+                      `https://blockscout.com/xdai/mainnet/tx/${item['fields']['Bid Hash']}`,
+                      '_blank'
+                    )
+                  }
                 >
-                  {utils.formatEther(
-                    bids[item['fields']['Submission Hash']]['amount']
-                  )}{' '}
+                  {item['fields']['Bid Hash']
+                    ? utils.formatEther(item['fields']['Bid Amount'])
+                    : utils.formatEther(
+                        bids[item['fields']['Submission Hash']]['amount']
+                      )}{' '}
                   $RAID <i className='fas fa-external-link-square-alt'></i>
                 </StyledMessageText>
-                <br />
+              )}
+            </Flex>
 
+            {/* check status of bids initially */}
+            {!item['fields']['Bid Hash'] &&
+              !fetched[item['fields']['Submission Hash']] && (
+                <StyledPrimaryButton
+                  ml={{ lg: 'auto' }}
+                  mt='1rem'
+                  isLoading={loading[item['fields']['Submission Hash']]}
+                  onClick={() =>
+                    fetchBidInfo(
+                      item['fields']['Submission Hash'],
+                      item['fields']['ID']
+                    )
+                  }
+                >
+                  Check bid status
+                </StyledPrimaryButton>
+              )}
+
+            {/* if none of the bids are accepted */}
+            {fetched[item['fields']['Submission Hash']] &&
+              !bids[item['fields']['Submission Hash']] && (
+                <StyledMessageText
+                  fontSize={{ base: '16px' }}
+                  textAlign='left'
+                  color={theme.colors.white}
+                  mb='.2rem'
+                  cursor='pointer'
+                  onClick={() =>
+                    window.open(`https://bids.raidguild.org/`, '_blank')
+                  }
+                >
+                  No bids / Bid not accepted{' '}
+                  <i className='fas fa-external-link-square-alt'></i>
+                </StyledMessageText>
+              )}
+
+            {!item['fields']['Consultation Hash'] &&
+              item['fields']['Bid Hash'] && (
                 <StyledPrimaryButton
                   ml='auto'
                   isLoading={loading[item['fields']['Submission Hash']]}
@@ -175,8 +208,24 @@ export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
                 >
                   Secure Consultation
                 </StyledPrimaryButton>
-              </>
-            )}
+              )}
+
+            {!item['fields']['Consultation Hash'] &&
+              bids[item['fields']['Submission Hash']] && (
+                <StyledPrimaryButton
+                  ml='auto'
+                  isLoading={loading[item['fields']['Submission Hash']]}
+                  loadingText={submissionTextUpdates}
+                  onClick={() => {
+                    submitHandler(
+                      item['fields']['Submission Hash'],
+                      item['fields']['ID']
+                    );
+                  }}
+                >
+                  Secure Consultation
+                </StyledPrimaryButton>
+              )}
           </Flex>
         </Flex>
       ))}

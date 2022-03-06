@@ -9,6 +9,7 @@ const bidsQuery = gql`
       status
       details
       createdAt
+      acceptTxHash
     }
   }
 `;

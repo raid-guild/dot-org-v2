@@ -12,7 +12,7 @@ const handler = async (req, res) => {
     try {
       const token = sign(req.body, process.env.DUNGEON_MASTER_JWT_SECRET);
       await axios.patch(
-        `${process.env.DM_ENDPOINT}/update/consultation`,
+        `${process.env.DEV_DM_ENDPOINT}/update/consultation`,
         req.body,
         {
           headers: {
