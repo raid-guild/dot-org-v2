@@ -152,7 +152,8 @@ export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
                     : utils.formatEther(
                         bids[item['fields']['Submission Hash']]['amount']
                       )}{' '}
-                  {/* $RAID <i className='fas fa-external-link-square-alt'></i> */}
+                  $RAID
+                  {/* <i className='fas fa-external-link-square-alt'></i> */}
                 </StyledMessageText>
               )}
             </Flex>
@@ -211,7 +212,7 @@ export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
               )}
 
             {!item['fields']['Consultation Hash'] &&
-              bids[item['fields']['Submission Hash']] && (
+              fetched[item['fields']['Submission Hash']] && (
                 <StyledPrimaryButton
                   ml='auto'
                   isLoading={loading[item['fields']['Submission Hash']]}
