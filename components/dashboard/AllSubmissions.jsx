@@ -212,7 +212,7 @@ export const AllSubmissions = ({ clientInfo, web3, getClientInfo }) => {
               )}
 
             {!item['fields']['Consultation Hash'] &&
-              fetched[item['fields']['Submission Hash']] && (
+              bids[item['fields']['Submission Hash']] && (
                 <StyledPrimaryButton
                   ml='auto'
                   isLoading={loading[item['fields']['Submission Hash']]}
