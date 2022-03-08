@@ -13,12 +13,12 @@ import { Header } from '../shared/Header';
 import { Footer } from '../shared/Footer';
 import { FAQ } from '../shared/Faq';
 
-import { Intro } from '../components/hireus/Intro';
-import { StepOne } from '../components/hireus/StepOne';
-import { StepTwo } from '../components/hireus/StepTwo';
-import { StepThree } from '../components/hireus/StepThree';
-import { StepFour } from '../components/hireus/StepFour';
-import { Confirmation } from '../components/hireus/Confirmation';
+import { Intro } from '../views/hireus/Intro';
+import { StepOne } from '../views/hireus/StepOne';
+import { StepTwo } from '../views/hireus/StepTwo';
+import { StepThree } from '../views/hireus/StepThree';
+import { StepFour } from '../views/hireus/StepFour';
+import { Confirmation } from '../views/hireus/Confirmation';
 
 import { StyledSecondaryHeading } from '../themes/styled';
 

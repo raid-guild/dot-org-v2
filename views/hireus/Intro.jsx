@@ -51,7 +51,7 @@ export const Intro = () => {
           DOCS.
         </StyledBodyText>
         <br />
-
+        {/* 
         <Flex
           direction='column'
           bgColor='white'
@@ -78,7 +78,7 @@ export const Intro = () => {
             learning more about your project in the New Year! ⚔️
           </StyledMessageText>
         </Flex>
-        <br />
+        <br /> */}
 
         <Flex w='100%' direction={{ base: 'column', md: 'row', lg: 'row' }}>
           <StyledPrimaryButton

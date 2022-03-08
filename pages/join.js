@@ -13,14 +13,14 @@ import { Header } from '../shared/Header';
 import { Footer } from '../shared/Footer';
 import { FAQ } from '../shared/Faq';
 
-import { Intro } from '../components/joinus/Intro';
-import { StepOne } from '../components/joinus/StepOne';
-import { StepTwo } from '../components/joinus/StepTwo';
-import { StepThree } from '../components/joinus/StepThree';
-import { StepFour } from '../components/joinus/StepFour';
-import { StepFive } from '../components/joinus/StepFive';
-import { StepSix } from '../components/joinus/StepSix';
-import { Confirmation } from '../components/joinus/Confirmation';
+import { Intro } from '../views/joinus/Intro';
+import { StepOne } from '../views/joinus/StepOne';
+import { StepTwo } from '../views/joinus/StepTwo';
+import { StepThree } from '../views/joinus/StepThree';
+import { StepFour } from '../views/joinus/StepFour';
+import { StepFive } from '../views/joinus/StepFive';
+import { StepSix } from '../views/joinus/StepSix';
+import { Confirmation } from '../views/joinus/Confirmation';
 
 import { StyledSecondaryHeading } from '../themes/styled';
 

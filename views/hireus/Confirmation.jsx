@@ -53,9 +53,12 @@ export const Confirmation = () => {
           View My Submissions
         </StyledSecondaryButton>
         <StyledSecondaryButton
-          onClick={() => (window.location.href = 'https://discord.gg/rGFpfQf')}
+          onClick={() =>
+            (window.location.href =
+              'https://hireus-git-staging-raidguild.vercel.app/')
+          }
         >
-          Join Discord
+          Start Bidding
         </StyledSecondaryButton>
       </Flex>
     </Flex>

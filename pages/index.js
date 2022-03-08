@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import { theme } from '../themes/theme';
 
 import { Meta } from '../shared/Meta';
-import { FirstPaint } from '../components/landing/FirstPaint';
-import { Manifesto } from '../components/landing/Manifesto';
-import { Services } from '../components/landing/Services';
-import { Portfolio } from '../components/landing/Portfolio';
-import { Culture } from '../components/landing/Culture';
-import { Community } from '../components/landing/Community';
+import { FirstPaint } from '../views/landing/FirstPaint';
+import { Manifesto } from '../views/landing/Manifesto';
+import { Services } from '../views/landing/Services';
+import { Portfolio } from '../views/landing/Portfolio';
+import { Culture } from '../views/landing/Culture';
+import { Community } from '../views/landing/Community';
 import { Footer } from '../shared/Footer';
 
 export default function Home() {

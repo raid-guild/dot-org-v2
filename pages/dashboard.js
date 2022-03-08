@@ -7,7 +7,7 @@ import { Meta } from '../shared/Meta';
 import { Header } from '../shared/Header';
 import { Footer } from '../shared/Footer';
 import { Loader } from '../shared/Loader';
-import { AllSubmissions } from '../components/dashboard/AllSubmissions';
+import { AllSubmissions } from '../views/dashboard/AllSubmissions';
 
 import {
   StyledHeadingLabels,
@@ -94,7 +94,7 @@ const Hire = () => {
               maxWidth='100%'
               mb='2rem'
             >
-              {`Find below all the applications that you have submitted to the guild for hire. Use the details below to make a bid on the bidding page to move your request to the top & secure your consultation with the guild by paying ${CONSULTATION_REQUEST_FEE} $RAID once a bid is accepted.`}
+              {`Find below all the applications that you have submitted to the guild for hire. Once your bid is accepted, you can secure your consultation with the guild by paying a one time ${CONSULTATION_REQUEST_FEE} $RAID.`}
             </StyledBodyText>
             <AllSubmissions
               clientInfo={clientInfo}

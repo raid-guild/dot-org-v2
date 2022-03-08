@@ -55,9 +55,11 @@ const useWallet = (requireEns) => {
     });
   };
 
+  let web3Modal;
+
   const connectWallet = async () => {
     try {
-      const web3Modal = new Web3Modal({
+      web3Modal = new Web3Modal({
         network: 'mainnet',
         cacheProvider: true,
         providerOptions,
@@ -98,7 +100,11 @@ const useWallet = (requireEns) => {
     }
   };
 
-  return { connectWallet };
+  const disconnect = async () => {
+    web3Modal.clearCachedProvider();
+  };
+
+  return { connectWallet, disconnect };
 };
 
 export default useWallet;

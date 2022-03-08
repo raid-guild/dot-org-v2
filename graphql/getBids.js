@@ -2,7 +2,7 @@ import gql from 'fake-tag';
 
 import { CLIENT } from './client';
 
-const bidsQuery = gql`
+const acceptedBidsQuery = gql`
   query GetBids($details: String!) {
     bids(where: { details: $details, status: "accepted" }) {
       amount
@@ -14,8 +14,31 @@ const bidsQuery = gql`
   }
 `;
 
-export const getBids = async (details) => {
-  const { data, error } = await CLIENT.query(bidsQuery, {
+const queuedBidsQuery = gql`
+  query GetBids($details: String!) {
+    bids(where: { details: $details }) {
+      amount
+      status
+    }
+  }
+`;
+
+export const getAcceptedBids = async (details) => {
+  const { data, error } = await CLIENT.query(acceptedBidsQuery, {
+    details
+  }).toPromise();
+  if (!data) {
+    if (error) {
+      console.log(error);
+    }
+    return null;
+  }
+
+  return data.bids;
+};
+
+export const getQueuedBids = async (details) => {
+  const { data, error } = await CLIENT.query(queuedBidsQuery, {
     details
   }).toPromise();
   if (!data) {

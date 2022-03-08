@@ -4,7 +4,10 @@ import {
   Flex,
   Image,
   Link as ChakraLink,
-  Text
+  Text,
+  Popover,
+  PopoverTrigger,
+  PopoverContent
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
@@ -67,7 +70,7 @@ const navItems = [
 
 export const Header = ({ windowWidth, navLinks = true }) => {
   const context = useContext(AppContext);
-  const { connectWallet } = useWallet();
+  const { connectWallet, disconnect } = useWallet();
   const [isOpen, onOpen] = useState(false);
 
   return (
@@ -96,14 +99,40 @@ export const Header = ({ windowWidth, navLinks = true }) => {
       )}
 
       {!navLinks && context.signerAddress && (
-        <Text
-          px={2}
-          display={{ base: 'none', md: 'flex' }}
-          fontFamily='jetbrains'
-          color='red'
-        >
-          {getAccountString(context.signerAddress)}
-        </Text>
+        <Flex justify='center' align='center' zIndex={5}>
+          <Popover placement='left'>
+            <PopoverTrigger>
+              <Button
+                h='auto'
+                fontWeight='normal'
+                bg={theme.colors.blackDark}
+                _hover={{ backgroundColor: 'greyLight' }}
+                p={{ base: 0, md: 3 }}
+              >
+                <Text
+                  px={2}
+                  display={{ base: 'none', md: 'flex' }}
+                  fontFamily='jetbrains'
+                  color='red'
+                >
+                  {getAccountString(context.signerAddress)}
+                </Text>
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent bg='none' w='auto'>
+              <Button
+                onClick={() => {
+                  disconnect();
+                  window.location.reload();
+                }}
+                variant='primary'
+                mt='0'
+              >
+                Disconnect
+              </Button>
+            </PopoverContent>
+          </Popover>
+        </Flex>
       )}
 
       {windowWidth > 1200 && navLinks && (
