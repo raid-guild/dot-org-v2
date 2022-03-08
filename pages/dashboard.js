@@ -12,6 +12,7 @@ import { AllSubmissions } from '../views/dashboard/AllSubmissions';
 import {
   StyledHeadingLabels,
   StyledPrimaryHeading,
+  StyledSecondaryButton,
   StyledBodyText
 } from '../themes/styled';
 
@@ -96,6 +97,18 @@ const Hire = () => {
             >
               {`Find below all the applications that you have submitted to the guild for hire. Once your bid is accepted, you can secure your consultation with the guild by paying a one time ${CONSULTATION_REQUEST_FEE} $RAID.`}
             </StyledBodyText>
+            <StyledSecondaryButton
+              mr='auto'
+              mb='2rem'
+              onClick={() =>
+                window.open(
+                  `https://hireus-git-staging-raidguild.vercel.app/`,
+                  '_blank'
+                )
+              }
+            >
+              Go to bidding page
+            </StyledSecondaryButton>
             <AllSubmissions
               clientInfo={clientInfo}
               web3={context.web3}
