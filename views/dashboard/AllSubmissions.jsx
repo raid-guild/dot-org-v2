@@ -53,8 +53,8 @@ export const AllSubmissions = ({ clientInfo, getClientInfo }) => {
       if (_acceptedBids.length > 0) {
         await updateBidToAirtable(
           airtableRecordId,
-          _acceptedBids[acceptedBids.length - 1]['acceptTxHash'],
-          _acceptedBids[acceptedBids.length - 1]['amount']
+          _acceptedBids[_acceptedBids.length - 1]['acceptTxHash'],
+          _acceptedBids[_acceptedBids.length - 1]['amount']
         );
         setAcceptedBids({
           ...acceptedBids,
