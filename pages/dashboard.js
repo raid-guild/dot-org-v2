@@ -82,7 +82,7 @@ const Hire = () => {
           </StyledHeadingLabels>
         ) : null}
 
-        {clientInfo.length && !isFetching && (
+        {clientInfo.length > 0 && !isFetching && (
           <Flex direction='column'>
             <StyledPrimaryHeading
               fontSize={{ base: '1.5rem', lg: '36px' }}
