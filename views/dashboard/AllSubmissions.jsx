@@ -48,23 +48,23 @@ export const AllSubmissions = ({ clientInfo, getClientInfo }) => {
   const fetchBidInfo = async (submissionHash, airtableRecordId) => {
     try {
       setLoading({ ...loading, [submissionHash]: true });
-      const acceptedBids = await getAcceptedBids(submissionHash);
+      const _acceptedBids = await getAcceptedBids(submissionHash);
 
       if (acceptedBids.length > 0) {
         await updateBidToAirtable(
           airtableRecordId,
-          acceptedBids[acceptedBids.length - 1]['acceptTxHash'],
-          acceptedBids[acceptedBids.length - 1]['amount']
+          _acceptedBids[acceptedBids.length - 1]['acceptTxHash'],
+          _acceptedBids[acceptedBids.length - 1]['amount']
         );
         setAcceptedBids({
           ...acceptedBids,
-          [submissionHash]: acceptedBids[acceptedBids.length - 1]
+          [submissionHash]: _acceptedBids[_acceptedBids.length - 1]
         });
       } else {
-        const queuedBids = await getQueuedBids(submissionHash);
+        const _queuedBids = await getQueuedBids(submissionHash);
         setQueuedBids({
           ...queuedBids,
-          [submissionHash]: queuedBids[queuedBids.length - 1]
+          [submissionHash]: _queuedBids[_queuedBids.length - 1]
         });
       }
 
@@ -240,9 +240,7 @@ export const AllSubmissions = ({ clientInfo, getClientInfo }) => {
                     textDecoration='underline'
                     onClick={() =>
                       window.open(
-                        `https://hireus-git-staging-raidguild.vercel.app/bids/${
-                          fetched[item['fields']['Submission Hash']]
-                        }`,
+                        `https://hireus-git-staging-raidguild.vercel.app/bids/${item['fields']['Submission Hash']}`,
                         '_blank'
                       )
                     }
@@ -263,9 +261,7 @@ export const AllSubmissions = ({ clientInfo, getClientInfo }) => {
                     textDecoration='underline'
                     onClick={() =>
                       window.open(
-                        `https://hireus-git-staging-raidguild.vercel.app/bids/${
-                          fetched[item['fields']['Submission Hash']]
-                        }`,
+                        `https://hireus-git-staging-raidguild.vercel.app/bids/${item['fields']['Submission Hash']}`,
                         '_blank'
                       )
                     }
