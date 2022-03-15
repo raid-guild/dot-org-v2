@@ -101,10 +101,7 @@ const Hire = () => {
               mr='auto'
               mb='2rem'
               onClick={() =>
-                window.open(
-                  `https://hireus-git-staging-raidguild.vercel.app/`,
-                  '_blank'
-                )
+                window.open(`https://bids.raidguild.org/`, '_blank')
               }
             >
               Go to bidding page

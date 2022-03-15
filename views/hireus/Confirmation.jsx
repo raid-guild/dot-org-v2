@@ -53,10 +53,7 @@ export const Confirmation = () => {
           View My Submissions
         </StyledSecondaryButton>
         <StyledSecondaryButton
-          onClick={() =>
-            (window.location.href =
-              'https://hireus-git-staging-raidguild.vercel.app/')
-          }
+          onClick={() => (window.location.href = 'https://bids.raidguild.org/')}
         >
           Start Bidding
         </StyledSecondaryButton>

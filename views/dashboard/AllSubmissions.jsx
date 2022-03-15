@@ -240,7 +240,7 @@ export const AllSubmissions = ({ clientInfo, getClientInfo }) => {
                     textDecoration='underline'
                     onClick={() =>
                       window.open(
-                        `https://hireus-git-staging-raidguild.vercel.app/bids/${item['fields']['Submission Hash']}`,
+                        `https://bids.raidguild.org/bids/${item['fields']['Submission Hash']}`,
                         '_blank'
                       )
                     }
@@ -261,7 +261,7 @@ export const AllSubmissions = ({ clientInfo, getClientInfo }) => {
                     textDecoration='underline'
                     onClick={() =>
                       window.open(
-                        `https://hireus-git-staging-raidguild.vercel.app/bids/${item['fields']['Submission Hash']}`,
+                        `hhttps://bids.raidguild.org/bids/${item['fields']['Submission Hash']}`,
                         '_blank'
                       )
                     }

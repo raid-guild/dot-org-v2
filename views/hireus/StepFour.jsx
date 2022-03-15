@@ -183,7 +183,7 @@ export const StepFour = ({ windowWidth }) => {
               Once the application is submitted, you can start{' '}
               <a
                 style={{ textDecoration: 'underline' }}
-                href='https://hireus-git-staging-raidguild.vercel.app/'
+                href='https://bids.raidguild.org/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
