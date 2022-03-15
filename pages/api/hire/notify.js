@@ -1,5 +1,4 @@
-import { joinTable } from '../../../config';
-import { withToken } from '../../../middlewares/withToken';
+import axios from 'axios';
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -10,8 +9,10 @@ const handler = async (req, res) => {
 
   if (req.method === 'POST') {
     try {
-      const submissions_table = await joinTable();
-      await submissions_table.create(req.body);
+      await axios.post(
+        `${process.env.SENTRY_WEBHOOK}/hireus/consultation`,
+        req.body
+      );
       res.status(201).json(req.body);
     } catch (err) {
       console.error(err);
@@ -20,4 +21,4 @@ const handler = async (req, res) => {
   }
 };
 
-export default withToken(handler);
+export default handler;

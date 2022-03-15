@@ -27,3 +27,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #e4728b;
 }
+
+.web3modal-modal-card {
+  font-family: 'JetBrains Mono', monospace;
+}
