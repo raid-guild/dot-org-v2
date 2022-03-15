@@ -72,19 +72,18 @@ export const Intro = () => {
             fontWeight='bold'
             mb='.5rem'
           >
-            Status: New Consultation Queue
+            IMPORTANT
           </StyledMessageText>
           <StyledMessageText fontSize={{ base: '1rem', lg: '16px' }}>
-            If you made a bid on the previous version of the consultation queue,
-            check{' '}
+            If you made a bid prior to March 15th, 2022, please use the old
+            version of the Consultation Queue:{' '}
             <Link
               href='https://hireus.raidguild.org'
               isExternal
               textDecoration='underline'
             >
               hireus.raidguild.org
-            </Link>{' '}
-            to view your bid status.
+            </Link>
           </StyledMessageText>
         </Flex>
         <br />
