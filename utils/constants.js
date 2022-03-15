@@ -253,7 +253,7 @@ export const join_faq_items = [
 export const hire_faq_items = [
   {
     q: 'What happens after I pay and submit?',
-    a: 'After you pay and submit, we’ll receive a notification of your submission and a Raider will get in touch with you within 72 hours (business days) to schedule a consultation.'
+    a: 'After you pay and submit, you can start bidding to move up in the queue to get accepted. And once accepted, you will be required to make a one time 15,000 $RAID to secure your spot for a consultation.'
   },
   {
     q: 'What is the consultation?',

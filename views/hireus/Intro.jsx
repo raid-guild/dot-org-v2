@@ -30,19 +30,27 @@ export const Intro = () => {
 
         <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
           To request a consultation, please fill out the form starting on the
-          next screen (click Start). The more information you can provide about
-          the work you want to hire Raid Guild for, the better. The form will
-          have space for information about you / your team, background and
+          next screen (New Consultation). The more information you can provide
+          about the work you want to hire RaidGuild for, the better. The form
+          will have space for information about you / your team, background, and
           description for your project, specs for the work, as well as a few
           questions to give us an initial feel for your needs.
         </StyledBodyText>
         <br />
 
         <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
-          Once you’ve filled out the form, you will also have an opportunity to
-          add the 500 DAI fee to be added to the consultation queue. After that,
-          you can return to the queue page itself to add a $RAID bid to move up
-          in the queue.
+          Once you have filled out the form, you will have to pay a 500 $RAID
+          application submission fee. After that, you can start making bids in{' '}
+          <Link
+            href='https://bids.raidguild.org/'
+            isExternal
+            textDecoration='underline'
+          >
+            the consultation queue to climb the top.
+          </Link>{' '}
+          You can track your application and bid status by clicking on "View my
+          Submissions" below. Once a bid is accepted, you need to pay a one time
+          fee of 15,000 $RAID to secure your spot for a consultation.
         </StyledBodyText>
         <br />
 
