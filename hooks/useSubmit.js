@@ -145,7 +145,7 @@ const useSubmit = (formType) => {
           RAID_CONTRACT_ADDRESS[context.chainId],
           context.ethersProvider,
           DAO_ADDRESS[context.chainId],
-          context.web3.utils.toWei(SUBMISSION_REQUEST_FEE.toString())
+          context.web3.utils.toWei(CONSULTATION_REQUEST_FEE.toString())
         );
 
         if (tx) {
