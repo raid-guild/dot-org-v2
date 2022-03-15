@@ -261,7 +261,7 @@ export const AllSubmissions = ({ clientInfo, getClientInfo }) => {
                     textDecoration='underline'
                     onClick={() =>
                       window.open(
-                        `hhttps://bids.raidguild.org/bids/${item['fields']['Submission Hash']}`,
+                        `https://bids.raidguild.org/bids/${item['fields']['Submission Hash']}`,
                         '_blank'
                       )
                     }
