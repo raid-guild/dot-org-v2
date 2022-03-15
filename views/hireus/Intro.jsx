@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Flex } from '@chakra-ui/react';
+import { Flex, Link } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
 
@@ -51,7 +51,7 @@ export const Intro = () => {
           DOCS.
         </StyledBodyText>
         <br />
-        {/* 
+
         <Flex
           direction='column'
           bgColor='white'
@@ -64,21 +64,22 @@ export const Intro = () => {
             fontWeight='bold'
             mb='.5rem'
           >
-            Status: PAUSED FOR THE HOLIDAYS
+            Status: New Consultation Queue
           </StyledMessageText>
           <StyledMessageText fontSize={{ base: '1rem', lg: '16px' }}>
-            Hello prospective clients! Thank you for your interest in working
-            with the Guild, as we approach the holiday season, we want you to
-            know that we will pause additional consultations for the remainder
-            of the year. Please feel free to submit your projects and use the
-            $RAID bidding queue to signal how strongly you wish to align with
-            the Guild in 2022 - but please respect our Raiders as we take time
-            off this season to reflect upon this wild year and spend time with
-            our friends and loved ones. We look forward to working with you and
-            learning more about your project in the New Year! ⚔️
+            If you made a bid on the previous version of the consultation queue,
+            check{' '}
+            <Link
+              href='https://hireus.raidguild.org'
+              isExternal
+              textDecoration='underline'
+            >
+              hireus.raidguild.org
+            </Link>{' '}
+            to view your bid status.
           </StyledMessageText>
         </Flex>
-        <br /> */}
+        <br />
 
         <Flex w='100%' direction={{ base: 'column', md: 'row', lg: 'row' }}>
           <StyledPrimaryButton
