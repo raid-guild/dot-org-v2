@@ -43,6 +43,27 @@ export const Intro = () => {
         </StyledBodyText>
 
         <br />
+        <Flex
+          direction='column'
+          bgColor='white'
+          borderRadius='0.5rem'
+          p='0.5rem 1rem'
+          maxW='720px'
+        >
+          <StyledMessageText
+            fontSize={{ base: '1rem', lg: '18px' }}
+            fontWeight='bold'
+            mb='.5rem'
+          >
+            Status: Season 3
+          </StyledMessageText>
+          <StyledMessageText fontSize={{ base: '1rem', lg: '16px' }}>
+            Cohorts are being trained & building cool stuff. Applications are
+            closed for season 3 but open for next season. Selected applicants
+            will be notified via email when it's time.
+          </StyledMessageText>
+        </Flex>
+        <br />
 
         <StyledPrimaryButton
           fontSize={{ base: '16px', lg: '18px' }}

@@ -37,7 +37,7 @@ export const Manifesto = () => {
           </StyledBodyText>
           <br></br>
           <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
-            We believe in Web3 and are here to build it, use it, and propagate
+            We believe in Web3 and are here to build it, use it, and propogate
             it. The profits from our work will be used to fund development of
             open source tooling and public goods. We will share the learnings
             from our experiments and open source our processes for the community
