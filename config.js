@@ -22,7 +22,8 @@ export const hireTable = async () => {
   return hire_table;
 };
 
-const devMode = process.env.ENV_MODE === 'production' ? false : true;
+const devMode =
+  process.env.NEXT_PUBLIC_ENV_MODE === 'production' ? false : true;
 
 export const RAID_CONTRACT_ADDRESS = {
   100: '0x18e9262e68cc6c6004db93105cc7c001bb103e49'
