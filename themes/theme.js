@@ -1,10 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 import { createBreakpoints } from '@chakra-ui/theme-tools';
 
-import { Heading } from './components/Heading';
-import { Text } from './components/Text';
-import { Button } from './components/Button';
-
 import { logos, illustrations } from '../utils/constants';
 
 const breakpoints = createBreakpoints({
@@ -34,11 +30,6 @@ export const theme = extendTheme({
     rubik: `'Rubik Mono One', sans-serif`,
     uncial: `'Uncial Antiqua', cursive`,
     spaceMono: `'Space Mono', monospace;`
-  },
-  components: {
-    Heading,
-    Text,
-    Button
   },
   images: {
     metachilli: logos.meta_chilli,

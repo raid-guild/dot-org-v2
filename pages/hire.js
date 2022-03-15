@@ -13,27 +13,23 @@ import { Header } from '../shared/Header';
 import { Footer } from '../shared/Footer';
 import { FAQ } from '../shared/Faq';
 
-import { Intro } from '../views/joinus/Intro';
-import { StepOne } from '../views/joinus/StepOne';
-import { StepTwo } from '../views/joinus/StepTwo';
-import { StepThree } from '../views/joinus/StepThree';
-import { StepFour } from '../views/joinus/StepFour';
-import { StepFive } from '../views/joinus/StepFive';
-import { StepSix } from '../views/joinus/StepSix';
-import { Confirmation } from '../views/joinus/Confirmation';
+import { Intro } from '../views/hireus/Intro';
+import { StepOne } from '../views/hireus/StepOne';
+import { StepTwo } from '../views/hireus/StepTwo';
+import { StepThree } from '../views/hireus/StepThree';
+import { StepFour } from '../views/hireus/StepFour';
+import { Confirmation } from '../views/hireus/Confirmation';
 
 import { StyledSecondaryHeading } from '../themes/styled';
 
 const stageHeadings = {
-  1: 'A Quick Intro',
-  2: 'Your Social Presence',
-  3: 'Your SkillSet',
-  4: 'Tell Us More',
-  5: 'Your Crypto Journey',
-  6: 'Guild Readiness'
+  1: 'Personal Details',
+  2: 'Project Details',
+  3: 'Required Services',
+  4: 'Additional Information'
 };
 
-const Join = () => {
+const Hire = () => {
   const context = useContext(AppContext);
 
   const [windowWidth, setWindowWidth] = useState('');
@@ -71,7 +67,7 @@ const Join = () => {
         <Header windowWidth={windowWidth} />
       </Box>
 
-      {context.stage > 1 && context.stage < 8 && (
+      {context.stage > 1 && context.stage < 6 && (
         <Flex
           direction='row'
           alignItems='center'
@@ -82,7 +78,7 @@ const Join = () => {
           <CircularProgress
             value={context.stage - 1}
             thickness='4px'
-            max={6}
+            max={4}
             color='red'
           >
             <CircularProgressLabel
@@ -106,10 +102,8 @@ const Join = () => {
       {context.stage === 2 && <StepOne />}
       {context.stage === 3 && <StepTwo />}
       {context.stage === 4 && <StepThree />}
-      {context.stage === 5 && <StepFour />}
-      {context.stage === 6 && <StepFive windowWidth={windowWidth} />}
-      {context.stage === 7 && <StepSix />}
-      {context.stage === 8 && <Confirmation />}
+      {context.stage === 5 && <StepFour windowWidth={windowWidth} />}
+      {context.stage === 6 && <Confirmation />}
 
       <FAQ />
       <Footer />
@@ -117,4 +111,4 @@ const Join = () => {
   );
 };
 
-export default Join;
+export default Hire;

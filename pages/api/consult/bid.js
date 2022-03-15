@@ -1,5 +1,4 @@
-import { joinTable } from '../../../config';
-import { withToken } from '../../../middlewares/withToken';
+import { hireTable } from '../../../config';
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -10,14 +9,17 @@ const handler = async (req, res) => {
 
   if (req.method === 'POST') {
     try {
-      const submissions_table = await joinTable();
-      await submissions_table.create(req.body);
+      const submissions_table = await hireTable();
+      await submissions_table.update(req.body.id, {
+        'Bid Hash': req.body.bid_hash,
+        'Bid Amount': req.body.bid_amount
+      });
       res.status(201).json(req.body);
     } catch (err) {
-      console.error(err);
+      console.log(err);
       res.status(500).json('Internal server error');
     }
   }
 };
 
-export default withToken(handler);
+export default handler;

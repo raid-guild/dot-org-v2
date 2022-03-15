@@ -1,60 +1,76 @@
 import React, { Component, createContext } from 'react';
 
-import Web3 from 'web3';
-import { ethers, utils } from 'ethers';
-import Web3Modal from 'web3modal';
-import WalletConnectProvider from '@walletconnect/web3-provider';
-
-import {
-  submitApplicationToMongo,
-  submitApplicationToAirtable,
-  notifyApplicationSubmission
-} from '../utils/requests';
-import { getENSFromAddress, getSignature } from '../utils/web3';
-
 export const AppContext = createContext();
 
 class AppContextProvider extends Component {
   state = {
     // UX state
     stage: 1,
-    submitting: false,
-    submitLoadingText: '',
     faqModalStatus: false,
+    showAlertModal: false,
+    faqType: '',
     //web3 state
     ethersProvider: null,
-    // Personal Info state
-    name: '',
-    email: '',
-    bio: '',
-    goals: '',
-    discordHandle: '',
-    telegramHandle: '',
-    twitterHandle: '',
-    githubHandle: '',
-    ethereumAddress: '',
-    ensAddress: 'Not Found',
-    primarySkills: [],
-    secondarySkills: [],
-    classType: '',
-    passion: '',
-    favoriteMedia: '',
-    thrills: '',
-    interest: '',
-    cryptoExp: '',
-    daoFamiliarity: '',
-    availability: '',
-    comments: '',
-    handbookRead: false,
-    pledgeReadiness: false
+    web3: null,
+    signerAddress: null,
+    signerEns: null,
+    chainId: null,
+    //join state
+    j_name: '',
+    j_email: '',
+    j_bio: '',
+    j_goals: '',
+    j_discordHandle: '',
+    j_telegramHandle: '',
+    j_twitterHandle: '',
+    j_githubHandle: '',
+    j_primarySkills: [],
+    j_secondarySkills: [],
+    j_classType: '',
+    j_passion: '',
+    j_favoriteMedia: '',
+    j_thrills: '',
+    j_interest: '',
+    j_cryptoExp: '',
+    j_daoFamiliarity: '',
+    j_availability: '',
+    j_comments: '',
+    j_handbookRead: false,
+    j_pledgeReadiness: false,
+    // hire state
+    h_name: '',
+    h_email: '',
+    h_bio: '',
+    h_discordHandle: '',
+    h_telegramHandle: '',
+    h_twitterHandle: '',
+    h_githubHandle: '',
+    h_projectType: '',
+    h_specsType: '',
+    h_projectName: '',
+    h_projectLink: '',
+    h_projectDesc: '',
+    h_servicesNeeded: [],
+    h_budgetRange: '',
+    h_expectedDeadline: '',
+    h_specificNeed: '',
+    h_priorities: '',
+    h_submissionHash: '',
+    h_consultationHash: ''
   };
 
   inputChangeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  updateFaqModalStatus = (status) => {
-    this.setState({ faqModalStatus: status });
+  updateFaqModalStatus = (status, faqType) => {
+    this.setState({ faqModalStatus: status, faqType });
+  };
+
+  updateAlertModalStatus = () => {
+    this.setState((prevState) => {
+      return { showAlertModal: !prevState.showAlertModal };
+    });
   };
 
   updateStage = (type) => {
@@ -66,100 +82,53 @@ class AppContextProvider extends Component {
     });
   };
 
-  setSkillSets = (primarySkills, secondarySkills, classType) => {
+  setJoinStepThreeData = (j_primarySkills, j_secondarySkills, j_classType) => {
     this.setState({
-      primarySkills,
-      secondarySkills,
-      classType
+      j_primarySkills,
+      j_secondarySkills,
+      j_classType
     });
   };
 
-  setCryptoData = (daoFamiliarity, availability) => {
+  setJoinStepFiveData = (j_daoFamiliarity, j_availability) => {
     this.setState({
-      daoFamiliarity,
-      availability
+      j_daoFamiliarity,
+      j_availability
     });
   };
 
-  submitData = async (handbookRead, pledgeReadiness) => {
-    this.setState(
-      { handbookRead, pledgeReadiness, submitting: !this.state.submitting },
-      async () => {
-        try {
-          this.setState({ submitLoadingText: 'Awaiting signature..' });
-          const signature = await getSignature(this.state.ethersProvider);
-          if (signature) {
-            this.setState({ submitLoadingText: 'Verifying..' });
-            await submitApplicationToAirtable(this.state, signature);
-            this.setState({ submitLoadingText: 'Sending..' });
-            await submitApplicationToMongo(this.state, signature);
-            this.setState({ submitLoadingText: 'Notifying..' });
-            await notifyApplicationSubmission(this.state, signature);
-          }
-
-          this.setState({ submitting: !this.state.submitting });
-          this.updateStage('next');
-        } catch (err) {
-          this.setState({ submitting: !this.state.submitting });
-        }
-      }
-    );
+  setJoinStepSixData = (j_handbookRead, j_pledgeReadiness) => {
+    this.setState({ j_handbookRead, j_pledgeReadiness });
   };
 
-  connectAccount = async () => {
-    const providerOptions = {
-      walletconnect: {
-        package: WalletConnectProvider,
-        options: {
-          infuraId: process.env.NEXT_PUBLIC_INFURA_ID
-        }
-      }
-    };
-
-    const web3Modal = new Web3Modal({
-      network: 'mainnet',
-      cacheProvider: false,
-      providerOptions
+  setHireStepTwoData = (h_projectType, h_specsType) => {
+    this.setState({
+      h_projectType,
+      h_specsType
     });
+  };
 
-    const provider = await web3Modal.connect();
-    const web3 = new Web3(provider);
-    const accounts = await web3.eth.getAccounts();
-    const address = accounts[0];
-    this.setState({ ethereumAddress: accounts[0] });
+  setHireStepThreeData = (
+    h_servicesNeeded,
+    h_budgetRange,
+    h_expectedDeadline
+  ) => {
+    this.setState({
+      h_servicesNeeded,
+      h_budgetRange,
+      h_expectedDeadline
+    });
+  };
 
-    let ethersProvider;
-    const chainId = await web3.eth.net.getId();
+  setHireStepFourData = (h_priorities) => {
+    this.setState({
+      h_priorities
+    });
+  };
 
-    if (chainId === 1 || chainId === '0x1') {
-      ethersProvider = new ethers.providers.Web3Provider(web3.currentProvider);
-      const ens = await getENSFromAddress(ethersProvider, address);
-      this.setState({ ensAddress: ens, ethersProvider });
-    } else {
-      try {
-        await ethereum.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: '0x1' }]
-        });
-
-        const ethersProvider = new ethers.providers.Web3Provider(
-          web3.currentProvider
-        );
-        const ens = await ethersProvider.lookupAddress(address);
-        this.setState({ ethersProvider: ethersProvider, ensAddress: ens });
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
-    provider.on('accountsChanged', async (accounts) => {
-      ethersProvider = new ethers.providers.Web3Provider(web3.currentProvider);
-      const ens = await getENSFromAddress(ethersProvider, accounts[0]);
-      this.setState({
-        ethersProvider: ethersProvider,
-        ethereumAddress: accounts[0],
-        ensAddress: ens
-      });
+  setWeb3Data = (data) => {
+    this.setState({
+      ...data
     });
   };
 
@@ -169,12 +138,16 @@ class AppContextProvider extends Component {
         value={{
           ...this.state,
           updateStage: this.updateStage,
-          setSkillSets: this.setSkillSets,
-          setCryptoData: this.setCryptoData,
-          submitData: this.submitData,
           inputChangeHandler: this.inputChangeHandler,
           updateFaqModalStatus: this.updateFaqModalStatus,
-          connectAccount: this.connectAccount
+          updateAlertModalStatus: this.updateAlertModalStatus,
+          setJoinStepThreeData: this.setJoinStepThreeData,
+          setJoinStepFiveData: this.setJoinStepFiveData,
+          setJoinStepSixData: this.setJoinStepSixData,
+          setHireStepTwoData: this.setHireStepTwoData,
+          setHireStepThreeData: this.setHireStepThreeData,
+          setHireStepFourData: this.setHireStepFourData,
+          setWeb3Data: this.setWeb3Data
         }}
       >
         {this.props.children}
