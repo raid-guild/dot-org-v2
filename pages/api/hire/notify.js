@@ -10,7 +10,7 @@ const handler = async (req, res) => {
   if (req.method === 'POST') {
     try {
       await axios.post(
-        `${process.env.SENTRY_WEBHOOK}/hireus/consultation`,
+        `${process.env.SENTRY_WEBHOOK}/hireus-v2/submission`,
         req.body
       );
       res.status(201).json(req.body);
