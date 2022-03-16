@@ -41,14 +41,14 @@ export const Footer = () => {
           <StyledFooterHeaderText fontSize='1.2rem'>
             For Clients
           </StyledFooterHeaderText>
-          <Link href='#services'>Hire Us</Link>
-          <Link href='#portfolio'>Our Portfolio</Link>
+          <Link href='/#services'>Hire Us</Link>
+          <Link href='/#portfolio'>Our Portfolio</Link>
         </VStack>
         <VStack alignItems='flex-start'>
           <StyledFooterHeaderText fontSize='1.2rem'>
             For Raiders
           </StyledFooterHeaderText>
-          <Link href='#culture'>Join Us</Link>
+          <Link href='/#culture'>Join Us</Link>
           <Link
             href='https://handbook.raidguild.org'
             target='_blank'

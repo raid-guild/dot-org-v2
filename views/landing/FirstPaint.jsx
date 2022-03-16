@@ -1,4 +1,5 @@
 import { Flex, SimpleGrid, Image } from '@chakra-ui/react';
+import Link from 'next/link';
 
 import { theme } from '../../themes/theme';
 import { Header } from '../../shared/Header';
@@ -42,21 +43,23 @@ export const FirstPaint = ({ windowWidth }) => {
             direction='row'
             justifyContent={{ base: 'center', lg: 'flex-start' }}
           >
-            <StyledPrimaryButton
-              onClick={() => (window.location.href = '/hire')}
-              minW={{ base: 'auto' }}
-              fontSize={{ base: '16px', lg: '18px' }}
-              mr='1rem'
-            >
-              Hire Us
-            </StyledPrimaryButton>
-            <StyledSecondaryButton
-              onClick={() => (window.location.href = '/join')}
-              minW={{ base: 'auto' }}
-              fontSize={{ base: '16px', lg: '18px' }}
-            >
-              Join Us
-            </StyledSecondaryButton>
+            <Link href='/hire' passHref>
+              <StyledPrimaryButton
+                minW={{ base: 'auto' }}
+                fontSize={{ base: '16px', lg: '18px' }}
+                mr='1rem'
+              >
+                Hire Us
+              </StyledPrimaryButton>
+            </Link>
+            <Link href='/join' passHref>
+              <StyledSecondaryButton
+                minW={{ base: 'auto' }}
+                fontSize={{ base: '16px', lg: '18px' }}
+              >
+                Join Us
+              </StyledSecondaryButton>
+            </Link>
           </Flex>
         </Flex>
         <Image
