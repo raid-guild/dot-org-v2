@@ -96,8 +96,11 @@ const useSubmit = (formType) => {
               ...context,
               h_submissionHash: tx.hash
             });
-            // setSubmissionTextUpdates('Notifying..');
-            // await notifyConsultationRequest(context);
+            setSubmissionTextUpdates('Notifying..');
+            await notifyConsultationRequest({
+              ...context,
+              h_submissionHash: tx.hash
+            });
 
             setSubmissionPendingStatus((prevState) => !prevState);
             context.updateStage('next');

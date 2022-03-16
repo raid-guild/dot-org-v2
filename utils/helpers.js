@@ -136,14 +136,13 @@ export const formatHireUsData = (state, type) => {
     const data = {
       key: process.env.NEXT_PUBLIC_ACCESS_KEY,
       name: state.h_name,
-      bio: state.h_bio,
       discord: state.h_discordHandle,
       project_name: state.h_projectName,
       project_type: state.h_projectType,
       project_link: state.h_projectLink,
-      project_description: state.h_projectDesc,
       services_needed: state.h_servicesNeeded,
-      budget_range: state.h_budgetRange
+      budget_range: state.h_budgetRange,
+      submission_hash: state.h_submissionHash
     };
 
     return data;
