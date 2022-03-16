@@ -43,7 +43,7 @@ export const Intro = () => {
         </StyledBodyText>
 
         <br />
-        <Flex
+        {/* <Flex
           direction='column'
           bgColor='white'
           borderRadius='0.5rem'
@@ -63,7 +63,7 @@ export const Intro = () => {
             will be notified via email when it's time.
           </StyledMessageText>
         </Flex>
-        <br />
+        <br /> */}
 
         <StyledPrimaryButton
           fontSize={{ base: '16px', lg: '18px' }}

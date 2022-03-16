@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { Flex, Link } from '@chakra-ui/react';
+import { Flex, Link as ChakraLink } from '@chakra-ui/react';
+import Link from 'next/link';
 
 import { AppContext } from '../../context/AppContext';
 
@@ -41,13 +42,13 @@ export const Intro = () => {
         <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
           Once you have filled out the form, you will have to pay a 500 $RAID
           application submission fee. After that, you can start making bids in{' '}
-          <Link
+          <ChakraLink
             href='https://bids.raidguild.org/'
             isExternal
             textDecoration='underline'
           >
             the consultation queue to climb the top.
-          </Link>{' '}
+          </ChakraLink>{' '}
           You can track your application and bid status by clicking on "View my
           Submissions" below. Once a bid is accepted, you need to pay a one time
           fee of 15,000 $RAID to secure your spot for a consultation.
@@ -77,13 +78,13 @@ export const Intro = () => {
           <StyledMessageText fontSize={{ base: '1rem', lg: '16px' }}>
             If you made a bid prior to March 15th, 2022, please use the old
             version of the Consultation Queue:{' '}
-            <Link
+            <ChakraLink
               href='https://hireus.raidguild.org'
               isExternal
               textDecoration='underline'
             >
               hireus.raidguild.org
-            </Link>
+            </ChakraLink>
           </StyledMessageText>
         </Flex>
         <br />
@@ -101,13 +102,14 @@ export const Intro = () => {
             New Consultation
           </StyledPrimaryButton>
 
-          <StyledSecondaryButton
-            w='100%'
-            fontSize={{ base: '16px', lg: '18px' }}
-            onClick={() => (window.location.href = '/dashboard')}
-          >
-            View My Submissions
-          </StyledSecondaryButton>
+          <Link href='/dashboard' passHref>
+            <StyledSecondaryButton
+              w='100%'
+              fontSize={{ base: '16px', lg: '18px' }}
+            >
+              View My Submissions
+            </StyledSecondaryButton>
+          </Link>
         </Flex>
       </Flex>
     </>

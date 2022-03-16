@@ -1,5 +1,6 @@
 import React from 'react';
 import { Flex, Image } from '@chakra-ui/react';
+import Link from 'next/link';
 
 import { StyledSecondaryButton } from '../../themes/styled';
 
@@ -45,13 +46,11 @@ export const Confirmation = () => {
         direction={{ base: 'column', md: 'row', lg: 'row' }}
         mt='2rem'
       >
-        <StyledSecondaryButton
-          mr='1rem'
-          mb='1rem'
-          onClick={() => (window.location.href = '/dashboard')}
-        >
-          View My Submissions
-        </StyledSecondaryButton>
+        <Link href='/dashboard' passHref>
+          <StyledSecondaryButton mr='1rem' mb='1rem'>
+            View My Submissions
+          </StyledSecondaryButton>
+        </Link>
         <StyledSecondaryButton
           onClick={() => (window.location.href = 'https://bids.raidguild.org/')}
         >
