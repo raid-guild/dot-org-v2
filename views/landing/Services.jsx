@@ -1,4 +1,5 @@
 import { Flex, VStack, SimpleGrid, Image } from '@chakra-ui/react';
+import Link from 'next/link';
 
 import {
   StyledPrimaryButton,
@@ -37,12 +38,11 @@ export const Services = () => {
           high quality results with quick turnarounds.
         </StyledBodyText>
         <br />
-        <StyledPrimaryButton
-          fontSize={{ base: '16px', lg: '18px' }}
-          onClick={() => (window.location.href = '/hire')}
-        >
-          Hire Us
-        </StyledPrimaryButton>
+        <Link href='/hire' passHref>
+          <StyledPrimaryButton fontSize={{ base: '16px', lg: '18px' }}>
+            Hire Us
+          </StyledPrimaryButton>
+        </Link>
       </VStack>
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 2 }}

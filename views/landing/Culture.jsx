@@ -1,4 +1,5 @@
 import { Flex, VStack, SimpleGrid, Image } from '@chakra-ui/react';
+import Link from 'next/link';
 
 import {
   StyledPrimaryButton,
@@ -36,12 +37,11 @@ export const Culture = () => {
           and bring unique value to the guild.
         </StyledBodyText>
         <br />
-        <StyledPrimaryButton
-          fontSize={{ base: '16px', lg: '18px' }}
-          onClick={() => (window.location.href = '/join')}
-        >
-          Join Us
-        </StyledPrimaryButton>
+        <Link href='/join' passHref>
+          <StyledPrimaryButton fontSize={{ base: '16px', lg: '18px' }}>
+            Join Us
+          </StyledPrimaryButton>
+        </Link>
       </VStack>
 
       <SimpleGrid columns={{ base: 1, md: 3, lg: 3 }} gap={5} mt='6rem'>
