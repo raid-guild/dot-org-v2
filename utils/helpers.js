@@ -61,7 +61,6 @@ export const formatJoinUsData = (state, type) => {
 
   if (type === 'discord') {
     const data = {
-      key: process.env.NEXT_PUBLIC_ACCESS_KEY,
       name: state.j_name,
       bio: state.j_bio,
       goals: state.j_goals,
@@ -134,7 +133,6 @@ export const formatHireUsData = (state, type) => {
 
   if (type === 'discord') {
     const data = {
-      key: process.env.NEXT_PUBLIC_ACCESS_KEY,
       name: state.h_name,
       discord: state.h_discordHandle,
       project_name: state.h_projectName,
