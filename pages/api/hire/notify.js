@@ -1,4 +1,5 @@
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -8,10 +9,17 @@ const handler = async (req, res) => {
   }
 
   if (req.method === 'POST') {
+    const token = jwt.sign({}, process.env.JWT_SECRET, { expiresIn: 5 * 60 });
+
     try {
       await axios.post(
         `${process.env.SENTRY_WEBHOOK}/hireus-v2/submission`,
-        req.body
+        req.body,
+        {
+          headers: {
+            authorization: 'Bearer ' + token
+          }
+        }
       );
       res.status(201).json(req.body);
     } catch (err) {
