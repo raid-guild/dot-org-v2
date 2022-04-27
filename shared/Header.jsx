@@ -1,8 +1,8 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import {
   Button,
   Flex,
-  Image,
+  Box,
   Link as ChakraLink,
   Text,
   Popover,
@@ -10,12 +10,16 @@ import {
   PopoverContent
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { AppContext } from '../context/AppContext';
 import { StyledPrimaryButton } from '../themes/styled';
 import { theme } from '../themes/theme';
 
 import useWallet from '../hooks/useWallet';
+
+import raidguild from '../public/assets/logos/raidguild.webp';
 
 const StyledButton = styled(Button)`
   &::after {
@@ -83,14 +87,13 @@ export const Header = ({ windowWidth, navLinks = true }) => {
       align='center'
       zIndex={5}
     >
-      <Image
-        src={theme.images.raidguild}
-        fallbackSrc='/assets/raidguild__logo.png'
-        alt='RaidGuild'
+      <Box
         width={{ base: '150px', lg: '168px' }}
         onClick={() => (window.location.href = '/')}
         cursor='pointer'
-      />
+      >
+        <Image src={raidguild} priority alt='RaidGuild' />
+      </Box>
 
       {!navLinks && !context.signerAddress && (
         <StyledPrimaryButton onClick={connectWallet}>
@@ -143,15 +146,31 @@ export const Header = ({ windowWidth, navLinks = true }) => {
           fontSize='1.3rem'
           color='red'
         >
-          <ChakraLink href='/#manifesto'>Manifesto</ChakraLink>
-          <ChakraLink href='/#services'>Services</ChakraLink>
-          <ChakraLink href='/#portfolio'>Portfolio</ChakraLink>
-          <ChakraLink href='/join' target='_blank' rel='noopener noreferrer'>
-            Join
-          </ChakraLink>
-          <ChakraLink href='/hire' target='_blank' rel='noopener noreferrer'>
-            Hire
-          </ChakraLink>
+          <Link href='/#manifesto' passHref>
+            <Text cursor='pointer' _hover={{ textDecoration: 'underline' }}>
+              Manifesto
+            </Text>
+          </Link>
+          <Link href='/#services' passHref>
+            <Text cursor='pointer' _hover={{ textDecoration: 'underline' }}>
+              Services
+            </Text>
+          </Link>
+          <Link href='/#portfolio' passHref>
+            <Text cursor='pointer' _hover={{ textDecoration: 'underline' }}>
+              Portfolio
+            </Text>
+          </Link>
+          <Link href='/join' passHref>
+            <Text cursor='pointer' _hover={{ textDecoration: 'underline' }}>
+              Join
+            </Text>
+          </Link>
+          <Link href='/hire' passHref>
+            <Text cursor='pointer' _hover={{ textDecoration: 'underline' }}>
+              Hire
+            </Text>
+          </Link>
         </Flex>
       )}
 

@@ -1,13 +1,15 @@
-import { SimpleGrid, VStack, Image } from '@chakra-ui/react';
+import { SimpleGrid, VStack, Box } from '@chakra-ui/react';
+import Image from 'next/image';
 
-import { theme } from '../../themes/theme';
 import {
   StyledPrimaryButton,
   StyledPrimaryHeading,
   StyledBodyText
 } from '../../themes/styled';
 
-export const Manifesto = () => {
+import raidFantasy from '../../public/assets/illustrations/raid__fantasy.webp';
+
+export const SectionTwo = () => {
   return (
     <SimpleGrid
       id='manifesto'
@@ -17,11 +19,9 @@ export const Manifesto = () => {
       mb='0'
       placeItems='center'
     >
-      <Image
-        src={theme.images.raidFantasy}
-        alt='raid fantasy'
-        width={{ base: '250px', lg: '400px' }}
-      />
+      <Box width={{ base: '250px', lg: '400px' }}>
+        <Image src={raidFantasy} alt='raid fantasy' placeholder='blur' />
+      </Box>
       <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }}>
         <StyledPrimaryHeading fontSize={{ base: '1.5rem', lg: '36px' }}>
           Manifesto

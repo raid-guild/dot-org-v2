@@ -1,6 +1,5 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
-// import sgMail from '@sendgrid/mail';
 
 import { formatJoinUsData, formatHireUsData } from './helpers';
 
@@ -43,7 +42,6 @@ export const submitConsultationToMongo = async (state) => {
 };
 
 export const submitConsultationToAirtable = async (state) => {
-  console.log(state);
   const formattedData = formatHireUsData(state, 'airtable');
   await axios.post('/api/hire/secondary', formattedData);
 };
@@ -105,20 +103,3 @@ export const fetchClientInfoFromAirtable = async (signerAddress) => {
   );
   return result;
 };
-
-// export const applicationConfirmationEmail = async (name, email) => {
-//   sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_KEY);
-//   try {
-//     const msg = {
-//       to: email,
-//       from: process.env.NEXT_PUBLIC_FROM_MAIL,
-//       template_id: process.env.NEXT_PUBLIC_SENDGRID_JOINUS_TEMPLATE_ID,
-//       dynamic_template_data: {
-//         name
-//       }
-//     };
-//     sgMail.send(msg);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };

@@ -1,8 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 import { createBreakpoints } from '@chakra-ui/theme-tools';
 
-import { logos, illustrations } from '../utils/constants';
-
 const breakpoints = createBreakpoints({
   base: '320px',
   md: '580px',
@@ -30,19 +28,6 @@ export const theme = extendTheme({
     rubik: `'Rubik Mono One', sans-serif`,
     uncial: `'Uncial Antiqua', cursive`,
     spaceMono: `'Space Mono', monospace;`
-  },
-  images: {
-    metachilli: logos.meta_chilli,
-    daohaus: logos.daohaus,
-    moloch: logos.moloch,
-    raidguild: logos.raidguild,
-    swords: logos.swords,
-    smartinvoice: logos.smart_invoice,
-    wrapeth: logos.wrapeth,
-    raidBanner: illustrations.raid_banner,
-    raidFantasy: illustrations.raid_fantasy,
-    clouds: illustrations.clouds,
-    steps: illustrations.steps
   },
   breakpoints
 });

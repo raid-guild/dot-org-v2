@@ -1,15 +1,11 @@
-import {
-  Flex,
-  Link,
-  Image,
-  SimpleGrid,
-  VStack,
-  HStack
-} from '@chakra-ui/react';
+import { Flex, Link, Box, SimpleGrid, VStack, HStack } from '@chakra-ui/react';
+import Image from 'next/image';
 
 import { theme } from '../themes/theme';
 
 import { StyledFooterHeaderText } from '../themes/styled';
+
+import raidguild from '../public/assets/logos/raidguild.webp';
 
 export const Footer = () => {
   return (
@@ -22,14 +18,9 @@ export const Footer = () => {
       w='100%'
       bg='black'
     >
-      <Image
-        src={theme.images.raidguild}
-        alt='raidguild logo'
-        width={{ base: '150px', lg: '168px' }}
-        mr='auto'
-        mt='2rem'
-      />
-
+      <Box width={{ base: '150px', lg: '168px' }} mr='auto' mt='2rem'>
+        <Image src={raidguild} alt='raidguild logo' priority />
+      </Box>
       <SimpleGrid
         columns={{ base: 1, md: 3, lg: 3 }}
         spacing={{ base: '2rem', lg: '5rem' }}
