@@ -64,7 +64,7 @@ export const SectionOne = ({ windowWidth }) => {
             </Link>
           </Flex>
         </Flex>
-        <Box width={{ base: '450px', md: '500px', lg: '550px' }}>
+        <Box width={{ md: '500px', lg: '550px' }}>
           <Image src={raidBanner} placeholder='blur' alt='raid-banner' />
         </Box>
       </Flex>
