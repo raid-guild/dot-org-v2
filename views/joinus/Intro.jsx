@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
 
 import {
   StyledPrimaryButton,
   StyledPrimaryHeading,
-  StyledBodyText,
-  StyledMessageText
+  StyledBodyText
 } from '../../themes/styled';
 
 export const Intro = () => {

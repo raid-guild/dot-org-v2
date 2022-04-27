@@ -1,4 +1,4 @@
-import { Flex, Box, useToast } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 import { StyledPrimaryButton, StyledSecondaryButton } from '../themes/styled';
 

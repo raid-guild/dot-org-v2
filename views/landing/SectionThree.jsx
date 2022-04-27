@@ -10,7 +10,7 @@ import {
 } from '../../themes/styled';
 import { services } from '../../utils/constants';
 
-export const Services = () => {
+export const SectionThree = () => {
   return (
     <SimpleGrid
       id='services'

@@ -1,7 +1,7 @@
-import { Flex, SimpleGrid, Image } from '@chakra-ui/react';
+import { Flex, SimpleGrid, Box } from '@chakra-ui/react';
 import Link from 'next/link';
+import Image from 'next/image';
 
-import { theme } from '../../themes/theme';
 import { Header } from '../../shared/Header';
 
 import {
@@ -10,7 +10,9 @@ import {
   StyledPrimaryHeading
 } from '../../themes/styled';
 
-export const FirstPaint = ({ windowWidth }) => {
+import raidBanner from '../../public/assets/illustrations/raid__banner.webp';
+
+export const SectionOne = ({ windowWidth }) => {
   return (
     <SimpleGrid
       rows='1'
@@ -62,12 +64,9 @@ export const FirstPaint = ({ windowWidth }) => {
             </Link>
           </Flex>
         </Flex>
-        <Image
-          src={theme.images.raidBanner}
-          fallbackSrc='/assets/raid__banner.png'
-          alt='raid-banner'
-          width={{ base: '450px', md: '500px', lg: '550px' }}
-        />
+        <Box width={{ base: '450px', md: '500px', lg: '550px' }}>
+          <Image src={raidBanner} placeholder='blur' alt='raid-banner' />
+        </Box>
       </Flex>
     </SimpleGrid>
   );

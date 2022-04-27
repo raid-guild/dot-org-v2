@@ -8,11 +8,13 @@ import { AppContext } from '../context/AppContext';
 
 import { theme } from '../themes/theme';
 
+import { INFURA_ID } from '../config';
+
 const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider,
     options: {
-      infuraId: process.env.NEXT_PUBLIC_INFURA_ID
+      infuraId: INFURA_ID
     }
   }
 };

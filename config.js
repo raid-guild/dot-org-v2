@@ -25,6 +25,9 @@ export const hireTable = async () => {
 const devMode =
   process.env.NEXT_PUBLIC_ENV_MODE === 'production' ? false : true;
 
+export const INFURA_ID = process.env.NEXT_PUBLIC_INFURA_ID;
+export const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+
 export const RAID_CONTRACT_ADDRESS = {
   100: '0x18e9262e68cc6c6004db93105cc7c001bb103e49'
 };

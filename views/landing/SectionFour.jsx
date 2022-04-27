@@ -1,6 +1,6 @@
-import { Flex, Container, Image, HStack, Link } from '@chakra-ui/react';
+import { Flex, Container, HStack, Link, Box } from '@chakra-ui/react';
+import Image from 'next/image';
 
-import { theme } from '../../themes/theme';
 import {
   StyledPrimaryButton,
   StyledPrimaryHeading,
@@ -9,11 +9,14 @@ import {
   StyledFlex
 } from '../../themes/styled';
 
-export const Portfolio = () => {
+import wrapeth from '../../public/assets/logos/wrapeth.webp';
+import smartinvoice from '../../public/assets/logos/smartinvoice.webp';
+
+export const SectionFour = () => {
   return (
     <Container
       id='portfolio'
-      bgImage={`url(${theme.images.clouds})`}
+      bgImage='url(/assets/illustrations/clouds.webp)'
       minW='100%'
       p='0'
     >
@@ -58,14 +61,14 @@ export const Portfolio = () => {
         >
           <StyledFlex minH='250px'>
             <HStack mb='2rem' justifyContent='space-between'>
-              <Image
-                src={theme.images.wrapeth}
-                alt='wrapeth'
+              <Box
                 w='250px'
                 maxW='70%'
                 onClick={() => window.open('https://wrapeth.com/', '_blank')}
                 cursor='pointer'
-              />
+              >
+                <Image src={wrapeth} alt='wrapeth' placeholder='blur' />
+              </Box>
               <Link
                 color='red'
                 fontSize='26px'
@@ -84,16 +87,20 @@ export const Portfolio = () => {
           <br />
           <StyledFlex minH='250px'>
             <HStack mb='2rem' justifyContent='space-between'>
-              <Image
-                src={theme.images.smartinvoice}
-                alt='smart invoice'
+              <Box
                 w='250px'
                 maxW='70%'
                 cursor='pointer'
                 onClick={() =>
                   window.open('https://smartinvoice.xyz/', '_blank')
                 }
-              />
+              >
+                <Image
+                  src={smartinvoice}
+                  alt='smart invoice'
+                  placeholder='blur'
+                />
+              </Box>
               <Link
                 color='red'
                 fontSize='26px'

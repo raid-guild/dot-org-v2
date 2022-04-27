@@ -11,7 +11,7 @@ import {
 
 import { culture } from '../../utils/constants';
 
-export const Culture = () => {
+export const SectionFive = () => {
   return (
     <Flex
       id='culture'

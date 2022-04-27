@@ -1,10 +1,13 @@
 import React from 'react';
-import { Flex, Image } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { StyledSecondaryButton } from '../../themes/styled';
 
 import { StyledSecondaryHeading, StyledBodyText } from '../../themes/styled';
+
+import signalFire from '../../public/assets/illustrations/signal_fire.webp';
 
 export const Confirmation = () => {
   return (
@@ -15,13 +18,9 @@ export const Confirmation = () => {
       px={{ base: '2rem', lg: '5rem' }}
       py='5rem'
     >
-      <Image
-        src='/assets/signal_fire.svg'
-        w='250px'
-        alt='signal fire'
-        mb='2rem'
-      />
-
+      <Box mb='2rem' w='250px'>
+        <Image src={signalFire} placeholder='blur' alt='signal fire' />
+      </Box>
       <StyledSecondaryHeading
         fontSize={{ base: '20px', lg: '26px' }}
         mb='2rem'
