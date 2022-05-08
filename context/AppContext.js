@@ -13,6 +13,7 @@ class AppContextProvider extends Component {
     ethersProvider: null,
     web3: null,
     signerAddress: null,
+    isMember: false,
     signerEns: null,
     chainId: null,
     //join state

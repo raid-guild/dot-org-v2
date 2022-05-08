@@ -50,7 +50,7 @@ const Hire = () => {
       alignItems='center'
     >
       <Box px={{ base: '2rem', lg: '5rem' }} w='100%'>
-        <Header windowWidth={windowWidth} />
+        <Header windowWidth={windowWidth} navLinks={false} />
       </Box>
 
       {context.stage > 1 && context.stage < 6 && (

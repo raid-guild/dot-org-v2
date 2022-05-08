@@ -3,6 +3,8 @@ import { Flex, Link as ChakraLink } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import { AppContext } from '../../context/AppContext';
+import useWarnings from '../../hooks/useWarnings';
+import { theme } from '../../themes/theme';
 
 import {
   StyledPrimaryButton,
@@ -14,6 +16,8 @@ import {
 
 export const Intro = () => {
   const context = useContext(AppContext);
+
+  const { triggerToast } = useWarnings();
   return (
     <>
       <Flex
@@ -31,33 +35,62 @@ export const Intro = () => {
 
         <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
           To request a consultation, please fill out the form starting on the
-          next screen (New Consultation). The more information you can provide
-          about the work you want to hire RaidGuild for, the better. The form
-          will have space for information about you / your team, background, and
-          description for your project, specs for the work, as well as a few
-          questions to give us an initial feel for your needs.
+          next screen after connecting your wallet. The more information you can
+          provide about the work you want to hire RaidGuild for, the better. The
+          form will have space for information about you / your team,
+          background, and description for your project, specs for the work, as
+          well as a few questions to give us an initial feel for your needs.
         </StyledBodyText>
         <br />
 
         <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
-          Once you have filled out the form, you will have to pay a 500 $RAID
-          application submission fee. After that, you can start making bids in{' '}
+          You will be prompted to pay a{' '}
+          <ChakraLink
+            href='https://app.honeyswap.org/#/swap?inputCurrency=0x18e9262e68cc6c6004db93105cc7c001bb103e49&outputCurrency=0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1&chainId=100'
+            isExternal
+            textDecoration='underline'
+            color={theme.colors.red}
+          >
+            500 $RAID
+          </ChakraLink>{' '}
+          application submission fee at the end of the form as a spam filter.
+          Once paid, you will be taken to a client dashboard where you can track
+          the status of all your applications. If you prefer to push your
+          application to the top of all other requests we received, you can
+          start making bids in{' '}
           <ChakraLink
             href='https://bids.raidguild.org/'
             isExternal
             textDecoration='underline'
+            color={theme.colors.red}
           >
-            the consultation queue to climb the top.
+            the consultation queue
           </ChakraLink>{' '}
-          You can track your application and bid status by clicking on "View my
-          Submissions" below. Once a bid is accepted, you need to pay a one time
-          fee of 15,000 $RAID to secure your spot for a consultation.
+          to climb up the queue. Once a bid is accepted, you need to pay a one
+          time fee of{' '}
+          <ChakraLink
+            href='https://app.honeyswap.org/#/swap?inputCurrency=0x18e9262e68cc6c6004db93105cc7c001bb103e49&outputCurrency=0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1&chainId=100'
+            isExternal
+            textDecoration='underline'
+            color={theme.colors.red}
+          >
+            15000 $RAID
+          </ChakraLink>{' '}
+          to secure your spot for a consultation from your dashboard.
         </StyledBodyText>
         <br />
 
         <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
-          For more info about the consultation process, please refer to our
-          DOCS.
+          For more info about the consultation process, please refer to our{' '}
+          <ChakraLink
+            href='https://handbook.raidguild.org/'
+            isExternal
+            textDecoration='underline'
+            color={theme.colors.red}
+          >
+            docs
+          </ChakraLink>
+          .
         </StyledBodyText>
         <br />
 
@@ -89,28 +122,34 @@ export const Intro = () => {
         </Flex>
         <br />
 
-        <Flex w='100%' direction={{ base: 'column', md: 'row', lg: 'row' }}>
-          <StyledPrimaryButton
-            w='100%'
-            mr='1rem'
-            mb='1rem'
-            fontSize={{ base: '16px', lg: '18px' }}
-            onClick={() => {
-              context.updateStage('next');
-            }}
-          >
-            New Consultation
-          </StyledPrimaryButton>
-
-          <Link href='/dashboard' passHref>
-            <StyledSecondaryButton
+        {context.signerAddress && (
+          <Flex w='100%' direction={{ base: 'column', md: 'row', lg: 'row' }}>
+            <StyledPrimaryButton
               w='100%'
+              mr='1rem'
+              mb='1rem'
               fontSize={{ base: '16px', lg: '18px' }}
+              onClick={() => {
+                if (context.chainId !== 100) {
+                  triggerToast('Please switch to the Gnosis Network.');
+                  return;
+                }
+                context.updateStage('next');
+              }}
             >
-              View My Submissions
-            </StyledSecondaryButton>
-          </Link>
-        </Flex>
+              New Consultation
+            </StyledPrimaryButton>
+
+            <Link href='/dashboard' passHref>
+              <StyledSecondaryButton
+                w='100%'
+                fontSize={{ base: '16px', lg: '18px' }}
+              >
+                View My Submissions
+              </StyledSecondaryButton>
+            </Link>
+          </Flex>
+        )}
       </Flex>
     </>
   );

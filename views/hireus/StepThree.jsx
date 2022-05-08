@@ -90,7 +90,7 @@ export const StepThree = () => {
           </FormControl>
 
           <FormControl isRequired fontFamily='spaceMono' color='white'>
-            <FormLabel>Safety Valve Date</FormLabel>
+            <FormLabel>Expected Deadline</FormLabel>
 
             <StyledInput
               type='date'
