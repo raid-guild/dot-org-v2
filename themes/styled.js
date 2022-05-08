@@ -63,7 +63,7 @@ export const StyledBodyText = styled(Text)`
   font-family: ${theme.fonts.texturina};
   line-height: 1.8;
   color: white;
-  text-align: justify;
+  /* text-align: justify; */
 `;
 
 export const StyledCardText = styled(Text)`

@@ -60,7 +60,30 @@ const useSubmit = (formType) => {
         return;
       }
 
-      if (context.chainId === 100) {
+      //if member
+      if (context.chainId === 100 && context.isMember) {
+        setSubmissionPendingStatus((prevState) => !prevState);
+        setSubmissionTextUpdates('Sending request..');
+        await submitConsultationToAirtable({
+          ...context,
+          h_submissionHash: null
+        });
+        await submitConsultationToMongo({
+          ...context,
+          h_submissionHash: null
+        });
+        setSubmissionTextUpdates('Notifying..');
+        await notifyConsultationRequest({
+          ...context,
+          h_submissionHash: null
+        });
+
+        setSubmissionPendingStatus((prevState) => !prevState);
+        context.updateStage('next');
+      }
+
+      // if not a member
+      if (context.chainId === 100 && !context.isMember) {
         setSubmissionPendingStatus((prevState) => !prevState);
         setSubmissionTextUpdates('Checking Balance..');
 

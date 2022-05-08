@@ -27,7 +27,7 @@ import useWallet from '../../hooks/useWallet';
 import useSubmit from '../../hooks/useSubmit';
 import useWarnings from '../../hooks/useWarnings';
 
-import { CONSULTATION_REQUEST_FEE, SUBMISSION_REQUEST_FEE } from '../../config';
+import { SUBMISSION_REQUEST_FEE } from '../../config';
 
 export const StepFour = ({ windowWidth }) => {
   const context = useContext(AppContext);
@@ -147,6 +147,11 @@ export const StepFour = ({ windowWidth }) => {
           isLoading={submissionPendingStatus}
           loadingText={submissionTextUpdates}
           onClick={() => {
+            if (context.chainId !== 100) {
+              triggerToast('Please switch to the Gnosis Network.');
+              return;
+            }
+
             if (disclaimerStatus) {
               paymentHandler();
             } else {
@@ -156,7 +161,9 @@ export const StepFour = ({ windowWidth }) => {
         >
           {disclaimerStatus
             ? context.signerAddress
-              ? `PAY ${SUBMISSION_REQUEST_FEE} $RAID`
+              ? !context.isMember
+                ? `PAY ${SUBMISSION_REQUEST_FEE} $RAID`
+                : 'SUBMIT'
               : 'CONNECT WALLET'
             : 'SUBMIT'}
         </StyledPrimaryButton>
@@ -174,37 +181,46 @@ export const StepFour = ({ windowWidth }) => {
               Disclaimer
             </AlertDialogHeader>
 
-            <AlertDialogBody fontFamily='jetbrains'>
-              There's a one time 500 $RAID fee required to submit your
-              application to filter spams. Make sure you have enough $RAID in
-              your wallet.
-              <br />
-              <br />
-              Once the application is submitted, you can start{' '}
-              <a
-                style={{ textDecoration: 'underline' }}
-                href='https://bids.raidguild.org/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                bidding
-              </a>{' '}
-              to move up in the queue for your submission to get eligible for a
-              consultation.
-              <br />
-              <br />
-              You can view your application status on the{' '}
-              <a
-                style={{ textDecoration: 'underline' }}
-                href='/dashboard'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                dashboard
-              </a>
-              . On successful acceptance of a bid, you can secure your
-              consultation with the guild by paying $15000 $RAID.
-            </AlertDialogBody>
+            {!context.isMember && (
+              <AlertDialogBody fontFamily='jetbrains'>
+                There's a one time 500 $RAID fee required to submit your
+                application to filter spams. Make sure you have enough $RAID in
+                your wallet.
+                <br />
+                <br />
+                Once the application is submitted, you can start{' '}
+                <a
+                  style={{ textDecoration: 'underline' }}
+                  href='https://bids.raidguild.org/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  bidding
+                </a>{' '}
+                to move up in the queue for your submission to get eligible for
+                a consultation.
+                <br />
+                <br />
+                You can view your application status on the{' '}
+                <a
+                  style={{ textDecoration: 'underline' }}
+                  href='/dashboard'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  dashboard
+                </a>
+                . On successful acceptance of a bid, you can secure your
+                consultation with the guild by paying $15000 $RAID.
+              </AlertDialogBody>
+            )}
+
+            {context.isMember && (
+              <AlertDialogBody fontFamily='jetbrains'>
+                You are connected as a RaidGuild Member and can submit your
+                application without paying a fee.
+              </AlertDialogBody>
+            )}
 
             <AlertDialogFooter>
               <StyledSecondaryButton
@@ -215,11 +231,12 @@ export const StepFour = ({ windowWidth }) => {
                 Cancel
               </StyledSecondaryButton>
               <StyledPrimaryButton
+                w='100%'
                 className='dialog-button-select'
                 onClick={modalConfirmHandler}
                 ml={3}
               >
-                Continue to payment
+                Proceed
               </StyledPrimaryButton>
             </AlertDialogFooter>
           </AlertDialogContent>

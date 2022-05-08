@@ -9,6 +9,7 @@ import { AppContext } from '../context/AppContext';
 import { theme } from '../themes/theme';
 
 import { INFURA_ID } from '../config';
+import { getMemberShares } from '../utils/web3';
 
 const providerOptions = {
   walletconnect: {
@@ -26,6 +27,15 @@ const useWallet = (requireEns) => {
     if (chainId !== 1) return null;
     const ens = await ethersProvider.lookupAddress(address);
     return ens;
+  };
+
+  const validateMembership = async (signerAddress, ethersProvider) => {
+    try {
+      let memberInfo = await getMemberShares(signerAddress, ethersProvider);
+      context.setWeb3Data({ isMember: memberInfo[3] });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const setWeb3Provider = async (modalProvider) => {
@@ -47,6 +57,8 @@ const useWallet = (requireEns) => {
 
     const signerEns =
       (await fetchEns(chainId, ethersProvider, signerAddress)) || 'Not Found';
+
+    if (chainId === 100) validateMembership(signerAddress, ethersProvider);
 
     context.setWeb3Data({
       ethersProvider,
@@ -88,14 +100,20 @@ const useWallet = (requireEns) => {
             signerAddress
           )) || 'Not Found';
 
+        if (Number(modalProvider.chainId) === 100)
+          validateMembership(signerAddress, ethersProvider);
+
         context.setWeb3Data({ ethersProvider, signerAddress, signerEns });
       });
 
-      modalProvider.on('chainChanged', (_chainId) => {
+      modalProvider.on('chainChanged', async (_chainId) => {
         const chainId = Number(_chainId);
         const ethersProvider = new providers.Web3Provider(modalProvider);
+        const signerAddress = await ethersProvider.getSigner().getAddress();
 
-        context.setWeb3Data({ chainId, ethersProvider });
+        if (chainId === 100) validateMembership(signerAddress, ethersProvider);
+
+        context.setWeb3Data({ chainId, ethersProvider, signerAddress });
       });
     } catch (err) {
       console.log(err);

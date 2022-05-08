@@ -1,4 +1,5 @@
 import { Contract, utils } from 'ethers';
+import { DAO_ADDRESS } from '../config';
 import { message_to_sign_join } from './constants';
 
 export const getENSFromAddress = async (ethersProvider, address) => {
@@ -31,4 +32,13 @@ export const payWithRaidToken = async (
   ]);
   const contract = new Contract(address, abi, ethersProvider.getSigner());
   return contract.transfer(recipient, amount);
+};
+
+export const getMemberShares = async (signerAddress, ethersProvider) => {
+  const abi = new utils.Interface([
+    'function members(address account) view returns (address, uint256, uint256, bool, uint256, uint256)'
+  ]);
+  const contract = new Contract(DAO_ADDRESS[100], abi, ethersProvider);
+  const member = await contract.members(signerAddress);
+  return member;
 };
