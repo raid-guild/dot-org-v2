@@ -46,9 +46,7 @@ export default class MolochFight extends PIXI.Container {
     this.addChild(this.moloch_horns)
     this.interactive = true
     this.on('mousemove', this.mousemove).on('touchmove', this.mousemove)
-    console.log(this.fighters)
     document.addEventListener('click', (event) => {
-        console.log(event, 'click')
         for (let i = 0; i < this.fighters.length; i++) {
           const fighter = this.fighters[i]
           const bounds = fighter.getBounds()
