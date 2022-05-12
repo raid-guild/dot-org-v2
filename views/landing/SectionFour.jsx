@@ -16,7 +16,7 @@ export const SectionFour = () => {
   return (
     <Container
       id='portfolio'
-      bgImage='url(/assets/illustrations/clouds.webp)'
+      //bgImage='url(/assets/illustrations/clouds.webp)'
       minW='100%'
       p='0'
     >

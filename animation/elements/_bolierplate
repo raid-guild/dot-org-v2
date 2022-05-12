@@ -1,0 +1,23 @@
+import * as PIXI from 'pixi.js'
+import pixi_app from '../base/pixi_app.js'
+import { debounce, backgroundSize } from '../base/utils/helpers'
+import { gsap } from 'gsap'
+
+export default class ELEMENT extends PIXI.Container {
+  constructor() {
+    super()
+  }
+  init() {
+    //pixi_app.ticker.add(() => {})
+
+    window.addEventListener(
+      'resize',
+      debounce((e) => {
+        this.size()
+      }, 1500)
+    )
+    this.size()
+  }
+  mousemove(x, y) {}
+  size() {}
+}
