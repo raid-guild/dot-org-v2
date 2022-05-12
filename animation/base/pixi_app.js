@@ -49,14 +49,19 @@ const colors = {
 const fighter_element = document.getElementById('raid-banner')
 const fantasy_element = document.getElementById('raid-fantasy')
 const clouds_element = document.getElementById('portfolio')
+const placeholder = document.getElementById('raid-banner-placeholder')
 
+// gsap.to(placeholder, { alpha: 1, duration: 0.5 })
 
 pixi_app.loader.onComplete.add(() => {
   const scene_container = new PIXI.Container()
   scene_container.interactive = true
   scene_container.on('mousemove', onPointerMove).on('touchmove', onPointerMove)
   scene_container.alpha = 0
-  gsap.to(scene_container, { alpha: 1, duration: 1.5, delay: 0 })
+  gsap.killTweensOf(placeholder)
+  gsap.to(placeholder, { alpha: 0, scale: 0, duration: 0.5 })
+  gsap.to(scene_container, { alpha: 1, duration: 1.5, delay: 0.25 })
+
   pixi_app.stage.addChild(scene_container)
   
   // Define background gradient
