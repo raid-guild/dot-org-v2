@@ -11,8 +11,7 @@ import {
   StyledPrimaryHeading
 } from '../../themes/styled';
 
-import raidBanner from '../../public/assets/illustrations/raid__banner.webp'
-import molochEyes from '../../public/animation/img/moloch__eyes-color.png'
+// import raidBanner from '../../public/assets/illustrations/raid__banner.webp'
 
 const StyledAnimationReferenceElement = styled('div')`
   width: 550px;
