@@ -9,7 +9,7 @@ import { SectionFour } from '../views/landing/SectionFour';
 import { SectionFive } from '../views/landing/SectionFive';
 import { SectionSix } from '../views/landing/SectionSix';
 import { Footer } from '../shared/Footer';
-import { Animation } from '../views/animation/Animation';
+import { Animation } from '../views/animation/animation';
 
 const wrapper_style = {
   position: 'relative',

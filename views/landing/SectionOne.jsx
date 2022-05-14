@@ -125,7 +125,7 @@ export const SectionOne = ({ windowWidth }) => {
         <Box width={{ md: '500px', lg: '550px' }}>
           <StyledAnimationReferenceElement id="raid-banner">
             <figure id="raid-banner-placeholder">
-              <div class="lds-ellipsis">
+              <div className="lds-ellipsis">
                 <div></div>
                 <div></div>
                 <div></div>
