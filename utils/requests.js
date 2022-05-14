@@ -38,7 +38,8 @@ export const notifyApplicationSubmission = async (state, signature) => {
 
 export const submitConsultationToMongo = async (state) => {
   const formattedData = formatHireUsData(state, 'mongo');
-  await axios.post('/api/hire/primary', formattedData);
+  const { data } = await axios.post('/api/hire/primary', formattedData);
+  return data;
 };
 
 export const submitConsultationToAirtable = async (state) => {
