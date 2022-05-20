@@ -8,12 +8,11 @@ import { gsap } from 'gsap'
 const pixi_app = new PIXI.Application({
   width: window.innerWidth,
   height: window.innerHeight,
-  backgroundColor: 0x000000
+  backgroundColor: 0x000000,
 })
 
 pixi_app.loader
   .add('spray_circ', '/animation/img/spray_circ.png')
-  .add('logo', '/animation/img/logo_logotype__white-optimized.png')
   .add('rf_purple', '/animation/img/raid__fantasy__purple.png')
   .add('rf_yellow', '/animation/img/raid__fantasy__red.png')
   .add('rf_red', '/animation/img/raid__fantasy__silver.png')
@@ -40,10 +39,10 @@ const colors = {
   purp: 0xb66ad6,
   grey: 0x2b2c34,
   black: 0x000000,
-  g1: 0x24003A,
+  g1: 0x24003a,
   g2: 0x170011,
   g3: 0x130000,
-  g4: 0x330F00
+  g4: 0x330f00,
 }
 
 const fighter_element = document.getElementById('raid-banner')
@@ -63,10 +62,10 @@ pixi_app.loader.onComplete.add(() => {
   gsap.to(scene_container, { alpha: 1, duration: 1.5, delay: 0.25 })
 
   pixi_app.stage.addChild(scene_container)
-  
+
   // Define background gradient
   const background_clouds = new BackgroundClouds()
-  
+
   // Define Moloch fight
   const fighters = new MolochFight()
 
@@ -78,7 +77,7 @@ pixi_app.loader.onComplete.add(() => {
   const clouds = new PIXI.Sprite(pixi_app.loader.resources.clouds.texture)
   clouds.anchor.set(0.5)
   clouds.x = pixi_app.renderer.width / 2
-  
+
   // Define displacement
   let displace_move_timeout
   let displace_can_move = true
@@ -86,7 +85,7 @@ pixi_app.loader.onComplete.add(() => {
   let displace_speed_y = 1
   const displacer = new PIXI.Sprite(pixi_app.loader.resources.spray_circ.texture)
   displacer.anchor.set(0.5)
-  displacer.scale.set(0.1, 0.1)
+  displacer.scale.set(0.5, 0.5)
   displacer.x = pixi_app.renderer.width / 2
   displacer.y = pixi_app.renderer.height / 2
   const displacementFilter = new PIXI.filters.DisplacementFilter(displacer)
@@ -98,8 +97,6 @@ pixi_app.loader.onComplete.add(() => {
   scene_container.addChild(fantasy)
   scene_container.addChild(clouds)
   scene_container.addChild(displacer)
-
-
 
   function onPointerMove(eventData) {
     clearTimeout(displace_move_timeout)
