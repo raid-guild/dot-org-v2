@@ -85,7 +85,7 @@ pixi_app.loader.onComplete.add(() => {
   let displace_speed_y = 1
   const displacer = new PIXI.Sprite(pixi_app.loader.resources.spray_circ.texture)
   displacer.anchor.set(0.5)
-  displacer.scale.set(0.5, 0.5)
+  displacer.scale.set(0.1, 0.1)
   displacer.x = pixi_app.renderer.width / 2
   displacer.y = pixi_app.renderer.height / 2
   const displacementFilter = new PIXI.filters.DisplacementFilter(displacer)
