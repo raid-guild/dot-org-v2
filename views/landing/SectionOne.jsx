@@ -11,7 +11,6 @@ import {
   StyledPrimaryHeading
 } from '../../themes/styled';
 
-// import raidBanner from '../../public/assets/illustrations/raid__banner.webp'
 
 const StyledAnimationReferenceElement = styled('div')`
   width: 550px;

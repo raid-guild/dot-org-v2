@@ -7,18 +7,16 @@ import {
   StyledBodyText
 } from '../../themes/styled';
 
-import raidFantasy from '../../public/assets/illustrations/raid__fantasy.webp';
-
 import styled from '@emotion/styled'
 
 const StyledAnimationReferenceElement = styled('div')`
   width: 400px;
+  background: rgba(255, 255, 0, 0.3);
   margin-left: -5%;
 
   > div {
     width: 100%;
     padding-bottom: 146%;
-    border: 1px solid aqua;
     margin-left: 5%;
   }
   @media only screen and (max-width: 600px) {
