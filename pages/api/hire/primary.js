@@ -11,7 +11,7 @@ const handler = async (req, res) => {
   if (req.method === 'POST') {
     try {
       const token = sign(req.body, process.env.JWT_SECRET);
-      await axios.post(
+      const { data } = await axios.post(
         `${process.env.DM_ENDPOINT}/create/consultation`,
         req.body,
         {
@@ -20,7 +20,7 @@ const handler = async (req, res) => {
           }
         }
       );
-      res.status(201).json(req.body);
+      res.status(201).json(data);
     } catch (err) {
       console.error(err);
       res.status(500).json('Internal server error');

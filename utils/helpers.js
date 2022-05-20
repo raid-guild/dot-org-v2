@@ -140,7 +140,8 @@ export const formatHireUsData = (state, type) => {
       project_link: state.h_projectLink,
       services_needed: state.h_servicesNeeded,
       budget_range: state.h_budgetRange,
-      submission_hash: state.h_submissionHash
+      submission_hash: state.h_submissionHash,
+      consultation_id: state.h_id
     };
 
     return data;
