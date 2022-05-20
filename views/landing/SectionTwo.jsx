@@ -13,7 +13,6 @@ import styled from '@emotion/styled'
 
 const StyledAnimationReferenceElement = styled('div')`
   width: 400px;
-  background: rgba(255, 255, 0, 0.3);
   margin-left: -5%;
 
   > div {
