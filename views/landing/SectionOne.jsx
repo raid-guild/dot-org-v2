@@ -95,7 +95,6 @@ export const SectionOne = ({ windowWidth }) => {
   return (
     <SimpleGrid
       rows="1"
-      // placeItems="center"
       border="2px solid"
       borderColor="red"
       py="2rem"
@@ -133,7 +132,6 @@ export const SectionOne = ({ windowWidth }) => {
           </figure>
           <div></div>
         </StyledAnimationReferenceElement>
-        {/* <Box width={{ md: '500px', lg: '550px' }}></Box> */}
       </Flex>
     </SimpleGrid>
   )
