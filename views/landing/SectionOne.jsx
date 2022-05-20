@@ -95,7 +95,7 @@ export const SectionOne = ({ windowWidth }) => {
   return (
     <SimpleGrid
       rows="1"
-      placeItems="center"
+      // placeItems="center"
       border="2px solid"
       borderColor="red"
       py="2rem"
@@ -122,19 +122,18 @@ export const SectionOne = ({ windowWidth }) => {
             </Link>
           </Flex>
         </Flex>
-        <Box width={{ md: '500px', lg: '550px' }}>
-          <StyledAnimationReferenceElement id="raid-banner">
-            <figure id="raid-banner-placeholder">
-              <div className="lds-ellipsis">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>{' '}
-            </figure>
-            <div></div>
-          </StyledAnimationReferenceElement>
-        </Box>
+        <StyledAnimationReferenceElement id="raid-banner">
+          <figure id="raid-banner-placeholder">
+            <div className="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>{' '}
+          </figure>
+          <div></div>
+        </StyledAnimationReferenceElement>
+        {/* <Box width={{ md: '500px', lg: '550px' }}></Box> */}
       </Flex>
     </SimpleGrid>
   )

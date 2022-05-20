@@ -13,9 +13,14 @@ import styled from '@emotion/styled'
 
 const StyledAnimationReferenceElement = styled('div')`
   width: 400px;
+  background: rgba(255, 255, 0, 0.3);
+  margin-left: -5%;
+
   > div {
     width: 100%;
     padding-bottom: 146%;
+    border: 1px solid aqua;
+    margin-left: 5%;
   }
   @media only screen and (max-width: 600px) {
     width: 250px;
@@ -32,10 +37,8 @@ export const SectionTwo = () => {
       mb='0'
       placeItems='center'
     >
-      <Box width={{ base: '250px', lg: '400px' }}>
-        <StyledAnimationReferenceElement id="raid-fantasy"><div></div></StyledAnimationReferenceElement>
-        {/* <Image src={raidFantasy} alt='raid fantasy' placeholder='blur' /> */}
-      </Box>
+     <StyledAnimationReferenceElement id="raid-fantasy"><div></div></StyledAnimationReferenceElement>
+
       <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }}>
         <StyledPrimaryHeading fontSize={{ base: '1.5rem', lg: '36px' }}>
           Manifesto
