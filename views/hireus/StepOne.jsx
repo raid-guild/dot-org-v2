@@ -79,10 +79,6 @@ export const StepOne = () => {
         spacing={{ base: 0, lg: 5 }}
       >
         <FormControl
-          isRequired
-          isInvalid={
-            context.h_discordHandle === '' && buttonClick ? true : false
-          }
           fontFamily='spaceMono'
           color='white'
           mb={10}
@@ -139,8 +135,7 @@ export const StepOne = () => {
         stageRule={
           context.h_name &&
           context.h_email &&
-          context.h_bio &&
-          context.h_discordHandle
+          context.h_bio
         }
       />
     </Flex>
