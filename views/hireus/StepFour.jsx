@@ -9,7 +9,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogContent,
-  AlertDialogOverlay
+  AlertDialogOverlay,
+  Link,
 } from '@chakra-ui/react';
 
 import { AppContext } from '../../context/AppContext';
@@ -22,6 +23,7 @@ import {
   StyledPrimaryButton,
   StyledSecondaryButton
 } from '../../themes/styled';
+import { theme } from '../../themes/theme';
 
 import useWallet from '../../hooks/useWallet';
 import useSubmit from '../../hooks/useSubmit';
@@ -167,6 +169,16 @@ export const StepFour = ({ windowWidth }) => {
               : 'CONNECT WALLET'
             : 'SUBMIT'}
         </StyledPrimaryButton>
+      </Flex>
+      <Flex justify="flex-end" mt="1rem">
+        <Link
+          href='https://docs.google.com/forms/d/e/1FAIpQLSdxSnfKxvo6v7eo5dJ4j445-QhvkCq05GbJpcy5r8qWiYgqlQ/viewform?usp=sf_link'
+          isExternal
+          textDecoration='underline'
+          color={theme.colors.red}
+        >
+          Don't want to pay in $RAID? Give feedback here
+        </Link>
       </Flex>
 
       <AlertDialog
