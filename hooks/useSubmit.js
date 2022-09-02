@@ -116,13 +116,14 @@ const useSubmit = (formType) => {
               ...context,
               h_submissionHash: tx.hash
             });
-            await submitConsultationToMongo({
+            const record = await submitConsultationToMongo({
               ...context,
               h_submissionHash: tx.hash
             });
             setSubmissionTextUpdates('Notifying..');
             await notifyConsultationRequest({
               ...context,
+              h_id: record._id,
               h_submissionHash: tx.hash
             });
 
