@@ -18,6 +18,7 @@ export const Intro = () => {
   const context = useContext(AppContext);
 
   const { triggerToast } = useWarnings();
+
   return (
     <>
       <Flex
@@ -81,14 +82,14 @@ export const Intro = () => {
         <br />
 
         <StyledBodyText fontSize={{ base: '1rem', lg: '18px' }}>
-          For more info about the consultation process, please refer to our{' '}
+          For more info about the consultation process, join our {' '}
           <ChakraLink
             href='https://handbook.raidguild.org/'
             isExternal
             textDecoration='underline'
             color={theme.colors.red}
           >
-            docs
+            discord.
           </ChakraLink>
           .
         </StyledBodyText>
@@ -130,8 +131,8 @@ export const Intro = () => {
               mb='1rem'
               fontSize={{ base: '16px', lg: '18px' }}
               onClick={() => {
-                if (context.chainId !== 100) {
-                  triggerToast('Please switch to the Gnosis Network.');
+                if (context.chainId !== 100 && context.chainId !== 1) {
+                  triggerToast('Please switch to the Gnosis or Mainnet Networks.');
                   return;
                 }
                 context.updateStage('next');

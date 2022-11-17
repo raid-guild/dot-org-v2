@@ -34,6 +34,7 @@ export const Footer = () => {
           </StyledFooterHeaderText>
           <Link href='/#services'>Hire Us</Link>
           <Link href='/#portfolio'>Our Portfolio</Link>
+          <Link href='/#portfolio'>Ask Questions</Link>
         </VStack>
         <VStack alignItems='flex-start'>
           <StyledFooterHeaderText fontSize='1.2rem'>
