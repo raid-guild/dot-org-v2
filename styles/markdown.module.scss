@@ -11,10 +11,22 @@
   blockquote {
     max-width: 50ch;
   }
+  h1 {
+    font-size: 4rem;
+  }
   h2 {
     font-size: 3rem;
   }
   p {
     text-align: justify;
+    margin-bottom: 1rem;
+  }
+  ul, ol {
+    margin: 1rem auto;
+    margin-inline-start: 1rem;
+  }
+  blockquote {
+    padding-left: 1rem;
+    border-left: 2px solid #ff3864;
   }
 }

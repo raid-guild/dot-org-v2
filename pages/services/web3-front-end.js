@@ -1,6 +1,9 @@
 import ServicePageTemplate from "../../components/page-templates/ServicePageTemplate";
+import { Box } from "@chakra-ui/react";
+import supabase from "../../shared/Supabase";
+import ProjectCard from "../../components/page-components/ProjectCard";
 
-export default function Page(props) {
+export default function Page({ data }) {
   return (
     <>
       <ServicePageTemplate
@@ -8,15 +11,63 @@ export default function Page(props) {
         pageDescription={PageDescription}
         roleImage={RoleImage}
         salesContent={SalesContent}
-      />
+      >
+        <Box sx={{ display: `flex`, flexDirection: `column` }}>
+          {data?.length > 0 && (
+            <Box sx={{ display: `grid`, gridTemplateColumns: `1fr 1fr 1fr` }}>
+              {data.map((item, index) => {
+                return <ProjectCard project={item} key={index} />;
+              })}
+            </Box>
+          )}
+        </Box>
+      </ServicePageTemplate>
     </>
   );
 }
 
-const PageDescription =
-  "I'm baby lyft synth salvia, waistcoat hexagon humblebrag man bun JOMO hot chicken roof party. Gentrify same heirloom skateboard. Sustainable mukbang next level, fanny pack kinfolk kickstarter freegan pitchfork lo-fi small batch swag farm-to-table disrupt pug. Paleo mlkshk quinoa kitsch kogi. Umami tilde tacos yes plz shaman. Yes plz tote bag try-hard letterpress flannel hashtag messenger bag brunch twee activated charcoal williamsburg. IPhone seitan mlkshk polaroid helvetica pitchfork praxis.";
+export async function getServerSideProps(context) {
+  let response = await supabase
+    .from("PortfolioContent")
+    .select("*")
+    .in("relevant_services", [{ tag: "Front End" }])
+    .range(0, 2);
 
-const RoleImage = "/assets/illustrations/warrior.png";
+  if (response.data == null) {
+    response = await supabase.from("PortfolioContent").select("*").range(0, 2);
+  }
 
-const SalesContent =
-  "Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb. The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee.";
+  return {
+    props: { data: response.data },
+  };
+}
+
+const PageDescription = `If your frontend has vulnerabilities, your users can lose money.
+
+Form validations, smart contract connections, gas estimates, conversions to Solidity "Big Number." These critical details might cause "leaks" in your app. 
+
+These "leaks" will create a headache for your team. Funds might disapear, and people will not be happy.
+
+Everybody but the most sophisticated crypto users need a frontend. Your smart contracts can work perfectly, but if your frontend has bugs, funds can get lost forever.
+
+For example, if your frontend has an input where users enter an amount of Ether, you need to convert it to a "BigNumber." Failure to do this will cause unexpected results.
+
+Your users also want feedback when using your frontend. For example, when money is sent to your smart contract, people will panic if they don't get feedback that the transaction is processing.
+
+Modern frontend technology changes fast! New frameworks and libraries are always being created. Not using these tools correctly can lead to "bloating" and slow down your app. 
+
+Humans' attention spans are at an all time low. A split second in your apps performance will cause users to leave.`;
+
+const RoleImage = "/assets/characters/warrior.svg";
+
+const SalesContent = `We've been building frontends since the start of the web. We've seen how tech has evolved. Our engineers know the small details that keep users coming back. We have experience using the most bleeding-edge tools for the job.
+
+A nice frontend is powerful enough to make a lousy app appear great.
+
+"Your users crave a great frontend experience..."
+
+Let Raid Guild build your app's frontend for you. Don't take my word for it when I say we're great at (and love) what we do. 
+
+Here are some of the frontends we've built: [App #1](https://), [App #2](https://), [App #3](https://).
+
+Schedule your appointment with Raid Guild now, and let us handle the tedious work of frontend for you.`;

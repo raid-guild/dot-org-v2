@@ -11,6 +11,8 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { Footer } from "../../shared/Footer";
 
@@ -101,7 +103,10 @@ export default function ServicePageTemplate(props) {
                   lineHeight: `206%`,
                 }}
               >
-                {props?.pageDescription}
+                <ReactMarkdown
+                  children={props?.pageDescription}
+                  remarkPlugins={[remarkGfm]}
+                ></ReactMarkdown>
               </Text>
             </Box>
             <Image
@@ -143,6 +148,7 @@ export default function ServicePageTemplate(props) {
             display: `flex`,
             flexDir: `column`,
             justifyContent: `center`,
+            zIndex: `3`,
           }}
         >
           <HStack
@@ -201,7 +207,10 @@ export default function ServicePageTemplate(props) {
                   lineHeight: `206%`,
                 }}
               >
-                {props?.salesContent}
+                <ReactMarkdown
+                  children={props?.salesContent}
+                  remarkPlugins={[remarkGfm]}
+                ></ReactMarkdown>
               </Text>
               <ButtonHireUs></ButtonHireUs>
             </Box>
@@ -213,8 +222,16 @@ export default function ServicePageTemplate(props) {
             width: `100vw`,
             position: `relative`,
             zIndex: `4`,
+<<<<<<< HEAD
           }}
         ></Box>
+=======
+            backgroundColor: `black`,
+          }}
+        >
+          {props.children}
+        </Box>
+>>>>>>> 49f67044963ec46f15ad8eb793a9a31d72cc22c2
         <Footer />
       </Box>
     </>

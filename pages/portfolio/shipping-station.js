@@ -24,6 +24,7 @@ export default function ShippingStation(props) {
   const [projectName, setProjectName] = useState("");
   const [websiteURL, setWebsiteURL] = useState("");
   const [githubURL, setGithubURL] = useState("");
+  const [description, setDescription] = useState("");
   const [imagePath, setImagePath] = useState("");
   const [imageStatusMessage, setImageStatusMessage] = useState("");
   const [raidTagInput, setRaidTagInput] = useState("");
@@ -52,6 +53,7 @@ export default function ShippingStation(props) {
           project_name: projectName,
           website_url: websiteURL,
           github_url: githubURL,
+          description: description,
           image_url: imagePath,
           relevant_services: raidTags,
           raiders: raiderRoles,
@@ -73,7 +75,7 @@ export default function ShippingStation(props) {
   }
   const handleRaidTagKeyDown = (event) => {
     console.log(event.code);
-    if (event.code == "Comma" || event.code == "Tab" || event.code == "Enter") {
+    if (event.code == "Comma" || event.code == "Tab") {
       event.preventDefault();
       addTag();
     }
@@ -192,7 +194,24 @@ export default function ShippingStation(props) {
             onChange={(event) => setGithubURL(event.target.value)}
           />
         </VStack>
-        {/* Github Url */}
+        {/* Description */}
+        <VStack
+          sx={{
+            color: `white`,
+            alignItems: `flex-start`,
+            fontFamily: `texturina`,
+            width: `100%`,
+          }}
+        >
+          <Text sx={{ fontSize: `1.3rem` }}>Briefly Describe the Project:</Text>
+          <Input
+            borderColor="red"
+            w="100%"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+        </VStack>
+        {/* Image */}
         <VStack
           sx={{
             color: `white`,

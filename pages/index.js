@@ -29,10 +29,9 @@ export default function Home() {
   radial-gradient(50% 175.1% at 0% 0%, #330F00 0%, rgba(51, 15, 0, 0) 100%),
   linear-gradient(0deg, #000000, #000000)"
     >
-      <Flex maxW="100rem" py="1rem" mx="auto" overflowX="hidden">
+      <Flex maxW="100rem" mx="auto" overflowX="hidden">
         <Flex height="100%" width="100%" direction="column">
           <Meta />
-
           <SectionOne windowWidth={windowWidth} />
           <SectionTwo />
           <SectionThree />

@@ -15,9 +15,10 @@ export const SectionTwo = () => {
       id='manifesto'
       columns={{ base: 1, md: 1, lg: 2 }}
       px={{ base: '2rem', lg: '8rem' }}
-      my='4rem'
+      py='4rem'
       mb='0'
       placeItems='center'
+      sx={{background: `linear-gradient(168.89deg, #24003A 8.78%, #330F00 137.95%)`}}
     >
       <Box width={{ base: '250px', lg: '400px' }}>
         <Image src={raidFantasy} alt='raid fantasy' placeholder='blur' />
