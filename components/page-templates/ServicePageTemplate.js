@@ -14,6 +14,8 @@ import { useRouter } from "next/router";
 
 import { Footer } from "../../shared/Footer";
 
+import ButtonHireUs from "../atoms/ButtonHireUs";
+
 export default function ServicePageTemplate(props) {
   const router = useRouter();
   const path = router.asPath;
@@ -69,6 +71,7 @@ export default function ServicePageTemplate(props) {
                 alignItems: `center`,
                 padding: `4rem`,
                 gap: `2rem`,
+                zIndex: `2`,
               }}
             >
               <HStack>
@@ -109,6 +112,7 @@ export default function ServicePageTemplate(props) {
                 position: `relative`,
                 left: `50%`,
                 transform: `translateX(-50%) translateY(-80%)`,
+                zIndex: `2`,
               }}
             />
           </Box>
@@ -120,6 +124,7 @@ export default function ServicePageTemplate(props) {
                 width: `80vw`,
                 position: `absolute`,
                 transform: `translateY(-35%) translateX(-40%)`,
+                zIndex: `1`,
               }}
             ></Image>
           </Box>
@@ -150,7 +155,7 @@ export default function ServicePageTemplate(props) {
                   width: `50vw`,
                   position: `absolute`,
                   transform: `translateY(-50%) translateX(-50%)`,
-                  zIndex: `1`
+                  zIndex: `1`,
                 }}
               />
             </Box>
@@ -166,6 +171,7 @@ export default function ServicePageTemplate(props) {
                 alignItems: `center`,
                 padding: `4rem`,
                 gap: `2rem`,
+                zIndex: `2`,
               }}
             >
               <HStack>
@@ -197,12 +203,18 @@ export default function ServicePageTemplate(props) {
               >
                 {props?.salesContent}
               </Text>
+              <ButtonHireUs></ButtonHireUs>
             </Box>
           </HStack>
         </Box>
-        <Box sx={{minHeight: `100vh`, width: `100vw`, position: `relative`, zIndex: `4`}}>
-
-        </Box>
+        <Box
+          sx={{
+            minHeight: `100vh`,
+            width: `100vw`,
+            position: `relative`,
+            zIndex: `4`,
+          }}
+        ></Box>
         <Footer />
       </Box>
     </>
