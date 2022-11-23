@@ -17,6 +17,8 @@ export default function ProjectCard(props) {
         border: `1px solid black`,
         borderColor: `red`,
         background: `darkBlack`,
+        maxWidth: `350px`,
+        margin: `0 auto`
       }}
     >
       <Box
@@ -41,6 +43,7 @@ export default function ProjectCard(props) {
         </Heading>
         <HStack>
           {thisProject["raiders"].map((raider, index) => {
+            console.log(raider);
             return (
               <div key={index} data-tip={`${raider?.raider} | ${raider?.role}`}>
                 <Image

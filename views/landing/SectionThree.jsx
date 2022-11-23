@@ -18,8 +18,7 @@ export const SectionThree = () => {
       columns={{ base: 1, md: 1, lg: 2 }}
       px={{ base: '2rem', lg: '8rem' }}
       py='2rem'
-      my='4rem'
-      bg='linear-gradient(157.1deg, #2B0000 0%, #39040D 29.17%, #48093A 61.98%, #1F0442 100%)'
+      bg='linear-gradient(281.37deg, #2B0000 -4.6%, #3D0610 26.67%, #5A1049 61.86%, #461881 102.63%)'
     >
       <VStack spacing={5} justifyContent='center' lineHeight='1.8' my='5rem'>
         <StyledPrimaryHeading fontSize={{ base: '1.5rem', lg: '36px' }}>

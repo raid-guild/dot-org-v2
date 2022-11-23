@@ -27,31 +27,32 @@ export default function Nav(props) {
 
   return (
     <>
-        <HStack
-          sx={{
-            width: `80vw`,
-            maxWidth: `1140px`,
-            margin: `0 auto`,
-            justifyContent: `space-between`,
-            fontFamily: `spaceMono`,
-            
-          }}
-        >
+      <HStack
+        sx={{
+          width: `80vw`,
+          maxWidth: `1140px`,
+          margin: `0 auto`,
+          justifyContent: `space-between`,
+          fontFamily: `spaceMono`,
+        }}
+      >
+        <Link href="/">
           <Image
             src="/assets/logos/raidguild.webp"
             sx={{ maxHeight: `32px` }}
           />
-          <HStack sx={{ fontSize: "1rem", color: "red", gap: `3rem` }}>
-            <CustomLink isCurrentPage={path.includes("services")}>
-              Services
-            </CustomLink>
-            <CustomLink isCurrentPage={path.includes("portfolio")}>
-              Portfolio
-            </CustomLink>
-            <CustomLink>Join</CustomLink>
-            <Button>Hire Us</Button>
-          </HStack>
+        </Link>
+        <HStack sx={{ fontSize: "1rem", color: "red", gap: `3rem` }}>
+          <CustomLink isCurrentPage={path.includes("services")}>
+            Services
+          </CustomLink>
+          <CustomLink isCurrentPage={path.includes("portfolio")}>
+            Portfolio
+          </CustomLink>
+          <CustomLink>Join</CustomLink>
+          <Button>Hire Us</Button>
         </HStack>
+      </HStack>
     </>
   );
 }

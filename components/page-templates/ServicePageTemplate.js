@@ -11,6 +11,8 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { Footer } from "../../shared/Footer";
 
@@ -69,6 +71,7 @@ export default function ServicePageTemplate(props) {
                 alignItems: `center`,
                 padding: `4rem`,
                 gap: `2rem`,
+                zIndex: `2`,
               }}
             >
               <HStack>
@@ -98,7 +101,10 @@ export default function ServicePageTemplate(props) {
                   lineHeight: `206%`,
                 }}
               >
-                {props?.pageDescription}
+                <ReactMarkdown
+                  children={props?.pageDescription}
+                  remarkPlugins={[remarkGfm]}
+                ></ReactMarkdown>
               </Text>
             </Box>
             <Image
@@ -109,6 +115,7 @@ export default function ServicePageTemplate(props) {
                 position: `relative`,
                 left: `50%`,
                 transform: `translateX(-50%) translateY(-80%)`,
+                zIndex: `2`,
               }}
             />
           </Box>
@@ -120,6 +127,7 @@ export default function ServicePageTemplate(props) {
                 width: `80vw`,
                 position: `absolute`,
                 transform: `translateY(-35%) translateX(-40%)`,
+                zIndex: `1`,
               }}
             ></Image>
           </Box>
@@ -138,6 +146,7 @@ export default function ServicePageTemplate(props) {
             display: `flex`,
             flexDir: `column`,
             justifyContent: `center`,
+            zIndex: `3`,
           }}
         >
           <HStack
@@ -150,7 +159,7 @@ export default function ServicePageTemplate(props) {
                   width: `50vw`,
                   position: `absolute`,
                   transform: `translateY(-50%) translateX(-50%)`,
-                  zIndex: `1`
+                  zIndex: `1`,
                 }}
               />
             </Box>
@@ -195,13 +204,24 @@ export default function ServicePageTemplate(props) {
                   lineHeight: `206%`,
                 }}
               >
-                {props?.salesContent}
+                <ReactMarkdown
+                  children={props?.salesContent}
+                  remarkPlugins={[remarkGfm]}
+                ></ReactMarkdown>
               </Text>
             </Box>
           </HStack>
         </Box>
-        <Box sx={{minHeight: `100vh`, width: `100vw`, position: `relative`, zIndex: `4`}}>
-
+        <Box
+          sx={{
+            minHeight: `100vh`,
+            width: `100vw`,
+            position: `relative`,
+            zIndex: `4`,
+            backgroundColor: `black`,
+          }}
+        >
+          {props.children}
         </Box>
         <Footer />
       </Box>
