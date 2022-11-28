@@ -1,13 +1,23 @@
 import { Flex, Link, Box, SimpleGrid, VStack, HStack } from '@chakra-ui/react';
 import Image from 'next/image';
 
+import { useContext } from 'react';
+
 import { theme } from '../themes/theme';
 
 import { StyledFooterHeaderText } from '../themes/styled';
 
 import raidguild from '../public/assets/logos/raidguild.webp';
+import useWallet from "../hooks/useWallet";
+import { AppContext } from '../context/AppContext';
+
 
 export const Footer = () => {
+
+  const {connectWallet} = useWallet();
+  const context = useContext(AppContext);
+  console.log(context);
+
   return (
     <Flex
       direction={{ base: 'column-reverse', md: 'row', lg: 'row' }}
@@ -48,6 +58,10 @@ export const Footer = () => {
           >
             Our Handbook
           </Link>
+          {context?.signerAddress == null && 
+          <Link onClick={() => connectWallet()}>Log In</Link>}
+          {context?.signerAddress !== null && 
+          <Link href="/admin">Admin Panel</Link>}
         </VStack>
         <VStack alignItems='flex-start'>
           <StyledFooterHeaderText fontSize='1.2rem'>

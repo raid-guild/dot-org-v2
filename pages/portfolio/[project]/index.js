@@ -1,11 +1,11 @@
-import CMSPageTemplate from "../../components/page-templates/CMSPageTemplate";
-import PageTitle from "../../components/page-components/PageTitle";
-import supabase from "../../shared/Supabase";
+import CMSPageTemplate from "../../../components/page-templates/CMSPageTemplate";
+import PageTitle from "../../../components/page-components/PageTitle";
+import supabase from "../../../shared/Supabase";
 import { Box, Heading, VStack, Image, Button, HStack } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import styles from "../../styles/markdown.module.scss";
-import ProjectCard from "../../components/page-components/ProjectCard";
+import styles from "../../../styles/markdown.module.scss";
+import ProjectCard from "../../../components/page-components/ProjectCard";
 
 export default function PortfolioPage({ project }) {
   const thisProject = project?.data[0];
