@@ -21,13 +21,14 @@ import { containerWidth } from "../../../themes/variables";
 
 export default function PortfolioPage({ project }) {
   const thisProject = project?.data[0];
+  console.log({thisProjectUrl: thisProject.website_url});
   const [projectName, setProjectName] = useState(
-    `${thisProject?.project_name}`
+    thisProject?.project_name
   );
-  const [websiteURL, setWebsiteURL] = useState(`${thisProject?.website_url}`);
-  const [githubURL, setGithubURL] = useState(`${thisProject?.github_url}`);
-  const [description, setDescription] = useState(`${thisProject?.description}`);
-  const [imagePath, setImagePath] = useState(`${thisProject?.image_url}`);
+  const [websiteURL, setWebsiteURL] = useState(thisProject?.website_url);
+  const [githubURL, setGithubURL] = useState(thisProject?.github_url);
+  const [description, setDescription] = useState(thisProject?.description);
+  const [imagePath, setImagePath] = useState(thisProject?.image_url);
   //todo: implement user feedback about imageStatus
   const [imageStatusMessage, setImageStatusMessage] = useState("");
   const [raidTagInput, setRaidTagInput] = useState("");
@@ -245,7 +246,7 @@ export default function PortfolioPage({ project }) {
               border: `1px solid black`,
               borderColor: `red`,
               padding: `2rem`,
-              borderRadius: `8px`,
+              borderRadius: `2px`,
               width: `100%`,
               display: `flex`,
               flexWrap: `wrap`,
