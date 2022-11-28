@@ -16,7 +16,6 @@ export const Footer = () => {
 
   const {connectWallet} = useWallet();
   const context = useContext(AppContext);
-  console.log(context);
 
   return (
     <Flex
