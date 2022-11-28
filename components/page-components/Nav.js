@@ -10,6 +10,8 @@ import {
 import { theme } from "../../themes/theme";
 import { useRouter } from "next/router";
 
+import ButtonHireUs from "../atoms/ButtonHireUs";
+
 export default function Nav(props) {
   const router = useRouter();
   const path = router.asPath.substring(0, 9);
@@ -50,7 +52,7 @@ export default function Nav(props) {
             Portfolio
           </CustomLink>
           <CustomLink>Join</CustomLink>
-          <Button>Hire Us</Button>
+          <ButtonHireUs>Hire Us</ButtonHireUs>
         </HStack>
       </HStack>
     </>

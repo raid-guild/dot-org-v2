@@ -17,8 +17,9 @@ export default function ProjectCard(props) {
         border: `1px solid black`,
         borderColor: `red`,
         background: `darkBlack`,
+        width: `350px`,
         maxWidth: `350px`,
-        margin: `0 auto`
+        margin: `0 auto`,
       }}
     >
       <Box
@@ -61,7 +62,10 @@ export default function ProjectCard(props) {
             sx={{
               background: `linear-gradient(96.18deg, #FF3864 -44.29%, #8B1DBA 53.18%, #4353DF 150.65%)`,
               color: `white`,
-              fontFamily: `texturina`,
+              fontFamily: `Source Code Pro`,
+              textTransform: `uppercase`,
+              borderRadius: `2px`,
+              padding: `10px 30px`,
             }}
             _hover={{
               background: `linear-gradient(-83.82deg, #FF3864 -44.29%, #8B1DBA 53.18%, #4353DF 150.65%)`,

@@ -15,6 +15,10 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import { Footer } from "../../shared/Footer";
+import PageTitle from "../page-components/PageTitle.js";
+
+import ButtonHireUs from "../atoms/ButtonHireUs";
+import ButtonJoinUs from "../atoms/ButtonJoinUs";
 
 export default function ServicePageTemplate(props) {
   const router = useRouter();
@@ -36,8 +40,8 @@ export default function ServicePageTemplate(props) {
             display: `flex`,
             alignItems: `center`,
             justifyContent: `space-between`,
+            maxWidth: `1440px`,
             width: `80vw`,
-            maxWidth: `1140px`,
             margin: `0 auto`,
             gap: `3rem`,
           }}
@@ -72,6 +76,7 @@ export default function ServicePageTemplate(props) {
                 padding: `4rem`,
                 gap: `2rem`,
                 zIndex: `2`,
+                borderRadius: `2px`,
               }}
             >
               <HStack>
@@ -136,6 +141,7 @@ export default function ServicePageTemplate(props) {
         {/* Our Approach */}
         <Box
           sx={{
+            overflow: `hidden`,
             backgroundImage: `url(/assets/illustrations/clouds.webp)`,
             backgroundColor: `#0A0303`,
             backgroundPosition: `center`,
@@ -175,6 +181,8 @@ export default function ServicePageTemplate(props) {
                 alignItems: `center`,
                 padding: `4rem`,
                 gap: `2rem`,
+                zIndex: `2`,
+                borderRadius: `2px`,
               }}
             >
               <HStack>
@@ -198,7 +206,7 @@ export default function ServicePageTemplate(props) {
                   color: `white`,
                   fontFamily: `texturina`,
                   textAlign: `justify`,
-                  maxWidth: `50ch`,
+                  maxWidth: `75ch`,
                   margin: `0 auto`,
                   fontSize: `1rem`,
                   lineHeight: `206%`,
@@ -209,6 +217,10 @@ export default function ServicePageTemplate(props) {
                   remarkPlugins={[remarkGfm]}
                 ></ReactMarkdown>
               </Text>
+              <Box sx={{ display: `flex`, flexDirection: `row`, gap: `20px` }}>
+                <ButtonHireUs>Hire Us</ButtonHireUs>
+                <ButtonJoinUs>Join Us</ButtonJoinUs>
+              </Box>
             </Box>
           </HStack>
         </Box>
@@ -221,6 +233,7 @@ export default function ServicePageTemplate(props) {
             backgroundColor: `black`,
           }}
         >
+          <PageTitle title="Shipped Products" />
           {props.children}
         </Box>
         <Footer />
