@@ -13,12 +13,16 @@ import useWallet from "../../hooks/useWallet";
 export default function RouteProtector(props) {
   const router = useRouter();
   const context = useContext(AppContext);
-  console.log(context);
 
   useEffect(() => {
+    // not connected :(
     if (context?.signerAddress == null) {
-        router.push("/");
+      props?.setter(false);
     }
-  }, []);
+    // connected :3
+    if (context?.signerAddress !== null) {
+      props?.setter(true);
+    }
+  }, [context]);
   return <></>;
 }
