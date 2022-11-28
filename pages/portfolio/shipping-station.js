@@ -321,7 +321,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Cleric"
                   >
-                    Cleric
+                    Cleric (Account Manager)
                   </option>
                   <option
                     style={{
@@ -330,7 +330,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Scribe"
                   >
-                    Scribe
+                    Scribe (Content Creator)
                   </option>
                   <option
                     style={{
@@ -339,7 +339,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Monk"
                   >
-                    Monk
+                    Monk (Project Manager)
                   </option>
                   <option
                     style={{
@@ -348,7 +348,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Ranger"
                   >
-                    Ranger
+                    Ranger (UX Designer)
                   </option>
                   <option
                     style={{
@@ -357,7 +357,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Tavern Keeper"
                   >
-                    Tavern Keeper
+                    Tavern Keeper (Community Manager)
                   </option>
                   <option
                     style={{
@@ -366,7 +366,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Alchemist"
                   >
-                    Alchemist
+                    Alchemist (DAO Consultant)
                   </option>
                   <option
                     style={{
@@ -375,7 +375,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Hunter"
                   >
-                    Hunter
+                    Hunter (Business Development)
                   </option>
                   <option
                     style={{
@@ -384,7 +384,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Rogue"
                   >
-                    Rogue
+                    Rogue (Legal Engineer)
                   </option>
                   <option
                     style={{
@@ -393,7 +393,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Warrior"
                   >
-                    Warrior
+                    Warrior (Front End Developer)
                   </option>
                   <option
                     style={{
@@ -402,7 +402,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Paladin"
                   >
-                    Paladin
+                    Paladin (Back End Developer)
                   </option>
                   <option
                     style={{
@@ -411,7 +411,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Archer"
                   >
-                    Archer
+                    Archer (Visual Designer)
                   </option>
                   <option
                     style={{
@@ -420,7 +420,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Necromancer"
                   >
-                    Necromancer
+                    Necromancer (Dev Ops)
                   </option>
                   <option
                     style={{
@@ -429,7 +429,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Druid"
                   >
-                    Druid
+                    Druid (Data Science)
                   </option>
                   <option
                     style={{
@@ -438,7 +438,7 @@ export default function ShippingStation(props) {
                     }}
                     value="Wizard"
                   >
-                    Wizard
+                    Wizard (Smart Contract Developer)
                   </option>
                 </Select>
                 <Input
