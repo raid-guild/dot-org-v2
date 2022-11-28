@@ -74,12 +74,11 @@ export default function ShippingStation(props) {
     }
   }
   const handleRaidTagKeyDown = (event) => {
-    console.log(event.code);
     if (event.code == "Comma" || event.code == "Tab") {
       event.preventDefault();
       addTag();
     }
-    if (event.code == "Backspace") {
+    if (event.code == "Backspace" && raidTagInput == "") {
       removeTag(raidTags.length - 1);
     }
   };
