@@ -10,12 +10,14 @@ import { StyledFooterHeaderText } from '../themes/styled';
 import raidguild from '../public/assets/logos/raidguild.webp';
 import useWallet from "../hooks/useWallet";
 import { AppContext } from '../context/AppContext';
+import { useRouter } from 'next/router';
 
 
 export const Footer = () => {
 
   const {connectWallet} = useWallet();
   const context = useContext(AppContext);
+  const router = useRouter();
 
   return (
     <Flex
@@ -60,7 +62,7 @@ export const Footer = () => {
           {context?.signerAddress == null && 
           <Link onClick={() => connectWallet()}>Log In</Link>}
           {context?.signerAddress !== null && 
-          <Link href="/admin">Admin Panel</Link>}
+          <Link onClick={() => router.push("/admin")}>Admin Panel</Link>}
         </VStack>
         <VStack alignItems='flex-start'>
           <StyledFooterHeaderText fontSize='1.2rem'>

@@ -3,12 +3,35 @@ import { Box, Image, HStack, VStack, Link } from "@chakra-ui/react";
 import CMSPageTemplate from "../components/page-templates/CMSPageTemplate";
 import PageTitle from "../components/page-components/PageTitle";
 import supabase from "../shared/Supabase";
+import RouteProtector from "../components/page-components/RouteProtector";
+import { useEffect, useState } from "react";
 
 export default function Admin(props) {
-  console.log(props?.data);
+
+  const [blogContent, setBlogContent] = useState(null);
+  const [portfolioContent, setPortfolioContent] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  async function setData() {
+    let portfolioContentTemp = await supabase
+    .from("PortfolioContent")
+    .select("*")
+    .range(0, 9);
+
+    let blogContentTemp = await supabase.from("BlogContent").select("*").range(0, 9);
+    setPortfolioContent(portfolioContentTemp);
+    setBlogContent(blogContentTemp);
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
+    setData();
+  },[]);
+
 
   return (
     <CMSPageTemplate>
+      <RouteProtector />
       <Box>
         <PageTitle title="Admin Panel" />
         <Box
@@ -73,7 +96,7 @@ export default function Admin(props) {
             }}
           >
             <Box sx={{ display: `flex`, flexDirection: `column` }}>
-              {props.data.portfolioContent.data.map((content, index) => {
+              {portfolioContent?.data.map((content, index) => {
                 let date = new Date(content.created_at);
                 let dateString = date.toDateString();
                 return (
@@ -137,7 +160,7 @@ export default function Admin(props) {
               })}
             </Box>
             <Box sx={{ display: `flex`, flexDirection: `column` }}>
-              {props.data.blogContent.data.map((content, index) => {
+              {blogContent?.data.map((content, index) => {
                 let date = new Date(content.created_at);
                 let dateString = date.toDateString();
                 console.log(content);
@@ -207,17 +230,4 @@ export default function Admin(props) {
       </Box>
     </CMSPageTemplate>
   );
-}
-
-export async function getServerSideProps(context) {
-  let portfolioContent = await supabase
-    .from("PortfolioContent")
-    .select("*")
-    .range(0, 9);
-
-  let blogContent = await supabase.from("BlogContent").select("*").range(0, 9);
-
-  return {
-    props: { data: { portfolioContent, blogContent } },
-  };
 }
