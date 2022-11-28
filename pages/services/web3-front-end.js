@@ -16,13 +16,7 @@ export default function Page({ data }) {
           {data?.length > 0 && (
             <Box sx={{ display: `grid`, gridTemplateColumns: `1fr 1fr 1fr` }}>
               {data.map((item, index) => {
-                return (
-                  <ProjectCard
-                    sx={{ minWidth: `350px` }}
-                    project={item}
-                    key={index}
-                  />
-                );
+                return <ProjectCard project={item} key={index} />;
               })}
             </Box>
           )}
