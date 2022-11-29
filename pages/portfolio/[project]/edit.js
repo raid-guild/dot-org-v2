@@ -21,7 +21,7 @@ import { containerWidth } from "../../../themes/variables";
 
 export default function PortfolioPage({ project }) {
   const thisProject = project?.data[0];
-  console.log({thisProjectUrl: thisProject.website_url});
+  console.log({thisProjectUrl: thisProject?.website_url});
   const [projectName, setProjectName] = useState(
     thisProject?.project_name
   );
@@ -61,12 +61,8 @@ export default function PortfolioPage({ project }) {
       if (error) {
         throw error;
       }
-      if (!error) {
-        clearData();
-      }
     } catch (error) {
       console.error(error);
-      clearData();
     }
   }
   const handleRaidTagKeyDown = (event) => {
