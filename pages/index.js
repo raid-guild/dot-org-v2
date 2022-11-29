@@ -38,16 +38,6 @@ export default function Home() {
           <SectionFour />
           <SectionFive />
           <SectionSix />
-
-          {windowWidth > 500 && (
-            <Box
-              px="5rem"
-              py="2rem"
-              minH="20vh"
-              bgImage="url(/layered-steps.svg)"
-            ></Box>
-          )}
-
           <Footer />
         </Flex>
       </Flex>

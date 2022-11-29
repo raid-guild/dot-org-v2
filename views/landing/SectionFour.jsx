@@ -27,12 +27,12 @@ export const SectionFour = () => {
       // id='portfolio'
       bgImage="url(/assets/illustrations/clouds.webp)"
       minW="100%"
-      py="2rem"
-      sx={{ backgroundColor: `#000000` }}
+      py="8rem"
+      sx={{ backgroundColor: `#000000`, }}
     >
       <PageTitle title="Our Portfolio" />
       <Box
-        sx={{ display: `flex`, flexDirection: `column`, alignItems: `center` }}
+        sx={{ display: `flex`, flexDirection: `column`, alignItems: `center`, gap: `4rem` }}
       >
         <Box
           sx={{
@@ -40,7 +40,7 @@ export const SectionFour = () => {
             gridTemplateColumns: [`1fr`, `1fr 1fr 1fr 1fr 1fr`, `1fr 1fr 1fr 1fr 1fr`],
             placeItems: `center`,
             margin: `1rem auto`,
-            rowGap: [`3rem`, `1rem`],
+            rowGap: [`3rem`, `8rem`],
           }}
         >
           <Image src="/assets/logos/SmartInvoiceLogo.svg" />

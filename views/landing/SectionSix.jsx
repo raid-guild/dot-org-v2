@@ -14,7 +14,7 @@ export const SectionSix = () => {
       alignItems='center'
       justifyContent='center'
       padding={{ base: '2rem', lg: '2rem 4rem' }}
-      bg='#201F1D'
+      sx={{margin: `8rem 0`}}
     >
       <StyledPrimaryHeading
         mb='2rem'
