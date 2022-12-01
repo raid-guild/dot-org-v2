@@ -18,46 +18,61 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 import { containerWidth } from "../../../themes/variables";
+import toast from "react-hot-toast";
 
 export default function PortfolioPage({ project }) {
   const thisProject = project?.data[0];
-  console.log({thisProjectUrl: thisProject?.website_url});
-  const [projectName, setProjectName] = useState(
-    thisProject?.project_name
-  );
-  const [websiteURL, setWebsiteURL] = useState(thisProject?.website_url);
-  const [githubURL, setGithubURL] = useState(thisProject?.github_url);
-  const [description, setDescription] = useState(thisProject?.description);
-  const [imagePath, setImagePath] = useState(thisProject?.image_url);
+  const [projectName, setProjectName] = useState("");
+  const [websiteURL, setWebsiteURL] = useState("");
+  const [githubURL, setGithubURL] = useState("");
+  const [description, setDescription] = useState("");
+  const [imagePath, setImagePath] = useState("");
   //todo: implement user feedback about imageStatus
   const [imageStatusMessage, setImageStatusMessage] = useState("");
   const [raidTagInput, setRaidTagInput] = useState("");
-  const [raidTags, setRaidTags] = useState(
-    thisProject?.relevant_services || []
-  );
-  const [challenge, setChallenge] = useState(`${thisProject?.challenge?.body}`);
-  const [approach, setApproach] = useState(`${thisProject?.approach?.body}`);
-  const [results, setResults] = useState(`${thisProject?.results?.body}`);
-  const [raiderRoles, setRaiderRoles] = useState(
-    thisProject?.raiders || [{ raider: "", role: "" }]
-  );
+  const [raidTags, setRaidTags] = useState([]);
+  const [challenge, setChallenge] = useState("");
+  const [approach, setApproach] = useState("");
+  const [results, setResults] = useState("");
+  const [raiderRoles, setRaiderRoles] = useState([{ raider: "", role: "" }]);
+
+  useEffect(() => {
+    if (thisProject?.project_name) {
+      // assuming all data available
+      setProjectName(thisProject?.project_name);
+      setWebsiteURL(thisProject?.website_url);
+      setGithubURL(thisProject?.github_url);
+      setDescription(thisProject?.description);
+      setImagePath(thisProject?.image_url);
+      setRaidTags(thisProject?.relevant_services);
+      setRaiderRoles(thisProject?.raiders);
+      setChallenge(thisProject?.challenge?.body);
+      setApproach(thisProject?.approach?.body);
+      setResults(thisProject?.results?.body);
+      toast.success("Project data loaded");
+    }
+  }, [thisProject]);
 
   async function submitData() {
     try {
-      const { data, error } = await supabase.from("PortfolioContent").insert([
-        {
-          project_name: projectName,
-          website_url: websiteURL,
-          github_url: githubURL,
-          description: description,
-          image_url: imagePath,
-          relevant_services: raidTags,
-          raiders: raiderRoles,
-          challenge: { body: challenge },
-          approach: { body: approach },
-          result: { body: results },
-        },
-      ]);
+      const { data, error } = await supabase.from("PortfolioContent").insert(
+        [
+          {
+            id: thisProject?.id,
+            project_name: projectName,
+            website_url: websiteURL,
+            github_url: githubURL,
+            description: description,
+            image_url: imagePath,
+            relevant_services: raidTags,
+            raiders: raiderRoles,
+            challenge: { body: challenge },
+            approach: { body: approach },
+            result: { body: results },
+          },
+        ],
+        { upsert: true }
+      );
       if (error) {
         throw error;
       }
@@ -292,6 +307,7 @@ export default function PortfolioPage({ project }) {
         >
           <Text sx={{ fontSize: `1.3rem` }}>Contributors:</Text>
           {raiderRoles.map((raider, index) => {
+            console.log(raider);
             return (
               <Box
                 key={index}
@@ -321,6 +337,7 @@ export default function PortfolioPage({ project }) {
                       color: `#ff3864`,
                     }}
                     value="Cleric"
+                    selected={raider?.role == "Cleric" ? "true" : "false"}
                   >
                     Cleric (Account Manager)
                   </option>
@@ -330,6 +347,7 @@ export default function PortfolioPage({ project }) {
                       color: `#ff3864`,
                     }}
                     value="Scribe"
+                    selected={raider?.role == "Scribe" ? "true" : "false"}
                   >
                     Scribe (Content Creator)
                   </option>

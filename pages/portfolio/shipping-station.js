@@ -19,6 +19,7 @@ import { CloseIcon } from "@chakra-ui/icons";
 import keccak256 from "keccak256";
 import { Web3Storage } from "web3.storage";
 import supabase from "../../shared/Supabase";
+import toast from "react-hot-toast";
 
 export default function ShippingStation(props) {
   const [projectName, setProjectName] = useState("");
@@ -33,6 +34,14 @@ export default function ShippingStation(props) {
   const [approach, setApproach] = useState("");
   const [results, setResults] = useState("");
   const [raiderRoles, setRaiderRoles] = useState([{ raider: "", role: "" }]);
+  const [hasShipped, setHasShipped] = useState(false);
+  const [shippedProjectName, setShippedProjectName] = useState("");
+
+  // a function that returns the square root of a number
+  const sqrt = (x) => Math.sqrt(x);
+
+  // a function that returns a random element of an array
+  const randomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
   function clearData() {
     setProjectName("");
@@ -62,15 +71,27 @@ export default function ShippingStation(props) {
           result: { body: results },
         },
       ]);
-      if (error) {
-        throw error;
-      }
       if (!error) {
+        toast.success("Data submitted successfully!");
         clearData();
+      }
+      if (error) {
+        toast((t) => (
+          <>
+            <div>
+              <p style={{ fontWeight: `700`, color: `red` }}>
+                There was an error submitting your data.
+              </p>
+              <p>Code: {error?.code}</p>
+              <p>Reason: {error?.message}</p>
+              <Button onClick={() => toast.dismiss(t.id)}>Dismiss</Button>
+            </div>
+          </>
+        ));
+        throw error;
       }
     } catch (error) {
       console.error(error);
-      clearData();
     }
   }
   const handleRaidTagKeyDown = (event) => {
@@ -101,7 +122,7 @@ export default function ShippingStation(props) {
     let data = [...raiderRoles];
     data[index]["role"] = event.target.value;
     setRaiderRoles(data);
-  }
+  };
   const addNewRaider = () => {
     let newRaider = { raider: "", role: "" };
     setRaiderRoles([...raiderRoles, newRaider]);
@@ -131,10 +152,15 @@ export default function ShippingStation(props) {
         token: process.env.NEXT_PUBLIC_WEB3STORAGE_KEY,
       });
       const cid = await client.put([file]);
+      if (cid) {
+        toast.success("Image uploaded successfully!");
+      }
       return { cid };
     } catch (error) {
-      console.log(error);
-      return { error };
+      toast.error("Error uploading image!");
+      toast("Check the console for more details.");
+      console.error(error);
+      return null;
     }
   }
 
@@ -226,7 +252,12 @@ export default function ShippingStation(props) {
             onChange={(event) => handleImage(event.target.files[0])}
             type="file"
           />
-          {imagePath && <Image src={imagePath} />}
+          {imagePath && (
+            <Image
+              src={imagePath}
+              sx={{ width: `128px`, height: `128px`, margin: `1rem auto` }}
+            />
+          )}
         </VStack>
         {/* Applicable Services */}
         <VStack
@@ -304,7 +335,10 @@ export default function ShippingStation(props) {
                   gap: `2rem`,
                 }}
               >
-                <Select sx={{ borderColor: `red` }} onChange={(event) => editRaiderRole(event, index)}>
+                <Select
+                  sx={{ borderColor: `red` }}
+                  onChange={(event) => editRaiderRole(event, index)}
+                >
                   <option
                     style={{
                       backgroundColor: `rgba(10, 10, 10, 0.960784)`,
@@ -546,16 +580,16 @@ export default function ShippingStation(props) {
           />
         </VStack>
         <Button
-            backgroundColor="black"
-            sx={{
-              color: `red`,
-              backgroundColor: `darkBlack`,
-              borderColor: `red`,
-            }}
-            onClick={() => submitData()}
-          >
-            Ship Project
-          </Button>
+          backgroundColor="black"
+          sx={{
+            color: `red`,
+            backgroundColor: `darkBlack`,
+            borderColor: `red`,
+          }}
+          onClick={() => submitData()}
+        >
+          Ship Project
+        </Button>
       </VStack>
     </CMSPageTemplate>
   );

@@ -42,6 +42,9 @@ export default function ProjectCard(props) {
         <Heading sx={{ color: `white`, fontFamily: `uncial` }}>
           {thisProject["project_name"]}
         </Heading>
+        <Text sx={{color: `white`, padding: `1rem`, fontFamily: `texturina`}}>
+          {thisProject["description"]}
+        </Text>
         <HStack>
           {thisProject["raiders"].map((raider, index) => {
             console.log(raider);

@@ -1,11 +1,15 @@
 module.exports = {
-  async redirects() {
+
+};
+
+/**
+ *   async redirects() {
     return [
       {
         source: '/portfolio',
-        destination: 'https://portfolio.raidguild.org',
+        destination: '/portfolio',
         permanent: true
       }
     ];
   }
-};
+ */

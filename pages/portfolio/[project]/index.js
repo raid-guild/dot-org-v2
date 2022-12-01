@@ -56,7 +56,7 @@ export default function PortfolioPage({ project }) {
             sx={{ display: `flex`, flexDirection: `column`, color: `white` }}
           >
             {/* Other Markdown */}
-            <VStack sx={{ maxWidth: `50ch`, alignSelf: `center` }}>
+            <VStack sx={{ maxWidth: `72ch`, alignSelf: `center` }}>
               <VStack>
                 <Box
                   sx={{

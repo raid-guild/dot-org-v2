@@ -48,7 +48,7 @@ export default function Nav(props) {
           <CustomLink isCurrentPage={path.includes("services")}>
             Services
           </CustomLink>
-          <CustomLink isCurrentPage={path.includes("portfolio")}>
+          <CustomLink isCurrentPage={path.includes("portfolio")} target="/portfolio">
             Portfolio
           </CustomLink>
           <CustomLink>Join</CustomLink>
