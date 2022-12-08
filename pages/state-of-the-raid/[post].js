@@ -66,7 +66,7 @@ export default function PostPage({ post }) {
       <PageTitle title={"State of The Raid"} />
       <Box sx={{ background: `blackDark`, padding: `2rem 0`, fontFamily: `texturina`, color: `white` }}>
         <VStack>
-        {thisPost?.["hero_image"] && <Image src={thisPost["hero_image"]} />}
+        {thisPost?.["hero_image"] && <Image src={thisPost["hero_image"]} sx={{maxHeight: `200`, marginBottom: `2rem`}}/>}
         <Box sx={{width: `500px`}}>
         <Heading as="h1" sx={{fontFamily: `uncial`, color: `white`}}>{thisPost["post_title"]}</Heading>
         <Text>
