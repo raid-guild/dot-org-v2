@@ -4,14 +4,18 @@ import CMSPageTemplate from "../components/page-templates/CMSPageTemplate";
 import PageTitle from "../components/page-components/PageTitle";
 import supabase from "../shared/Supabase";
 import RouteProtector from "../components/page-components/RouteProtector";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AppContext } from "../context/AppContext";
 import ProtectedRouteWarning from "../components/page-components/ProtectedRouteWarning";
+
 
 export default function Admin(props) {
   const [blogContent, setBlogContent] = useState(null);
   const [portfolioContent, setPortfolioContent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isValidated, setIsValidated] = useState(false);
+  const context = useContext(AppContext);
+  
+  const [isValidated, setIsValidated] = useState(context.isMember);
 
   async function setData() {
     let portfolioContentTemp = await supabase
@@ -31,6 +35,13 @@ export default function Admin(props) {
   useEffect(() => {
     setData();
   }, []);
+
+  // useEffect(() => {
+  //   console.log(context?.isMember);
+  //   if (context?.isMember == true) {
+  //     setIsValidated(true);
+  //   }
+  // }, [context])
 
   return (
     <CMSPageTemplate>

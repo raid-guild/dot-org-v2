@@ -2,7 +2,7 @@ import CMSPageTemplate from "../../../components/page-templates/CMSPageTemplate"
 import PageTitle from "../../../components/page-components/PageTitle";
 import { useRouter } from "next/router";
 import supabase from "../../../shared/Supabase";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   Box,
   HStack,
@@ -19,8 +19,16 @@ import {
 import { CloseIcon } from "@chakra-ui/icons";
 import { containerWidth } from "../../../themes/variables";
 import toast from "react-hot-toast";
+import RaiderRoleSelect from "../../../components/page-components/RaiderRoleSelect";
+import { AppContext } from "../../../context/AppContext";
+import RouteProtector from "../../../components/page-components/RouteProtector";
+import ProtectedRouteWarning from "../../../components/page-components/ProtectedRouteWarning";
 
 export default function PortfolioPage({ project }) {
+  const context = useContext(AppContext);
+  
+  const [isValidated, setIsValidated] = useState(context.isMember);
+
   const thisProject = project?.data[0];
   const [projectName, setProjectName] = useState("");
   const [websiteURL, setWebsiteURL] = useState("");
@@ -48,7 +56,7 @@ export default function PortfolioPage({ project }) {
       setRaiderRoles(thisProject?.raiders);
       setChallenge(thisProject?.challenge?.body);
       setApproach(thisProject?.approach?.body);
-      setResults(thisProject?.results?.body);
+      setResults(thisProject?.result?.body);
       toast.success("Project data loaded");
     }
   }, [thisProject]);
@@ -74,7 +82,11 @@ export default function PortfolioPage({ project }) {
         { upsert: true }
       );
       if (error) {
+        toast.error("Error updating project data");
         throw error;
+      }
+      if (data) {
+        toast.success("Project data updated");
       }
     } catch (error) {
       console.error(error);
@@ -104,9 +116,9 @@ export default function PortfolioPage({ project }) {
     data[index]["raider"] = event.target.value;
     setRaiderRoles(data);
   };
-  const editRaiderRole = (event, index) => {
+  const editRaiderRole = (value, index) => {
     let data = [...raiderRoles];
-    data[index]["role"] = event.target.value;
+    data[index]["role"] = value;
     setRaiderRoles(data);
   };
   const addNewRaider = () => {
@@ -147,6 +159,9 @@ export default function PortfolioPage({ project }) {
 
   return (
     <CMSPageTemplate>
+      <RouteProtector setter={setIsValidated} />
+      {!isValidated && <ProtectedRouteWarning />}
+      {isValidated && (<>
       <PageTitle title="Edit Shipped Project" />
       <VStack
         sx={{
@@ -239,7 +254,7 @@ export default function PortfolioPage({ project }) {
             onChange={(event) => handleImage(event.target.files[0])}
             type="file"
           />
-          {imagePath && <Image src={imagePath} />}
+          {imagePath && <Image src={imagePath} sx={{maxWidth: `250px`}}/>}
         </VStack>
         {/* Applicable Services */}
         <VStack
@@ -307,7 +322,6 @@ export default function PortfolioPage({ project }) {
         >
           <Text sx={{ fontSize: `1.3rem` }}>Contributors:</Text>
           {raiderRoles.map((raider, index) => {
-            console.log(raider);
             return (
               <Box
                 key={index}
@@ -318,148 +332,7 @@ export default function PortfolioPage({ project }) {
                   gap: `2rem`,
                 }}
               >
-                <Select
-                  sx={{ borderColor: `red` }}
-                  onChange={(event) => editRaiderRole(event, index)}
-                >
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value=""
-                  >
-                    Role:
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Cleric"
-                    selected={raider?.role == "Cleric" ? "true" : "false"}
-                  >
-                    Cleric (Account Manager)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Scribe"
-                    selected={raider?.role == "Scribe" ? "true" : "false"}
-                  >
-                    Scribe (Content Creator)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Monk"
-                  >
-                    Monk (Project Manager)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Ranger"
-                  >
-                    Ranger (UX Designer)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Tavern Keeper"
-                  >
-                    Tavern Keeper (Community Manager)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Alchemist"
-                  >
-                    Alchemist (DAO Consultant)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Hunter"
-                  >
-                    Hunter (Business Development)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Rogue"
-                  >
-                    Rogue (Legal Engineer)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Warrior"
-                  >
-                    Warrior (Front End Developer)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Paladin"
-                  >
-                    Paladin (Back End Developer)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Archer"
-                  >
-                    Archer (Visual Designer)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Necromancer"
-                  >
-                    Necromancer (Dev Ops)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Druid"
-                  >
-                    Druid (Data Science)
-                  </option>
-                  <option
-                    style={{
-                      backgroundColor: `rgba(10, 10, 10, 0.960784)`,
-                      color: `#ff3864`,
-                    }}
-                    value="Wizard"
-                  >
-                    Wizard (Smart Contract Developer)
-                  </option>
-                </Select>
+                <RaiderRoleSelect value={raider.role} index={index} editRaiderRole={(value) => editRaiderRole(value, index)} />
                 <Input
                   borderColor="red"
                   w="100%"
@@ -564,18 +437,37 @@ export default function PortfolioPage({ project }) {
             onChange={(event) => setResults(event.target.value)}
           />
         </VStack>
+        <HStack>
+        <Button
+          backgroundColor="black"
+          sx={{
+            color: `white`,
+            backgroundColor: `red`,
+            borderColor: `red`,
+            border: `1px solid`
+          }}
+          _hover={{
+            backgroundColor: `blackDark`,
+          }}
+          onClick={() => submitData()}
+        >
+          Save Changes
+        </Button>
         <Button
           backgroundColor="black"
           sx={{
             color: `red`,
-            backgroundColor: `darkBlack`,
+            backgroundColor: `blackDark`,
+            border: `1px solid black`,
             borderColor: `red`,
           }}
-          onClick={() => submitData()}
+          onClick={() => deleteItem()}
         >
-          Ship Project
+          Delete Content
         </Button>
+        </HStack>
       </VStack>
+      </>)}
     </CMSPageTemplate>
   );
 }

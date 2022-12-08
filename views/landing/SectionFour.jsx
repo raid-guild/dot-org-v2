@@ -54,15 +54,14 @@ export const SectionFour = () => {
           <Image src="/assets/logos/MetaDripLogo.svg" />
           <Image src="/assets/logos/RaidBroodLogo.svg" />
         </Box>
+        <Link href="/portfolio">
         <StyledPrimaryButton
           fontSize={{ base: "16px", lg: "18px" }}
           sx={{ margin: `1rem auto 0 auto` }}
-          onClick={() =>
-            window.open("https://portfolio.raidguild.org", "_blank")
-          }
         >
           <a>View Projects</a>
         </StyledPrimaryButton>
+        </Link>
       </Box>
     </Container>
   );
@@ -102,7 +101,7 @@ export const SectionFourOld = () => {
           fontSize={{ base: "16px", lg: "18px" }}
           mt="2rem"
           onClick={() =>
-            window.open("https://portfolio.raidguild.org", "_blank")
+            window.open("https://raidguild.org/portfolio", "_blank")
           }
         >
           <a>View Projects</a>

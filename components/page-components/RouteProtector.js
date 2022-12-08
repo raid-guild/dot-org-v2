@@ -15,12 +15,14 @@ export default function RouteProtector(props) {
   const context = useContext(AppContext);
 
   useEffect(() => {
+    console.log("RouteProtector useEffect");
+    console.log(context?.isMember);
     // not connected :(
-    if (context?.signerAddress == null) {
+    if (context?.isMember == false) {
       props?.setter(false);
     }
     // connected :3
-    if (context?.signerAddress !== null) {
+    if (context?.isMember == true) {
       props?.setter(true);
     }
   }, [context]);

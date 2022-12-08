@@ -38,6 +38,8 @@ export const getMemberShares = async (signerAddress, ethersProvider) => {
   const abi = new utils.Interface([
     'function members(address account) view returns (address, uint256, uint256, bool, uint256, uint256)'
   ]);
+  console.log(DAO_ADDRESS[100]);
+  console.log(process.env.NEXT_PUBLIC_ENV_MODE);
   const contract = new Contract(DAO_ADDRESS[100], abi, ethersProvider);
   const member = await contract.members(signerAddress);
   return member;

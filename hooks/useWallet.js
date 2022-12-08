@@ -30,8 +30,12 @@ const useWallet = (requireEns) => {
   };
 
   const validateMembership = async (signerAddress, ethersProvider) => {
+    console.log("VALIDATING MEMBERSHIP");
     try {
+      console.log({signerAddress});
+      console.log({ethersProvider});
       let memberInfo = await getMemberShares(signerAddress, ethersProvider);
+      console.log({memberInfo});
       context.setWeb3Data({ isMember: memberInfo[3] });
     } catch (err) {
       console.log(err);

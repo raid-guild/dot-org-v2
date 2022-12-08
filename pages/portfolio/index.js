@@ -74,10 +74,10 @@ function PortfolioContent(props) {
   const project = props?.project;
   return (
     <Box my="2rem">
-      <HStack gap="1rem">
+      <HStack gap="4rem">
         <Image
           src={project["image_url"]}
-          sx={{ height: `200px`, width: `200px` }}
+          sx={{ height: `200px`, width: `200px`, marginRight: `1rem` }}
         />
         <VStack color="white" align="flex-start">
           <Heading sx={{ fontFamily: `uncial` }}>

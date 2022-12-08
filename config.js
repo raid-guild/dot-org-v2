@@ -23,7 +23,7 @@ export const hireTable = async () => {
 };
 
 const devMode =
-  process.env.NEXT_PUBLIC_ENV_MODE === 'production' ? false : true;
+  process.env.NEXT_PUBLIC_ENV_MODE == 'production' ? false : true;
 
 export const INFURA_ID = process.env.NEXT_PUBLIC_INFURA_ID;
 export const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
