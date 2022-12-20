@@ -10,7 +10,9 @@ export default function PublishPortfolio(props: any) {
     // other hooks happen here
     /* @ts-ignore */
     const token = session.token;
+    // token can be passed to react-query mutate hook to authenticate the request
 
+    
     return (
         <div>
 
