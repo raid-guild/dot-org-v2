@@ -1,23 +1,19 @@
-import "../styles/globals.css";
+/* eslint-disable react/jsx-props-no-spreading */
+// import "../styles/globals.css";
 import '@rainbow-me/rainbowkit/styles.css';
-import type { AppProps } from "next/app";
+import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import { SessionProvider } from 'next-auth/react';
-import { WagmiConfig } from "wagmi";
-import {
-  QueryClient,
-  QueryClientProvider,
-  QueryCache,
-} from "@tanstack/react-query";
-import { RGThemeProvider, useToast } from "@raidguild/design-system";
-import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
-import { RainbowKitSiweNextAuthProvider } from "@rainbow-me/rainbowkit-siwe-next-auth";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { chains } from "../utils/chains";
-import { wagmiClient } from "../utils/wagmiClient";
+import { WagmiConfig } from 'wagmi';
+import { QueryClient, QueryClientProvider, QueryCache } from '@tanstack/react-query';
+import { RGThemeProvider, useToast } from '@raidguild/design-system';
+import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { RainbowKitSiweNextAuthProvider } from '@rainbow-me/rainbowkit-siwe-next-auth';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { chains } from '../utils/chains';
+import { wagmiClient } from '../utils/wagmiClient';
 
 export default function App({ Component, pageProps }: AppProps) {
-
   const toast = useToast();
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -28,9 +24,8 @@ export default function App({ Component, pageProps }: AppProps) {
     },
     queryCache: new QueryCache({
       onError: (error) => {
-        toast({
+        toast.success({
           title: 'Something went wrong.',
-          status: 'error',
           description: `Please try again: ${error}`,
         });
       },

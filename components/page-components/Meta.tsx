@@ -1,8 +1,10 @@
 import Head from 'next/head';
 
+// TODO use NEXT SEO
+
 const Meta = () => {
   return (
-    <Head key="main">
+    <Head key='main'>
       <title>RaidGuild</title>
       <meta
         name='description'
