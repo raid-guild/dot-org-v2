@@ -2,7 +2,7 @@
 // import "../styles/globals.css";
 import '@rainbow-me/rainbowkit/styles.css';
 import type { AppProps } from 'next/app';
-import { DefaultSeo } from 'next-seo';
+// import { DefaultSeo } from 'next-seo';
 import { SessionProvider } from 'next-auth/react';
 import { WagmiConfig } from 'wagmi';
 import { QueryClient, QueryClientProvider, QueryCache } from '@tanstack/react-query';

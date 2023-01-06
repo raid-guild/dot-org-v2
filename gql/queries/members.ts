@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from 'graphql-request';
 
 export const MEMBER_LIST_QUERY = gql`
   query MemberList($offset: Int!, $limit: Int!, $where: members_bool_exp) {

@@ -1,6 +1,4 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+/* eslint-disable @typescript-eslint/no-var-requires */
+const withTM = require('next-transpile-modules')(['@raidguild/design-system']);
 
-module.exports = nextConfig
+module.exports = withTM({});

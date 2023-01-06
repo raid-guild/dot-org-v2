@@ -3,9 +3,10 @@ import { UseFormReturn } from 'react-hook-form';
 
 interface Props {
   localForm: UseFormReturn;
+  incrementer: (e: any) => void;
 }
 
-export default function StepOne({ localForm }: Props) {
+export default function StepOne({ localForm, incrementer }: Props) {
   const formFields = [
     {
       label: 'What is your name?',
@@ -53,7 +54,7 @@ export default function StepOne({ localForm }: Props) {
 
   return (
     <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
-      <Grid sx={{ gridTemplateColumns: `1fr 1fr`, gap: `2rem` }}>
+      <Grid gridTemplateColumns='1fr 1fr' gap='2rem'>
         {formFields.map((field) => {
           if (field.type === 'textarea') {
             return (

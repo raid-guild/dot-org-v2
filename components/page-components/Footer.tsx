@@ -32,12 +32,7 @@ const forAllLinks = [
 ];
 
 const Footer = () => (
-  <Box
-    sx={{
-      backgroundImage: raidGuildFooter.src,
-      backgroundSize: `cover`,
-      padding: `100px 0px 0px 0px`,
-    }}>
+  <Box backgroundImage={raidGuildFooter.src} backgroundSize='cover' padding='100px 0px 0px 0px'>
     {/* <HireUs /> */}
     <Flex
       direction={{ base: 'column-reverse', md: 'row', lg: 'row' }}

@@ -1,13 +1,12 @@
-import { useState } from "react";
-import StepOne from "../components/hire/StepOne";
-import { useForm } from "react-hook-form";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-import { useCreateConsult } from "../hooks/useCreateConsult";
+import StepOne from '../components/hire/StepOne';
+import useConsultationCreate from '../hooks/useConsultationCreate';
 
-export default function Hireus(props: any) {
+const HireUs = () => {
   const localForm = useForm();
-  const { mutate, mutateAsync, isLoading, isError, isSuccess } =
-    useCreateConsult();
+  const { mutate, mutateAsync, isLoading, isError, isSuccess } = useConsultationCreate();
 
   const { handleSubmit } = localForm;
 
@@ -23,10 +22,10 @@ export default function Hireus(props: any) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {formStage === 0 && (
-        <StepOne localForm={localForm} incrementer={() => incrementStage()} />
-      )}
-      <button type="submit">Submit</button>
+      {formStage === 0 && <StepOne localForm={localForm} incrementer={incrementStage} />}
+      <button type='submit'>Submit</button>
     </form>
   );
-}
+};
+
+export default HireUs;

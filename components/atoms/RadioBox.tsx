@@ -17,7 +17,6 @@ function RadioCard({ children, ...props }: ChakraRadioProps) {
         color='#7f5af0'
         boxShadow='md'
         border='1px solid #7f5af0'
-        fontFamily="'JetBrains Mono', monospace"
         _checked={{
           bg: '#7f5af0',
           color: 'white',
@@ -51,7 +50,7 @@ function RadioBox({ name, defaultValue, updateRadio, options, stack }: RadioBoxP
   const group = getRootProps();
 
   return stack === 'vertical' ? (
-    <VStack {...group} style={{ alignItems: 'inherit' }}>
+    <VStack {...group} alignItems='inherit'>
       {options.map((value: any) => {
         const radio = getRadioProps({ value });
         return (
