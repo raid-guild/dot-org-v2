@@ -1,6 +1,4 @@
-import Link from 'next/link';
 import {
-  Box,
   VStack,
   Text,
   Textarea,
@@ -11,11 +9,15 @@ import {
   IconButton,
   Stack,
   ChakraInput,
+  Card,
+  Flex,
+  Grid,
 } from '@raidguild/design-system';
 import { useForm } from 'react-hook-form';
 import { AiOutlineClose } from 'react-icons/ai';
 // import { Web3Storage } from 'web3.storage';
 
+import Link from '../../components/atoms/ChakraNextLink';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
 
@@ -162,66 +164,44 @@ const ShippingStation = () => {
   return (
     <CMSPageTemplate>
       <PageTitle title='Create Shipped Product' />
-      <VStack sx={{ width: `60vw`, margin: `0 auto`, paddingBottom: `2rem` }}>
-        {/* Project Name */}
-        <Input label='Project Name:' name='projectName' localForm={localForm} />
-        {/* Website Url */}
-        <Input label='Website URL:' name='websiteUrl' localForm={localForm} />
-        {/* Github Url */}
+      <VStack width='60vw' margin='0 auto' pb='2rem'>
+        <Input label='Project Name' name='projectName' localForm={localForm} />
+        <Input label='Website URL' name='websiteUrl' localForm={localForm} />
         <Input label='Github:' name='githubUrl' localForm={localForm} />
-        {/* Description */}
         <Input label='Description:' name='description' localForm={localForm} />
         {/* Image */}
-        <VStack
-          sx={{
-            color: `white`,
-            alignItems: `flex-start`,
-            fontFamily: `texturina`,
-            width: `100%`,
-          }}>
-          <Text sx={{ fontSize: `1.3rem` }}>Image:</Text>
+        <VStack alignItems='flex-start' width='100%'>
+          <Text size='md'>Image:</Text>
           <ChakraInput
-            borderColor='red'
+            borderColor='primary.500'
             w='100%'
             // onChange={(event) => handleImage(event.target.files[0])}
             type='file'
           />
-          {/* {watch('image') && <Image src={imagePath} sx={{ width: `128px`, height: `128px`, margin: `1rem auto` }} />} */}
+          {/* {watch('image') && <Image src={imagePath} width='128px' height='128px' margin='1rem auto=' />} */}
         </VStack>
         {/* Applicable Services */}
-        <VStack
-          sx={{
-            color: `white`,
-            alignItems: `flex-start`,
-            fontFamily: `texturina`,
-            width: `100%`,
-          }}>
-          <Text sx={{ fontSize: `1.3rem` }}>Applicable Services:</Text>
-          <Text sx={{ fontSize: `0.8rem` }}>Separate Tags with Commas ,</Text>
-          <Box
-            sx={{
-              border: `1px solid black`,
-              borderColor: `red`,
-              padding: `2rem`,
-              borderRadius: `8px`,
-              width: `100%`,
-              display: `flex`,
-              flexWrap: `wrap`,
-              gap: `1rem`,
-            }}>
+        <VStack alignItems='flex-start' width='100%'>
+          <Text size='md'>Applicable Services:</Text>
+          <Text size='sm'>Separate Tags with Commas ,</Text>
+          <Card
+            as={Flex}
+            border='1px solid'
+            borderColor='primary.500'
+            padding='2rem'
+            width='100%'
+            flexWrap='wrap'
+            gap='1rem'>
             {watch('tags').length > 0 &&
               watch('tags').map((tag: any) => {
                 return (
-                  <Box
-                    sx={{
-                      backgroundColor: `red`,
-                      padding: `1rem 0.5rem`,
-                      width: `fit-content`,
-                      whiteSpace: `nowrap`,
-                      display: `flex`,
-                      gap: `0.5rem`,
-                      alignItems: `center`,
-                    }}
+                  <Flex
+                    bg='red'
+                    padding='1rem 0.5rem'
+                    width='fit-content'
+                    whiteSpace='nowrap'
+                    gap='0.5rem'
+                    alignItems='center'
                     _hover={{ backgroundColor: `purple`, color: `white` }}
                     key={tag.tag}>
                     {tag.tag}
@@ -230,31 +210,18 @@ const ShippingStation = () => {
                       // onClick={() => removeTag(index)}
                       aria-label='Close'
                     />
-                  </Box>
+                  </Flex>
                 );
               })}
-            <Input label='Tags:' name='tags' localForm={localForm} />
-          </Box>
+            <Input label='Tags' name='tags' localForm={localForm} />
+          </Card>
         </VStack>
         {/* Raiders */}
-        <VStack
-          sx={{
-            color: `white`,
-            alignItems: `flex-start`,
-            fontFamily: `texturina`,
-            width: `100%`,
-          }}>
-          <Text sx={{ fontSize: `1.3rem` }}>Contributors:</Text>
+        <VStack alignItems='flex-start' width='100%'>
+          <Text size='md'>Contributors:</Text>
           {watch('raiderRole').map((raider: any) => {
             return (
-              <Box
-                key={raider.id}
-                sx={{
-                  width: `100%`,
-                  display: `grid`,
-                  gridTemplateColumns: `4fr 4fr 1fr`,
-                  gap: `2rem`,
-                }}>
+              <Grid key={raider.id} width='100%' gridTemplateColumns='4fr 4fr 1fr' gap='2rem'>
                 <Select name='raiderRole' localForm={localForm} options={roleOptions} />
 
                 <IconButton
@@ -262,16 +229,11 @@ const ShippingStation = () => {
                   // onClick={() => removeRaider()}
                   aria-label='Close'
                 />
-              </Box>
+              </Grid>
             );
           })}
           <Button
-            backgroundColor='black'
-            sx={{
-              color: `red`,
-              backgroundColor: `darkBlack`,
-              borderColor: `red`,
-            }}
+            variant='blackRedBorder'
             // onClick={() => addNewRaider()}
           >
             Add Raider
@@ -282,7 +244,7 @@ const ShippingStation = () => {
             <Textarea label={question.label} name={question.name} localForm={localForm} />
             <Text fontSize='0.8rem'>
               This textarea accepts{' '}
-              <Link href='https://daringfireball.net/projects/markdown/basics' target='_blank' rel='noreferrer'>
+              <Link href='https://daringfireball.net/projects/markdown/basics' isExternal>
                 markdown
               </Link>
             </Text>

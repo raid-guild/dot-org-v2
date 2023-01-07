@@ -2,6 +2,9 @@
 import _ from 'lodash';
 import { NextRouter } from 'next/router';
 
+export const truncateAddress = (addr: string | undefined): string =>
+  addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : '';
+
 export const slugFromRouterQuery = (router: NextRouter, param = 'project'): string => {
   const localSlug = _.get(router, `query.${param}`);
   if (!localSlug) return '';

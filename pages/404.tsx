@@ -1,6 +1,6 @@
 import { Flex, Box, Heading, Button } from '@raidguild/design-system';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from '../components/atoms/ChakraNextLink';
 
 import raidBanner from '../assets/illustrations/raid__banner.webp';
 
@@ -11,10 +11,10 @@ const NotFound = () => (
     </Box>
     <Heading>Page not found</Heading>
     <Flex direction={{ lg: 'row', base: 'column' }} mt={5} gap={3}>
-      <Link href='/' passHref>
+      <Link href='/'>
         <Button mb={{ lg: '0', base: '1rem' }}>Back Home</Button>
       </Link>
-      <Link href='/hire' passHref>
+      <Link href='/hire'>
         <Button>Hire Us</Button>
       </Link>
     </Flex>

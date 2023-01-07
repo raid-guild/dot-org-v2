@@ -1,4 +1,5 @@
-import { Container, Link, Grid, Button, Image, Flex } from '@raidguild/design-system';
+import { Container, Button, Image, Stack, SimpleGrid } from '@raidguild/design-system';
+import Link from '../atoms/ChakraNextLink';
 
 import PageTitle from '../page-components/PageTitle';
 
@@ -33,20 +34,16 @@ const portfolioImages = [
 const SectionFour = () => (
   <Container bgImage={Clouds.src} minW='100%' py='8rem'>
     <PageTitle title='Our Portfolio' />
-    <Flex flexDirection='column' alignItems='center' gap={4}>
-      <Grid
-        gridTemplateColumns={[`1fr`, `1fr 1fr 1fr 1fr 1fr`, `1fr 1fr 1fr 1fr 1fr`]}
-        placeItems='center'
-        margin='1rem auto'
-        rowGap={[`3rem`, `8rem`]}>
+    <Stack gap={4} align='center'>
+      <SimpleGrid columns={{ base: 1, lg: 5 }} placeItems='center' gap={[`3rem`, `4rem`]} maxW='80%'>
         {portfolioImages.map((image) => (
           <Image key={image.src} src={image.src} />
         ))}
-      </Grid>
+      </SimpleGrid>
       <Link href='/portfolio'>
         <Button margin='1rem auto 0 auto'>View Projects</Button>
       </Link>
-    </Flex>
+    </Stack>
   </Container>
 );
 

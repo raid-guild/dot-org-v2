@@ -1,18 +1,18 @@
-import { Input, Flex, Box, Grid, Textarea } from '@raidguild/design-system';
+import { Input, Box, SimpleGrid, Textarea } from '@raidguild/design-system';
 import { UseFormReturn } from 'react-hook-form';
 
 interface Props {
   localForm: UseFormReturn;
-  incrementer: (e: any) => void;
 }
 
-export default function StepOne({ localForm, incrementer }: Props) {
+export default function StepOne({ localForm }: Props) {
   const formFields = [
     {
       label: 'What is your name?',
       name: 'name',
       type: 'text',
       placeholder: 'Your Name',
+      helperText: 'This is the name that will appear on your profile',
     },
     {
       label: 'What is your email?',
@@ -53,34 +53,26 @@ export default function StepOne({ localForm, incrementer }: Props) {
   ];
 
   return (
-    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
-      <Grid gridTemplateColumns='1fr 1fr' gap='2rem'>
-        {formFields.map((field) => {
-          if (field.type === 'textarea') {
-            return (
-              <Box key={field.name} gridColumn='span 2'>
-                <Textarea
-                  name={field.name}
-                  localForm={localForm}
-                  label={field.label}
-                  placeholder={field.placeholder}
-                  variant='outline'
-                />
-              </Box>
-            );
-          }
+    <SimpleGrid columns={2} gap='2rem' w='100%'>
+      {formFields.map((field) => {
+        if (field.type === 'textarea') {
           return (
-            <Input
-              key={field.name}
-              type={field.type}
-              name={field.name}
-              localForm={localForm}
-              label={field.label}
-              placeholder={field.placeholder}
-            />
+            <Box key={field.name} gridColumn='span 2'>
+              <Textarea name={field.name} localForm={localForm} label={field.label} placeholder={field.placeholder} />
+            </Box>
           );
-        })}
-      </Grid>
-    </Flex>
+        }
+        return (
+          <Input
+            key={field.name}
+            type={field.type}
+            name={field.name}
+            localForm={localForm}
+            label={field.label}
+            placeholder={field.placeholder}
+          />
+        );
+      })}
+    </SimpleGrid>
   );
 }

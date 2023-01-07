@@ -1,20 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-import {
-  Box,
-  HStack,
-  VStack,
-  Heading,
-  Text,
-  Image,
-  Input,
-  Select,
-  Button,
-  Link,
-  Textarea,
-} from '@raidguild/design-system';
+import { Box, HStack, VStack, Heading, Text, Image, Input, Select, Button, Textarea } from '@raidguild/design-system';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
 
+import Link from '../../../components/atoms/ChakraNextLink';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 // import supabase from '../../../shared/Supabase';
@@ -27,44 +16,14 @@ interface Props {
   project: any;
 }
 
-export default function PortfolioPage({ project }: Props) {
+const PortfolioPage = ({ project }: Props) => {
   const localForm = useForm();
 
   const [isValidated, setIsValidated] = useState(false);
 
-  // const thisProject = project?.data[0];
-  // const [projectName, setProjectName] = useState('');
-  // const [websiteURL, setWebsiteURL] = useState('');
-  // const [githubURL, setGithubURL] = useState('');
-  // const [description, setDescription] = useState('');
-  // const [imagePath, setImagePath] = useState('');
-  // //todo: implement user feedback about imageStatus
-  // const [imageStatusMessage, setImageStatusMessage] = useState('');
-  // const [raidTagInput, setRaidTagInput] = useState('');
-  // const [raidTags, setRaidTags] = useState([]);
-  // const [challenge, setChallenge] = useState('');
-  // const [approach, setApproach] = useState('');
-  // const [results, setResults] = useState('');
-  // const [raiderRoles, setRaiderRoles] = useState([{ raider: '', role: '' }]);
+  // TODO implement user feedback about imageStatus
 
-  // useEffect(() => {
-  //   if (thisProject?.project_name) {
-  //     // assuming all data available
-  //     setProjectName(thisProject?.project_name);
-  //     setWebsiteURL(thisProject?.website_url);
-  //     setGithubURL(thisProject?.github_url);
-  //     setDescription(thisProject?.description);
-  //     setImagePath(thisProject?.image_url);
-  //     setRaidTags(thisProject?.relevant_services);
-  //     setRaiderRoles(thisProject?.raiders);
-  //     setChallenge(thisProject?.challenge?.body);
-  //     setApproach(thisProject?.approach?.body);
-  //     setResults(thisProject?.result?.body);
-  //     toast.success('Project data loaded');
-  //   }
-  // }, [thisProject]);
-
-  async function submitData() {
+  const submitData = () => {
     // try {
     //   const { data, error } = await supabase.from('PortfolioContent').insert(
     //     [
@@ -94,7 +53,7 @@ export default function PortfolioPage({ project }: Props) {
     // } catch (error) {
     //   console.error(error);
     // }
-  }
+  };
   // const handleRaidTagKeyDown = (event) => {
   //   if (event.code == 'Comma' || event.code == 'Tab') {
   //     event.preventDefault();
@@ -177,92 +136,67 @@ export default function PortfolioPage({ project }: Props) {
             {/* Description */}
             <Input label='Briefly Describe the Project' name='description' localForm={localForm} />
             {/* Image */}
-            <VStack
-              sx={{
-                color: `white`,
-                alignItems: `flex-start`,
-                fontFamily: `texturina`,
-                width: `100%`,
-              }}>
-              <Text sx={{ fontSize: `1.3rem` }}>Image:</Text>
-              {/* <Input borderColor='red' w='100%' onChange={(event) => handleImage(event.target.files[0])} type='file' />
-              {imagePath && <Image src={imagePath} sx={{ maxWidth: `250px` }} />} */}
+            <VStack align='flex-start' w='100%'>
+              <Text size='md'>Image:</Text>
+              {/* <Input borderColor='primary.500' w='100%' onChange={(event) => handleImage(event.target.files[0])} type='file' />
+              {imagePath && <Image src={imagePath} maxWidth='250px' />} */}
             </VStack>
             {/* Applicable Services */}
             {/* <VStack
-              sx={{
-                color: `white`,
-                alignItems: `flex-start`,
-                fontFamily: `texturina`,
-                width: `100%`,
-              }}>
-              <Text sx={{ fontSize: `1.3rem` }}>Applicable Services:</Text>
-              <Text sx={{ fontSize: `0.8rem` }}>Separate Tags with Commas ,</Text>
-              <Box
-                sx={{
-                  border: `1px solid black`,
-                  borderColor: `red`,
-                  padding: `2rem`,
-                  borderRadius: `2px`,
-                  width: `100%`,
-                  display: `flex`,
-                  flexWrap: `wrap`,
-                  gap: `1rem`,
+                align='flex-start'
+                width='100%'
+              >
+              <Text size='md'>Applicable Services:</Text>
+              <Text size='sm>Separate Tags with Commas ,</Text>
+              <Card
+                as={Flex}
+                  padding='2rem'
+                  borderRadius='2px'
+                  width='100%'
+                  flexWrap='wrap'
+                  gap='1rem'
                 }}>
                 {raidTags.length > 0 &&
                   raidTags.map((tag, index) => {
                     return (
-                      <Box
-                        sx={{
-                          backgroundColor: `red`,
-                          padding: `1rem 0.5rem`,
-                          width: `fit-content`,
-                          whiteSpace: `nowrap`,
-                          display: `flex`,
-                          gap: `0.5rem`,
-                          alignItems: `center`,
-                        }}
+                      <Badge
                         _hover={{ backgroundColor: `purple`, color: `white` }}
                         key={index}>
                         {tag.tag}
                         <CloseIcon onClick={() => removeTag(index)} _hover={{ cursor: `pointer` }} />
-                      </Box>
+                      </Badge>
                     );
                   })}
                 <Input
-                  variant='flushed'
+                  // inp
                   value={raidTagInput}
                   onChange={(event) => setRaidTagInput(event.target.value)}
                   onKeyDown={(event) => handleRaidTagKeyDown(event)}
                 />
-              </Box>
+              </Card>
             </VStack> */}
             {/* Raiders */}
             {/* <VStack
-              sx={{
-                color: `white`,
-                alignItems: `flex-start`,
-                fontFamily: `texturina`,
-                width: `100%`,
+
+                alignItems='flex-start'
+                width='100%'
               }}>
-              <Text sx={{ fontSize: `1.3rem` }}>Contributors:</Text>
+              <Text size='lg'>Contributors:</Text>
               {raiderRoles.map((raider, index) => {
                 return (
-                  <Box
+                  <Grid
                     key={index}
-                    sx={{
-                      width: `100%`,
-                      display: `grid`,
-                      gridTemplateColumns: `4fr 4fr 1fr`,
-                      gap: `2rem`,
-                    }}>
+                    width='100%'
+                    gridTemplateColumns='4fr 4fr 1fr'
+                    gap='2rem'
+                    >
                     <RaiderRoleSelect
                       value={raider.role}
                       index={index}
                       editRaiderRole={(value) => editRaiderRole(value, index)}
                     />
                     <Input
-                      borderColor='red'
+                      borderColor='primary.500'
                       w='100%'
                       name='raider'
                       placeholder='Raider:'
@@ -270,39 +204,31 @@ export default function PortfolioPage({ project }: Props) {
                       onChange={(event) => handleRaiderNameChange(index, event)}
                     />
                     <Button>
-                      <CloseIcon sx={{ color: `red` }} onClick={() => removeRaider()} />
+                      <CloseIcon color='primary.500' onClick={() => removeRaider()} />
                     </Button>
                   </Box>
                 );
               })}
               <Button
-                backgroundColor='black'
-                sx={{
-                  color: `red`,
-                  backgroundColor: `darkBlack`,
-                  borderColor: `red`,
-                }}
+                variant='blackRedBorder'
                 onClick={() => addNewRaider()}>
                 Add Raider
               </Button>
             </VStack> */}
             {/* Challenge */}
             {/* <VStack
-              sx={{
-                color: `white`,
-                alignItems: `flex-start`,
-                fontFamily: `texturina`,
-                width: `100%`,
-              }}>
-              <Text sx={{ fontSize: `1.3rem` }}>The Challenge:</Text>
-              <Text sx={{ fontSize: `0.8rem` }}>
+                align='flex-start'
+                width='100%'
+              >
+              <Text>The Challenge:</Text>
+              <Text size='sm'>
                 This textarea accepts{' '}
                 <Link href='https://daringfireball.net/projects/markdown/basics' target='_blank' rel='noreferrer'>
                   markdown
                 </Link>
               </Text>
               <Textarea
-                borderColor='red'
+                borderColor='primary.500'
                 w='100%'
                 value={challenge}
                 onChange={(event) => setChallenge(event.target.value)}
@@ -310,14 +236,10 @@ export default function PortfolioPage({ project }: Props) {
             </VStack> */}
             {/* Challenge */}
             {/* <VStack
-              sx={{
-                color: `white`,
-                alignItems: `flex-start`,
-                fontFamily: `texturina`,
-                width: `100%`,
-              }}>
-              <Text sx={{ fontSize: `1.3rem` }}>Our Approach</Text>
-              <Text sx={{ fontSize: `0.8rem` }}>
+                align='flex-start'
+                width='100%'>
+              <Text>Our Approach</Text>
+              <Text size='sm'>
                 This textarea accepts{' '}
                 <Link href='https://daringfireball.net/projects/markdown/basics' target='_blank' rel='noreferrer'>
                   markdown
@@ -325,7 +247,7 @@ export default function PortfolioPage({ project }: Props) {
               </Text>
 
               <Textarea
-                borderColor='red'
+                borderColor='primary.500'
                 w='100%'
                 value={approach}
                 onChange={(event) => setApproach(event.target.value)}
@@ -333,56 +255,32 @@ export default function PortfolioPage({ project }: Props) {
             </VStack> */}
             {/* Results */}
             {/* <VStack
-              sx={{
-                color: `white`,
-                alignItems: `flex-start`,
-                fontFamily: `texturina`,
-                width: `100%`,
-              }}>
-              <Text sx={{ fontSize: `1.3rem` }}>Results:</Text>
-              <Text sx={{ fontSize: `0.8rem` }}>This textarea accepts markdown</Text>
+                align='flex-start'
+                width='100%'
+              >
+              <Text size='md'>Results:</Text>
+              <Text size='sm'>This textarea accepts markdown</Text>
               <Textarea
-                borderColor='red'
+                borderColor='primary.500'
                 w='100%'
                 value={results}
                 onChange={(event) => setResults(event.target.value)}
               />
             </VStack> */}
             <HStack>
-              <Button
-                backgroundColor='black'
-                sx={{
-                  color: `white`,
-                  backgroundColor: `red`,
-                  borderColor: `red`,
-                  border: `1px solid`,
-                }}
-                _hover={{
-                  backgroundColor: `blackDark`,
-                }}
-                onClick={() => submitData()}>
+              <Button onClick={submitData} variant='outline'>
                 Save Changes
               </Button>
-              <Button
-                backgroundColor='black'
-                sx={{
-                  color: `red`,
-                  backgroundColor: `blackDark`,
-                  border: `1px solid black`,
-                  borderColor: `red`,
-                }}
-                // onClick={() => deleteItem()}
-              >
-                Delete Content
-              </Button>
+              <Button>Delete Content</Button>
             </HStack>
           </VStack>
         </>
       )}
     </CMSPageTemplate>
   );
-}
+};
 
+export default PortfolioPage;
 // export async function getStaticPaths() {
 //   try {
 //     const { data } = await supabase.from('PortfolioContent').select('project_name');

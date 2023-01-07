@@ -1,13 +1,11 @@
 // A page that displays all of the projects in the portfolio
 import _ from 'lodash';
-import { Box, Heading, HStack, Image, VStack, Text, Link, Button } from '@raidguild/design-system';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import ProjectCard from '../../components/page-components/ProjectCard';
+import { Box, Heading, HStack, Image, VStack, Text, Button } from '@raidguild/design-system';
 
-// import supabase from '../../shared/Supabase';
+import Link from '../../components/atoms/ChakraNextLink';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
+// import Markdown from '../../components/atoms/Markdown';
 
 interface Props {
   projects: any;
@@ -49,7 +47,7 @@ function PortfolioPage({ projects }: Props) {
     <Box>
       <CMSPageTemplate>
         <PageTitle title='Portfolio' />
-        <VStack sx={{ width: `100%`, alignItems: `center`, gap: `1rem` }}>
+        <VStack width='100%' alignItems='center' gap='1rem'>
           {/* {typeof projectData !== null &&
             projectData.map((project, index) => {
               console.log(project);
@@ -66,14 +64,14 @@ function PortfolioContent({ project }: { project: any }) {
   return (
     <Box my='2rem'>
       <HStack gap='4rem'>
-        <Image src={_.get(project, 'imageUrl')} sx={{ height: `200px`, width: `200px`, marginRight: `1rem` }} />
+        <Image src={_.get(project, 'imageUrl')} height='200px' width='200px' marginRight='1rem' />
         <VStack color='white' align='flex-start'>
           <Heading>{_.get(project, 'projectName')}</Heading>
-          <Box sx={{ maxWidth: `50ch` }}>
+          <Box maxWidth='50ch'>
             <Text>{_.get(project, 'description')}</Text>
           </Box>
           <Link href={`/portfolio/${project?.project_name}`}>
-            <Button sx={{ color: `black` }}>Read More</Button>
+            <Button variant='outline'>Read More</Button>
           </Link>
         </VStack>
       </HStack>

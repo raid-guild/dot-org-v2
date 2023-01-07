@@ -1,12 +1,12 @@
 import _ from 'lodash';
-import { Box, Heading, VStack, Image, Button, HStack } from '@raidguild/design-system';
+import { Box, Heading, VStack, Image, Button, HStack, Flex, Grid } from '@raidguild/design-system';
 import { GetServerSidePropsContext } from 'next';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import ProjectCard from '../../../components/page-components/ProjectCard';
+import Link from '../../../components/atoms/ChakraNextLink';
+import Markdown from '../../../components/atoms/Markdown';
 
 import Swords from '../../../assets/illustrations/swords.svg';
 
@@ -14,98 +14,61 @@ interface Props {
   project: any;
 }
 
+// TODO put gradients in ds theme
+
 function PortfolioPage({ project }: Props) {
   const thisProject = project?.data[0];
   return (
     <CMSPageTemplate>
       <PageTitle title={_.get(project, 'projectName')} />
-      <Box sx={{ background: `blackDark`, padding: `2rem 0` }}>
-        <VStack
-          sx={{
-            color: `white`,
-            background: `linear-gradient(102.93deg, #2B0000 0%, #3D0610 29.17%, #5A1049 61.98%, #461881 100%)`,
-            margin: `2rem 0`,
-            padding: `4rem 0`,
-          }}>
-          <Box
-            sx={{
-              display: `flex`,
-              alignItems: `center`,
-              gap: `1rem`,
-              fontFamily: `uncial`,
-            }}>
-            <Image src='/assets/illustrations/smallCastle.svg' sx={{ height: `32px`, width: `32px` }} />
-            <Heading sx={{ fontFamily: `uncial` }}>The Challenge</Heading>
-          </Box>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{_.get(project, 'challenge.body')}</ReactMarkdown>
+      <Box background='blackAlpha.800' px='2rem'>
+        <VStack layerStyle='purpleToRedVerticalGradient' margin='2rem 0' px='4rem'>
+          <Flex align='center' gap='1rem'>
+            <Image src='/assets/illustrations/smallCastle.svg' height='32px' width='32px' />
+            <Heading>The Challenge</Heading>
+          </Flex>
+          <Markdown>{_.get(project, 'challenge.body')}</Markdown>
         </VStack>
-        <Box
-          sx={{
-            padding: `4rem`,
-            display: `grid`,
-            gridTemplateColumns: `5fr 7fr`,
-          }}>
+        <Grid padding='4rem' gridTemplateColumns='5fr 7fr'>
           <Box>
             <ProjectCard project={thisProject} />
           </Box>
-          <Box sx={{ display: `flex`, flexDirection: `column`, color: `white` }}>
+          <Flex direction='column'>
             {/* Other Markdown */}
-            <VStack sx={{ maxWidth: `72ch`, alignSelf: `center` }}>
+            <VStack maxWidth='72ch' alignSelf='center'>
               <VStack>
-                <Box
-                  sx={{
-                    display: `flex`,
-                    alignItems: `center`,
-                    gap: `1rem`,
-                    fontFamily: `uncial`,
-                  }}>
-                  <Image src={Swords.src} sx={{ height: `32px`, width: `32px` }} />
-                  <Heading sx={{ fontFamily: `uncial` }}>Our Approach</Heading>
-                </Box>
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{_.get(project, 'approach.body')}</ReactMarkdown>
+                <Flex align='center' gap='1rem'>
+                  <Image src={Swords.src} height='32px' width='32px' />
+                  <Heading>Our Approach</Heading>
+                </Flex>
+                <Markdown>{_.get(project, 'approach.body')}</Markdown>
               </VStack>
               <VStack>
-                <Box
-                  sx={{
-                    display: `flex`,
-                    alignItems: `center`,
-                    gap: `1rem`,
-                    fontFamily: `uncial`,
-                  }}>
-                  <Image src='/assets/illustrations/wand.svg' sx={{ height: `32px`, width: `32px` }} />
-                  <Heading sx={{ fontFamily: `uncial` }}>The Result</Heading>
-                </Box>
+                <Flex align='center' gap='1rem'>
+                  <Image src='/assets/illustrations/wand.svg' height='32px' width='32px' />
+                  <Heading>The Result</Heading>
+                </Flex>
 
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{_.get(project, 'result.body')}</ReactMarkdown>
+                <Markdown>{_.get(project, 'result.body')}</Markdown>
               </VStack>
-              <Box sx={{ minHeight: `2rem` }} />
-              <HStack sx={{ alignSelf: `flex-start` }}>
-                <a href={_.get(project, 'websiteUrl')} target='_blank' rel='noreferrer'>
+              <Box minHeight='2rem' />
+              <HStack align='flex-start'>
+                <Link href={_.get(project, 'websiteUrl')} isExternal>
                   <Button
-                    sx={{
-                      background: `linear-gradient(94.89deg, #FF5A00 0%, #D62789 70.2%, #AD17AD 100%)`,
-                    }}
+                    bgGradient='linear-gradient(94.89deg, #FF5A00 0%, #D62789 70.2%, #AD17AD 100%)'
                     _hover={{
                       background: `linear-gradient(-90deg, #FF5A00 0%, #D62789 70.2%, #AD17AD 100%)`,
                     }}>
                     Visit Website
                   </Button>
-                </a>
-                <a href={_.get(project, 'githubUrl')} target='_blank' rel='noreferrer'>
-                  <Button
-                    sx={{
-                      border: `2px solid black`,
-                      borderColor: `red`,
-                      color: `red`,
-                      backgroundColor: `transparent`,
-                    }}>
-                    View Code
-                  </Button>
-                </a>
+                </Link>
+                <Link href={_.get(project, 'githubUrl')} isExternal>
+                  <Button variant='blackRedBorder'>View Code</Button>
+                </Link>
               </HStack>
             </VStack>
-          </Box>
-        </Box>
+          </Flex>
+        </Grid>
       </Box>
     </CMSPageTemplate>
   );

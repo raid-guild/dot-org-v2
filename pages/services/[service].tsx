@@ -1,6 +1,6 @@
-import { Box } from '@raidguild/design-system';
+import { Grid, Flex } from '@raidguild/design-system';
 import _ from 'lodash';
-import { GetServerSideProps } from 'next';
+import { GetServerSidePropsContext } from 'next';
 
 import ServicePageTemplate from '../../components/page-templates/ServicePageTemplate';
 import ProjectCard from '../../components/page-components/ProjectCard';
@@ -21,20 +21,20 @@ const Service = ({ title, description, roleImage, salesContent, data }: Props) =
       pageDescription={description}
       roleImage={roleImage}
       salesContent={salesContent}>
-      <Box sx={{ display: `flex`, flexDirection: `column` }}>
+      <Flex direction='column'>
         {data?.length > 0 && (
-          <Box sx={{ display: `grid`, gridTemplateColumns: `1fr 1fr 1fr` }}>
+          <Grid gridTemplateColumns='1fr 1fr 1fr'>
             {data.map((item: any) => {
               return <ProjectCard project={item} key={item.id} />;
             })}
-          </Box>
+          </Grid>
         )}
-      </Box>
+      </Flex>
     </ServicePageTemplate>
   );
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const { params } = context;
   const service = _.isArray(_.get(params, 'service')) ? _.first(_.get(params, 'service')) : _.get(params, 'service');
   // TODO get mapping for where statement

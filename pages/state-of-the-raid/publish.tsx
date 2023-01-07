@@ -1,5 +1,5 @@
 // import { useState, useEffect } from 'react';
-import { Box, VStack, Text, Textarea, Input, Button, Image, Stack } from '@raidguild/design-system';
+import { Flex, VStack, Text, Textarea, Input, Button, Image, Stack } from '@raidguild/design-system';
 import { useForm } from 'react-hook-form';
 // import { Web3Storage } from 'web3.storage';
 
@@ -99,7 +99,7 @@ function Publish({ post }: Props) {
   return (
     <CMSPageTemplate>
       <PageTitle title='Create Post' />
-      <VStack sx={{ width: `60vw`, margin: `0 auto`, paddingBottom: `2rem` }}>
+      <VStack width='60vw' mx='auto' pb='2rem'>
         {/* Post Name */}
         <Input label='Post Title' name='title' localForm={localForm} />
         {/* Author Name */}
@@ -108,55 +108,40 @@ function Publish({ post }: Props) {
         <Input label='Brief Summary' name='description' localForm={localForm} />
         {/* Image */}
         {/* <VStack
-          sx={{
-            color: `white`,
-            alignItems: `flex-start`,
-            fontFamily: `texturina`,
-            width: `100%`,
-          }}>
-          <Text sx={{ fontSize: `1.3rem` }}>Hero Image:</Text>
-          <Input borderColor='red' w='100%' onChange={(event) => handleImage(event.target.files[0])} type='file' />
+            align='flex-start'
+            width='100%'
+          >
+          <Text size='lg'>Hero Image:</Text>
+          <Input borderColor='primary.500' w='100%' onChange={(event) => handleImage(event.target.files[0])} type='file' />
           {imagePath && <Image src={imagePath} />}
         </VStack> */}
         {/* Tags */}
-        <VStack
-          sx={{
-            color: `white`,
-            alignItems: `flex-start`,
-            fontFamily: `texturina`,
-            width: `100%`,
-          }}>
-          <Text sx={{ fontSize: `1.3rem` }}>Post Tags:</Text>
-          <Text sx={{ fontSize: `0.8rem` }}>Separate Tags with Commas ,</Text>
-          <Box
-            sx={{
-              border: `1px solid black`,
-              borderColor: `red`,
-              padding: `2rem`,
-              borderRadius: `8px`,
-              width: `100%`,
-              display: `flex`,
-              flexWrap: `wrap`,
-              gap: `1rem`,
-            }}>
+        <VStack alignItems='flex-start' width='100%'>
+          <Text size='lg'>Post Tags:</Text>
+          <Text size='sm'>Separate Tags with Commas ,</Text>
+          <Flex
+            border='1px solid'
+            borderColor='primary.500'
+            padding='2rem'
+            borderRadius='8px'
+            width='100%'
+            flexWrap='wrap'
+            gap='1rem'>
             {/* {postTags.length > 0 &&
               postTags.map((tag, index) => {
                 return (
-                  <Box
-                    sx={{
-                      backgroundColor: `red`,
-                      padding: `1rem 0.5rem`,
-                      width: `fit-content`,
-                      whiteSpace: `nowrap`,
-                      display: `flex`,
-                      gap: `0.5rem`,
-                      alignItems: `center`,
-                    }}
+                  <Flex
+                    backgroundColor: `primary.500`,
+                    padding='1rem 0.5rem'
+                    width='fit-content'
+                    whiteSpace='nowrap'
+                    gap='0.5rem'
+                    alignItems='center'
                     _hover={{ backgroundColor: `purple`, color: `white` }}
                     key={index}>
                     {tag.tag}
                     <CloseIcon onClick={() => removeTag(index)} _hover={{ cursor: `pointer` }} />
-                  </Box>
+                  </Flex>
                 );
               })} */}
             {/* <Input
@@ -165,12 +150,12 @@ function Publish({ post }: Props) {
               onChange={(event) => setPostTagInput(event.target.value)}
               onKeyDown={(event) => handleTagKeydown(event)}
             /> */}
-          </Box>
+          </Flex>
         </VStack>
         {/* Results */}
         <Stack>
           <Textarea label='Post' name='content' localForm={localForm} />
-          <Text sx={{ fontSize: `0.8rem` }}>This textarea accepts markdown</Text>
+          <Text size='sm'>This textarea accepts markdown</Text>
         </Stack>
 
         <Button onClick={() => submitData()}>Send Post</Button>

@@ -1,5 +1,5 @@
-import { Box, Flex, Button, Heading, Text, Link } from '@raidguild/design-system';
-
+import { Box, Flex, Button, Heading, Text } from '@raidguild/design-system';
+import Link from '../components/atoms/ChakraNextLink';
 import Meta from '../components/page-components/Meta';
 import Nav from '../components/page-components/Nav';
 import Footer from '../components/page-components/Footer';
@@ -39,7 +39,7 @@ const Dashboard = () => {
           <Text maxWidth='100%' mb='2rem'>
             {`Find below all the applications that you have submitted to the guild for hire. Once your bid is accepted, you can secure your consultation with the guild by paying a one time ${0} $RAID.`}
           </Text>
-          <Link href='https://bids.raidguild.org/'>
+          <Link href='https://bids.raidguild.org/' isExternal>
             <Button variant='outline' mr='auto' mb='2rem'>
               Go to bidding page
             </Button>

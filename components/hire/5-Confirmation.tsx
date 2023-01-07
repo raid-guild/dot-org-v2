@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Box, Heading, Button, Text } from '@raidguild/design-system';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from '../atoms/ChakraNextLink';
 
 import signalFire from '../../assets/illustrations/signal_fire.webp';
 
@@ -25,12 +25,12 @@ const Confirmation = () => {
       </Text>
 
       <Flex w='100%' justifyContent='center' direction={{ base: 'column', md: 'row', lg: 'row' }} mt='2rem'>
-        <Link href='/dashboard' passHref>
+        <Link href='/dashboard'>
           <Button mr='1rem' mb='1rem'>
             View My Submissions
           </Button>
         </Link>
-        <Link href='https://bids.raidguild.org/'>
+        <Link href='https://bids.raidguild.org/' isExternal>
           <Button>Start Bidding</Button>
         </Link>
       </Flex>

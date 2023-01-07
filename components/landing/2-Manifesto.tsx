@@ -1,17 +1,17 @@
-import { SimpleGrid, VStack, Box, Heading, Text, Button, Link, Image } from '@raidguild/design-system';
+import { SimpleGrid, VStack, Box, Heading, Text, Button, Image } from '@raidguild/design-system';
+import Link from '../atoms/ChakraNextLink';
 
 import raidFantasy from '../../assets/illustrations/raid__fantasy.webp';
 
 const SectionTwo = () => {
   return (
     <SimpleGrid
+      layerStyle='redToPurpleHorizontalGradient'
       id='manifesto'
       columns={{ base: 1, md: 1, lg: 2 }}
       px={{ base: '2rem', lg: '8rem' }}
       py='4rem'
-      mb='0'
-      placeItems='center'
-      background='linear-gradient(168.89deg, #24003A 8.78%, #330F00 137.95%)'>
+      placeItems='center'>
       <Box width={{ base: '250px', lg: '400px' }}>
         <Image src={raidFantasy.src} alt='raid fantasy' placeholder='blur' />
       </Box>

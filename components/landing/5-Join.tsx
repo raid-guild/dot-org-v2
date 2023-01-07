@@ -1,22 +1,22 @@
-import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text, Link } from '@raidguild/design-system';
+import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text } from '@raidguild/design-system';
+import Link from '../atoms/ChakraNextLink';
 
 import { culture } from '../../utils/constants';
 
 const SectionFive = () => (
   <Flex
-    id='culture'
+    layerStyle='redToPurpleHorizontalGradient'
     minHeight='100vh'
     direction='column'
     alignItems='center'
     justifyContent='center'
-    bg='linear-gradient(157.1deg, #22002b 0%, #390418 29.17%, #48093A 61.98%, #1F0442 100%)'
     px={{ base: '2rem', lg: '8rem' }}
     py='6rem'>
     <VStack spacing={5} justifyContent='center'>
       <Heading mb='1rem'>Join the Guild</Heading>
-      <Text>
+      <Text maxW='60%'>
         We believe workers should be self-sovereign and able to work when, where and how they want, as long as they
-        create high value output. We’re looking for top talent that can take things into their own hands and bring
+        create high value output. We&apos;re looking for top talent that can take things into their own hands and bring
         unique value to the guild.
       </Text>
       <br />
@@ -37,7 +37,7 @@ const SectionFive = () => (
           px='1.5rem'
           bg='black'
           borderTop='2px solid'
-          borderColor='red'>
+          borderColor='primary.500'>
           <Heading size='md' mb={3}>
             {item.name}
           </Heading>

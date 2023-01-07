@@ -1,8 +1,23 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Box, useRadio, useRadioGroup, HStack, VStack, ChakraRadioProps } from '@raidguild/design-system';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from 'react';
+import { UseFormReturn, useController, FieldValues } from 'react-hook-form';
+import {
+  Box,
+  useRadio,
+  useRadioGroup,
+  HStack,
+  VStack,
+  ChakraRadioProps,
+  useStyleConfig,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Stack,
+} from '@raidguild/design-system';
 
-// 1. Create a component that consumes the `useRadio` hook
-function RadioCard({ children, ...props }: ChakraRadioProps) {
+function RadioCard({ children, variant, size, ...props }: ChakraRadioProps) {
+  const styles = useStyleConfig('RadioBox', { variant, size });
   const { getInputProps, getCheckboxProps } = useRadio({ ...props });
 
   const input = getInputProps();
@@ -11,66 +26,70 @@ function RadioCard({ children, ...props }: ChakraRadioProps) {
   return (
     <Box as='label'>
       <input {...input} />
-      <Box
-        {...checkbox}
-        cursor='pointer'
-        color='#7f5af0'
-        boxShadow='md'
-        border='1px solid #7f5af0'
-        _checked={{
-          bg: '#7f5af0',
-          color: 'white',
-          borderColor: 'teal.600',
-        }}
-        px={2}
-        py={2}>
+      <Box {...checkbox} __css={styles}>
         {children}
       </Box>
     </Box>
   );
 }
 
-interface RadioBoxProps {
+export interface CustomRadioBoxProps {
   name: string;
-  defaultValue: string;
-  updateRadio: (e: any) => void;
+  label: string;
+  localForm: UseFormReturn<FieldValues>;
   options: any;
   stack: 'vertical' | 'horizontal';
+  size?: 'sm' | 'md' | 'lg';
 }
-// Step 2: Use the `useRadioGroup` hook to control a group of custom radios.
-function RadioBox({ name, defaultValue, updateRadio, options, stack }: RadioBoxProps) {
+
+type RadioBoxProps = CustomRadioBoxProps & ChakraRadioProps;
+
+function RadioBox({ name, label, localForm, options, stack, isRequired, size }: RadioBoxProps) {
+  if (!localForm) return null;
+  const { control } = localForm;
+  const {
+    field,
+    formState: { errors },
+  } = useController({
+    control,
+    name,
+    // rules: { required: { value: true, message: "Required field" } }
+  });
   const { getRootProps, getRadioProps } = useRadioGroup({
     name,
-    defaultValue,
-    onChange: (e) => {
-      updateRadio(e);
-    },
+    onChange: field.onChange,
+    value: field.value,
   });
 
-  const group = getRootProps();
+  const Options = () =>
+    options.map((v: any) => {
+      const radio = getRadioProps({ value: v });
+      return (
+        <RadioCard key={v} size={size} {...radio}>
+          {v}
+        </RadioCard>
+      );
+    });
 
-  return stack === 'vertical' ? (
-    <VStack {...group} alignItems='inherit'>
-      {options.map((value: any) => {
-        const radio = getRadioProps({ value });
-        return (
-          <RadioCard key={value} {...radio}>
-            {value}
-          </RadioCard>
-        );
-      })}
-    </VStack>
-  ) : (
-    <HStack {...group}>
-      {options.map((value: any) => {
-        const radio = getRadioProps({ value });
-        return (
-          <RadioCard key={value} {...radio}>
-            {value}
-          </RadioCard>
-        );
-      })}
-    </HStack>
+  const group = getRootProps();
+  const error = errors[name] && errors[name]?.message;
+
+  return (
+    <FormControl isRequired={isRequired} isInvalid={!!errors[name]}>
+      <Stack>
+        {label && <FormLabel as='legend'>{label}</FormLabel>}
+        {stack === 'vertical' ? (
+          <VStack {...group} alignItems='inherit'>
+            <Options />
+          </VStack>
+        ) : (
+          <HStack {...group}>
+            <Options />
+          </HStack>
+        )}
+        {typeof error === 'string' && <FormErrorMessage>{error}</FormErrorMessage>}
+      </Stack>
+    </FormControl>
   );
 }
 

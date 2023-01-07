@@ -1,6 +1,7 @@
 import React from 'react';
-import { Flex, Box, Heading, Text, Link, Button } from '@raidguild/design-system';
+import { Flex, Box, Heading, Text, Button } from '@raidguild/design-system';
 import Image from 'next/image';
+import Link from '../atoms/ChakraNextLink';
 
 import signalFire from '../../assets/illustrations/signal_fire.webp';
 
@@ -18,7 +19,7 @@ const Confirmation = () => (
       next season. We wish you luck! Stay Curious!
     </Text>
 
-    <Link href='https://discord.gg/rGFpfQf'>
+    <Link href='https://discord.gg/rGFpfQf' isExternal>
       <Button mt='2rem'>Join Discord</Button>
     </Link>
   </Flex>

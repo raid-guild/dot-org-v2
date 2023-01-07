@@ -1,23 +1,14 @@
 import { useMutation } from '@tanstack/react-query';
-import { CONSULTATION_CREATE_MUTATION } from '../gql/mutations';
+import { APPLICATION_CREATE_MUTATION } from '../gql/mutations';
 import { client } from '../gql';
 
-interface IPortfolioInsert {
-  name: string;
-  description: string;
-}
-
-interface Props {
-  token: string;
-}
-
-const usePortfolioCreate = ({ token }: Props) => {
+const useApplicationCreate = () => {
   // const queryClient = useQueryClient();
 
   const { mutate, mutateAsync, isLoading, isError, isSuccess } = useMutation(
-    async ({ ...props }: IPortfolioInsert) => {
-      return client({ token }).request(CONSULTATION_CREATE_MUTATION, {
-        ...props,
+    async (data: any) => {
+      return client({}).request(APPLICATION_CREATE_MUTATION, {
+        name: data.name || 'Namey McNameface',
       });
     },
     {
@@ -32,4 +23,4 @@ const usePortfolioCreate = ({ token }: Props) => {
   return { mutate, mutateAsync, isLoading, isError, isSuccess };
 };
 
-export default usePortfolioCreate;
+export default useApplicationCreate;

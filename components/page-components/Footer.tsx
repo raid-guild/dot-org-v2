@@ -1,12 +1,10 @@
-import { Flex, Link, Box, SimpleGrid, VStack, HStack, Heading, Text, Icon, Image } from '@raidguild/design-system';
+import { Flex, Box, SimpleGrid, VStack, HStack, Heading, Text, Icon, Image } from '@raidguild/design-system';
 import { FaTwitter, FaGithub, FaDiscord, FaNewspaper } from 'react-icons/fa';
 // import Image from 'next/image';
+import Link from '../atoms/ChakraNextLink';
 
 import raidGuildLogo from '../../assets/illustrations/raidguild.webp';
 import raidGuildFooter from '../../assets/illustrations/raidguild-footer.png';
-
-// component imports
-// import HireUs from '../components/page-components/HireUs';
 
 const forAllLinks = [
   {
@@ -32,7 +30,7 @@ const forAllLinks = [
 ];
 
 const Footer = () => (
-  <Box backgroundImage={raidGuildFooter.src} backgroundSize='cover' padding='100px 0px 0px 0px'>
+  <Box backgroundImage={raidGuildFooter.src} backgroundSize='cover' padding='100px 0px 0px 0px' w='100%'>
     {/* <HireUs /> */}
     <Flex
       direction={{ base: 'column-reverse', md: 'row', lg: 'row' }}
@@ -61,7 +59,7 @@ const Footer = () => (
         <VStack alignItems='flex-start'>
           <Heading>For Raiders</Heading>
           <Link href='/#culture'>Join Us</Link>
-          <Link href='https://handbook.raidguild.org' target='_blank' rel='noopener noreferrer'>
+          <Link href='https://handbook.raidguild.org' isExternal>
             Our Handbook
           </Link>
           {/* {context?.signerAddress == null && <Link onClick={() => connectWallet()}>Log In</Link>}

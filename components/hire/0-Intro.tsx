@@ -1,8 +1,8 @@
-import { Flex, Link as ChakraLink, Button, Heading, Text } from '@raidguild/design-system';
-import Link from 'next/link';
+import { Flex, Heading, Text } from '@raidguild/design-system';
+import Link from '../atoms/ChakraNextLink';
 
 const Intro = () => (
-  <Flex direction='column' py='2rem' px={{ base: '1rem', lg: '4rem' }} mx='1rem'>
+  <Flex direction='column' py='2rem' px={{ base: '1rem', lg: '4rem' }} mx='auto' maxW='90%'>
     <Heading fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
       Hiring RaidGuild
     </Heading>
@@ -17,74 +17,47 @@ const Intro = () => (
 
     <Text fontSize={{ base: '1rem', lg: '18px' }}>
       You will be prompted to pay a{' '}
-      <ChakraLink
+      <Link
         href='https://app.honeyswap.org/#/swap?inputCurrency=0x18e9262e68cc6c6004db93105cc7c001bb103e49&outputCurrency=0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1&chainId=100'
-        isExternal
-        textDecoration='underline'
-        color='red'>
+        isExternal>
         500 $RAID
-      </ChakraLink>{' '}
+      </Link>{' '}
       application submission fee at the end of the form as a spam filter. Once paid, you will be taken to a client
       dashboard where you can track the status of all your applications. If you prefer to push your application to the
       top of all other requests we received, you can start making bids in{' '}
-      <ChakraLink href='https://bids.raidguild.org/' isExternal textDecoration='underline' color={theme.colors.red}>
+      <Link href='https://bids.raidguild.org/' isExternal>
         the consultation queue
-      </ChakraLink>{' '}
+      </Link>{' '}
       to climb up the queue. Once a bid is accepted, you need to pay a one time fee of{' '}
-      <ChakraLink
+      <Link
         href='https://app.honeyswap.org/#/swap?inputCurrency=0x18e9262e68cc6c6004db93105cc7c001bb103e49&outputCurrency=0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1&chainId=100'
-        isExternal
-        textDecoration='underline'
-        color={theme.colors.red}>
+        isExternal>
         15000 $RAID
-      </ChakraLink>{' '}
+      </Link>{' '}
       to secure your spot for a consultation from your dashboard.
     </Text>
     <br />
 
     <Text>
       For more info about the consultation process, join our{' '}
-      <ChakraLink href='https://handbook.raidguild.org/' isExternal textDecoration='underline' color={theme.colors.red}>
+      <Link href='https://handbook.raidguild.org/' isExternal>
         discord.
-      </ChakraLink>
+      </Link>
       .
     </Text>
     <br />
 
-    <Flex direction='column' bgColor='white' borderRadius='0.5rem' p='0.5rem 1rem' maxW='720px'>
+    <Flex direction='column' bgColor='white' borderRadius='0.5rem' p='0.5rem 1rem' maxW='720px' color='black'>
       <Text fontWeight='bold' mb='.5rem'>
         IMPORTANT
       </Text>
       <Text>
         If you made a bid prior to March 15th, 2022, please use the old version of the Consultation Queue:{' '}
-        <ChakraLink href='https://hireus.raidguild.org' isExternal textDecoration='underline'>
+        <Link href='https://hireus.raidguild.org' isExternal>
           hireus.raidguild.org
-        </ChakraLink>
+        </Link>
       </Text>
     </Flex>
-    <br />
-
-    {/* {context.signerAddress && ( */}
-    <Flex w='100%' direction={{ base: 'column', md: 'row', lg: 'row' }} gap={2}>
-      <Button
-        w='100%'
-        fontSize={{ base: '16px', lg: '18px' }}
-        // onClick={() => {
-        //   if (context.chainId !== 100 && context.chainId !== 1) {
-        //     triggerToast('Please switch to the Gnosis or Mainnet Networks.');
-        //     return;
-        //   }
-        //   context.updateStage('next');
-        // }}
-      >
-        New Consultation
-      </Button>
-
-      <Link href='/dashboard' passHref>
-        <Button w='100%'>View My Submissions</Button>
-      </Link>
-    </Flex>
-    {/* )} */}
   </Flex>
 );
 

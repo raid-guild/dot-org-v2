@@ -1,11 +1,10 @@
 import { Box, Heading, Text, VStack, Image, Button, HStack } from '@raidguild/design-system';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
 
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
+import Markdown from '../../components/atoms/Markdown';
 import ProjectCard from '../../components/page-components/ProjectCard';
 
 type Props = {
@@ -65,15 +64,11 @@ function PostPage({ post }: Props) {
   return (
     <CMSPageTemplate>
       <PageTitle title='State of The Raid' />
-      <Box sx={{ background: `blackDark`, padding: `2rem 0`, fontFamily: `texturina`, color: `white` }}>
+      <Box background='blackAlpha.800' padding='2rem 0'>
         <VStack>
-          {_.get(post, 'heroImage') && (
-            <Image src={_.get(post, 'heroImage')} sx={{ maxHeight: `200`, marginBottom: `2rem` }} />
-          )}
-          <Box sx={{ width: `500px` }}>
-            <Heading as='h1' sx={{ fontFamily: `uncial`, color: `white` }}>
-              {_.get(post, 'postTitle')}
-            </Heading>
+          {_.get(post, 'heroImage') && <Image src={_.get(post, 'heroImage')} maxHeight='200' mb='2rem' />}
+          <Box width='500px'>
+            <Heading as='h1'>{_.get(post, 'postTitle')}</Heading>
             <Text>
               Published by {_.get(post, 'authorName')} | {publishString}
             </Text>
@@ -81,13 +76,13 @@ function PostPage({ post }: Props) {
             <Box height='3rem' />
             <Box width='100%' height='1px' backgroundColor='white' />
             <Box height='3rem' />
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{_.get(post, 'content.body')}</ReactMarkdown>
+            <Markdown>{_.get(post, 'content.body')}</Markdown>
           </Box>
         </VStack>
-        <HStack sx={{ margin: `12rem 2rem`, justifyContent: `space-between` }}>
-          <Image src='/assets/illustrations/LeftWing.svg' sx={{ width: `30vw` }} />
+        <HStack m='12rem 2rem' justify='space-between'>
+          <Image src='/assets/illustrations/LeftWing.svg' width='30vw' />
           <Image src='/assets/illustrations/Swords.svg' />
-          <Image src='/assets/illustrations/RightWing.svg' sx={{ width: `30vw` }} />
+          <Image src='/assets/illustrations/RightWing.svg' width='30vw' />
         </HStack>
       </Box>
     </CMSPageTemplate>

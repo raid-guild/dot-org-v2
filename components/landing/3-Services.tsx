@@ -1,16 +1,15 @@
 import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text } from '@raidguild/design-system';
-import Link from 'next/link';
+import Link from '../atoms/ChakraNextLink';
 
 import { services } from '../../utils/constants';
 
 const SectionThree = () => (
   <SimpleGrid
-    id='services'
+    layerStyle='purpleToRedVerticalGradient'
     minHeight='95vh'
     columns={{ base: 1, md: 1, lg: 2 }}
     px={{ base: '2rem', lg: '8rem' }}
-    py='2rem'
-    bg='linear-gradient(281.37deg, #2B0000 -4.6%, #3D0610 26.67%, #5A1049 61.86%, #461881 102.63%)'>
+    py='2rem'>
     <VStack spacing={5} justifyContent='center' lineHeight='1.8' my='5rem'>
       <Heading fontSize={{ base: '1.5rem', lg: '36px' }}>Our Services</Heading>
       <Text fontSize={{ base: '1rem', lg: '18px' }}>
@@ -23,7 +22,7 @@ const SectionThree = () => (
         lean to the core and deliver high quality results with quick turnarounds.
       </Text>
       <br />
-      <Link href='/hire' passHref>
+      <Link href='/hire'>
         <Button fontSize={{ base: '16px', lg: '18px' }}>Hire Us</Button>
       </Link>
     </VStack>
@@ -39,7 +38,7 @@ const SectionThree = () => (
             px='1.5rem'
             bg='black'
             borderTop='2px solid'
-            borderColor='red'>
+            borderColor='primary.500'>
             <Heading mb={3}>{item.name}</Heading>
 
             <Image src={item.img} alt='consultations' my='.5rem' />
