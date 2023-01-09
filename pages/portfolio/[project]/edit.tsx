@@ -1,25 +1,27 @@
-import { useState, useEffect, useContext } from 'react';
+import _ from 'lodash';
 import { Box, HStack, VStack, Heading, Text, Image, Input, Select, Button, Textarea } from '@raidguild/design-system';
-import { AiOutlineClose } from 'react-icons/ai';
+// import { AiOutlineClose } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
+import { GetServerSidePropsContext } from 'next';
+import { useSession } from 'next-auth/react';
 
 import Link from '../../../components/atoms/ChakraNextLink';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
-// import supabase from '../../../shared/Supabase';
-// import RaiderRoleSelect from '../../../components/page-components/RaiderRoleSelect';
+import usePortfolioDetail from '../../../hooks/usePortfolioDetail';
 
-// import RouteProtector from '../../../components/page-components/RouteProtector';
-// import ProtectedRouteWarning from '../../../components/page-components/ProtectedRouteWarning';
+// import RaiderRoleSelect from '../../../components/page-components/RaiderRoleSelect';
 
 interface Props {
   project: any;
 }
 
 const PortfolioPage = ({ project }: Props) => {
+  const { data: session } = useSession();
+  const token = _.get(session, 'token');
+  const { data: portfolioProject } = usePortfolioDetail({ slug: project, token });
+  // const { mutateAsync } = usePortfolioUpdate();
   const localForm = useForm();
-
-  const [isValidated, setIsValidated] = useState(false);
 
   // TODO implement user feedback about imageStatus
 
@@ -121,28 +123,24 @@ const PortfolioPage = ({ project }: Props) => {
 
   return (
     <CMSPageTemplate>
-      {/* <RouteProtector setter={setIsValidated} /> */}
-      {/* {!isValidated && <ProtectedRouteWarning />} */}
-      {isValidated && (
-        <>
-          <PageTitle title='Edit Shipped Project' />
-          <VStack margin='0 auto' paddingBottom='2rem'>
-            {/* Project Name */}
-            <Input label='Project Name' name='name' localForm={localForm} />
-            {/* Website Url */}
-            <Input label='Website URL' name='websiteUrl' localForm={localForm} />
-            {/* Github Url */}
-            <Input label='Github URL' name='githubUrl' localForm={localForm} />
-            {/* Description */}
-            <Input label='Briefly Describe the Project' name='description' localForm={localForm} />
-            {/* Image */}
-            <VStack align='flex-start' w='100%'>
-              <Text size='md'>Image:</Text>
-              {/* <Input borderColor='primary.500' w='100%' onChange={(event) => handleImage(event.target.files[0])} type='file' />
+      <PageTitle title='Edit Shipped Project' />
+      <VStack margin='0 auto' paddingBottom='2rem'>
+        {/* Project Name */}
+        <Input label='Project Name' name='name' localForm={localForm} />
+        {/* Website Url */}
+        <Input label='Website URL' name='websiteUrl' localForm={localForm} />
+        {/* Github Url */}
+        <Input label='Github URL' name='githubUrl' localForm={localForm} />
+        {/* Description */}
+        <Input label='Briefly Describe the Project' name='description' localForm={localForm} />
+        {/* Image */}
+        <VStack align='flex-start' w='100%'>
+          <Text size='md'>Image:</Text>
+          {/* <Input borderColor='primary.500' w='100%' onChange={(event) => handleImage(event.target.files[0])} type='file' />
               {imagePath && <Image src={imagePath} maxWidth='250px' />} */}
-            </VStack>
-            {/* Applicable Services */}
-            {/* <VStack
+        </VStack>
+        {/* Applicable Services */}
+        {/* <VStack
                 align='flex-start'
                 width='100%'
               >
@@ -175,8 +173,8 @@ const PortfolioPage = ({ project }: Props) => {
                 />
               </Card>
             </VStack> */}
-            {/* Raiders */}
-            {/* <VStack
+        {/* Raiders */}
+        {/* <VStack
 
                 alignItems='flex-start'
                 width='100%'
@@ -215,8 +213,8 @@ const PortfolioPage = ({ project }: Props) => {
                 Add Raider
               </Button>
             </VStack> */}
-            {/* Challenge */}
-            {/* <VStack
+        {/* Challenge */}
+        {/* <VStack
                 align='flex-start'
                 width='100%'
               >
@@ -234,8 +232,8 @@ const PortfolioPage = ({ project }: Props) => {
                 onChange={(event) => setChallenge(event.target.value)}
               />
             </VStack> */}
-            {/* Challenge */}
-            {/* <VStack
+        {/* Challenge */}
+        {/* <VStack
                 align='flex-start'
                 width='100%'>
               <Text>Our Approach</Text>
@@ -253,8 +251,8 @@ const PortfolioPage = ({ project }: Props) => {
                 onChange={(event) => setApproach(event.target.value)}
               />
             </VStack> */}
-            {/* Results */}
-            {/* <VStack
+        {/* Results */}
+        {/* <VStack
                 align='flex-start'
                 width='100%'
               >
@@ -267,45 +265,21 @@ const PortfolioPage = ({ project }: Props) => {
                 onChange={(event) => setResults(event.target.value)}
               />
             </VStack> */}
-            <HStack>
-              <Button onClick={submitData} variant='outline'>
-                Save Changes
-              </Button>
-              <Button>Delete Content</Button>
-            </HStack>
-          </VStack>
-        </>
-      )}
+        <HStack>
+          <Button onClick={submitData} variant='outline'>
+            Save Changes
+          </Button>
+          <Button>Delete Content</Button>
+        </HStack>
+      </VStack>
     </CMSPageTemplate>
   );
 };
 
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const project = _.get(context, 'params.project');
+
+  return { props: { project: '' } };
+};
+
 export default PortfolioPage;
-// export async function getStaticPaths() {
-//   try {
-//     const { data } = await supabase.from('PortfolioContent').select('project_name');
-//     const paths = data.map((project) => {
-//       return { params: { project: `${project?.project_name}/edit` } };
-//     });
-//     return {
-//       paths,
-//       fallback: true,
-//     };
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-// This function gets called at build time
-// export async function getStaticProps(params) {
-//   console.log({ params });
-//   const project = params.params.project;
-//   // Call an external API endpoint to get posts
-//   const res = await supabase.from('PortfolioContent').select('*').eq('project_name', project);
-
-//   return {
-//     props: {
-//       project: res,
-//     },
-//   };
-// }

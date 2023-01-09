@@ -5,25 +5,20 @@ import { Session, User } from 'next-auth';
 import { CreateTokenParams, HasuraAuthToken } from '../../types';
 import { getOrCreateUser } from './queryHelpers';
 
-const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET;
+const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET || '';
 
-export const CONFIG = {
+export const CONFIG: { encodingAlgorithm: 'HS256'; defaultRoles: string[]; defaultMaxAge: number } = {
   encodingAlgorithm: 'HS256',
   defaultRoles: ['member'], // match HASURA_GRAPHQL_UNAUTHORIZED_ROLE
   defaultMaxAge: 30 * 60, // 30 minutes
 };
 
 // Could be swapped for different API models
-export const createToken = ({
-  user,
-  token,
-  maxAge,
-  roles,
-}: CreateTokenParams): HasuraAuthToken => ({
+export const createToken = ({ user, token, maxAge, roles }: CreateTokenParams): HasuraAuthToken => ({
   ...token,
   address: _.get(token, 'sub'),
   user: {
-    id: _.get(user, 'id'),
+    id: _.get(user, 'id', ''),
   },
   iat: Math.floor(Date.now() / 1000),
   exp: Math.floor(Date.now() / 1000) + (maxAge ?? CONFIG.defaultMaxAge),
@@ -31,23 +26,19 @@ export const createToken = ({
     'x-hasura-allowed-roles': roles ?? CONFIG.defaultRoles,
     'x-hasura-default-role': _.first(roles ?? CONFIG.defaultRoles),
     'x-hasura-role': _.first(roles ?? CONFIG.defaultRoles),
-    'x-hasura-user-id': _.get(user, 'id'),
+    'x-hasura-user-id': _.get(user, 'id', ''),
   },
 });
 
-export const encodeToken = (token: object) =>
-  jwt.sign(token, NEXTAUTH_SECRET, { algorithm: CONFIG.encodingAlgorithm });
+export const encodeToken = (token: object) => jwt.sign(token, NEXTAUTH_SECRET, { algorithm: CONFIG.encodingAlgorithm });
 
-export const encodeAuth = async ({
-  token,
-  maxAge,
-}: {
-  token?: HasuraAuthToken;
-  maxAge?: number;
-}) => {
+export const encodeAuth = async ({ token, maxAge }: { token: HasuraAuthToken; maxAge: number }) => {
   if (_.get(token, 'exp')) return encodeToken(token);
 
-  const user = await getOrCreateUser(_.get(token, 'sub'));
+  const address = _.get(token, 'sub');
+  if (!address) return null;
+
+  const user = await getOrCreateUser(address);
 
   return encodeToken(createToken({ user, token, maxAge }));
 };
@@ -57,8 +48,7 @@ export const decodeToken = (token: string) =>
     algorithms: [CONFIG.encodingAlgorithm],
   });
 
-export const decodeAuth = async ({ token }: JWTDecodeParams) =>
-  decodeToken(token);
+export const decodeAuth = async ({ token }: JWTDecodeParams) => token && decodeToken(token);
 
 export const extendSessionWithUserAndToken = ({
   user,
@@ -71,10 +61,8 @@ export const extendSessionWithUserAndToken = ({
 }): Session => ({
   ...session,
   user: {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore next-line
-    address: _.get(token, 'sub'),
-    id: _.get(token, 'user.id'),
+    address: _.get(token, 'sub', ''),
+    id: _.get(user, 'id', ''),
   },
   token: encodeToken(token),
 });

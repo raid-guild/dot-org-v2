@@ -6,6 +6,8 @@ import Link from '../../components/atoms/ChakraNextLink';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
 import ProjectCard from '../../components/page-components/ProjectCard';
+import useBlogsList from '../../hooks/useBlogsList';
+import { getBlogsList } from '../../gql';
 
 interface PostProps {
   post: any;
@@ -24,50 +26,35 @@ const Post = ({ post }: PostProps) => (
   </Box>
 );
 
-const AllPosts = () => {
-  const [blogData, setBlogData] = useState(null);
-  const [page, setPage] = useState(1);
+interface Props {
+  initialData: any;
+}
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const { data, error } = await supabase
-  //       .from('BlogContent')
-  //       .select('*')
-  //       .range(0, 10)
-  //       .order('id', { ascending: true });
-  //     setBlogData(data);
-  //   };
-  //   fetchData();
-  // }, []);
-
-  // async function fetchNewData() {
-  //   const { data, error } = await supabase
-  //     .from('BlogContent')
-  //     .select('*')
-  //     .range((page - 1) * 10, (page - 1) * 10 + 10)
-  //     .order('id', { ascending: true });
-  //   console.log(data);
-  //   console.log(error);
-  //   setBlogData([...data]);
-  // }
-
-  // // call fetchNewData when the page number changes
-  // useEffect(() => {
-  //   fetchNewData();
-  // }, [page]);
+const AllPosts = ({ initialData }: Props) => {
+  const { data: blogs } = useBlogsList({ initialData });
 
   return (
     <CMSPageTemplate>
       <PageTitle title='State of The Raid' />
       <Box background='blackAlpha.800' px='2rem'>
         <VStack>
-          {_.map(blogData, (post: any) => (
+          {_.map(blogs, (post: any) => (
             <Post post={post} />
           ))}
         </VStack>
       </Box>
     </CMSPageTemplate>
   );
+};
+
+export const getServerSideProps = async () => {
+  const result = await getBlogsList();
+
+  return {
+    props: {
+      initialData: _.get(result, 'blogs', null),
+    },
+  };
 };
 
 export default AllPosts;

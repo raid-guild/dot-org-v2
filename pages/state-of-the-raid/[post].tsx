@@ -1,11 +1,12 @@
-import { Box, Heading, Text, VStack, Image, Button, HStack } from '@raidguild/design-system';
+import { Box, Heading, Text, VStack, Image, HStack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
 
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
 import Markdown from '../../components/atoms/Markdown';
-import ProjectCard from '../../components/page-components/ProjectCard';
+// import ProjectCard from '../../components/page-components/ProjectCard';
+import { getBlogDetail } from '../../gql';
 
 type Props = {
   post: any;
@@ -104,15 +105,23 @@ function PostPage({ post }: Props) {
 //   }
 // }
 
-// This function gets called at build time
-export const getStaticProps = async (context: GetServerSidePropsContext) => {
-  // const post = params.params.post;
-  // // Call an external API endpoint to get posts
-  // const res = await supabase.from('BlogContent').select('*').eq('post_title', post);
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  let post = _.get(context, 'params.post');
+  if (_.isArray(post)) post = _.first(post);
+
+  if (!post) {
+    return {
+      props: {
+        initialData: null,
+      },
+    };
+  }
+
+  const result = await getBlogDetail(post);
 
   return {
     props: {
-      post: null,
+      initialData: _.get(result, 'blogs[0]'),
     },
   };
 };

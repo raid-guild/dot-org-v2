@@ -5,7 +5,7 @@ import { services } from '../../utils/constants';
 
 const SectionThree = () => (
   <SimpleGrid
-    layerStyle='purpleToRedVerticalGradient'
+    layerStyle='purpleToRedDiagonalGradient'
     minHeight='95vh'
     columns={{ base: 1, md: 1, lg: 2 }}
     px={{ base: '2rem', lg: '8rem' }}

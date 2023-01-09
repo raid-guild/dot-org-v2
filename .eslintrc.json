@@ -6,8 +6,8 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "prettier"
   ],
   "plugins": ["react", "prettier", "@typescript-eslint", "react-hooks"],
   "rules": {

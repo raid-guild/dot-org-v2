@@ -8,11 +8,11 @@ import moloch from '../../assets/logos/moloch.webp';
 const SectionSix = () => {
   return (
     <Flex
+      layerStyle='primaryGradient'
       direction='column'
       alignItems='center'
       justifyContent='center'
-      padding={{ base: '2rem', lg: '2rem 4rem' }}
-      margin='8rem 0'>
+      padding={{ base: '2rem', lg: '10rem 4rem' }}>
       <Heading my='2rem' fontSize={{ base: '1.5rem', lg: '36px' }}>
         Supported by
       </Heading>

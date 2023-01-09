@@ -1,6 +1,5 @@
-import { Flex, FormControl, FormLabel, Stack, Checkbox, CheckboxGroup } from '@raidguild/design-system';
-import { UseFormReturn, Controller } from 'react-hook-form';
-import _ from 'lodash';
+import { Flex, Stack, Checkbox } from '@raidguild/design-system';
+import { UseFormReturn } from 'react-hook-form';
 
 import RadioBox from '../atoms/RadioBox';
 

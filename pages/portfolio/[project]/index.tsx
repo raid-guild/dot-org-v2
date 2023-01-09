@@ -1,75 +1,92 @@
 import _ from 'lodash';
-import { Box, Heading, VStack, Image, Button, HStack, Flex, Grid } from '@raidguild/design-system';
+import {
+  Box,
+  Heading,
+  VStack,
+  Icon,
+  HStack,
+  Flex,
+  Grid,
+  Castle,
+  Swords,
+  Button,
+  Wizard2,
+} from '@raidguild/design-system';
 import { GetServerSidePropsContext } from 'next';
+import { useSession } from 'next-auth/react';
 
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
-import ProjectCard from '../../../components/page-components/ProjectCard';
 import Link from '../../../components/atoms/ChakraNextLink';
-import Markdown from '../../../components/atoms/Markdown';
+// import Markdown from '../../../components/atoms/Markdown';
+import { getPortfolioDetail } from '../../../gql';
 
-import Swords from '../../../assets/illustrations/swords.svg';
+import usePortfolioDetail from '../../../hooks/usePortfolioDetail';
 
 interface Props {
-  project: any;
+  project: string;
+  initialData: any;
 }
 
-// TODO put gradients in ds theme
+const sections = [
+  { heading: 'The Challenge', icon: Castle, body: 'challenge.body' },
+  { heading: 'Our Approach', icon: Swords, body: 'approach.body' },
+  { heading: 'The Result', icon: Wizard2, body: 'result.body' },
+];
 
-function PortfolioPage({ project }: Props) {
-  const thisProject = project?.data[0];
+function PortfolioPage({ project, initialData }: Props) {
+  const { data: session } = useSession();
+  const token = _.get(session, 'token');
+  const { data: projectData } = usePortfolioDetail({ slug: project, initialData, token });
+  console.log(projectData);
+
   return (
     <CMSPageTemplate>
-      <PageTitle title={_.get(project, 'projectName')} />
-      <Box background='blackAlpha.800' px='2rem'>
-        <VStack layerStyle='purpleToRedVerticalGradient' margin='2rem 0' px='4rem'>
-          <Flex align='center' gap='1rem'>
-            <Image src='/assets/illustrations/smallCastle.svg' height='32px' width='32px' />
-            <Heading>The Challenge</Heading>
-          </Flex>
-          <Markdown>{_.get(project, 'challenge.body')}</Markdown>
-        </VStack>
-        <Grid padding='4rem' gridTemplateColumns='5fr 7fr'>
-          <Box>
-            <ProjectCard project={thisProject} />
-          </Box>
-          <Flex direction='column'>
-            {/* Other Markdown */}
-            <VStack maxWidth='72ch' alignSelf='center'>
-              <VStack>
-                <Flex align='center' gap='1rem'>
-                  <Image src={Swords.src} height='32px' width='32px' />
-                  <Heading>Our Approach</Heading>
-                </Flex>
-                <Markdown>{_.get(project, 'approach.body')}</Markdown>
-              </VStack>
-              <VStack>
-                <Flex align='center' gap='1rem'>
-                  <Image src='/assets/illustrations/wand.svg' height='32px' width='32px' />
-                  <Heading>The Result</Heading>
-                </Flex>
-
-                <Markdown>{_.get(project, 'result.body')}</Markdown>
-              </VStack>
-              <Box minHeight='2rem' />
-              <HStack align='flex-start'>
-                <Link href={_.get(project, 'websiteUrl')} isExternal>
-                  <Button
-                    bgGradient='linear-gradient(94.89deg, #FF5A00 0%, #D62789 70.2%, #AD17AD 100%)'
-                    _hover={{
-                      background: `linear-gradient(-90deg, #FF5A00 0%, #D62789 70.2%, #AD17AD 100%)`,
-                    }}>
-                    Visit Website
-                  </Button>
-                </Link>
-                <Link href={_.get(project, 'githubUrl')} isExternal>
-                  <Button variant='blackRedBorder'>View Code</Button>
-                </Link>
+      <PageTitle title={_.get(projectData, 'name', '')} />
+      {projectData && (
+        <Box background='blackAlpha.800' px='2rem'>
+          <VStack layerStyle='purpleToRedVerticalGradient' margin='2rem 0' px='4rem'>
+            {_.map(sections, (section) => (
+              <HStack align='center' gap={2}>
+                <Icon as={section.icon} w='32px' h='32px' />
+                <Heading>{section.heading}</Heading>
               </HStack>
-            </VStack>
-          </Flex>
-        </Grid>
-      </Box>
+              // <Markdown>{_.get(projectData, `${section.body}`)}</Markdown>
+            ))}
+          </VStack>
+          <Grid padding='4rem' gridTemplateColumns='5fr 7fr'>
+            <Flex direction='column'>
+              {/* Other Markdown */}
+              <VStack maxWidth='72ch' alignSelf='center'>
+                <VStack>
+                  <Flex align='center' gap='1rem'>
+                    <Icon as={Swords} height='32px' width='32px' />
+                    <Heading>Our Approach</Heading>
+                  </Flex>
+                  {/* <Markdown>{_.get(project, 'approach.body', '')}</Markdown> */}
+                </VStack>
+                <VStack>
+                  <Flex align='center' gap='1rem'>
+                    <Icon as={Wizard2} height='32px' width='32px' />
+                    <Heading>The Result</Heading>
+                  </Flex>
+
+                  {/* <Markdown>{_.get(project, 'result.body', '')}</Markdown> */}
+                </VStack>
+                <Box minHeight='2rem' />
+                <HStack align='flex-start'>
+                  <Link href={_.get(projectData, 'resultLink', '')} isExternal>
+                    <Button>Visit Website</Button>
+                  </Link>
+                  <Link href={_.get(projectData, 'repoLink', '')} isExternal>
+                    <Button variant='outline'>View Code</Button>
+                  </Link>
+                </HStack>
+              </VStack>
+            </Flex>
+          </Grid>
+        </Box>
+      )}
     </CMSPageTemplate>
   );
 }
@@ -90,14 +107,28 @@ function PortfolioPage({ project }: Props) {
 // }
 
 // This function gets called at build time
-export async function getStaticProps(context: GetServerSidePropsContext) {
-  // const project = params.params.project;
-  // // Call an external API endpoint to get posts
-  // const res = await supabase.from('PortfolioContent').select('*').eq('project_name', project);
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  let project = _.get(context, 'params.project');
+  if (_.isArray(project)) project = _.first(project);
+  if (!project) {
+    return {
+      props: {},
+    };
+  }
+
+  const slugToName = (slug: string) => {
+    const words = slug.split('-');
+    return words.map((word) => _.capitalize(word)).join(' ');
+  };
+
+  const slug = slugToName(project);
+  const result = await getPortfolioDetail(slug);
+  console.log(result);
 
   return {
     props: {
-      project: null,
+      project,
+      initialData: _.get(result, 'data[0]', null),
     },
   };
 }

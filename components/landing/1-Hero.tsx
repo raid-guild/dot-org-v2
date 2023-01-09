@@ -7,7 +7,7 @@ import Nav from '../page-components/Nav';
 import raidBanner from '../../assets/illustrations/raid__banner.webp';
 
 const SectionOne = () => (
-  <Box layerStyle='redToPurpleVerticalGradient'>
+  <Box layerStyle='primaryGradient'>
     <SimpleGrid
       placeItems='center'
       border='2px solid'
