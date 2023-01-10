@@ -8,7 +8,7 @@ interface Props {
 }
 
 const usePortfolioDetail = ({ slug, initialData, token }: Props) => {
-  const { status, error, data, isLoading } = useQuery<any, Error>(
+  const { status, error, data, isLoading } = useQuery<any[] | null, Error>(
     ['portfolioDetail', slug],
     () => getPortfolioDetail(slug, token),
     {

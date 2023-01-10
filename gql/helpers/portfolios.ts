@@ -14,5 +14,5 @@ export const getPortfolioDetail = async (slug: string, token?: string) => {
     slug,
   });
 
-  return camelize(_.get(result, 'portfolios'));
+  return camelize(_.first(_.get(result, 'portfolios')));
 };

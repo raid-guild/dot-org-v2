@@ -1,7 +1,8 @@
 import { JWT } from 'next-auth/jwt';
-import { User } from 'next-auth';
+import { User, RequestInternal } from 'next-auth';
 import { NextApiRequest } from 'next';
 import { SiweMessage } from 'siwe';
+import { IncomingMessage } from 'http';
 
 // camelized version of DB columns
 
@@ -32,9 +33,11 @@ export type HasuraAuthToken = {
 
 // SIWE verifications
 
+export type AuthRequest = Pick<RequestInternal, 'body' | 'query' | 'headers' | 'method'>;
+
 export type SiweAuthorizeParams = {
-  credentials: Record<'message' | 'signature', string>;
-  req: NextApiRequest;
+  credentials?: Record<'message' | 'signature', string>;
+  req: Partial<NextApiRequest & AuthRequest>;
 };
 
 export type SiweMessageAuthorizeParams = {
@@ -43,5 +46,5 @@ export type SiweMessageAuthorizeParams = {
 
 export type SiweCredentialParams = {
   siwe: SiweMessage;
-  credentials: Record<'message' | 'signature', string>;
+  credentials?: Record<'message' | 'signature', string>;
 };

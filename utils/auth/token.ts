@@ -1,8 +1,8 @@
 import _ from 'lodash';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import { JWT, JWTDecodeParams } from 'next-auth/jwt';
 import { Session, User } from 'next-auth';
-import { CreateTokenParams, HasuraAuthToken } from '../../types';
+import { CreateTokenParams } from '../../types';
 import { getOrCreateUser } from './queryHelpers';
 
 const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET || '';
@@ -14,7 +14,7 @@ export const CONFIG: { encodingAlgorithm: 'HS256'; defaultRoles: string[]; defau
 };
 
 // Could be swapped for different API models
-export const createToken = ({ user, token, maxAge, roles }: CreateTokenParams): HasuraAuthToken => ({
+export const createToken = ({ user, token, maxAge, roles }: CreateTokenParams): JWT => ({
   ...token,
   address: _.get(token, 'sub'),
   user: {
@@ -30,25 +30,26 @@ export const createToken = ({ user, token, maxAge, roles }: CreateTokenParams): 
   },
 });
 
-export const encodeToken = (token: object) => jwt.sign(token, NEXTAUTH_SECRET, { algorithm: CONFIG.encodingAlgorithm });
+export const encodeToken = (token: JWT) => jwt.sign(token, NEXTAUTH_SECRET, { algorithm: CONFIG.encodingAlgorithm });
 
-export const encodeAuth = async ({ token, maxAge }: { token: HasuraAuthToken; maxAge: number }) => {
+export const encodeAuth = async ({ token, maxAge }: { token?: JWT; maxAge?: number }) => {
+  if (!token) return '';
   if (_.get(token, 'exp')) return encodeToken(token);
 
   const address = _.get(token, 'sub');
-  if (!address) return null;
+  if (!address) return '';
 
   const user = await getOrCreateUser(address);
 
   return encodeToken(createToken({ user, token, maxAge }));
 };
 
-export const decodeToken = (token: string) =>
+export const decodeToken = (token: string): JWT =>
   jwt.verify(token, NEXTAUTH_SECRET, {
     algorithms: [CONFIG.encodingAlgorithm],
-  });
+  }) as JwtPayload & JWT;
 
-export const decodeAuth = async ({ token }: JWTDecodeParams) => token && decodeToken(token);
+export const decodeAuth = async ({ token }: JWTDecodeParams) => (token ? decodeToken(token) : null);
 
 export const extendSessionWithUserAndToken = ({
   user,
