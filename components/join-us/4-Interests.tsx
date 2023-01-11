@@ -2,7 +2,8 @@ import { Flex, GridItem, SimpleGrid, Textarea } from '@raidguild/design-system';
 import { UseFormReturn } from 'react-hook-form';
 
 interface Props {
-  localForm: UseFormReturn;
+  handleBack: () => void;
+  handleNext: () => void;
 }
 
 const inputs = [
@@ -28,7 +29,7 @@ const inputs = [
   },
 ];
 
-const StepFour = ({ localForm }: Props) => (
+const StepFour = ({ handleNext, handleBack }: Props) => (
   <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }}>
     {inputs.map((input) => (
       <GridItem minH='175px' key={input.label}>

@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   Flex,
@@ -12,9 +13,17 @@ import {
   PopoverBody,
   PopoverCloseButton,
   PopoverArrow,
+  ChakraAlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  useDisclosure,
 } from '@raidguild/design-system';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useJoinState } from '../../context/joinState';
 
 import SiteLayout from '../../components/page-components/SiteLayout';
 import Intro from '../../components/join-us/0-Intro';
@@ -37,11 +46,50 @@ const stageHeadings: { [key: number]: string } = {
   6: 'Guild Readiness',
 };
 
+const defaultStage1State = {
+  name: '',
+  email: '',
+  bio: '',
+  goal: '',
+};
+
 const Join = () => {
+  const [stage1State, setStage1State] = useState(defaultStage1State);
+  const [stage2State, setStage2State] = useState({});
+  const [stage3State, setStage3State] = useState({});
+  const [stage4State, setStage4State] = useState({});
+  const [nextTrigger, setNextTrigger] = useState(false);
+  const [backTrigger, setBackTrigger] = useState(false);
+  const { joinState, setJoinState } = useJoinState();
+
   const router = useRouter();
   const stage = Number(router.query.stage) || 1;
   const localForm = useForm({ mode: 'onBlur', resolver: yupResolver(joinSchema) });
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef: any = useRef();
+  const { handleSubmit } = localForm;
 
+  const modalConfirmHandler = () => {
+    onOpen();
+  };
+  const onSubmit = (data: any) => {
+    console.log(`onSubmit data: ${JSON.stringify(data)}`);
+  };
+  const onError = (data: any) => {
+    console.log(`onError data: ${JSON.stringify(data)}`);
+  };
+
+  const handleNext = () => {
+    console.log('handleNext in page');
+    router.push(`/join/${stage + 1}`);
+  };
+
+  const handleBack = () => {
+    console.log('handleBack in page');
+    router.push(`/join/${stage - 1}`);
+  };
+
+  console.log('stage container: joinState: ', JSON.stringify(joinState));
   return (
     <SiteLayout>
       <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
@@ -56,79 +104,45 @@ const Join = () => {
           </Flex>
         )}
 
-        {stage === 1 && <Intro />}
-        {stage === 2 && <Overview localForm={localForm} />}
-        {stage === 3 && <Contact localForm={localForm} />}
-        {stage === 4 && <Skills localForm={localForm} />}
-        {stage === 5 && <Interests localForm={localForm} />}
-        {stage === 6 && <Misc localForm={localForm} />}
-        {stage === 7 && <Agreements localForm={localForm} />}
+        {stage === 1 && <Intro handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 2 && <Overview handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 3 && <Contact handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 4 && <Skills handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 5 && <Interests handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 6 && <Misc handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 7 && <Agreements handleNext={handleNext} handleBack={handleBack} />}
         {stage === 8 && <Confirmation />}
-
-        {stage < 7 ? (
-          <Flex gap={4} justify='center'>
-            <Link href={`/join/${stage - 1}`}>
-              <Button variant='outline' isDisabled={stage === 1}>
-                Back
-              </Button>
-            </Link>
-
-            <Link href={`/join/${stage + 1}`}>
-              <Button>{stage === 1 ? 'Start Application' : 'Next'}</Button>
-            </Link>
-          </Flex>
-        ) : (
-          <Flex direction={{ base: 'column-reverse', lg: 'row' }} justifyContent='space-between' mt='2rem'>
-            {/* {context.stage !== 1 && context.stage !== 8 && ( */}
-            <Flex direction={{ base: 'column', md: 'row' }} gap={4}>
-              <Link href={`/join/${stage - 1}`}>
-                <Button
-                  variant='outline'
-                  w='100%'
-                  mr='1rem'
-                  mt={{ base: '.5rem' }}
-                  // onClick={() => context.updateStage('previous')}>
-                >
-                  Back
-                </Button>
-              </Link>
-
-              {/* <Link href={`/join/${stage + 1}`}>
-                <Button
-                  variant='outline'
-                  w='100%'
-                  mt={{ base: '.5rem' }}
-                  // onClick={() => context.updateFaqModalStatus(true, 'join')}>
-                >
-                  Read FAQ
-                </Button>
-              </Link> */}
-            </Flex>
-            {/* )} */}
-            <Popover placement='top'>
-              <PopoverTrigger>
-                <Button
-                // isLoading={submissionPendingStatus}
-                // loadingText={submissionTextUpdates}
-                // onClick={() => {
-                //   context.setJoinStepSixData(handbookCheckBoxStatus, pledgeCheckBoxStatus);
-                //   submitApplication();
-                // }}>
-                >
-                  Submit
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverBody fontFamily='spaceMono'>
-                  Check your wallet & sign the message to confirm your submission.
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
-          </Flex>
-        )}
       </Stack>
+
+      <ChakraAlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <Heading>Disclaimer</Heading>
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              You must attend cohort training events and apply your skills in a Raid or RIP to earn a champion for your
+              membership.
+              <br />
+              <br />
+              Once a Guilder champions your member proposal, you must pledge 500 wxDAI as tribute for 100 shares.
+              <br />
+              <br />
+              If you prefer, apprentice, you may sweat your way to glory and tribute funds earned through raids.
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button variant='outline' ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button variant='outline' onClick={modalConfirmHandler} ml={3}>
+                Continue
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </ChakraAlertDialog>
     </SiteLayout>
   );
 };

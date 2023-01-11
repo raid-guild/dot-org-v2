@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { CONSULTATION_INSERT_MUTATION } from '../gql/mutations';
+import { CONSULTATION_CREATE_MUTATION } from '../gql/mutations';
 import { client } from '../gql';
 
 const useCreateConsult = () => {
@@ -7,8 +7,9 @@ const useCreateConsult = () => {
 
   const { mutate, mutateAsync, isLoading, isError, isSuccess } = useMutation(
     async (data: any) => {
-      return client({}).request(CONSULTATION_INSERT_MUTATION, {
+      return client({}).request(CONSULTATION_CREATE_MUTATION, {
         name: data.name || 'Namey McNameface',
+        // ...data
       });
     },
     {
