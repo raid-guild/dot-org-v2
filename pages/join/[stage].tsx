@@ -46,24 +46,11 @@ const stageHeadings: { [key: number]: string } = {
   6: 'Guild Readiness',
 };
 
-const defaultStage1State = {
-  name: '',
-  email: '',
-  bio: '',
-  goal: '',
-};
-
 const Join = () => {
-  const [stage1State, setStage1State] = useState(defaultStage1State);
-  const [stage2State, setStage2State] = useState({});
-  const [stage3State, setStage3State] = useState({});
-  const [stage4State, setStage4State] = useState({});
-  const [nextTrigger, setNextTrigger] = useState(false);
-  const [backTrigger, setBackTrigger] = useState(false);
   const { joinState, setJoinState } = useJoinState();
 
   const router = useRouter();
-  const stage = Number(router.query.stage) || 1;
+  const stage = Number(router.query.stage) || 0;
   const localForm = useForm({ mode: 'onBlur', resolver: yupResolver(joinSchema) });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef: any = useRef();
@@ -90,6 +77,8 @@ const Join = () => {
   };
 
   console.log('stage container: joinState: ', JSON.stringify(joinState));
+  console.log(`stage: ${stage}`);
+
   return (
     <SiteLayout>
       <Stack mt='2rem' mx='auto' w='80%' spacing={10}>

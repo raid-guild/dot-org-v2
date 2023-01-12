@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { Flex, Stack, Checkbox, Button, useToast } from '@raidguild/design-system';
+import { Flex, Stack, Checkbox, Button, useToast, Select } from '@raidguild/design-system';
 import { useJoinState } from '../../context/joinState';
 
 import RadioBox from '../atoms/RadioBox';
@@ -18,11 +18,11 @@ interface Props {
 
 const StepThree = ({ handleNext, handleBack }: Props) => {
   const { joinState, setJoinState } = useJoinState();
+  const localForm = useForm();
   const toast = useToast();
   const { handleSubmit, reset } = localForm;
-  const localForm = useForm();
   useEffect(() => {
-    reset({ ...joinState.stage1 });
+    reset({ ...joinState.stage4 });
     console.log('reset set', JSON.stringify(joinState.stage1));
   }, []);
 
@@ -44,19 +44,36 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
       });
     }
   };
+  const multiOptions = skills.map((s: string) => ({ value: s, label: s }));
 
   return (
     <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
       <Stack direction={{ base: 'column', lg: 'row' }} mb={10} spacing={10}>
-        <Checkbox options={skills} localForm={localForm} />
-
-        <RadioBox
-          name='technicalSkillType'
-          label='Do you bethink yourself as technical, or non-technical?'
-          localForm={localForm}
-          options={['Technical', 'Non - Technical', 'Other']}
-          stack='horizontal'
-        />
+        <Stack direction='column' w={{ base: 'auto', lg: '50%' }}>
+          <Select
+            name='primarySkills'
+            localForm={localForm}
+            isMulti
+            options={multiOptions}
+            label="What say'st are your primary skills?*"
+          />
+          <Select
+            name='secondarySkills'
+            localForm={localForm}
+            isMulti
+            options={multiOptions}
+            label='And your secondary skills?'
+          />
+        </Stack>
+        <Stack w={{ base: 'auto', lg: '50%' }}>
+          <RadioBox
+            name='technicalSkillType'
+            label='Do you bethink yourself as technical, or non-technical?'
+            localForm={localForm}
+            options={['Technical', 'Non - Technical', 'Other']}
+            stack='horizontal'
+          />
+        </Stack>
       </Stack>
 
       <Flex gap={4} justify='center' mt='2rem'>
