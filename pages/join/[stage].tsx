@@ -7,24 +7,8 @@ import {
   Heading,
   Button,
   Stack,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverArrow,
-  ChakraAlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
   useDisclosure,
 } from '@raidguild/design-system';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useJoinState } from '../../context/joinState';
-
 import SiteLayout from '../../components/page-components/SiteLayout';
 import Intro from '../../components/join-us/0-Intro';
 import Overview from '../../components/join-us/1-Overview';
@@ -47,36 +31,17 @@ const stageHeadings: { [key: number]: string } = {
 };
 
 const Join = () => {
-  const { joinState, setJoinState } = useJoinState();
-
   const router = useRouter();
   const stage = Number(router.query.stage) || 0;
-  const localForm = useForm({ mode: 'onBlur', resolver: yupResolver(joinSchema) });
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef: any = useRef();
-  const { handleSubmit } = localForm;
-
-  const modalConfirmHandler = () => {
-    onOpen();
-  };
-  const onSubmit = (data: any) => {
-    console.log(`onSubmit data: ${JSON.stringify(data)}`);
-  };
-  const onError = (data: any) => {
-    console.log(`onError data: ${JSON.stringify(data)}`);
-  };
 
   const handleNext = () => {
-    console.log('handleNext in page');
     router.push(`/join/${stage + 1}`);
   };
 
   const handleBack = () => {
-    console.log('handleBack in page');
     router.push(`/join/${stage - 1}`);
   };
 
-  console.log('stage container: joinState: ', JSON.stringify(joinState));
   console.log(`stage: ${stage}`);
 
   return (
@@ -102,36 +67,6 @@ const Join = () => {
         {stage === 7 && <Agreements handleNext={handleNext} handleBack={handleBack} />}
         {stage === 8 && <Confirmation />}
       </Stack>
-
-      <ChakraAlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <Heading>Disclaimer</Heading>
-            </AlertDialogHeader>
-
-            <AlertDialogBody>
-              You must attend cohort training events and apply your skills in a Raid or RIP to earn a champion for your
-              membership.
-              <br />
-              <br />
-              Once a Guilder champions your member proposal, you must pledge 500 wxDAI as tribute for 100 shares.
-              <br />
-              <br />
-              If you prefer, apprentice, you may sweat your way to glory and tribute funds earned through raids.
-            </AlertDialogBody>
-
-            <AlertDialogFooter>
-              <Button variant='outline' ref={cancelRef} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button variant='outline' onClick={modalConfirmHandler} ml={3}>
-                Continue
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </ChakraAlertDialog>
     </SiteLayout>
   );
 };

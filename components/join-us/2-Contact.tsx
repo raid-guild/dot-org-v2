@@ -7,7 +7,7 @@ import { useJoinState } from '../../context/joinState';
 
 const inputs = [
   {
-    label: 'What is your Discord handle?',
+    label: 'What is your Discord handle?*',
     placeholder: 'Include the unique identifier after the #, no @',
     name: 'discord',
   },

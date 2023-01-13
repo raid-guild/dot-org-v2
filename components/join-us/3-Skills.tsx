@@ -16,27 +16,63 @@ interface Props {
 
 // TODO add CheckboxGroup component to design-system
 
+const validationSchema = Yup.object().shape({
+  primarySkills: Yup.array()
+    .of(
+      Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+    )
+    .required(),
+  secondarySkills: Yup.array().of(
+    Yup.object().shape({
+      label: Yup.string().required(),
+      value: Yup.string().required(),
+    }),
+  ),
+  technicalSkillType: Yup.string(),
+});
+
 const StepThree = ({ handleNext, handleBack }: Props) => {
   const { joinState, setJoinState } = useJoinState();
-  const localForm = useForm();
+  const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const toast = useToast();
   const { handleSubmit, reset } = localForm;
   useEffect(() => {
-    reset({ ...joinState.stage4 });
-    console.log('reset set', JSON.stringify(joinState.stage1));
+    const currPrimarySkills = joinState.stage4.primarySkills
+      ? joinState.stage4.primarySkills.map((s: string) => ({ value: s, label: s }))
+      : [];
+    const currSecondarySkills = joinState.stage4.secondarySkills
+      ? joinState.stage4.secondarySkills.map((s: string) => ({ value: s, label: s }))
+      : [];
+    const currData = {
+      primarySkills: currPrimarySkills,
+      secondarySkills: currSecondarySkills,
+      technicalSkillType: joinState.stage4.technicalSkillType || undefined,
+    };
+    reset({ ...currData });
+    console.log(`currData: ${currData}`);
   }, []);
 
   const onNext = (data: any) => {
     console.log('handleNext');
     console.log(`data: ${JSON.stringify(data)}`);
+    const primarySkills = data.primarySkills.map((s: any) => s.value);
+    const secondarySkills =
+      data.secondarySkills && data.secondarySkills.length > 0 ? data.secondarySkills.map((s: any) => s.value) : [];
+    console.log(`stage4: ${JSON.stringify({ ...data, primarySkills, secondarySkills })}`);
+
     setJoinState({
       ...joinState,
-      stage4: { ...data },
+      stage4: { ...data, primarySkills, secondarySkills },
     });
     handleNext();
   };
   // todo: set types
   const onError = (data: any) => {
+    console.log(`error: ${JSON.stringify(data)}`);
+
     if (Object.keys(data).length > 0) {
       toast.error({
         title: 'Please fill in all required fields',
