@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { FaInfoCircle } from 'react-icons/fa';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useJoinState } from '../../context/joinState';
+import { useJoinState } from '../../context/appState';
 
 import RadioBox from '../atoms/RadioBox';
 
@@ -15,8 +15,8 @@ interface Props {
 
 const validationSchema = Yup.object().shape({
   daoFamiliarity: Yup.string().required(),
-  cryptoExp: Yup.string().required(),
-  availability: Yup.string().required(),
+  cryptoExperience: Yup.string().required(),
+  cohortAvailability: Yup.string().required(),
   comments: Yup.string().required(),
 });
 
@@ -27,8 +27,8 @@ const StepFive = ({ handleNext, handleBack }: Props) => {
   const toast = useToast();
   const { handleSubmit, reset } = localForm;
   useEffect(() => {
-    reset({ ...joinState.stage5 });
-    console.log('reset set', JSON.stringify(joinState.stage5));
+    reset({ ...joinState.join5 });
+    console.log('reset set', JSON.stringify(joinState.join5));
   }, []);
 
   const onNext = (data: any) => {
@@ -37,7 +37,7 @@ const StepFive = ({ handleNext, handleBack }: Props) => {
 
     setJoinState({
       ...joinState,
-      stage5: { ...data },
+      join5: { ...data },
     });
     handleNext();
   };
@@ -61,12 +61,12 @@ const StepFive = ({ handleNext, handleBack }: Props) => {
           label="Our power is a DAO (a 'Decentralized Autonomous Organization'). Of this term you are familiar?*"
         />
 
-        <Input label='Ho, you know of Crypto yes? For how long?*' name='cryptoExp' localForm={localForm} />
+        <Input label='Ho, you know of Crypto yes? For how long?*' name='cryptoExperience' localForm={localForm} />
 
         <RadioBox
           stack={upTo780 ? 'vertical' : 'horizontal'}
           options={['0-5 hours', '6-12 hours', '13-35 hours', '36+ hours']}
-          name='availability'
+          name='cohortAvailability'
           localForm={localForm}
           label='What say you to your status, within our RaidGuild here?*'
         />

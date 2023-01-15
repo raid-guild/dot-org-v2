@@ -1,22 +1,21 @@
 import React, { useContext, useMemo, useState, createContext } from 'react';
 
-const JoinContext = createContext(null as any);
+const AppContext = createContext(null as any);
 
 type Props = {
   children: React.ReactNode;
 };
 
 const defaultState = {
-  stage1: {},
-  stage2: {},
-  stage3: {},
-  stage4: {},
-  stage5: {},
-  stage6: {},
-  stage7: {},
+  join1: {},
+  join2: {},
+  join3: {},
+  join4: {},
+  join5: {},
+  join6: {},
 };
 
-const JoinContextProvider = ({ children }: Props) => {
+const AppContextProvider = ({ children }: Props) => {
   const [joinState, setJoinState] = useState<any>(defaultState);
 
   const contextState = useMemo(
@@ -26,11 +25,11 @@ const JoinContextProvider = ({ children }: Props) => {
     }),
     [joinState],
   );
-  return <JoinContext.Provider value={contextState}>{children}</JoinContext.Provider>;
+  return <AppContext.Provider value={contextState}>{children}</AppContext.Provider>;
 };
 
 const useJoinState = (): any => {
-  return useContext(JoinContext);
+  return useContext(AppContext);
 };
 
-export { useJoinState, JoinContextProvider };
+export { useJoinState, AppContextProvider };

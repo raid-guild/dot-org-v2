@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useAccount } from 'wagmi';
 import {
   Flex,
   CircularProgress,
@@ -8,7 +9,9 @@ import {
   Button,
   Stack,
   useDisclosure,
+  Text,
 } from '@raidguild/design-system';
+import { useSession } from 'next-auth/react';
 import SiteLayout from '../../components/page-components/SiteLayout';
 import Intro from '../../components/join-us/0-Intro';
 import Overview from '../../components/join-us/1-Overview';
@@ -31,6 +34,8 @@ const stageHeadings: { [key: number]: string } = {
 };
 
 const Join = () => {
+  const { isConnected } = useAccount();
+  const { data: session } = useSession();
   const router = useRouter();
   const stage = Number(router.query.stage) || 0;
 
@@ -43,6 +48,15 @@ const Join = () => {
   };
 
   console.log(`stage: ${stage}`);
+  if (!session || !isConnected) {
+    return (
+      <SiteLayout>
+        <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
+          <Text>Please sign in with your wallet to continue</Text>
+        </Stack>
+      </SiteLayout>
+    );
+  }
 
   return (
     <SiteLayout>

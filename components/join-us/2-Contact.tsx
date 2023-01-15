@@ -3,7 +3,7 @@ import { Box, Flex, Button, SimpleGrid, Input, useToast } from '@raidguild/desig
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useJoinState } from '../../context/joinState';
+import { useJoinState } from '../../context/appState';
 
 const inputs = [
   {
@@ -49,8 +49,8 @@ const StepTwo = ({ handleBack, handleNext }: Props) => {
   const { handleSubmit, reset } = localForm;
 
   useEffect(() => {
-    reset({ ...joinState.stage2 });
-    console.log('reset set', JSON.stringify(joinState.stage2State));
+    reset({ ...joinState.join2 });
+    console.log('reset set', JSON.stringify(joinState.join2));
   }, []);
 
   const onNext = (data: any) => {
@@ -58,7 +58,9 @@ const StepTwo = ({ handleBack, handleNext }: Props) => {
     console.log(`data: ${JSON.stringify(data)}`);
     setJoinState({
       ...joinState,
-      stage2: { ...data },
+      join2: {
+        ...data,
+      },
     });
     handleNext();
   };

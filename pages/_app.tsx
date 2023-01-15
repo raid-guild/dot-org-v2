@@ -12,7 +12,7 @@ import { RainbowKitSiweNextAuthProvider } from '@rainbow-me/rainbowkit-siwe-next
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { chains } from '../utils/chains';
 import { wagmiClient } from '../utils/wagmiClient';
-import { JoinContextProvider } from '../context/joinState';
+import { AppContextProvider } from '../context/appState';
 
 export default function App({ Component, pageProps }: AppProps) {
   const toast = useToast();
@@ -40,10 +40,10 @@ export default function App({ Component, pageProps }: AppProps) {
           <RainbowKitSiweNextAuthProvider>
             <RainbowKitProvider chains={chains} theme={darkTheme()}>
               <QueryClientProvider client={queryClient}>
-                <JoinContextProvider>
+                <AppContextProvider>
                   <Component {...pageProps} />
                   <ReactQueryDevtools initialIsOpen={false} />
-                </JoinContextProvider>
+                </AppContextProvider>
               </QueryClientProvider>
             </RainbowKitProvider>
           </RainbowKitSiweNextAuthProvider>

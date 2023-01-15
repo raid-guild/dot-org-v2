@@ -28,6 +28,7 @@ const client = ({ token, userId }: ClientParams) => {
   if (HASURA_ADMIN_SECRET) {
     headers['x-hasura-admin-secret'] = HASURA_ADMIN_SECRET;
   }
+  console.log(`hasura headers: ${JSON.stringify(headers)}`);
 
   return new GraphQLClient(API_URL, { headers });
 };

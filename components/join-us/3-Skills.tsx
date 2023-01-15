@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { Flex, Stack, Checkbox, Button, useToast, Select } from '@raidguild/design-system';
-import { useJoinState } from '../../context/joinState';
+import { useJoinState } from '../../context/appState';
 
 import RadioBox from '../atoms/RadioBox';
 
@@ -40,16 +40,16 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
   const toast = useToast();
   const { handleSubmit, reset } = localForm;
   useEffect(() => {
-    const currPrimarySkills = joinState.stage4.primarySkills
-      ? joinState.stage4.primarySkills.map((s: string) => ({ value: s, label: s }))
+    const currPrimarySkills = joinState.join3.primarySkills
+      ? joinState.join3.primarySkills.map((s: string) => ({ value: s, label: s }))
       : [];
-    const currSecondarySkills = joinState.stage4.secondarySkills
-      ? joinState.stage4.secondarySkills.map((s: string) => ({ value: s, label: s }))
+    const currSecondarySkills = joinState.join3.secondarySkills
+      ? joinState.join3.secondarySkills.map((s: string) => ({ value: s, label: s }))
       : [];
     const currData = {
       primarySkills: currPrimarySkills,
       secondarySkills: currSecondarySkills,
-      technicalSkillType: joinState.stage4.technicalSkillType || undefined,
+      technicalSkillType: joinState.join3.technicalSkillType || undefined,
     };
     reset({ ...currData });
     console.log(`currData: ${currData}`);
@@ -61,11 +61,11 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
     const primarySkills = data.primarySkills.map((s: any) => s.value);
     const secondarySkills =
       data.secondarySkills && data.secondarySkills.length > 0 ? data.secondarySkills.map((s: any) => s.value) : [];
-    console.log(`stage4: ${JSON.stringify({ ...data, primarySkills, secondarySkills })}`);
+    console.log(`join3: ${JSON.stringify({ ...data, primarySkills, secondarySkills })}`);
 
     setJoinState({
       ...joinState,
-      stage4: { ...data, primarySkills, secondarySkills },
+      join3: { ...data, primarySkills, secondarySkills },
     });
     handleNext();
   };

@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { Flex, SimpleGrid, Input, Textarea, Button, useToast } from '@raidguild/design-system';
 import { useForm } from 'react-hook-form';
-import { useJoinState } from '../../context/joinState';
+import { useJoinState } from '../../context/appState';
 
 interface Props {
   state: any;
@@ -11,27 +11,27 @@ interface Props {
 
 const inputs = [
   {
-    label: 'Enter, Apprentice! What is your name?',
+    label: 'Enter, Apprentice! What is your name?*',
     placeholder: 'Your Name',
     name: 'name',
     type: 'input',
   },
   {
-    label: 'What is your email address?',
+    label: 'What is your email address?*',
     placeholder: 'Your email address',
     name: 'email',
     type: 'input',
   },
   {
-    label: 'What is your profession? How do you busy yourself?',
+    label: 'What is your profession? How do you busy yourself?*',
     placeholder: 'A short introduction',
-    name: 'bio',
+    name: 'introduction',
     type: 'textarea',
   },
   {
-    label: 'How do you like to learn?',
+    label: 'How do you like to learn?*',
     placeholder: 'Your learning goals',
-    name: 'goals',
+    name: 'learningGoals',
     type: 'textarea',
   },
 ];
@@ -41,8 +41,8 @@ const inputs = [
 const validationSchema = Yup.object().shape({
   name: Yup.string().required(),
   email: Yup.string().required(),
-  bio: Yup.string().required(),
-  goals: Yup.string().required(),
+  introduction: Yup.string().required(),
+  learningGoals: Yup.string().required(),
 });
 
 const StepOne = ({ handleNext, handleBack }: any) => {
@@ -52,8 +52,8 @@ const StepOne = ({ handleNext, handleBack }: any) => {
   const { handleSubmit, reset } = localForm;
 
   useEffect(() => {
-    reset({ ...joinState.stage1 });
-    console.log('reset set', JSON.stringify(joinState.stage1));
+    reset({ ...joinState.join1 });
+    console.log('reset set', JSON.stringify(joinState.join1));
   }, []);
 
   const onNext = (data: any) => {
@@ -61,7 +61,7 @@ const StepOne = ({ handleNext, handleBack }: any) => {
     console.log(`data: ${JSON.stringify(data)}`);
     setJoinState({
       ...joinState,
-      stage1: { ...data },
+      join1: { ...data },
     });
     handleNext();
   };

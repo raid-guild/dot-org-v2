@@ -22,11 +22,15 @@ import {
   Heading,
   useDisclosure,
 } from '@raidguild/design-system';
+import { useAccount } from 'wagmi';
+import { useSession } from 'next-auth/react';
+import _ from 'lodash';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from '../atoms/ChakraNextLink';
-import { useJoinState } from '../../context/joinState';
+import { useJoinState } from '../../context/appState';
+import useSubmit from '../../hooks/useSubmit';
 
 interface Props {
   handleBack: () => void;
@@ -34,40 +38,51 @@ interface Props {
 }
 
 const validationSchema = Yup.object().shape({
-  pledgeReadiness: Yup.bool().required(),
-  handbook: Yup.string().required(),
+  pledgeReadiness: Yup.bool().oneOf([true]),
+  handbookRead: Yup.bool().oneOf([true]),
 });
 
 const StepSix = ({ handleNext, handleBack }: Props) => {
+  const { address } = useAccount();
+  const { data: session } = useSession();
+  const token = _.get(session, 'token') || '';
   const { joinState, setJoinState } = useJoinState();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const { watch, setValue, handleSubmit, reset, formState, getValues } = localForm;
-  const watchPledgeReadiness = watch('pledgeReadiness', false);
   const toast = useToast();
   const cancelRef: any = useRef();
+  const { submitJoinForm } = useSubmit(token);
+  console.log(`form values: ${JSON.stringify(getValues())}`);
 
   const handbookCheckBoxChangeHandler = () => {
-    setValue('handbook', !watch('handbook'));
-    onOpen();
-    console.log('handbookCheckBoxChangeHandler called', formState);
+    setValue('handbookRead', !watch('handbookRead'));
   };
-  console.log('render - ', getValues());
+
+  const pledgeReadinessCheckBoxChangeHandler = () => {
+    if (!watch('pledgeReadiness')) {
+      onOpen();
+    }
+  };
+  const handleModalCancel = () => {
+    setValue('pledgeReadiness', false);
+    onClose();
+  };
 
   useEffect(() => {
-    reset({ ...joinState.stage6 });
-    console.log('reset set', JSON.stringify(joinState.stage6));
+    reset({ ...joinState.join6 });
+    console.log('reset set', JSON.stringify(joinState.join6));
   }, []);
 
   const onNext = (data: any) => {
-    console.log('handleNext');
     console.log(`data: ${JSON.stringify(data)}`);
-    setJoinState({
+    const currJoinState = {
       ...joinState,
-      stage6: { ...data },
-    });
+      join6: { ...data, ethAddress: address },
+    };
+    setJoinState(currJoinState);
+    submitJoinForm(currJoinState);
     handleNext();
-    // todo: submit form
   };
   // todo: set types
   const onError = (data: any) => {
@@ -79,6 +94,7 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
     }
   };
   const modalConfirmHandler = () => {
+    setValue('pledgeReadiness', !watch('pledgeReadiness'));
     onClose();
   };
 
@@ -86,33 +102,18 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
     <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
       <Stack direction='column' spacing={5}>
         <FormControl>
-          <ChakraCheckbox isChecked={watch('handbook')} onChange={handbookCheckBoxChangeHandler}>
+          <ChakraCheckbox isChecked={watch('handbookRead')} onChange={handbookCheckBoxChangeHandler}>
             Have you read through the{' '}
             <Link href='https://handbook.raidguild.org/' isExternal>
-              RaidGuild Handbook?
+              RaidGuild Handbook?*
             </Link>
           </ChakraCheckbox>
         </FormControl>
-
-        {/* <Checkbox
-          name='handbook'
-          options={['Are you ready to make pledge unto our DAO?']}
-          localForm={localForm}
-          label={
-            <>
-              Have you read through the{' '}
-              <Link href='https://handbook.raidguild.org/' isExternal>
-                RaidGuild Handbook?
-              </Link>
-            </>
-          }
-        /> */}
-
-        <Checkbox
-          name='pledgeReadiness'
-          options={['Are you ready to make pledge unto our DAO?']}
-          localForm={localForm}
-        />
+        <FormControl>
+          <ChakraCheckbox isChecked={watch('pledgeReadiness')} onChange={pledgeReadinessCheckBoxChangeHandler}>
+            Are you ready to make pledge unto our DAO?*
+          </ChakraCheckbox>
+        </FormControl>
       </Stack>
 
       <Flex gap={4} justify='center' mt='2rem'>
@@ -166,7 +167,7 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button variant='outline' ref={cancelRef} onClick={onClose}>
+              <Button variant='outline' ref={cancelRef} onClick={handleModalCancel}>
                 Cancel
               </Button>
               <Button variant='outline' onClick={modalConfirmHandler} ml={3}>

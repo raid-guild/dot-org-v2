@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 import { Flex, Button, GridItem, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
 import { useForm } from 'react-hook-form';
-import { useJoinState } from '../../context/joinState';
+import { useJoinState } from '../../context/appState';
 
 interface Props {
   handleBack: () => void;
@@ -25,20 +25,20 @@ const inputs = [
   {
     label: "Of the unnumber'd idle pebbles, what of Crypto thrills you most?*",
     placeholder: 'Tell us which subset of Crypto excites you most',
-    name: 'thrills',
+    name: 'cryptoThrills',
   },
   {
     label: 'State your interest, Apprentice, in joining the Guild.*',
     placeholder: "Let us be well inform'd of your intentions",
-    name: 'interest',
+    name: 'whyRaidguild',
   },
 ];
 
 const validationSchema = Yup.object().shape({
   passion: Yup.string().required(),
   favoriteMedia: Yup.string().required(),
-  thrills: Yup.string().required(),
-  interest: Yup.string().required(),
+  cryptoThrills: Yup.string().required(),
+  whyRaidguild: Yup.string().required(),
 });
 
 const StepFour = ({ handleNext, handleBack }: Props) => {
@@ -48,21 +48,20 @@ const StepFour = ({ handleNext, handleBack }: Props) => {
   const { handleSubmit, reset } = localForm;
 
   useEffect(() => {
-    reset({ ...joinState.stage5 });
-    console.log('reset set', JSON.stringify(joinState.stage5));
+    reset({ ...joinState.join4 });
+    console.log('reset set', JSON.stringify(joinState.join4));
   }, []);
   const onNext = (data: any) => {
     console.log('handleNext');
     console.log(`data: ${JSON.stringify(data)}`);
     setJoinState({
       ...joinState,
-      stage5: { ...data },
+      join4: { ...data },
     });
     handleNext();
   };
   // todo: set types
   const onError = (data: any) => {
-    console.log(`error: ${JSON.stringify(data)}`);
     if (Object.keys(data).length > 0) {
       toast.error({
         title: 'Please fill in all required fields',
