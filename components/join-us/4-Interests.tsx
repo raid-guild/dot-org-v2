@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-
 import { Flex, Button, GridItem, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
-import { useForm } from 'react-hook-form';
+import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { useJoinState } from '../../context/appState';
 
 interface Props {
@@ -49,19 +48,16 @@ const StepFour = ({ handleNext, handleBack }: Props) => {
 
   useEffect(() => {
     reset({ ...joinState.join4 });
-    console.log('reset set', JSON.stringify(joinState.join4));
   }, []);
-  const onNext = (data: any) => {
-    console.log('handleNext');
-    console.log(`data: ${JSON.stringify(data)}`);
+  const onNext = (data: FieldValues) => {
     setJoinState({
       ...joinState,
       join4: { ...data },
     });
     handleNext();
   };
-  // todo: set types
-  const onError = (data: any) => {
+
+  const onError = (data: FieldErrorsImpl) => {
     if (Object.keys(data).length > 0) {
       toast.error({
         title: 'Please fill in all required fields',

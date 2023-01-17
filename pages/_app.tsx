@@ -13,6 +13,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { chains } from '../utils/chains';
 import { wagmiClient } from '../utils/wagmiClient';
 import { AppContextProvider } from '../context/appState';
+import '@raidguild/design-system/src/assets/css/fonts.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   const toast = useToast();

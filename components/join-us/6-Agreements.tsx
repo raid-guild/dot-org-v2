@@ -5,14 +5,7 @@ import {
   Button,
   Stack,
   ChakraCheckbox,
-  Checkbox,
   useToast,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverArrow,
   ChakraAlertDialog,
   AlertDialogBody,
   AlertDialogFooter,
@@ -26,7 +19,7 @@ import { useAccount } from 'wagmi';
 import { useSession } from 'next-auth/react';
 import _ from 'lodash';
 import * as Yup from 'yup';
-import { useForm } from 'react-hook-form';
+import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from '../atoms/ChakraNextLink';
 import { useJoinState } from '../../context/appState';
@@ -49,7 +42,7 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
   const { joinState, setJoinState } = useJoinState();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
-  const { watch, setValue, handleSubmit, reset, formState, getValues } = localForm;
+  const { watch, setValue, handleSubmit, reset, getValues } = localForm;
   const toast = useToast();
   const cancelRef: any = useRef();
   const { submitJoinForm } = useSubmit(token);
@@ -71,11 +64,9 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
 
   useEffect(() => {
     reset({ ...joinState.join6 });
-    console.log('reset set', JSON.stringify(joinState.join6));
   }, []);
 
-  const onNext = (data: any) => {
-    console.log(`data: ${JSON.stringify(data)}`);
+  const onNext = (data: FieldValues) => {
     const currJoinState = {
       ...joinState,
       join6: { ...data, ethAddress: address },
@@ -84,8 +75,7 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
     submitJoinForm(currJoinState);
     handleNext();
   };
-  // todo: set types
-  const onError = (data: any) => {
+  const onError = (data: FieldErrorsImpl) => {
     if (Object.keys(data).length > 0) {
       toast.error({
         title: 'Please fill in all required fields',
@@ -121,31 +111,6 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
           Back
         </Button>
         <Button onClick={handleSubmit(onNext, onError)}>Submit</Button>
-
-        <Popover placement='top'>
-          <PopoverTrigger>
-            <Button
-            // isLoading={submissionPendingStatus}
-            // loadingText={submissionTextUpdates}
-            // onClick={() => {
-            //   context.setJoinStepSixData(
-            //     handbookCheckBoxStatus,
-            //     pledgeCheckBoxStatus
-            //   );
-            //   submitApplication();
-            // }}
-            >
-              Submit
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverCloseButton />
-            <PopoverBody fontFamily='spaceMono'>
-              Check you wallet & sign the message to confirm your submission.
-            </PopoverBody>
-          </PopoverContent>
-        </Popover>
       </Flex>
 
       <ChakraAlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>

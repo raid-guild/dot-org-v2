@@ -1,13 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { Flex, SimpleGrid, Input, Textarea, Button, useToast } from '@raidguild/design-system';
-import { useForm } from 'react-hook-form';
+import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { useJoinState } from '../../context/appState';
-
-interface Props {
-  state: any;
-}
 
 const inputs = [
   {
@@ -36,8 +32,6 @@ const inputs = [
   },
 ];
 
-// todo: need to use app context for each stage
-
 const validationSchema = Yup.object().shape({
   name: Yup.string().required(),
   email: Yup.string().required(),
@@ -45,7 +39,12 @@ const validationSchema = Yup.object().shape({
   learningGoals: Yup.string().required(),
 });
 
-const StepOne = ({ handleNext, handleBack }: any) => {
+interface Props {
+  handleBack: () => void;
+  handleNext: () => void;
+}
+
+const StepOne = ({ handleNext, handleBack }: Props) => {
   const { joinState, setJoinState } = useJoinState();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const toast = useToast();
@@ -53,20 +52,16 @@ const StepOne = ({ handleNext, handleBack }: any) => {
 
   useEffect(() => {
     reset({ ...joinState.join1 });
-    console.log('reset set', JSON.stringify(joinState.join1));
   }, []);
 
-  const onNext = (data: any) => {
-    console.log('handleNext');
-    console.log(`data: ${JSON.stringify(data)}`);
+  const onNext = (data: FieldValues) => {
     setJoinState({
       ...joinState,
       join1: { ...data },
     });
     handleNext();
   };
-  // todo: set types
-  const onError = (data: any) => {
+  const onError = (data: FieldErrorsImpl) => {
     if (Object.keys(data).length > 0) {
       toast.error({
         title: 'Please fill in all required fields',

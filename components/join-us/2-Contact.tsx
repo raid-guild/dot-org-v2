@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Box, Flex, Button, SimpleGrid, Input, useToast } from '@raidguild/design-system';
-import { useForm } from 'react-hook-form';
+import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useJoinState } from '../../context/appState';
@@ -40,8 +40,6 @@ const validationSchema = Yup.object().shape({
   twitter: Yup.string(),
 });
 
-// TODO handle address & ens fetch
-
 const StepTwo = ({ handleBack, handleNext }: Props) => {
   const { joinState, setJoinState } = useJoinState();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
@@ -50,12 +48,9 @@ const StepTwo = ({ handleBack, handleNext }: Props) => {
 
   useEffect(() => {
     reset({ ...joinState.join2 });
-    console.log('reset set', JSON.stringify(joinState.join2));
   }, []);
 
-  const onNext = (data: any) => {
-    console.log('handleNext');
-    console.log(`data: ${JSON.stringify(data)}`);
+  const onNext = (data: FieldValues) => {
     setJoinState({
       ...joinState,
       join2: {
@@ -64,8 +59,7 @@ const StepTwo = ({ handleBack, handleNext }: Props) => {
     });
     handleNext();
   };
-  // todo: set types
-  const onError = (data: any) => {
+  const onError = (data: FieldErrorsImpl) => {
     if (Object.keys(data).length > 0) {
       toast.error({
         title: 'Please fill in all required fields',

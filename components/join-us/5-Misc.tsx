@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { Flex, SimpleGrid, Button, Input, useMediaQuery, Textarea, useToast } from '@raidguild/design-system';
-import { useForm } from 'react-hook-form';
-import { FaInfoCircle } from 'react-icons/fa';
+import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useJoinState } from '../../context/appState';
-
 import RadioBox from '../atoms/RadioBox';
 
 interface Props {
@@ -28,20 +26,16 @@ const StepFive = ({ handleNext, handleBack }: Props) => {
   const { handleSubmit, reset } = localForm;
   useEffect(() => {
     reset({ ...joinState.join5 });
-    console.log('reset set', JSON.stringify(joinState.join5));
   }, []);
 
-  const onNext = (data: any) => {
-    console.log('handleNext');
-    console.log(`data: ${JSON.stringify(data)}`);
-
+  const onNext = (data: FieldValues) => {
     setJoinState({
       ...joinState,
       join5: { ...data },
     });
     handleNext();
   };
-  const onError = (data: any) => {
+  const onError = (data: FieldErrorsImpl) => {
     if (Object.keys(data).length > 0) {
       toast.error({
         title: 'Please fill in all required fields',

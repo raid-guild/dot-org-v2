@@ -1,20 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import * as Yup from 'yup';
-import { Flex, Stack, Checkbox, Button, useToast, Select } from '@raidguild/design-system';
+import { Flex, Stack, Button, useToast, Select } from '@raidguild/design-system';
 import { useJoinState } from '../../context/appState';
-
 import RadioBox from '../atoms/RadioBox';
-
 import { skills } from '../../utils/constants';
-
-interface Props {
-  handleBack: () => void;
-  handleNext: () => void;
-}
-
-// TODO add CheckboxGroup component to design-system
 
 const validationSchema = Yup.object().shape({
   primarySkills: Yup.array()
@@ -34,6 +25,11 @@ const validationSchema = Yup.object().shape({
   technicalSkillType: Yup.string(),
 });
 
+interface Props {
+  handleBack: () => void;
+  handleNext: () => void;
+}
+
 const StepThree = ({ handleNext, handleBack }: Props) => {
   const { joinState, setJoinState } = useJoinState();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
@@ -52,16 +48,12 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
       technicalSkillType: joinState.join3.technicalSkillType || undefined,
     };
     reset({ ...currData });
-    console.log(`currData: ${currData}`);
   }, []);
 
-  const onNext = (data: any) => {
-    console.log('handleNext');
-    console.log(`data: ${JSON.stringify(data)}`);
+  const onNext = (data: FieldValues) => {
     const primarySkills = data.primarySkills.map((s: any) => s.value);
     const secondarySkills =
       data.secondarySkills && data.secondarySkills.length > 0 ? data.secondarySkills.map((s: any) => s.value) : [];
-    console.log(`join3: ${JSON.stringify({ ...data, primarySkills, secondarySkills })}`);
 
     setJoinState({
       ...joinState,
@@ -69,10 +61,7 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
     });
     handleNext();
   };
-  // todo: set types
-  const onError = (data: any) => {
-    console.log(`error: ${JSON.stringify(data)}`);
-
+  const onError = (data: FieldErrorsImpl) => {
     if (Object.keys(data).length > 0) {
       toast.error({
         title: 'Please fill in all required fields',

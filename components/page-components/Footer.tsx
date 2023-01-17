@@ -52,13 +52,13 @@ const Footer = () => (
         color='greyLight'>
         <VStack alignItems='flex-start'>
           <Heading>For Clients</Heading>
-          <Link href='/#services'>Hire Us</Link>
+          <Link href='/hire'>Hire Us</Link>
           <Link href='/#portfolio'>Our Portfolio</Link>
           <Link href='/#portfolio'>Ask Questions</Link>
         </VStack>
         <VStack alignItems='flex-start'>
           <Heading>For Raiders</Heading>
-          <Link href='/#culture'>Join Us</Link>
+          <Link href='/join'>Join Us</Link>
           <Link href='https://handbook.raidguild.org' isExternal>
             Our Handbook
           </Link>

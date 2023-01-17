@@ -14,7 +14,7 @@ const Confirmation = () => (
       The Fires Have Been Lit!
     </Heading>
 
-    <Text>
+    <Text maxWidth='37rem'>
       Your submission has been received. An invitation will be sent to your email address prior to the commencement of
       next season. We wish you luck! Stay Curious!
     </Text>
