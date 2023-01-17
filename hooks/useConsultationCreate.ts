@@ -3,13 +3,10 @@ import { CONSULTATION_CREATE_MUTATION } from '../gql/mutations';
 import { client } from '../gql';
 
 const useCreateConsult = () => {
-  // const queryClient = useQueryClient();
-
   const { mutate, mutateAsync, isLoading, isError, isSuccess } = useMutation(
     async (data: any) => {
       return client({}).request(CONSULTATION_CREATE_MUTATION, {
         name: data.name || 'Namey McNameface',
-        // ...data
       });
     },
     {

@@ -1,6 +1,10 @@
 import { Stack, Heading, Text, Flex, Button } from '@raidguild/design-system';
 
-const Intro = ({ handleNext, handleBack }: any) => (
+interface Props {
+  handleNext: () => void;
+}
+
+const Intro = ({ handleNext }: Props) => (
   <Stack spacing={10} maxW='60%'>
     <Heading mb='1rem'>Apply to Join RaidGuild</Heading>
 
@@ -15,10 +19,6 @@ const Intro = ({ handleNext, handleBack }: any) => (
       our counsel forth. Last, not least, we&apos;ll invite you to join a training cohort in due course.
     </Text>
     <Flex gap={4} justify='center' mt='2rem'>
-      <Button onClick={handleBack} variant='outline' isDisabled>
-        Back
-      </Button>
-
       <Button onClick={handleNext}>Start Application</Button>
     </Flex>
   </Stack>

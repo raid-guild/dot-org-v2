@@ -1,16 +1,7 @@
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAccount } from 'wagmi';
-import {
-  Flex,
-  CircularProgress,
-  CircularProgressLabel,
-  Heading,
-  Button,
-  Stack,
-  useDisclosure,
-  Text,
-} from '@raidguild/design-system';
+import { Flex, CircularProgress, CircularProgressLabel, Heading, Stack, Text } from '@raidguild/design-system';
 import { useSession } from 'next-auth/react';
 import SiteLayout from '../../components/page-components/SiteLayout';
 import Intro from '../../components/join-us/0-Intro';
@@ -21,8 +12,6 @@ import Interests from '../../components/join-us/4-Interests';
 import Misc from '../../components/join-us/5-Misc';
 import Agreements from '../../components/join-us/6-Agreements';
 import Confirmation from '../../components/join-us/7-Confirmation';
-import Link from '../../components/atoms/ChakraNextLink';
-import { joinSchema } from '../../utils';
 
 const stageHeadings: { [key: number]: string } = {
   1: 'A Quick Intro',
@@ -72,7 +61,7 @@ const Join = () => {
           </Flex>
         )}
 
-        {stage === 1 && <Intro handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 1 && <Intro handleNext={handleNext} />}
         {stage === 2 && <Overview handleNext={handleNext} handleBack={handleBack} />}
         {stage === 3 && <Contact handleNext={handleNext} handleBack={handleBack} />}
         {stage === 4 && <Skills handleNext={handleNext} handleBack={handleBack} />}
