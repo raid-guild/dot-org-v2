@@ -1,11 +1,11 @@
 /* eslint-disable no-nested-ternary */
 import { useRouter } from 'next/router';
-import { Button, Flex, Stack, SimpleGrid } from '@raidguild/design-system';
+import { useSession } from 'next-auth/react';
+import { useAccount } from 'wagmi';
+import { Button, Flex, SimpleGrid, Stack, Text } from '@raidguild/design-system';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useAccount } from 'wagmi';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
-
 import SiteLayout from '../../components/page-components/SiteLayout';
 import Link from '../../components/atoms/ChakraNextLink';
 import Intro from '../../components/hire/0-Intro';
@@ -19,6 +19,8 @@ import { hireSchema, SUBMISSION_REQUEST_FEE } from '../../utils';
 
 const HireUs = () => {
   const router = useRouter();
+  const { isConnected } = useAccount();
+  const { data: session } = useSession();
   const stage = Number(router.query.stage) || 1;
   const localForm = useForm({ mode: 'onBlur', resolver: yupResolver(hireSchema) });
   const { address } = useAccount();
@@ -40,13 +42,22 @@ const HireUs = () => {
     router.push(`/hire/${stage - 1}`);
   };
 
+  if (!session || !isConnected) {
+    return (
+      <SiteLayout>
+        <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
+          <Text>Please sign in with your wallet to continue</Text>
+        </Stack>
+      </SiteLayout>
+    );
+  }
   // TODO make sure on gnosis chain
 
   return (
     <SiteLayout>
       <Stack as='form' onSubmit={handleSubmit(onSubmit)} w='80%' spacing={20}>
         {/* FORM PARTS */}
-        {stage === 1 && <Intro />}
+        {stage === 1 && <Intro handleNext={handleNext} />}
         {stage === 2 && <Contact handleNext={handleNext} handleBack={handleBack} />}
         {stage === 3 && <ProjectOverview handleNext={handleNext} handleBack={handleBack} />}
         {stage === 4 && <Services handleNext={handleNext} handleBack={handleBack} />}

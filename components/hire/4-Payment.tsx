@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useForm, FieldValues } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 import {
   Flex,
-  FormControl,
-  FormLabel,
+  useToast,
   Stack,
   Text,
   ChakraAlertDialog,
@@ -15,22 +17,34 @@ import {
   Textarea,
   useMediaQuery,
 } from '@raidguild/design-system';
-import { UseFormReturn } from 'react-hook-form';
+import { useHireState } from '../../context/appState';
+import { hireUsServices } from '../../utils/constants';
+import { handleError } from '../../utils/forms';
 
 import Link from '../atoms/ChakraNextLink';
 import RadioBox from '../atoms/RadioBox';
 // import { SUBMISSION_REQUEST_FEE } from '../../utils/config';
 
 interface Props {
-  localForm: UseFormReturn;
+  handleNext: () => void;
+  handleBack: () => void;
 }
 
 const FEEDBACK_FORM =
   'https://docs.google.com/forms/d/e/1FAIpQLSdxSnfKxvo6v7eo5dJ4j445-QhvkCq05GbJpcy5r8qWiYgqlQ/viewform?usp=sf_link';
 
-const StepFour = ({ localForm }: Props) => {
+const validationSchema = Yup.object().shape({
+  specificNeed: Yup.string().required(),
+  priorities: Yup.string().required(),
+});
+
+const StepFour = ({ handleBack, handleNext }: Props) => {
   const [dialogStatus, setDialogStatus] = useState(false);
   const [disclaimerStatus, setDisclaimerStatus] = useState(false);
+  const { hireState, setHireState } = useHireState();
+  const localForm = useForm({ resolver: yupResolver(validationSchema) });
+  const toast = useToast();
+  const { handleSubmit, reset } = localForm;
 
   const onClose = () => setDialogStatus(false);
   const cancelRef: any = React.useRef();
@@ -71,7 +85,7 @@ const StepFour = ({ localForm }: Props) => {
     <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
       <Stack direction='column' spacing={{ base: 0, lg: 5 }} mb={10}>
         <Textarea
-          label='Do you need something very specific?'
+          label='Do you need something very specific?*'
           placeholder='Tell us how you think we can best help you?'
           name='specificNeed'
           localForm={localForm}

@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
-import { useSession } from 'next-auth/react';
-import { useAccount } from 'wagmi';
-import { Input, Box, Button, VStack, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
+import { Input, HStack, Box, Button, VStack, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
 import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useHireState } from '../../context/appState';
+import FormNavigation from './FormNavigation';
+import { handleError } from '../../utils/forms';
 
-interface Props {}
+interface Props {
+  handleBack: () => void;
+  handleNext: () => void;
+}
 
 const formFields = [
   {
@@ -60,15 +63,13 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().required(),
   bio: Yup.string().required(),
   discord: Yup.string().required(),
-  github: Yup.string().required(),
-  twitter: Yup.string().required(),
-  telegram: Yup.string().required(),
+  github: Yup.string(),
+  twitter: Yup.string(),
+  telegram: Yup.string(),
 });
 
-export default function StepOne({ handleNext, handleBack }: { handleNext: () => void; handleBack: () => void }) {
+export default function StepOne({ handleNext, handleBack }: Props) {
   const { hireState, setHireState } = useHireState();
-  const { isConnected } = useAccount();
-  const { data: session } = useSession();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const toast = useToast();
   const { handleSubmit, reset } = localForm;
@@ -84,24 +85,7 @@ export default function StepOne({ handleNext, handleBack }: { handleNext: () => 
     });
     handleNext();
   };
-  const onError = (data: FieldErrorsImpl) => {
-    if (Object.keys(data).length > 0) {
-      toast.error({
-        title: 'Please fill in all required fields',
-        iconName: 'alert',
-      });
-    }
-  };
 
-  if (!session || !isConnected) {
-    return (
-      <SiteLayout>
-        <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
-          <Text>Please sign in with your wallet to continue</Text>
-        </Stack>
-      </SiteLayout>
-    );
-  }
   return (
     <VStack>
       <SimpleGrid columns={2} gap='2rem' w='100%'>
@@ -125,13 +109,7 @@ export default function StepOne({ handleNext, handleBack }: { handleNext: () => 
           );
         })}
       </SimpleGrid>
-
-      <SimpleGrid mt='2rem' gridTemplateColumns={['1fr', null, null, '1fr 1fr']} gap={2}>
-        <Button onClick={handleBack} variant='outline'>
-          Back
-        </Button>
-        <Button onClick={handleSubmit(onNext, onError)}>Next</Button>
-      </SimpleGrid>
+      <FormNavigation handleBack={handleBack} handleNext={handleSubmit(onNext, handleError(toast))} />
     </VStack>
   );
 }

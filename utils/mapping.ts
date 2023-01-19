@@ -1,5 +1,5 @@
 export const mapDAOFamiliarity = (val: string): string => {
-  const map: any = {
+  const map: { [key: string]: string } = {
     Expert: 'EXPERT',
     Familiar: 'FAMILIAR',
     'A Little': 'AWARE',
@@ -10,7 +10,7 @@ export const mapDAOFamiliarity = (val: string): string => {
 };
 
 export const mapSkillType = (val: string) => {
-  const map: any = {
+  const map: { [key: string]: string } = {
     Technical: 'TECHNICAL',
     'Non - Technical': 'NON_TECHNICAL',
     'Not Applicable': 'NOT_APPLICABLE',
@@ -20,7 +20,7 @@ export const mapSkillType = (val: string) => {
 };
 
 export const mapAvailability = (val: string) => {
-  const map: any = {
+  const map: { [key: string]: string } = {
     '0-5 hours': 'LESS_THAN_FIVE_HOURS',
     '6-12 hours': 'SIX_TO_TWELVE_HOURS',
     '13-35 hours': 'THIRTEEN_TO_THIRTY_FIVE_HOURS',
@@ -31,7 +31,7 @@ export const mapAvailability = (val: string) => {
 };
 
 export const mapSkill = (val: string) => {
-  const map: any = {
+  const map: { [key: string]: string } = {
     'Frontend Dev': 'FRONTEND',
     'Backend Dev': 'BACKEND',
     Solidity: 'SOLIDITY',
@@ -53,4 +53,23 @@ export const mapSkill = (val: string) => {
     Accounting: 'ACCOUNTING',
   };
   return val ? map[val] : null;
+};
+
+export const mapConsultationService = (val: string): string => {
+  const map: { [key: string]: string } = {
+    'DAO (Design, Deployment)': 'DAO',
+    'Development (Frontend, Backend)': 'DEVELOPMENT',
+    'Marketing (Social Media, Copywriting, Memes/GIFs)': 'MARKETING',
+    'Motion Design (Video, Explainers, Sticker Packs)': 'MOTION_DESIGN',
+    'NFTs (Contracts, Art, Tokenomics)': 'NFTS',
+    'Smart Contracts (Solidity, Audits)': 'SMART_CONTRACTS',
+    'Strategy (Product, Launch Planning, Agile)': 'STRATEGY',
+    'Tokenomics (Incentives, Distribution, Rewards)': 'TOKENOMICS',
+    'UX (Research, Testing, User Stories)': 'UX',
+    'UI (Interface Design, Interaction Design)': 'UI',
+    'Visual Design (Branding, Illustration, Graphics)': 'VISUAL_DESIGN',
+    'Help me figure out what I need': 'HELP_ME',
+  };
+
+  return map[val];
 };
