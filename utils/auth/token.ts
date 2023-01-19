@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import jwt from 'jsonwebtoken';
-import { JWT, JWTDecodeParams } from 'next-auth/jwt';
+import { JWT, JWTDecodeParams, JWTEncodeParams } from 'next-auth/jwt';
 import { Session, User } from 'next-auth';
 import { CreateTokenParams, HasuraAuthToken } from '../../types';
 import { getOrCreateUser } from './queryHelpers';
@@ -32,11 +32,11 @@ export const createToken = ({ user, token, maxAge, roles }: CreateTokenParams): 
 
 export const encodeToken = (token: object) => jwt.sign(token, NEXTAUTH_SECRET, { algorithm: CONFIG.encodingAlgorithm });
 
-export const encodeAuth = async ({ token, maxAge }: { token: HasuraAuthToken; maxAge: number }) => {
-  if (_.get(token, 'exp')) return encodeToken(token);
+export const encodeAuth = async ({ token, maxAge }: JWTEncodeParams): Promise<string> => {
+  if (token && _.get(token, 'exp')) return encodeToken(token);
 
   const address = _.get(token, 'sub');
-  if (!address) return null;
+  if (!address) return '';
 
   const user = await getOrCreateUser(address);
 
@@ -46,9 +46,10 @@ export const encodeAuth = async ({ token, maxAge }: { token: HasuraAuthToken; ma
 export const decodeToken = (token: string) =>
   jwt.verify(token, NEXTAUTH_SECRET, {
     algorithms: [CONFIG.encodingAlgorithm],
-  });
+  }) as JWT;
 
-export const decodeAuth = async ({ token }: JWTDecodeParams) => token && decodeToken(token);
+export const decodeAuth = async ({ token }: JWTDecodeParams): Promise<JWT | null> =>
+  token ? decodeToken(token) : null;
 
 export const extendSessionWithUserAndToken = ({
   user,

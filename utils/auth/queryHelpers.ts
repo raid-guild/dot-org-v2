@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import _ from 'lodash';
 import { isAddress } from '@ethersproject/address';
 import {
@@ -7,7 +8,7 @@ import {
 } from '../../gql';
 import { IUser } from '../../types';
 
-const fetchExistingUser = async (address: string): Promise<IUser | null> =>
+const fetchExistingUser = async (address: string): Promise<IUser | unknown | null> =>
   client({})
     .request(MEMBER_ADDRESS_LOOKUP_QUERY, { address }) // { address: _.toLower(address) })
     .then((res) => {
@@ -35,11 +36,11 @@ const fetchExistingUser = async (address: string): Promise<IUser | null> =>
 //       return Promise.reject(error);
 //     });
 
-export const getOrCreateUser = async (address: string): Promise<IUser> => {
+export const getOrCreateUser = async (address: string): Promise<IUser | unknown> => {
   if (!address || !isAddress(address)) {
     throw new Error('No address provided');
   }
-  return fetchExistingUser(address).then((existingUser: IUser) => {
+  return fetchExistingUser(address).then((existingUser: IUser | unknown) => {
     if (existingUser) {
       return Promise.resolve(existingUser);
     }
@@ -49,6 +50,6 @@ export const getOrCreateUser = async (address: string): Promise<IUser> => {
     //   }
     //   return Promise.reject('Could not create user');
     // });
-    return Promise.reject('Could not find user');
+    return Promise.reject(Error('Could not find user'));
   });
 };

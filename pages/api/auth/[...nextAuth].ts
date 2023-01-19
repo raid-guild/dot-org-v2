@@ -1,4 +1,4 @@
-import NextAuth, { RequestInternal } from 'next-auth';
+import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { NextApiRequest, NextApiResponse } from 'next';
 import {
@@ -9,10 +9,9 @@ import {
   decodeAuth,
   CONFIG,
 } from '../../../utils/auth';
+import { AuthRequest } from '../../../types';
 
 const { NEXTAUTH_SECRET } = process.env;
-
-type AuthRequest = Pick<RequestInternal, 'body' | 'query' | 'headers' | 'method'>;
 
 const siweProvider = CredentialsProvider({
   name: 'Ethereum',

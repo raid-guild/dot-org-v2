@@ -23,7 +23,7 @@ const Intro = ({ handleNext }: Props) => (
       <Link
         href='https://app.honeyswap.org/#/swap?inputCurrency=0x18e9262e68cc6c6004db93105cc7c001bb103e49&outputCurrency=0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1&chainId=100'
         isExternal
-        textDecoration='underline'
+        // textDecoration='underline'
         color='red.500'>
         500 $RAID
       </Link>{' '}
@@ -37,7 +37,7 @@ const Intro = ({ handleNext }: Props) => (
       <Link
         href='https://app.honeyswap.org/#/swap?inputCurrency=0x18e9262e68cc6c6004db93105cc7c001bb103e49&outputCurrency=0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1&chainId=100'
         isExternal
-        textDecoration='underline'
+        // textDecoration='underline'
         color='red.500'>
         15000 $RAID
       </Link>{' '}
@@ -60,7 +60,11 @@ const Intro = ({ handleNext }: Props) => (
       </Text>
       <Text fontFamily='JetBrains Mono'>
         If you made a bid prior to March 15th, 2022, please use the old version of the Consultation Queue:{' '}
-        <Link href='https://hireus.raidguild.org' isExternal textDecoration='underline'>
+        <Link
+          href='https://hireus.raidguild.org'
+          isExternal
+          // textDecoration='underline'
+        >
           hireus.raidguild.org
         </Link>
       </Text>

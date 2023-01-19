@@ -14,7 +14,10 @@ import {
   FormLabel,
   FormErrorMessage,
   Stack,
+  Tooltip,
+  Icon,
 } from '@raidguild/design-system';
+import { FaInfoCircle } from 'react-icons/fa';
 
 function RadioCard({ children, variant, size, ...props }: ChakraRadioProps) {
   const styles = useStyleConfig('RadioBox', { variant, size });
@@ -36,6 +39,7 @@ function RadioCard({ children, variant, size, ...props }: ChakraRadioProps) {
 export interface CustomRadioBoxProps {
   name: string;
   label: string;
+  tooltip?: string;
   localForm: UseFormReturn<FieldValues>;
   options: any;
   stack: 'vertical' | 'horizontal';
@@ -44,7 +48,7 @@ export interface CustomRadioBoxProps {
 
 type RadioBoxProps = CustomRadioBoxProps & ChakraRadioProps;
 
-function RadioBox({ name, label, localForm, options, stack, isRequired, size }: RadioBoxProps) {
+function RadioBox({ name, label, tooltip, localForm, options, stack, isRequired, size }: RadioBoxProps) {
   if (!localForm) return null;
   const { control } = localForm;
   const {
@@ -77,7 +81,16 @@ function RadioBox({ name, label, localForm, options, stack, isRequired, size }: 
   return (
     <FormControl isRequired={isRequired} isInvalid={!!errors[name]}>
       <Stack>
-        {label && <FormLabel as='legend'>{label}</FormLabel>}
+        {label && (
+          <FormLabel as='legend'>
+            {label}
+            {tooltip && (
+              <Tooltip hasArrow placement='top' label={tooltip} aria-label='disclaimer tooltip' shouldWrapChildren>
+                <Icon as={FaInfoCircle} />
+              </Tooltip>
+            )}
+          </FormLabel>
+        )}
         {stack === 'vertical' ? (
           <VStack {...group} alignItems='inherit'>
             <Options />
