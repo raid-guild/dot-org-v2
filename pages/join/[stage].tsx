@@ -1,4 +1,3 @@
-import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAccount } from 'wagmi';
 import { Flex, CircularProgress, CircularProgressLabel, Heading, Stack, Text } from '@raidguild/design-system';

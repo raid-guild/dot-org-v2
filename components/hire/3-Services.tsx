@@ -15,7 +15,7 @@ const StepThree = ({ localForm }: Props) => {
   return (
     <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
       <Stack direction={{ base: 'column', lg: 'row' }} mb={10} spacing={10}>
-        <Checkbox options={hireUsServices} localForm={localForm} />
+        <Checkbox direction='column' options={hireUsServices} localForm={localForm} />
 
         <Stack direction='column' mb={10} spacing={10}>
           <RadioBox

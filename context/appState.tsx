@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const defaultState = {
+const defaultJoinState = {
   join1: {},
   join2: {},
   join3: {},
@@ -15,15 +15,26 @@ const defaultState = {
   join6: {},
 };
 
+const defaultHireState = {
+  hire1: {},
+  hire2: {},
+  hire3: {},
+  hire4: {},
+  hire5: {},
+};
+
 const AppContextProvider = ({ children }: Props) => {
-  const [joinState, setJoinState] = useState<any>(defaultState);
+  const [joinState, setJoinState] = useState<any>(defaultJoinState);
+  const [hireState, setHireState] = useState<any>(defaultHireState);
 
   const contextState = useMemo(
     () => ({
       joinState,
       setJoinState,
+      hireState,
+      setHireState,
     }),
-    [joinState],
+    [joinState, hireState],
   );
   return <AppContext.Provider value={contextState}>{children}</AppContext.Provider>;
 };
@@ -32,4 +43,8 @@ const useJoinState = (): any => {
   return useContext(AppContext);
 };
 
-export { useJoinState, AppContextProvider };
+const useHireState = (): any => {
+  return useContext(AppContext);
+};
+
+export { useJoinState, useHireState, AppContextProvider };

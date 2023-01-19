@@ -2,7 +2,7 @@ import { Flex, Heading, Text } from '@raidguild/design-system';
 import Link from '../atoms/ChakraNextLink';
 
 const Intro = () => (
-  <Flex direction='column' py='2rem' px={{ base: '1rem', lg: '4rem' }} mx='auto' maxW='90%'>
+  <Flex direction='column' py='2rem' px={{ base: '1rem', lg: '4rem' }} mx='auto' maxW='900px'>
     <Heading fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
       Hiring RaidGuild
     </Heading>
@@ -48,10 +48,10 @@ const Intro = () => (
     <br />
 
     <Flex direction='column' bgColor='white' borderRadius='0.5rem' p='0.5rem 1rem' maxW='720px' color='black'>
-      <Text fontWeight='bold' mb='.5rem'>
+      <Text fontWeight='bold' mb='.5rem' fontFamily='JetBrains Mono'>
         IMPORTANT
       </Text>
-      <Text>
+      <Text fontFamily='JetBrains Mono'>
         If you made a bid prior to March 15th, 2022, please use the old version of the Consultation Queue:{' '}
         <Link href='https://hireus.raidguild.org' isExternal>
           hireus.raidguild.org

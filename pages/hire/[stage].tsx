@@ -32,6 +32,14 @@ const HireUs = () => {
   };
   const isMember = false;
 
+  const handleNext = () => {
+    router.push(`/hire/${stage + 1}`);
+  };
+
+  const handleBack = () => {
+    router.push(`/hire/${stage - 1}`);
+  };
+
   // TODO make sure on gnosis chain
 
   return (
@@ -39,10 +47,10 @@ const HireUs = () => {
       <Stack as='form' onSubmit={handleSubmit(onSubmit)} w='80%' spacing={20}>
         {/* FORM PARTS */}
         {stage === 1 && <Intro />}
-        {stage === 2 && <Contact localForm={localForm} />}
-        {stage === 3 && <ProjectOverview localForm={localForm} />}
-        {stage === 4 && <Services localForm={localForm} />}
-        {stage === 5 && <Payment localForm={localForm} />}
+        {stage === 2 && <Contact handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 3 && <ProjectOverview handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 4 && <Services handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 5 && <Payment handleNext={handleNext} handleBack={handleBack} />}
         {stage === 6 && <Confirmation />}
 
         <Flex justify='center'>
@@ -58,20 +66,6 @@ const HireUs = () => {
               </Link>
             </SimpleGrid>
           )}
-
-          {stage > 0 && stage < 5 && (
-            <SimpleGrid gridTemplateColumns={['1fr', null, null, '1fr 1fr']} mx='auto' gap={2}>
-              <Link href={`/hire/${stage - 1}/`}>
-                <Button variant='outline' isDisabled={stage === 1}>
-                  Back
-                </Button>
-              </Link>
-              <Link href={`/hire/${stage + 1}/`}>
-                <Button>Next</Button>
-              </Link>
-            </SimpleGrid>
-          )}
-
           {stage === 5 && (
             <SimpleGrid columns={2} mx='auto' gap={2}>
               <Link href={`/hire/${stage - 1}/`}>
