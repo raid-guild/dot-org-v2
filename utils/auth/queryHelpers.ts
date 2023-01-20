@@ -44,12 +44,14 @@ export const getOrCreateUser = async (address: string): Promise<IUser | unknown>
     if (existingUser) {
       return Promise.resolve(existingUser);
     }
+
+    return Promise.resolve('AUTHED_USER');
     // return createNewUser(address).then((newUser: IUser) => {
     //   if (newUser) {
     //     return Promise.resolve(newUser);
     //   }
     //   return Promise.reject('Could not create user');
     // });
-    return Promise.reject(Error('Could not find user'));
+    // return Promise.reject(Error('Could not find user'));
   });
 };

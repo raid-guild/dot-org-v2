@@ -1,8 +1,8 @@
 import { JWT } from 'next-auth/jwt';
 import { User, RequestInternal } from 'next-auth';
-import { NextApiRequest } from 'next';
+// import { NextApiRequest } from 'next';
 import { SiweMessage } from 'siwe';
-import { IncomingMessage } from 'http';
+// import { IncomingMessage } from 'http';
 
 // camelized version of DB columns
 export type IUser = {
@@ -21,20 +21,23 @@ export type CreateTokenParams = {
   roles?: string[];
 };
 
+export type HasuraClaimsToken = {
+  'x-hasura-allowed-roles': string[];
+  'x-hasura-default-role'?: string;
+  'x-hasura-role'?: string;
+  'x-hasura-user-id'?: string;
+};
+
 export type HasuraAuthToken = {
   sub?: string;
   address?: string;
   user: {
     id?: string;
+    roles?: string[];
   };
   iat?: number;
   exp?: number;
-  'https://hasura.io/jwt/claims'?: {
-    'x-hasura-allowed-roles': string[];
-    'x-hasura-default-role'?: string;
-    'x-hasura-role'?: string;
-    'x-hasura-user-id': string;
-  };
+  'https://hasura.io/jwt/claims'?: HasuraClaimsToken;
 };
 
 // SIWE verifications

@@ -69,7 +69,7 @@ const Footer = () => (
           <Heading>For All</Heading>
           {forAllLinks.map((link) => (
             <Link href={link.link} isExternal key={link.link}>
-              <HStack>
+              <HStack spacing={3}>
                 {link.icon}
                 <Text>{link.label}</Text>
               </HStack>
