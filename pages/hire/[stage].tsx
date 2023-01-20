@@ -14,8 +14,8 @@ import ProjectOverview from '../../components/hire/2-ProjectOverview';
 import Services from '../../components/hire/3-Services';
 import Payment from '../../components/hire/4-Payment';
 import Confirmation from '../../components/hire/5-Confirmation';
-import useConsultationCreate from '../../hooks/useConsultationCreate';
-import { hireSchema, SUBMISSION_REQUEST_FEE } from '../../utils';
+import useCreateConsult from '../../hooks/useCreateConsult';
+import { hireSchema } from '../../utils';
 
 const HireUs = () => {
   const router = useRouter();
@@ -25,14 +25,13 @@ const HireUs = () => {
   const localForm = useForm({ mode: 'onBlur', resolver: yupResolver(hireSchema) });
   const { address } = useAccount();
   const { openConnectModal } = useConnectModal();
-  const { mutateAsync } = useConsultationCreate();
+  const { mutateAsync } = useCreateConsult();
 
   const { handleSubmit } = localForm;
 
   const onSubmit = async (data: any) => {
     mutateAsync(data);
   };
-  const isMember = false;
 
   const handleNext = () => {
     router.push(`/hire/${stage + 1}`);
@@ -55,7 +54,7 @@ const HireUs = () => {
 
   return (
     <SiteLayout>
-      <Stack as='form' onSubmit={handleSubmit(onSubmit)} w='80%' spacing={20}>
+      <Stack w='80%' spacing={20}>
         {/* FORM PARTS */}
         {stage === 1 && <Intro handleNext={handleNext} />}
         {stage === 2 && <Contact handleNext={handleNext} handleBack={handleBack} />}
@@ -75,20 +74,6 @@ const HireUs = () => {
               <Link href='/dashboard'>
                 <Button variant='outline'>View My Submissions</Button>
               </Link>
-            </SimpleGrid>
-          )}
-          {stage === 5 && (
-            <SimpleGrid columns={2} mx='auto' gap={2}>
-              <Link href={`/hire/${stage - 1}/`}>
-                <Button variant='outline'>Back</Button>
-              </Link>
-              {!address ? (
-                <Button onClick={openConnectModal}>Connect Wallet</Button>
-              ) : isMember ? (
-                <Button type='submit'>Submit</Button>
-              ) : (
-                <Button type='submit'>Pay {SUBMISSION_REQUEST_FEE} $RAID</Button>
-              )}
             </SimpleGrid>
           )}
         </Flex>

@@ -73,3 +73,31 @@ export const mapConsultationService = (val: string): string => {
 
   return map[val];
 };
+
+export const mapProjectType = (val: string) => {
+  const map: { [key: string]: string } = {
+    New: 'NEW',
+    Existing: 'EXISTING',
+  };
+  return map[val];
+};
+
+export const mapAvailableProjectSpec = (val: string) => {
+  const map: { [key: string]: string } = {
+    Yes: 'YES',
+    Partial: 'PARTIAL',
+    None: 'NONE',
+  };
+  return map[val];
+};
+
+export const mapBudgetOptions = (val: string) => {
+  const map: { [key: string]: string } = {
+    '< $5k': 'LESS_THAN_FIVE_THOUSAND',
+    '$5k - $20k': 'FIVE_TO_TWENTY_THOUSAND',
+    '$20k - $50k': 'TWENTY_TO_FIFTY_THOUSAND',
+    '$50k +': 'MORE_THAN_FIFTY_THOUSAND',
+    'Not Sure': 'NOT_SURE',
+  };
+  return map[val];
+};

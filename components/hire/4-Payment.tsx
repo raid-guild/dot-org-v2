@@ -20,10 +20,9 @@ import {
 import { useHireState } from '../../context/appState';
 import { hireUsServices } from '../../utils/constants';
 import { handleError } from '../../utils/forms';
-
 import Link from '../atoms/ChakraNextLink';
 import RadioBox from '../atoms/RadioBox';
-// import { SUBMISSION_REQUEST_FEE } from '../../utils/config';
+import { SUBMISSION_REQUEST_FEE } from '../../utils/config';
 
 interface Props {
   handleNext: () => void;
@@ -79,6 +78,13 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
     //   context.setHireStepFourData(priorities);
     //   setDialogStatus(true);
     // }
+    setDialogStatus(true);
+  };
+  const onNext = (data: FieldValues) => {
+    setHireState({
+      ...hireState,
+      hire4: { ...data },
+    });
   };
 
   return (
@@ -100,10 +106,17 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
         />
       </Stack>
 
-      <Flex justify='flex-end' mt='1rem'>
+      <Flex fontFamily='jetbrains' textDecoration='underline' justify='flex-end' mt='1rem'>
         <Link href={FEEDBACK_FORM} isExternal>
           Don&apos;t want to pay in $RAID? Give feedback here
         </Link>
+      </Flex>
+      <Flex direction='row' gap='10'>
+        <Button onClick={handleBack} variant='outline'>
+          Back
+        </Button>
+        <Button onClick={handleSubmit(onNext, handleError(toast))}>Submit</Button>
+        <Button type='submit'>Pay {SUBMISSION_REQUEST_FEE} $RAID</Button>
       </Flex>
 
       <ChakraAlertDialog isOpen={dialogStatus} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>
@@ -133,7 +146,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
                       dashboard
                     </Link>
                     . On successful acceptance of a bid, you can secure your consultation with the guild by paying
-                    $15000 $RAID.
+                    1,5000 $RAID.
                   </Text>
                 </Stack>
               </AlertDialogBody>

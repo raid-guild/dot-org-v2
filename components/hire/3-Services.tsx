@@ -33,13 +33,13 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
   const { handleSubmit, reset } = localForm;
 
   useEffect(() => {
-    reset({ ...hireState.hire1 });
+    reset({ ...hireState.hire3 });
   }, []);
 
   const onNext = (data: FieldValues) => {
     setHireState({
       ...hireState,
-      hire1: { ...data },
+      hire3: { ...data },
     });
     handleNext();
   };

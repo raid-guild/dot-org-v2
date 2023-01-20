@@ -20,7 +20,6 @@ const defaultHireState = {
   hire2: {},
   hire3: {},
   hire4: {},
-  hire5: {},
 };
 
 const AppContextProvider = ({ children }: Props) => {

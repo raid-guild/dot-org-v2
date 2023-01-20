@@ -1,8 +1,19 @@
 import useApplicationCreate from './useApplicationCreate';
-import { mapSkill, mapSkillType, mapAvailability, mapDAOFamiliarity } from '../utils/mapping';
+import useCreateConsult from './useCreateConsult';
+import {
+  mapBudgetOptions,
+  mapProjectType,
+  mapConsultationService,
+  mapAvailableProjectSpec,
+  mapSkill,
+  mapSkillType,
+  mapAvailability,
+  mapDAOFamiliarity,
+} from '../utils/mapping';
 
 const useSubmit = (token: string) => {
   const { mutateAsync } = useApplicationCreate(token);
+  const { mutateAsync: mutateConsult } = useCreateConsult(token);
 
   const submitJoinForm = async (data: any) => {
     const applicationSkills = [
@@ -41,8 +52,45 @@ const useSubmit = (token: string) => {
     const res = await mutateAsync({ ...submitData });
     return res;
   };
+
+  const submitHireForm = async (data: any) => {
+    const servicesRequried = [
+      ...data.hire3.services.map((s: string) => ({ guild_service_key: mapConsultationService(s) })),
+    ];
+    const submitData = {
+      // 1-Contact.tsx
+      name: data.hire1.name,
+      consultation_contact: {
+        data: {
+          email: data.hire1.email,
+          bio: data.hire1.bio,
+          discord: data.hire1.discord,
+          github: data.hire1.github,
+          twitter: data.hire1.twitter,
+          telegram: data.hire1.telegram,
+        },
+      },
+      // 2-ProjectOverview.tsx
+      type_key: mapProjectType(data.hire2.projectType),
+      specs_key: mapAvailableProjectSpec(data.hire2.specsType),
+      project_name: data.hire2.projectName,
+      project_description: data.hire2.projectDescription,
+      // 3-Services.tsx
+      consultation_services_required: {
+        data: [...servicesRequried],
+      },
+      budget_option_key: mapBudgetOptions(data.hire3.budget),
+      expected_deadline: data.hire3.expectedDeadline,
+      // 4-ProjectDetails.tsx
+      specific_need: data.hire4.specificNeed,
+      priorities: data.hire4.priorities,
+    };
+    const res = await mutateAsync({ ...submitData });
+    return res;
+  };
   return {
     submitJoinForm,
+    submitHireForm,
   };
 };
 
