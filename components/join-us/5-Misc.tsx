@@ -48,21 +48,21 @@ const StepFive = ({ handleNext, handleBack }: Props) => {
     <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }}>
         <RadioBox
+          label='What say you to your familiarity with DAOs?'
           stack={upTo780 ? 'vertical' : 'horizontal'}
           options={['Expert', 'Familiar', 'A Little', 'None']}
           name='daoFamiliarity'
           localForm={localForm}
-          label="Our power is a DAO (a 'Decentralized Autonomous Organization'). Of this term you are familiar?*"
         />
 
-        <Input label='Ho, you know of Crypto yes? For how long?*' name='cryptoExperience' localForm={localForm} />
+        <Input label='Ho, you know of Crypto yes? For how long?' name='cryptoExp' localForm={localForm} />
 
         <RadioBox
+          label='What say you to your status, within our RaidGuild here?'
           stack={upTo780 ? 'vertical' : 'horizontal'}
           options={['0-5 hours', '6-12 hours', '13-35 hours', '36+ hours']}
-          name='cohortAvailability'
+          name='availability'
           localForm={localForm}
-          label='What say you to your status, within our RaidGuild here?*'
         />
 
         <Textarea label='Any comments that still remain, Apprentice*' name='comments' localForm={localForm} />

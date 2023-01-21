@@ -2847,6 +2847,16 @@
   resolved "https://registry.yarnpkg.com/@fontsource/jetbrains-mono/-/jetbrains-mono-4.5.12.tgz#d965dca932f0ecf5379013f4dff3aec7b817b91b"
   integrity sha512-LJF1ala1/u+wXZmESFqIk08FA9yGX4/uAAleCHmXUMgEjvNAYFHUQQ7eK5hQQoBOwh99cU5suTrqYqEkgzwzPA==
 
+"@fontsource/texturina@^4.5.11":
+  version "4.5.12"
+  resolved "https://registry.yarnpkg.com/@fontsource/texturina/-/texturina-4.5.12.tgz#f0c9db06647b7589af6543e69067061702553951"
+  integrity sha512-Jz+hxWTfMbUDc76ndGOHLtICqPPoA4edf6/vUbTCjhKZTACjdUn807r8wuDkRgBSUahRuRdLEnP9+68v5cJsKw==
+
+"@fontsource/uncial-antiqua@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/uncial-antiqua/-/uncial-antiqua-4.5.10.tgz#ee86ccd852810b62d451ae9afe929b0d9efc1e38"
+  integrity sha512-FRM+PUZHv7q84vG4iMzy+UdeE2bz6vOaB48edOex/B8S4z/OzGn0FE1fb537kPWYIg1EsodTskksHlYvKtEw4Q==
+
 "@graphql-typed-document-node/core@^3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.1.tgz#076d78ce99822258cf813ecc1e7fa460fa74d052"
@@ -3661,10 +3671,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
 
-"@raidguild/design-system@^0.4.30":
-  version "0.4.30"
-  resolved "https://registry.yarnpkg.com/@raidguild/design-system/-/design-system-0.4.30.tgz#7b36637b3fe67261b8a8d631179e1c0b224a20a7"
-  integrity sha512-jbrRCi61NFc62ay3x7+8NNwfpXZna6WnKf5CiiE6UxsibNvwqzc9pRUE/jHIBQ84Z2RurXovPJ8/cR2uXdTZhQ==
+"@raidguild/design-system@^0.4.33":
+  version "0.4.33"
+  resolved "https://registry.yarnpkg.com/@raidguild/design-system/-/design-system-0.4.33.tgz#02e247f27836345be87377da6bcac962652c2da0"
+  integrity sha512-1i8DjGTvP62I9OF8PBdi9TyZWTbKfbqYoCGuZK1GlAhMJjAgOLrhLQ140xkrK/MNG1eTTFgV9bK/UzAIKl17mw==
   dependencies:
     "@chakra-ui/react" "^2.4.6"
     "@chakra-ui/theme-tools" "^2.0.16"

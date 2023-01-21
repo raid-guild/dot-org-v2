@@ -5,6 +5,7 @@ import { GetServerSidePropsContext } from 'next';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
 import Markdown from '../../components/atoms/Markdown';
+// import useBlogsDetail from '../../hooks/useBlogsDetail';
 // import ProjectCard from '../../components/page-components/ProjectCard';
 import { getBlogDetail } from '../../gql';
 

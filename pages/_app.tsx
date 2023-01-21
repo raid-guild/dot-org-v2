@@ -1,5 +1,5 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-props-no-spreading */
-// import "../styles/globals.css";
 import '@rainbow-me/rainbowkit/styles.css';
 import type { AppProps } from 'next/app';
 // import { DefaultSeo } from 'next-seo';
