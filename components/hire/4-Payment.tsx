@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import _ from 'lodash';
 import * as Yup from 'yup';
 import {
   Flex,
@@ -17,12 +18,13 @@ import {
   Textarea,
   useMediaQuery,
 } from '@raidguild/design-system';
+import { useSession } from 'next-auth/react';
 import { useHireState } from '../../context/appState';
-import { hireUsServices } from '../../utils/constants';
 import { handleError } from '../../utils/forms';
 import Link from '../atoms/ChakraNextLink';
 import RadioBox from '../atoms/RadioBox';
 import { SUBMISSION_REQUEST_FEE } from '../../utils/config';
+import useSubmit from '../../hooks/useSubmit';
 
 interface Props {
   handleNext: () => void;
@@ -33,11 +35,14 @@ const FEEDBACK_FORM =
   'https://docs.google.com/forms/d/e/1FAIpQLSdxSnfKxvo6v7eo5dJ4j445-QhvkCq05GbJpcy5r8qWiYgqlQ/viewform?usp=sf_link';
 
 const validationSchema = Yup.object().shape({
-  specificNeed: Yup.string().required(),
-  priorities: Yup.string().required(),
+  additionalInfo: Yup.string().required(),
+  deliveryPriorities: Yup.string().required(),
 });
 
 const StepFour = ({ handleBack, handleNext }: Props) => {
+  const { data: session } = useSession();
+  const token = _.get(session, 'token') || '';
+  const { submitHireForm } = useSubmit(token);
   const [dialogStatus, setDialogStatus] = useState(false);
   const [disclaimerStatus, setDisclaimerStatus] = useState(false);
   const { hireState, setHireState } = useHireState();
@@ -48,15 +53,16 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
   const onClose = () => setDialogStatus(false);
   const cancelRef: any = React.useRef();
 
+  useEffect(() => {
+    reset({ ...hireState.hire4 });
+  }, []);
+
   const modalConfirmHandler = () => {
     setDisclaimerStatus(true);
     onClose();
   };
 
-  const [priorities, setPriorities] = useState('Fast & Polished');
   const [isMember] = useState(false);
-  const [buttonClick, setButtonClickStatus] = useState(false);
-
   const [upTo780] = useMediaQuery('(max-width: 780px)');
 
   const paymentHandler = async () => {
@@ -68,12 +74,12 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
   };
 
   const submitHandler = async () => {
-    // if (context.h_specificNeed === '') {
+    // if (context.h_additionalInfo === '') {
     //   setButtonClickStatus(true);
     //   triggerToast('Please fill in all the fields');
     //   return;
     // }
-    // if (context.h_specificNeed !== '') {
+    // if (context.h_additionalInfo !== '') {
     //   setButtonClickStatus(false);
     //   context.setHireStepFourData(priorities);
     //   setDialogStatus(true);
@@ -81,10 +87,13 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
     setDialogStatus(true);
   };
   const onNext = (data: FieldValues) => {
-    setHireState({
+    const currState = {
       ...hireState,
       hire4: { ...data },
-    });
+    };
+    setHireState(currState);
+    submitHireForm(currState);
+    handleNext();
   };
 
   return (
@@ -93,12 +102,12 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
         <Textarea
           label='Do you need something very specific?*'
           placeholder='Tell us how you think we can best help you?'
-          name='specificNeed'
+          name='additionalInfo'
           localForm={localForm}
         />
 
         <RadioBox
-          name='priorities'
+          name='deliveryPriorities'
           label='What are your priorities?'
           options={['Fast & Polished', 'Fast & Inexpensive', 'Polished & Inexpensive']}
           stack={upTo780 ? 'vertical' : 'horizontal'}
@@ -115,7 +124,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
         <Button onClick={handleBack} variant='outline'>
           Back
         </Button>
-        <Button onClick={handleSubmit(onNext, handleError(toast))}>Submit</Button>
+        <Button onClick={handleSubmit(onNext, handleError(toast))}>Submit ss</Button>
         <Button type='submit'>Pay {SUBMISSION_REQUEST_FEE} $RAID</Button>
       </Flex>
 

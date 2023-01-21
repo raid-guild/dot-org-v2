@@ -9,6 +9,7 @@ import {
   mapSkillType,
   mapAvailability,
   mapDAOFamiliarity,
+  mapDeliveryPriorities,
 } from '../utils/mapping';
 
 const useSubmit = (token: string) => {
@@ -54,38 +55,55 @@ const useSubmit = (token: string) => {
   };
 
   const submitHireForm = async (data: any) => {
-    const servicesRequried = [
-      ...data.hire3.services.map((s: string) => ({ guild_service_key: mapConsultationService(s) })),
-    ];
+    console.log(`data from submitHireForm: ${JSON.stringify(data)}`);
+
+    const servicesRequried = data.hire3.services
+      ? [...data.hire3.services.map((s: { value: string; label: string }) => ({ guild_service_key: s.value }))]
+      : [];
     const submitData = {
       // 1-Contact.tsx
-      name: data.hire1.name,
-      consultation_contact: {
+      consultations_contacts: {
         data: {
-          email: data.hire1.email,
-          bio: data.hire1.bio,
-          discord: data.hire1.discord,
-          github: data.hire1.github,
-          twitter: data.hire1.twitter,
-          telegram: data.hire1.telegram,
+          contact: {
+            data: {
+              name: data.hire1.name,
+              eth_address: 'enter eth',
+              bio: data.hire1.bio,
+              contact_info: {
+                data: {
+                  email: data.hire1.email,
+                  discord: data.hire1.discord,
+                  github: data.hire1.github,
+                  twitter: data.hire1.twitter,
+                  telegram: data.hire1.telegram,
+                },
+              },
+            },
+          },
         },
       },
       // 2-ProjectOverview.tsx
       type_key: mapProjectType(data.hire2.projectType),
       specs_key: mapAvailableProjectSpec(data.hire2.specsType),
-      project_name: data.hire2.projectName,
+      name: data.hire2.projectName,
       project_description: data.hire2.projectDescription,
       // 3-Services.tsx
-      consultation_services_required: {
+      consultations_services_required: {
         data: [...servicesRequried],
       },
-      budget_option_key: mapBudgetOptions(data.hire3.budget),
-      expected_deadline: data.hire3.expectedDeadline,
+      budget_key: mapBudgetOptions(data.hire3.budget),
+      desired_delivery_date: data.hire3.desiredDeliveryDate,
       // 4-ProjectDetails.tsx
-      specific_need: data.hire4.specificNeed,
-      priorities: data.hire4.priorities,
+      additional_info: data.hire4.additionalInfo,
+      delivery_priorities_key: mapDeliveryPriorities(data.hire4.deliveryPriorities),
+      submission_type_key: 'PAID',
+      consultation_hash: 'aaaa',
+      submission_hash: 'aaaa',
+      consultation_status_key: 'PENDING',
     };
-    const res = await mutateAsync({ ...submitData });
+    console.log('submitData', JSON.stringify(submitData));
+
+    const res = await mutateConsult({ ...submitData });
     return res;
   };
   return {

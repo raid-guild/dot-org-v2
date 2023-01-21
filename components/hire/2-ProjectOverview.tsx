@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
   specsType: Yup.string().required(),
   projectName: Yup.string().required(),
   projectLink: Yup.string(),
-  projectDesc: Yup.string().required(),
+  projectDescription: Yup.string().required(),
 });
 
 const StepTwo = ({ handleNext, handleBack }: Props) => {
@@ -58,7 +58,7 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
         <Input label='Project Name?*' name='projectName' localForm={localForm} />
         <Input label='Link to Specs' name='projectLink' localForm={localForm} />
         <GridItem gridColumn='span 2'>
-          <Textarea label='Project Description*' name='projectDesc' localForm={localForm} />
+          <Textarea label='Project Description*' name='projectDescription' localForm={localForm} />
         </GridItem>
       </SimpleGrid>
       <FormNavigation handleBack={handleBack} handleNext={handleSubmit(onNext, handleError(toast))} />

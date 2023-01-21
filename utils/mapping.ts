@@ -101,3 +101,12 @@ export const mapBudgetOptions = (val: string) => {
   };
   return map[val];
 };
+
+export const mapDeliveryPriorities = (val: string) => {
+  const map: { [key: string]: string } = {
+    'Fast & Polished': 'FAST_AND_POLISHED',
+    'Fast & Inexpensive': 'FAST_AND_INEXPENSIVE',
+    'Polished & Inexpensive': 'POLISHED_AND_INEXPENSIVE',
+  };
+  return map[val];
+};

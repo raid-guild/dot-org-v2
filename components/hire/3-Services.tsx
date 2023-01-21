@@ -23,7 +23,7 @@ const validationSchema = Yup.object().shape({
     }),
   ),
   budget: Yup.string().required(),
-  expectedDeadline: Yup.string().required(),
+  desiredDeliveryDate: Yup.string().required(),
 });
 
 const StepThree = ({ handleNext, handleBack }: Props) => {
@@ -68,7 +68,7 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
             localForm={localForm}
           />
 
-          <Input label='Expected Deadline*' name='expectedDeadline' localForm={localForm} />
+          <Input label='Expected Deadline*' name='desiredDeliveryDate' localForm={localForm} />
         </Stack>
       </Stack>
       <FormNavigation handleBack={handleBack} handleNext={handleSubmit(onNext, handleError(toast))} />
