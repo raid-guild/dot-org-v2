@@ -32,7 +32,7 @@ const SectionThree = () => (
         return (
           <Card
             key={item.name}
-            direction='column'
+            // direction='column'
             alignItems='center'
             justifyContent='space-evenly'
             variant='topBorderOnly'>

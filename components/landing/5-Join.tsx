@@ -30,7 +30,7 @@ const SectionFive = () => (
         <Card
           maxWidth='350px'
           key={item.name}
-          direction='column'
+          // direction='column'
           alignItems='center'
           justifyContent='space-evenly'
           p={3}

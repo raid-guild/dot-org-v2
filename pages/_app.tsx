@@ -6,7 +6,14 @@ import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 import { WagmiConfig } from 'wagmi';
 import { QueryClient, QueryClientProvider, QueryCache } from '@tanstack/react-query';
-import { RGThemeProvider, useToast } from '@raidguild/design-system';
+import {
+  // RGThemeProvider,
+  useToast,
+  ChakraProvider,
+  defaultTheme,
+  ColorModeScript,
+  Fonts,
+} from '@raidguild/design-system';
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import { RainbowKitSiweNextAuthProvider } from '@rainbow-me/rainbowkit-siwe-next-auth';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -34,7 +41,9 @@ export default function App({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <RGThemeProvider>
+    <ChakraProvider theme={defaultTheme}>
+      <ColorModeScript initialColorMode='dark' />
+      <Fonts />
       <WagmiConfig client={wagmiClient}>
         <SessionProvider refetchInterval={120} session={pageProps.session}>
           <RainbowKitSiweNextAuthProvider>
@@ -49,6 +58,6 @@ export default function App({ Component, pageProps }: AppProps) {
           </RainbowKitSiweNextAuthProvider>
         </SessionProvider>
       </WagmiConfig>
-    </RGThemeProvider>
+    </ChakraProvider>
   );
 }
