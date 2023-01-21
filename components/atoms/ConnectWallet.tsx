@@ -2,7 +2,7 @@
 import React from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
-import { useAccount, useDisconnect } from 'wagmi';
+import { useDisconnect } from 'wagmi';
 import {
   Menu,
   MenuButton,
@@ -20,7 +20,7 @@ import { FiKey, FiChevronDown, FiXCircle } from 'react-icons/fi';
 import { truncateAddress } from '../../utils';
 
 export const ConnectWallet: React.FC = () => {
-  const { isConnecting } = useAccount();
+  // const { isConnecting } = useAccount();
   const { disconnect } = useDisconnect();
   const showNetwork = false; // maybe unhide, in some cases
 
@@ -48,7 +48,7 @@ export const ConnectWallet: React.FC = () => {
                     variant='outline'
                     transition='all 100ms ease-in-out'
                     leftIcon={<Icon as={FiKey} color='primary.500' w='20px' h='20px' />}
-                    isDisabled={isConnecting}
+                    // isDisabled={isConnecting}
                     onClick={openConnectModal}
                     data-cy='connect-wallet'>
                     Connect
