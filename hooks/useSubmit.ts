@@ -86,13 +86,14 @@ const useSubmit = (token: string) => {
       type_key: mapProjectType(data.hire2.projectType),
       specs_key: mapAvailableProjectSpec(data.hire2.specsType),
       name: data.hire2.projectName,
-      project_description: data.hire2.projectDescription,
+      description: data.hire2.projectDescription,
       // 3-Services.tsx
       consultations_services_required: {
         data: [...servicesRequried],
       },
       budget_key: mapBudgetOptions(data.hire3.budget),
-      desired_delivery_date: data.hire3.desiredDeliveryDate,
+      // desired_delivery_date: data.hire3.desiredDeliveryDate,
+      desired_delivery_date: new Date().toISOString(),
       // 4-ProjectDetails.tsx
       additional_info: data.hire4.additionalInfo,
       delivery_priorities_key: mapDeliveryPriorities(data.hire4.deliveryPriorities),

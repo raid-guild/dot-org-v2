@@ -55,13 +55,13 @@ const StepFive = ({ handleNext, handleBack }: Props) => {
           localForm={localForm}
         />
 
-        <Input label='Ho, you know of Crypto yes? For how long?' name='cryptoExp' localForm={localForm} />
+        <Input label='Ho, you know of Crypto yes? For how long?' name='cryptoExperience' localForm={localForm} />
 
         <RadioBox
           label='What say you to your status, within our RaidGuild here?'
           stack={upTo780 ? 'vertical' : 'horizontal'}
           options={['0-5 hours', '6-12 hours', '13-35 hours', '36+ hours']}
-          name='availability'
+          name='cohortAvailability'
           localForm={localForm}
         />
 

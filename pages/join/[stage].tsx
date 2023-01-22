@@ -35,7 +35,6 @@ const Join = () => {
     router.push(`/join/${stage - 1}`);
   };
 
-  console.log(`stage: ${stage}`);
   if (!session || !isConnected) {
     return (
       <SiteLayout>
