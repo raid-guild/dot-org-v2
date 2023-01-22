@@ -56,7 +56,7 @@ export const encodeAuth = async ({ token, maxAge }: JWTEncodeParams): Promise<st
   }
 
   let roles = ['cohort'];
-  if (_.get(user, 'memberType') === 'MEMBER') {
+  if (_.get(user, 'memberType.memberType') === 'MEMBER') {
     roles = ['member', ...roles];
   }
 
