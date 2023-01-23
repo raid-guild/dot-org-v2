@@ -43,7 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={defaultTheme}>
       <ColorModeScript initialColorMode='dark' />
-      {/* <Fonts /> */}
+      <Fonts />
       <WagmiConfig client={wagmiClient}>
         <SessionProvider refetchInterval={120} session={pageProps.session}>
           <RainbowKitSiweNextAuthProvider>

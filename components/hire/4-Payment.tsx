@@ -124,7 +124,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
         <Button onClick={handleBack} variant='outline'>
           Back
         </Button>
-        <Button onClick={handleSubmit(onNext, handleError(toast))}>Submit ss</Button>
+        <Button onClick={handleSubmit(onNext, handleError(toast))}>Submit</Button>
         <Button type='submit'>Pay {SUBMISSION_REQUEST_FEE} $RAID</Button>
       </Flex>
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { Flex, Box, Stack, Input, Checkbox, useToast, Select } from '@raidguild/design-system';
+import { Flex, Box, Stack, DatePicker, useToast, Select } from '@raidguild/design-system';
 import { useHireState } from '../../context/appState';
 import FormNavigation from './FormNavigation';
 import RadioBox from '../atoms/RadioBox';
@@ -33,7 +33,16 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
   const { handleSubmit, reset } = localForm;
 
   useEffect(() => {
-    reset({ ...hireState.hire3 });
+    let currData = {
+      ...hireState.hire3,
+    };
+    if (!currData.desiredDeliveryDate) {
+      currData = {
+        ...currData,
+        desiredDeliveryDate: new Date(),
+      };
+    }
+    reset({ ...currData });
   }, []);
 
   const onNext = (data: FieldValues) => {
@@ -43,8 +52,10 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
     });
     handleNext();
   };
+  const handleDateChange = (date: any) => {
+    localForm.setValue('desiredDeliveryDate', date);
+  };
   const servicesOptions = hireUsServices.map((s: string) => ({ value: mapConsultationService(s), label: s }));
-  //  TODO use date picker for expected deadline
 
   return (
     <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
@@ -67,8 +78,12 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
             stack='vertical'
             localForm={localForm}
           />
-
-          <Input label='Expected Deadline*' name='desiredDeliveryDate' localForm={localForm} />
+          <DatePicker
+            label='Expected Deadline*'
+            name='desiredDeliveryDate'
+            localForm={localForm}
+            onChange={handleDateChange}
+          />
         </Stack>
       </Stack>
       <FormNavigation handleBack={handleBack} handleNext={handleSubmit(onNext, handleError(toast))} />
