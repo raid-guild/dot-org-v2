@@ -36,7 +36,7 @@ const Join = () => {
     router.push(`/join/${stage - 1}`);
   };
   const handleSwitch = () => {
-    switchNetwork(100);
+    switchNetwork?.(100);
   };
 
   if (!session || !isConnected) {

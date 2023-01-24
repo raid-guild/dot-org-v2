@@ -28,7 +28,7 @@ const HireUs = () => {
     router.push(`/hire/${stage - 1}`);
   };
   const handleSwitch = () => {
-    switchNetwork(100);
+    switchNetwork?.(100);
   };
 
   if (!session || !isConnected) {

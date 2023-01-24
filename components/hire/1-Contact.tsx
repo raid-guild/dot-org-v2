@@ -93,7 +93,13 @@ export default function StepOne({ handleNext, handleBack }: Props) {
           if (field.type === 'textarea') {
             return (
               <Box key={field.name} gridColumn='span 2'>
-                <Textarea name={field.name} localForm={localForm} label={field.label} placeholder={field.placeholder} />
+                <Textarea
+                  name={field.name}
+                  localForm={localForm}
+                  label={field.label}
+                  placeholder={field.placeholder}
+                  key={field.name}
+                />
               </Box>
             );
           }

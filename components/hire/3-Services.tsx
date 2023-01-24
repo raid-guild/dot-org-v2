@@ -80,7 +80,6 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
             label='Expected Deadline*'
             name='desiredDeliveryDate'
             localForm={localForm}
-            fontFamily='spaceMono'
             onChange={handleDateChange}
           />
         </Stack>

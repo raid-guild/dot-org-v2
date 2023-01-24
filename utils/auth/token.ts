@@ -50,7 +50,6 @@ export const encodeAuth = async ({ token, maxAge }: JWTEncodeParams): Promise<st
   if (!address) return '';
 
   const user = await getOrCreateUser(address);
-  console.log('user', user);
 
   if (user === 'AUTHED_USER') {
     return encodeToken(createToken({ user: { id: _.get(token, 'sub') }, token, maxAge, roles: ['user'] }));

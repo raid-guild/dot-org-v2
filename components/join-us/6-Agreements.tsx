@@ -42,11 +42,10 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
   const { joinState, setJoinState } = useJoinState();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
-  const { watch, setValue, handleSubmit, reset, getValues } = localForm;
+  const { watch, setValue, handleSubmit, reset } = localForm;
   const toast = useToast();
   const cancelRef: any = useRef();
   const { submitJoinForm } = useSubmit(token);
-  console.log(`form values: ${JSON.stringify(getValues())}`);
 
   const handbookCheckBoxChangeHandler = () => {
     setValue('handbookRead', !watch('handbookRead'));

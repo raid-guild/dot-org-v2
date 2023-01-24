@@ -3,27 +3,13 @@ import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import _ from 'lodash';
 import * as Yup from 'yup';
-import {
-  Flex,
-  useToast,
-  Stack,
-  Text,
-  ChakraAlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
-  Button,
-  Textarea,
-  useMediaQuery,
-} from '@raidguild/design-system';
+import { Flex, useToast, Stack, Button, Textarea, useMediaQuery } from '@raidguild/design-system';
 import { useSession } from 'next-auth/react';
 import { useHireState } from '../../context/appState';
 import handleError from '../../utils/forms';
-import Link from '../atoms/ChakraNextLink';
+// import Link from '../atoms/ChakraNextLink';
 import RadioBox from '../atoms/RadioBox';
-import { SUBMISSION_REQUEST_FEE } from '../../utils/config';
+// import { SUBMISSION_REQUEST_FEE } from '../../utils/config';
 import useSubmit from '../../hooks/useSubmit';
 
 interface Props {
@@ -31,8 +17,8 @@ interface Props {
   handleBack: () => void;
 }
 
-const FEEDBACK_FORM =
-  'https://docs.google.com/forms/d/e/1FAIpQLSdxSnfKxvo6v7eo5dJ4j445-QhvkCq05GbJpcy5r8qWiYgqlQ/viewform?usp=sf_link';
+// const FEEDBACK_FORM =
+//   'https://docs.google.com/forms/d/e/1FAIpQLSdxSnfKxvo6v7eo5dJ4j445-QhvkCq05GbJpcy5r8qWiYgqlQ/viewform?usp=sf_link';
 
 const validationSchema = Yup.object().shape({
   additionalInfo: Yup.string().required(),
@@ -54,16 +40,16 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
   const ethAddress = _.get(session, 'user.address') || '';
 
   const { submitHireForm, handlePayment } = useSubmit(token);
-  const cancelRef: any = React.useRef();
+  // const cancelRef: any = React.useRef();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const toast = useToast();
 
-  const [isMember] = useState(roles.includes('member'));
-  const [submissionHash, setSubmissionHash] = useState<string>('');
+  // const [isMember] = useState(roles.includes('member'));
+  // const [submissionHash, setSubmissionHash] = useState<string>('');
   const [upTo780] = useMediaQuery('(max-width: 780px)');
-  const [dialogStatus, setDialogStatus] = useState(false);
+  // const [dialogStatus, setDialogStatus] = useState(false);
   const { hireState, setHireState } = useHireState();
-  const [formStatus, setFormStatus] = useState<string>(FORM_STATE.UNSUBMITTED);
+  // const [formStatus, setFormStatus] = useState<string>(FORM_STATE.UNSUBMITTED);
 
   const { handleSubmit, reset } = localForm;
 
@@ -71,28 +57,26 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
     reset({ ...hireState.hire4 });
   }, []);
 
-  const handleFormSubmit = async () => {
-    const currState = {
-      ...hireState,
-      ethAddress,
-      submissionHash,
-    };
-    const res = await submitHireForm(currState);
-    if (res.error) {
-      toast.error({
-        title: res.message,
-        iconName: 'alert',
-      });
-    } else {
-      toast.success({
-        title: 'Form submitted successfully!',
-        iconName: 'crown',
-      });
-      handleNext();
-    }
-  };
-  console.log(`submissionHash: ${submissionHash}`);
-  console.log(`formStatus: ${formStatus}`);
+  // const handleFormSubmit = async () => {
+  //   const currState = {
+  //     ...hireState,
+  //     ethAddress,
+  //     submissionHash,
+  //   };
+  //   const res = await submitHireForm(currState);
+  //   if (res.error) {
+  //     toast.error({
+  //       title: res.message,
+  //       iconName: 'alert',
+  //     });
+  //   } else {
+  //     toast.success({
+  //       title: 'Form submitted successfully!',
+  //       iconName: 'crown',
+  //     });
+  //     handleNext();
+  //   }
+  // };
 
   // useEffect(() => {
   //   if (submissionHash !== '' && formStatus === FORM_STATE.INITIATED_PAYMENT) {

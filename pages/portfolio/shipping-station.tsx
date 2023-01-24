@@ -192,7 +192,7 @@ const ShippingStation = () => {
             width='100%'
             flexWrap='wrap'
             gap='1rem'>
-            {watch('tags').length > 0 &&
+            {(watch('tags') || []).length > 0 &&
               watch('tags').map((tag: any) => {
                 return (
                   <Flex
@@ -219,7 +219,7 @@ const ShippingStation = () => {
         {/* Raiders */}
         <VStack alignItems='flex-start' width='100%'>
           <Text size='md'>Contributors:</Text>
-          {watch('raiderRole').map((raider: any) => {
+          {(watch('raiderRole') || []).map((raider: any) => {
             return (
               <Grid key={raider.id} width='100%' gridTemplateColumns='4fr 4fr 1fr' gap='2rem'>
                 <Select name='raiderRole' localForm={localForm} options={roleOptions} />

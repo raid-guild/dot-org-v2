@@ -59,7 +59,6 @@ const useSubmit = (token: string) => {
   };
 
   const submitHireForm = async (data: any) => {
-    console.log(`data from submitHireForm: ${JSON.stringify(data)}`);
     let res;
     try {
       const servicesRequried = data.hire3.services
@@ -102,7 +101,7 @@ const useSubmit = (token: string) => {
         // 4-ProjectDetails.tsx
         additional_info: data.hire4.additionalInfo,
         delivery_priorities_key: mapDeliveryPriorities(data.hire4.deliveryPriorities),
-        submission_type_key: 'PAID',
+        submission_type_key: 'UNPAID',
         submission_hash: data.submissionHash,
         consultation_status_key: 'PENDING',
       };
@@ -141,8 +140,6 @@ const useSubmit = (token: string) => {
         toWei(`${SUBMISSION_REQUEST_FEE}`),
       );
       const { status } = await tx.wait();
-
-      console.log(`tx object: ${JSON.stringify(tx)}`);
 
       if (status !== 1) {
         return {
