@@ -17,8 +17,9 @@ const Intro = ({ handleNext }: Props) => (
       well as a few questions to give us an initial feel for your needs.
     </Text>
     <br />
+    {/* disabled $500 RAID spam filter payment for now */}
 
-    <Text fontSize={{ base: '1rem', lg: '18px' }}>
+    {/* <Text fontSize={{ base: '1rem', lg: '18px' }}>
       You will be prompted to pay a{' '}
       <Link
         href='https://app.honeyswap.org/#/swap?inputCurrency=0x18e9262e68cc6c6004db93105cc7c001bb103e49&outputCurrency=0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1&chainId=100'
@@ -42,7 +43,7 @@ const Intro = ({ handleNext }: Props) => (
         15000 $RAID
       </Link>{' '}
       to secure your spot for a consultation from your dashboard.
-    </Text>
+    </Text> */}
     <br />
 
     <Text>
