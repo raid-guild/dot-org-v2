@@ -7,7 +7,7 @@ import { useHireState } from '../../context/appState';
 import FormNavigation from './FormNavigation';
 import RadioBox from '../atoms/RadioBox';
 import { hireUsServices } from '../../utils/constants';
-import { handleError } from '../../utils/forms';
+import handleError from '../../utils/forms';
 import { mapConsultationService } from '../../utils/mapping';
 
 type Props = {
@@ -31,24 +31,17 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const toast = useToast();
   const { handleSubmit, reset } = localForm;
-  console.log('StepThree start');
 
-  // useEffect(() => {
-  //   console.log('useeffect start');
+  useEffect(() => {
+    const currData = {
+      ...hireState.hire3,
+      desiredDeliveryDate: hireState.hire3.desiredDeliveryDate
+        ? new Date(hireState.hire3.desiredDeliveryDate)
+        : new Date(),
+    };
 
-  //   let currData = {
-  //     ...hireState.hire3,
-  //   };
-  //   if (!currData.desiredDeliveryDate) {
-  //     currData = {
-  //       ...currData,
-  //       desiredDeliveryDate: new Date(),
-  //     };
-  //   }
-  //   console.log('useeffect', currData);
-
-  //   reset({ ...currData });
-  // }, []);
+    reset({ ...currData });
+  }, []);
 
   const onNext = (data: FieldValues) => {
     setHireState({

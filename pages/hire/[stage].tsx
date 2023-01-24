@@ -3,9 +3,6 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
 import { Button, Flex, SimpleGrid, Stack, Text } from '@raidguild/design-system';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useConnectModal } from '@rainbow-me/rainbowkit';
 import SiteLayout from '../../components/page-components/SiteLayout';
 import Link from '../../components/atoms/ChakraNextLink';
 import Intro from '../../components/hire/0-Intro';
@@ -14,8 +11,6 @@ import ProjectOverview from '../../components/hire/2-ProjectOverview';
 import Services from '../../components/hire/3-Services';
 import Payment from '../../components/hire/4-Payment';
 import Confirmation from '../../components/hire/5-Confirmation';
-import useCreateConsult from '../../hooks/useCreateConsult';
-import { hireSchema } from '../../utils';
 
 const HireUs = () => {
   const router = useRouter();

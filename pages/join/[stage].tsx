@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-import { useAccount } from 'wagmi';
-import { Flex, CircularProgress, CircularProgressLabel, Heading, Stack, Text } from '@raidguild/design-system';
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
+import { Flex, CircularProgress, CircularProgressLabel, Heading, Stack, Text, Button } from '@raidguild/design-system';
 import { useSession } from 'next-auth/react';
 import SiteLayout from '../../components/page-components/SiteLayout';
 import Intro from '../../components/join-us/0-Intro';
@@ -24,22 +24,39 @@ const stageHeadings: { [key: number]: string } = {
 const Join = () => {
   const { isConnected } = useAccount();
   const { data: session } = useSession();
+  const { chain } = useNetwork();
+  const { switchNetwork } = useSwitchNetwork();
   const router = useRouter();
   const stage = Number(router.query.stage) || 0;
 
   const handleNext = () => {
     router.push(`/join/${stage + 1}`);
   };
-
   const handleBack = () => {
     router.push(`/join/${stage - 1}`);
+  };
+  const handleSwitch = () => {
+    switchNetwork(100);
   };
 
   if (!session || !isConnected) {
     return (
       <SiteLayout>
         <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
-          <Text>Please sign in with your wallet to continue</Text>
+          <Text fontFamily='spaceMono' fontSize='xl'>
+            Please sign in with your wallet to continue
+          </Text>
+        </Stack>
+      </SiteLayout>
+    );
+  }
+  if (chain && chain.id !== 100) {
+    return (
+      <SiteLayout>
+        <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
+          <Text fontFamily='spaceMono' fontSize='xl'>
+            Please switch to the <Button onClick={handleSwitch}>Gnosis chain</Button> to continue
+          </Text>
         </Stack>
       </SiteLayout>
     );

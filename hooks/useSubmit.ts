@@ -1,14 +1,12 @@
-import { useContract, useSigner } from 'wagmi';
+import { useSigner } from 'wagmi';
 import { toWei } from 'web3-utils';
-import { utils } from 'ethers';
 import { balanceOf, payWithRaidToken } from '../utils/web3';
 import { RAID_CONTRACT_ADDRESS, DAO_ADDRESS, SUBMISSION_REQUEST_FEE } from '../utils/config';
 import useApplicationCreate from './useApplicationCreate';
-import useCreateConsult from './useCreateConsult';
+import useCreateConsults from './useCreateConsults';
 import {
   mapBudgetOptions,
   mapProjectType,
-  mapConsultationService,
   mapAvailableProjectSpec,
   mapSkill,
   mapSkillType,
@@ -18,16 +16,9 @@ import {
 } from '../utils/mapping';
 
 const useSubmit = (token: string) => {
-  const { data: signer, isError, isLoading } = useSigner();
-  const abi = new utils.Interface(['function balanceOf(address account) view returns(uint256)']);
-  const raidTokenContract = useContract({
-    address: RAID_CONTRACT_ADDRESS[100],
-    abi,
-    singerOrProvider: signer,
-  });
-
+  const { data: signer } = useSigner();
   const { mutateAsync } = useApplicationCreate(token);
-  const { mutateAsync: mutateConsult } = useCreateConsult(token);
+  const { mutateAsync: mutateConsults } = useCreateConsults(token);
 
   const submitJoinForm = async (data: any) => {
     const applicationSkills = [
@@ -68,7 +59,7 @@ const useSubmit = (token: string) => {
   };
 
   const submitHireForm = async (data: any) => {
-    console.log(`data from submitHireForm: ${data}`);
+    console.log(`data from submitHireForm: ${JSON.stringify(data)}`);
     let res;
     try {
       const servicesRequried = data.hire3.services
@@ -81,7 +72,7 @@ const useSubmit = (token: string) => {
             contact: {
               data: {
                 name: data.hire1.name,
-                eth_address: data.eth_address,
+                eth_address: data.ethAddress,
                 bio: data.hire1.bio,
                 contact_info: {
                   data: {
@@ -99,6 +90,7 @@ const useSubmit = (token: string) => {
         // 2-ProjectOverview.tsx
         type_key: mapProjectType(data.hire2.projectType),
         specs_key: mapAvailableProjectSpec(data.hire2.specsType),
+        link: data.hire2.projectLink,
         name: data.hire2.projectName,
         description: data.hire2.projectDescription,
         // 3-Services.tsx
@@ -107,18 +99,14 @@ const useSubmit = (token: string) => {
         },
         budget_key: mapBudgetOptions(data.hire3.budget),
         desired_delivery_date: new Date(data.hire3.desiredDeliveryDate).toISOString(),
-        // desired_delivery_date: new Date().toISOString(),
         // 4-ProjectDetails.tsx
         additional_info: data.hire4.additionalInfo,
         delivery_priorities_key: mapDeliveryPriorities(data.hire4.deliveryPriorities),
         submission_type_key: 'PAID',
-        consultation_hash: data.txHash,
-        // submission_hash: '',
+        submission_hash: data.submissionHash,
         consultation_status_key: 'PENDING',
       };
-      console.log('submitData', JSON.stringify(submitData));
-      const insertResponse = await mutateConsult({ ...submitData });
-      console.log('insertResponse', JSON.stringify(insertResponse));
+      const insertResponse = await mutateConsults({ ...submitData });
 
       res = {
         error: false,
@@ -134,14 +122,8 @@ const useSubmit = (token: string) => {
 
     return res;
   };
-  const handlePayment = async (data: any): Promise<any> => {
-    console.log(`data from handlePayment: ${JSON.stringify(data)}`);
-
-    // const balance = await raidTokenContract?.balanceOf(data.eth_address);
-    const tokenBalance = await balanceOf(signer, RAID_CONTRACT_ADDRESS[100], data.eth_address);
-    // check raid token balance for current user
-    // if balance is less than fee, return message to user
-    console.log(`SUBMISSION_REQUEST_FEE ${SUBMISSION_REQUEST_FEE}`);
+  const handlePayment = async (ethAddress: string): Promise<any> => {
+    const tokenBalance = await balanceOf(signer, RAID_CONTRACT_ADDRESS[100], ethAddress);
 
     if (Number(toWei(`${tokenBalance}`)) < SUBMISSION_REQUEST_FEE) {
       return {
@@ -149,7 +131,6 @@ const useSubmit = (token: string) => {
         message: 'Insufficient balance',
       };
     }
-    console.log(`toWei(SUBMISSION_REQUEST_FEE.toString()) ${toWei(`${SUBMISSION_REQUEST_FEE}`)}`);
 
     // if balance is greater than fee, transfer to DAO contract and return transaction hash
     try {
@@ -160,7 +141,8 @@ const useSubmit = (token: string) => {
         toWei(`${SUBMISSION_REQUEST_FEE}`),
       );
       const { status } = await tx.wait();
-      console.log(`status ${JSON.stringify(status)}`);
+
+      console.log(`tx object: ${JSON.stringify(tx)}`);
 
       if (status !== 1) {
         return {
@@ -171,7 +153,7 @@ const useSubmit = (token: string) => {
       return {
         error: false,
         message: 'Transaction successful',
-        txHash: tx.hash,
+        submissionHash: tx.hash,
       };
     } catch (e) {
       return {

@@ -1,6 +1,6 @@
 import { FieldErrorsImpl } from 'react-hook-form';
 
-export const handleError = (toast: any) => {
+const handleError = (toast: any) => {
   return (data: FieldErrorsImpl) => {
     if (Object.keys(data).length > 0) {
       toast.error({
@@ -8,5 +8,7 @@ export const handleError = (toast: any) => {
         iconName: 'alert',
       });
     }
-  }
-}
+  };
+};
+
+export default handleError;

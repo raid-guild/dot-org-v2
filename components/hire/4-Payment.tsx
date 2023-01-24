@@ -20,7 +20,7 @@ import {
 } from '@raidguild/design-system';
 import { useSession } from 'next-auth/react';
 import { useHireState } from '../../context/appState';
-import { handleError } from '../../utils/forms';
+import handleError from '../../utils/forms';
 import Link from '../atoms/ChakraNextLink';
 import RadioBox from '../atoms/RadioBox';
 import { SUBMISSION_REQUEST_FEE } from '../../utils/config';
@@ -43,43 +43,39 @@ const FORM_STATE = {
   UNSUBMITTED: 'UNSUBMITTED',
   AWAITING_PAYMENT: 'AWAITING_PAYMENT',
   SUBMIT_AS_MEMBER: 'SUBMIT_AS_MEMBER',
-  SUBMITTING: 'SUBMITTING',
-  SUBMITTED: 'SUBMITTED',
+  INITIATED_PAYMENT: 'INITIATED_PAYMENT',
+  PAID_AND_SUBMITTED: 'PAID_AND_SUBMITTED',
 };
 
 const StepFour = ({ handleBack, handleNext }: Props) => {
   const { data: session } = useSession();
-
-  console.log(`session: ${JSON.stringify(session)}`);
-
   const token = _.get(session, 'token') || '';
   const roles = _.get(session, 'user.roles') || [];
   const ethAddress = _.get(session, 'user.address') || '';
+
   const { submitHireForm, handlePayment } = useSubmit(token);
-  const [dialogStatus, setDialogStatus] = useState(false);
-  const [disclaimerStatus, setDisclaimerStatus] = useState(false);
-  const { hireState, setHireState } = useHireState();
+  const cancelRef: any = React.useRef();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const toast = useToast();
-  const { handleSubmit, reset } = localForm;
+
+  const [isMember] = useState(roles.includes('member'));
+  const [submissionHash, setSubmissionHash] = useState<string>('');
+  const [upTo780] = useMediaQuery('(max-width: 780px)');
+  const [dialogStatus, setDialogStatus] = useState(false);
+  const { hireState, setHireState } = useHireState();
   const [formStatus, setFormStatus] = useState<string>(FORM_STATE.UNSUBMITTED);
 
-  const onClose = () => setDialogStatus(false);
-  const cancelRef: any = React.useRef();
-  console.log(`ethAddress: ${ethAddress}`);
+  const { handleSubmit, reset } = localForm;
 
   useEffect(() => {
     reset({ ...hireState.hire4 });
   }, []);
 
-  const [isMember] = useState(roles.includes('member'));
-  const [upTo780] = useMediaQuery('(max-width: 780px)');
-
-  const handleFormSubmit = async (txHash?: string) => {
+  const handleFormSubmit = async () => {
     const currState = {
       ...hireState,
-      eth_address: ethAddress,
-      txHash,
+      ethAddress,
+      submissionHash,
     };
     const res = await submitHireForm(currState);
     if (res.error) {
@@ -95,27 +91,31 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
       handleNext();
     }
   };
+  console.log(`submissionHash: ${submissionHash}`);
+  console.log(`formStatus: ${formStatus}`);
+
+  useEffect(() => {
+    if (submissionHash !== '' && formStatus === FORM_STATE.INITIATED_PAYMENT) {
+      handleFormSubmit();
+      setFormStatus(FORM_STATE.PAID_AND_SUBMITTED);
+    }
+  }, [submissionHash]);
+
+  const onClose = () => setDialogStatus(false);
 
   const modalConfirmHandler = () => {
-    setDisclaimerStatus(true);
     setFormStatus(isMember ? FORM_STATE.SUBMIT_AS_MEMBER : FORM_STATE.AWAITING_PAYMENT);
-
     onClose();
   };
 
   const paymentHandler = async () => {
-    const data = {
-      eth_address: ethAddress,
-    };
-    console.log(`paymentHandler: ${JSON.stringify(data)}`);
-    setFormStatus(FORM_STATE.SUBMITTING);
-
-    // const res = await handlePayment(data);
-    const res = {
-      error: false,
-      txhash: '0xb4a6c54d8bdfa34490b6587a32e8df7544af03c65ab5f5c27a60e19c0cbb10d9',
-    };
-    console.log('res', res);
+    setFormStatus(FORM_STATE.INITIATED_PAYMENT);
+    const res = await handlePayment(ethAddress);
+    // const res = {
+    //   error: false,
+    //   message: 'successfully submitted',
+    //   submissionHash: '0x123',
+    // };
 
     if (res.error) {
       toast.error({
@@ -124,9 +124,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
       });
       setFormStatus(FORM_STATE.AWAITING_PAYMENT);
     } else {
-      handleFormSubmit(res.txHash);
-      // todo fix this
-      setFormStatus(FORM_STATE.UNSUBMITTED);
+      setSubmissionHash(res.submissionHash);
     }
   };
 
@@ -134,14 +132,11 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
     const currState = {
       ...hireState,
       hire4: { ...data },
-      eth_address: ethAddress,
+      ethAddress,
     };
     setHireState(currState);
-    // submitHireForm(currState);
     setDialogStatus(true);
-    // handleNext();
   };
-  console.log(`formStatus: ${formStatus}`);
 
   return (
     <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
@@ -181,17 +176,23 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
             Pay {SUBMISSION_REQUEST_FEE} $RAID
           </Button>
         )}
-        {formStatus === FORM_STATE.SUBMITTING && (
-          <Button isLoading fontFamily='spaceMono' onClick={paymentHandler}>
+        {formStatus === FORM_STATE.INITIATED_PAYMENT && (
+          <Button isLoading fontFamily='spaceMono' disabled>
             Submitting...
           </Button>
         )}
         {formStatus === FORM_STATE.SUBMIT_AS_MEMBER && (
-          <Button fontFamily='spaceMono' onClick={() => handleFormSubmit()}>
+          <Button fontFamily='spaceMono' onClick={handleFormSubmit}>
             Submit as Member
           </Button>
         )}
       </Flex>
+      {formStatus === FORM_STATE.PAID_AND_SUBMITTED && (
+        <Flex direction='column' mt='2rem'>
+          <Text fontFamily='spaceMono'>$RAID has been sent to the Guild Bank. Thank you for your submission!</Text>
+          <Text fontFamily='spaceMono'>Transaction hash: {submissionHash}</Text>
+        </Flex>
+      )}
 
       <ChakraAlertDialog isOpen={dialogStatus} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>
         <AlertDialogOverlay>

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { Input, HStack, Box, Button, VStack, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
-import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
+import { Input, Box, VStack, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
+import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useHireState } from '../../context/appState';
 import FormNavigation from './FormNavigation';
-import { handleError } from '../../utils/forms';
+import handleError from '../../utils/forms';
 
 interface Props {
   handleBack: () => void;

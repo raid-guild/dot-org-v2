@@ -53,9 +53,7 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
   };
 
   const pledgeReadinessCheckBoxChangeHandler = () => {
-    if (!watch('pledgeReadiness')) {
-      onOpen();
-    }
+    onOpen();
   };
   const handleModalCancel = () => {
     setValue('pledgeReadiness', false);
@@ -92,25 +90,33 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
     <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
       <Stack direction='column' spacing={5}>
         <FormControl>
-          <ChakraCheckbox isChecked={watch('handbookRead')} onChange={handbookCheckBoxChangeHandler}>
+          <ChakraCheckbox
+            fontFamily='spaceMono'
+            isChecked={watch('handbookRead')}
+            onChange={handbookCheckBoxChangeHandler}>
             Have you read through the{' '}
-            <Link href='https://handbook.raidguild.org/' isExternal>
+            <Link href='https://handbook.raidguild.org/' textDecoration='underline' isExternal>
               RaidGuild Handbook?*
             </Link>
           </ChakraCheckbox>
         </FormControl>
         <FormControl>
-          <ChakraCheckbox isChecked={watch('pledgeReadiness')} onChange={pledgeReadinessCheckBoxChangeHandler}>
+          <ChakraCheckbox
+            fontFamily='spaceMono'
+            isChecked={watch('pledgeReadiness')}
+            onChange={pledgeReadinessCheckBoxChangeHandler}>
             Are you ready to make pledge unto our DAO?*
           </ChakraCheckbox>
         </FormControl>
       </Stack>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <Button onClick={handleBack} variant='outline'>
+        <Button fontFamily='spaceMono' onClick={handleBack} variant='outline'>
           Back
         </Button>
-        <Button onClick={handleSubmit(onNext, onError)}>Submit</Button>
+        <Button fontFamily='spaceMono' onClick={handleSubmit(onNext, onError)}>
+          Submit
+        </Button>
       </Flex>
 
       <ChakraAlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>
@@ -120,7 +126,7 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
               <Heading>Disclaimer</Heading>
             </AlertDialogHeader>
 
-            <AlertDialogBody>
+            <AlertDialogBody fontFamily='spaceMono'>
               You must attend cohort training events and apply your skills in a Raid or RIP to earn a champion for your
               membership.
               <br />
@@ -132,10 +138,10 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button variant='outline' ref={cancelRef} onClick={handleModalCancel}>
+              <Button fontFamily='spaceMono' variant='outline' ref={cancelRef} onClick={handleModalCancel}>
                 Cancel
               </Button>
-              <Button variant='outline' onClick={modalConfirmHandler} ml={3}>
+              <Button fontFamily='spaceMono' onClick={modalConfirmHandler} ml={3}>
                 Continue
               </Button>
             </AlertDialogFooter>
