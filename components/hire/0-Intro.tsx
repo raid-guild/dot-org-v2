@@ -66,7 +66,9 @@ const Intro = ({ handleNext }: Props) => (
       </Text>
     </Flex>
     <HStack mt='2rem'>
-      <Button onClick={handleNext}>New Consultation</Button>
+      <Button fontFamily='spaceMono' onClick={handleNext}>
+        New Consultation
+      </Button>
     </HStack>
   </Flex>
 );

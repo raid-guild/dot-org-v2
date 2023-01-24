@@ -31,19 +31,24 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const toast = useToast();
   const { handleSubmit, reset } = localForm;
+  console.log('StepThree start');
 
-  useEffect(() => {
-    let currData = {
-      ...hireState.hire3,
-    };
-    if (!currData.desiredDeliveryDate) {
-      currData = {
-        ...currData,
-        desiredDeliveryDate: new Date(),
-      };
-    }
-    reset({ ...currData });
-  }, []);
+  // useEffect(() => {
+  //   console.log('useeffect start');
+
+  //   let currData = {
+  //     ...hireState.hire3,
+  //   };
+  //   if (!currData.desiredDeliveryDate) {
+  //     currData = {
+  //       ...currData,
+  //       desiredDeliveryDate: new Date(),
+  //     };
+  //   }
+  //   console.log('useeffect', currData);
+
+  //   reset({ ...currData });
+  // }, []);
 
   const onNext = (data: FieldValues) => {
     setHireState({
@@ -82,6 +87,7 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
             label='Expected Deadline*'
             name='desiredDeliveryDate'
             localForm={localForm}
+            fontFamily='spaceMono'
             onChange={handleDateChange}
           />
         </Stack>

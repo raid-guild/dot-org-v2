@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import { useAccount } from 'wagmi';
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
 import { Button, Flex, SimpleGrid, Stack, Text } from '@raidguild/design-system';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,38 +19,45 @@ import { hireSchema } from '../../utils';
 
 const HireUs = () => {
   const router = useRouter();
+  const { chain } = useNetwork();
+  const { switchNetwork } = useSwitchNetwork();
   const { isConnected } = useAccount();
   const { data: session } = useSession();
   const stage = Number(router.query.stage) || 1;
-  const localForm = useForm({ mode: 'onBlur', resolver: yupResolver(hireSchema) });
   const { address } = useAccount();
-  const { openConnectModal } = useConnectModal();
-  const { mutateAsync } = useCreateConsult();
-
-  const { handleSubmit } = localForm;
-
-  const onSubmit = async (data: any) => {
-    mutateAsync(data);
-  };
 
   const handleNext = () => {
     router.push(`/hire/${stage + 1}`);
   };
-
   const handleBack = () => {
     router.push(`/hire/${stage - 1}`);
+  };
+  const handleSwitch = () => {
+    switchNetwork(100);
   };
 
   if (!session || !isConnected) {
     return (
       <SiteLayout>
         <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
-          <Text>Please sign in with your wallet to continue</Text>
+          <Text fontFamily='spaceMono' fontSize='xl'>
+            Please sign in with your wallet to continue
+          </Text>
         </Stack>
       </SiteLayout>
     );
   }
-  // TODO make sure on gnosis chain
+  if (chain && chain.id !== 100) {
+    return (
+      <SiteLayout>
+        <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
+          <Text fontFamily='spaceMono' fontSize='xl'>
+            Please switch to the <Button onClick={handleSwitch}>Gnosis chain</Button> to continue
+          </Text>
+        </Stack>
+      </SiteLayout>
+    );
+  }
 
   return (
     <SiteLayout>

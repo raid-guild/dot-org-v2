@@ -7,11 +7,13 @@ interface Props {
 
 const FormNavigation = ({ handleBack, handleNext }: Props) => {
   return (
-    <HStack mt='2rem'>
-      <Button onClick={handleBack} variant='outline'>
+    <HStack>
+      <Button fontFamily='spaceMono' onClick={handleBack} variant='outline'>
         Back
       </Button>
-      <Button onClick={handleNext}>Next</Button>
+      <Button fontFamily='spaceMono' onClick={handleNext}>
+        Next
+      </Button>
     </HStack>
   );
 };

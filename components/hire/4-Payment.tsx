@@ -39,62 +39,109 @@ const validationSchema = Yup.object().shape({
   deliveryPriorities: Yup.string().required(),
 });
 
+const FORM_STATE = {
+  UNSUBMITTED: 'UNSUBMITTED',
+  AWAITING_PAYMENT: 'AWAITING_PAYMENT',
+  SUBMIT_AS_MEMBER: 'SUBMIT_AS_MEMBER',
+  SUBMITTING: 'SUBMITTING',
+  SUBMITTED: 'SUBMITTED',
+};
+
 const StepFour = ({ handleBack, handleNext }: Props) => {
   const { data: session } = useSession();
+
+  console.log(`session: ${JSON.stringify(session)}`);
+
   const token = _.get(session, 'token') || '';
-  const { submitHireForm } = useSubmit(token);
+  const roles = _.get(session, 'user.roles') || [];
+  const ethAddress = _.get(session, 'user.address') || '';
+  const { submitHireForm, handlePayment } = useSubmit(token);
   const [dialogStatus, setDialogStatus] = useState(false);
   const [disclaimerStatus, setDisclaimerStatus] = useState(false);
   const { hireState, setHireState } = useHireState();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const toast = useToast();
   const { handleSubmit, reset } = localForm;
+  const [formStatus, setFormStatus] = useState<string>(FORM_STATE.UNSUBMITTED);
 
   const onClose = () => setDialogStatus(false);
   const cancelRef: any = React.useRef();
+  console.log(`ethAddress: ${ethAddress}`);
 
   useEffect(() => {
     reset({ ...hireState.hire4 });
   }, []);
 
+  const [isMember] = useState(roles.includes('member'));
+  const [upTo780] = useMediaQuery('(max-width: 780px)');
+
+  const handleFormSubmit = async (txHash?: string) => {
+    const currState = {
+      ...hireState,
+      eth_address: ethAddress,
+      txHash,
+    };
+    const res = await submitHireForm(currState);
+    if (res.error) {
+      toast.error({
+        title: res.message,
+        iconName: 'alert',
+      });
+    } else {
+      toast.success({
+        title: 'Form submitted successfully!',
+        iconName: 'crown',
+      });
+      handleNext();
+    }
+  };
+
   const modalConfirmHandler = () => {
     setDisclaimerStatus(true);
+    setFormStatus(isMember ? FORM_STATE.SUBMIT_AS_MEMBER : FORM_STATE.AWAITING_PAYMENT);
+
     onClose();
   };
 
-  const [isMember] = useState(false);
-  const [upTo780] = useMediaQuery('(max-width: 780px)');
-
   const paymentHandler = async () => {
-    // if (context.signerAddress) {
-    //   submitApplication();
-    // } else {
-    //   await connectWallet();
-    // }
+    const data = {
+      eth_address: ethAddress,
+    };
+    console.log(`paymentHandler: ${JSON.stringify(data)}`);
+    setFormStatus(FORM_STATE.SUBMITTING);
+
+    // const res = await handlePayment(data);
+    const res = {
+      error: false,
+      txhash: '0xb4a6c54d8bdfa34490b6587a32e8df7544af03c65ab5f5c27a60e19c0cbb10d9',
+    };
+    console.log('res', res);
+
+    if (res.error) {
+      toast.error({
+        title: res.message,
+        iconName: 'alert',
+      });
+      setFormStatus(FORM_STATE.AWAITING_PAYMENT);
+    } else {
+      handleFormSubmit(res.txHash);
+      // todo fix this
+      setFormStatus(FORM_STATE.UNSUBMITTED);
+    }
   };
 
-  const submitHandler = async () => {
-    // if (context.h_additionalInfo === '') {
-    //   setButtonClickStatus(true);
-    //   triggerToast('Please fill in all the fields');
-    //   return;
-    // }
-    // if (context.h_additionalInfo !== '') {
-    //   setButtonClickStatus(false);
-    //   context.setHireStepFourData(priorities);
-    //   setDialogStatus(true);
-    // }
-    setDialogStatus(true);
-  };
   const onNext = (data: FieldValues) => {
     const currState = {
       ...hireState,
       hire4: { ...data },
+      eth_address: ethAddress,
     };
     setHireState(currState);
-    submitHireForm(currState);
-    handleNext();
+    // submitHireForm(currState);
+    setDialogStatus(true);
+    // handleNext();
   };
+  console.log(`formStatus: ${formStatus}`);
 
   return (
     <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
@@ -121,11 +168,29 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
         </Link>
       </Flex>
       <Flex direction='row' gap='10'>
-        <Button onClick={handleBack} variant='outline'>
+        <Button fontFamily='spaceMono' onClick={handleBack} variant='outline'>
           Back
         </Button>
-        <Button onClick={handleSubmit(onNext, handleError(toast))}>Submit</Button>
-        <Button type='submit'>Pay {SUBMISSION_REQUEST_FEE} $RAID</Button>
+        {formStatus === FORM_STATE.UNSUBMITTED && (
+          <Button fontFamily='spaceMono' onClick={handleSubmit(onNext, handleError(toast))}>
+            Submit
+          </Button>
+        )}
+        {formStatus === FORM_STATE.AWAITING_PAYMENT && (
+          <Button fontFamily='spaceMono' onClick={paymentHandler}>
+            Pay {SUBMISSION_REQUEST_FEE} $RAID
+          </Button>
+        )}
+        {formStatus === FORM_STATE.SUBMITTING && (
+          <Button isLoading fontFamily='spaceMono' onClick={paymentHandler}>
+            Submitting...
+          </Button>
+        )}
+        {formStatus === FORM_STATE.SUBMIT_AS_MEMBER && (
+          <Button fontFamily='spaceMono' onClick={() => handleFormSubmit()}>
+            Submit as Member
+          </Button>
+        )}
       </Flex>
 
       <ChakraAlertDialog isOpen={dialogStatus} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>
@@ -168,10 +233,10 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
             )}
 
             <AlertDialogFooter>
-              <Button variant='secondary' ref={cancelRef} onClick={onClose}>
+              <Button fontFamily='spaceMono' variant='secondary' ref={cancelRef} onClick={onClose}>
                 Cancel
               </Button>
-              <Button w='100%' onClick={modalConfirmHandler} ml={3}>
+              <Button fontFamily='spaceMono' w='100%' onClick={modalConfirmHandler} ml={3}>
                 Proceed
               </Button>
             </AlertDialogFooter>
