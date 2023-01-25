@@ -1,5 +1,5 @@
 import { useSigner } from 'wagmi';
-import { toWei } from 'web3-utils';
+import { formatEther } from 'ethers/lib/utils';
 import { balanceOf, payWithRaidToken } from '../utils/web3';
 import { RAID_CONTRACT_ADDRESS, DAO_ADDRESS, SUBMISSION_REQUEST_FEE } from '../utils/config';
 import useApplicationCreate from './useApplicationCreate';
@@ -124,7 +124,7 @@ const useSubmit = (token: string) => {
   const handlePayment = async (ethAddress: string): Promise<any> => {
     const tokenBalance = await balanceOf(signer, RAID_CONTRACT_ADDRESS[100], ethAddress);
 
-    if (Number(toWei(`${tokenBalance}`)) < SUBMISSION_REQUEST_FEE) {
+    if (Number(formatEther(`${tokenBalance}`)) < SUBMISSION_REQUEST_FEE) {
       return {
         error: true,
         message: 'Insufficient balance',
@@ -137,7 +137,7 @@ const useSubmit = (token: string) => {
         RAID_CONTRACT_ADDRESS[100],
         signer,
         DAO_ADDRESS[100],
-        toWei(`${SUBMISSION_REQUEST_FEE}`),
+        formatEther(`${SUBMISSION_REQUEST_FEE}`),
       );
       const { status } = await tx.wait();
 
