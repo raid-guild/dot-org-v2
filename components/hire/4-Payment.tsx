@@ -161,7 +161,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
           Don&apos;t want to pay in $RAID? Give feedback here
         </Link>
       </Flex> */}
-      <Flex direction='row' gap='10'>
+      <Flex direction='row' gap='2'>
         <Button fontFamily='spaceMono' onClick={handleBack} variant='outline'>
           Back
         </Button>

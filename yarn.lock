@@ -3706,10 +3706,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
 
-"@raidguild/design-system@0.4.40":
-  version "0.4.40"
-  resolved "https://registry.yarnpkg.com/@raidguild/design-system/-/design-system-0.4.40.tgz#561bcfc1ee8754832286fbceddb257cb66d557c1"
-  integrity sha512-0BPn19T6WBgsmikwb/K2h7uqHIBnE6/aE38l8wQeX5cQM7Xxq2sIr3Ehbp+AxZS7OrDiLZH5YmRpxC01vhcqNQ==
+"@raidguild/design-system@0.4.42":
+  version "0.4.42"
+  resolved "https://registry.yarnpkg.com/@raidguild/design-system/-/design-system-0.4.42.tgz#5a43d8873265148192626b15cb9f880f3980be76"
+  integrity sha512-StU0KfErdd//jO3sNWO+qKu5NS6PTBn3jtc+9ylA2QtJeSdoxFaHA/V85pZ1iuiQsRdajlsWG6irdRa31UPlVw==
   dependencies:
     "@chakra-ui/react" "^2.4.6"
     "@chakra-ui/theme-tools" "^2.0.16"
