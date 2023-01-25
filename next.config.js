@@ -1,11 +1,4 @@
-module.exports = {
-  async redirects() {
-    return [
-      {
-        source: '/portfolio',
-        destination: 'https://portfolio.raidguild.org',
-        permanent: true
-      }
-    ];
-  }
-};
+/* eslint-disable @typescript-eslint/no-var-requires */
+const withTM = require('next-transpile-modules')(['@raidguild/design-system']);
+
+module.exports = withTM({});

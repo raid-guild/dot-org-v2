@@ -1,0 +1,43 @@
+{
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "prettier"
+  ],
+  "plugins": ["react", "prettier", "@typescript-eslint", "react-hooks"],
+  "rules": {
+    // TS RULES
+    "@typescript-eslint/no-explicit-any": "off", // TODO turn this back on asap
+    // REACT RULES
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "react/function-component-definition": "off", // not working with arrow functions?
+    "react/jsx-filename-extension": "off", // not working with .tsx?
+    // IMPORT
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    // GENERAL
+    "no-console": "off" // TODO Turn back on at launch
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  }
+}
