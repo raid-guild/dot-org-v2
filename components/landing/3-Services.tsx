@@ -1,16 +1,17 @@
-import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text } from '@raidguild/design-system';
+import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text, Card } from '@raidguild/design-system';
 import Link from '../atoms/ChakraNextLink';
 
 import { services } from '../../utils/constants';
 
 const SectionThree = () => (
-  <SimpleGrid
+  <Flex
+    id='services'
     layerStyle='purpleToRedDiagonalGradient'
     minHeight='95vh'
-    columns={{ base: 1, md: 1, lg: 2 }}
+    direction={['column', null, null, 'row']}
     px={{ base: '2rem', lg: '8rem' }}
     py='2rem'>
-    <VStack spacing={5} justifyContent='center' lineHeight='1.8' my='5rem'>
+    <VStack spacing={5} justifyContent='center' my='5rem' maxW='500px'>
       <Heading fontSize={{ base: '1.5rem', lg: '36px' }}>Our Services</Heading>
       <Text fontSize={{ base: '1rem', lg: '18px' }}>
         RaidGuild is the premier design and dev agency of the Web3 ecosystem. We are deeply entrenched in the bleeding
@@ -26,29 +27,29 @@ const SectionThree = () => (
         <Button fontSize={{ base: '16px', lg: '18px' }}>Hire Us</Button>
       </Link>
     </VStack>
-    <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} gap={5} my='2rem' ml={{ lg: '3rem' }}>
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} gap={5} my='auto' ml={{ lg: '3rem' }}>
       {services.map((item) => {
         return (
-          <Flex
+          <Card
             key={item.name}
-            direction='column'
+            // direction='column'
             alignItems='center'
             justifyContent='space-evenly'
-            py='2rem'
-            px='1.5rem'
-            bg='black'
-            borderTop='2px solid'
-            borderColor='primary.500'>
-            <Heading mb={3}>{item.name}</Heading>
+            variant='topBorderOnly'>
+            <Heading mb={3} size='md'>
+              {item.name}
+            </Heading>
 
             <Image src={item.img} alt='consultations' my='.5rem' />
 
-            <Text fontSize={{ base: '16px' }}>{item.text}</Text>
-          </Flex>
+            <Text fontSize='sm' textAlign='center'>
+              {item.text}
+            </Text>
+          </Card>
         );
       })}
     </SimpleGrid>
-  </SimpleGrid>
+  </Flex>
 );
 
 export default SectionThree;

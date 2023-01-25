@@ -1,21 +1,7 @@
 import { useRouter } from 'next/router';
-import {
-  Flex,
-  CircularProgress,
-  CircularProgressLabel,
-  Heading,
-  Button,
-  Stack,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverArrow,
-} from '@raidguild/design-system';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
+import { Flex, CircularProgress, CircularProgressLabel, Heading, Stack, Text, Button } from '@raidguild/design-system';
+import { useSession } from 'next-auth/react';
 import SiteLayout from '../../components/page-components/SiteLayout';
 import Intro from '../../components/join-us/0-Intro';
 import Overview from '../../components/join-us/1-Overview';
@@ -25,8 +11,6 @@ import Interests from '../../components/join-us/4-Interests';
 import Misc from '../../components/join-us/5-Misc';
 import Agreements from '../../components/join-us/6-Agreements';
 import Confirmation from '../../components/join-us/7-Confirmation';
-import Link from '../../components/atoms/ChakraNextLink';
-import { joinSchema } from '../../utils';
 
 const stageHeadings: { [key: number]: string } = {
   1: 'A Quick Intro',
@@ -38,9 +22,45 @@ const stageHeadings: { [key: number]: string } = {
 };
 
 const Join = () => {
+  const { isConnected } = useAccount();
+  const { data: session } = useSession();
+  const { chain } = useNetwork();
+  const { switchNetwork } = useSwitchNetwork();
   const router = useRouter();
-  const stage = Number(router.query.stage) || 1;
-  const localForm = useForm({ mode: 'onBlur', resolver: yupResolver(joinSchema) });
+  const stage = Number(router.query.stage) || 0;
+
+  const handleNext = () => {
+    router.push(`/join/${stage + 1}`);
+  };
+  const handleBack = () => {
+    router.push(`/join/${stage - 1}`);
+  };
+  const handleSwitch = () => {
+    switchNetwork?.(100);
+  };
+
+  if (!session || !isConnected) {
+    return (
+      <SiteLayout>
+        <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
+          <Text fontFamily='spaceMono' fontSize='xl'>
+            Please sign in with your wallet to continue
+          </Text>
+        </Stack>
+      </SiteLayout>
+    );
+  }
+  if (chain && chain.id !== 100) {
+    return (
+      <SiteLayout>
+        <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
+          <Text fontFamily='spaceMono' fontSize='xl'>
+            Please switch to the <Button onClick={handleSwitch}>Gnosis chain</Button> to continue
+          </Text>
+        </Stack>
+      </SiteLayout>
+    );
+  }
 
   return (
     <SiteLayout>
@@ -56,78 +76,14 @@ const Join = () => {
           </Flex>
         )}
 
-        {stage === 1 && <Intro />}
-        {stage === 2 && <Overview localForm={localForm} />}
-        {stage === 3 && <Contact localForm={localForm} />}
-        {stage === 4 && <Skills localForm={localForm} />}
-        {stage === 5 && <Interests localForm={localForm} />}
-        {stage === 6 && <Misc localForm={localForm} />}
-        {stage === 7 && <Agreements localForm={localForm} />}
+        {stage === 1 && <Intro handleNext={handleNext} />}
+        {stage === 2 && <Overview handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 3 && <Contact handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 4 && <Skills handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 5 && <Interests handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 6 && <Misc handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 7 && <Agreements handleNext={handleNext} handleBack={handleBack} />}
         {stage === 8 && <Confirmation />}
-
-        {stage < 7 ? (
-          <Flex gap={4} justify='center'>
-            <Link href={`/join/${stage - 1}`}>
-              <Button variant='outline' isDisabled={stage === 1}>
-                Back
-              </Button>
-            </Link>
-
-            <Link href={`/join/${stage + 1}`}>
-              <Button>{stage === 1 ? 'Start Application' : 'Next'}</Button>
-            </Link>
-          </Flex>
-        ) : (
-          <Flex direction={{ base: 'column-reverse', lg: 'row' }} justifyContent='space-between' mt='2rem'>
-            {/* {context.stage !== 1 && context.stage !== 8 && ( */}
-            <Flex direction={{ base: 'column', md: 'row' }} gap={4}>
-              <Link href={`/join/${stage - 1}`}>
-                <Button
-                  variant='outline'
-                  w='100%'
-                  mr='1rem'
-                  mt={{ base: '.5rem' }}
-                  // onClick={() => context.updateStage('previous')}>
-                >
-                  Back
-                </Button>
-              </Link>
-
-              {/* <Link href={`/join/${stage + 1}`}>
-                <Button
-                  variant='outline'
-                  w='100%'
-                  mt={{ base: '.5rem' }}
-                  // onClick={() => context.updateFaqModalStatus(true, 'join')}>
-                >
-                  Read FAQ
-                </Button>
-              </Link> */}
-            </Flex>
-            {/* )} */}
-            <Popover placement='top'>
-              <PopoverTrigger>
-                <Button
-                // isLoading={submissionPendingStatus}
-                // loadingText={submissionTextUpdates}
-                // onClick={() => {
-                //   context.setJoinStepSixData(handbookCheckBoxStatus, pledgeCheckBoxStatus);
-                //   submitApplication();
-                // }}>
-                >
-                  Submit
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverBody fontFamily='spaceMono'>
-                  Check your wallet & sign the message to confirm your submission.
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
-          </Flex>
-        )}
       </Stack>
     </SiteLayout>
   );

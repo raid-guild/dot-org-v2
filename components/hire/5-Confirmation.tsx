@@ -15,7 +15,7 @@ const Confirmation = () => {
         The Fires Have Been Lit!
       </Heading>
 
-      <Text>
+      <Text fontFamily='spaceMono'>
         Your request has been added to the end of the queue. A member of the Guild will be in touch with you once we’ve
         worked our way down the queue. For a faster response, you are welcome to{' '}
         <a className='hiringboard-link' href='/'>

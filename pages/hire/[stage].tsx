@@ -1,11 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import { useRouter } from 'next/router';
-import { Button, Flex, Stack, SimpleGrid } from '@raidguild/design-system';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useAccount } from 'wagmi';
-import { useConnectModal } from '@rainbow-me/rainbowkit';
-
+import { useSession } from 'next-auth/react';
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
+import { Button, Flex, SimpleGrid, Stack, Text } from '@raidguild/design-system';
 import SiteLayout from '../../components/page-components/SiteLayout';
 import Link from '../../components/atoms/ChakraNextLink';
 import Intro from '../../components/hire/0-Intro';
@@ -14,35 +11,58 @@ import ProjectOverview from '../../components/hire/2-ProjectOverview';
 import Services from '../../components/hire/3-Services';
 import Payment from '../../components/hire/4-Payment';
 import Confirmation from '../../components/hire/5-Confirmation';
-import useConsultationCreate from '../../hooks/useConsultationCreate';
-import { hireSchema, SUBMISSION_REQUEST_FEE } from '../../utils';
 
 const HireUs = () => {
   const router = useRouter();
+  const { chain } = useNetwork();
+  const { switchNetwork } = useSwitchNetwork();
+  const { isConnected } = useAccount();
+  const { data: session } = useSession();
   const stage = Number(router.query.stage) || 1;
-  const localForm = useForm({ mode: 'onBlur', resolver: yupResolver(hireSchema) });
   const { address } = useAccount();
-  const { openConnectModal } = useConnectModal();
-  const { mutateAsync } = useConsultationCreate();
 
-  const { handleSubmit } = localForm;
-
-  const onSubmit = async (data: any) => {
-    mutateAsync(data);
+  const handleNext = () => {
+    router.push(`/hire/${stage + 1}`);
   };
-  const isMember = false;
+  const handleBack = () => {
+    router.push(`/hire/${stage - 1}`);
+  };
+  const handleSwitch = () => {
+    switchNetwork?.(100);
+  };
 
-  // TODO make sure on gnosis chain
+  if (!session || !isConnected) {
+    return (
+      <SiteLayout>
+        <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
+          <Text fontFamily='spaceMono' fontSize='xl'>
+            Please sign in with your wallet to continue
+          </Text>
+        </Stack>
+      </SiteLayout>
+    );
+  }
+  if (chain && chain.id !== 100) {
+    return (
+      <SiteLayout>
+        <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
+          <Text fontFamily='spaceMono' fontSize='xl'>
+            Please switch to the <Button onClick={handleSwitch}>Gnosis chain</Button> to continue
+          </Text>
+        </Stack>
+      </SiteLayout>
+    );
+  }
 
   return (
     <SiteLayout>
-      <Stack as='form' onSubmit={handleSubmit(onSubmit)} w='80%' spacing={20}>
+      <Stack w='80%' spacing={20}>
         {/* FORM PARTS */}
-        {stage === 1 && <Intro />}
-        {stage === 2 && <Contact localForm={localForm} />}
-        {stage === 3 && <ProjectOverview localForm={localForm} />}
-        {stage === 4 && <Services localForm={localForm} />}
-        {stage === 5 && <Payment localForm={localForm} />}
+        {stage === 1 && <Intro handleNext={handleNext} />}
+        {stage === 2 && <Contact handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 3 && <ProjectOverview handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 4 && <Services handleNext={handleNext} handleBack={handleBack} />}
+        {stage === 5 && <Payment handleNext={handleNext} handleBack={handleBack} />}
         {stage === 6 && <Confirmation />}
 
         <Flex justify='center'>
@@ -56,34 +76,6 @@ const HireUs = () => {
               <Link href='/dashboard'>
                 <Button variant='outline'>View My Submissions</Button>
               </Link>
-            </SimpleGrid>
-          )}
-
-          {stage > 0 && stage < 5 && (
-            <SimpleGrid gridTemplateColumns={['1fr', null, null, '1fr 1fr']} mx='auto' gap={2}>
-              <Link href={`/hire/${stage - 1}/`}>
-                <Button variant='outline' isDisabled={stage === 1}>
-                  Back
-                </Button>
-              </Link>
-              <Link href={`/hire/${stage + 1}/`}>
-                <Button>Next</Button>
-              </Link>
-            </SimpleGrid>
-          )}
-
-          {stage === 5 && (
-            <SimpleGrid columns={2} mx='auto' gap={2}>
-              <Link href={`/hire/${stage - 1}/`}>
-                <Button variant='outline'>Back</Button>
-              </Link>
-              {!address ? (
-                <Button onClick={openConnectModal}>Connect Wallet</Button>
-              ) : isMember ? (
-                <Button type='submit'>Submit</Button>
-              ) : (
-                <Button type='submit'>Pay {SUBMISSION_REQUEST_FEE} $RAID</Button>
-              )}
             </SimpleGrid>
           )}
         </Flex>

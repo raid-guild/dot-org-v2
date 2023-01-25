@@ -19,9 +19,11 @@ const parseCredentials = ({ credentials, req }: SiweAuthorizeParams) => {
 };
 
 const checkNonce = async ({ siwe, credentials, req }: SiweMessageAuthorizeParams) => {
+  // ? leaving this because getCsrfToken is not doesn't appear to use
+  // ? the entire IncomingMessage so this could be Partial<IncomingMessage>
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return getCsrfToken({ req }).then((nonce?: string) => {
+  // @ts-ignore next-line
+  return getCsrfToken({ req }).then((nonce) => {
     if (!_.eq(_.get(siwe, 'nonce'), nonce)) {
       return Promise.reject(Error('Invalid nonce'));
     }

@@ -8,3 +8,11 @@ export const CONSULTATION_CREATE_MUTATION = gql`
     }
   }
 `;
+
+export const CONSULTATIONS_CREATE_MUTATION = gql`
+  mutation ConsultationsInsertMutation($consultations: consultations_insert_input!) {
+    insert_consultations(objects: [$consultations]) {
+      affected_rows
+    }
+  }
+`;

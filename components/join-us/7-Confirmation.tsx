@@ -14,13 +14,15 @@ const Confirmation = () => (
       The Fires Have Been Lit!
     </Heading>
 
-    <Text>
+    <Text fontFamily='spaceMono' maxWidth='37rem'>
       Your submission has been received. An invitation will be sent to your email address prior to the commencement of
       next season. We wish you luck! Stay Curious!
     </Text>
 
     <Link href='https://discord.gg/rGFpfQf' isExternal>
-      <Button mt='2rem'>Join Discord</Button>
+      <Button mt='2rem' fontFamily='spaceMono'>
+        Join Discord
+      </Button>
     </Link>
   </Flex>
 );

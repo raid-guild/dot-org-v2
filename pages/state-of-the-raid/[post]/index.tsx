@@ -1,18 +1,16 @@
 import { Box, Heading, Text, VStack, Image, HStack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
-import { useSession } from 'next-auth/react';
 
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
 import Markdown from '../../components/atoms/Markdown';
-import useBlogsDetail from '../../hooks/useBlogsDetail';
+// import useBlogsDetail from '../../hooks/useBlogsDetail';
 // import ProjectCard from '../../components/page-components/ProjectCard';
 import { getBlogDetail } from '../../gql';
 
 type Props = {
-  slug: string;
-  initialData: any;
+  post: any;
 };
 
 const getMonthString = (date: Date) => {
@@ -61,14 +59,10 @@ const getMonthString = (date: Date) => {
   return publishMonthString;
 };
 
-function PostPage({ slug, initialData }: Props) {
-  const { data: session } = useSession();
-  const token = _.get(session, 'token');
-  const { data: post } = useBlogsDetail({ slug, initialData, token });
-
+function PostPage({ post }: Props) {
   const publishTime = new Date(_.get(post, 'created_at'));
-  const publishString = `${getMonthString(publishTime)} ${publishTime.getDate()} ${publishTime.getFullYear()}`;
 
+  const publishString = `${getMonthString(publishTime)} ${publishTime.getDate()} ${publishTime.getFullYear()}`;
   return (
     <CMSPageTemplate>
       <PageTitle title='State of The Raid' />
@@ -128,7 +122,6 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
   return {
     props: {
-      slug: post,
       initialData: _.get(result, 'blogs[0]'),
     },
   };

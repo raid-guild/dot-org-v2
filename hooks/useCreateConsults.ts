@@ -1,14 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
-import { APPLICATION_CREATE_MUTATION } from '../gql/mutations';
+import { CONSULTATIONS_CREATE_MUTATION } from '../gql/mutations';
 import { client } from '../gql';
 
-const useApplicationCreate = (token: string) => {
+const useCreateConsults = (token: string) => {
   const { mutate, mutateAsync, isLoading, isError, isSuccess } = useMutation(
     async (data: any) => {
-      return client({ token }).request(APPLICATION_CREATE_MUTATION, {
-        application: {
-          ...data,
-        },
+      return client({ token }).request(CONSULTATIONS_CREATE_MUTATION, {
+        consultations: { ...data },
       });
     },
     {
@@ -23,4 +21,4 @@ const useApplicationCreate = (token: string) => {
   return { mutate, mutateAsync, isLoading, isError, isSuccess };
 };
 
-export default useApplicationCreate;
+export default useCreateConsults;

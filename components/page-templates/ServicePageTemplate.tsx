@@ -9,7 +9,6 @@ import {
   Text,
   HStack,
   Button,
-  defaultTheme,
   Flex,
   Card,
 } from '@raidguild/design-system';
