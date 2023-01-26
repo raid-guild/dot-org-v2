@@ -16,12 +16,15 @@ type Props = {
 };
 
 const validationSchema = Yup.object().shape({
-  services: Yup.array().of(
-    Yup.object().shape({
-      label: Yup.string().required(),
-      value: Yup.string().required(),
-    }),
-  ),
+  services: Yup.array()
+    .of(
+      Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }),
+    )
+    .min(1)
+    .required(),
   budget: Yup.string().required(),
   desiredDeliveryDate: Yup.string().required(),
 });
@@ -51,6 +54,10 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
     handleNext();
   };
   const handleDateChange = (date: any) => {
+    if (new Date() > date) {
+      toast.error({ title: 'Please choose a future date', iconName: 'alert' });
+      return;
+    }
     localForm.setValue('desiredDeliveryDate', date);
   };
   const servicesOptions = hireUsServices.map((s: string) => ({ value: mapConsultationService(s), label: s }));

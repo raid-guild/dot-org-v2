@@ -19,7 +19,11 @@ import {
 import { FiKey, FiChevronDown, FiXCircle } from 'react-icons/fi';
 import { truncateAddress } from '../../utils';
 
-export const ConnectWallet: React.FC = () => {
+type Props = {
+  label?: string;
+};
+
+export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
   // const { isConnecting } = useAccount();
   const { disconnect } = useDisconnect();
   const showNetwork = false; // maybe unhide, in some cases
@@ -51,7 +55,7 @@ export const ConnectWallet: React.FC = () => {
                     // isDisabled={isConnecting}
                     onClick={openConnectModal}
                     data-cy='connect-wallet'>
-                    Connect
+                    {label || 'Connect'}
                   </Button>
                 );
               }
