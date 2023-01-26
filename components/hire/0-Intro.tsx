@@ -1,10 +1,12 @@
 import { Flex, Heading, Text, HStack, Button } from '@raidguild/design-system';
+import { ConnectWallet } from '../atoms/ConnectWallet';
 import Link from '../atoms/ChakraNextLink';
 
 type Props = {
   handleNext: () => void;
+  isConnected: boolean;
 };
-const Intro = ({ handleNext }: Props) => (
+const Intro = ({ handleNext, isConnected }: Props) => (
   <Flex direction='column' py='2rem' px={{ base: '1rem', lg: '4rem' }} mx='auto' maxW='900px'>
     <Heading fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
       Hiring RaidGuild
@@ -49,7 +51,7 @@ const Intro = ({ handleNext }: Props) => (
     <Text>
       For more info about the consultation process, join our{' '}
       <Link href='https://handbook.raidguild.org/' isExternal color='red.500'>
-        discord.
+        discord
       </Link>
       .
     </Text>
@@ -67,9 +69,13 @@ const Intro = ({ handleNext }: Props) => (
       </Text>
     </Flex>
     <HStack mt='2rem'>
-      <Button fontFamily='spaceMono' onClick={handleNext}>
-        New Consultation
-      </Button>
+      {!isConnected ? (
+        <ConnectWallet label='Sign in to Continue' />
+      ) : (
+        <Button fontFamily='spaceMono' onClick={handleNext}>
+          New Consultation
+        </Button>
+      )}
     </HStack>
   </Flex>
 );

@@ -55,10 +55,20 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
           stack='horizontal'
           localForm={localForm}
         />
-        <Input label='Project Name?*' name='projectName' localForm={localForm} />
-        <Input label='Link to Specs' name='projectLink' localForm={localForm} />
+        <Input label='Project Name?*' name='projectName' placeholder='Project Name' localForm={localForm} />
+        <Input
+          label='Link to Specs'
+          name='projectLink'
+          placeholder='Any link related to the project'
+          localForm={localForm}
+        />
         <GridItem gridColumn='span 2'>
-          <Textarea label='Project Description*' name='projectDescription' localForm={localForm} />
+          <Textarea
+            label='Project Description*'
+            placeholder='Describe your project, goals, vision, etc.'
+            name='projectDescription'
+            localForm={localForm}
+          />
         </GridItem>
       </SimpleGrid>
       <FormNavigation handleBack={handleBack} handleNext={handleSubmit(onNext, handleError(toast))} />
