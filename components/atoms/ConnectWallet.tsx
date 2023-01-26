@@ -19,7 +19,11 @@ import {
 import { FiKey, FiChevronDown, FiXCircle } from 'react-icons/fi';
 import { truncateAddress } from '../../utils';
 
-export const ConnectWallet: React.FC = ({ label }: { label?: string }) => {
+type Props = {
+  label?: string;
+};
+
+export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
   // const { isConnecting } = useAccount();
   const { disconnect } = useDisconnect();
   const showNetwork = false; // maybe unhide, in some cases

@@ -1,5 +1,5 @@
 import { Flex, Heading, Text, HStack, Button } from '@raidguild/design-system';
-import { ConnectWallet } from '../../components/atoms/ConnectWallet';
+import { ConnectWallet } from '../atoms/ConnectWallet';
 import Link from '../atoms/ChakraNextLink';
 
 type Props = {

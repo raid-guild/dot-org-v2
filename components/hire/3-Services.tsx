@@ -55,7 +55,7 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
   };
   const handleDateChange = (date: any) => {
     if (new Date() > date) {
-      toast.error({ title: 'Please choose a future date', status: 'error' });
+      toast.error({ title: 'Please choose a future date', iconName: 'alert' });
       return;
     }
     localForm.setValue('desiredDeliveryDate', date);
