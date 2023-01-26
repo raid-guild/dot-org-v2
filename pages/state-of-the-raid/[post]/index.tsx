@@ -2,12 +2,12 @@ import { Box, Heading, Text, VStack, Image, HStack } from '@raidguild/design-sys
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
 
-import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
-import PageTitle from '../../components/page-components/PageTitle';
-import Markdown from '../../components/atoms/Markdown';
+import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
+import PageTitle from '../../../components/page-components/PageTitle';
+import Markdown from '../../../components/atoms/Markdown';
 // import useBlogsDetail from '../../hooks/useBlogsDetail';
 // import ProjectCard from '../../components/page-components/ProjectCard';
-import { getBlogDetail } from '../../gql';
+import { getBlogDetail } from '../../../gql';
 
 type Props = {
   post: any;

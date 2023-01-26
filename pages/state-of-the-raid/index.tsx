@@ -1,11 +1,11 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import _ from 'lodash';
 import { Box, Heading, Text, VStack, Image, HStack } from '@raidguild/design-system';
 
 import Link from '../../components/atoms/ChakraNextLink';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
-import ProjectCard from '../../components/page-components/ProjectCard';
+// import ProjectCard from '../../components/page-components/ProjectCard';
 import useBlogsList from '../../hooks/useBlogsList';
 import { getBlogsList } from '../../gql';
 
