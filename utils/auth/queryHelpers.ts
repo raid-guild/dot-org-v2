@@ -11,7 +11,7 @@ import { IUser } from '../../types';
 
 const fetchExistingUser = async (address: string): Promise<IUser | unknown | null> =>
   client({})
-    .request(MEMBER_ADDRESS_LOOKUP_QUERY, { address }) // { address: _.toLower(address) })
+    .request(MEMBER_ADDRESS_LOOKUP_QUERY, { address: _.toLower(address) })
     .then((res) => {
       if (!_.isEmpty(_.get(res, 'members'))) {
         return Promise.resolve(camelize(_.first(_.get(res, 'members'))));
