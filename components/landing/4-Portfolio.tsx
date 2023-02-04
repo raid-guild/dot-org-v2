@@ -40,7 +40,7 @@ const SectionFour = () => (
           <Image key={image.src} src={image.src} />
         ))}
       </SimpleGrid>
-      <Link href='/portfolio'>
+      <Link href='https://portfolio.raidguild.org/' isExternal>
         <Button margin='1rem auto 0 auto'>View Projects</Button>
       </Link>
     </Stack>
