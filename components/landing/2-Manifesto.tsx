@@ -34,7 +34,7 @@ const SectionTwo = () => {
           <Text>&apos;If you want to go fast, go alone. If you want to go far, go together.&apos;</Text>
         </div>
         <br />
-        <Link href='https://handbook.raidguild.org'>
+        <Link href='https://handbook.raidguild.org' isExternal>
           <Button>Handbook</Button>
         </Link>
       </VStack>
