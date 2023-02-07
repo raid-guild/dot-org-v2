@@ -13,7 +13,7 @@ const Nav = () => (
     <HStack spacing={8}>
       <Link href='/#manifesto'>Manifesto</Link>
       <Link href='/#services'>Services</Link>
-      {/* <Link href='/portfolio'>Portfolio</Link> */}
+      {/* <Link href='https://portfolio.raidguild.org/' isExternal>Portfolio</Link> */}
       <Link href='/join/1'>Join</Link>
       <Link href='/hire/1'>Hire</Link>
     </HStack>
