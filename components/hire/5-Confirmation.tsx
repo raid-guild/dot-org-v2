@@ -16,24 +16,8 @@ const Confirmation = () => {
       </Heading>
 
       <Text fontFamily='spaceMono'>
-        Your request has been added to the end of the queue. A member of the Guild will be in touch with you once we’ve
-        worked our way down the queue. For a faster response, you are welcome to{' '}
-        <a className='hiringboard-link' href='/'>
-          add a $RAID token bid to your submission
-        </a>{' '}
-        to move higher up the queue.
+        Your request has been received. A member of the Guild will be in touch with you soon.
       </Text>
-
-      <Flex w='100%' justifyContent='center' direction={{ base: 'column', md: 'row', lg: 'row' }} mt='2rem'>
-        <Link href='/dashboard'>
-          <Button mr='1rem' mb='1rem'>
-            View My Submissions
-          </Button>
-        </Link>
-        <Link href='https://bids.raidguild.org/' isExternal>
-          <Button>Start Bidding</Button>
-        </Link>
-      </Flex>
     </Flex>
   );
 };
