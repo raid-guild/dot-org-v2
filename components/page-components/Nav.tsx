@@ -6,7 +6,7 @@ import { ConnectWallet } from '../atoms/ConnectWallet';
 import GuildLogo from '../../assets/illustrations/raidguild.webp';
 
 const Nav = () => (
-  <HStack gap='1rem' justifyContent='space-between' width='80vw' margin='1rem auto'>
+  <HStack gap='1rem' justifyContent='space-between' width='100%' margin={{ base: '1rem auto', md: '1rem 2rem' }}>
     <Link href='/' passHref>
       <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' maxWidth='200px' />
     </Link>
