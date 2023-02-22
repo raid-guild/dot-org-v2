@@ -3,14 +3,12 @@ import {
   Heading,
   VStack,
   Stack,
-  Flex,
   Image,
   Icon,
   HStack,
   Card,
   CardBody,
   Castle,
-  Swords,
   Text,
   Button,
   Wizard2,
@@ -132,15 +130,6 @@ function PortfolioPage({ project, initialData }: Props) {
                 {projectData.challenge}
               </CardBody>
             </VStack>
-
-            {/* <HStack align='flex-start'>
-            <Link href={_.get(projectData, 'resultLink', '#')} isExternal>
-              <Button>Visit Website</Button>
-            </Link>
-            <Link href={_.get(projectData, 'repoLink', '#')} isExternal>
-              <Button variant='outline'>View Code</Button>
-            </Link>
-          </HStack> */}
           </Card>
           <Stack
             direction={['column', 'column', 'column', 'row', 'row']}
@@ -151,10 +140,15 @@ function PortfolioPage({ project, initialData }: Props) {
             py={14}>
             <ProjectCard
               name={projectData.name}
-              website='swdao.org'
-              logo='https://opensea.io/static/images/logos/opensea.svg'
+              website='swdao.org' // to be replaced by actual website url
+              logo='https://opensea.io/static/images/logos/opensea.svg' // to be replaced by actual logo path
             />
-            <ProjectInfo projectUrl='' codebaseUrl='' approach={projectData.approach} result={projectData.result} />
+            <ProjectInfo
+              projectUrl={projectData.resultLink}
+              codebaseUrl={projectData.repoLink}
+              approach={projectData.approach}
+              result={projectData.result}
+            />
           </Stack>
         </>
       )}
