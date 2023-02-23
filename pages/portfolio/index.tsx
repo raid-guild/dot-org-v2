@@ -1,7 +1,6 @@
 // A page that displays all of the projects in the portfolio
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
-import { GetServerSidePropsContext } from 'next';
 import { Box, Heading, HStack, Image, VStack, Text, Button, Card } from '@raidguild/design-system';
 
 import Link from '../../components/atoms/ChakraNextLink';
@@ -58,7 +57,7 @@ function PortfolioPage({ initialData }: Props) {
   );
 }
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+export const getStaticProps = async () => {
   const result = await getPortfolioList();
 
   return {

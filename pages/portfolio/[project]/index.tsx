@@ -13,14 +13,13 @@ import {
   Button,
   Wizard2,
 } from '@raidguild/design-system';
-import { GetServerSidePropsContext } from 'next';
+import { GetStaticPropsContext } from 'next';
 import { useSession } from 'next-auth/react';
 
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import Link from '../../../components/atoms/ChakraNextLink';
-// import Markdown from '../../../components/atoms/Markdown';
-import { getPortfolioDetail } from '../../../gql';
+import { getPortfolioDetail, getPortfolioList } from '../../../gql';
 
 import usePortfolioDetail from '../../../hooks/usePortfolioDetail';
 
@@ -92,19 +91,6 @@ interface Props {
   initialData: any;
 }
 
-// const slugToName = (slug: string) => {
-//   const words = slug.split('-');
-//   return words.map((word) => _.capitalize(word)).join(' ');
-// };
-
-// console.log('slugToName result:', slugToName('smart-invoice'));
-
-// const sections = [
-//   { heading: 'The Challenge', icon: Castle, body: 'challenge.body' },
-//   { heading: 'Our Approach', icon: Swords, body: 'approach.body' },
-//   { heading: 'The Result', icon: Wizard2, body: 'result.body' },
-// ];
-
 function PortfolioPage({ project, initialData }: Props) {
   const { data: session } = useSession();
   const token = _.get(session, 'token');
@@ -143,12 +129,7 @@ function PortfolioPage({ project, initialData }: Props) {
               website='swdao.org' // to be replaced by actual website url
               logo='https://opensea.io/static/images/logos/opensea.svg' // to be replaced by actual logo path
             />
-            <ProjectInfo
-              projectUrl={projectData.resultLink}
-              codebaseUrl={projectData.repoLink}
-              approach={projectData.approach}
-              result={projectData.result}
-            />
+            <ProjectInfo projectUrl='' codebaseUrl='' approach={projectData.approach} result={projectData.result} />
           </Stack>
         </>
       )}
@@ -156,23 +137,21 @@ function PortfolioPage({ project, initialData }: Props) {
   );
 }
 
-// export async function getStaticPaths() {
-//   try {
-//     const { data } = await supabase.from('PortfolioContent').select('project_name');
-//     const paths = data.map((project) => {
-//       return { params: { project: project?.project_name } };
-//     });
-//     return {
-//       paths,
-//       fallback: true,
-//     };
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+export async function getStaticPaths() {
+  const portfolios = await getPortfolioList();
+
+  const paths = portfolios.map((portfolio: any) => ({
+    params: { project: portfolio.slug },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
 
 // This function gets called at build time
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getStaticProps(context: GetStaticPropsContext) {
   let projectSlug = _.get(context, 'params.project');
   if (_.isArray(projectSlug)) projectSlug = _.first(projectSlug);
   if (!projectSlug) {
