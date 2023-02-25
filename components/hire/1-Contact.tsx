@@ -88,11 +88,11 @@ export default function StepOne({ handleNext, handleBack }: Props) {
 
   return (
     <VStack>
-      <SimpleGrid columns={2} gap='2rem' w='100%' mb='2rem'>
+      <SimpleGrid columns={{ base: 1, md: 2 }} gap='2rem' w='100%' mb='2rem'>
         {formFields.map((field) => {
           if (field.type === 'textarea') {
             return (
-              <Box key={field.name} gridColumn='span 2'>
+              <Box key={field.name} gridColumn={{ base: 1, md: 'span 2' }}>
                 <Textarea
                   name={field.name}
                   localForm={localForm}
