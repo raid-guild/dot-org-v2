@@ -1,7 +1,7 @@
 // A page that displays all of the projects in the portfolio
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
-import { Box, Heading, HStack, Image, VStack, Text, Button, Card } from '@raidguild/design-system';
+import { Box, Heading, HStack, Image, VStack, Text, Card, Flex } from '@raidguild/design-system';
 
 import Link from '../../components/atoms/ChakraNextLink';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
@@ -21,20 +21,21 @@ interface Props {
 function PortfolioContent({ project }: { project: any }) {
   const link = `/portfolio/${project.slug}`;
   return (
-    <Card border='1px solid #FF3864'>
-      <HStack gap='4rem'>
-        <Image src={_.get(project, 'imageUrl', wallSconce.src)} height='200px' width='200px' marginRight='1rem' />
-        <VStack spacing={6} color='white' align='flex-start'>
-          <Heading>{_.get(project, 'name')}</Heading>
-          <Box maxWidth='50ch'>
-            <Text noOfLines={3}>{_.get(project, 'description')}</Text>
-          </Box>
-          <Link href={link}>
-            <Button variant='outline'>Read More</Button>
-          </Link>
-        </VStack>
-      </HStack>
-    </Card>
+    <Link href={link}>
+      <Card border='1px solid #FF3864' w='100%'>
+        <Flex minH='250px' align='center'>
+          <HStack gap='4rem'>
+            <Image src={_.get(project, 'imageUrl', wallSconce.src)} height='auto' width='200px' marginRight='1rem' />
+            <VStack spacing={6} color='white' align='flex-start'>
+              <Heading>{_.get(project, 'name')}</Heading>
+              <Box maxWidth='50ch'>
+                <Text noOfLines={3}>{_.get(project, 'description')}</Text>
+              </Box>
+            </VStack>
+          </HStack>
+        </Flex>
+      </Card>
+    </Link>
   );
 }
 

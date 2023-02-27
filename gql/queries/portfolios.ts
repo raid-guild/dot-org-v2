@@ -7,14 +7,18 @@ export const PORTFOLIO_DETAIL_FRAGMENT = gql`
     slug
     description
     case_study
+    approach
+    challenge
+    result
     repo_link
     result_link
+    image_url
   }
 `;
 
 export const PORTFOLIO_LIST_QUERY = gql`
   query PortfolioList {
-    portfolios {
+    portfolios(where: { deleted: { _eq: false } }) {
       ...PortfolioDetailFragment
     }
   }
@@ -24,15 +28,8 @@ export const PORTFOLIO_LIST_QUERY = gql`
 export const PORTFOLIO_DETAIL_QUERY = gql`
   query PortfolioDetail($slug: String!) {
     portfolios(where: { slug: { _eq: $slug } }) {
-      id
-      name
-      description
-      approach
-      challenge
-      result
-      case_study
-      repo_link
-      result_link
+      ...PortfolioDetailFragment
     }
   }
+  ${PORTFOLIO_DETAIL_FRAGMENT}
 `;
