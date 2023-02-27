@@ -61,7 +61,6 @@ function PortfolioPage({ project, initialData }: Props) {
   const { data: session } = useSession();
   const token = _.get(session, 'token');
   const { data: projectData } = usePortfolioDetail({ slug: project, initialData, token });
-  console.log(projectData);
 
   return (
     <CMSPageTemplate>
@@ -85,7 +84,7 @@ function PortfolioPage({ project, initialData }: Props) {
             lineHeight='taller'>
             <Stack spacing={6}>
               {_.map(_.get(projectData, 'challenge.content'), (content: any) => (
-                <Text textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
+                <Text key={content} textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
                   {content}
                 </Text>
               ))}
@@ -112,7 +111,7 @@ function PortfolioPage({ project, initialData }: Props) {
           </HStack>
           <Stack spacing={6}>
             {_.map(_.get(projectData, 'approach.content'), (content: any) => (
-              <Text textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
+              <Text key={content} textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
                 {content}
               </Text>
             ))}
@@ -131,7 +130,7 @@ function PortfolioPage({ project, initialData }: Props) {
             lineHeight='taller'>
             <Stack spacing={6}>
               {_.map(_.get(projectData, 'result.content'), (content: any) => (
-                <Text textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
+                <Text key={content} textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
                   {content}
                 </Text>
               ))}
