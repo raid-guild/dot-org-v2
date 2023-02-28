@@ -2,7 +2,6 @@ import { gql } from 'graphql-request';
 
 export const PORTFOLIO_DETAIL_FRAGMENT = gql`
   fragment PortfolioDetailFragment on portfolios {
-    id
     name
     slug
     description
@@ -18,12 +17,15 @@ export const PORTFOLIO_DETAIL_FRAGMENT = gql`
 
 export const PORTFOLIO_LIST_QUERY = gql`
   query PortfolioList {
-    portfolios(where: { deleted: { _eq: false } }) {
+    portfolios {
       ...PortfolioDetailFragment
     }
   }
   ${PORTFOLIO_DETAIL_FRAGMENT}
 `;
+
+// TODO add portfolio list query for members when can see deleted
+// also full detail for members
 
 export const PORTFOLIO_DETAIL_QUERY = gql`
   query PortfolioDetail($slug: String!) {

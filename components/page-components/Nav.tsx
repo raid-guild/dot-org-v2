@@ -32,6 +32,7 @@ const StyledButton = styled(Button)`
 const navItems = [
   { name: 'Manifesto', href: '/#manifesto' },
   { name: 'Services', href: '/#services' },
+  { name: 'Portfolio', href: '/#portfolio' },
   { name: 'Join', href: '/join/1' },
   { name: 'Hire', href: '/hire/1' },
 ];

@@ -8,7 +8,7 @@ interface Props {
 
 const usePortfolioList = ({ initialData, token }: Props) => {
   const { status, error, data, isLoading } = useQuery<any, Error>(['portfolioList'], () => getPortfolioList(token), {
-    enabled: !!token,
+    // enabled: !!token,
     initialData,
   });
 

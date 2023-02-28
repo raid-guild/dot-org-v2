@@ -1,3 +1,5 @@
+import _ from 'lodash';
+import { useSession } from 'next-auth/react';
 import { Box, Flex } from '@raidguild/design-system';
 
 import Meta from '../components/page-components/Meta';
@@ -8,10 +10,20 @@ import Portfolio from '../components/landing/4-Portfolio';
 import Join from '../components/landing/5-Join';
 import Supporters from '../components/landing/6-Supporters';
 import Footer from '../components/page-components/Footer';
+import usePortfolioList from '../hooks/usePortfolioList';
+import { getPortfolioList } from '../gql';
 
 // * `<Nav />` is included in `<Hero />` for the landing page
 
-const Home = () => {
+interface Props {
+  initialData: any;
+}
+
+const Home = ({ initialData }: Props) => {
+  const { data: session } = useSession();
+  const token = _.get(session, 'token');
+  const { data: portfolioList } = usePortfolioList({ initialData, token });
+
   return (
     <>
       <Meta />
@@ -21,7 +33,7 @@ const Home = () => {
             <Hero />
             <Manifesto />
             <Services />
-            <Portfolio />
+            <Portfolio portfolioList={portfolioList} />
             <Join />
             <Supporters />
             <Footer />
@@ -33,3 +45,13 @@ const Home = () => {
 };
 
 export default Home;
+
+export const getStaticProps = async () => {
+  const result = await getPortfolioList();
+
+  return {
+    props: {
+      initialData: result,
+    },
+  };
+};
