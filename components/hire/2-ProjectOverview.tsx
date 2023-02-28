@@ -62,7 +62,7 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
           placeholder='Any link related to the project'
           localForm={localForm}
         />
-        <GridItem gridColumn='span 2'>
+        <GridItem gridColumn={{ base: 1, lg: 'span 2' }}>
           <Textarea
             label='Project Description*'
             placeholder='Describe your project, goals, vision, etc.'
