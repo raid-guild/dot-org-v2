@@ -12,7 +12,7 @@ const useBlogsDetail = ({ slug, initialData, token }: Props) => {
     ['blogsDetail', slug],
     () => getBlogDetail(slug, token),
     {
-      enabled: !!slug && !!token,
+      enabled: !!slug,
       initialData,
     },
   );
