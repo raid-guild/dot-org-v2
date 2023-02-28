@@ -8,7 +8,7 @@ interface Props {
 
 const useBlogsList = ({ initialData, token }: Props) => {
   const { status, error, data, isLoading } = useQuery<any, Error>(['blogsList'], () => getBlogsList(token), {
-    enabled: !!token,
+    // enabled: !!token,
     initialData,
   });
 

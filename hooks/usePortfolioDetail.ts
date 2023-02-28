@@ -12,7 +12,7 @@ const usePortfolioDetail = ({ slug, initialData, token }: Props) => {
     ['portfolioDetail', slug],
     () => getPortfolioDetail(slug, token),
     {
-      enabled: !!slug && !!token,
+      enabled: !!slug,
       initialData,
     },
   );
