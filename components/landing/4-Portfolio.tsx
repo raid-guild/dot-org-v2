@@ -16,7 +16,7 @@ const SectionFour = ({ portfolioList }: SectionFourProps) => {
     <Container id='portfolio' bgImage={Clouds.src} minW='100%' py='8rem'>
       <PageTitle title='Our Portfolio' />
       <Stack gap={4} align='center'>
-        <SimpleGrid columns={{ base: 1, lg: 5 }} placeItems='center' gap={[`3rem`, `4rem`]} maxW='80%'>
+        <SimpleGrid columns={{ base: 1, lg: 3 }} placeItems='center' gap={[`3rem`, `4rem`]} maxW='80%'>
           {_.map(portfolioList, (project) => (
             <Link key={_.get(project, 'imageUrl')} href={`/portfolio/${_.get(project, 'slug')}`}>
               <Image src={_.get(project, 'imageUrl', wallSconce.src)} height='auto' width='200px' />
