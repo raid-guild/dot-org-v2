@@ -44,9 +44,11 @@ const ProjectCard = ({ name, logo, website }: ProjectCardProps) => {
           {name}
         </Heading>
         <Text>{website}</Text>
-        <Link href={website} isExternal>
-          <Button>Visit Website</Button>
-        </Link>
+        {website && (
+          <Link href={website} isExternal>
+            <Button>Visit Website</Button>
+          </Link>
+        )}
       </Stack>
     </Stack>
   );

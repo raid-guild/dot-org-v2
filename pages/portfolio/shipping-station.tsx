@@ -1,52 +1,14 @@
-import {
-  VStack,
-  Text,
-  Textarea,
-  Input,
-  Select,
-  Button,
-  Icon,
-  IconButton,
-  Stack,
-  ChakraInput,
-  Card,
-  Flex,
-  Grid,
-} from '@raidguild/design-system';
-import { useForm } from 'react-hook-form';
-import { AiOutlineClose } from 'react-icons/ai';
+import { VStack, Box, Text, Textarea, Input, Select, Button, Stack } from '@raidguild/design-system';
+import { FieldValues, useForm } from 'react-hook-form';
 // import { Web3Storage } from 'web3.storage';
+
+import { useSession } from 'next-auth/react';
+import _ from 'lodash';
 
 import Link from '../../components/atoms/ChakraNextLink';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
-
-const inputs = [
-  {
-    label: 'Project Name',
-    name: 'projectName',
-    type: 'text',
-    placeholder: 'Project Name',
-  },
-  {
-    label: 'Website URL',
-    name: 'websiteURL',
-    type: 'text',
-    placeholder: 'Website URL',
-  },
-  {
-    label: 'Github URL',
-    name: 'githubURL',
-    type: 'text',
-    placeholder: 'Github URL',
-  },
-  {
-    label: 'Description',
-    name: 'description',
-    type: 'textarea',
-    placeholder: 'Description',
-  },
-];
+import useSubmit from '../../hooks/useSubmit';
 
 const questions = [
   {
@@ -59,28 +21,58 @@ const questions = [
   },
   {
     label: 'The Results',
-    name: 'results',
+    name: 'result',
   },
 ];
 
-const roleOptions = [
-  { value: 'SMART_CONTRACTS', label: 'Wizard (Smart Contracts)' },
-  { value: 'FRONTEND_DEV', label: 'Warrior (Frontend Dev)' },
-  { value: 'Rogue', label: 'Rogue' },
-  { value: 'Ranger', label: 'Ranger' },
-  { value: 'Cleric', label: 'Cleric' },
-  { value: 'Bard', label: 'Bard' },
-  { value: 'Druid', label: 'Druid' },
-  { value: 'Paladin', label: 'Paladin' },
-  { value: 'Archer', label: 'Archer' },
-  { value: 'Necromancer (Dev Ops)', label: 'Necromancer (Dev Ops)' },
-  { value: 'Hunter', label: 'Hunter' },
-  { value: 'Monk', label: 'Monk' },
+const categoryOptions = [
+  {
+    label: 'Design Sprint',
+    value: 'DESIGN_SPRINT',
+  },
+  {
+    label: 'Backend',
+    value: 'BACKEND',
+  },
+  {
+    label: 'Frontend',
+    value: 'FRONTEND',
+  },
+  {
+    label: 'Full Stack',
+    value: 'FULL_STACK',
+  },
+  {
+    label: 'Marketing',
+    value: 'MARKETING',
+  },
+  {
+    label: 'Smart Cpntracts',
+    value: 'SMART_CONTRACTS',
+  },
 ];
+
+// const roleOptions = [
+//   { value: 'SMART_CONTRACTS', label: 'Wizard (Smart Contracts)' },
+//   { value: 'FRONTEND_DEV', label: 'Warrior (Frontend Dev)' },
+//   { value: 'Rogue', label: 'Rogue' },
+//   { value: 'Ranger', label: 'Ranger' },
+//   { value: 'Cleric', label: 'Cleric' },
+//   { value: 'Bard', label: 'Bard' },
+//   { value: 'Druid', label: 'Druid' },
+//   { value: 'Paladin', label: 'Paladin' },
+//   { value: 'Archer', label: 'Archer' },
+//   { value: 'Necromancer (Dev Ops)', label: 'Necromancer (Dev Ops)' },
+//   { value: 'Hunter', label: 'Hunter' },
+//   { value: 'Monk', label: 'Monk' },
+// ];
 
 const ShippingStation = () => {
   const localForm = useForm();
-  const { watch, reset } = localForm;
+  const { reset, handleSubmit } = localForm;
+  const { data: session } = useSession();
+  const token = _.get(session, 'token') || '';
+  const { submitProjectForm } = useSubmit(token);
 
   // a function that returns the square root of a number
   // const sqrt = (x) => Math.sqrt(x);
@@ -92,43 +84,10 @@ const ShippingStation = () => {
     reset();
   };
 
-  async function submitData() {
-    // try {
-    //   const { data, error } = await supabase.from('PortfolioContent').insert([
-    //     {
-    //       project_name: projectName,
-    //       website_url: websiteURL,
-    //       github_url: githubURL,
-    //       description: description,
-    //       image_url: imagePath,
-    //       relevant_services: raidTags,
-    //       raiders: raiderRoles,
-    //       challenge: { body: challenge },
-    //       approach: { body: approach },
-    //       result: { body: results },
-    //     },
-    //   ]);
-    //   if (!error) {
-    //     toast.success('Data submitted successfully!');
-    //     clearData();
-    //   }
-    //   if (error) {
-    //     toast((t) => (
-    //       <>
-    //         <div>
-    //           <p style={{ fontWeight: `700`, color: `red` }}>There was an error submitting your data.</p>
-    //           <p>Code: {error?.code}</p>
-    //           <p>Reason: {error?.message}</p>
-    //           <Button onClick={() => toast.dismiss(t.id)}>Dismiss</Button>
-    //         </div>
-    //       </>
-    //     ));
-    //     throw error;
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    // }
-  }
+  const onSubmit = (data: FieldValues) => {
+    console.log('form data:', data);
+    submitProjectForm(data);
+  };
 
   // const handleImage = async (file) => {
   // console.log(file);
@@ -166,11 +125,12 @@ const ShippingStation = () => {
       <PageTitle title='Create Shipped Product' />
       <VStack width='60vw' margin='0 auto' pb='2rem'>
         <Input label='Project Name' name='projectName' localForm={localForm} />
-        <Input label='Website URL' name='websiteUrl' localForm={localForm} />
+        <Input label='Project Slug:' name='slug' localForm={localForm} />
+        {/* <Input label='Website URL' name='websiteUrl' localForm={localForm} /> */}
         <Input label='Github:' name='githubUrl' localForm={localForm} />
         <Input label='Description:' name='description' localForm={localForm} />
-        {/* Image */}
-        <VStack alignItems='flex-start' width='100%'>
+
+        {/* <VStack alignItems='flex-start' width='100%'>
           <Text size='md'>Image:</Text>
           <ChakraInput
             borderColor='primary.500'
@@ -178,69 +138,9 @@ const ShippingStation = () => {
             // onChange={(event) => handleImage(event.target.files[0])}
             type='file'
           />
-          {/* {watch('image') && <Image src={imagePath} width='128px' height='128px' margin='1rem auto=' />} */}
-        </VStack>
-        {/* Applicable Services */}
-        <VStack alignItems='flex-start' width='100%'>
-          <Text size='md'>Applicable Services:</Text>
-          <Text size='sm'>Separate Tags with Commas ,</Text>
-          <Card
-            as={Flex}
-            border='1px solid'
-            borderColor='primary.500'
-            padding='2rem'
-            width='100%'
-            flexWrap='wrap'
-            gap='1rem'>
-            {(watch('tags') || []).length > 0 &&
-              watch('tags').map((tag: any) => {
-                return (
-                  <Flex
-                    bg='red'
-                    padding='1rem 0.5rem'
-                    width='fit-content'
-                    whiteSpace='nowrap'
-                    gap='0.5rem'
-                    alignItems='center'
-                    _hover={{ backgroundColor: `purple`, color: `white` }}
-                    key={tag.tag}>
-                    {tag.tag}
-                    <IconButton
-                      icon={<Icon as={AiOutlineClose} />}
-                      // onClick={() => removeTag(index)}
-                      aria-label='Close'
-                    />
-                  </Flex>
-                );
-              })}
-            <Input label='Tags' name='tags' localForm={localForm} />
-          </Card>
-        </VStack>
-        {/* Raiders */}
-        <VStack alignItems='flex-start' width='100%'>
-          <Text size='md'>Contributors:</Text>
-          {(watch('raiderRole') || []).map((raider: any) => {
-            return (
-              <Grid key={raider.id} width='100%' gridTemplateColumns='4fr 4fr 1fr' gap='2rem'>
-                <Select name='raiderRole' localForm={localForm} options={roleOptions} />
-
-                <IconButton
-                  icon={<Icon as={AiOutlineClose} />}
-                  // onClick={() => removeRaider()}
-                  aria-label='Close'
-                />
-              </Grid>
-            );
-          })}
-          <Button
-            variant='blackRedBorder'
-            // onClick={() => addNewRaider()}
-          >
-            Add Raider
-          </Button>
-        </VStack>
+        </VStack> */}
         {questions.map((question) => (
-          <Stack key={question.label}>
+          <Stack width='full' key={question.label}>
             <Textarea label={question.label} name={question.name} localForm={localForm} />
             <Text fontSize='0.8rem'>
               This textarea accepts{' '}
@@ -250,8 +150,11 @@ const ShippingStation = () => {
             </Text>
           </Stack>
         ))}
+        <Select name='categoryOptions' localForm={localForm} options={categoryOptions} />
 
-        <Button onClick={() => submitData()}>Ship Project</Button>
+        <Box pt={8}>
+          <Button onClick={handleSubmit(onSubmit)}>Ship Project</Button>
+        </Box>
       </VStack>
     </CMSPageTemplate>
   );

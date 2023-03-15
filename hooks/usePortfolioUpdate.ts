@@ -1,27 +1,36 @@
 import { useMutation } from '@tanstack/react-query';
-import { PORTFOLIO_INSERT_MUTATION } from '../gql/mutations';
+import { PORTFOLIO_UPDATE_MUTATION } from '../gql/mutations';
 import { client } from '../gql';
 
-type IPortfolioInsert = {
+type IPortfolioUpdate = {
+  where: {
+    slug: {
+      _eq: string;
+    };
+  };
   portfolio: {
     name: string;
     repo_link: string;
     result_link: string;
     description: string;
-    approach: string;
-    challenge: string;
-    result: string;
+    approach: {
+      content: string[];
+    };
+    challenge: {
+      content: string[];
+    };
+    result: {
+      content: string[];
+    };
     slug: string;
     category: string;
   };
 };
 
-const usePortfolioCreate = (token: string) => {
-  // const queryClient = useQueryClient();
-
+const usePortfolioUpdate = (token: string) => {
   const { mutate, mutateAsync, isLoading, isError, isSuccess } = useMutation(
-    async ({ ...props }: IPortfolioInsert) => {
-      return client({ token }).request(PORTFOLIO_INSERT_MUTATION, {
+    async ({ ...props }: IPortfolioUpdate) => {
+      return client({ token }).request(PORTFOLIO_UPDATE_MUTATION, {
         ...props,
       });
     },
@@ -37,4 +46,4 @@ const usePortfolioCreate = (token: string) => {
   return { mutate, mutateAsync, isLoading, isError, isSuccess };
 };
 
-export default usePortfolioCreate;
+export default usePortfolioUpdate;

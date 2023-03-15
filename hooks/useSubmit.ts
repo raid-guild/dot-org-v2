@@ -4,6 +4,8 @@ import { balanceOf, payWithRaidToken } from '../utils/web3';
 import { RAID_CONTRACT_ADDRESS, DAO_ADDRESS, SUBMISSION_REQUEST_FEE } from '../utils/config';
 import useApplicationCreate from './useApplicationCreate';
 import useCreateConsult from './useCreateConsult';
+import usePortfolioCreate from './usePortfolioCreate';
+import usePortfolioUpdate from './usePortfolioUpdate';
 import {
   mapBudgetOptions,
   mapProjectType,
@@ -15,10 +17,51 @@ import {
   mapDeliveryPriorities,
 } from '../utils/mapping';
 
+type PortfolioDataProps = {
+  portfolio: {
+    name: string;
+    repo_link: string;
+    result_link: string;
+    description: string;
+    approach: string;
+    challenge: string;
+    result: string;
+    slug: string;
+    category: string;
+  };
+};
+
+type PortfolioUpdateDataProps = {
+  where: {
+    slug: {
+      _eq: string;
+    };
+  };
+  portfolio: {
+    name: string;
+    repo_link: string;
+    result_link: string;
+    description: string;
+    approach: {
+      content: string[];
+    };
+    challenge: {
+      content: string[];
+    };
+    result: {
+      content: string[];
+    };
+    slug: string;
+    category: string;
+  };
+};
+
 const useSubmit = (token: string) => {
   const { data: signer } = useSigner();
   const { mutateAsync } = useApplicationCreate(token);
   const { mutateAsync: mutateConsult } = useCreateConsult(token);
+  const { mutateAsync: mutatePortfolio } = usePortfolioCreate(token);
+  const { mutateAsync: mutatePortfolioUpdate } = usePortfolioUpdate(token);
 
   const submitJoinForm = async (data: any) => {
     const applicationSkills = [
@@ -179,9 +222,74 @@ const useSubmit = (token: string) => {
       };
     }
   };
+
+  const submitProjectForm = async (data: any): Promise<any> => {
+    console.log('portfolio data:', data);
+    try {
+      const submitData: PortfolioDataProps = {
+        portfolio: {
+          name: data.projectName,
+          repo_link: data.githubUrl,
+          result_link: data.resultLink,
+          description: data.description,
+          approach: data.approach,
+          challenge: data.challenge,
+          result: data.result,
+          slug: data.slug,
+          category: data.categoryOptions.value,
+        },
+      };
+      const res = await mutatePortfolio({ ...submitData });
+      console.log('portfolio result:', res);
+      return res;
+    } catch (e: any) {
+      const res = {
+        error: true,
+        message: "Couldn't submit the form, make sure you have filled all the required fields",
+      };
+      console.error(e.message);
+      return res;
+    }
+  };
+
+  const submitProjectEditForm = async (data: any, slug: string): Promise<any> => {
+    console.log('portfolio updated data:', data);
+    try {
+      const submitData: PortfolioUpdateDataProps = {
+        where: {
+          slug: {
+            _eq: slug,
+          },
+        },
+        portfolio: {
+          name: data.projectName,
+          repo_link: data.githubUrl,
+          result_link: data.resultLink,
+          description: data.description,
+          approach: { content: [data.approach] },
+          challenge: { content: [data.challenge] },
+          result: { content: [data.result] },
+          slug: data.slug,
+          category: data.categoryOptions.value,
+        },
+      };
+      const res = await mutatePortfolioUpdate({ ...submitData });
+      console.log('portfolio updated result:', res);
+      return res;
+    } catch (e: any) {
+      const res = {
+        error: true,
+        message: "Couldn't submit the form, make sure you have filled all the required fields",
+      };
+      console.error(e.message);
+      return res;
+    }
+  };
   return {
     submitJoinForm,
     submitHireForm,
+    submitProjectForm,
+    submitProjectEditForm,
     handlePayment,
   };
 };
