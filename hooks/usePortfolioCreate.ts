@@ -7,10 +7,17 @@ type IPortfolioInsert = {
     name: string;
     repo_link: string;
     result_link: string;
+    image_url: string;
     description: string;
-    approach: string;
-    challenge: string;
-    result: string;
+    approach: {
+      content: string[];
+    };
+    challenge: {
+      content: string[];
+    };
+    result: {
+      content: string[];
+    };
     slug: string;
     category: string;
   };

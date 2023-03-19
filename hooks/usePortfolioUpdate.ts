@@ -12,6 +12,7 @@ type IPortfolioUpdate = {
     name: string;
     repo_link: string;
     result_link: string;
+    image_url: string;
     description: string;
     approach: {
       content: string[];

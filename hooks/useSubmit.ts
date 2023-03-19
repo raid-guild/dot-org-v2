@@ -6,6 +6,7 @@ import useApplicationCreate from './useApplicationCreate';
 import useCreateConsult from './useCreateConsult';
 import usePortfolioCreate from './usePortfolioCreate';
 import usePortfolioUpdate from './usePortfolioUpdate';
+import useImageUpload from './useImageUpload';
 import {
   mapBudgetOptions,
   mapProjectType,
@@ -22,10 +23,17 @@ type PortfolioDataProps = {
     name: string;
     repo_link: string;
     result_link: string;
+    image_url: string;
     description: string;
-    approach: string;
-    challenge: string;
-    result: string;
+    approach: {
+      content: string[];
+    };
+    challenge: {
+      content: string[];
+    };
+    result: {
+      content: string[];
+    };
     slug: string;
     category: string;
   };
@@ -41,6 +49,7 @@ type PortfolioUpdateDataProps = {
     name: string;
     repo_link: string;
     result_link: string;
+    image_url: string;
     description: string;
     approach: {
       content: string[];
@@ -224,23 +233,23 @@ const useSubmit = (token: string) => {
   };
 
   const submitProjectForm = async (data: any): Promise<any> => {
-    console.log('portfolio data:', data);
+    const imageUrl = await useImageUpload(data.imageUrl[0]);
     try {
       const submitData: PortfolioDataProps = {
         portfolio: {
           name: data.projectName,
           repo_link: data.githubUrl,
           result_link: data.resultLink,
+          image_url: imageUrl || '',
           description: data.description,
-          approach: data.approach,
-          challenge: data.challenge,
-          result: data.result,
+          approach: { content: [data.approach] },
+          challenge: { content: [data.challenge] },
+          result: { content: [data.result] },
           slug: data.slug,
           category: data.categoryOptions.value,
         },
       };
       const res = await mutatePortfolio({ ...submitData });
-      console.log('portfolio result:', res);
       return res;
     } catch (e: any) {
       const res = {
@@ -253,7 +262,7 @@ const useSubmit = (token: string) => {
   };
 
   const submitProjectEditForm = async (data: any, slug: string): Promise<any> => {
-    console.log('portfolio updated data:', data);
+    const imageUrl = await useImageUpload(data.imageUrl[0]);
     try {
       const submitData: PortfolioUpdateDataProps = {
         where: {
@@ -265,6 +274,7 @@ const useSubmit = (token: string) => {
           name: data.projectName,
           repo_link: data.githubUrl,
           result_link: data.resultLink,
+          image_url: imageUrl || '',
           description: data.description,
           approach: { content: [data.approach] },
           challenge: { content: [data.challenge] },
@@ -274,7 +284,6 @@ const useSubmit = (token: string) => {
         },
       };
       const res = await mutatePortfolioUpdate({ ...submitData });
-      console.log('portfolio updated result:', res);
       return res;
     } catch (e: any) {
       const res = {

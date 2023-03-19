@@ -1,6 +1,5 @@
 import { VStack, Box, Text, Textarea, Input, Select, Button, Stack } from '@raidguild/design-system';
 import { FieldValues, useForm } from 'react-hook-form';
-// import { Web3Storage } from 'web3.storage';
 
 import { useSession } from 'next-auth/react';
 import _ from 'lodash';
@@ -9,6 +8,7 @@ import Link from '../../components/atoms/ChakraNextLink';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
 import useSubmit from '../../hooks/useSubmit';
+import ImageUpload from '../../components/atoms/ImageUpload';
 
 const questions = [
   {
@@ -69,10 +69,18 @@ const categoryOptions = [
 
 const ShippingStation = () => {
   const localForm = useForm();
-  const { reset, handleSubmit } = localForm;
+  const { reset, handleSubmit, watch } = localForm;
   const { data: session } = useSession();
   const token = _.get(session, 'token') || '';
   const { submitProjectForm } = useSubmit(token);
+
+  // function getAccessToken() {
+  //   return process.env.WEB3STORAGE_TOKEN || '';
+  // }
+
+  // function makeStorageClient() {
+  //   return new Web3Storage({ token: getAccessToken() });
+  // }
 
   // a function that returns the square root of a number
   // const sqrt = (x) => Math.sqrt(x);
@@ -89,37 +97,6 @@ const ShippingStation = () => {
     submitProjectForm(data);
   };
 
-  // const handleImage = async (file) => {
-  // console.log(file);
-  // const response = await addImage(file);
-  // if (response?.cid) {
-  //   try {
-  //     let imageUrl = `https://${response?.cid}.ipfs.w3s.link/${file.name}`;
-  //     setImagePath(imageUrl);
-  //   } catch (error) {
-  //     console.error({ error });
-  //   }
-  // }
-  // };
-
-  // async function addImage(file) {
-  // try {
-  //   const client = new Web3Storage({
-  //     token: process.env.NEXT_PUBLIC_WEB3STORAGE_KEY,
-  //   });
-  //   const cid = await client.put([file]);
-  //   if (cid) {
-  //     toast.success('Image uploaded successfully!');
-  //   }
-  //   return { cid };
-  // } catch (error) {
-  //   toast.error('Error uploading image!');
-  //   toast('Check the console for more details.');
-  //   console.error(error);
-  //   return null;
-  // }
-  // }
-
   return (
     <CMSPageTemplate>
       <PageTitle title='Create Shipped Product' />
@@ -130,15 +107,9 @@ const ShippingStation = () => {
         <Input label='Github:' name='githubUrl' localForm={localForm} />
         <Input label='Description:' name='description' localForm={localForm} />
 
-        {/* <VStack alignItems='flex-start' width='100%'>
-          <Text size='md'>Image:</Text>
-          <ChakraInput
-            borderColor='primary.500'
-            w='100%'
-            // onChange={(event) => handleImage(event.target.files[0])}
-            type='file'
-          />
-        </VStack> */}
+        <VStack alignItems='flex-start' width='100%'>
+          <ImageUpload localForm={localForm} />
+        </VStack>
         {questions.map((question) => (
           <Stack width='full' key={question.label}>
             <Textarea label={question.label} name={question.name} localForm={localForm} />
