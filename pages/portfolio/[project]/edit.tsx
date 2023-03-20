@@ -1,18 +1,14 @@
-import { useState } from 'react';
 import _ from 'lodash';
 import { Stack, HStack, VStack, Input, Button, Textarea, Text, Link, Select } from '@raidguild/design-system';
 import { useForm, FieldValues } from 'react-hook-form';
 import { GetServerSidePropsContext } from 'next';
 import { useSession } from 'next-auth/react';
-
-// import Link from '../../../components/atoms/ChakraNextLink';
-import { Web3Storage } from 'web3.storage';
+import { getPortfolioDetail } from '../../../gql';
 import ImageUpload from '../../../components/atoms/ImageUpload';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import useSubmit from '../../../hooks/useSubmit';
-
-// import RaiderRoleSelect from '../../../components/page-components/RaiderRoleSelect';
+import usePortfolioDetail from '../../../hooks/usePortfolioDetail';
 
 const questions = [
   {
@@ -58,78 +54,50 @@ const categoryOptions = [
 
 interface Props {
   slug: string;
+  initialData: any;
 }
 
-const PortfolioPage = ({ slug }: Props) => {
+const PortfolioPage = ({ slug, initialData }: Props) => {
   const { data: session } = useSession();
   const token = _.get(session, 'token') || '';
   const localForm = useForm();
   const { handleSubmit } = localForm;
 
-  const [imagePath, setImagePath] = useState('');
-
   const { submitProjectEditForm } = useSubmit(token);
 
+  const { data: projectData } = usePortfolioDetail({ slug, initialData, token });
+
   const onSubmit = (data: FieldValues) => {
-    console.log('form data:', data);
     submitProjectEditForm(data, slug);
   };
-
-  async function addImage(file: any) {
-    try {
-      console.log('ws key:', process.env.NEXT_PUBLIC_WEB3STORAGE_KEY);
-      const client = new Web3Storage({
-        token: process.env.NEXT_PUBLIC_WEB3STORAGE_KEY || '',
-      });
-      const cid = await client.put([file]);
-      if (cid) {
-        // toast.success('Image uploaded successfully!');
-        console.log('Image uploaded successfully!');
-      }
-      return { cid };
-    } catch (error) {
-      // toast.error('Error uploading image!');
-      // toast('Check the console for more details.');
-      console.error(error);
-      return null;
-    }
-  }
-
-  const handleImage = async (file: any) => {
-    console.log('file:', file);
-    const response = await addImage(file);
-    console.log('response:', response);
-    if (response?.cid) {
-      try {
-        const imageUrl = `https://${response?.cid}.ipfs.w3s.link/${file.name}`;
-        setImagePath(imageUrl);
-      } catch (error) {
-        console.error({ error });
-      }
-    }
-  };
-
-  console.log('imagePath:', imagePath);
 
   return (
     <CMSPageTemplate>
       <PageTitle title='Edit Shipped Project' />
       <VStack width='60vw' margin='0 auto' paddingBottom='2rem'>
-        <Input label='Project Name' name='projectName' localForm={localForm} />
-        <Input label='Project Slug:' name='slug' localForm={localForm} />
-        <Input label='Website URL' name='resultLink' localForm={localForm} />
-        <Input label='Github:' name='githubUrl' localForm={localForm} />
-        <Input label='Description:' name='description' localForm={localForm} />
-        <Input
-          label='Image:'
-          name='imageUrl'
-          onChange={(event: any) => handleImage(event.target.files[0])}
-          localForm={localForm}
-          type='file'
-        />
+        <Input label='Project Name' name='projectName' localForm={localForm} defaultValue={projectData.name} />
+        <Input label='Project Slug:' name='slug' localForm={localForm} defaultValue={projectData.slug} />
+        <Input label='Website URL' name='resultLink' localForm={localForm} defaultValue={projectData.resultLink} />
+        <Input label='Github:' name='githubUrl' localForm={localForm} defaultValue={projectData.repoLink} />
+        <Input label='Description:' name='description' localForm={localForm} defaultValue={projectData.description} />
+        <VStack alignItems='flex-start' width='100%'>
+          <ImageUpload localForm={localForm} defaultValue={projectData.imageUrl} />
+        </VStack>
         {questions.map((question) => (
           <Stack width='full' key={question.label}>
-            <Textarea label={question.label} name={question.name} localForm={localForm} />
+            <Textarea
+              label={question.label}
+              name={question.name}
+              localForm={localForm}
+              defaultValue={
+                // eslint-disable-next-line no-nested-ternary
+                question.name === 'challenge'
+                  ? projectData.challenge.content[0]
+                  : question.name === 'approach'
+                  ? projectData.approach.content[0]
+                  : projectData.result.content[0]
+              }
+            />
             <Text fontSize='0.8rem'>
               This textarea accepts{' '}
               <Link href='https://daringfireball.net/projects/markdown/basics' isExternal>
@@ -151,9 +119,21 @@ const PortfolioPage = ({ slug }: Props) => {
 };
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  const slug = _.get(context, 'params.project');
+  let slug = _.get(context, 'params.project');
+  if (_.isArray(slug)) slug = _.first(slug);
+  if (!slug) {
+    return {
+      props: {},
+    };
+  }
+  const result = await getPortfolioDetail(slug);
 
-  return { props: { slug } };
+  return {
+    props: {
+      slug,
+      initialData: result || null,
+    },
+  };
 };
 
 export default PortfolioPage;

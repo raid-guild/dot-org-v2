@@ -14,6 +14,7 @@ import {
 } from '@raidguild/design-system';
 import { GetStaticPropsContext } from 'next';
 import { useSession } from 'next-auth/react';
+import Markdown from '../../../components/atoms/Markdown';
 
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
@@ -86,9 +87,7 @@ function PortfolioPage({ project, initialData }: Props) {
             lineHeight='taller'>
             <Stack spacing={6}>
               {_.map(_.get(projectData, 'challenge.content'), (content: any) => (
-                <Text key={content} textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
-                  {content}
-                </Text>
+                <Markdown key={content}>{content}</Markdown>
               ))}
             </Stack>
           </CardBody>
@@ -113,9 +112,7 @@ function PortfolioPage({ project, initialData }: Props) {
           </HStack>
           <Stack spacing={6}>
             {_.map(_.get(projectData, 'approach.content'), (content: any) => (
-              <Text key={content} textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
-                {content}
-              </Text>
+              <Markdown key={content}>{content}</Markdown>
             ))}
           </Stack>
         </Stack>
@@ -132,9 +129,7 @@ function PortfolioPage({ project, initialData }: Props) {
             lineHeight='taller'>
             <Stack spacing={6}>
               {_.map(_.get(projectData, 'result.content'), (content: any) => (
-                <Text key={content} textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
-                  {content}
-                </Text>
+                <Markdown key={content}>{content}</Markdown>
               ))}
             </Stack>
           </CardBody>

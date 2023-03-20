@@ -8,6 +8,7 @@ export const PORTFOLIO_DETAIL_FRAGMENT = gql`
     case_study
     approach
     challenge
+    category
     result
     repo_link
     result_link

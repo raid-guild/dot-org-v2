@@ -5,9 +5,10 @@ import useImageUpload from '../../hooks/useImageUpload';
 
 interface Props {
   localForm: UseFormReturn;
+  defaultValue?: string;
 }
 
-const ImageUpload = ({ localForm }: Props) => {
+const ImageUpload = ({ localForm, defaultValue }: Props) => {
   const [imagePath, setImagePath] = useState('');
   const { watch } = localForm;
   const file = watch('imageUrl');
@@ -23,8 +24,9 @@ const ImageUpload = ({ localForm }: Props) => {
   return (
     <VStack align='flex-start' w='100%'>
       <Text size='md'>Image:</Text>
-      <Input w='100%' name='imageUrl' label='imageUrl' localForm={localForm} type='file' />
+      <Input w='100%' name='imageUrl' label='imageUrl' localForm={localForm} type='file' defaultValue={defaultValue} />
       {imagePath && <Image src={imagePath} alt='image' w='200px' />}
+      {defaultValue && <Image src={defaultValue} alt='image' w='200px' />}
     </VStack>
   );
 };
