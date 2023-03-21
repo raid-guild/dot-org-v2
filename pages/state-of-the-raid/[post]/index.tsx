@@ -1,16 +1,14 @@
-import { Box, Heading, Text, VStack, Image, HStack } from '@raidguild/design-system';
+import { Box, Heading, Text, VStack, Image } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
 
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import Markdown from '../../../components/atoms/Markdown';
-// import useBlogsDetail from '../../hooks/useBlogsDetail';
-// import ProjectCard from '../../components/page-components/ProjectCard';
 import { getBlogDetail } from '../../../gql';
 
 type Props = {
-  post: any;
+  initialData: any;
 };
 
 const getMonthString = (date: Date) => {
@@ -59,8 +57,8 @@ const getMonthString = (date: Date) => {
   return publishMonthString;
 };
 
-function PostPage({ post }: Props) {
-  const publishTime = new Date(_.get(post, 'created_at'));
+function PostPage({ initialData }: Props) {
+  const publishTime = new Date(_.get(initialData, 'createdAt'));
 
   const publishString = `${getMonthString(publishTime)} ${publishTime.getDate()} ${publishTime.getFullYear()}`;
   return (
@@ -68,24 +66,19 @@ function PostPage({ post }: Props) {
       <PageTitle title='State of The Raid' />
       <Box background='blackAlpha.800' padding='2rem 0'>
         <VStack>
-          {_.get(post, 'heroImage') && <Image src={_.get(post, 'heroImage')} maxHeight='200' mb='2rem' />}
+          {_.get(initialData, 'image') && <Image src={_.get(initialData, 'image')} maxHeight='200' mb='2rem' />}
           <Box width='500px'>
-            <Heading as='h1'>{_.get(post, 'postTitle')}</Heading>
+            <Heading as='h1'>{_.get(initialData, 'title')}</Heading>
             <Text>
-              Published by {_.get(post, 'authorName')} | {publishString}
+              Published by {_.get(initialData, 'author')} | {publishString}
             </Text>
-            <Text>{_.get(post, 'description')}</Text>
+            <Text>{_.get(initialData, 'description')}</Text>
             <Box height='3rem' />
             <Box width='100%' height='1px' backgroundColor='white' />
             <Box height='3rem' />
-            <Markdown>{_.get(post, 'content.body')}</Markdown>
+            <Markdown>{_.get(initialData, 'content')}</Markdown>
           </Box>
         </VStack>
-        <HStack m='12rem 2rem' justify='space-between'>
-          <Image src='/assets/illustrations/LeftWing.svg' width='30vw' />
-          <Image src='/assets/illustrations/Swords.svg' />
-          <Image src='/assets/illustrations/RightWing.svg' width='30vw' />
-        </HStack>
       </Box>
     </CMSPageTemplate>
   );
@@ -122,7 +115,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
   return {
     props: {
-      initialData: _.get(result, 'blogs[0]'),
+      initialData: result,
     },
   };
 };

@@ -93,7 +93,7 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
       />
 
       <VStack alignItems='flex-start' width='100%'>
-        <ImageUpload localForm={localForm} defaultValue={initialData?.imageUrl} />
+        <ImageUpload name='imageUrl' label='Project Logo:' localForm={localForm} defaultValue={initialData?.imageUrl} />
       </VStack>
       {questions.map((question) => (
         <Stack width='full' key={question.label}>

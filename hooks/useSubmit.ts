@@ -6,6 +6,7 @@ import useApplicationCreate from './useApplicationCreate';
 import useCreateConsult from './useCreateConsult';
 import usePortfolioCreate from './usePortfolioCreate';
 import usePortfolioUpdate from './usePortfolioUpdate';
+import useBlogUpdate from './useBlogUpdate';
 import useImageUpload from './useImageUpload';
 import {
   mapBudgetOptions,
@@ -65,12 +66,30 @@ type PortfolioUpdateDataProps = {
   };
 };
 
+type BlogUpdateProps = {
+  where: {
+    slug: {
+      _eq: string;
+    };
+  };
+  blog: {
+    author: string;
+    content: any;
+    description: string;
+    image: string;
+    slug: string;
+    title: string;
+    tags?: string[];
+  };
+};
+
 const useSubmit = (token: string) => {
   const { data: signer } = useSigner();
   const { mutateAsync } = useApplicationCreate(token);
   const { mutateAsync: mutateConsult } = useCreateConsult(token);
   const { mutateAsync: mutatePortfolio } = usePortfolioCreate(token);
   const { mutateAsync: mutatePortfolioUpdate } = usePortfolioUpdate(token);
+  const { mutateAsync: mutateBlogUpdate } = useBlogUpdate(token);
 
   const submitJoinForm = async (data: any) => {
     const applicationSkills = [
@@ -294,11 +313,42 @@ const useSubmit = (token: string) => {
       return res;
     }
   };
+  const submitBlogEditForm = async (data: any, slug: string): Promise<any> => {
+    const imageUrl = await useImageUpload(data.image[0]);
+    try {
+      const submitData: BlogUpdateProps = {
+        where: {
+          slug: {
+            _eq: slug,
+          },
+        },
+        blog: {
+          title: data.projectName,
+          author: data.author,
+          image: imageUrl || '',
+          description: data.description,
+          slug: data.slug,
+          content: data.content,
+          tags: data.tags,
+        },
+      };
+      const res = await mutateBlogUpdate({ ...submitData });
+      return res;
+    } catch (e: any) {
+      const res = {
+        error: true,
+        message: "Couldn't submit the form, make sure you have filled all the required fields",
+      };
+      console.error(e.message);
+      return res;
+    }
+  };
   return {
     submitJoinForm,
     submitHireForm,
     submitProjectForm,
     submitProjectEditForm,
+    submitBlogEditForm,
     handlePayment,
   };
 };

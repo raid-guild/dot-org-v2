@@ -8,3 +8,22 @@ export const BLOG_CREATE_MUTATION = gql`
     }
   }
 `;
+
+export const BLOG_UPDATE_MUTATION = gql`
+  mutation updatePortfolios($where: blogs_bool_exp!, $blog: blogs_set_input!) {
+    update_blogs(where: $where, _set: $blog) {
+      returning {
+        author
+        content
+        created_at
+        description
+        id
+        image
+        slug
+        title
+        tags
+        updated_at
+      }
+    }
+  }
+`;
