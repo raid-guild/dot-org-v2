@@ -6,6 +6,7 @@ import useApplicationCreate from './useApplicationCreate';
 import useCreateConsult from './useCreateConsult';
 import usePortfolioCreate from './usePortfolioCreate';
 import usePortfolioUpdate from './usePortfolioUpdate';
+import useBlogCreate from './useBlogsCreate';
 import useBlogUpdate from './useBlogUpdate';
 import useImageUpload from './useImageUpload';
 import {
@@ -66,6 +67,18 @@ type PortfolioUpdateDataProps = {
   };
 };
 
+type BlogFormProps = {
+  blog: {
+    author: string;
+    content: any;
+    description: string;
+    image: string;
+    slug: string;
+    title: string;
+    tags?: string[];
+  };
+};
+
 type BlogUpdateProps = {
   where: {
     slug: {
@@ -89,6 +102,7 @@ const useSubmit = (token: string) => {
   const { mutateAsync: mutateConsult } = useCreateConsult(token);
   const { mutateAsync: mutatePortfolio } = usePortfolioCreate(token);
   const { mutateAsync: mutatePortfolioUpdate } = usePortfolioUpdate(token);
+  const { mutateAsync: mutateBlogCreate } = useBlogCreate(token);
   const { mutateAsync: mutateBlogUpdate } = useBlogUpdate(token);
 
   const submitJoinForm = async (data: any) => {
@@ -313,6 +327,31 @@ const useSubmit = (token: string) => {
       return res;
     }
   };
+  const submitBlogForm = async (data: any): Promise<any> => {
+    const imageUrl = await useImageUpload(data.image[0]);
+    try {
+      const submitData: BlogFormProps = {
+        blog: {
+          title: data.title,
+          author: data.author,
+          image: imageUrl || '',
+          description: data.description,
+          slug: data.slug,
+          content: data.content,
+          tags: data.tags,
+        },
+      };
+      const res = await mutateBlogCreate({ ...submitData });
+      return res;
+    } catch (e: any) {
+      const res = {
+        error: true,
+        message: "Couldn't submit the form, make sure you have filled all the required fields",
+      };
+      console.error(e.message);
+      return res;
+    }
+  };
   const submitBlogEditForm = async (data: any, slug: string): Promise<any> => {
     const imageUrl = await useImageUpload(data.image[0]);
     try {
@@ -323,7 +362,7 @@ const useSubmit = (token: string) => {
           },
         },
         blog: {
-          title: data.projectName,
+          title: data.title,
           author: data.author,
           image: imageUrl || '',
           description: data.description,
@@ -348,6 +387,7 @@ const useSubmit = (token: string) => {
     submitHireForm,
     submitProjectForm,
     submitProjectEditForm,
+    submitBlogForm,
     submitBlogEditForm,
     handlePayment,
   };

@@ -25,7 +25,6 @@ type IPortfolioInsert = {
 };
 
 const usePortfolioCreate = (token: string) => {
-  // const queryClient = useQueryClient();
   const toast = useToast();
 
   const { mutate, mutateAsync, isLoading, isError, isSuccess } = useMutation(
