@@ -1,4 +1,4 @@
-import { VStack, Box, Text, Textarea, Input, Select, Button, Stack } from '@raidguild/design-system';
+import { VStack, Box, Text, Textarea, Input, Select, Button, Stack, Toast, useToast } from '@raidguild/design-system';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import { useSession } from 'next-auth/react';
@@ -58,23 +58,23 @@ const categoryOptions = [
 
 const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
   const localForm = useForm();
-  const { reset, handleSubmit } = localForm;
+  const { handleSubmit } = localForm;
   const { data: session } = useSession();
   const token = _.get(session, 'token') || '';
   const { submitProjectForm, submitProjectEditForm } = useSubmit(token);
 
-  const clearData = () => {
-    reset();
-  };
+  // const clearData = () => {
+  //   reset();
+  // };
 
   const onSubmit = (data: FieldValues) => {
-    console.log('form data:', data);
     if (isEditable && slug) {
       submitProjectEditForm(data, slug);
     } else {
       submitProjectForm(data);
     }
   };
+
   return (
     <VStack width='60vw' margin='0 auto' pb='2rem'>
       <Input
