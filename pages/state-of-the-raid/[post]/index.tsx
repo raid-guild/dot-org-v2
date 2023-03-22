@@ -6,55 +6,10 @@ import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate'
 import PageTitle from '../../../components/page-components/PageTitle';
 import Markdown from '../../../components/atoms/Markdown';
 import { getBlogDetail, getBlogsList } from '../../../gql';
+import { getMonthString } from '../../../utils';
 
 type Props = {
   initialData: any;
-};
-
-const getMonthString = (date: Date) => {
-  const publishMonth = date.getMonth();
-  let publishMonthString;
-  switch (publishMonth) {
-    case 0:
-      publishMonthString = 'Jan';
-      break;
-    case 1:
-      publishMonthString = 'Feb';
-      break;
-    case 2:
-      publishMonthString = 'Mar';
-      break;
-    case 3:
-      publishMonthString = 'Apr';
-      break;
-    case 4:
-      publishMonthString = 'May';
-      break;
-    case 5:
-      publishMonthString = 'Jun';
-      break;
-    case 6:
-      publishMonthString = 'Jul';
-      break;
-    case 7:
-      publishMonthString = 'Aug';
-      break;
-    case 8:
-      publishMonthString = 'Sep';
-      break;
-    case 9:
-      publishMonthString = 'Oct';
-      break;
-    case 10:
-      publishMonthString = 'Nov';
-      break;
-    case 11:
-      publishMonthString = 'Dec';
-      break;
-    default:
-      break;
-  }
-  return publishMonthString;
 };
 
 function PostPage({ initialData }: Props) {
@@ -64,7 +19,7 @@ function PostPage({ initialData }: Props) {
   return (
     <CMSPageTemplate>
       <PageTitle title='State of The Raid' />
-      <Flex width={['90%', '90%', '60vw', '60vw', '60vw']} mx='auto' direction='column'>
+      <Flex width={['90%', '90%', '60vw', '60vw', '60vw']} mx='auto' direction='column' gap={4}>
         {_.get(initialData, 'image') && <Image src={_.get(initialData, 'image')} w='auto' mb='2rem' />}
         <VStack direction='column' alignItems='flex-start'>
           <Heading textAlign='left' as='h1'>

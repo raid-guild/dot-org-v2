@@ -54,7 +54,13 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
         />
       </VStack>
       <Stack width='full'>
-        <Textarea label='content' name='content' localForm={localForm} defaultValue={initialData?.content} />
+        <Textarea
+          label='content'
+          name='content'
+          localForm={localForm}
+          defaultValue={initialData?.content}
+          height='500px'
+        />
         <Text fontSize='0.8rem'>
           This textarea accepts{' '}
           <Link href='https://daringfireball.net/projects/markdown/basics' isExternal>
