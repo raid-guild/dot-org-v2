@@ -1,4 +1,4 @@
-import { Box, Heading, Text, VStack, Image } from '@raidguild/design-system';
+import { Box, Flex, Heading, Text, VStack, Image, Stack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
 
@@ -64,22 +64,28 @@ function PostPage({ initialData }: Props) {
   return (
     <CMSPageTemplate>
       <PageTitle title='State of The Raid' />
-      <Box background='blackAlpha.800' padding='2rem 0'>
-        <VStack>
-          {_.get(initialData, 'image') && <Image src={_.get(initialData, 'image')} maxHeight='200' mb='2rem' />}
-          <Box width='500px'>
-            <Heading as='h1'>{_.get(initialData, 'title')}</Heading>
-            <Text>
-              Published by {_.get(initialData, 'author')} | {publishString}
-            </Text>
-            <Text>{_.get(initialData, 'description')}</Text>
-            <Box height='3rem' />
-            <Box width='100%' height='1px' backgroundColor='white' />
-            <Box height='3rem' />
-            <Markdown>{_.get(initialData, 'content')}</Markdown>
-          </Box>
+      <Flex width={['90%', '90%', '60vw', '60vw', '60vw']} mx='auto' direction='column'>
+        {_.get(initialData, 'image') && <Image src={_.get(initialData, 'image')} w='auto' mb='2rem' />}
+        <VStack direction='column' alignItems='flex-start'>
+          <Heading textAlign='left' as='h1'>
+            {_.get(initialData, 'title')}
+          </Heading>
+          <Flex direction='row'>
+            Published by{' '}
+            <Text as='span' fontWeight='bold' px='12px'>
+              {_.get(initialData, 'author')}
+            </Text>{' '}
+            | {publishString}
+          </Flex>
         </VStack>
-      </Box>
+        <Stack background='blackAlpha.800' mt='6' alignItems='flex-start' py='50px'>
+          <Heading textAlign='left' as='h1'>
+            Abstract
+          </Heading>
+          <Text>{_.get(initialData, 'description')}</Text>
+          <Markdown>{_.get(initialData, 'content')}</Markdown>
+        </Stack>
+      </Flex>
     </CMSPageTemplate>
   );
 }

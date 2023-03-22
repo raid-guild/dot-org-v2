@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { VStack, Text, Input, Image } from '@raidguild/design-system';
+import { VStack, Input, Image } from '@raidguild/design-system';
 import { UseFormReturn } from 'react-hook-form';
 import useImageUpload from '../../hooks/useImageUpload';
 
