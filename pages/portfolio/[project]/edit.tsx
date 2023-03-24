@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import { GetServerSidePropsContext } from 'next';
+import { GetStaticPropsContext } from 'next';
 import { useSession } from 'next-auth/react';
-import { getPortfolioDetail } from '../../../gql';
+import { getPortfolioDetail, getPortfolioList } from '../../../gql';
 import PortfolioForm from '../../../components/forms/PortfolioForm';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
@@ -26,7 +26,20 @@ const PortfolioPage = ({ slug, initialData }: Props) => {
   );
 };
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+export async function getStaticPaths() {
+  const portfolios = await getPortfolioList();
+
+  const paths = portfolios.map((portfolio: any) => ({
+    params: { project: portfolio.slug },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
   let slug = _.get(context, 'params.project');
   if (_.isArray(slug)) slug = _.first(slug);
   if (!slug) {

@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import { GetServerSidePropsContext } from 'next';
+import { GetStaticPropsContext } from 'next';
 import { useSession } from 'next-auth/react';
-import { getBlogDetail } from '../../../gql';
+import { getBlogDetail, getBlogsList } from '../../../gql';
 import BlogForm from '../../../components/forms/BlogForm';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
@@ -16,9 +16,7 @@ const EditPost = ({ slug, initialData }: Props) => {
   const { data: session } = useSession();
   const token = _.get(session, 'token') || '';
 
-  console.log('initialData:', initialData);
   const { data: blogData } = useBlogsDetail({ slug, initialData, token });
-  console.log('blogData:', blogData);
 
   return (
     <CMSPageTemplate>
@@ -28,9 +26,21 @@ const EditPost = ({ slug, initialData }: Props) => {
   );
 };
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+export async function getStaticPaths() {
+  const posts = await getBlogsList();
+
+  const paths = posts.map((post: any) => ({
+    params: { post: post.slug },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
   let slug = _.get(context, 'params.post');
-  console.log('slug:', slug);
   if (_.isArray(slug)) slug = _.first(slug);
   if (!slug) {
     return {

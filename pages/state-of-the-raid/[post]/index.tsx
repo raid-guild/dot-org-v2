@@ -1,11 +1,11 @@
-import { Box, Flex, Heading, Text, VStack, Image, Stack } from '@raidguild/design-system';
+import { Flex, Heading, Text, VStack, Image, Stack } from '@raidguild/design-system';
 import _ from 'lodash';
-import { GetServerSidePropsContext } from 'next';
+import { GetStaticPropsContext } from 'next';
 
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import Markdown from '../../../components/atoms/Markdown';
-import { getBlogDetail } from '../../../gql';
+import { getBlogDetail, getBlogsList } from '../../../gql';
 
 type Props = {
   initialData: any;
@@ -90,22 +90,20 @@ function PostPage({ initialData }: Props) {
   );
 }
 
-// export async function getStaticPaths() {
-//   try {
-//     const { data } = await supabase.from('BlogContent').select('post_title');
-//     const paths = data.map((post: any) => {
-//       return { params: { post: post?.post_title } };
-//     });
-//     return {
-//       paths,
-//       fallback: true,
-//     };
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+export async function getStaticPaths() {
+  const posts = await getBlogsList();
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const paths = posts.map((post: any) => ({
+    params: { post: post.slug },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
   let post = _.get(context, 'params.post');
   if (_.isArray(post)) post = _.first(post);
 
