@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import { GetStaticPropsContext } from 'next';
+import { GetServerSidePropsContext } from 'next';
 import { useSession } from 'next-auth/react';
-import { getBlogDetail, getBlogsList } from '../../../gql';
+import { getBlogDetail } from '../../../gql';
 import BlogForm from '../../../components/forms/BlogForm';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
@@ -26,20 +26,7 @@ const EditPost = ({ slug, initialData }: Props) => {
   );
 };
 
-export async function getStaticPaths() {
-  const posts = await getBlogsList();
-
-  const paths = posts.map((post: any) => ({
-    params: { post: post.slug },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export const getStaticProps = async (context: GetStaticPropsContext) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   let slug = _.get(context, 'params.post');
   if (_.isArray(slug)) slug = _.first(slug);
   if (!slug) {

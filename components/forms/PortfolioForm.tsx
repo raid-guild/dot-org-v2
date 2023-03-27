@@ -62,14 +62,13 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
   const { data: session } = useSession();
   const token = _.get(session, 'token') || '';
   const { submitProjectForm, submitProjectEditForm } = useSubmit(token);
-  console.log('initialData:', initialData);
   // const clearData = () => {
   //   reset();
   // };
 
   const onSubmit = (data: FieldValues) => {
     if (isEditable && slug) {
-      submitProjectEditForm(data, slug, initialData.imageUrl);
+      submitProjectEditForm(data, slug, initialData?.imageUrl);
     } else {
       submitProjectForm(data);
     }
@@ -81,15 +80,20 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
         label='Project Name'
         name='projectName'
         localForm={localForm}
-        defaultValue={isEditable && initialData.name}
+        defaultValue={isEditable && initialData?.name}
       />
-      <Input label='Project Slug:' name='slug' localForm={localForm} defaultValue={isEditable && initialData.slug} />
-      <Input label='Github:' name='githubUrl' localForm={localForm} defaultValue={isEditable && initialData.repoLink} />
+      <Input label='Project Slug:' name='slug' localForm={localForm} defaultValue={isEditable && initialData?.slug} />
+      <Input
+        label='Github:'
+        name='githubUrl'
+        localForm={localForm}
+        defaultValue={isEditable && initialData?.repoLink}
+      />
       <Input
         label='Description:'
         name='description'
         localForm={localForm}
-        defaultValue={isEditable && initialData.description}
+        defaultValue={isEditable && initialData?.description}
       />
 
       <VStack alignItems='flex-start' width='100%'>

@@ -1,25 +1,42 @@
-import { Flex, Heading, Text, VStack, Image, Stack } from '@raidguild/design-system';
+import { Flex, Heading, Text, VStack, Image, Stack, Link, Button } from '@raidguild/design-system';
 import _ from 'lodash';
-import { GetStaticPropsContext } from 'next';
+import { GetServerSidePropsContext } from 'next';
+import { useSession } from 'next-auth/react';
 
+import { FaEdit } from 'react-icons/fa';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import Markdown from '../../../components/atoms/Markdown';
 import { getBlogDetail, getBlogsList } from '../../../gql';
-import { getMonthString } from '../../../utils';
+import { getMonthString, checkPermission } from '../../../utils';
 
 type Props = {
   initialData: any;
 };
 
 function PostPage({ initialData }: Props) {
+  const { data: session } = useSession();
+  console.log('session:', session);
+
+  const canEdit = checkPermission(session);
+
   const publishTime = new Date(_.get(initialData, 'createdAt'));
 
   const publishString = `${getMonthString(publishTime)} ${publishTime.getDate()} ${publishTime.getFullYear()}`;
   return (
     <CMSPageTemplate>
       <PageTitle title='State of The Raid' />
-      <Flex width={['90%', '90%', '60vw', '60vw', '60vw']} mx='auto' direction='column' gap={4}>
+      <Flex width={['90%', '90%', '60vw', '60vw', '60vw']} mx='auto' direction='column' gap={4} pt={8}>
+        {canEdit && (
+          <Stack alignItems='center' pb={8}>
+            <Link href={`/state-of-the-raid/${initialData.slug}/edit`}>
+              <Button variant='link' leftIcon={<FaEdit />}>
+                Edit Post
+              </Button>
+            </Link>
+          </Stack>
+        )}
+
         {_.get(initialData, 'image') && <Image src={_.get(initialData, 'image')} w='auto' mb='2rem' />}
         <VStack direction='column' alignItems='flex-start'>
           <Heading textAlign='left' as='h1'>
@@ -45,28 +62,26 @@ function PostPage({ initialData }: Props) {
   );
 }
 
-export async function getStaticPaths() {
-  const posts = await getBlogsList();
+// export async function getStaticPaths() {
+//   const posts = await getBlogsList();
 
-  const paths = posts.map((post: any) => ({
-    params: { post: post.slug },
-  }));
+//   const paths = posts.map((post: any) => ({
+//     params: { post: post.slug },
+//   }));
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
 
-export const getStaticProps = async (context: GetStaticPropsContext) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   let post = _.get(context, 'params.post');
   if (_.isArray(post)) post = _.first(post);
 
   if (!post) {
     return {
-      props: {
-        initialData: null,
-      },
+      props: {},
     };
   }
 

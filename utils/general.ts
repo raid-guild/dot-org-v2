@@ -70,3 +70,11 @@ export const getMonthString = (date: Date) => {
   }
   return publishMonthString;
 };
+
+export const checkPermission = (session: any) => {
+  if (!session) return '';
+  const { user } = session;
+  const toCheck = ['admin', 'cohort', 'member'];
+  const canEdit = toCheck.some((role) => user.roles.includes(role));
+  return canEdit;
+};
