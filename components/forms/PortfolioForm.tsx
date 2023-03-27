@@ -62,14 +62,14 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
   const { data: session } = useSession();
   const token = _.get(session, 'token') || '';
   const { submitProjectForm, submitProjectEditForm } = useSubmit(token);
-
+  console.log('initialData:', initialData);
   // const clearData = () => {
   //   reset();
   // };
 
   const onSubmit = (data: FieldValues) => {
     if (isEditable && slug) {
-      submitProjectEditForm(data, slug);
+      submitProjectEditForm(data, slug, initialData.imageUrl);
     } else {
       submitProjectForm(data);
     }

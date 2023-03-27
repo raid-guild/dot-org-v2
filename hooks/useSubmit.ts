@@ -294,7 +294,7 @@ const useSubmit = (token: string) => {
     }
   };
 
-  const submitProjectEditForm = async (data: any, slug: string): Promise<any> => {
+  const submitProjectEditForm = async (data: any, slug: string, defaultImageUrl: string): Promise<any> => {
     const imageUrl = await useImageUpload(data.imageUrl[0]);
     try {
       const submitData: PortfolioUpdateDataProps = {
@@ -307,7 +307,7 @@ const useSubmit = (token: string) => {
           name: data.projectName,
           repo_link: data.githubUrl,
           result_link: data.resultLink,
-          image_url: imageUrl || '',
+          image_url: imageUrl || defaultImageUrl,
           description: data.description,
           approach: { content: [data.approach] },
           challenge: { content: [data.challenge] },
@@ -316,6 +316,7 @@ const useSubmit = (token: string) => {
           category: data.categoryOptions.value,
         },
       };
+      console.log('submitData:', submitData);
       const res = await mutatePortfolioUpdate({ ...submitData });
       return res;
     } catch (e: any) {
@@ -352,7 +353,7 @@ const useSubmit = (token: string) => {
       return res;
     }
   };
-  const submitBlogEditForm = async (data: any, slug: string): Promise<any> => {
+  const submitBlogEditForm = async (data: any, slug: string, defaultImageUrl: string): Promise<any> => {
     const imageUrl = await useImageUpload(data.image[0]);
     try {
       const submitData: BlogUpdateProps = {
@@ -364,7 +365,7 @@ const useSubmit = (token: string) => {
         blog: {
           title: data.title,
           author: data.author,
-          image: imageUrl || '',
+          image: imageUrl || defaultImageUrl,
           description: data.description,
           slug: data.slug,
           content: data.content,

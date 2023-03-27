@@ -26,8 +26,7 @@ const ImageUpload = ({ localForm, defaultValue, label, name }: Props) => {
   return (
     <VStack align='flex-start' w='100%'>
       <Input w='100%' name={name} label={label} localForm={localForm} type='file' defaultValue={defaultValue} />
-      {imagePath && <Image src={imagePath} alt='image' w='200px' />}
-      {defaultValue && <Image src={defaultValue} alt='image' w='200px' />}
+      {imagePath ? <Image src={imagePath} alt='image' w='200px' /> : <Image src={defaultValue} alt='image' w='200px' />}
     </VStack>
   );
 };

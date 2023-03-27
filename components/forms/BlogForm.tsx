@@ -27,7 +27,7 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
 
   const onSubmit = (data: FieldValues) => {
     if (isEditable && slug) {
-      submitBlogEditForm(data, slug);
+      submitBlogEditForm(data, slug, initialData.image);
     } else {
       submitBlogForm(data);
     }
