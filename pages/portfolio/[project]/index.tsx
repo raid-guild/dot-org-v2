@@ -20,8 +20,7 @@ import Markdown from '../../../components/atoms/Markdown';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import Link from '../../../components/atoms/ChakraNextLink';
-import { getPortfolioDetail, getPortfolioList } from '../../../gql';
-import usePortfolioDetail from '../../../hooks/usePortfolioDetail';
+import { getPortfolioDetail } from '../../../gql';
 import { checkPermission } from '../../../utils';
 
 interface ProjectCardProps {
@@ -62,11 +61,8 @@ interface Props {
 
 function PortfolioPage({ initialData }: Props) {
   const { data: session } = useSession();
-  console.log('initialData:', initialData);
 
   const canEdit = checkPermission(session);
-  // const token = _.get(session, 'token');
-  // const { data: projectData } = usePortfolioDetail({ slug: project, initialData, token });
 
   return (
     <CMSPageTemplate>

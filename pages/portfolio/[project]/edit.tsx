@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
 import { useSession } from 'next-auth/react';
-import { getPortfolioDetail, getPortfolioList } from '../../../gql';
+import { getPortfolioDetail } from '../../../gql';
 import PortfolioForm from '../../../components/forms/PortfolioForm';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';

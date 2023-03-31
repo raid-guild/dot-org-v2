@@ -1,4 +1,4 @@
-import { VStack, Box, Text, Textarea, Input, Select, Button, Stack, Toast, useToast } from '@raidguild/design-system';
+import { VStack, Box, Text, Textarea, Input, Select, Button, Stack } from '@raidguild/design-system';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import { useSession } from 'next-auth/react';

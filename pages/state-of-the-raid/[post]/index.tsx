@@ -7,7 +7,7 @@ import { FaEdit } from 'react-icons/fa';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import Markdown from '../../../components/atoms/Markdown';
-import { getBlogDetail, getBlogsList } from '../../../gql';
+import { getBlogDetail } from '../../../gql';
 import { getMonthString, checkPermission } from '../../../utils';
 
 type Props = {
@@ -16,7 +16,6 @@ type Props = {
 
 function PostPage({ initialData }: Props) {
   const { data: session } = useSession();
-  console.log('session:', session);
 
   const canEdit = checkPermission(session);
 
