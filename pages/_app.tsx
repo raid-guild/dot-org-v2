@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import '@rainbow-me/rainbowkit/styles.css';
 import type { AppProps } from 'next/app';
-// import { DefaultSeo } from 'next-seo';
+import { DefaultSeo } from 'next-seo';
 import { SessionProvider } from 'next-auth/react';
 import { WagmiConfig } from 'wagmi';
 import { QueryClient, QueryClientProvider, QueryCache } from '@tanstack/react-query';
@@ -44,6 +44,30 @@ export default function App({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={defaultTheme}>
       <ColorModeScript initialColorMode='dark' />
       <Fonts />
+      <DefaultSeo
+        title='RaidGuild'
+        titleTemplate='RaidGuild'
+        defaultTitle='RaidGuild'
+        description='A Decentralized Collective of Mercenaries Ready to Slay Your Web3
+        Product Demons'
+        canonical='https://raidguild.org'
+        openGraph={{
+          url: 'https://raidguild.org',
+          title: 'RaidGuild',
+          description: 'A Decentralized Collective of Mercenaries Ready to Slay Your Web3 Product Demons.',
+          images: [
+            {
+              url: 'https://res.cloudinary.com/saimano/image/upload/v1625726563/RaidGuild/illustrations/raid__cloud__castle_j8pe6f.png',
+              alt: 'RaidGuild',
+            },
+          ],
+        }}
+        twitter={{
+          handle: '@RaidGuild',
+          site: '@RaidGuild',
+          cardType: 'summary_large_image',
+        }}
+      />
       <WagmiConfig client={wagmiClient}>
         <SessionProvider refetchInterval={120} session={pageProps.session}>
           <RainbowKitSiweNextAuthProvider>

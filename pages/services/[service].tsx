@@ -37,9 +37,6 @@ const Service = ({ title, description, roleImage, salesContent, data }: Props) =
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const { params } = context;
   const service = _.isArray(_.get(params, 'service')) ? _.first(_.get(params, 'service')) : _.get(params, 'service');
-  // TODO get mapping for where statement
-  // TODO query API for service lookup
-  // TODO return data
   let copy = null;
   if (service && !_.includes(_.keys(services), service)) {
     copy = _.get(services, service);

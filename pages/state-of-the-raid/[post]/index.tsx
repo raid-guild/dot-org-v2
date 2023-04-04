@@ -1,6 +1,7 @@
 import { Flex, Heading, Text, VStack, Image, Stack, Link, Button } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
+import { NextSeo } from 'next-seo';
 import { useSession } from 'next-auth/react';
 
 import { FaEdit } from 'react-icons/fa';
@@ -24,7 +25,25 @@ function PostPage({ initialData }: Props) {
   const publishString = `${getMonthString(publishTime)} ${publishTime.getDate()} ${publishTime.getFullYear()}`;
   return (
     <CMSPageTemplate>
-      <PageTitle title='State of The Raid' />
+      <PageTitle title={_.get(initialData, 'title')} />
+      <NextSeo
+        title={_.get(initialData, 'title')}
+        titleTemplate={_.get(initialData, 'title')}
+        defaultTitle={_.get(initialData, 'ntitleame')}
+        description={_.get(initialData, 'description')}
+        canonical={`https://www.raidguild.org/state-of-the-raid/${initialData.slug}`}
+        openGraph={{
+          url: `${`https://www.raidguild.org/state-of-the-raid/${initialData.slug}`}`,
+          title: `${_.get(initialData, 'title')}`,
+          description: `${_.get(initialData, 'description')}`,
+          images: [
+            {
+              url: `${_.get(initialData, 'image')}`,
+              alt: `${_.get(initialData, 'title')}`,
+            },
+          ],
+        }}
+      />
       <Flex width={['90%', '90%', '60vw', '60vw', '60vw']} mx='auto' direction='column' gap={4} pt={8}>
         {canEdit && (
           <Stack alignItems='center' pb={8}>

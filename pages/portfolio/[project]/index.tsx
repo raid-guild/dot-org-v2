@@ -14,6 +14,7 @@ import {
 } from '@raidguild/design-system';
 import { FaEdit } from 'react-icons/fa';
 import { GetServerSidePropsContext } from 'next';
+import { NextSeo } from 'next-seo';
 import { useSession } from 'next-auth/react';
 import Markdown from '../../../components/atoms/Markdown';
 
@@ -66,7 +67,25 @@ function PortfolioPage({ initialData }: Props) {
 
   return (
     <CMSPageTemplate>
-      <PageTitle title={_.get(initialData, 'name', '')} />
+      <PageTitle title={_.get(initialData, 'name')} />
+      <NextSeo
+        title={_.get(initialData, 'name')}
+        titleTemplate={_.get(initialData, 'name')}
+        defaultTitle={_.get(initialData, 'name')}
+        description={_.get(initialData, 'description')}
+        canonical={_.get(initialData, 'resultLink')}
+        openGraph={{
+          url: `${_.get(initialData, 'resultLink')}`,
+          title: `${_.get(initialData, 'name')}`,
+          description: `${_.get(initialData, 'description')}`,
+          images: [
+            {
+              url: `${_.get(initialData, 'imageUrl')}`,
+              alt: `${_.get(initialData, 'name')}`,
+            },
+          ],
+        }}
+      />
       {canEdit && (
         <Stack alignItems='center' pb={8}>
           <Link href={`/portfolio/${initialData.slug}/edit`}>
