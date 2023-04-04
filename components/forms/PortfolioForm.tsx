@@ -68,7 +68,7 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
 
   const onSubmit = (data: FieldValues) => {
     if (isEditable && slug) {
-      submitProjectEditForm(data, slug, initialData?.imageUrl);
+      submitProjectEditForm(data, slug, initialData.imageUrl);
     } else {
       submitProjectForm(data);
     }
@@ -97,7 +97,12 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
       />
 
       <VStack alignItems='flex-start' width='100%'>
-        <ImageUpload name='imageUrl' label='Project Logo:' localForm={localForm} defaultValue={initialData?.imageUrl} />
+        <ImageUpload
+          name='imageUrl'
+          label='Project Logo:'
+          localForm={localForm}
+          defaultValue={isEditable && initialData?.imageUrl}
+        />
       </VStack>
       {questions.map((question) => (
         <Stack width='full' key={question.label}>
