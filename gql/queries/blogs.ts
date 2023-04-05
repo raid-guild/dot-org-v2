@@ -6,6 +6,7 @@ export const BLOG_DETAIL_FRAGMENT = gql`
     title
     slug
     description
+    content
     image
     created_at
   }
@@ -14,8 +15,8 @@ export const BLOG_DETAIL_FRAGMENT = gql`
 export const BLOG_LIST_QUERY = gql`
   query BlogList {
     blogs {
-      id
       title
+      author
       slug
       description
       image
@@ -27,10 +28,11 @@ export const BLOG_LIST_QUERY = gql`
 export const BLOG_DETAIL_QUERY = gql`
   query BlogDetail($slug: String!) {
     blogs(where: { slug: { _eq: $slug } }) {
-      id
       title
+      author
       slug
       description
+      content
       image
       created_at
     }

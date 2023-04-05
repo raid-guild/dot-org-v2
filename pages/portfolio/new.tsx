@@ -1,14 +1,14 @@
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
-import BlogForm from '../../components/forms/BlogForm';
+import PortfolioForm from '../../components/forms/PortfolioForm';
 
-function Publish() {
+const ShippingStation = () => {
   return (
     <CMSPageTemplate>
-      <PageTitle title='Create Post' />
-      <BlogForm />
+      <PageTitle title='Create Shipped Product' />
+      <PortfolioForm />
     </CMSPageTemplate>
   );
-}
+};
 
-export default Publish;
+export default ShippingStation;

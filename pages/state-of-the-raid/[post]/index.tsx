@@ -1,109 +1,94 @@
-import { Box, Heading, Text, VStack, Image, HStack } from '@raidguild/design-system';
+import { Flex, Heading, Text, VStack, Image, Stack, Link, Button } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
+import { NextSeo } from 'next-seo';
+import { useSession } from 'next-auth/react';
 
+import { FaEdit } from 'react-icons/fa';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import Markdown from '../../../components/atoms/Markdown';
-// import useBlogsDetail from '../../hooks/useBlogsDetail';
-// import ProjectCard from '../../components/page-components/ProjectCard';
 import { getBlogDetail } from '../../../gql';
+import { getMonthString, checkPermission } from '../../../utils';
 
 type Props = {
-  post: any;
+  initialData: any;
 };
 
-const getMonthString = (date: Date) => {
-  const publishMonth = date.getMonth();
-  let publishMonthString;
-  switch (publishMonth) {
-    case 0:
-      publishMonthString = 'Jan';
-      break;
-    case 1:
-      publishMonthString = 'Feb';
-      break;
-    case 2:
-      publishMonthString = 'Mar';
-      break;
-    case 3:
-      publishMonthString = 'Apr';
-      break;
-    case 4:
-      publishMonthString = 'May';
-      break;
-    case 5:
-      publishMonthString = 'Jun';
-      break;
-    case 6:
-      publishMonthString = 'Jul';
-      break;
-    case 7:
-      publishMonthString = 'Aug';
-      break;
-    case 8:
-      publishMonthString = 'Sep';
-      break;
-    case 9:
-      publishMonthString = 'Oct';
-      break;
-    case 10:
-      publishMonthString = 'Nov';
-      break;
-    case 11:
-      publishMonthString = 'Dec';
-      break;
-    default:
-      break;
-  }
-  return publishMonthString;
-};
+function PostPage({ initialData }: Props) {
+  const { data: session } = useSession();
 
-function PostPage({ post }: Props) {
-  const publishTime = new Date(_.get(post, 'created_at'));
+  const canEdit = checkPermission(session);
+
+  const publishTime = new Date(_.get(initialData, 'createdAt'));
 
   const publishString = `${getMonthString(publishTime)} ${publishTime.getDate()} ${publishTime.getFullYear()}`;
   return (
     <CMSPageTemplate>
-      <PageTitle title='State of The Raid' />
-      <Box background='blackAlpha.800' padding='2rem 0'>
-        <VStack>
-          {_.get(post, 'heroImage') && <Image src={_.get(post, 'heroImage')} maxHeight='200' mb='2rem' />}
-          <Box width='500px'>
-            <Heading as='h1'>{_.get(post, 'postTitle')}</Heading>
-            <Text>
-              Published by {_.get(post, 'authorName')} | {publishString}
-            </Text>
-            <Text>{_.get(post, 'description')}</Text>
-            <Box height='3rem' />
-            <Box width='100%' height='1px' backgroundColor='white' />
-            <Box height='3rem' />
-            <Markdown>{_.get(post, 'content.body')}</Markdown>
-          </Box>
+      <PageTitle title={_.get(initialData, 'title')} />
+      <NextSeo
+        title={_.get(initialData, 'title')}
+        description={_.get(initialData, 'description')}
+        canonical={`https://www.raidguild.org/state-of-the-raid/${initialData.slug}`}
+        openGraph={{
+          url: `${`https://www.raidguild.org/state-of-the-raid/${initialData.slug}`}`,
+          title: `${_.get(initialData, 'title')}`,
+          description: `${_.get(initialData, 'description')}`,
+          images: [
+            {
+              url: `${_.get(initialData, 'image')}`,
+              alt: `${_.get(initialData, 'title')}`,
+            },
+          ],
+        }}
+      />
+      <Flex width={['90%', '90%', '60vw', '60vw', '60vw']} mx='auto' direction='column' gap={4} pt={8}>
+        {canEdit && (
+          <Stack alignItems='center' pb={8}>
+            <Link href={`/state-of-the-raid/${initialData.slug}/edit`}>
+              <Button variant='link' leftIcon={<FaEdit />}>
+                Edit Post
+              </Button>
+            </Link>
+          </Stack>
+        )}
+
+        {_.get(initialData, 'image') && <Image src={_.get(initialData, 'image')} w='auto' mb='2rem' />}
+        <VStack direction='column' alignItems='flex-start'>
+          <Heading textAlign='left' as='h1'>
+            {_.get(initialData, 'title')}
+          </Heading>
+          <Flex direction='row'>
+            Published by{' '}
+            <Text as='span' fontWeight='bold' px='12px'>
+              {_.get(initialData, 'author')}
+            </Text>{' '}
+            | {publishString}
+          </Flex>
         </VStack>
-        <HStack m='12rem 2rem' justify='space-between'>
-          <Image src='/assets/illustrations/LeftWing.svg' width='30vw' />
-          <Image src='/assets/illustrations/Swords.svg' />
-          <Image src='/assets/illustrations/RightWing.svg' width='30vw' />
-        </HStack>
-      </Box>
+        <Stack background='blackAlpha.800' mt='6' alignItems='flex-start' py='50px'>
+          <Heading textAlign='left' as='h1'>
+            Abstract
+          </Heading>
+          <Text>{_.get(initialData, 'description')}</Text>
+          <Markdown>{_.get(initialData, 'content')}</Markdown>
+        </Stack>
+      </Flex>
     </CMSPageTemplate>
   );
 }
 
 // export async function getStaticPaths() {
-//   try {
-//     const { data } = await supabase.from('BlogContent').select('post_title');
-//     const paths = data.map((post: any) => {
-//       return { params: { post: post?.post_title } };
-//     });
-//     return {
-//       paths,
-//       fallback: true,
-//     };
-//   } catch (error) {
-//     console.log(error);
-//   }
+//   const posts = await getBlogsList();
+
+//   const paths = posts.map((post: any) => ({
+//     params: { post: post.slug },
+//   }));
+
+//   return {
+//     paths,
+//     fallback: false,
+//   };
 // }
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
@@ -112,9 +97,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
   if (!post) {
     return {
-      props: {
-        initialData: null,
-      },
+      props: {},
     };
   }
 
@@ -122,7 +105,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
   return {
     props: {
-      initialData: _.get(result, 'blogs[0]'),
+      initialData: result,
     },
   };
 };

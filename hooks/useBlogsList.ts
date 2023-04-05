@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getBlogsList } from 'gql';
+import { getBlogsList } from '../gql';
 
 interface Props {
   initialData?: any;

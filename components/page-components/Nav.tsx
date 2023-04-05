@@ -30,9 +30,9 @@ const StyledButton = styled(Button)`
 `;
 
 const navItems = [
-  { name: 'Manifesto', href: '/#manifesto' },
+  { name: 'Blog', href: '/state-of-the-raid' },
   { name: 'Services', href: '/#services' },
-  { name: 'Portfolio', href: '/#portfolio' },
+  { name: 'Portfolio', href: '/portfolio' },
   { name: 'Join', href: '/join/1' },
   { name: 'Hire', href: '/hire/1' },
 ];

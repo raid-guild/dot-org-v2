@@ -5,8 +5,7 @@ import { camelize } from '../../utils';
 
 export const getBlogsList = async (token?: string) => {
   const result = await client({ token }).request(BLOG_LIST_QUERY);
-
-  return camelize(_.get(result, 'bids'));
+  return camelize(_.get(result, 'blogs'));
 };
 
 export const getBlogDetail = async (slug: string, token?: string) => {
@@ -14,5 +13,5 @@ export const getBlogDetail = async (slug: string, token?: string) => {
     slug,
   });
 
-  return camelize(_.get(result, 'bids'));
+  return camelize(_.first(_.get(result, 'blogs')));
 };

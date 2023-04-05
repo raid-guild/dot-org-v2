@@ -49,6 +49,7 @@
     "siwe": "^1.1.6",
     "tslib": "^2.3.0",
     "wagmi": "^0.10.4",
+    "web3.storage": "^4.5.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {

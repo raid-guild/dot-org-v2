@@ -12,15 +12,17 @@ import {
   Button,
   Flex,
 } from '@raidguild/design-system';
-import { GetStaticPropsContext } from 'next';
+import { FaEdit } from 'react-icons/fa';
+import { GetServerSidePropsContext } from 'next';
+import { NextSeo } from 'next-seo';
 import { useSession } from 'next-auth/react';
+import Markdown from '../../../components/atoms/Markdown';
 
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import Link from '../../../components/atoms/ChakraNextLink';
-import { getPortfolioDetail, getPortfolioList } from '../../../gql';
-
-import usePortfolioDetail from '../../../hooks/usePortfolioDetail';
+import { getPortfolioDetail } from '../../../gql';
+import { checkPermission } from '../../../utils';
 
 interface ProjectCardProps {
   name: string;
@@ -44,31 +46,56 @@ const ProjectCard = ({ name, logo, website }: ProjectCardProps) => {
           {name}
         </Heading>
         <Text>{website}</Text>
-        <Link href={website} isExternal>
-          <Button>Visit Website</Button>
-        </Link>
+        {website && (
+          <Link href={website} isExternal>
+            <Button>Visit Website</Button>
+          </Link>
+        )}
       </Stack>
     </Stack>
   );
 };
 
 interface Props {
-  project: string;
   initialData: any;
 }
 
-function PortfolioPage({ project, initialData }: Props) {
+function PortfolioPage({ initialData }: Props) {
   const { data: session } = useSession();
-  const token = _.get(session, 'token');
-  const { data: projectData } = usePortfolioDetail({ slug: project, initialData, token });
+
+  const canEdit = checkPermission(session);
 
   return (
     <CMSPageTemplate>
-      <PageTitle title={_.get(projectData, 'name', '')} />
-
+      <PageTitle title={_.get(initialData, 'name')} />
+      <NextSeo
+        title={_.get(initialData, 'name')}
+        description={_.get(initialData, 'description')}
+        canonical={_.get(initialData, 'resultLink')}
+        openGraph={{
+          url: `${_.get(initialData, 'resultLink')}`,
+          title: `${_.get(initialData, 'name')}`,
+          description: `${_.get(initialData, 'description')}`,
+          images: [
+            {
+              url: `${_.get(initialData, 'imageUrl')}`,
+              alt: `${_.get(initialData, 'name')}`,
+            },
+          ],
+        }}
+      />
+      {canEdit && (
+        <Stack alignItems='center' pb={8}>
+          <Link href={`/portfolio/${initialData.slug}/edit`}>
+            <Button variant='link' leftIcon={<FaEdit />}>
+              Edit Portfolio
+            </Button>
+          </Link>
+        </Stack>
+      )}
       <Flex minH='250px' justify='center' align='center'>
         <Text maxW='60%' textAlign='center'>
-          {_.get(projectData, 'description')}
+          {_.get(initialData, 'description')}
         </Text>
       </Flex>
 
@@ -83,10 +110,8 @@ function PortfolioPage({ project, initialData }: Props) {
             width={['auto', 'auto', 'auto', '70%', '70%']}
             lineHeight='taller'>
             <Stack spacing={6}>
-              {_.map(_.get(projectData, 'challenge.content'), (content: any) => (
-                <Text key={content} textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
-                  {content}
-                </Text>
+              {_.map(_.get(initialData, 'challenge.content'), (content: any) => (
+                <Markdown key={content}>{content}</Markdown>
               ))}
             </Stack>
           </CardBody>
@@ -100,9 +125,9 @@ function PortfolioPage({ project, initialData }: Props) {
         px={28}
         py={14}>
         <ProjectCard
-          name={_.get(projectData, 'name')}
-          website={_.get(projectData, 'resultLink')}
-          logo={_.get(projectData, 'imageUrl')}
+          name={_.get(initialData, 'name')}
+          website={_.get(initialData, 'resultLink')}
+          logo={_.get(initialData, 'imageUrl')}
         />
         <Stack p='4rem' spacing={6} align='center'>
           <HStack align='center' gap={2}>
@@ -110,10 +135,8 @@ function PortfolioPage({ project, initialData }: Props) {
             <Heading size='lg'>The Approach</Heading>
           </HStack>
           <Stack spacing={6}>
-            {_.map(_.get(projectData, 'approach.content'), (content: any) => (
-              <Text key={content} textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
-                {content}
-              </Text>
+            {_.map(_.get(initialData, 'approach.content'), (content: any) => (
+              <Markdown key={content}>{content}</Markdown>
             ))}
           </Stack>
         </Stack>
@@ -129,10 +152,8 @@ function PortfolioPage({ project, initialData }: Props) {
             width={['auto', 'auto', 'auto', '70%', '70%']}
             lineHeight='taller'>
             <Stack spacing={6}>
-              {_.map(_.get(projectData, 'result.content'), (content: any) => (
-                <Text key={content} textAlign={['justify', 'justify', 'justify', 'start', 'start']} lineHeight='tall'>
-                  {content}
-                </Text>
+              {_.map(_.get(initialData, 'result.content'), (content: any) => (
+                <Markdown key={content}>{content}</Markdown>
               ))}
             </Stack>
           </CardBody>
@@ -140,14 +161,14 @@ function PortfolioPage({ project, initialData }: Props) {
       </Card>
       <Flex minH='200px' justify='center' align='center'>
         <HStack gap={2} justify={['center', 'center', 'center', 'start', 'start']}>
-          {_.get(projectData, 'resultLink') && (
-            <Link href={_.get(projectData, 'resultLink')} isExternal>
+          {_.get(initialData, 'resultLink') && (
+            <Link href={_.get(initialData, 'resultLink')} isExternal>
               <Button>View Project</Button>
             </Link>
           )}
 
-          {_.get(projectData, 'repoLink') && (
-            <Link href={_.get(projectData, 'repoLink')} isExternal>
+          {_.get(initialData, 'repoLink') && (
+            <Link href={_.get(initialData, 'repoLink')} isExternal>
               <Button variant='outline'>View Codebase</Button>
             </Link>
           )}
@@ -157,23 +178,24 @@ function PortfolioPage({ project, initialData }: Props) {
   );
 }
 
-export async function getStaticPaths() {
-  const portfolios = await getPortfolioList();
+// export async function getStaticPaths() {
+//   const portfolios = await getPortfolioList();
 
-  const paths = portfolios.map((portfolio: any) => ({
-    params: { project: portfolio.slug },
-  }));
+//   const paths = portfolios.map((portfolio: any) => ({
+//     params: { project: portfolio.slug },
+//   }));
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
 
 // This function gets called at build time
-export async function getStaticProps(context: GetStaticPropsContext) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   let projectSlug = _.get(context, 'params.project');
   if (_.isArray(projectSlug)) projectSlug = _.first(projectSlug);
+
   if (!projectSlug) {
     return {
       props: {},
@@ -184,8 +206,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 
   return {
     props: {
-      projectSlug,
-      initialData: result || null,
+      initialData: result,
     },
   };
 }

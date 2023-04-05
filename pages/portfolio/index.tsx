@@ -11,8 +11,6 @@ import { getPortfolioList } from '../../gql';
 
 import wallSconce from '../../assets/illustrations/wallSconce.svg';
 
-// import Markdown from '../../components/atoms/Markdown';
-
 interface Props {
   initialData: any;
 }

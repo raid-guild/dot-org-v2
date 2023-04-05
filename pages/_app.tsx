@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import '@rainbow-me/rainbowkit/styles.css';
 import type { AppProps } from 'next/app';
-// import { DefaultSeo } from 'next-seo';
+import { DefaultSeo } from 'next-seo';
 import { SessionProvider } from 'next-auth/react';
 import { WagmiConfig } from 'wagmi';
 import { QueryClient, QueryClientProvider, QueryCache } from '@tanstack/react-query';
@@ -17,6 +17,7 @@ import {
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import { RainbowKitSiweNextAuthProvider } from '@rainbow-me/rainbowkit-siwe-next-auth';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import SEO from '../next-seo.config';
 import { chains } from '../utils/chains';
 import { wagmiClient } from '../utils/wagmiClient';
 import { AppContextProvider } from '../context/appState';
@@ -44,6 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={defaultTheme}>
       <ColorModeScript initialColorMode='dark' />
       <Fonts />
+      <DefaultSeo {...SEO} />
       <WagmiConfig client={wagmiClient}>
         <SessionProvider refetchInterval={120} session={pageProps.session}>
           <RainbowKitSiweNextAuthProvider>
