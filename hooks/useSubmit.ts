@@ -3,7 +3,7 @@ import { utils } from 'ethers';
 import { balanceOf, payWithRaidToken } from '../utils/web3';
 import { RAID_CONTRACT_ADDRESS, DAO_ADDRESS, SUBMISSION_REQUEST_FEE } from '../utils/config';
 import useApplicationCreate from './useApplicationCreate';
-import useCreateConsult from './useCreateConsult';
+import useCreateConsults from './useCreateConsults';
 import {
   mapBudgetOptions,
   mapProjectType,
@@ -17,8 +17,8 @@ import {
 
 const useSubmit = (token: string) => {
   const { data: signer } = useSigner();
-  const { mutateAsync } = useApplicationCreate(token);
-  const { mutateAsync: mutateConsult } = useCreateConsult(token);
+  const { mutateAsync: mutateApplication } = useApplicationCreate(token);
+  const { mutateAsync: mutateConsults } = useCreateConsults(token);
 
   const submitJoinForm = async (data: any) => {
     const applicationSkills = [
@@ -54,7 +54,7 @@ const useSubmit = (token: string) => {
       handbook_read: data.join6.handbookRead,
       pledge_readiness: data.join6.pledgeReadiness,
     };
-    const res = await mutateAsync({ ...submitData });
+    const res = await mutateApplication({ ...submitData });
     return res;
   };
 
@@ -106,12 +106,11 @@ const useSubmit = (token: string) => {
         consultation_status_key: 'PENDING',
       };
 
-      const insertResponse = await mutateConsult({ ...submitData });
+      const insertResponse = await mutateConsults({ ...submitData });
 
-      const consultId = insertResponse.insert_consultations_one.id;
       const discordData = {
         title: data.hire2.projectName,
-        url: `https://dm.raidguild.org/consultations/${consultId}`,
+        url: `https://dm.raidguild.org/consultations`,
         projectType: data.hire2.projectType,
         specsLink: data.hire2.specsLink,
         budgetRange: data.hire3.budget,
