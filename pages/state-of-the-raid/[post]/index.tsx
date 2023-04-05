@@ -28,8 +28,6 @@ function PostPage({ initialData }: Props) {
       <PageTitle title={_.get(initialData, 'title')} />
       <NextSeo
         title={_.get(initialData, 'title')}
-        titleTemplate={_.get(initialData, 'title')}
-        defaultTitle={_.get(initialData, 'ntitleame')}
         description={_.get(initialData, 'description')}
         canonical={`https://www.raidguild.org/state-of-the-raid/${initialData.slug}`}
         openGraph={{

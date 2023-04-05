@@ -70,8 +70,6 @@ function PortfolioPage({ initialData }: Props) {
       <PageTitle title={_.get(initialData, 'name')} />
       <NextSeo
         title={_.get(initialData, 'name')}
-        titleTemplate={_.get(initialData, 'name')}
-        defaultTitle={_.get(initialData, 'name')}
         description={_.get(initialData, 'description')}
         canonical={_.get(initialData, 'resultLink')}
         openGraph={{

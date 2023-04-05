@@ -46,7 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Fonts />
       <DefaultSeo
         title='RaidGuild'
-        titleTemplate='RaidGuild'
+        titleTemplate='RaidGuild | %s'
         defaultTitle='RaidGuild'
         description='A Decentralized Collective of Mercenaries Ready to Slay Your Web3
         Product Demons'
