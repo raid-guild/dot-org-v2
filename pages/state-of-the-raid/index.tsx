@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { format } from 'date-fns';
 import { Box, Card, Flex, Heading, Text, VStack, Image, HStack } from '@raidguild/design-system';
 
 import { useSession } from 'next-auth/react';
@@ -15,16 +16,23 @@ interface PostProps {
 const Post = ({ post }: PostProps) => {
   const link = `/state-of-the-raid/${post.slug}`;
   return (
-    <Link href={link}>
-      <Card border='1px solid #FF3864' w='full'>
-        <Flex minH='250px' align='center'>
-          <HStack gap='4rem'>
+    <Link href={link} w='70%'>
+      <Card border='1px solid #FF3864' w='100%'>
+        <Flex minH='200px' align='center' justify='center'>
+          <HStack gap='3rem'>
             <Image src={_.get(post, 'image')} height='auto' width='200px' marginRight='1rem' />
             <VStack spacing={6} color='white' align='flex-start'>
-              <Heading as='h4'>{_.get(post, 'title')}</Heading>
+              <Heading as='h4' size='lg'>
+                {_.get(post, 'title')}
+              </Heading>
               <Box maxWidth='50ch'>
                 <Text noOfLines={3}>{_.get(post, 'description')}</Text>
               </Box>
+              <HStack>
+                <Text>by: {_.get(post, 'author')}</Text>
+                <Text>|</Text>
+                <Text>{format(new Date(_.get(post, 'createdAt')), 'yyyy-MM-dd')}</Text>
+              </HStack>
             </VStack>
           </HStack>
         </Flex>

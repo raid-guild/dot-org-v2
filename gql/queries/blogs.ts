@@ -14,7 +14,7 @@ export const BLOG_DETAIL_FRAGMENT = gql`
 
 export const BLOG_LIST_QUERY = gql`
   query BlogList {
-    blogs {
+    blogs(order_by: { created_at: desc }) {
       title
       author
       slug
