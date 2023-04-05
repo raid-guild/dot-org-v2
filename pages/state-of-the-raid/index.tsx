@@ -8,6 +8,7 @@ import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
 import useBlogsList from '../../hooks/useBlogsList';
 import { getBlogsList } from '../../gql';
+import wallSconce from '../../assets/illustrations/wallSconce.svg';
 
 interface PostProps {
   post: any;
@@ -18,10 +19,13 @@ const Post = ({ post }: PostProps) => {
   return (
     <Link href={link} w='70%'>
       <Card border='1px solid #FF3864' w='100%'>
-        <Flex minH='200px' align='center' justify='center'>
-          <HStack gap='3rem'>
-            <Image src={_.get(post, 'image')} height='auto' width='200px' marginRight='1rem' />
-            <VStack spacing={6} color='white' align='flex-start'>
+        <Flex minH='200px' align='center' justify='center' w='100%'>
+          <Flex justify='space-between' w='100%'>
+            <Flex justify='center' w='40%'>
+              <Image src={_.get(post, 'image') || wallSconce.src} height='auto' width='150px' marginRight='1rem' />
+            </Flex>
+
+            <VStack spacing={6} color='white' align='flex-start' w='full'>
               <Heading as='h4' size='lg'>
                 {_.get(post, 'title')}
               </Heading>
@@ -34,7 +38,7 @@ const Post = ({ post }: PostProps) => {
                 <Text>{format(new Date(_.get(post, 'createdAt')), 'yyyy-MM-dd')}</Text>
               </HStack>
             </VStack>
-          </HStack>
+          </Flex>
         </Flex>
       </Card>
     </Link>
