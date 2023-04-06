@@ -24,3 +24,57 @@ export const nameToSlug = (name: string): string =>
     .toLowerCase()
     .replace(/[^a-z0-9]/g, '-')
     .replace(/-+/g, '-');
+
+export const getMonthString = (date: Date) => {
+  const publishMonth = date.getMonth();
+  let publishMonthString;
+  switch (publishMonth) {
+    case 0:
+      publishMonthString = 'Jan';
+      break;
+    case 1:
+      publishMonthString = 'Feb';
+      break;
+    case 2:
+      publishMonthString = 'Mar';
+      break;
+    case 3:
+      publishMonthString = 'Apr';
+      break;
+    case 4:
+      publishMonthString = 'May';
+      break;
+    case 5:
+      publishMonthString = 'Jun';
+      break;
+    case 6:
+      publishMonthString = 'Jul';
+      break;
+    case 7:
+      publishMonthString = 'Aug';
+      break;
+    case 8:
+      publishMonthString = 'Sep';
+      break;
+    case 9:
+      publishMonthString = 'Oct';
+      break;
+    case 10:
+      publishMonthString = 'Nov';
+      break;
+    case 11:
+      publishMonthString = 'Dec';
+      break;
+    default:
+      break;
+  }
+  return publishMonthString;
+};
+
+export const checkPermission = (session: any) => {
+  if (!session) return '';
+  const { user } = session;
+  const toCheck = ['admin', 'cohort', 'member'];
+  const canEdit = toCheck.some((role) => user.roles.includes(role));
+  return canEdit;
+};

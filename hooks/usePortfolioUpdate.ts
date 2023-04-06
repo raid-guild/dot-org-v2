@@ -1,26 +1,39 @@
 import { useToast } from '@raidguild/design-system';
 import { useMutation } from '@tanstack/react-query';
-import { BLOG_CREATE_MUTATION } from '../gql/mutations';
+import { PORTFOLIO_UPDATE_MUTATION } from '../gql/mutations';
 import { client } from '../gql';
 
-type IBlogInsert = {
-  blog: {
-    author: string;
-    content: any;
+type IPortfolioUpdate = {
+  where: {
+    slug: {
+      _eq: string;
+    };
+  };
+  portfolio: {
+    name: string;
+    repo_link: string;
+    result_link: string;
+    image_url: string;
     description: string;
-    image: string;
+    approach: {
+      content: string[];
+    };
+    challenge: {
+      content: string[];
+    };
+    result: {
+      content: string[];
+    };
     slug: string;
-    title: string;
-    tags?: string[];
+    category: string;
   };
 };
 
-const useBlogCreate = (token: string) => {
+const usePortfolioUpdate = (token: string) => {
   const toast = useToast();
-
   const { mutate, mutateAsync, isLoading, isError, isSuccess } = useMutation(
-    async ({ ...props }: IBlogInsert) => {
-      return client({ token }).request(BLOG_CREATE_MUTATION, {
+    async ({ ...props }: IPortfolioUpdate) => {
+      return client({ token }).request(PORTFOLIO_UPDATE_MUTATION, {
         ...props,
       });
     },
@@ -29,7 +42,7 @@ const useBlogCreate = (token: string) => {
         console.log('success', data);
         setTimeout(() => {
           toast.success({
-            title: 'New blog post added',
+            title: 'Portfolio Edited Successfully',
             duration: 3000,
             isClosable: true,
           });
@@ -43,4 +56,4 @@ const useBlogCreate = (token: string) => {
   return { mutate, mutateAsync, isLoading, isError, isSuccess };
 };
 
-export default useBlogCreate;
+export default usePortfolioUpdate;

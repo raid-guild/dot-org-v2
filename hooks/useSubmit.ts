@@ -3,7 +3,12 @@ import { utils } from 'ethers';
 import { balanceOf, payWithRaidToken } from '../utils/web3';
 import { RAID_CONTRACT_ADDRESS, DAO_ADDRESS, SUBMISSION_REQUEST_FEE } from '../utils/config';
 import useApplicationCreate from './useApplicationCreate';
-import useCreateConsult from './useCreateConsult';
+import usePortfolioCreate from './usePortfolioCreate';
+import usePortfolioUpdate from './usePortfolioUpdate';
+import useBlogCreate from './useBlogsCreate';
+import useBlogUpdate from './useBlogUpdate';
+import useImageUpload from './useImageUpload';
+import useCreateConsults from './useCreateConsults';
 import {
   mapBudgetOptions,
   mapProjectType,
@@ -15,10 +20,91 @@ import {
   mapDeliveryPriorities,
 } from '../utils/mapping';
 
+type PortfolioDataProps = {
+  portfolio: {
+    name: string;
+    repo_link: string;
+    result_link: string;
+    image_url: string;
+    description: string;
+    approach: {
+      content: string[];
+    };
+    challenge: {
+      content: string[];
+    };
+    result: {
+      content: string[];
+    };
+    slug: string;
+    category: string;
+  };
+};
+
+type PortfolioUpdateDataProps = {
+  where: {
+    slug: {
+      _eq: string;
+    };
+  };
+  portfolio: {
+    name: string;
+    repo_link: string;
+    result_link: string;
+    image_url: string;
+    description: string;
+    approach: {
+      content: string[];
+    };
+    challenge: {
+      content: string[];
+    };
+    result: {
+      content: string[];
+    };
+    slug: string;
+    category: string;
+  };
+};
+
+type BlogFormProps = {
+  blog: {
+    author: string;
+    content: any;
+    description: string;
+    image: string;
+    slug: string;
+    title: string;
+    tags?: string[];
+  };
+};
+
+type BlogUpdateProps = {
+  where: {
+    slug: {
+      _eq: string;
+    };
+  };
+  blog: {
+    author: string;
+    content: any;
+    description: string;
+    image: string;
+    slug: string;
+    title: string;
+    tags?: string[];
+  };
+};
+
 const useSubmit = (token: string) => {
   const { data: signer } = useSigner();
-  const { mutateAsync } = useApplicationCreate(token);
-  const { mutateAsync: mutateConsult } = useCreateConsult(token);
+
+  const { mutateAsync: mutatePortfolio } = usePortfolioCreate(token);
+  const { mutateAsync: mutatePortfolioUpdate } = usePortfolioUpdate(token);
+  const { mutateAsync: mutateBlogCreate } = useBlogCreate(token);
+  const { mutateAsync: mutateBlogUpdate } = useBlogUpdate(token);
+  const { mutateAsync: mutateApplication } = useApplicationCreate(token);
+  const { mutateAsync: mutateConsults } = useCreateConsults(token);
 
   const submitJoinForm = async (data: any) => {
     const applicationSkills = [
@@ -54,7 +140,7 @@ const useSubmit = (token: string) => {
       handbook_read: data.join6.handbookRead,
       pledge_readiness: data.join6.pledgeReadiness,
     };
-    const res = await mutateAsync({ ...submitData });
+    const res = await mutateApplication({ ...submitData });
     return res;
   };
 
@@ -106,12 +192,11 @@ const useSubmit = (token: string) => {
         consultation_status_key: 'PENDING',
       };
 
-      const insertResponse = await mutateConsult({ ...submitData });
+      const insertResponse = await mutateConsults({ ...submitData });
 
-      const consultId = insertResponse.insert_consultations_one.id;
       const discordData = {
         title: data.hire2.projectName,
-        url: `https://dm.raidguild.org/consultations/${consultId}`,
+        url: `https://dm.raidguild.org/consultations`,
         projectType: data.hire2.projectType,
         specsLink: data.hire2.specsLink,
         budgetRange: data.hire3.budget,
@@ -179,9 +264,132 @@ const useSubmit = (token: string) => {
       };
     }
   };
+
+  const submitProjectForm = async (data: any): Promise<any> => {
+    const imageUrl = await useImageUpload(data.imageUrl[0]);
+    try {
+      const submitData: PortfolioDataProps = {
+        portfolio: {
+          name: data.projectName,
+          repo_link: data.githubUrl,
+          result_link: data.resultLink,
+          image_url: imageUrl || '',
+          description: data.description,
+          approach: { content: [data.approach] },
+          challenge: { content: [data.challenge] },
+          result: { content: [data.result] },
+          slug: data.slug,
+          category: data.categoryOptions.value,
+        },
+      };
+      const res = await mutatePortfolio({ ...submitData });
+      return res;
+    } catch (e: any) {
+      const res = {
+        error: true,
+        message: "Couldn't submit the form, make sure you have filled all the required fields",
+      };
+      console.error(e.message);
+      return res;
+    }
+  };
+
+  const submitProjectEditForm = async (data: any, slug: string, defaultImageUrl: string): Promise<any> => {
+    const imageUrl = await useImageUpload(data.imageUrl[0]);
+    try {
+      const submitData: PortfolioUpdateDataProps = {
+        where: {
+          slug: {
+            _eq: slug,
+          },
+        },
+        portfolio: {
+          name: data.projectName,
+          repo_link: data.githubUrl,
+          result_link: data.resultLink,
+          image_url: imageUrl || defaultImageUrl,
+          description: data.description,
+          approach: { content: [data.approach] },
+          challenge: { content: [data.challenge] },
+          result: { content: [data.result] },
+          slug: data.slug,
+          category: data.categoryOptions.value,
+        },
+      };
+      console.log('submitData:', submitData);
+      const res = await mutatePortfolioUpdate({ ...submitData });
+      return res;
+    } catch (e: any) {
+      const res = {
+        error: true,
+        message: "Couldn't submit the form, make sure you have filled all the required fields",
+      };
+      console.error(e.message);
+      return res;
+    }
+  };
+  const submitBlogForm = async (data: any): Promise<any> => {
+    const imageUrl = await useImageUpload(data.image[0]);
+    try {
+      const submitData: BlogFormProps = {
+        blog: {
+          title: data.title,
+          author: data.author,
+          image: imageUrl || '',
+          description: data.description,
+          slug: data.slug,
+          content: data.content,
+          tags: data.tags,
+        },
+      };
+      const res = await mutateBlogCreate({ ...submitData });
+      return res;
+    } catch (e: any) {
+      const res = {
+        error: true,
+        message: "Couldn't submit the form, make sure you have filled all the required fields",
+      };
+      console.error(e.message);
+      return res;
+    }
+  };
+  const submitBlogEditForm = async (data: any, slug: string, defaultImageUrl: string): Promise<any> => {
+    const imageUrl = await useImageUpload(data.image[0]);
+    try {
+      const submitData: BlogUpdateProps = {
+        where: {
+          slug: {
+            _eq: slug,
+          },
+        },
+        blog: {
+          title: data.title,
+          author: data.author,
+          image: imageUrl || defaultImageUrl,
+          description: data.description,
+          slug: data.slug,
+          content: data.content,
+          tags: data.tags,
+        },
+      };
+      const res = await mutateBlogUpdate({ ...submitData });
+      return res;
+    } catch (e: any) {
+      const res = {
+        error: true,
+        message: "Couldn't submit the form, make sure you have filled all the required fields",
+      };
+      console.error(e.message);
+      return res;
+    }
+  };
   return {
     submitJoinForm,
     submitHireForm,
+    submitProjectForm,
+    submitProjectEditForm,
+    submitBlogForm,
+    submitBlogEditForm,
     handlePayment,
   };
 };

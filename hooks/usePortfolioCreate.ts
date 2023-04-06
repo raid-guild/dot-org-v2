@@ -1,28 +1,48 @@
+import { useToast } from '@raidguild/design-system';
 import { useMutation } from '@tanstack/react-query';
-import { CONSULTATION_CREATE_MUTATION } from '../gql/mutations';
+import { PORTFOLIO_INSERT_MUTATION } from '../gql/mutations';
 import { client } from '../gql';
 
-interface IPortfolioInsert {
-  name: string;
-  description: string;
-}
+type IPortfolioInsert = {
+  portfolio: {
+    name: string;
+    repo_link: string;
+    result_link: string;
+    image_url: string;
+    description: string;
+    approach: {
+      content: string[];
+    };
+    challenge: {
+      content: string[];
+    };
+    result: {
+      content: string[];
+    };
+    slug: string;
+    category: string;
+  };
+};
 
-interface Props {
-  token: string;
-}
-
-const usePortfolioCreate = ({ token }: Props) => {
-  // const queryClient = useQueryClient();
+const usePortfolioCreate = (token: string) => {
+  const toast = useToast();
 
   const { mutate, mutateAsync, isLoading, isError, isSuccess } = useMutation(
     async ({ ...props }: IPortfolioInsert) => {
-      return client({ token }).request(CONSULTATION_CREATE_MUTATION, {
+      return client({ token }).request(PORTFOLIO_INSERT_MUTATION, {
         ...props,
       });
     },
     {
       onSuccess: (data) => {
         console.log('success', data);
+        setTimeout(() => {
+          toast.success({
+            title: 'New Portfolio Added',
+            duration: 3000,
+            isClosable: true,
+          });
+        }, 1000);
       },
       onError: (error) => {
         console.log('error', error);

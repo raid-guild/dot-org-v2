@@ -8,14 +8,10 @@ interface Props {
 }
 
 const useBlogsDetail = ({ slug, initialData, token }: Props) => {
-  const { status, error, data, isLoading } = useQuery<any, Error>(
-    ['blogsDetail', slug],
-    () => getBlogDetail(slug, token),
-    {
-      enabled: !!slug,
-      initialData,
-    },
-  );
+  const { status, error, data, isLoading } = useQuery(['blogsDetail', slug], () => getBlogDetail(slug, token), {
+    enabled: !!slug,
+    initialData,
+  });
 
   return {
     status,

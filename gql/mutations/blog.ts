@@ -2,9 +2,37 @@
 import { gql } from 'graphql-request';
 
 export const BLOG_CREATE_MUTATION = gql`
-  mutation BlogInsertMutation($consultation: consultations_insert_input!) {
+  mutation BlogInsertMutation($blog: blogs_insert_input!) {
     insert_blogs_one(object: $blog) {
+      author
+      content
+      created_at
+      description
       id
+      image
+      slug
+      title
+      tags
+      updated_at
+    }
+  }
+`;
+
+export const BLOG_UPDATE_MUTATION = gql`
+  mutation updatePortfolios($where: blogs_bool_exp!, $blog: blogs_set_input!) {
+    update_blogs(where: $where, _set: $blog) {
+      returning {
+        author
+        content
+        created_at
+        description
+        id
+        image
+        slug
+        title
+        tags
+        updated_at
+      }
     }
   }
 `;

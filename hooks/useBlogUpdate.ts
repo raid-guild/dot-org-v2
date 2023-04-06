@@ -1,9 +1,14 @@
 import { useToast } from '@raidguild/design-system';
 import { useMutation } from '@tanstack/react-query';
-import { BLOG_CREATE_MUTATION } from '../gql/mutations';
+import { BLOG_UPDATE_MUTATION } from '../gql/mutations';
 import { client } from '../gql';
 
-type IBlogInsert = {
+type IBlogUpdate = {
+  where: {
+    slug: {
+      _eq: string;
+    };
+  };
   blog: {
     author: string;
     content: any;
@@ -15,12 +20,11 @@ type IBlogInsert = {
   };
 };
 
-const useBlogCreate = (token: string) => {
+const useBlogUpdate = (token: string) => {
   const toast = useToast();
-
   const { mutate, mutateAsync, isLoading, isError, isSuccess } = useMutation(
-    async ({ ...props }: IBlogInsert) => {
-      return client({ token }).request(BLOG_CREATE_MUTATION, {
+    async ({ ...props }: IBlogUpdate) => {
+      return client({ token }).request(BLOG_UPDATE_MUTATION, {
         ...props,
       });
     },
@@ -29,7 +33,7 @@ const useBlogCreate = (token: string) => {
         console.log('success', data);
         setTimeout(() => {
           toast.success({
-            title: 'New blog post added',
+            title: 'Blog Edited Successfully',
             duration: 3000,
             isClosable: true,
           });
@@ -43,4 +47,4 @@ const useBlogCreate = (token: string) => {
   return { mutate, mutateAsync, isLoading, isError, isSuccess };
 };
 
-export default useBlogCreate;
+export default useBlogUpdate;

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { Box, Flex } from '@raidguild/design-system';
 
-import Meta from '../components/page-components/Meta';
+// import Meta from '../components/page-components/Meta';
 import Hero from '../components/landing/1-Hero';
 import Manifesto from '../components/landing/2-Manifesto';
 import Services from '../components/landing/3-Services';
@@ -26,7 +26,7 @@ const Home = ({ initialData }: Props) => {
 
   return (
     <>
-      <Meta />
+      {/* <Meta /> */}
       <Box layerStyle='primaryBackground' height='100vh' width='100vw'>
         <Flex maxW='100rem' mx='auto' overflowX='hidden'>
           <Flex height='100%' width='100%' direction='column'>
