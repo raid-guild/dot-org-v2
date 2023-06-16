@@ -8,7 +8,7 @@ import usePortfolioUpdate from './usePortfolioUpdate';
 import useBlogCreate from './useBlogsCreate';
 import useBlogUpdate from './useBlogUpdate';
 import useImageUpload from './useImageUpload';
-import useCreateConsult from './useCreateConsult';
+import useCreateConsults from './useCreateConsults';
 import {
   mapBudgetOptions,
   mapProjectType,
@@ -104,7 +104,7 @@ const useSubmit = (token: string) => {
   const { mutateAsync: mutateBlogCreate } = useBlogCreate(token);
   const { mutateAsync: mutateBlogUpdate } = useBlogUpdate(token);
   const { mutateAsync: mutateApplication } = useApplicationCreate(token);
-  const { mutateAsync: mutateConsult } = useCreateConsult(token);
+  const { mutateAsync: mutateConsults } = useCreateConsults(token);
 
   const submitJoinForm = async (data: any) => {
     const applicationSkills = [
@@ -215,13 +215,13 @@ const useSubmit = (token: string) => {
         consultation_status_key: 'PENDING',
       };
 
-      const insertResponse = await mutateConsult({ ...submitData });
+      const insertResponse = await mutateConsults({ ...submitData });
 
       const discordData = {
         endpoint: 'hireus-v2/submission',
         project_name: data.hire2.projectName,
         name: data.hire1.name,
-        consultation_id: insertResponse.insert_consultations_one.id,
+        consultation_id: '',
         project_type: data.hire2.projectType,
         project_link: data.hire2.specsLink,
         budget_range: data.hire3.budget,
