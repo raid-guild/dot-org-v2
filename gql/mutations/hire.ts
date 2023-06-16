@@ -1,13 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import { gql } from 'graphql-request';
 
-export const CONSULTATION_CREATE_MUTATION = gql`
-  mutation ConsultationInsertMutation($consultation: consultations_insert_input!) {
-    insert_consultations_one(object: $consultation) {
-      id
-    }
-  }
-`;
+// @Dev: do not use 'CONSULTATION_CREATE_MUTATION' with 'consultation_insert_input'
+// this query is not callable for non RaidGuild member wallets.
+// Hasura doesn't let you use insert_models_one unless the role (user) has
+// permissions to select ids at least. We'll want to use insert_models in any case like this.
 
 export const CONSULTATIONS_CREATE_MUTATION = gql`
   mutation ConsultationsInsertMutation($consultations: consultations_insert_input!) {
