@@ -14,9 +14,9 @@ import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 type Props = ChakraLinkProps & NextLinkProps;
 
 const ChakraNextLink = ({ href, children, ...props }: Props) => (
-  <NextLink href={href} passHref>
-    <ChakraLink {...props}>{children}</ChakraLink>
-  </NextLink>
+  <ChakraLink as={NextLink} href={href} passHref {...props}>
+    {children}
+  </ChakraLink>
 );
 
 export default ChakraNextLink;
