@@ -141,29 +141,6 @@ const useSubmit = (token: string) => {
       pledge_readiness: data.join6.pledgeReadiness,
     };
     const res = await mutateApplication({ ...submitData });
-
-    const discordData = {
-      endpoint: 'joinus/application',
-      name: data.join1.name,
-      discord: data.join2.discord,
-      twitter: data.join2.twitter,
-      primary_skills: data.join3.primarySkills.join(', '),
-      class_type: data.join3.technicalSkillType,
-      crypto_exp: data.join5.cryptoExperience,
-      availability: data.join5.cohortAvailability,
-      bio: data.join1.introduction,
-      goals: data.join1.learningGoals,
-      passion: data.join4.passion,
-    };
-
-    await fetch('/api/ministerSentry', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(discordData),
-    });
-
     return res;
   };
 
@@ -216,26 +193,6 @@ const useSubmit = (token: string) => {
       };
 
       const insertResponse = await mutateConsults({ ...submitData });
-
-      const discordData = {
-        endpoint: 'hireus-v2/submission',
-        project_name: data.hire2.projectName,
-        name: data.hire1.name,
-        consultation_id: '',
-        project_type: data.hire2.projectType,
-        project_link: data.hire2.specsLink,
-        budget_range: data.hire3.budget,
-        services_needed: data.hire3.services.map((s: { value: string; label: string }) => s.label).join(', '),
-        discord: data.hire1.discord,
-      };
-
-      await fetch('/api/ministerSentry', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(discordData),
-      });
 
       res = {
         error: false,

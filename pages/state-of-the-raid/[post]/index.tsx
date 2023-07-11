@@ -1,6 +1,6 @@
 import { Flex, Heading, Text, VStack, Image, Stack, Link, Button } from '@raidguild/design-system';
 import _ from 'lodash';
-import { GetServerSidePropsContext } from 'next';
+import { GetStaticPropsContext } from 'next';
 import { NextSeo } from 'next-seo';
 import { useSession } from 'next-auth/react';
 
@@ -8,7 +8,7 @@ import { FaEdit } from 'react-icons/fa';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import Markdown from '../../../components/atoms/Markdown';
-import { getBlogDetail } from '../../../gql';
+import { getBlogDetail, getBlogsList } from '../../../gql';
 import { getMonthString, checkPermission } from '../../../utils';
 
 type Props = {
@@ -23,6 +23,15 @@ function PostPage({ initialData }: Props) {
   const publishTime = new Date(_.get(initialData, 'createdAt'));
 
   const publishString = `${getMonthString(publishTime)} ${publishTime.getDate()} ${publishTime.getFullYear()}`;
+
+  if (!initialData?.slug) {
+    return (
+      <CMSPageTemplate>
+        <PageTitle title='Page not found' />
+      </CMSPageTemplate>
+    );
+  }
+
   return (
     <CMSPageTemplate>
       <PageTitle title={_.get(initialData, 'title')} />
@@ -66,7 +75,7 @@ function PostPage({ initialData }: Props) {
             | {publishString}
           </Flex>
         </VStack>
-        <Stack background='blackAlpha.800' mt='6' alignItems='flex-start' py='50px'>
+        <Stack background='blackAlpha.800' mt='6' alignItems='flex-start' p='50px'>
           <Heading textAlign='left' as='h1'>
             Abstract
           </Heading>
@@ -91,7 +100,16 @@ function PostPage({ initialData }: Props) {
 //   };
 // }
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+export const getStaticPaths = async () => {
+  const blogs = (await getBlogsList()) as { slug: string }[];
+
+  return {
+    paths: blogs.map((b) => ({ params: { post: b.slug } })),
+    fallback: true,
+  };
+};
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
   let post = _.get(context, 'params.post');
   if (_.isArray(post)) post = _.first(post);
 
@@ -107,6 +125,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     props: {
       initialData: result,
     },
+    revalidate: 10,
   };
 };
 
