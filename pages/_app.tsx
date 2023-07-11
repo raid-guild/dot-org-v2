@@ -4,6 +4,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import { SessionProvider } from 'next-auth/react';
+import { Analytics } from '@vercel/analytics/react';
 import { WagmiConfig } from 'wagmi';
 import { QueryClient, QueryClientProvider, QueryCache } from '@tanstack/react-query';
 import {
@@ -43,6 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ChakraProvider theme={defaultTheme}>
+      <Analytics />
       <ColorModeScript initialColorMode='dark' />
       <Fonts />
       <DefaultSeo {...SEO} />
