@@ -220,15 +220,13 @@ const useSubmit = (token: string) => {
 
     // if balance is greater than fee, transfer to DAO contract and return transaction hash
     try {
-      const tx = await payWithRaidToken(
+      const hash = await payWithRaidToken(
         RAID_CONTRACT_ADDRESS[100],
         signer,
         DAO_ADDRESS[100],
         parseEther(`${SUBMISSION_REQUEST_FEE}`).toString(),
       );
-      const { status } = await tx.wait();
-
-      if (status !== 1) {
+      if (!hash) {
         return {
           error: true,
           message: 'There was a transaction failure, please try again',
@@ -237,7 +235,7 @@ const useSubmit = (token: string) => {
       return {
         error: false,
         message: 'Transaction successful',
-        submissionHash: tx.hash,
+        submissionHash: hash,
       };
     } catch (e) {
       return {
