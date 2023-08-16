@@ -3084,10 +3084,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
-"@raidguild/design-system@^0.4.46":
-  version "0.4.46"
-  resolved "https://registry.yarnpkg.com/@raidguild/design-system/-/design-system-0.4.46.tgz#58249cad4f7756b5f7ada7c243ea816ae06d4096"
-  integrity sha512-QrZznq8gWV3OphURuGqY31wRljWgPzJqfyqZDuwSD4e2KXt47MNLQmZ/iFiQ7rQjcFb53blIONnlsYxZ2JRJ4g==
+"@raidguild/design-system@^0.4.47":
+  version "0.4.47"
+  resolved "https://registry.yarnpkg.com/@raidguild/design-system/-/design-system-0.4.47.tgz#d34e021854ff6a81a0b9daae237c88b1315a63d3"
+  integrity sha512-TC9EihsV3l2YoINqpjA626tdPpoGu6xcen03aBTWtvv/2GQhXL/kXLU+hX1wSTr+ab1uoyKkPonD7jRMZk6Q6Q==
   dependencies:
     "@chakra-ui/react" "^2.7.0"
     "@chakra-ui/theme-tools" "^2.0.18"
