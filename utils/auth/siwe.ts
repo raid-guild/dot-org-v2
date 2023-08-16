@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { User } from 'next-auth';
 import { getCsrfToken } from 'next-auth/react';
 import { SiweMessage } from 'siwe';
-import { SiweAuthorizeParams, SiweMessageAuthorizeParams, SiweCredentialParams } from '../../types';
+import { SiweAuthorizeParams, SiweCredentialParams, SiweMessageAuthorizeParams } from '../../types';
 
 const { NEXTAUTH_URL } = process.env;
 
@@ -43,7 +43,10 @@ const checkDomain = ({ siwe, credentials }: SiweCredentialParams): Promise<SiweC
 
 const checkSignature = ({ siwe, credentials }: SiweCredentialParams): Promise<SiweCredentialParams> =>
   siwe
-    .validate(_.get(credentials, 'signature', ''))
+    .verify({
+      signature: _.get(credentials, 'signature', ''),
+      domain: new URL(NEXTAUTH_URL as string).host,
+    })
     .then(() => Promise.resolve({ siwe, credentials }))
     .catch((error: Error) => {
       console.log(error);

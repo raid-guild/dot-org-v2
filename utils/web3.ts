@@ -1,15 +1,24 @@
-import { Contract, utils } from 'ethers';
+import { parseAbi } from 'viem';
+import { gnosisPublicClient, gnosisWalletClient } from './gnosisClients';
 
 export const balanceOf = async (signer: any, token: string, address: string) => {
-  const abi = new utils.Interface(['function balanceOf(address account) view returns(uint256)']);
-  const contract = new Contract(token, abi, signer);
-  return contract.balanceOf(address);
+  const abi = parseAbi(['function balanceOf(address account) view returns(uint256)']);
+  return gnosisPublicClient.readContract({
+    address: token as `0x${string}`,
+    abi,
+    functionName: 'balanceOf',
+    args: [address as `0x${string}`],
+  });
 };
 
 export const payWithRaidToken = async (address: string, signer: any, recipient: string, amount: string) => {
-  const abi = new utils.Interface([
-    'function transfer(address recipient, uint256 amount) public virtual override returns (bool)',
-  ]);
-  const contract = new Contract(address, abi, signer);
-  return contract.transfer(recipient, amount);
+  const abi = ['function transfer(address recipient, uint256 amount) public virtual override returns (bool)'];
+  const { request } = await gnosisPublicClient.simulateContract({
+    address: address as `0x${string}`,
+    abi: parseAbi(abi),
+    functionName: 'transfer',
+    args: [amount],
+    account: recipient as `0x${string}`,
+  });
+  return gnosisWalletClient.writeContract(request);
 };

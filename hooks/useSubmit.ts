@@ -1,24 +1,24 @@
-import { useSigner } from 'wagmi';
-import { utils } from 'ethers';
-import { balanceOf, payWithRaidToken } from '../utils/web3';
-import { RAID_CONTRACT_ADDRESS, DAO_ADDRESS, SUBMISSION_REQUEST_FEE } from '../utils/config';
-import useApplicationCreate from './useApplicationCreate';
-import usePortfolioCreate from './usePortfolioCreate';
-import usePortfolioUpdate from './usePortfolioUpdate';
-import useBlogCreate from './useBlogsCreate';
-import useBlogUpdate from './useBlogUpdate';
-import useImageUpload from './useImageUpload';
-import useCreateConsults from './useCreateConsults';
+import { formatEther, parseEther } from 'viem';
+import { useWalletClient } from 'wagmi';
+import { DAO_ADDRESS, RAID_CONTRACT_ADDRESS, SUBMISSION_REQUEST_FEE } from '../utils/config';
 import {
-  mapBudgetOptions,
-  mapProjectType,
-  mapAvailableProjectSpec,
-  mapSkill,
-  mapSkillType,
   mapAvailability,
+  mapAvailableProjectSpec,
+  mapBudgetOptions,
   mapDAOFamiliarity,
   mapDeliveryPriorities,
+  mapProjectType,
+  mapSkill,
+  mapSkillType,
 } from '../utils/mapping';
+import { balanceOf, payWithRaidToken } from '../utils/web3';
+import useApplicationCreate from './useApplicationCreate';
+import useBlogUpdate from './useBlogUpdate';
+import useBlogCreate from './useBlogsCreate';
+import useCreateConsults from './useCreateConsults';
+import useImageUpload from './useImageUpload';
+import usePortfolioCreate from './usePortfolioCreate';
+import usePortfolioUpdate from './usePortfolioUpdate';
 
 type PortfolioDataProps = {
   portfolio: {
@@ -97,7 +97,7 @@ type BlogUpdateProps = {
 };
 
 const useSubmit = (token: string) => {
-  const { data: signer } = useSigner();
+  const { data: signer } = useWalletClient();
 
   const { mutateAsync: mutatePortfolio } = usePortfolioCreate(token);
   const { mutateAsync: mutatePortfolioUpdate } = usePortfolioUpdate(token);
@@ -211,7 +211,7 @@ const useSubmit = (token: string) => {
   const handlePayment = async (ethAddress: string): Promise<any> => {
     const tokenBalance = await balanceOf(signer, RAID_CONTRACT_ADDRESS[100], ethAddress);
 
-    if (Number(utils.formatEther(tokenBalance.toString())) < SUBMISSION_REQUEST_FEE) {
+    if (Number(formatEther(BigInt(tokenBalance))) < SUBMISSION_REQUEST_FEE) {
       return {
         error: true,
         message: 'Insufficient balance',
@@ -224,7 +224,7 @@ const useSubmit = (token: string) => {
         RAID_CONTRACT_ADDRESS[100],
         signer,
         DAO_ADDRESS[100],
-        utils.parseEther(`${SUBMISSION_REQUEST_FEE}`).toString(),
+        parseEther(`${SUBMISSION_REQUEST_FEE}`).toString(),
       );
       const { status } = await tx.wait();
 
