@@ -25,21 +25,21 @@ const validationSchema = Yup.object().shape({
   deliveryPriorities: Yup.string().required(),
 });
 
-const FORM_STATE = {
-  UNSUBMITTED: 'UNSUBMITTED',
-  AWAITING_PAYMENT: 'AWAITING_PAYMENT',
-  SUBMIT_AS_MEMBER: 'SUBMIT_AS_MEMBER',
-  INITIATED_PAYMENT: 'INITIATED_PAYMENT',
-  PAID_AND_SUBMITTED: 'PAID_AND_SUBMITTED',
-};
+// const FORM_STATE = {
+//   UNSUBMITTED: 'UNSUBMITTED',
+//   AWAITING_PAYMENT: 'AWAITING_PAYMENT',
+//   SUBMIT_AS_MEMBER: 'SUBMIT_AS_MEMBER',
+//   INITIATED_PAYMENT: 'INITIATED_PAYMENT',
+//   PAID_AND_SUBMITTED: 'PAID_AND_SUBMITTED',
+// };
 
 const StepFour = ({ handleBack, handleNext }: Props) => {
   const { data: session } = useSession();
   const token = _.get(session, 'token') || '';
-  const roles = _.get(session, 'user.roles') || [];
+  // const roles = _.get(session, 'user.roles') || [];
   const ethAddress = _.get(session, 'user.address') || '';
 
-  const { submitHireForm, handlePayment } = useSubmit(token);
+  const { submitHireForm } = useSubmit(token);
   // const cancelRef: any = React.useRef();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const toast = useToast();
@@ -112,7 +112,11 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
   //   }
   // };
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const onNext = async (data: FieldValues) => {
+    setIsSubmitting(true);
+
     const currState = {
       ...hireState,
       hire4: { ...data },
@@ -134,6 +138,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
       handleNext();
     }
 
+    setIsSubmitting(false);
     // setDialogStatus(true);
   };
 
@@ -165,7 +170,12 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
         <Button fontFamily='spaceMono' onClick={handleBack} variant='outline'>
           Back
         </Button>
-        <Button fontFamily='spaceMono' onClick={handleSubmit(onNext, handleError(toast))}>
+        <Button
+          fontFamily='spaceMono'
+          isDisabled={isSubmitting}
+          isLoading={isSubmitting}
+          loadingText='Submitting'
+          onClick={handleSubmit(onNext, handleError(toast))}>
           Submit
         </Button>
         {/* {formStatus === FORM_STATE.AWAITING_PAYMENT && (
