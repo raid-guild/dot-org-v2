@@ -56,18 +56,6 @@ const Intro = ({ handleNext, isConnected }: Props) => (
       .
     </Text>
     <br />
-
-    <Flex direction='column' bgColor='primary.500' borderRadius='0.5rem' p='0.5rem 1rem' maxW='720px' color='white'>
-      <Text fontWeight='bold' mb='.5rem' fontFamily='jetbrains'>
-        IMPORTANT
-      </Text>
-      <Text fontFamily='jetbrains'>
-        If you made a bid prior to March 15th, 2022, please use the old version of the Consultation Queue:{' '}
-        <Link href='https://hireus.raidguild.org' isExternal>
-          hireus.raidguild.org
-        </Link>
-      </Text>
-    </Flex>
     <HStack mt='2rem'>
       {!isConnected ? (
         <ConnectWallet label='Sign in to Continue' />
