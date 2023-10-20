@@ -3,8 +3,10 @@
 import '@rainbow-me/rainbowkit/styles.css';
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
+import { useRouter } from 'next/router';
 import { SessionProvider } from 'next-auth/react';
 import { Analytics } from '@vercel/analytics/react';
+import * as Fathom from 'fathom-client';
 import { WagmiConfig } from 'wagmi';
 import { QueryClient, QueryClientProvider, QueryCache } from '@tanstack/react-query';
 import {
@@ -15,6 +17,7 @@ import {
   ColorModeScript,
   Fonts,
 } from '@raidguild/design-system';
+import { useEffect } from 'react';
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import { RainbowKitSiweNextAuthProvider } from '@rainbow-me/rainbowkit-siwe-next-auth';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -24,6 +27,7 @@ import { wagmiClient } from '../utils/wagmiClient';
 import { AppContextProvider } from '../context/appState';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   const toast = useToast();
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -41,6 +45,22 @@ export default function App({ Component, pageProps }: AppProps) {
       },
     }),
   });
+
+  useEffect(() => {
+    Fathom.load('ASGWDEGI', {
+      includedDomains: ['www.raidguild.org', 'raidguild.org'],
+    });
+
+    function onRouteChangeComplete() {
+      Fathom.trackPageview();
+    }
+
+    router.events.on('routeChangeComplete', onRouteChangeComplete);
+
+    return () => {
+      router.events.off('routeChangeComplete', onRouteChangeComplete);
+    };
+  }, []);
 
   return (
     <ChakraProvider theme={defaultTheme}>
