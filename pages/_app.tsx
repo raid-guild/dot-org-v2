@@ -8,6 +8,8 @@ import {
   // RGThemeProvider,
   useToast,
 } from '@raidguild/design-system';
+import * as Fathom from 'fathom-client';
+import { useEffect } from 'react';
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import { RainbowKitSiweNextAuthProvider } from '@rainbow-me/rainbowkit-siwe-next-auth';
 import '@rainbow-me/rainbowkit/styles.css';
@@ -24,6 +26,7 @@ import { chains } from '../utils/chains';
 import { wagmiClient } from '../utils/wagmiClient';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   const toast = useToast();
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -41,6 +44,22 @@ export default function App({ Component, pageProps }: AppProps) {
       },
     }),
   });
+
+  useEffect(() => {
+    Fathom.load('ASGWDEGI', {
+      includedDomains: ['www.raidguild.org', 'raidguild.org'],
+    });
+
+    function onRouteChangeComplete() {
+      Fathom.trackPageview();
+    }
+
+    router.events.on('routeChangeComplete', onRouteChangeComplete);
+
+    return () => {
+      router.events.off('routeChangeComplete', onRouteChangeComplete);
+    };
+  }, []);
 
   return (
     <ChakraProvider theme={defaultTheme}>
