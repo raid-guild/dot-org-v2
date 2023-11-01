@@ -10,6 +10,7 @@ import {
 } from '@raidguild/design-system';
 import * as Fathom from 'fathom-client';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import { RainbowKitSiweNextAuthProvider } from '@rainbow-me/rainbowkit-siwe-next-auth';
 import '@rainbow-me/rainbowkit/styles.css';
