@@ -20,6 +20,8 @@ import useImageUpload from './useImageUpload';
 import usePortfolioCreate from './usePortfolioCreate';
 import usePortfolioUpdate from './usePortfolioUpdate';
 
+// TODO break up this hook to separate ones
+
 type PortfolioDataProps = {
   portfolio: {
     name: string;
