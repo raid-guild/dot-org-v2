@@ -1,29 +1,7 @@
-// const airtable = require('airtable');
-
-// export const joinTable = async () => {
-//   airtable.configure({
-//     endpointUrl: 'https://api.airtable.com',
-//     apiKey: process.env.API_KEY,
-//   });
-
-//   const base = airtable.base(process.env.JOINUS_BASE_ID);
-//   return base('Submissions');
-// };
-
-// export const hireTable = async () => {
-//   airtable.configure({
-//     endpointUrl: 'https://api.airtable.com',
-//     apiKey: process.env.API_KEY,
-//   });
-
-//   const base = airtable.base(process.env.JOINUS_BASE_ID);
-//   return base('Hire');
-// };
-
 const devMode = !(process.env.NEXT_PUBLIC_ENV_MODE === 'production');
 
 export const INFURA_ID = process.env.NEXT_PUBLIC_INFURA_ID;
-export const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+export const ALCHEMY_KEY = process.env.NEXT_PUBLIC_ALCHEMY_KEY;
 
 export const RAID_CONTRACT_ADDRESS = {
   100: '0x18e9262e68cc6c6004db93105cc7c001bb103e49',
