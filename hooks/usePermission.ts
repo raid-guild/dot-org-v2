@@ -12,6 +12,7 @@ const usePermission = (session: any) => {
   } catch (error) {
     console.error({ error });
   }
+  return false;
 };
 
 export default usePermission;
