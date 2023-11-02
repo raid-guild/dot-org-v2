@@ -29,7 +29,7 @@ const connectors = connectorsForWallets([
     groupName: 'Others',
     wallets: [
       rainbowWallet({ chains, projectId: process.env.NEXT_PUBLIC_PROJECT_ID || '' }),
-      coinbaseWallet({ chains, appName: 'Dungeon Master' }),
+      coinbaseWallet({ chains, appName: 'Raid Guild' }),
       argentWallet({ chains, projectId: process.env.NEXT_PUBLIC_PROJECT_ID || '' }),
       braveWallet({ chains }),
     ],
