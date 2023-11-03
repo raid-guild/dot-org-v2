@@ -1,3 +1,5 @@
+import tokens from '../../utils/extendedTokens';
+
 import { Flex, SimpleGrid, Box, Button, Heading } from '@raidguild/design-system';
 import Image from 'next/image';
 
@@ -7,16 +9,22 @@ import Nav from '../page-components/Nav';
 import raidBanner from '../../assets/illustrations/raid__banner.webp';
 
 const SectionOne = () => (
-  <Box layerStyle='primaryGradient'>
+  <Box bg={tokens.purpleToIndigoGradient}>
     <SimpleGrid
-      placeItems='center'
+      placeItems='flex-start'
       border='2px solid'
       borderColor='primary.500'
       py='2rem'
       px={{ base: '1rem', lg: '4rem' }}
-      m='1rem'>
+      m='1rem'
+      h='90vh'>
       <Nav />
-      <Flex direction={{ base: 'column-reverse', lg: 'row' }} alignItems='center' justifyContent='space-between'>
+      <Flex
+        direction={{ base: 'column-reverse', lg: 'row' }}
+        alignItems='center'
+        justifyContent='space-between'
+        px={{ base: '1rem', lg: '8rem' }}
+        width='full'>
         <Flex direction='column' justifyContent='center' alignItems='start' maxW={{ lg: '50%' }}>
           <Heading maxW='720px'>
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3 Product Demons.

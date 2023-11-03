@@ -28,7 +28,7 @@ const Home = ({ initialData }: Props) => {
     <>
       {/* <Meta /> */}
       <Box layerStyle='primaryBackground' height='100vh' width='100vw'>
-        <Flex maxW='100rem' mx='auto' overflowX='hidden'>
+        {/* <Flex maxW='100rem' mx='auto' overflowX='hidden'> */}
           <Flex height='100%' width='100%' direction='column'>
             <Hero />
             <Manifesto />
@@ -38,7 +38,7 @@ const Home = ({ initialData }: Props) => {
             <Supporters />
             <Footer />
           </Flex>
-        </Flex>
+        {/* </Flex> */}
       </Box>
     </>
   );
