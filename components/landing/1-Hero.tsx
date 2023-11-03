@@ -1,7 +1,6 @@
-import tokens from '../../utils/extendedTokens';
-
 import { Flex, SimpleGrid, Box, Button, Heading } from '@raidguild/design-system';
 import Image from 'next/image';
+import tokens from '../../utils/extendedTokens';
 
 import Link from '../atoms/ChakraNextLink';
 import Nav from '../page-components/Nav';
@@ -36,10 +35,14 @@ const SectionOne = () => (
             justifyContent={{ base: 'center', lg: 'flex-start' }}
             gap={2}>
             <Link href='/hire/1'>
-              <Button>Hire Us</Button>
+              <Button bgGradient={tokens.orangeToPurpleGradient} borderRadius={2}>
+                Hire Us
+              </Button>
             </Link>
             <Link href='/join/1'>
-              <Button variant='outline'>Join Us</Button>
+              <Button bgGradient={tokens.purpleToBlueGradient} bgClip='text' borderRadius={2}>
+                Join Us
+              </Button>
             </Link>
           </Flex>
         </Flex>
