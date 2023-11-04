@@ -38,7 +38,9 @@ const SectionTwo = () => {
         </div>
         <br />
         <Link href='https://handbook.raidguild.org' isExternal>
-          <Button>Handbook</Button>
+          <Button bgGradient={tokens.orangeToPurpleGradient} borderRadius={2}>
+            Handbook
+          </Button>
         </Link>
       </VStack>
     </SimpleGrid>
