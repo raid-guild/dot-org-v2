@@ -1,7 +1,6 @@
 import React from 'react';
-import { Flex, Box, Heading, Button, Text } from '@raidguild/design-system';
+import { Flex, Box, Heading, Text } from '@raidguild/design-system';
 import Image from 'next/image';
-import Link from '../atoms/ChakraNextLink';
 
 import signalFire from '../../assets/illustrations/signal_fire.webp';
 

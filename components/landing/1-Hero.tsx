@@ -40,7 +40,7 @@ const SectionOne = () => (
               </Button>
             </Link>
             <Link href='/join/1'>
-              <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill={'transparent'}>
+              <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill='transparent'>
                 <Button bgGradient={tokens.purpleToBlueGradient} bgClip='text'>
                   Join Us
                 </Button>

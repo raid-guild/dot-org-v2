@@ -1,27 +1,25 @@
 import {
   Box,
-  Image,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
-  Heading,
-  Text,
-  HStack,
   Button,
-  Flex,
   Card,
+  Flex,
+  HStack,
+  Heading,
+  Image,
 } from '@raidguild/design-system';
 
-import Nav from '../page-components/Nav';
-import Footer from '../page-components/Footer';
-import PageTitle from '../page-components/PageTitle';
 import Markdown from '../atoms/Markdown';
+import Footer from '../page-components/Footer';
+import Nav from '../page-components/Nav';
+import PageTitle from '../page-components/PageTitle';
 
 import Castle from '../../assets/illustrations/castle.svg';
 import Clouds from '../../assets/illustrations/clouds.webp';
-import WallSconce from '../../assets/illustrations/wallSconce.svg';
 import Valhalla from '../../assets/illustrations/valhalla.svg';
+import WallSconce from '../../assets/illustrations/wallSconce.svg';
 import Wand from '../../assets/illustrations/wand.svg';
 
 type Props = {
