@@ -1,4 +1,4 @@
-import { Flex, SimpleGrid, Box, Button, Heading } from '@raidguild/design-system';
+import { Flex, SimpleGrid, Box, Button, Heading, Center } from '@raidguild/design-system';
 import Image from 'next/image';
 import tokens from '../../utils/extendedTokens';
 
@@ -16,7 +16,8 @@ const SectionOne = () => (
       py='2rem'
       px={{ base: '1rem', lg: '4rem' }}
       m='1rem'
-      h='90vh'>
+      minH='90vh'
+      maxH='max-content'>
       <Nav />
       <Flex
         direction={{ base: 'column-reverse', lg: 'row' }}
@@ -25,14 +26,18 @@ const SectionOne = () => (
         px={{ base: '1rem', lg: '8rem' }}
         width='full'>
         <Flex direction='column' justifyContent='center' alignItems='start' maxW={{ lg: '50%' }}>
-          <Heading maxW='720px'>
+          <Heading
+            maxW='720px'
+            fontSize={{ base: 'medium', md: '3xl', lg: '4xl' }}
+            textAlign={{ base: 'center', lg: 'left' }}>
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3 Product Demons.
           </Heading>
           <Flex
             w='100%'
             mt={{ base: '2rem' }}
-            direction='row'
+            direction={{ base: 'column', lg: 'row' }}
             justifyContent={{ base: 'center', lg: 'flex-start' }}
+            alignItems={{ base: 'center', lg: 'flex-start' }}
             gap={2}>
             <Link href='/hire/1'>
               <Button bgGradient={tokens.orangeToPurpleGradient} borderRadius={2}>

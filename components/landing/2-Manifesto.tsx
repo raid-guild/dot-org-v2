@@ -16,7 +16,7 @@ const SectionTwo = () => {
       <Box width={{ base: '250px', lg: '400px' }}>
         <Image src={raidFantasy.src} alt='raid fantasy' placeholder='blur' />
       </Box>
-      <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }}>
+      <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500'>
         <Heading>Manifesto</Heading>
         <div>
           <Text>
