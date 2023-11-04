@@ -27,7 +27,7 @@ const Home = ({ initialData }: Props) => {
   return (
     <>
       {/* <Meta /> */}
-      <Box layerStyle='primaryBackground' height='100vh' width='100vw'>
+      <Box bg='red' height='100vh' width='100vw'>
         {/* <Flex maxW='100rem' mx='auto' overflowX='hidden'> */}
         <Flex height='100%' width='100%' direction='column'>
           <Hero />
