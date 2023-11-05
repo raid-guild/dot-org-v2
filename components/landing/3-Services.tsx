@@ -9,9 +9,8 @@ const SectionThree = () => (
     bg={tokens.background}
     id='manifesto'
     px={{ base: '2rem', lg: '8rem' }}
-    columns={{ md: 1, lg: 2, xl: 2 }}
-    minH={{ base: 'max-content', lg: '120vh' }}
-    maxH='max-content'
+    columns={{ md: 1, lg: 1, xl: 2 }}
+    h={{ base: 'max', xl: '120vh' }}
     gap={16}
     py={8}
     placeItems='center'>
