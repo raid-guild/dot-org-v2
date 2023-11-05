@@ -12,7 +12,7 @@ const SectionTwo = () => {
       columns={{ base: 1, md: 1, lg: 2 }}
       px={{ base: '2rem', lg: '8rem' }}
       py='4rem'
-      minH='90vh'
+      minH={{ base: 'max', md: '100vh' }}
       maxH='max-content'
       placeItems='center'>
       <Box width={{ base: '250px', lg: '400px' }}>
