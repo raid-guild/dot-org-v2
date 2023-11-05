@@ -11,7 +11,7 @@ const SectionThree = () => (
     px={{ base: '2rem', lg: '8rem' }}
     columns={{ md: 1, xl: 2 }}
     maxH={{ base: 'max-content', lg: '120vh' }}
-    py={{ base: '6rem', lg: '12rem' }}
+    py={{ base: '6rem', lg: '8rem' }}
     gap={16}
     placeItems='center'>
     <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500'>
@@ -48,17 +48,17 @@ const SectionThree = () => (
       </Link>
     </VStack>
     <VStack height={{ base: 'max', md: 'full' }}>
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} gap={5} my='auto' ml={{ lg: '3rem' }}>
+      <SimpleGrid columns={{ base: 1, lg: 2 }} gap={5} my='auto' ml={{ lg: '1.5rem' }}>
         {services.map((item) => {
           return (
             <Card
               key={item.name}
-              gap={6}
+              gap={2}
               alignItems='center'
               justifyContent='space-evenly'
               borderColor='primary.500'
               maxW={{ base: '100%', md: '500px' }}
-              p={12}>
+              p={6}>
               <Image src={item.img} alt='consultations' my='.5rem' />
 
               <Heading mb={3} size='md' textAlign='center'>
