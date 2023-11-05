@@ -10,9 +10,10 @@ const SectionThree = () => (
     id='manifesto'
     px={{ base: '2rem', lg: '8rem' }}
     columns={{ md: 1, xl: 2 }}
-    maxH={{ base: 'max-content', lg: '120vh' }}
-    py={{ base: '6rem', lg: '8rem' }}
+    minH={{ base: 'max-content', lg: '120vh' }}
+    maxH='max-content'
     gap={16}
+    py={8}
     placeItems='center'>
     <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500'>
       <Heading>Our Services</Heading>
@@ -48,7 +49,7 @@ const SectionThree = () => (
       </Link>
     </VStack>
     <VStack height={{ base: 'max', md: 'full' }}>
-      <SimpleGrid columns={{ base: 1, lg: 2 }} gap={5} my='auto' ml={{ lg: '1.5rem' }}>
+      <SimpleGrid columns={{ base: 1, lg: 2 }} gap={5} my='auto' ml={{ lg: '1.5rem' }} >
         {services.map((item) => {
           return (
             <Card

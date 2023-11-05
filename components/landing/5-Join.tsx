@@ -11,7 +11,7 @@ const SectionFive = () => (
     alignItems='center'
     justifyContent='center'
     px={{ base: '2rem', lg: '8rem' }}
-    minH={{ base: 'max', md: '100vh' }}
+    minH={{ base: 'max', md: '120vh' }}
     py='6rem'>
     <VStack spacing={5} justifyContent='center'>
       <Heading mb='1rem'>Join the Guild</Heading>

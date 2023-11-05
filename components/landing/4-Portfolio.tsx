@@ -13,7 +13,7 @@ interface SectionFourProps {
 
 const SectionFour = ({ portfolioList }: SectionFourProps) => {
   return (
-    <Container id='portfolio' bgImage={Clouds.src} minW='100%' py='8rem' minH={{ base: 'max', md: '100vh' }}>
+    <Container id='portfolio' bgImage={Clouds.src} minW='100%' py='8rem' minH={{ base: 'max', md: '120vh' }}>
       <PageTitle title='Our Portfolio' />
       <Stack gap={4} align='center'>
         <SimpleGrid columns={{ base: 1, lg: 3 }} alignItems='center' gap={[`3rem`, `4rem`]} maxW='80%'>
