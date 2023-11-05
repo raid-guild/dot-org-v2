@@ -8,11 +8,11 @@ const SectionThree = () => (
   <SimpleGrid
     bg={tokens.background}
     id='manifesto'
-    columns={{ base: 1, md: 1, lg: 2 }}
     px={{ base: '2rem', lg: '8rem' }}
-    minH={{ base: 'max', md: '100vh' }}
-    py='4rem'
-    gap={8}
+    columns={{ md: 1, xl: 2 }}
+    maxH={{ base: 'max-content', lg: '120vh' }}
+    py={{ base: '6rem', lg: '12rem' }}
+    gap={16}
     placeItems='center'>
     <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500'>
       <Heading>Our Services</Heading>
@@ -53,16 +53,17 @@ const SectionThree = () => (
           return (
             <Card
               key={item.name}
-              // direction='column'
+              gap={6}
               alignItems='center'
               justifyContent='space-evenly'
-              variant='topBorderOnly'>
-              <Heading mb={3} size='md'>
-                {item.name}
-              </Heading>
-
+              borderColor='primary.500'
+              maxW={{ base: '100%', md: '500px' }}
+              p={12}>
               <Image src={item.img} alt='consultations' my='.5rem' />
 
+              <Heading mb={3} size='md' textAlign='center'>
+                {item.name}
+              </Heading>
               <Text fontSize='sm' textAlign='center'>
                 {item.text}
               </Text>

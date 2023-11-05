@@ -12,7 +12,8 @@ const SectionSix = () => {
       direction='column'
       alignItems='center'
       justifyContent='center'
-      padding={{ base: '2rem', lg: '10rem 4rem' }}>
+      padding={{ base: '2rem', lg: '10rem 4rem' }}
+      minH={{ base: 'max', md: '80vh' }}>
       <Heading my='2rem' fontSize={{ base: '1.5rem', lg: '36px' }}>
         Supported by
       </Heading>

@@ -11,6 +11,7 @@ const SectionFive = () => (
     alignItems='center'
     justifyContent='center'
     px={{ base: '2rem', lg: '8rem' }}
+    minH={{ base: 'max', md: '100vh' }}
     py='6rem'>
     <VStack spacing={5} justifyContent='center'>
       <Heading mb='1rem'>Join the Guild</Heading>
@@ -28,18 +29,17 @@ const SectionFive = () => (
     <SimpleGrid columns={{ base: 1, md: 3, lg: 3 }} gap={5} mt='6rem'>
       {culture.map((item) => (
         <Card
-          maxWidth='350px'
           key={item.name}
-          // direction='column'
+          gap={6}
           alignItems='center'
           justifyContent='space-evenly'
-          p={3}
-          variant='topBorderOnly'>
-          <Heading size='md' mb={3}>
+          borderColor='primary.500'
+          maxW={{ base: '100%', md: '500px' }}
+          p={12}>
+          <Image src={item.img} alt='culture' my='.5rem' />
+          <Heading size='md' mb={3} textAlign='center'>
             {item.name}
           </Heading>
-          <Image src={item.img} alt='culture' my='.5rem' />
-
           <Text textAlign='center'>{item.text}</Text>
         </Card>
       ))}
