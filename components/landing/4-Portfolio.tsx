@@ -13,10 +13,16 @@ interface SectionFourProps {
 
 const SectionFour = ({ portfolioList }: SectionFourProps) => {
   return (
-    <Container id='portfolio' bgImage={Clouds.src} minW='100%' py='8rem' minH={{ base: 'max', md: '120vh' }}>
+    <Container
+      id='portfolio'
+      bgImage={Clouds.src}
+      minW='100%'
+      py='8rem'
+      minH={{ base: 'max', md: '130vh' }}
+      maxH='max-content'>
       <PageTitle title='Our Portfolio' />
       <Stack gap={4} align='center'>
-        <SimpleGrid columns={{ base: 1, lg: 3 }} alignItems='center' gap={[`3rem`, `4rem`]} maxW='80%'>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} alignItems='center' gap={[`3rem`, `4rem`]} maxW='80%'>
           {_.map(portfolioList, (project) => (
             <Link key={_.get(project, 'imageUrl')} href={`/portfolio/${_.get(project, 'slug')}`}>
               <Flex height='200px' width='200px' justify='center' align='center'>
