@@ -1,7 +1,7 @@
-import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text, Card } from '@raidguild/design-system';
+import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text, Card, Box } from '@raidguild/design-system';
 import Link from '../atoms/ChakraNextLink';
 
-import { culture } from '../../utils/constants';
+import { culture, swordsImage } from '../../utils/constants';
 
 const SectionFive = () => (
   <Flex
@@ -26,7 +26,7 @@ const SectionFive = () => (
       </Link>
     </VStack>
 
-    <SimpleGrid columns={{ base: 1, md: 3, lg: 3 }} gap={5} mt='6rem'>
+    <SimpleGrid columns={{ base: 1, md: 3, lg: 3 }} gap={8} mt='6rem'>
       {culture.map((item) => (
         <Card
           key={item.name}
@@ -41,6 +41,15 @@ const SectionFive = () => (
             {item.name}
           </Heading>
           <Text textAlign='center'>{item.text}</Text>
+
+          <Image
+            src={swordsImage}
+            alt='Raidguild Swords Icon'
+            bottom='-21px'
+            width='42px'
+            height='42px'
+            position='absolute'
+          />
         </Card>
       ))}
     </SimpleGrid>
