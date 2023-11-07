@@ -23,7 +23,9 @@ const SectionFive = () => (
       </Text>
       <br />
       <Link href='/join'>
-        <Button>Join Us</Button>
+        <Button bgGradient={tokens.orangeToPurpleGradient} borderRadius={2}>
+          Join Us
+        </Button>
       </Link>
     </VStack>
 

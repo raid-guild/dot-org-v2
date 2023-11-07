@@ -48,39 +48,56 @@ const Footer = () => (
       w='100%'
       m='0 auto'
       marginTop='100px'
-      alignItems='flex-start'
+      alignItems={{ base: 'center', md: 'flex-start' }}
       justifyContent='space-between'
       px={{ base: '2rem', lg: '5rem' }}
-      py='2rem'>
-      <Box width={{ base: '150px', lg: '168px' }} mr='auto' mt='2rem'>
-        <Image src={raidGuildLogo.src} alt='raidguild logo' />
-      </Box>
+      pb='8rem'>
+      <Image
+        src={raidGuildLogo.src}
+        filter={{ base: 'brightness(0) invert(1)', md: 'none' }}
+        alt='raidguild logo'
+        width={{ base: '150px', lg: '168px' }}
+        mt={{ base: '8rem', md: 0 }}
+      />
+
       <SimpleGrid
         columns={{ base: 1, md: 3, lg: 3 }}
-        spacing={{ base: '2rem', lg: '5rem' }}
+        spacing={{ base: '6rem', lg: '5rem' }}
         fontSize='1rem'
         color='greyLight'>
-        <VStack alignItems='flex-start'>
-          <Text>For Clients</Text>
+        <VStack alignItems={{ base: 'center', md: 'flex-start' }} gap={4}>
+          <Text fontFamily='spaceMono' fontWeight={800}>
+            For Clients
+          </Text>
           <Link href='/hire'>Hire Us</Link>
           <Link href='/#portfolio'>Our Portfolio</Link>
         </VStack>
-        <VStack alignItems='flex-start'>
-          <Text>For Raiders</Text>
+        <VStack alignItems={{ base: 'center', md: 'flex-start' }} gap={4}>
+          <Text fontFamily='spaceMono' fontWeight={800}>
+            For Raiders
+          </Text>
           <Link href='/join'>Join Us</Link>
           <Link href='https://handbook.raidguild.org' isExternal>
             Our Handbook
           </Link>
         </VStack>
-        <VStack alignItems='flex-start' fontFamily='spaceMono'>
-          <Text>For All</Text>
+        <VStack alignItems={{ base: 'center', md: 'flex-start' }} gap={4}>
+          <Text fontFamily='spaceMono' fontWeight={800}>
+            For Everyone
+          </Text>
           <HStack spacing={3}>
-            {forAllLinks.map((link) => (
+            {forAllLinks.slice(0, 3).map((link) => (
               <Link href={link.link} isExternal key={link.link}>
                 {link.icon}
               </Link>
             ))}
           </HStack>
+
+          {forAllLinks.slice(3, 5).map((link) => (
+            <Link href={link.link} isExternal key={link.link}>
+              {link.label}
+            </Link>
+          ))}
         </VStack>
       </SimpleGrid>
     </Flex>
