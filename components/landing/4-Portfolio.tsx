@@ -19,6 +19,7 @@ const SectionFour = ({ portfolioList }: SectionFourProps) => {
       id='portfolio'
       bgImage={Clouds.src}
       bg={tokens.backgroundImageOverlay}
+      bgColor='gray.900'
       minW='100%'
       py='8rem'
       minH='max'

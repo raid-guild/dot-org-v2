@@ -15,8 +15,10 @@ const SectionThree = () => (
     gap={16}
     py={8}
     placeItems='center'>
-    <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500'>
-      <Heading>Our Services</Heading>
+    <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500' textColor='white'>
+      <Heading variant='shadow' color='white'>
+        Our Services
+      </Heading>
       <Text>
         RaidGuild is the premier design and dev agency of the Web3 ecosystem. We are deeply entrenched in the bleeding
         edge of DAOs, DeFi, dApps and everything else in between. Hailing from the MetaCartel network, our team consists

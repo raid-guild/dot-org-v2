@@ -52,7 +52,12 @@ const Nav = () => {
   }, []);
 
   return (
-    <HStack gap='1rem' justifyContent='space-between' width='100%' margin={{ base: '0 auto', md: '1rem 2rem' }}>
+    <HStack
+      gap='1rem'
+      justifyContent='space-between'
+      width='full'
+      margin={{ base: '0 auto', md: '1rem 2rem' }}
+      color='white'>
       <Link href='/' passHref>
         <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' maxWidth='200px' />
       </Link>

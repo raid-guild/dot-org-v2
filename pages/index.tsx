@@ -26,20 +26,15 @@ const Home = ({ initialData }: Props) => {
   const { data: portfolioList } = usePortfolioList({ initialData, token });
 
   return (
-    <>
-      {/* <Meta /> */}
-      <Box bg='red' height='100vh' width='100vw'>
-        <Flex height='100%' width='100%' direction='column'>
-          <Hero />
-          <Manifesto />
-          <Services />
-          <Portfolio portfolioList={portfolioList} />
-          <Join />
-          <Supporters />
-          <Footer />
-        </Flex>
-      </Box>
-    </>
+    <Flex height='100%' width='100vw' direction='column'>
+      <Hero />
+      <Manifesto />
+      <Services />
+      <Portfolio portfolioList={portfolioList} />
+      <Join />
+      <Supporters />
+      <Footer />
+    </Flex>
   );
 };
 

@@ -14,8 +14,10 @@ const SectionFive = () => (
     px={{ base: '2rem', lg: '8rem' }}
     minH={{ base: 'max', md: '120vh' }}
     py='6rem'>
-    <VStack spacing={5} justifyContent='center'>
-      <Heading mb='1rem'>Join the Guild</Heading>
+    <VStack spacing={5} justifyContent='center' textColor='white'>
+      <Heading variant='shadow' color='white' mb='1rem'>
+        Join the Guild
+      </Heading>
       <Text maxW='560px' textAlign='center'>
         We believe workers should be self-sovereign and able to work when, where and how they want, as long as they
         create high value output. We&apos;re looking for top talent that can take things into their own hands and bring

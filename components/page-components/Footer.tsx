@@ -71,7 +71,7 @@ const Footer = () => {
         alignItems='center'
         flexDir='column'
         gap={2}>
-        <Heading hidden={hideOnBase} fontSize={24} mb={6}>
+        <Heading hidden={hideOnBase} fontSize={24} mb={6} variant='shadow' color='white'>
           Hire Raidguild
         </Heading>
         <Stack flexDirection={{ base: 'column', lg: 'row' }} gap={6}>
@@ -95,7 +95,8 @@ const Footer = () => {
         alignItems={{ base: 'center', md: 'flex-start' }}
         justifyContent='space-between'
         px={{ base: '2rem', lg: '5rem' }}
-        pb='8rem'>
+        pb='8rem'
+        color='white'>
         <Image
           src={raidGuildLogo.src}
           filter={{ base: 'brightness(0) invert(1)', md: 'none' }}

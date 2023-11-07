@@ -30,7 +30,9 @@ const SectionOne = () => (
           <Heading
             maxW='720px'
             fontSize={{ base: 'medium', md: '3xl', lg: '4xl' }}
-            textAlign={{ base: 'center', lg: 'left' }}>
+            textAlign={{ base: 'center', lg: 'left' }}
+            variant='shadow' 
+            color='white'>
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3 Product Demons.
           </Heading>
           <Flex

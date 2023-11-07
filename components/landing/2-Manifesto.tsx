@@ -18,8 +18,10 @@ const SectionTwo = () => {
       <Box width={{ base: '250px', lg: '400px' }}>
         <Image src={raidFantasy.src} alt='raid fantasy' placeholder='blur' />
       </Box>
-      <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500'>
-        <Heading>Manifesto</Heading>
+      <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500' textColor='white'>
+        <Heading variant='shadow' color='white'>
+          Manifesto
+        </Heading>
         <div>
           <Text>
             We believe that DAOs will power the future of work. Through the MetaCartel network, we assembled a
