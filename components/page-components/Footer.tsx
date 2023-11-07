@@ -1,10 +1,10 @@
-import { Flex, Box, SimpleGrid, VStack, HStack, Heading, Text, Icon, Image } from '@raidguild/design-system';
-import { FaTwitter, FaGithub, FaDiscord, FaNewspaper, FaMedium } from 'react-icons/fa';
-// import Image from 'next/image';
+import { Box, Button, Flex, HStack, Icon, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
+import { FaDiscord, FaGithub, FaMedium, FaNewspaper, FaTwitter } from 'react-icons/fa';
+import raidGuildFooter from '../../assets/illustrations/raidguild-footer.png';
+import raidGuildLogo from '../../assets/illustrations/raidguild.webp';
 import Link from '../atoms/ChakraNextLink';
 
-import raidGuildLogo from '../../assets/illustrations/raidguild.webp';
-import raidGuildFooter from '../../assets/illustrations/raidguild-footer.png';
+
 
 const forAllLinks = [
   {
@@ -60,7 +60,6 @@ const Footer = () => (
         width={{ base: '150px', lg: '168px' }}
         mt={{ base: '8rem', md: 0 }}
       />
-
       <SimpleGrid
         columns={{ base: 1, md: 3, lg: 3 }}
         spacing={{ base: '6rem', lg: '5rem' }}

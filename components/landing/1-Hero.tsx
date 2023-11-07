@@ -1,5 +1,6 @@
 import { Flex, SimpleGrid, Box, Button, Heading, Center } from '@raidguild/design-system';
 import Image from 'next/image';
+import GradienButton from 'components/atoms/GradientButton';
 import tokens from '../../utils/extendedTokens';
 
 import Link from '../atoms/ChakraNextLink';
@@ -46,13 +47,7 @@ const SectionOne = () => (
             </Link>
             <Link href='/join/1'>
               {/* <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill='transparent'> */}
-              <Button
-                bgGradient={tokens.purpleToBlueGradient}
-                bgClip='text'
-                borderRadius={2}
-                _hover={{ color: 'white' }}>
-                Join Us
-              </Button>
+              <GradienButton label='JOIN US' />
               {/* </Box> */}
             </Link>
           </Flex>
