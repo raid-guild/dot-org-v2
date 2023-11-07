@@ -1,6 +1,6 @@
 import { Button, Center, Flex, Image, SimpleGrid, Stack } from '@raidguild/design-system';
 import _ from 'lodash';
-import GradienButton from 'components/atoms/GradientButton';
+import GradienButton from '../atoms/GradientButton';
 import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
 

@@ -1,7 +1,7 @@
-import { Flex, SimpleGrid, Box, Button, Heading, Center } from '@raidguild/design-system';
+import { Box, Button, Flex, Heading, SimpleGrid } from '@raidguild/design-system';
 import Image from 'next/image';
-import GradienButton from 'components/atoms/GradientButton';
 import tokens from '../../utils/extendedTokens';
+import GradienButton from '../atoms/GradientButton';
 
 import Link from '../atoms/ChakraNextLink';
 import Nav from '../page-components/Nav';

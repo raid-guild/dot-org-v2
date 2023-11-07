@@ -1,5 +1,5 @@
 import { Button, Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
-import GradienButton from 'components/atoms/GradientButton';
+import GradienButton from '../atoms/GradientButton';
 import Link from '../atoms/ChakraNextLink';
 
 import { services } from '../../utils/constants';
