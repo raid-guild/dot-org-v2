@@ -10,8 +10,8 @@ interface PageTitleProps {
 
 const PageTitle = ({ title }: PageTitleProps) => (
   <Center py='2rem'>
-    <VStack>
-      <Image src={Swords.src} />
+    <VStack gap={8}>
+      <Image src={Swords.src} w='48px' h='48px' />
       <HStack justifyContent='center'>
         <Image src={LeftWing.src} width={[`25vw`, `30vw`]} />
         <Heading fontFamily='uncial' color='white' maxW='15ch' textAlign='center'>

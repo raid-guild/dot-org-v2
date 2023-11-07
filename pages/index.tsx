@@ -12,6 +12,7 @@ import Supporters from '../components/landing/6-Supporters';
 import Footer from '../components/page-components/Footer';
 import usePortfolioList from '../hooks/usePortfolioList';
 import { getPortfolioList } from '../gql';
+import tokens from '../utils/extendedTokens';
 
 // * `<Nav />` is included in `<Hero />` for the landing page
 
@@ -28,7 +29,6 @@ const Home = ({ initialData }: Props) => {
     <>
       {/* <Meta /> */}
       <Box bg='red' height='100vh' width='100vw'>
-        {/* <Flex maxW='100rem' mx='auto' overflowX='hidden'> */}
         <Flex height='100%' width='100%' direction='column'>
           <Hero />
           <Manifesto />
@@ -38,7 +38,6 @@ const Home = ({ initialData }: Props) => {
           <Supporters />
           <Footer />
         </Flex>
-        {/* </Flex> */}
       </Box>
     </>
   );

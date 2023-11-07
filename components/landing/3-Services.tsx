@@ -7,7 +7,7 @@ import tokens from '../../utils/extendedTokens';
 const SectionThree = () => (
   <SimpleGrid
     bg={tokens.purpleToRedGradient}
-    id='manifesto'
+    id='Our Services'
     px={{ base: '2rem', lg: '8rem' }}
     columns={{ md: 1, lg: 1, xl: 2 }}
     h={{ base: 'max', xl: '120vh' }}

@@ -5,11 +5,12 @@ import PageTitle from '../page-components/PageTitle';
 import metacartel from '../../assets/logos/metacartel.webp';
 import daohaus from '../../assets/logos/daohaus.webp';
 import moloch from '../../assets/logos/moloch.webp';
+import tokens from '../../utils/extendedTokens';
 
 const SectionSix = () => {
   return (
     <Flex
-      layerStyle='primaryGradient'
+      bg={tokens.darkBrownRedGradient}
       direction='column'
       alignItems='center'
       justifyContent='center'

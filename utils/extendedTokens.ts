@@ -5,6 +5,7 @@ const tokens = {
   purpleToRedGradient: 'linear-gradient(281deg, #2B0000 -4.6%, #3D0610 26.67%, #5A1049 61.86%, #461881 102.63%)',
   background: 'linear-gradient(169deg, #24003A 8.78%, #330F00 137.95%)',
   backgroundImageOverlay: 'lightgray -444.489px 0px / 146.301% 107.143% no-repeat, #000',
+  darkBrownRedGradient: 'linear-gradient(97deg, #2B0722 1.75%, #2E0A17 93.53%)',
 };
 
 export default tokens;
