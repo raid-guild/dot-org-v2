@@ -1,4 +1,4 @@
-import { VStack, HStack, Image, Heading } from '@raidguild/design-system';
+import { VStack, HStack, Image, Heading, Center } from '@raidguild/design-system';
 
 import Swords from '../../assets/illustrations/swords.svg';
 import LeftWing from '../../assets/illustrations/LeftWing.svg';
@@ -9,16 +9,18 @@ interface PageTitleProps {
 }
 
 const PageTitle = ({ title }: PageTitleProps) => (
-  <VStack py='2rem'>
-    <Image src={Swords.src} />
-    <HStack>
-      <Image src={LeftWing.src} width={[`25vw`, `30vw`]} />
-      <Heading fontFamily='uncial' color='white' maxW='15ch' textAlign='center'>
-        {title}
-      </Heading>
-      <Image src={RightWing.src} width={[`25vw`, `30vw`]} />
-    </HStack>
-  </VStack>
+  <Center py='2rem'>
+    <VStack>
+      <Image src={Swords.src} />
+      <HStack justifyContent='center'>
+        <Image src={LeftWing.src} width={[`25vw`, `30vw`]} />
+        <Heading fontFamily='uncial' color='white' maxW='15ch' textAlign='center'>
+          {title}
+        </Heading>
+        <Image src={RightWing.src} width={[`25vw`, `30vw`]} />
+      </HStack>
+    </VStack>
+  </Center>
 );
 
 export default PageTitle;

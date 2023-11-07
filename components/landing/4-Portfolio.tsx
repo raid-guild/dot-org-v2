@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Container, Button, Image, Stack, SimpleGrid, Flex } from '@raidguild/design-system';
+import { Container, Button, Image, Stack, SimpleGrid, Flex, Center } from '@raidguild/design-system';
 import Link from '../atoms/ChakraNextLink';
 
 import PageTitle from '../page-components/PageTitle';
@@ -13,10 +13,10 @@ interface SectionFourProps {
 
 const SectionFour = ({ portfolioList }: SectionFourProps) => {
   return (
-    <Container id='portfolio' bgImage={Clouds.src} minW='100%' py='8rem' minH='max'>
+    <Center id='portfolio' bgImage={Clouds.src} minW='100%' py='8rem' minH='max' flexDir='column'>
       <PageTitle title='Our Portfolio' />
       <Stack gap={4} align='center'>
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} alignItems='center' gap={[`3rem`, `4rem`]} maxW='80%'>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} alignItems='center' gap={[`8rem`, `8rem`]} maxW='80%'>
           {_.map(portfolioList, (project) => (
             <Link key={_.get(project, 'imageUrl')} href={`/portfolio/${_.get(project, 'slug')}`}>
               <Flex height='200px' width='200px' justify='center' align='center'>
@@ -29,7 +29,7 @@ const SectionFour = ({ portfolioList }: SectionFourProps) => {
           <Button margin='1rem auto 0 auto'>View Projects</Button>
         </Link>
       </Stack>
-    </Container>
+    </Center>
   );
 };
 
