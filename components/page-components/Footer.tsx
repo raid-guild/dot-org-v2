@@ -38,6 +38,7 @@ const Footer = () => (
   <Box
     backgroundImage={raidGuildFooter.src}
     backgroundSize='cover'
+    bgPos='center bottom'
     padding='100px 0px 0px 0px'
     w='100%'
     textTransform='uppercase'
