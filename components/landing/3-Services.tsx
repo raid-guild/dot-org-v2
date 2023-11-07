@@ -1,4 +1,4 @@
-import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text, Card, Box } from '@raidguild/design-system';
+import { Button, Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
 import Link from '../atoms/ChakraNextLink';
 
 import { services } from '../../utils/constants';
@@ -6,7 +6,7 @@ import tokens from '../../utils/extendedTokens';
 
 const SectionThree = () => (
   <SimpleGrid
-    bg={tokens.background}
+    bg={tokens.purpleToRedGradient}
     id='manifesto'
     px={{ base: '2rem', lg: '8rem' }}
     columns={{ md: 1, lg: 1, xl: 2 }}

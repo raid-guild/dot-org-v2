@@ -1,9 +1,10 @@
+import { Button, Center, Flex, Image, SimpleGrid, Stack } from '@raidguild/design-system';
 import _ from 'lodash';
-import { Container, Button, Image, Stack, SimpleGrid, Flex, Center } from '@raidguild/design-system';
+import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
 
-import PageTitle from '../page-components/PageTitle';
 import wallSconce from '../../assets/illustrations/wallSconce.svg';
+import PageTitle from '../page-components/PageTitle';
 
 import Clouds from '../../assets/illustrations/clouds.webp';
 
@@ -13,7 +14,14 @@ interface SectionFourProps {
 
 const SectionFour = ({ portfolioList }: SectionFourProps) => {
   return (
-    <Center id='portfolio' bgImage={Clouds.src} minW='100%' py='8rem' minH='max' flexDir='column'>
+    <Center
+      id='portfolio'
+      bgImage={Clouds.src}
+      bg={tokens.backgroundImageOverlay}
+      minW='100%'
+      py='8rem'
+      minH='max'
+      flexDir='column'>
       <PageTitle title='Our Portfolio' />
       <Stack gap={4} align='center'>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} alignItems='center' gap={[`8rem`, `8rem`]} maxW='80%'>

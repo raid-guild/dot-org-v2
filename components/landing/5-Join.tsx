@@ -2,10 +2,11 @@ import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text, Card, Box } fro
 import Link from '../atoms/ChakraNextLink';
 
 import { culture, swordsImage } from '../../utils/constants';
+import tokens from '../../utils/extendedTokens';
 
 const SectionFive = () => (
   <Flex
-    layerStyle='redToPurpleHorizontalGradient'
+    bg={tokens.purpleToIndigoGradient}
     minHeight='100vh'
     direction='column'
     alignItems='center'
@@ -15,7 +16,7 @@ const SectionFive = () => (
     py='6rem'>
     <VStack spacing={5} justifyContent='center'>
       <Heading mb='1rem'>Join the Guild</Heading>
-      <Text maxW='60%' textAlign='center'>
+      <Text maxW='560px' textAlign='center'>
         We believe workers should be self-sovereign and able to work when, where and how they want, as long as they
         create high value output. We&apos;re looking for top talent that can take things into their own hands and bring
         unique value to the guild.

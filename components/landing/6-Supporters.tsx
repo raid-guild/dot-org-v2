@@ -1,6 +1,7 @@
-import { Flex, Box, Heading } from '@raidguild/design-system';
+import { Flex, Box, Text } from '@raidguild/design-system';
 import Image from 'next/image';
 
+import PageTitle from '../page-components/PageTitle';
 import metacartel from '../../assets/logos/metacartel.webp';
 import daohaus from '../../assets/logos/daohaus.webp';
 import moloch from '../../assets/logos/moloch.webp';
@@ -14,13 +15,17 @@ const SectionSix = () => {
       justifyContent='center'
       padding={{ base: '2rem', lg: '10rem 4rem' }}
       minH={{ base: 'max', md: '80vh' }}>
-      <Heading my='2rem' fontSize={{ base: '1.5rem', lg: '36px' }}>
-        Supported by
-      </Heading>
+      <PageTitle title='Our Ecosystem' />
+      <Text maxW='560px' textAlign='center'>
+        We believe workers should be self-sovereign and able to work when, where and how they want, as long as they
+        create high value output. We&apos;re looking for top talent that can take things into their own hands and bring
+        unique value to the guild.
+      </Text>
       <Flex
         w='100%'
         justifyContent='space-evenly'
         alignItems='center'
+        mt={24}
         direction={{ base: 'column', md: 'row', lg: 'row' }}>
         <Box w={{ base: '120px', lg: '200px' }}>
           <Image src={metacartel} alt='metacartel' placeholder='blur' />
