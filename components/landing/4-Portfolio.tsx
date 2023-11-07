@@ -1,5 +1,6 @@
 import { Button, Center, Flex, Image, SimpleGrid, Stack } from '@raidguild/design-system';
 import _ from 'lodash';
+import GradienButton from 'components/atoms/GradientButton';
 import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
 
@@ -34,7 +35,7 @@ const SectionFour = ({ portfolioList }: SectionFourProps) => {
           ))}
         </SimpleGrid>
         <Link href='/portfolio'>
-          <Button margin='1rem auto 0 auto'>View Projects</Button>
+          <GradienButton label='VIEW ALL PROJECTS' width='220px' />
         </Link>
       </Stack>
     </Center>

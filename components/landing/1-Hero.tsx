@@ -41,13 +41,13 @@ const SectionOne = () => (
             alignItems={{ base: 'center', lg: 'flex-start' }}
             gap={2}>
             <Link href='/hire/1'>
-              <Button bgGradient={tokens.orangeToPurpleGradient} borderRadius={2}>
+              <Button bgGradient={tokens.orangeToPurpleGradient} borderRadius={2} w='120px'>
                 Hire Us
               </Button>
             </Link>
             <Link href='/join/1'>
               {/* <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill='transparent'> */}
-              <GradienButton label='JOIN US' />
+              <GradienButton label='JOIN US' width='120px' />
               {/* </Box> */}
             </Link>
           </Flex>
