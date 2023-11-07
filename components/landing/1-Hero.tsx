@@ -31,7 +31,7 @@ const SectionOne = () => (
             maxW='720px'
             fontSize={{ base: 'medium', md: '3xl', lg: '4xl' }}
             textAlign={{ base: 'center', lg: 'left' }}
-            variant='shadow' 
+            variant='shadow'
             color='white'>
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3 Product Demons.
           </Heading>
