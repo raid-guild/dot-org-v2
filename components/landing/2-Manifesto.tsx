@@ -12,8 +12,9 @@ const SectionTwo = () => {
       columns={{ base: 1, md: 1, lg: 2 }}
       px={{ base: '2rem', lg: '8rem' }}
       py='4rem'
-      minH={{ base: 'max-contnt', md: '120vh' }}
+      minH={{ base: 'max-contnt', lg: '100vh' }}
       maxH='max-content'
+      gap={6}
       placeItems='center'>
       <Box width={{ base: '250px', lg: '400px' }}>
         <Image src={raidFantasy.src} alt='raid fantasy' placeholder='blur' />

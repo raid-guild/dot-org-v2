@@ -12,7 +12,6 @@ import Supporters from '../components/landing/6-Supporters';
 import Footer from '../components/page-components/Footer';
 import usePortfolioList from '../hooks/usePortfolioList';
 import { getPortfolioList } from '../gql';
-import tokens from '../utils/extendedTokens';
 
 // * `<Nav />` is included in `<Hero />` for the landing page
 

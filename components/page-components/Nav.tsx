@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HStack, Flex, Box, Button, Image, defaultTheme } from '@raidguild/design-system';
+import { HStack, Flex, Box, Button, Image, defaultTheme, useBreakpointValue } from '@raidguild/design-system';
 import styled from '@emotion/styled';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Link from '../atoms/ChakraNextLink';
@@ -39,58 +39,31 @@ const navItems = [
 
 const Nav = () => {
   const [isOpen, onOpen] = useState<boolean>(false);
-  const [windowWidth, setWindowWidth] = useState<number>(0);
-
-  useEffect(() => {
-    setWindowWidth(window.innerWidth);
-    window.removeEventListener('resize', () => {
-      return null;
-    });
-    window.addEventListener('resize', () => {
-      setWindowWidth(window.innerWidth);
-    });
-  }, []);
+  const hideOnBase = useBreakpointValue({ base: true, lg: false });
 
   return (
-    <HStack
-      gap='1rem'
-      justifyContent='space-between'
-      width='full'
-      margin={{ base: '0 auto', md: '1rem 2rem' }}
-      color='white'>
+    <HStack justifyContent='space-between' width='full' color='white' id='Navigation Bar'>
       <Link href='/' passHref>
         <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' maxWidth='200px' />
       </Link>
-      {windowWidth > 900 ? (
-        <>
-          <HStack spacing={8}>
+      {!hideOnBase ? (
+        <HStack justifyContent='space-between' w='50vw'>
+          <HStack spacing={8} alignItems='center' w='full'>
             {navItems.map((item) => (
-              <Link key={item.name} href={item.href}>
+              <Link key={item.name} href={item.href} id={item.name}>
                 {item.name}
               </Link>
             ))}
           </HStack>
           <ConnectWallet />
-        </>
+        </HStack>
       ) : (
-        <>
+        <Flex>
           <Flex align='center' height='8rem'>
-            <Button
-              fontSize='2rem'
-              onClick={() => onOpen((o) => !o)}
-              variant='link'
-              ml={{ base: '0.5rem', sm: '1rem' }}
-              zIndex={7}>
-              {!isOpen && (
-                <span style={{ width: '25px', color: defaultTheme.colors.red[500] }}>
-                  <FaBars />
-                </span>
-              )}
-              {isOpen && (
-                <span style={{ width: '25px', color: defaultTheme.colors.red[500] }}>
-                  <FaTimes />
-                </span>
-              )}
+            <Button fontSize='2rem' onClick={() => onOpen((o) => !o)} variant='link' zIndex={7}>
+              <span style={{ width: '25px', color: defaultTheme.colors.red[500] }}>
+                {!isOpen ? <FaBars /> : <FaTimes />}
+              </span>
             </Button>
           </Flex>
           <Flex
@@ -100,10 +73,11 @@ const Nav = () => {
             top='0'
             bg='black'
             h='100%'
-            w='100%'
+            w='full'
             direction='column'
             justify='center'
             align='center'
+            hidden={!isOpen}
             transition='all .8s ease-out'
             pointerEvents={isOpen ? 'all' : 'none'}
             css={{
@@ -130,7 +104,7 @@ const Nav = () => {
               <ConnectWallet />
             </Box>
           </Flex>
-        </>
+        </Flex>
       )}
     </HStack>
   );

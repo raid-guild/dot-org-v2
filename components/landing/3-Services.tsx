@@ -9,11 +9,11 @@ const SectionThree = () => (
   <SimpleGrid
     bg={tokens.purpleToRedGradient}
     id='Our Services'
-    px={{ base: '2rem', lg: '8rem' }}
-    columns={{ md: 1, lg: 1, xl: 2 }}
+    px={{ base: '2rem', xl: '8rem' }}
+    columns={{ md: 1, xl: 1, xxl: 2 }}
     h={{ base: 'max', xl: '120vh' }}
-    gap={16}
-    py={8}
+    gap={12}
+    py={{ base: 16, xl: 24 }}
     placeItems='center'>
     <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500' textColor='white'>
       <Heading variant='shadow' color='white'>

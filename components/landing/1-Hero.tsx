@@ -21,16 +21,16 @@ const SectionOne = () => (
       maxH='max-content'>
       <Nav />
       <Flex
-        direction={{ base: 'column-reverse', lg: 'row' }}
+        direction={{ base: 'column-reverse', xl: 'row' }}
         alignItems='center'
         justifyContent='space-between'
-        px={{ base: '1rem', lg: '8rem' }}
+        px={{ base: '1rem', xl: '8rem' }}
         width='full'>
         <Flex direction='column' justifyContent='center' alignItems='start' maxW={{ lg: '50%' }}>
           <Heading
             maxW='720px'
-            fontSize={{ base: 'medium', md: '3xl', lg: '4xl' }}
-            textAlign={{ base: 'center', lg: 'left' }}
+            fontSize={{ base: 'medium', md: '3xl', xl: '4xl' }}
+            textAlign={{ base: 'center', xl: 'left' }}
             variant='shadow'
             color='white'>
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3 Product Demons.
@@ -39,8 +39,8 @@ const SectionOne = () => (
             w='100%'
             mt={{ base: '2rem' }}
             direction={{ base: 'column', lg: 'row' }}
-            justifyContent={{ base: 'center', lg: 'flex-start' }}
-            alignItems={{ base: 'center', lg: 'flex-start' }}
+            justifyContent={{ base: 'center', xl: 'flex-start' }}
+            alignItems={{ base: 'center', xl: 'flex-start' }}
             gap={2}>
             <Link href='/hire/1'>
               <Button bgGradient={tokens.orangeToPurpleGradient} borderRadius={2} w='120px'>
