@@ -10,7 +10,7 @@ const SectionThree = () => (
     bg={tokens.purpleToRedGradient}
     id='Our Services'
     px={{ base: '2rem', xl: '8rem' }}
-    columns={{ md: 1, xl: 1, xxl: 2 }}
+    columns={{ base: 1, xl: 2 }}
     h={{ base: 'max', xl: '120vh' }}
     gap={12}
     py={{ base: 16, xl: 24 }}
