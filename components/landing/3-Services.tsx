@@ -11,7 +11,8 @@ const SectionThree = () => (
     id='Our Services'
     px={{ base: '2rem', xl: '8rem' }}
     columns={{ base: 1, xl: 2 }}
-    h={{ base: 'max', xl: '120vh' }}
+    minH={{ base: 'max-content', xl: '120vh' }}
+    maxH={{ base: 'max', xl: 'max-content' }}
     gap={12}
     py={{ base: 16, xl: 24 }}
     placeItems='center'>

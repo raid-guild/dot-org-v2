@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Center,
   Flex,
@@ -11,14 +10,14 @@ import {
   Stack,
   Text,
   VStack,
-  useBreakpointValue,
+  useBreakpointValue
 } from '@raidguild/design-system';
 import { FaDiscord, FaGithub, FaMedium, FaNewspaper, FaTwitter } from 'react-icons/fa';
-import GradienButton from '../atoms/GradientButton';
 import raidGuildFooter from '../../assets/illustrations/raidguild-footer.png';
 import raidGuildLogo from '../../assets/illustrations/raidguild.webp';
-import Link from '../atoms/ChakraNextLink';
 import tokens from '../../utils/extendedTokens';
+import Link from '../atoms/ChakraNextLink';
+import GradienButton from '../atoms/GradientButton';
 
 const forAllLinks = [
   {
@@ -113,15 +112,21 @@ const Footer = () => {
             <Text fontFamily='spaceMono' fontWeight={800}>
               For Clients
             </Text>
-            <Link href='/hire'>Hire Us</Link>
-            <Link href='/#portfolio'>Our Portfolio</Link>
+            <Link href='/hire' _hover={{ opacity: '80%' }} id='Hire'>
+              Hire Us
+            </Link>
+            <Link href='/#portfolio' _hover={{ opacity: '80%' }}>
+              Our Portfolio
+            </Link>
           </VStack>
           <VStack alignItems={{ base: 'center', md: 'flex-start' }} gap={4}>
             <Text fontFamily='spaceMono' fontWeight={800}>
               For Raiders
             </Text>
-            <Link href='/join'>Join Us</Link>
-            <Link href='https://handbook.raidguild.org' isExternal>
+            <Link href='/join' _hover={{ opacity: '80%' }} id='Join'>
+              Join Us
+            </Link>
+            <Link href='https://handbook.raidguild.org' _hover={{ opacity: '80%' }} isExternal>
               Our Handbook
             </Link>
           </VStack>
@@ -131,14 +136,14 @@ const Footer = () => {
             </Text>
             <HStack spacing={3}>
               {forAllLinks.slice(0, 3).map((link) => (
-                <Link href={link.link} isExternal key={link.link}>
+                <Link href={link.link} id={link.label} isExternal key={link.link} _hover={{ opacity: '80%' }}>
                   {link.icon}
                 </Link>
               ))}
             </HStack>
 
             {forAllLinks.slice(3, 5).map((link) => (
-              <Link href={link.link} isExternal key={link.link}>
+              <Link href={link.link} id={link.label} isExternal key={link.link} _hover={{ opacity: '80%' }}>
                 {link.label}
               </Link>
             ))}

@@ -50,7 +50,7 @@ const Nav = () => {
         <HStack justifyContent='space-between' w='50vw'>
           <HStack spacing={8} alignItems='center' w='full'>
             {navItems.map((item) => (
-              <Link key={item.name} href={item.href} id={item.name}>
+              <Link key={item.name} href={item.href} id={item.name} _hover={{ opacity: '80%' }}>
                 {item.name}
               </Link>
             ))}
