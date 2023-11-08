@@ -9,7 +9,7 @@ import Nav from '../page-components/Nav';
 import raidBanner from '../../assets/illustrations/raid__banner.webp';
 
 const SectionOne = () => (
-  <Box bg={tokens.purpleToIndigoGradient}>
+  <Box bg={tokens.purpleToIndigoGradient} w='full'>
     <SimpleGrid
       placeItems='flex-start'
       border='2px solid'

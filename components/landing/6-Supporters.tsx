@@ -1,4 +1,4 @@
-import { Flex, Box, Text } from '@raidguild/design-system';
+import { Flex, Box, Text, Center } from '@raidguild/design-system';
 import Image from 'next/image';
 
 import PageTitle from '../page-components/PageTitle';
@@ -9,9 +9,10 @@ import tokens from '../../utils/extendedTokens';
 
 const SectionSix = () => {
   return (
-    <Flex
+    <Center
+      id='Our Supporters'
       bg={tokens.darkBrownRedGradient}
-      direction='column'
+      flexDirection='column'
       alignItems='center'
       justifyContent='center'
       padding={{ base: '2rem', lg: '10rem 4rem' }}
@@ -38,7 +39,7 @@ const SectionSix = () => {
           <Image src={moloch} alt='molochdao' placeholder='blur' />
         </Box>
       </Flex>
-    </Flex>
+    </Center>
   );
 };
 

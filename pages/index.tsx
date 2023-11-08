@@ -26,7 +26,7 @@ const Home = ({ initialData }: Props) => {
   const { data: portfolioList } = usePortfolioList({ initialData, token });
 
   return (
-    <Flex height='100%' width='100vw' direction='column'>
+    <Flex height='100%' width='100%' direction='column' id='flexO'>
       <Hero />
       <Manifesto />
       <Services />

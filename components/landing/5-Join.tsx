@@ -1,19 +1,18 @@
-import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text, Card, Box } from '@raidguild/design-system';
+import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text, Card, Box, Center } from '@raidguild/design-system';
 import Link from '../atoms/ChakraNextLink';
 
 import { culture, swordsImage } from '../../utils/constants';
 import tokens from '../../utils/extendedTokens';
 
 const SectionFive = () => (
-  <Flex
+  <Center
+    id='Join Us'
     bg={tokens.purpleToIndigoGradient}
-    minHeight='100vh'
-    direction='column'
+    flexDirection='column'
     alignItems='center'
     justifyContent='center'
-    px={{ base: '2rem', lg: '8rem' }}
-    minH={{ base: 'max', md: '120vh' }}
-    py='6rem'>
+    padding={{ base: '2rem', lg: '10rem 4rem' }}
+    minH={{ base: 'max', md: '80vh' }}>
     <VStack spacing={5} justifyContent='center' textColor='white'>
       <Heading variant='shadow' color='white' mb='1rem'>
         Join the Guild
@@ -39,7 +38,7 @@ const SectionFive = () => (
           alignItems='center'
           justifyContent='space-evenly'
           borderColor='primary.500'
-          maxW={{ base: '100%', md: '500px' }}
+          maxW={{ base: 'full', md: '500px' }}
           p={12}>
           <Image src={item.img} alt='culture' my='.5rem' />
           <Heading size='md' mb={3} textAlign='center'>
@@ -58,7 +57,7 @@ const SectionFive = () => (
         </Card>
       ))}
     </SimpleGrid>
-  </Flex>
+  </Center>
 );
 
 export default SectionFive;
