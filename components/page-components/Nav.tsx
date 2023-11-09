@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { HStack, Flex, Box, Button, Image, defaultTheme, useBreakpointValue } from '@raidguild/design-system';
 import styled from '@emotion/styled';
+import { Box, Button, Flex, HStack, Image, defaultTheme, useBreakpointValue } from '@raidguild/design-system';
+import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Link from '../atoms/ChakraNextLink';
 import { ConnectWallet } from '../atoms/ConnectWallet';
@@ -50,7 +50,13 @@ const Nav = () => {
         <HStack justifyContent='space-between' w='50vw'>
           <HStack spacing={8} alignItems='center' w='full'>
             {navItems.map((item) => (
-              <Link key={item.name} href={item.href} id={item.name} _hover={{ opacity: '80%' }}>
+              <Link
+                key={item.name}
+                href={item.href}
+                id={item.name}
+                _hover={{ opacity: '80%' }}
+                fontWeight={600}
+                textColor={defaultTheme.colors.red[500]}>
                 {item.name}
               </Link>
             ))}

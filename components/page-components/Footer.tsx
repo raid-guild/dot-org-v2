@@ -10,7 +10,7 @@ import {
   Stack,
   Text,
   VStack,
-  useBreakpointValue
+  useBreakpointValue,
 } from '@raidguild/design-system';
 import { FaDiscord, FaGithub, FaMedium, FaNewspaper, FaTwitter } from 'react-icons/fa';
 import raidGuildFooter from '../../assets/illustrations/raidguild-footer.png';

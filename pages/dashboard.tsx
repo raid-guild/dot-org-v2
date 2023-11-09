@@ -14,7 +14,7 @@ const Dashboard = () => {
   return (
     <Flex width='100vw' minHeight='100vh' direction='column' justifyContent='space-between' alignItems='center'>
       <Meta />
-      <Box px={{ base: '2rem', lg: '5rem' }} w='100%'>
+      <Box px={{ base: '1rem', lg: '4rem' }} m='1rem' w='100%'>
         <Nav />
       </Box>
 

@@ -15,9 +15,12 @@ import {
   Image,
   Text,
   Button,
+  chakra,
+  defaultTheme,
 } from '@raidguild/design-system';
 import { FiKey, FiChevronDown, FiXCircle } from 'react-icons/fi';
 import { truncateAddress } from '../../utils';
+import tokens from '../../utils/extendedTokens';
 
 type Props = {
   label?: string;
@@ -51,10 +54,12 @@ export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
                   <Button
                     variant='outline'
                     transition='all 100ms ease-in-out'
-                    leftIcon={<Icon as={FiKey} color='primary.500' w='20px' h='20px' />}
-                    // isDisabled={isConnecting}
+                    leftIcon={<Icon as={FiKey} color='primary.500' w='20px' h='20px' textColor='white' />}
                     onClick={openConnectModal}
-                    data-cy='connect-wallet'>
+                    data-cy='connect-wallet'
+                    fontFamily='mono'
+                    bgGradient={tokens.orangeToPurpleGradient}
+                    borderRadius={2}>
                     {label || 'Connect'}
                   </Button>
                 );
@@ -62,7 +67,7 @@ export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
 
               if (chain.unsupported) {
                 return (
-                  <Button onClick={openChainModal} variant='outline'>
+                  <Button onClick={openChainModal} variant='outline' borderRadius={2}>
                     Unsupported network
                   </Button>
                 );

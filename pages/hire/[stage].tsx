@@ -31,7 +31,7 @@ const HireUs = () => {
 
   return (
     <SiteLayout>
-      <Stack w='80%' spacing={10}>
+      <Stack w='100%' spacing={10}>
         {/* FORM PARTS */}
         {stage === 1 && <Intro isConnected={Boolean(session)} handleNext={handleNext} />}
         {stage === 2 && <Contact handleNext={handleNext} handleBack={handleBack} />}
