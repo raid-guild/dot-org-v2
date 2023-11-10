@@ -1,4 +1,4 @@
-import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text, Card, Box, Center } from '@raidguild/design-system';
+import { Button, Card, Center, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
 import Link from '../atoms/ChakraNextLink';
 
 import { culture, swordsImage } from '../../utils/constants';

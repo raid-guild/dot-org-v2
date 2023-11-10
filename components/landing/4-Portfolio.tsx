@@ -1,8 +1,8 @@
-import { Button, Center, Flex, Image, SimpleGrid, Stack } from '@raidguild/design-system';
+import { Center, Flex, Image, SimpleGrid, Stack } from '@raidguild/design-system';
 import _ from 'lodash';
-import GradienButton from '../atoms/GradientButton';
 import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
+import GradienButton from '../atoms/GradientButton';
 
 import wallSconce from '../../assets/illustrations/wallSconce.svg';
 import PageTitle from '../page-components/PageTitle';

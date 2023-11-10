@@ -1,24 +1,22 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import React from 'react';
 
-import { useDisconnect } from 'wagmi';
 import {
+  Box,
+  Button,
+  Flex,
+  HStack,
+  Icon,
+  Image,
   Menu,
   MenuButton,
-  MenuList,
   MenuItem,
-  Icon,
-  HStack,
-  Box,
-  Flex,
-  Image,
-  Text,
-  Button,
-  chakra,
-  defaultTheme,
+  MenuList,
+  Text
 } from '@raidguild/design-system';
-import { FiKey, FiChevronDown, FiXCircle } from 'react-icons/fi';
+import { FiChevronDown, FiKey, FiXCircle } from 'react-icons/fi';
+import { useDisconnect } from 'wagmi';
 import { truncateAddress } from '../../utils';
 import tokens from '../../utils/extendedTokens';
 

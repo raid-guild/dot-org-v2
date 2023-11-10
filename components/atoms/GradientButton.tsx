@@ -1,6 +1,5 @@
-import { Box, Button } from '@raidguild/design-system';
 import styled from '@emotion/styled';
-import tokens from '../../utils/extendedTokens';
+import { Box, Button } from '@raidguild/design-system';
 
 const GradienButton = ({
   label,

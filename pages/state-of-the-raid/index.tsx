@@ -2,16 +2,15 @@ import { Box, Button, Card, Flex, Heading, Image, Stack, Text, VStack, defaultTh
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { FaEdit } from 'react-icons/fa';
-import PageEnd from '../../components/page-components/PageEnd';
 import wallSconce from '../../assets/illustrations/wallSconce.svg';
 import Link from '../../components/atoms/ChakraNextLink';
+import PageEnd from '../../components/page-components/PageEnd';
 import PageTitle from '../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import { getBlogsList } from '../../gql';
 import useBlogsList from '../../hooks/useBlogsList';
 import { checkPermission } from '../../utils';
 import tokens from '../../utils/extendedTokens';
-import fallBackBanner from '../../assets/illustrations/fallBackBanner.png';
 
 interface PostProps {
   post: any;
