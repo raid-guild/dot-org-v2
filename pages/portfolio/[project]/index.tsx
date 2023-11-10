@@ -142,7 +142,7 @@ function PortfolioPage({ initialData }: Props) {
 
         <VStack maxW={900} gap={12}>
           <Stack spacing={6} align={{ base: 'center', lg: 'flex-start' }} maxW='80vw'>
-          <Stack flexDir={{ base: 'column', md: 'row' }} align='center' gap={6}>
+            <Stack flexDir={{ base: 'column', md: 'row' }} align='center' gap={6}>
               <Icon as={Swords} w='32px' h='32px' />
               <Heading variant='shadow' size='md'>
                 Our Approach
