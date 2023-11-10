@@ -34,14 +34,3 @@ const Intro = ({ handleNext, isConnected }: Props) => (
 );
 
 export default Intro;
-
-// <Stack p='0.5rem 1rem' >
-//   <Text>
-//     Status: Season 3
-//   </Text>
-//   <Text>
-//     Cohorts are being trained & building cool stuff. Applications are
-//     closed for season 3 but open for next season. Selected applicants
-//     will be notified via email when it's time.
-//   </Text>
-// </Stack>

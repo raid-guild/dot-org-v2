@@ -1,4 +1,4 @@
-import { Flex, Heading, Text, HStack, Button } from '@raidguild/design-system';
+import { Flex, Heading, Text, HStack, Button, Stack } from '@raidguild/design-system';
 import { ConnectWallet } from '../atoms/ConnectWallet';
 import Link from '../atoms/ChakraNextLink';
 
@@ -7,12 +7,10 @@ type Props = {
   isConnected: boolean;
 };
 const Intro = ({ handleNext, isConnected }: Props) => (
-  <Flex direction='column' py='2rem' px={{ base: '1rem', lg: '4rem' }} mx='auto' maxW='900px'>
-    <Heading fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
-      Hiring RaidGuild
-    </Heading>
+  <Stack spacing={10} maxW={{ base: '100%', md: '60%' }}>
+    <Heading mb='1rem'>Hiring RaidGuild</Heading>
 
-    <Text fontSize={{ base: '1rem', lg: '18px' }}>
+    <Text fontFamily='spaceMono'>
       To request a consultation, please fill out the form starting on the next screen after connecting your wallet. The
       more information you can provide about the work you want to hire RaidGuild for, the better. The form will have
       space for information about you / your team, background, and description for your project, specs for the work, as
@@ -48,7 +46,7 @@ const Intro = ({ handleNext, isConnected }: Props) => (
     </Text> */}
     <br />
 
-    <Text>
+    <Text fontFamily='spaceMono'>
       For more info about the consultation process, join our{' '}
       <Link href='https://handbook.raidguild.org/' isExternal color='red.500'>
         discord
@@ -65,7 +63,7 @@ const Intro = ({ handleNext, isConnected }: Props) => (
         </Button>
       )}
     </HStack>
-  </Flex>
+  </Stack>
 );
 
 export default Intro;
