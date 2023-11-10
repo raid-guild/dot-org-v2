@@ -1,5 +1,5 @@
 import { Button, Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
-import GradienButton from '../atoms/GradientButton';
+import GradientBorderButton from '../atoms/GradientBorderButton';
 import Link from '../atoms/ChakraNextLink';
 
 import { services } from '../../utils/constants';
@@ -44,7 +44,7 @@ const SectionThree = () => (
             </Button>
           </Link>
           <Link href='/join/1'>
-            <GradienButton label='ALL Services' width='160px' />
+            <GradientBorderButton label='ALL Services' width='160px' />
           </Link>
         </Flex>
       </Link>

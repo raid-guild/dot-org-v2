@@ -13,11 +13,12 @@ import {
   useBreakpointValue,
 } from '@raidguild/design-system';
 import { FaDiscord, FaGithub, FaMedium, FaNewspaper, FaTwitter } from 'react-icons/fa';
+import GradientButton from 'components/atoms/GradientButton';
 import raidGuildFooter from '../../assets/illustrations/raidguild-footer.png';
 import raidGuildLogo from '../../assets/illustrations/raidguild.webp';
 import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
-import GradienButton from '../atoms/GradientButton';
+import GradientBorderButton from '../atoms/GradientBorderButton';
 
 const forAllLinks = [
   {
@@ -75,13 +76,11 @@ const Footer = () => {
         </Heading>
         <Stack flexDirection={{ base: 'column', lg: 'row' }} gap={6}>
           <Link href='/hire/1'>
-            <Button bgGradient={tokens.orangeToPurpleGradient} borderRadius={2} w='120px'>
-              Hire Us
-            </Button>
+            <GradientButton>Hire Us</GradientButton>
           </Link>
           <Link href='/join/1'>
             {/* <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill='transparent'> */}
-            <GradienButton label='JOIN US' width='120px' />
+            <GradientBorderButton label='JOIN US' width='120px' />
             {/* </Box> */}
           </Link>
         </Stack>

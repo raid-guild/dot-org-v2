@@ -2,7 +2,7 @@ import { Center, Flex, Image, SimpleGrid, Stack } from '@raidguild/design-system
 import _ from 'lodash';
 import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
-import GradienButton from '../atoms/GradientButton';
+import GradientBorderButton from '../atoms/GradientBorderButton';
 
 import wallSconce from '../../assets/illustrations/wallSconce.svg';
 import PageTitle from '../page-components/PageTitle';
@@ -36,7 +36,7 @@ const SectionFour = ({ portfolioList }: SectionFourProps) => {
           ))}
         </SimpleGrid>
         <Link href='/portfolio'>
-          <GradienButton label='VIEW ALL PROJECTS' width='220px' />
+          <GradientBorderButton label='VIEW ALL PROJECTS' width='220px' />
         </Link>
       </Stack>
     </Center>
