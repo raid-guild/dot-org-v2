@@ -5,7 +5,7 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import { Text } from '@raidguild/design-system';
 
 const newTheme = {
-  p: (props:any) => {
+  p: (props: any) => {
     const { children } = props;
     return <Text color='white'>{children}</Text>;
   },
