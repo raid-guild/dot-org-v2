@@ -8,9 +8,13 @@ import {
   Card,
   CardBody,
   Castle,
+  Trumpet,
   Text,
   Button,
   Flex,
+  Swords,
+  VStack,
+  Box,
 } from '@raidguild/design-system';
 import { FaEdit } from 'react-icons/fa';
 import { GetServerSidePropsContext } from 'next';
@@ -21,6 +25,7 @@ import Markdown from '../../../components/atoms/Markdown';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import Link from '../../../components/atoms/ChakraNextLink';
+import raidFantasy from '../../../assets/illustrations/raid__fantasy.webp';
 import { getPortfolioDetail } from '../../../gql';
 import { checkPermission } from '../../../utils';
 
@@ -93,23 +98,34 @@ function PortfolioPage({ initialData }: Props) {
           </Link>
         </Stack>
       )}
-      <Flex minH='250px' justify='center' align='center'>
-        <Text maxW='60%' textAlign='center'>
+      <Flex minH='30vh' maxH='max-content' justify='center' align='center'>
+        <Text maxW='60%' textAlign='center' lineHeight='taller' mb={8}>
           {_.get(initialData, 'description')}
         </Text>
       </Flex>
 
       <Card layerStyle='redToPurpleVerticalGradient' border='none'>
+        <Image
+          src={raidFantasy.src}
+          alt='raid fantasy'
+          alignSelf='center'
+          height='full'
+          position='absolute'
+          opacity={0.15}
+          overflow='clip'
+        />
         <Stack p='4rem' align='center'>
-          <HStack align='center' gap={2}>
+          <HStack align='center' gap={6}>
             <Icon as={Castle} w='32px' h='32px' />
-            <Heading size='lg'>The Challenge</Heading>
+            <Heading variant='shadow' size='md'>
+              The Challenge
+            </Heading>
           </HStack>
           <CardBody
             textAlign={['justify', 'justify', 'justify', 'center', 'center']}
             width={['auto', 'auto', 'auto', '70%', '70%']}
             lineHeight='taller'>
-            <Stack spacing={6}>
+            <Stack spacing={6} lineHeight='taller'>
               {_.map(_.get(initialData, 'challenge.content'), (content: any) => (
                 <Markdown key={content}>{content}</Markdown>
               ))}
@@ -118,47 +134,48 @@ function PortfolioPage({ initialData }: Props) {
         </Stack>
       </Card>
       <Stack
-        direction={['column', 'column', 'column', 'row', 'row']}
-        align='center'
+        direction={{ base: 'column', xl: 'row' }}
+        align={{ base: 'center', xl: 'flex-start' }}
         spacing={14}
         justify='space-around'
-        px={28}
-        py={14}>
+        p={14}>
         <ProjectCard
           name={_.get(initialData, 'name')}
           website={_.get(initialData, 'resultLink')}
           logo={_.get(initialData, 'imageUrl')}
         />
-        <Stack p='4rem' spacing={6} align='center'>
-          <HStack align='center' gap={2}>
-            <Icon as={Castle} w='32px' h='32px' />
-            <Heading size='lg'>The Approach</Heading>
-          </HStack>
-          <Stack spacing={6}>
-            {_.map(_.get(initialData, 'approach.content'), (content: any) => (
-              <Markdown key={content}>{content}</Markdown>
-            ))}
+
+        <VStack maxW={900}>
+          <Stack p='4rem' spacing={6} align='flex-start'>
+            <HStack align='center' gap={6}>
+              <Icon as={Swords} w='32px' h='32px' />
+              <Heading variant='shadow' size='md'>
+                Our Approach
+              </Heading>
+            </HStack>
+            <Stack spacing={6} lineHeight='taller'>
+              {_.map(_.get(initialData, 'approach.content'), (content: any) => (
+                <Markdown key={content}>{content}</Markdown>
+              ))}
+            </Stack>
           </Stack>
-        </Stack>
-      </Stack>
-      <Card layerStyle='redToPurpleVerticalGradient' border='none'>
-        <Stack p='4rem' align='center'>
-          <HStack align='center' gap={2}>
-            <Icon as={Castle} w='32px' h='32px' />
-            <Heading size='lg'>The Result</Heading>
-          </HStack>
-          <CardBody
-            textAlign={['justify', 'justify', 'justify', 'center', 'center']}
-            width={['auto', 'auto', 'auto', '70%', '70%']}
-            lineHeight='taller'>
-            <Stack spacing={6}>
+          <Stack p='4rem' spacing={6} align='flex-start'>
+            <HStack align='center' gap={6}>
+              <Icon as={Trumpet} w='32px' h='32px' />
+              <Heading variant='shadow' size='md'>
+                The Result
+              </Heading>
+            </HStack>
+
+            <Stack spacing={6} lineHeight='taller'>
               {_.map(_.get(initialData, 'result.content'), (content: any) => (
                 <Markdown key={content}>{content}</Markdown>
               ))}
             </Stack>
-          </CardBody>
-        </Stack>
-      </Card>
+          </Stack>
+        </VStack>
+      </Stack>
+
       <Flex minH='200px' justify='center' align='center'>
         <HStack gap={2} justify={['center', 'center', 'center', 'start', 'start']}>
           {_.get(initialData, 'resultLink') && (

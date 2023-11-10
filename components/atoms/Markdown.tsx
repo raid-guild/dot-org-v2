@@ -9,6 +9,22 @@ const newTheme = {
     const { children } = props;
     return <Text color='white'>{children}</Text>;
   },
+  em: (props: any) => {
+    const { children } = props;
+    return (
+      <Text as='em' color='white'>
+        {children}
+      </Text>
+    );
+  },
+  strong: (props: any) => {
+    const { children } = props;
+    return (
+      <Text as='b' color='white'>
+        {children}
+      </Text>
+    );
+  },
 };
 
 type MarkdownProps = {

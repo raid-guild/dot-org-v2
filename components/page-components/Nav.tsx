@@ -31,7 +31,7 @@ const StyledButton = styled(Button)`
 
 const navItems = [
   { name: 'Blog', href: '/state-of-the-raid' },
-  { name: 'Services', href: '/#services' },
+  { name: 'Services', href: '/services' },
   { name: 'Portfolio', href: '/portfolio' },
   { name: 'Join', href: '/join/1' },
   { name: 'Hire', href: '/hire/1' },

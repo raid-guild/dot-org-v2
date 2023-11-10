@@ -29,13 +29,20 @@ const Post = ({ post }: PostProps) => {
             textAlign={{ base: 'center', md: 'left' }}>
             <Image src={_.get(post, 'imageUrl', wallSconce.src)} width='200px' height='250px' />
             <VStack maxWidth='50ch' spacing={6} color='white' align={{ base: 'center', md: 'start' }}>
-              <Heading fontSize='3xl' fontFamily={defaultTheme.fonts.texturina}>
+              <Heading fontSize='3xl' fontFamily='texturina'>
                 {_.get(post, 'title')}
               </Heading>
               <Text noOfLines={3}>{_.get(post, 'description')}</Text>
               <Link href={link} width='full'>
-                <Button variant='link' bg={tokens.purpleToBlueGradient} bgClip='text' _hover={{ opacity: '80%' }}>
-                  <Text fontFamily={defaultTheme.fonts.spaceMono}>Read More</Text>
+                <Button
+                  as='u'
+                  variant='link'
+                  bg={tokens.purpleToBlueGradient}
+                  bgClip='text'
+                  _hover={{ opacity: '80%' }}>
+                  <Text fontFamily={defaultTheme.fonts.spaceMono} borderBottom={1}>
+                    Read More
+                  </Text>
                 </Button>
               </Link>
             </VStack>

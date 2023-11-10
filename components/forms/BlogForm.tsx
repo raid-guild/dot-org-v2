@@ -18,7 +18,7 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
   const localForm = useForm();
   const { handleSubmit } = localForm;
   const { data: session } = useSession();
-  const token = _.get(session, 'token') || '';
+  const token = _.get(session, 'token') ?? '';
   const { submitBlogForm, submitBlogEditForm } = useSubmit(token);
 
   // const clearData = () => {
