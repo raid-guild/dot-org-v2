@@ -1,6 +1,6 @@
-import { Flex, Heading, Text, HStack, Button, Stack } from '@raidguild/design-system';
-import { ConnectWallet } from '../atoms/ConnectWallet';
+import { Button, HStack, Heading, Stack, Text } from '@raidguild/design-system';
 import Link from '../atoms/ChakraNextLink';
+import { ConnectWallet } from '../atoms/ConnectWallet';
 
 type Props = {
   handleNext: () => void;

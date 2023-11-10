@@ -13,7 +13,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  Text
+  Text,
 } from '@raidguild/design-system';
 import { FiChevronDown, FiKey, FiXCircle } from 'react-icons/fi';
 import { useDisconnect } from 'wagmi';
