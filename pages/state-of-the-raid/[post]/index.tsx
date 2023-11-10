@@ -71,7 +71,7 @@ function PostPage({ initialData }: Props) {
 
         {_.get(initialData, 'image') && <Image src={_.get(initialData, 'image')} w='auto' mb={8} />}
         <VStack direction='column' alignItems='flex-start'>
-          <Image src={_.get(initialData, 'image') || fallBackBanner.src} w='max' h='max' mb={8} />
+          <Image src={_.get(initialData, 'image') || fallBackBanner.src} w='max' mb={8} />
           <Heading variant='shadow' color='white' fontFamily='uncial' textAlign='left'>
             {_.get(initialData, 'title')}
           </Heading>
