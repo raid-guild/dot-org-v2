@@ -1,29 +1,23 @@
+import { Box, Flex } from '@raidguild/design-system';
 import React, { ReactNode } from 'react';
-import { Flex, Box } from '@raidguild/design-system';
-import Nav from './Nav';
+import tokens from '../../utils/extendedTokens';
 import Footer from './Footer';
+import Nav from './Nav';
 
 interface Props {
   children: ReactNode;
 }
 
 const SiteLayout: React.FC<Props> = ({ children }: Props) => (
-  <Flex layerStyle='primaryGradient'>
-    <Flex maxW='100rem' py='1rem' mx='auto' overflowX='hidden'>
-      <Flex width='100vw' minHeight='100vh' direction='column' justifyContent='space-between' alignItems='center'>
-        <Box px={{ base: '2rem', lg: '5rem' }} w='100%'>
-          <Nav />
-        </Box>
-
-        <Flex direction='column' alignItems='center' w='100%' mt='2rem' py={20} gap={10}>
-          {children}
-        </Flex>
-
-        <Box w='100%' mt='200px'>
-          <Footer />
-        </Box>
-      </Flex>
+  <Flex w='100%' mx='auto' overflowX='hidden' flexDirection='column' id='Site Layout'>
+    <Box py='3rem' px={{ base: '1rem', lg: '5rem' }} bg={tokens.purpleToIndigoGradient}>
+      <Nav />
+    </Box>
+    <Flex direction='column' alignItems='center' w='100%' py={20} gap={10} bgColor='black'>
+      {children}
     </Flex>
+
+    <Footer />
   </Flex>
 );
 

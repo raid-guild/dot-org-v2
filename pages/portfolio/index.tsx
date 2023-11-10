@@ -47,25 +47,23 @@ function PortfolioPage({ initialData }: Props) {
 
   const canCreate = checkPermission(session);
   return (
-    <Box>
-      <CMSPageTemplate>
-        <PageTitle title='Portfolio' />
-        {canCreate && (
-          <Stack alignItems='center' pt='6'>
-            <Link href='/portfolio/new'>
-              <Button variant='link' leftIcon={<FaEdit />}>
-                Add new Portfolio
-              </Button>
-            </Link>
-          </Stack>
-        )}
-        <VStack mt={16} width='100%' alignItems='center' spacing={20}>
-          {_.map(portfolioList, (project) => (
-            <PortfolioContent project={project} key={_.get(project, 'name')} />
-          ))}
-        </VStack>
-      </CMSPageTemplate>
-    </Box>
+    <CMSPageTemplate>
+      <PageTitle title='Portfolio' />
+      {canCreate && (
+        <Stack alignItems='center' pt='6'>
+          <Link href='/portfolio/new'>
+            <Button variant='link' leftIcon={<FaEdit />}>
+              Add new Portfolio
+            </Button>
+          </Link>
+        </Stack>
+      )}
+      <VStack mt={16} width='100%' alignItems='center' spacing={20}>
+        {_.map(portfolioList, (project) => (
+          <PortfolioContent project={project} key={_.get(project, 'name')} />
+        ))}
+      </VStack>
+    </CMSPageTemplate>
   );
 }
 
