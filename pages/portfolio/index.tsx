@@ -1,27 +1,14 @@
 // A page that displays all of the projects in the portfolio
+import { Button, Image, SimpleGrid, Stack, Text } from '@raidguild/design-system';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
-import {
-  Box,
-  Heading,
-  Stack,
-  Image,
-  VStack,
-  Text,
-  Card,
-  Flex,
-  Button,
-  Grid,
-  SimpleGrid,
-} from '@raidguild/design-system';
 import { FaEdit } from 'react-icons/fa';
 import Link from '../../components/atoms/ChakraNextLink';
-import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../components/page-components/PageTitle';
-import usePortfolioList from '../../hooks/usePortfolioList';
+import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import { getPortfolioList } from '../../gql';
+import usePortfolioList from '../../hooks/usePortfolioList';
 import { checkPermission } from '../../utils';
-import wallSconce from '../../assets/illustrations/wallSconce.svg';
 
 interface Props {
   initialData: any;
