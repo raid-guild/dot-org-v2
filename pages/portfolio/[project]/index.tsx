@@ -115,12 +115,12 @@ function PortfolioPage({ initialData }: Props) {
         </Stack>
       )}
       <Flex minH='30vh' maxH='max-content' justify='center' align='center'>
-        <Text maxW='60%' textAlign='center' lineHeight='taller' mb={8}>
+        <Text maxW='900px' p='2rem' textAlign='center' lineHeight='taller' mb={8}>
           {_.get(initialData, 'description')}
         </Text>
       </Flex>
 
-      <Card layerStyle='redToPurpleVerticalGradient' border='none'>
+      <Card layerStyle='redToPurpleVerticalGradient' border='none' w='100vw'>
         <Image
           src={raidFantasy.src}
           alt='raid fantasy'
@@ -130,22 +130,19 @@ function PortfolioPage({ initialData }: Props) {
           opacity={0.15}
           overflow='clip'
         />
-        <Stack p='4rem' align='center'>
+        <Stack p='2rem' align='center'>
           <HStack align='center' gap={6}>
             <Icon as={Castle} w='32px' h='32px' />
             <Heading variant='shadow' size='md'>
               The Challenge
             </Heading>
           </HStack>
-          <CardBody
-            textAlign={['justify', 'justify', 'justify', 'center', 'center']}
-            width={['auto', 'auto', 'auto', '70%', '70%']}
-            lineHeight='taller'>
-            <Stack spacing={6} lineHeight='taller'>
+          <CardBody textAlign='center' lineHeight='taller'>
+            <Text lineHeight='taller' maxW='900px'>
               {_.map(_.get(initialData, 'challenge.content'), (content: any) => (
                 <Markdown key={content}>{content}</Markdown>
               ))}
-            </Stack>
+            </Text>
           </CardBody>
         </Stack>
       </Card>
