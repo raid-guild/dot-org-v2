@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   CardBody,
@@ -13,6 +14,7 @@ import {
   Text,
   Trumpet,
   VStack,
+  defaultTheme,
 } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
@@ -38,9 +40,29 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ name, logo, website }: ProjectCardProps) => {
   return (
-    <Stack maxW='600px' border='1px solid #FF3864' px='12' py='8' align='center' spacing={4}>
-      <Image src={logo} width='96px' height='auto' my={4} />
-      <Stack align='center' spacing={4}>
+    <Stack maxW='600px' border={`1px solid ${defaultTheme.colors.red[500]}`} align='center' spacing={4} pb={6}>
+      <Box layerStyle='redToPurpleVerticalGradient' w='full' height='90px' position='relative'>
+        <Box
+          bg='black'
+          w='100px'
+          h='100px'
+          position='absolute'
+          top='50%'
+          left='50%'
+          transform='translate(-50%, -5%)'
+          border={`1px solid ${defaultTheme.colors.red[500]}`}>
+          <Image
+            src={logo}
+            width='60px'
+            height='auto'
+            position='absolute'
+            top='50%'
+            left='50%'
+            transform='translate(-50%, -50%)'
+          />
+        </Box>
+      </Box>
+      <Stack align='center' spacing={4} px={10} mt={16}>
         <Heading textAlign='center' size='lg' variant='shadow'>
           {name}
         </Heading>
@@ -170,19 +192,18 @@ function PortfolioPage({ initialData }: Props) {
           </Stack>
           <Stack
             gap={2}
-            justifyContent={{ base: 'center', lg: 'flex-start' }}
-            flexDir='row'
-            alignItems='flex-start'
+            flexDir={{ base: 'column', lg: 'row' }}
+            alignItems={{ base: 'center', lg: 'flex-start' }}
             w='full'>
             {_.get(initialData, 'resultLink') && (
               <Link href={_.get(initialData, 'resultLink')} isExternal>
-                <GradientButton width='max'>View Project</GradientButton>
+                <GradientButton width='180px'>View Project</GradientButton>
               </Link>
             )}
 
             {_.get(initialData, 'repoLink') && (
-              <Link href={_.get(initialData, 'repoLink')} isExternal bg='red'>
-                <GradientBorderButton width='max' label='View Codebase' />
+              <Link href={_.get(initialData, 'repoLink')} isExternal>
+                <GradientBorderButton width='180px' label='View Codebase' />
               </Link>
             )}
           </Stack>
