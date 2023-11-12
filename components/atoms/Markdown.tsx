@@ -32,7 +32,7 @@ const newTheme = {
         {children}
       </Text>
     );
-  }
+  },
 };
 
 type MarkdownProps = {
