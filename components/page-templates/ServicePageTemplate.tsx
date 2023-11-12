@@ -51,7 +51,8 @@ const OurApproach = ({ salesContent }: { salesContent: string }) => {
             flexDirection='column'
             alignItems='center'
             gap='2rem'
-            zIndex='2'>
+            zIndex='2'
+            lineHeight='tall'>
             <HStack gap={6}>
               <Image src={Wand.src} height='48px' />
               <Heading variant='shadow' fontSize='2xl'>
@@ -107,7 +108,8 @@ const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, roleIma
               alignItems='center'
               padding='1rem'
               gap='2rem'
-              zIndex='2'>
+              zIndex='2'
+              lineHeight='tall'>
               <HStack gap={6}>
                 <Image src={WallSconce.src} height='48px' />
                 <Heading variant='shadow' fontSize='2xl'>
