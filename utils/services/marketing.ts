@@ -1,3 +1,5 @@
+import Hunter from '../../assets/characters/hunter.svg';
+
 const web3Marketing = {
   title: 'Web3 Backend',
   description: `Imagine working 14 hours a day for the past 2 years. Your engineers built your product perfectly. It works without bugs, the UX is great, and the design is eye-catching.
@@ -16,7 +18,7 @@ const web3Marketing = {
   
   Of course you would! (At least if it was within your financial means).`,
 
-  roleImage: '/assets/characters/archer.svg',
+  roleImage: Hunter.src,
 
   salesContent: `Marketing is both a science and art. If your marketing is put in front of the correct people, it taps into human psychology.
 

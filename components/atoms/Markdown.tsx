@@ -25,6 +25,14 @@ const newTheme = {
       </Text>
     );
   },
+  blockquote: (props: any) => {
+    const { children } = props;
+    return (
+      <Text color='white' bg='whiteAlpha.100' as='i' p={3}>
+        {children}
+      </Text>
+    );
+  }
 };
 
 type MarkdownProps = {

@@ -1,3 +1,5 @@
+import Paladin from '../../assets/characters/paladin.svg';
+
 const web3backend = {
   title: 'Web3 Backend',
 
@@ -13,7 +15,7 @@ const web3backend = {
   
   Backend development is complicated.`,
 
-  roleImage: '/assets/characters/archer.svg',
+  roleImage: Paladin.src,
   salesContent: `Whether it's Postgres, Hasura, MongoDB, a more robust solution, we have your back
 
   Our engineers have been managing databases since before Web3 existed. We get the importance of security. We have experience building out the small details that are the difference between your data getting leaked, and a trustworthy app.

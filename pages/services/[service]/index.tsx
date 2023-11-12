@@ -38,19 +38,9 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   const { params } = context;
   const service = _.isArray(_.get(params, 'service')) ? _.first(_.get(params, 'service')) : _.get(params, 'service');
   let copy = null;
-  if (service && !_.includes(_.keys(services), service)) {
+  if (service && _.includes(_.keys(services), service)) {
     copy = _.get(services, service);
   }
-
-  // let response = await supabase
-  //   .from('PortfolioContent')
-  //   .select('*')
-  //   .in('relevant_services', [{ tag: 'Back End' }])
-  //   .range(0, 2);
-
-  // if (response.data == null) {
-  //   response = await supabase.from('PortfolioContent').select('*').range(0, 2);
-  // }
 
   return {
     props: {

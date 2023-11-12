@@ -1,3 +1,5 @@
+import Scribe from '../../assets/characters/scribe.svg';
+
 const web3Content = {
   title: 'Web3 Content',
 
@@ -11,7 +13,7 @@ const web3Content = {
   
   If all people hear from you is silence, they'll assume that your project is stagnant. Your community will be confused.`,
 
-  roleImage: '/assets/characters/scribe.svg',
+  roleImage: Scribe.src,
 
   salesContent: `We can get your story in front of your community and onboard new members who align with your project! 
 

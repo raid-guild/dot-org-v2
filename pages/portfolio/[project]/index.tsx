@@ -12,7 +12,6 @@ import {
   Stack,
   Swords,
   Text,
-  Trumpet,
   VStack,
   defaultTheme,
 } from '@raidguild/design-system';
@@ -21,12 +20,13 @@ import { GetServerSidePropsContext } from 'next';
 import { useSession } from 'next-auth/react';
 import { NextSeo } from 'next-seo';
 import { FaEdit } from 'react-icons/fa';
+import Wand from '../../../assets/illustrations/wand.svg';
 import GradientButton from '../../../components/atoms/GradientButton';
 import Markdown from '../../../components/atoms/Markdown';
 
-import GradientBorderButton from '../../../components/atoms/GradientBorderButton';
 import raidFantasy from '../../../assets/illustrations/raid__fantasy.webp';
 import Link from '../../../components/atoms/ChakraNextLink';
+import GradientBorderButton from '../../../components/atoms/GradientBorderButton';
 import PageTitle from '../../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import { getPortfolioDetail } from '../../../gql';
@@ -175,7 +175,7 @@ function PortfolioPage({ initialData }: Props) {
           </Stack>
           <Stack spacing={6} align={{ base: 'center', lg: 'flex-start' }} maxW='80vw'>
             <Stack flexDir={{ base: 'column', md: 'row' }} align='center' gap={6}>
-              <Icon as={Trumpet} w='32px' h='32px' />
+              <Image src={Wand.src} w='32px' h='32px' />
               <Heading variant='shadow' size='md'>
                 The Result
               </Heading>

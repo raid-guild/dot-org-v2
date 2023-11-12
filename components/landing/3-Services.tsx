@@ -44,7 +44,7 @@ const SectionThree = () => (
             </Button>
           </Link>
           <Link href='/join/1'>
-            <GradientBorderButton label='ALL Services' width='160px' />
+            <GradientBorderButton label='All Services' width='160px' />
           </Link>
         </Flex>
       </Link>

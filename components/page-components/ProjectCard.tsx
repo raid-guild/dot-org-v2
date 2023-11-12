@@ -25,7 +25,7 @@ const ProjectCard = ({ project }: Props) => (
           console.log(raider);
           return (
             <Box as='span' key={raider.raider} data-tip={`${raider?.raider} | ${raider?.role}`}>
-              <Image src={`/assets/characters/${raider?.role.toLowerCase()}.svg`} width='28px' height='28px' />
+              <Image src={`${raider?.role.toLowerCase()}.svg`} width='28px' height='28px' />
             </Box>
           );
         })}

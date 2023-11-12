@@ -1,3 +1,5 @@
+import Ranger from '../../assets/characters/ranger.svg';
+
 const web3UxDesign = {
   title: 'Web3 Backend',
 
@@ -11,7 +13,7 @@ const web3UxDesign = {
   
   Small details like easy navigation and tracking tools make a huge difference. If your app is easy to use, people will feel comfortable using it.`,
 
-  roleImage: '/assets/characters/ranger.svg',
+  roleImage: Ranger.src,
 
   salesContent: `Our UX designers own design agencies, are artists, and Web3 product consumers.
 

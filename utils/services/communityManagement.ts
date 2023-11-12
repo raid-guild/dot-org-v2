@@ -1,3 +1,5 @@
+import Travern from '../../assets/characters/tavernkeeper.svg';
+
 const web3CommunityManagement = {
   title: 'Web3 Community Management',
 
@@ -17,7 +19,7 @@ const web3CommunityManagement = {
   
   Community management requires analytics. Who are your most active contributors? Who tweets most about your project? How can you make these contributors feel appreciated?`,
 
-  roleImage: '/assets/characters/tavernkeeper.svg',
+  roleImage: Travern.src,
 
   salesContent: `We have community managers who have been in this industry since its early days. We're members of the biggest, most engaged communities in this space. 
 

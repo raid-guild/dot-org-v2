@@ -1,3 +1,5 @@
+import Archer from '../../assets/characters/archer.svg';
+
 const web3UiDesign = {
   title: 'Web3 UI Design',
 
@@ -7,7 +9,7 @@ const web3UiDesign = {
   
   Your project needs to be cohesive, sensible, and easy to understand. This can be the difference between your protocol being the next unicorn, or just another copy-pasta of Uniswap.`,
 
-  roleImage: '/assets/characters/archer.svg',
+  roleImage: Archer.src,
 
   salesContent: `Raid Guild's visual designers have an eye for subtlety. We obsess over small details. We'll ensure your project has have a gorgeous, easy-to-use interface that aligns with your brand's image.
 
