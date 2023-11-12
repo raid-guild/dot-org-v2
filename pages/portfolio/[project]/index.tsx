@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Card,
   CardBody,
@@ -13,7 +12,6 @@ import {
   Swords,
   Text,
   VStack,
-  defaultTheme,
 } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
@@ -23,6 +21,7 @@ import { FaEdit } from 'react-icons/fa';
 import Wand from '../../../assets/illustrations/wand.svg';
 import GradientButton from '../../../components/atoms/GradientButton';
 import Markdown from '../../../components/atoms/Markdown';
+import ProjectCard from '../../../components/page-components/ProjectCard';
 
 import raidFantasy from '../../../assets/illustrations/raid__fantasy.webp';
 import Link from '../../../components/atoms/ChakraNextLink';
@@ -31,51 +30,6 @@ import PageTitle from '../../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import { getPortfolioDetail } from '../../../gql';
 import { checkPermission } from '../../../utils';
-
-interface ProjectCardProps {
-  name: string;
-  logo: string;
-  website: string;
-}
-
-const ProjectCard = ({ name, logo, website }: ProjectCardProps) => {
-  return (
-    <Stack maxW='600px' border={`1px solid ${defaultTheme.colors.red[500]}`} align='center' spacing={4} pb={6}>
-      <Box layerStyle='redToPurpleVerticalGradient' w='full' height='90px' position='relative'>
-        <Box
-          bg='black'
-          w='100px'
-          h='100px'
-          position='absolute'
-          top='50%'
-          left='50%'
-          transform='translate(-50%, -5%)'
-          border={`1px solid ${defaultTheme.colors.red[500]}`}>
-          <Image
-            src={logo}
-            width='60px'
-            height='auto'
-            position='absolute'
-            top='50%'
-            left='50%'
-            transform='translate(-50%, -50%)'
-          />
-        </Box>
-      </Box>
-      <Stack align='center' spacing={4} px={10} mt={16}>
-        <Heading textAlign='center' size='lg' variant='shadow'>
-          {name}
-        </Heading>
-        <Text p={4}>{website}</Text>
-        {website && (
-          <Link href={website} isExternal>
-            <GradientButton width='max'>Visit Website</GradientButton>
-          </Link>
-        )}
-      </Stack>
-    </Stack>
-  );
-};
 
 interface Props {
   initialData: any;

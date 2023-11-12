@@ -52,8 +52,8 @@ const OurApproach = ({ salesContent }: { salesContent: string }) => {
             alignItems='center'
             gap='2rem'
             zIndex='2'>
-            <HStack>
-              <Image src={WallSconce.src} height='50px' />
+            <HStack gap={6}>
+              <Image src={Wand.src} height='48px' />
               <Heading variant='shadow' fontSize='2xl'>
                 Our Approach
               </Heading>
@@ -83,7 +83,7 @@ const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, roleIma
       flexDirection='column'
       id='Site Layout'
       bg={tokens.purpleToIndigoGradient}>
-      <Box py='3rem' px={{ base: '1rem', lg: '5rem' }}>
+      <Box py='3rem' px={{ base: '1rem', lg: '5rem' }} zIndex={4}>
         <Nav />
       </Box>
       <Flex direction='column' alignItems='center' w='100%' py={10} bgColor='black' bg={tokens.purpleToIndigoGradient}>
@@ -108,8 +108,8 @@ const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, roleIma
               padding='1rem'
               gap='2rem'
               zIndex='2'>
-              <HStack>
-                <Image src={WallSconce.src} height='50px' />
+              <HStack gap={6}>
+                <Image src={WallSconce.src} height='48px' />
                 <Heading variant='shadow' fontSize='2xl'>
                   {pageTitle}
                 </Heading>
@@ -132,7 +132,7 @@ const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, roleIma
             <Image
               src={Castle.src}
               width='full'
-              maxH='1000px'
+              maxH='900px'
               top={0}
               right={0}
               position='absolute'
