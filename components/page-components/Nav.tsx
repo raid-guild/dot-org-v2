@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Box, Button, Flex, HStack, Image, defaultTheme, useBreakpointValue } from '@raidguild/design-system';
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { useRouter } from 'next/router';
 import Link from '../atoms/ChakraNextLink';
 import { ConnectWallet } from '../atoms/ConnectWallet';
 
@@ -40,6 +41,8 @@ const navItems = [
 const Nav = () => {
   const [isOpen, onOpen] = useState<boolean>(false);
   const hideOnBase = useBreakpointValue({ base: true, lg: false });
+  const router = useRouter();
+  const basePath = router.route.split('/')[1];
 
   return (
     <HStack justifyContent='space-between' width='full' color='white' id='Navigation Bar'>
@@ -54,8 +57,11 @@ const Nav = () => {
                 key={item.name}
                 href={item.href}
                 id={item.name}
-                _hover={{ opacity: '80%' }}
+                _hover={{ opacity: '80%', borderBottom: `2px solid ${defaultTheme.colors.red[500]}` }}
                 fontWeight={600}
+                style={{
+                  borderBottom: basePath === item.href.split('/')[1] ? `2px solid ${defaultTheme.colors.red[500]}` : '',
+                }}
                 textColor={defaultTheme.colors.red[500]}>
                 {item.name}
               </Link>
