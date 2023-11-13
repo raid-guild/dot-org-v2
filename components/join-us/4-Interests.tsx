@@ -67,7 +67,7 @@ const StepFour = ({ handleNext, handleBack }: Props) => {
   };
 
   return (
-    <Flex direction='column' py={10}>
+    <Flex direction='column' py={8}>
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }}>
         {inputs.map((input) => (
           <GridItem minH='175px' key={input.label}>

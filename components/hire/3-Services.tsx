@@ -63,7 +63,7 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
   const servicesOptions = hireUsServices.map((s: string) => ({ value: mapConsultationService(s), label: s }));
 
   return (
-    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py={10}>
+    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py={8}>
       <Stack direction={{ base: 'column', lg: 'row' }} mb={10} spacing={10}>
         <Box width={{ base: '100%', lg: '50%' }}>
           <Select

@@ -7,7 +7,7 @@ type Props = {
   isConnected: boolean;
 };
 const Intro = ({ handleNext, isConnected }: Props) => (
-  <Stack spacing={10} maxW={{ base: '100%', md: '60%' }} py={10}>
+  <Stack spacing={10} maxW={{ base: '100%', md: '60%' }} py={8}>
     <Heading mb='1rem'>Hiring RaidGuild</Heading>
 
     <Text fontFamily='spaceMono'>

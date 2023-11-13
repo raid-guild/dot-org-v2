@@ -3,6 +3,8 @@ import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
 
 import raidFantasy from '../../assets/illustrations/raid__fantasy.webp';
+import GradientBorderButton from '../atoms/GradientBorderButton';
+import GradientButton from '../atoms/GradientButton';
 
 const SectionTwo = () => {
   return (
@@ -41,9 +43,7 @@ const SectionTwo = () => {
         </div>
         <br />
         <Link href='https://handbook.raidguild.org' isExternal>
-          <Button bgGradient={tokens.orangeToPurpleGradient} borderRadius={2}>
-            Handbook
-          </Button>
+          <GradientButton>Handbook</GradientButton>
         </Link>
       </VStack>
     </SimpleGrid>

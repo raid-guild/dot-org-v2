@@ -6,7 +6,7 @@ import signalFire from '../../assets/illustrations/signal_fire.webp';
 
 const Confirmation = () => {
   return (
-    <Flex w='100%' direction='column' alignItems='center' px={{ base: '2rem', lg: '5rem' }} py={10}>
+    <Flex w='100%' direction='column' alignItems='center' px={{ base: '2rem', lg: '5rem' }} py={8}>
       <Box mb='2rem' w='250px'>
         <Image src={signalFire} placeholder='blur' alt='signal fire' />
       </Box>

@@ -87,7 +87,7 @@ export default function StepOne({ handleNext, handleBack }: Props) {
   };
 
   return (
-    <VStack py={10}>
+    <VStack py={8}>
       <SimpleGrid columns={{ base: 1, md: 2 }} gap='2rem' w='100%' mb='2rem'>
         {formFields.map((field) => {
           if (field.type === 'textarea') {

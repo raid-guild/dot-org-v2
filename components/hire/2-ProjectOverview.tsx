@@ -39,7 +39,7 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
     handleNext();
   };
   return (
-    <VStack py={10}>
+    <VStack py={8}>
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }} w='100%' mb='2rem'>
         <RadioBox
           name='projectType'

@@ -25,7 +25,6 @@ type Props = {
 };
 
 export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
-  // const { isConnecting } = useAccount();
   const { disconnect } = useDisconnect();
   const showNetwork = false; // maybe unhide, in some cases
 

@@ -39,7 +39,12 @@ const Post = ({ post }: PostProps) => {
                   variant='link'
                   bg={tokens.purpleToBlueGradient}
                   bgClip='text'
-                  _hover={{ opacity: '80%' }}>
+                  pb={1.5}
+                  borderRadius='none'
+                  borderBottom={`2px solid ${defaultTheme.colors.purple[500]}`}
+                  _hover={{
+                    opacity: '90%',
+                  }}>
                   <Text fontFamily={defaultTheme.fonts.spaceMono} borderBottom={1}>
                     Read More
                   </Text>

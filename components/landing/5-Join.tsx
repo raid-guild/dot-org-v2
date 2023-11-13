@@ -1,4 +1,5 @@
 import { Button, Card, Center, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
+import GradientButton from 'components/atoms/GradientButton';
 import Link from '../atoms/ChakraNextLink';
 
 import { culture, swordsImage } from '../../utils/constants';
@@ -24,9 +25,7 @@ const SectionFive = () => (
       </Text>
       <br />
       <Link href='/join'>
-        <Button bgGradient={tokens.orangeToPurpleGradient} borderRadius={2}>
-          Join Us
-        </Button>
+        <GradientButton>Join Us</GradientButton>
       </Link>
     </VStack>
 
