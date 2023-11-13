@@ -1,16 +1,14 @@
 import { Box, Card, Flex, Heading, HStack, Image, Link } from '@raidguild/design-system';
-import Container from '../page-components/Container';
-import Castle from '../../assets/illustrations/castle.svg';
-import GradientButton from '../atoms/GradientButton';
-import Markdown from '../atoms/Markdown';
-import SiteLayout from '../page-components/SiteLayout';
-import WallSconce from '../../assets/illustrations/wallSconce.svg';
 import Clouds from '../../assets/illustrations/clouds.webp';
 import Valhalla from '../../assets/illustrations/valhalla.svg';
+import WallSconce from '../../assets/illustrations/wallSconce.svg';
 import Wand from '../../assets/illustrations/wand.svg';
-import GradientBorderButton from '../atoms/GradientBorderButton';
 import tokens from '../../utils/extendedTokens';
-
+import GradientBorderButton from '../atoms/GradientBorderButton';
+import GradientButton from '../atoms/GradientButton';
+import Markdown from '../atoms/Markdown';
+import Container from '../page-components/Container';
+import SiteLayout from '../page-components/SiteLayout';
 
 type Props = {
   pageTitle: string;

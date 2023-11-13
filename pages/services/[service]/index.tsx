@@ -25,7 +25,7 @@ const Service = ({ title, description, roleImage, salesContent, data }: Props) =
         {data?.length > 0 && (
           <Grid gridTemplateColumns='1fr 1fr 1fr'>
             {data.map((item: any) => {
-              return <ProjectCard project={item} key={item.id} />;
+              return <ProjectCard name={item.name} logo={item.logo} website={item.website} key={item.id} />;
             })}
           </Grid>
         )}
