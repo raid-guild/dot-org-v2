@@ -1,6 +1,6 @@
-import { Button, Card, Center, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
-import GradientButton from 'components/atoms/GradientButton';
+import { Card, Center, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
 import Link from '../atoms/ChakraNextLink';
+import GradientButton from '../atoms/GradientButton';
 
 import { culture, swordsImage } from '../../utils/constants';
 import tokens from '../../utils/extendedTokens';
