@@ -1,7 +1,7 @@
 import { Grid, Flex } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
-
+import tokens from '../../../utils/extendedTokens';
 import ServicePageTemplate from '../../../components/page-templates/ServicePageTemplate';
 import ProjectCard from '../../../components/page-components/ProjectCard';
 import services from '../../../utils/services';

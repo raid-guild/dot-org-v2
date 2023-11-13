@@ -6,14 +6,15 @@ import Nav from './Nav';
 
 interface Props {
   children: ReactNode;
+  bg?: string;
 }
 
-const SiteLayout: React.FC<Props> = ({ children }: Props) => (
-  <Flex w='100%' mx='auto' overflowX='hidden' flexDirection='column' id='Site Layout'>
-    <Box py='3rem' px={{ base: '1rem', lg: '5rem' }} bg={tokens.purpleToIndigoGradient}>
+const SiteLayout: React.FC<Props> = ({ children, bg }: Props) => (
+  <Flex w='100%' mx='auto' overflowX='hidden' flexDirection='column' id='SiteLayout' bg={bg || 'none'}>
+    <Box py='3rem' px={{ base: '1rem', lg: '5rem' }} bg={bg ? 'none' : tokens.purpleToIndigoGradient}>
       <Nav />
     </Box>
-    <Flex direction='column' alignItems='center' w='100%' py={20} gap={10} bgColor='black'>
+    <Flex direction='column' alignItems='center' w='100%' gap={10} bgColor='black'>
       {children}
     </Flex>
 

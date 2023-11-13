@@ -1,13 +1,14 @@
-import { Box, Heading, Image, Link, Stack, Text, defaultTheme } from '@raidguild/design-system';
+import { Box, HStack, Heading, Image, Link, Stack, Text, defaultTheme } from '@raidguild/design-system';
 import GradientButton from '../atoms/GradientButton';
 
 interface ProjectCardProps {
   name: string;
   logo: string;
   website: string;
+  roles?: string[];
 }
 
-const ProjectCard = ({ name, logo, website }: ProjectCardProps) => {
+const ProjectCard = ({ name, logo, website, roles }: ProjectCardProps) => {
   return (
     <Stack maxW='600px' border={`1px solid ${defaultTheme.colors.red[500]}`} align='center' spacing={4} pb={6}>
       <Box layerStyle='redToPurpleVerticalGradient' w='full' height='90px' position='relative'>
@@ -36,6 +37,14 @@ const ProjectCard = ({ name, logo, website }: ProjectCardProps) => {
           {name}
         </Heading>
         <Text p={4}>{website}</Text>
+        {roles && (
+          <HStack gap={2}>
+            {roles.map((role: string) => (
+              <Image key={role} src={role} alt='role' />
+            ))}
+          </HStack>
+        )}
+
         {website && (
           <Link href={website} isExternal>
             <GradientButton width='max'>Visit Website</GradientButton>
