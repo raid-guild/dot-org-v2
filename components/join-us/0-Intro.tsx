@@ -7,7 +7,7 @@ interface Props {
 }
 
 const Intro = ({ handleNext, isConnected }: Props) => (
-  <Stack spacing={10} maxW={{ base: '100%', md: '60%' }}>
+  <Stack spacing={10} maxW={{ base: '100%', md: '60%' }} py={10}>
     <Heading mb='1rem'>Apply to Join RaidGuild</Heading>
 
     <Text fontFamily='spaceMono'>

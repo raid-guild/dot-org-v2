@@ -68,7 +68,7 @@ const StepTwo = ({ handleBack, handleNext }: Props) => {
     }
   };
   return (
-    <Box>
+    <Box py={10}>
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }}>
         {inputs.map((input) => (
           <Input

@@ -143,7 +143,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
   };
 
   return (
-    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
+    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py={10}>
       <Stack direction='column' spacing={{ base: 0, lg: 5 }} mb={10}>
         <Textarea
           label='Do you need something very specific?*'

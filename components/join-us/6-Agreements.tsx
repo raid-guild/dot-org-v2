@@ -86,7 +86,7 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
   };
 
   return (
-    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
+    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py={10}>
       <Stack direction='column' spacing={5}>
         <FormControl>
           <ChakraCheckbox

@@ -71,7 +71,7 @@ const StepOne = ({ handleNext, handleBack }: Props) => {
   };
 
   return (
-    <Flex direction='column'>
+    <Flex direction='column' py={10}>
       <SimpleGrid spacing={{ base: 0, lg: 5 }} columns={{ base: 1, lg: 2 }}>
         {inputs.map((input) =>
           input.type === 'input' ? (

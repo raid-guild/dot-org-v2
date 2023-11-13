@@ -45,7 +45,7 @@ const StepFive = ({ handleNext, handleBack }: Props) => {
   };
 
   return (
-    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
+    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py={10}>
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }}>
         <RadioBox
           label='What say you to your familiarity with DAOs?'
