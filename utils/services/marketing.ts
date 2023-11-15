@@ -1,7 +1,8 @@
 import Hunter from '../../assets/characters/hunter.svg';
 
 const web3Marketing = {
-  title: 'Web3 Backend',
+  title: 'Web3 Marketing',
+  slug: 'marketing',
   description: `Imagine working 14 hours a day for the past 2 years. Your engineers built your product perfectly. It works without bugs, the UX is great, and the design is eye-catching.
 
   But you don't have any users...

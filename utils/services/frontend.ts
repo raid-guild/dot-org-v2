@@ -2,7 +2,7 @@ import Warrior from '../../assets/characters/warrior.svg';
 
 const web3Frontend = {
   title: 'Web3 Front End',
-
+  slug: 'frontend',
   description: `If your frontend has vulnerabilities, your users can lose money.
 
   Form validations, smart contract connections, gas estimates, conversions to Solidity "Big Number." These critical details might cause "leaks" in your app. 

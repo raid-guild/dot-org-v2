@@ -2,7 +2,7 @@ import Ranger from '../../assets/characters/ranger.svg';
 
 const web3UxDesign = {
   title: 'Web3 Backend',
-
+  slug: 'backend',
   description: `“People ignore design that ignores people.”
 
   Next time you're using your favorite app, think about its ease of use. If you're confused about how the app works, you probably wouldn't call it your favorite.

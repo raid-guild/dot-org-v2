@@ -2,7 +2,7 @@ import Travern from '../../assets/characters/tavernkeeper.svg';
 
 const web3CommunityManagement = {
   title: 'Web3 Community Management',
-
+  slug: 'community-management',
   description: `Do you know how to keep your community engaged?
 
   With a passionate community, your users will do the “selling” for you. Your users should be spreading the word on your behalf.

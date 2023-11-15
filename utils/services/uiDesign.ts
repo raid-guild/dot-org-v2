@@ -2,7 +2,7 @@ import Archer from '../../assets/characters/archer.svg';
 
 const web3UiDesign = {
   title: 'Web3 UI Design',
-
+  slug: 'ui-design',
   description: `Your project's "look" is the first impression your users get. A poor first impressions can damage your brand and cause users to leave your app.
 
   People will call your project "unprofessional" or "sloppy."

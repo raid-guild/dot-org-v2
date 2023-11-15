@@ -2,6 +2,7 @@ import Alchemist from '../../assets/characters/alchemist.svg';
 
 const tokenomics = {
   title: 'Tokenomics',
+  slug: 'tokenomics',
   description: `Your project's "look" is the first impression your users get. A poor first impressions can damage your brand and cause users to leave your app.
   People will call your project "unprofessional" or "sloppy."
   Your project needs to be cohesive, sensible, and easy to understand. This can be the difference between your protocol being the next unicorn, or just another copy-pasta of Uniswap.

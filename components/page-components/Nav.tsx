@@ -1,12 +1,33 @@
 import styled from '@emotion/styled';
-import { Box, Button, Flex, HStack, Image, defaultTheme, useBreakpointValue } from '@raidguild/design-system';
-import { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import {
+  Box,
+  Button,
+  Castle,
+  Flex,
+  HStack,
+  Image,
+  Menu,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+  Spacer,
+  Wizard2,
+  VStack,
+  defaultTheme,
+  useBreakpointValue,
+} from '@raidguild/design-system';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { FaBars, FaChevronRight, FaTimes } from 'react-icons/fa';
+import { NavMenuData } from '../../utils/constants';
 import Link from '../atoms/ChakraNextLink';
 import { ConnectWallet } from '../atoms/ConnectWallet';
 
 import GuildLogo from '../../assets/illustrations/raidguild.webp';
+// import PopoverMenu from './PopOverMenu';
+import NavLink from './NavLink';
 
 const StyledButton = styled(Button)`
   &::after {
@@ -52,20 +73,169 @@ const Nav = () => {
       {!hideOnBase ? (
         <HStack justifyContent='space-between' w='50vw'>
           <HStack spacing={8} alignItems='center' w='full'>
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                id={item.name}
-                _hover={{ opacity: '80%', borderBottom: `2px solid ${defaultTheme.colors.red[500]}` }}
-                fontWeight={600}
-                style={{
-                  borderBottom: basePath === item.href.split('/')[1] ? `2px solid ${defaultTheme.colors.red[500]}` : '',
-                }}
-                textColor={defaultTheme.colors.red[500]}>
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.name === 'Services' ? (
+                <Popover trigger='hover' placement='bottom-start' key='services'>
+                  <PopoverTrigger>
+                    <span>
+                      <NavLink item={item} basePath={basePath} key={item.name} />
+                    </span>
+                  </PopoverTrigger>
+                  <PopoverContent bg='black' borderColor={defaultTheme.colors.primary[500]} borderRadius={2}>
+                    <PopoverArrow bg='black' shadowColor={defaultTheme.colors.primary[500]} />
+
+                    <PopoverBody>
+                      <VStack
+                        gap={1}
+                        justify='flex-start'
+                        align='flex-start'
+                        fontFamily='mono'
+                        fontWeight='bold'
+                        textTransform='uppercase'
+                        fontSize={18}>
+                        <Popover trigger='hover' placement='end-start' key='services'>
+                          <PopoverTrigger>
+                            <Box
+                              display='flex'
+                              flexDir='row'
+                              alignItems='center'
+                              justifyItems='center'
+                              gap={8}
+                              _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                              w='full'
+                              p={2.5}>
+                              <Castle fontSize={28} />
+                              Development
+                              <Spacer />
+                              <FaChevronRight fontSize={12} />
+                            </Box>
+                          </PopoverTrigger>
+                          <PopoverContent bg='black' borderColor={defaultTheme.colors.primary[500]} borderRadius={2}>
+                            <VStack
+                              gap={1}
+                              justify='flex-start'
+                              align='flex-start'
+                              fontFamily='mono'
+                              fontWeight='bold'
+                              textTransform='uppercase'
+                              fontSize={18}>
+                              {NavMenuData[0].items.map((menuItem: Record<string, string>) => (
+                                <Link
+                                  key={menuItem.name}
+                                  display='flex'
+                                  flexDir='row'
+                                  alignItems='center'
+                                  justifyItems='center'
+                                  href={`/services/${menuItem.slug}`}
+                                  gap={8}
+                                  _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                                  w='full'
+                                  py={2.5}
+                                  px={3.5}>
+                                  {menuItem.name}
+                                </Link>
+                              ))}
+                            </VStack>
+                          </PopoverContent>
+                        </Popover>
+                        <Popover trigger='hover' placement='end-start' key='services'>
+                          <PopoverTrigger>
+                            <Box
+                              display='flex'
+                              flexDir='row'
+                              alignItems='center'
+                              justifyItems='center'
+                              gap={8}
+                              _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                              w='full'
+                              p={2.5}>
+                              <Castle fontSize={28} />
+                              Design
+                              <Spacer />
+                              <FaChevronRight fontSize={12} />
+                            </Box>
+                          </PopoverTrigger>
+                          <PopoverContent bg='black' borderColor={defaultTheme.colors.primary[500]} borderRadius={2}>
+                            <VStack
+                              gap={1}
+                              justify='flex-start'
+                              align='flex-start'
+                              fontFamily='mono'
+                              fontWeight='bold'
+                              textTransform='uppercase'
+                              fontSize={18}>
+                              {NavMenuData[1].items.map((menuItem: Record<string, string>) => (
+                                <Link
+                                  key={menuItem.name}
+                                  display='flex'
+                                  flexDir='row'
+                                  alignItems='center'
+                                  justifyItems='center'
+                                  href={`/services/${menuItem.slug}`}
+                                  gap={8}
+                                  _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                                  w='full'
+                                  py={2.5}
+                                  px={3.5}>
+                                  {menuItem.name}
+                                </Link>
+                              ))}
+                            </VStack>
+                          </PopoverContent>
+                        </Popover>
+                        <Popover trigger='hover' placement='end-start' key='services'>
+                          <PopoverTrigger>
+                            <Box
+                              display='flex'
+                              flexDir='row'
+                              alignItems='center'
+                              justifyItems='center'
+                              gap={8}
+                              _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                              w='full'
+                              p={2.5}>
+                              <Wizard2 fontSize={28} />
+                              Development
+                              <Spacer />
+                              <FaChevronRight fontSize={12} />
+                            </Box>
+                          </PopoverTrigger>
+                          <PopoverContent bg='black' borderColor={defaultTheme.colors.primary[500]} borderRadius={2}>
+                            <VStack
+                              gap={1}
+                              justify='flex-start'
+                              align='flex-start'
+                              fontFamily='mono'
+                              fontWeight='bold'
+                              textTransform='uppercase'
+                              fontSize={18}>
+                              {NavMenuData[2].items.map((menuItem: Record<string, string>) => (
+                                <Link
+                                  key={menuItem.name}
+                                  display='flex'
+                                  flexDir='row'
+                                  alignItems='center'
+                                  justifyItems='center'
+                                  href={`/services/${menuItem.slug}`}
+                                  gap={8}
+                                  _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                                  w='full'
+                                  py={2.5}
+                                  px={3.5}>
+                                  {menuItem.name}
+                                </Link>
+                              ))}
+                            </VStack>
+                          </PopoverContent>
+                        </Popover>
+                      </VStack>
+                    </PopoverBody>
+                  </PopoverContent>
+                </Popover>
+              ) : (
+                <NavLink item={item} basePath={basePath} key={item.name} />
+              ),
+            )}
           </HStack>
           <ConnectWallet />
         </HStack>

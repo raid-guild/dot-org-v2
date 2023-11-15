@@ -2,7 +2,7 @@ import Paladin from '../../assets/characters/paladin.svg';
 
 const web3backend = {
   title: 'Web3 Backend',
-
+  slug: 'backend',
   description: `Data security is one of the main use cases for Web3. The average Web3 users demands security, and is why they use blockchains in the first place.
 
   But decentralization is a spectrum.

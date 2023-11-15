@@ -165,3 +165,65 @@ export const messageToSignJoin =
   'I hereby with the information provided would like to submit my cohort application to RaidGuild.';
 
 export const swordsImage = 'https://cdn.discordapp.com/attachments/1168646704669663323/1171323729968627742/swords.png';
+
+export const NavMenuData = [
+  {
+    category: 'Development',
+    items: [
+      {
+        name: 'Front End',
+        slug: 'frontend',
+      },
+      {
+        name: 'Back End',
+        slug: 'web3backend',
+      },
+      {
+        name: 'Smart Contracts',
+        slug: 'smart-contract-development',
+      },
+    ],
+  },
+  {
+    category: 'Visuals',
+    items: [
+      {
+        name: 'UX Design',
+        slug: 'ux-design',
+      },
+      {
+        name: 'UI Design',
+        slug: 'ui-design',
+      },
+      {
+        name: 'Visual Design',
+        slug: 'visual-design',
+      },
+    ],
+  },
+  {
+    category: 'Web3 Specifics',
+    items: [
+      {
+        name: 'Community Management',
+        slug: 'community-management',
+      },
+      {
+        name: 'DAO Consulting',
+        slug: 'dao-consulting',
+      },
+      {
+        name: 'Content',
+        slug: 'content-strategy',
+      },
+      {
+        name: 'Tokenomics',
+        slug: 'tokenomics',
+      },
+      {
+        name: 'Marketing',
+        slug: 'marketing',
+      },
+    ],
+  },
+];

@@ -2,7 +2,7 @@ import Scribe from '../../assets/characters/scribe.svg';
 
 const web3Content = {
   title: 'Web3 Content',
-
+  slug: 'content',
   description: `In a world where attention is a *commodity,* content creation matters.
 
   A good story is the best way to "sell" your product. People identify with strong brands. Your project's story is what makes it feel human.
