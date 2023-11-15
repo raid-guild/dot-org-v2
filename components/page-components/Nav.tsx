@@ -121,7 +121,10 @@ const Nav = () => {
                               fontSize={18}>
                               {NavMenuData[0].items.map((menuItem: Record<string, string>) => (
                                 <Link
+                                  fontFamily='monospace'
+                                  textTransform='full-size-kana'
                                   key={menuItem.name}
+                                  fontWeight='normal'
                                   display='flex'
                                   flexDir='row'
                                   alignItems='center'
@@ -166,6 +169,8 @@ const Nav = () => {
                               fontSize={18}>
                               {NavMenuData[1].items.map((menuItem: Record<string, string>) => (
                                 <Link
+                                  fontFamily='monospace'
+                                  textTransform='full-size-kana'
                                   key={menuItem.name}
                                   display='flex'
                                   flexDir='row'
@@ -211,6 +216,8 @@ const Nav = () => {
                               fontSize={18}>
                               {NavMenuData[2].items.map((menuItem: Record<string, string>) => (
                                 <Link
+                                  fontFamily='monospace'
+                                  textTransform='full-size-kana'
                                   key={menuItem.name}
                                   display='flex'
                                   flexDir='row'
