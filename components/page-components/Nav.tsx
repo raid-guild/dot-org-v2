@@ -17,6 +17,11 @@ import {
   VStack,
   defaultTheme,
   useBreakpointValue,
+  Accordion,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
+  AccordionIcon,
 } from '@raidguild/design-system';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -41,7 +46,6 @@ const StyledButton = styled(Button)`
     position: absolute;
     bottom: 0;
     left: 0;
-    font-family: ${defaultTheme.fonts.rubik};
   }
   &:hover {
     text-decoration: none;
@@ -67,7 +71,7 @@ const Nav = () => {
 
   return (
     <HStack justifyContent='space-between' width='full' color='white' id='Navigation Bar'>
-      <Link href='/' passHref>
+      <Link href='/' passHref zIndex={100}>
         <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' maxWidth='200px' />
       </Link>
       {!hideOnBase ? (
@@ -265,7 +269,9 @@ const Nav = () => {
             w='full'
             direction='column'
             justify='center'
-            align='center'
+            align='flex-start'
+            p={8}
+            textDecoration='none !important'
             hidden={!isOpen}
             transition='all .8s ease-out'
             pointerEvents={isOpen ? 'all' : 'none'}
@@ -274,24 +280,136 @@ const Nav = () => {
             }}>
             {navItems.map((item) => {
               return (
-                <StyledButton
+                <Link
+                  as='text'
                   key={item.name}
-                  onClick={() => {
-                    onOpen((o) => !o);
-                    document.location.href = item.href;
-                  }}
+                  href={item.name !== 'Services' ? item.href : ''}
+                  borderRadius={0}
+                  w='full'
+                  textAlign='left'
+                  textTransform='uppercase'
+                  borderBottom='1px solid'
+                  px={4}
+                  textColor='white'
+                  // borderBottomColor='whiteAlpha.500'
+                  textDecor='none'
+                  height='max-content'
                   my='1rem'
-                  variant='link'
-                  color={`${defaultTheme.colors.red[500]}`}
-                  fontWeight='normal'
-                  fontSize='1.5rem'>
-                  {item.name}
-                </StyledButton>
+                  variant='unstyled'
+                  fontFamily='monospace'
+                  fontWeight='bold'
+                  fontSize={18}>
+                  {item.name === 'Services' ? (
+                    <Accordion allowToggle fontFamily='monospace' fontWeight='bold' fontSize={18} border='none'>
+                      {item.name}
+                      <AccordionItem borderBottom='none'>
+                        <h2>
+                          <AccordionButton style={{ border: 'none' }}>
+                            <Box as='span' flex='1' textAlign='left'>
+                              Development
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+
+                        {NavMenuData[0].items.map((menuItem: Record<string, string>) => (
+                          <AccordionPanel
+                            style={{ textDecoration: 'none !important' }}
+                            // as={Link}
+                            fontFamily='monospace'
+                            textTransform='full-size-kana'
+                            key={menuItem.name}
+                            display='flex'
+                            flexDir='row'
+                            alignItems='center'
+                            justifyItems='center'
+                            href={`/services/${menuItem.slug}`}
+                            gap={8}
+                            _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                            w='full'
+                            py={2.5}
+                            px={3.5}>
+                            {menuItem.name}
+                          </AccordionPanel>
+                        ))}
+                      </AccordionItem>
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton>
+                            <Box as='span' flex='1' textAlign='left'>
+                              Design
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+
+                        {NavMenuData[1].items.map((menuItem: Record<string, string>) => (
+                          <AccordionPanel
+                            style={{ textDecoration: 'none !important' }}
+                            // as={Link}
+                            fontFamily='monospace'
+                            textTransform='full-size-kana'
+                            key={menuItem.name}
+                            display='flex'
+                            flexDir='row'
+                            alignItems='center'
+                            justifyItems='center'
+                            href={`/services/${menuItem.slug}`}
+                            gap={8}
+                            _hover={{
+                              bgColor: '#330F00',
+                              textColor: defaultTheme.colors.primary[500],
+                            }}
+                            w='full'
+                            py={2.5}
+                            px={3.5}>
+                            {menuItem.name}
+                          </AccordionPanel>
+                        ))}
+                      </AccordionItem>
+
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton>
+                            <Box as='span' flex='1' textAlign='left'>
+                              Web3
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+
+                        {NavMenuData[2].items.map((menuItem: Record<string, string>) => (
+                          <AccordionPanel
+                            // as={Link}
+                            fontFamily='monospace'
+                            textTransform='full-size-kana'
+                            key={menuItem.name}
+                            display='flex'
+                            flexDir='row'
+                            alignItems='center'
+                            justifyItems='center'
+                            href={`/services/${menuItem.slug}`}
+                            gap={8}
+                            _hover={{
+                              bgColor: '#330F00',
+                              textColor: defaultTheme.colors.primary[500],
+                              textDecoration: 'none !important',
+                            }}
+                            w='full'
+                            py={2.5}
+                            px={3.5}>
+                            {menuItem.name}
+                          </AccordionPanel>
+                        ))}
+                      </AccordionItem>
+                    </Accordion>
+                  ) : (
+                    item.name
+                  )}
+                </Link>
               );
             })}
-            <Box mt={3}>
-              <ConnectWallet />
-            </Box>
+            <ConnectWallet />
           </Flex>
         </Flex>
       )}
