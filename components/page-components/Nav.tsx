@@ -315,7 +315,7 @@ const Nav = () => {
                         {NavMenuData[0].items.map((menuItem: Record<string, string>) => (
                           <AccordionPanel
                             style={{ textDecoration: 'none !important' }}
-                            // as={Link}
+                            as={Link}
                             fontFamily='monospace'
                             textTransform='full-size-kana'
                             key={menuItem.name}
@@ -346,7 +346,7 @@ const Nav = () => {
                         {NavMenuData[1].items.map((menuItem: Record<string, string>) => (
                           <AccordionPanel
                             style={{ textDecoration: 'none !important' }}
-                            // as={Link}
+                            as={Link}
                             fontFamily='monospace'
                             textTransform='full-size-kana'
                             key={menuItem.name}
@@ -380,7 +380,7 @@ const Nav = () => {
 
                         {NavMenuData[2].items.map((menuItem: Record<string, string>) => (
                           <AccordionPanel
-                            // as={Link}
+                            as={Link}
                             fontFamily='monospace'
                             textTransform='full-size-kana'
                             key={menuItem.name}
