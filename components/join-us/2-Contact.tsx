@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
-import { Box, Flex, Button, SimpleGrid, Input, useToast } from '@raidguild/design-system';
-import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Box, Flex, Input, SimpleGrid, defaultTheme, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { useJoinState } from '../../context/appState';
+import GradientBorderButton from '../atoms/GradientBorderButton';
+import GradientButton from '../atoms/GradientButton';
 
 const inputs = [
   {
@@ -77,15 +79,19 @@ const StepTwo = ({ handleBack, handleNext }: Props) => {
             name={input.name}
             placeholder={input.placeholder}
             localForm={localForm}
+            border={`1px solid ${defaultTheme.colors.primary[400]}`}
+            _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+            p={4}
+            borderRadius={0}
+            variant='unstyled'
           />
         ))}
       </SimpleGrid>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <Button onClick={handleBack} variant='outline'>
-          Back
-        </Button>
-        <Button onClick={handleSubmit(onNext, onError)}>Next</Button>
+        <GradientBorderButton onClick={handleBack} label='Back' />
+
+        <GradientButton onClick={handleSubmit(onNext, onError)}>Next</GradientButton>
       </Flex>
     </Box>
   );

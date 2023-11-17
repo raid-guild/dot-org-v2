@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { VStack, useToast, GridItem, SimpleGrid, Input, Textarea } from '@raidguild/design-system';
+import { VStack, useToast, GridItem, SimpleGrid, Input, Textarea, defaultTheme } from '@raidguild/design-system';
 import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -55,12 +55,27 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
           stack='horizontal'
           localForm={localForm}
         />
-        <Input label='Project Name?*' name='projectName' placeholder='Project Name' localForm={localForm} />
+        <Input
+          label='Project Name?*'
+          name='projectName'
+          placeholder='Project Name'
+          localForm={localForm}
+          border={`1px solid ${defaultTheme.colors.primary[400]}`}
+          _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+          p={4}
+          borderRadius={0}
+          variant='unstyled'
+        />
         <Input
           label='Link to Specs'
           name='projectLink'
           placeholder='Any link related to the project'
           localForm={localForm}
+          border={`1px solid ${defaultTheme.colors.primary[400]}`}
+          _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+          p={4}
+          borderRadius={0}
+          variant='unstyled'
         />
         <GridItem gridColumn={{ base: 1, lg: 'span 2' }}>
           <Textarea
@@ -68,6 +83,11 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
             placeholder='Describe your project, goals, vision, etc.'
             name='projectDescription'
             localForm={localForm}
+            border={`1px solid ${defaultTheme.colors.primary[400]}`}
+            _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+            p={4}
+            borderRadius={0}
+            variant='unstyled'
           />
         </GridItem>
       </SimpleGrid>

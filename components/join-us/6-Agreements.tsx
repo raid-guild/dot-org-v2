@@ -1,29 +1,32 @@
-import React, { useEffect, useRef } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import tokens from '../../utils/extendedTokens';
 import {
-  Flex,
-  FormControl,
-  Button,
-  Stack,
-  ChakraCheckbox,
-  useToast,
-  ChakraAlertDialog,
   AlertDialogBody,
+  AlertDialogContent,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogContent,
   AlertDialogOverlay,
+  ChakraAlertDialog,
+  ChakraCheckbox,
+  Flex,
+  FormControl,
   Heading,
+  Spacer,
+  Stack,
   useDisclosure,
+  useToast,
 } from '@raidguild/design-system';
-import { useAccount } from 'wagmi';
-import { useSession } from 'next-auth/react';
 import _ from 'lodash';
+import { useSession } from 'next-auth/react';
+import { useEffect, useRef } from 'react';
+import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
+import { useAccount } from 'wagmi';
 import * as Yup from 'yup';
-import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import Link from '../atoms/ChakraNextLink';
 import { useJoinState } from '../../context/appState';
 import useSubmit from '../../hooks/useSubmit';
+import Link from '../atoms/ChakraNextLink';
+import GradientBorderButton from '../atoms/GradientBorderButton';
+import GradientButton from '../atoms/GradientButton';
 
 interface Props {
   handleBack: () => void;
@@ -109,23 +112,20 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
         </FormControl>
       </Stack>
 
-      <Flex gap={4} justify='center' mt='2rem'>
-        <Button fontFamily='spaceMono' onClick={handleBack} variant='outline'>
-          Back
-        </Button>
-        <Button fontFamily='spaceMono' onClick={handleSubmit(onNext, onError)}>
-          Submit
-        </Button>
+      <Flex gap={8} justify='center' mt='2rem'>
+        <GradientBorderButton onClick={handleBack} label='Back' />
+        <Spacer />
+        <GradientButton onClick={handleSubmit(onNext, onError)}>Next</GradientButton>
       </Flex>
 
       <ChakraAlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>
         <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader>
+          <AlertDialogContent bg={tokens.darkBrownRedGradient} p={10}>
+            <AlertDialogHeader textColor='primary.500'>
               <Heading>Disclaimer</Heading>
             </AlertDialogHeader>
 
-            <AlertDialogBody fontFamily='spaceMono'>
+            <AlertDialogBody fontFamily='spaceMono' textColor='white'>
               You must attend cohort training events and apply your skills in a Raid or RIP to earn a champion for your
               membership.
               <br />
@@ -136,13 +136,10 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
               If you prefer, apprentice, you may sweat your way to glory and tribute funds earned through raids.
             </AlertDialogBody>
 
-            <AlertDialogFooter>
-              <Button fontFamily='spaceMono' variant='outline' ref={cancelRef} onClick={handleModalCancel}>
-                Cancel
-              </Button>
-              <Button fontFamily='spaceMono' onClick={modalConfirmHandler} ml={3}>
-                Continue
-              </Button>
+            <AlertDialogFooter gap={4}>
+              <GradientBorderButton ref={cancelRef} onClick={handleModalCancel} label='Cancel' />
+
+              <GradientButton onClick={modalConfirmHandler}>Continue</GradientButton>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialogOverlay>

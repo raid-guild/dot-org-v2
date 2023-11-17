@@ -5,6 +5,8 @@ import _ from 'lodash';
 import * as Yup from 'yup';
 import { Flex, useToast, Stack, Button, Textarea, useMediaQuery } from '@raidguild/design-system';
 import { useSession } from 'next-auth/react';
+import GradientButton from 'components/atoms/GradientButton';
+import GradientBorderButton from 'components/atoms/GradientBorderButton';
 import { useHireState } from '../../context/appState';
 import handleError from '../../utils/forms';
 // import Link from '../atoms/ChakraNextLink';
@@ -167,17 +169,15 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
         </Link>
       </Flex> */}
       <Flex direction='row' gap='2'>
-        <Button fontFamily='spaceMono' onClick={handleBack} variant='outline'>
-          Back
-        </Button>
-        <Button
-          fontFamily='spaceMono'
+        <GradientBorderButton onClick={handleBack} label='Back' />
+
+        <GradientButton
           isDisabled={isSubmitting}
           isLoading={isSubmitting}
           loadingText='Submitting'
           onClick={handleSubmit(onNext, handleError(toast))}>
           Submit
-        </Button>
+        </GradientButton>
         {/* {formStatus === FORM_STATE.AWAITING_PAYMENT && (
           <Button fontFamily='spaceMono' onClick={paymentHandler}>
             Pay {SUBMISSION_REQUEST_FEE} $RAID

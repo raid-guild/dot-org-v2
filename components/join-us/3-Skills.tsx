@@ -6,6 +6,8 @@ import { Flex, Stack, Button, useToast, Select } from '@raidguild/design-system'
 import { useJoinState } from '../../context/appState';
 import RadioBox from '../atoms/RadioBox';
 import { skills } from '../../utils/constants';
+import GradientButton from '../atoms/GradientButton';
+import GradientBorderButton from '../atoms/GradientBorderButton';
 
 const validationSchema = Yup.object().shape({
   primarySkills: Yup.array()
@@ -102,10 +104,9 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
       </Stack>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <Button onClick={handleBack} variant='outline'>
-          Back
-        </Button>
-        <Button onClick={handleSubmit(onNext, onError)}>Next</Button>
+        <GradientBorderButton onClick={handleBack} label='Back' />
+
+        <GradientButton onClick={handleSubmit(onNext, onError)}>Next</GradientButton>
       </Flex>
     </Flex>
   );

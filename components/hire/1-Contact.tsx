@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Input, Box, VStack, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
+import { Input, Box, VStack, SimpleGrid, Textarea, useToast, defaultTheme } from '@raidguild/design-system';
 import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -99,6 +99,11 @@ export default function StepOne({ handleNext, handleBack }: Props) {
                   label={field.label}
                   placeholder={field.placeholder}
                   key={field.name}
+                  border={`1px solid ${defaultTheme.colors.primary[400]}`}
+                  _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+                  p={4}
+                  borderRadius={0}
+                  variant='unstyled'
                 />
               </Box>
             );
@@ -111,6 +116,11 @@ export default function StepOne({ handleNext, handleBack }: Props) {
               localForm={localForm}
               label={field.label}
               placeholder={field.placeholder}
+              border={`1px solid ${defaultTheme.colors.primary[400]}`}
+              _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+              p={4}
+              borderRadius={0}
+              variant='unstyled'
             />
           );
         })}

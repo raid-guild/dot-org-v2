@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Flex, GridItem, SimpleGrid, Textarea, defaultTheme, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { Flex, Button, GridItem, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
-import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { useJoinState } from '../../context/appState';
+import GradientBorderButton from '../atoms/GradientBorderButton';
+import GradientButton from '../atoms/GradientButton';
 
 interface Props {
   handleBack: () => void;
@@ -71,16 +73,26 @@ const StepFour = ({ handleNext, handleBack }: Props) => {
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }}>
         {inputs.map((input) => (
           <GridItem minH='175px' key={input.label}>
-            <Textarea label={input.label} placeholder={input.placeholder} name={input.name} localForm={localForm} />
+            <Textarea
+              label={input.label}
+              placeholder={input.placeholder}
+              name={input.name}
+              localForm={localForm}
+              border={`1px solid ${defaultTheme.colors.primary[400]}`}
+              _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+              p={4}
+              textStyle={{ maxWidth: '400px' }}
+              borderRadius={0}
+              variant='unstyled'
+            />
           </GridItem>
         ))}
       </SimpleGrid>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <Button onClick={handleBack} variant='outline'>
-          Back
-        </Button>
-        <Button onClick={handleSubmit(onNext, onError)}>Next</Button>
+        <GradientBorderButton onClick={handleBack} label='Back' />
+
+        <GradientButton onClick={handleSubmit(onNext, onError)}>Next</GradientButton>
       </Flex>
     </Flex>
   );

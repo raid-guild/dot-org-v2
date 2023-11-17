@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
-import { Flex, SimpleGrid, Button, Input, useMediaQuery, Textarea, useToast } from '@raidguild/design-system';
-import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Flex, Input, SimpleGrid, Textarea, defaultTheme, useMediaQuery, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { useJoinState } from '../../context/appState';
+import GradientBorderButton from '../atoms/GradientBorderButton';
+import GradientButton from '../atoms/GradientButton';
 import RadioBox from '../atoms/RadioBox';
 
 interface Props {
@@ -55,7 +57,16 @@ const StepFive = ({ handleNext, handleBack }: Props) => {
           localForm={localForm}
         />
 
-        <Input label='Ho, you know of Crypto yes? For how long?' name='cryptoExperience' localForm={localForm} />
+        <Input
+          label='Ho, you know of Crypto yes? For how long?'
+          name='cryptoExperience'
+          localForm={localForm}
+          border={`1px solid ${defaultTheme.colors.primary[400]}`}
+          _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+          p={4}
+          borderRadius={0}
+          variant='unstyled'
+        />
 
         <RadioBox
           label='What say you to your status, within our RaidGuild here?'
@@ -65,14 +76,22 @@ const StepFive = ({ handleNext, handleBack }: Props) => {
           localForm={localForm}
         />
 
-        <Textarea label='Any comments that still remain, Apprentice*' name='comments' localForm={localForm} />
+        <Textarea
+          label='Any comments that still remain, Apprentice*'
+          name='comments'
+          localForm={localForm}
+          border={`1px solid ${defaultTheme.colors.primary[400]}`}
+          _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+          p={4}
+          borderRadius={0}
+          variant='unstyled'
+        />
       </SimpleGrid>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <Button onClick={handleBack} variant='outline'>
-          Back
-        </Button>
-        <Button onClick={handleSubmit(onNext, onError)}>Next</Button>
+        <GradientBorderButton onClick={handleBack} label='Back' />
+
+        <GradientButton onClick={handleSubmit(onNext, onError)}>Next</GradientButton>
       </Flex>
     </Flex>
   );

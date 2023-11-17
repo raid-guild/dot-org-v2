@@ -6,13 +6,17 @@ const GradientBorderButton = ({
   color1 = '#ca2c8c',
   color2 = '#8b1dba',
   color3 = '#8021b8',
-  width = '120px',
+  width = 'max-content',
+  onClick,
+  ref,
 }: {
   label: string;
   color1?: string;
   color2?: string;
   color3?: string;
   width?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  ref?: React.Ref<HTMLButtonElement>;
 }) => {
   const linearGradient = `linear-gradient(96deg, ${color1} -44.29%, ${color2} 53.18%, ${color3} 150.65%)`;
   const CustomButton = styled(Button)`
@@ -64,7 +68,12 @@ const GradientBorderButton = ({
   `;
 
   return (
-    <CustomButton variant='link' _hover={{ textDecor: 'none', bgColor: '#00000020' }} height={10}>
+    <CustomButton
+      variant='link'
+      _hover={{ textDecor: 'none', bgColor: '#00000020' }}
+      height={10}
+      onClick={onClick}
+      ref={ref}>
       <Box bg={linearGradient} bgClip='text'>
         {label}
       </Box>

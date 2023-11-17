@@ -1,4 +1,5 @@
 import { Button, HStack, Heading, Stack, Text } from '@raidguild/design-system';
+import GradientButton from 'components/atoms/GradientButton';
 import Link from '../atoms/ChakraNextLink';
 import { ConnectWallet } from '../atoms/ConnectWallet';
 
@@ -58,9 +59,7 @@ const Intro = ({ handleNext, isConnected }: Props) => (
       {!isConnected ? (
         <ConnectWallet label='Sign in to Continue' />
       ) : (
-        <Button fontFamily='spaceMono' onClick={handleNext}>
-          New Consultation
-        </Button>
+        <GradientButton onClick={handleNext}>New Consultation</GradientButton>
       )}
     </HStack>
   </Stack>
