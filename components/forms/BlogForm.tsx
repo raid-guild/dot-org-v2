@@ -1,4 +1,4 @@
-import { VStack, Box, Text, Textarea, Input, Button, Stack } from '@raidguild/design-system';
+import { VStack, Box, Text, Textarea, Input, Button, Stack, defaultTheme } from '@raidguild/design-system';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import { useSession } from 'next-auth/react';
@@ -34,15 +34,50 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
   };
 
   return (
-    <VStack width='60vw' margin='0 auto' pb='2rem'>
-      <Input label='Blog Title' name='title' localForm={localForm} defaultValue={isEditable && initialData?.title} />
-      <Input label='Blog Slug:' name='slug' localForm={localForm} defaultValue={isEditable && initialData?.slug} />
-      <Input label='Author:' name='author' localForm={localForm} defaultValue={isEditable && initialData?.author} />
+    <VStack width='60vw' margin='0 auto' pb='2rem' fontFamily='texturina' gap={14}>
+      <Input
+        label='Blog Title'
+        name='title'
+        localForm={localForm}
+        defaultValue={isEditable && initialData?.title}
+        border={`1px solid ${defaultTheme.colors.primary[400]}`}
+        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+        p={4}
+        borderRadius={0}
+        variant='unstyled'
+      />
+      <Input
+        label='Blog Slug:'
+        name='slug'
+        localForm={localForm}
+        defaultValue={isEditable && initialData?.slug}
+        border={`1px solid ${defaultTheme.colors.primary[400]}`}
+        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+        p={4}
+        borderRadius={0}
+        variant='unstyled'
+      />
+      <Input
+        label='Author:'
+        name='author'
+        localForm={localForm}
+        defaultValue={isEditable && initialData?.author}
+        border={`1px solid ${defaultTheme.colors.primary[400]}`}
+        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+        p={4}
+        borderRadius={0}
+        variant='unstyled'
+      />
       <Input
         label='Description:'
         name='description'
         localForm={localForm}
         defaultValue={isEditable && initialData?.description}
+        border={`1px solid ${defaultTheme.colors.primary[400]}`}
+        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+        p={4}
+        borderRadius={0}
+        variant='unstyled'
       />
 
       <VStack alignItems='flex-start' width='100%'>
@@ -60,6 +95,11 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
           localForm={localForm}
           defaultValue={initialData?.content}
           height='500px'
+          border={`1px solid ${defaultTheme.colors.primary[400]}`}
+          _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+          p={4}
+          borderRadius={0}
+          variant='unstyled'
         />
         <Text fontSize='0.8rem'>
           This textarea accepts{' '}
