@@ -4,10 +4,10 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
 import _ from 'lodash';
 
+import GradientButton from 'components/atoms/GradientButton';
 import Link from '../atoms/ChakraNextLink';
 import useSubmit from '../../hooks/useSubmit';
 import ImageUpload from '../atoms/ImageUpload';
-import GradientButton from 'components/atoms/GradientButton';
 
 type PortfolioFormProps = {
   isEditable?: boolean;
@@ -110,7 +110,9 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
         </Text>
       </Stack>
       <Box pt={8} fontFamily='mono'>
-        <GradientButton width='max' onClick={handleSubmit(onSubmit)}>{isEditable ? 'Save Changes' : 'Publish Blog'}</GradientButton>
+        <GradientButton width='max' onClick={handleSubmit(onSubmit)}>
+          {isEditable ? 'Save Changes' : 'Publish Blog'}
+        </GradientButton>
       </Box>
     </VStack>
   );
