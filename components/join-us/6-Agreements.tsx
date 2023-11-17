@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import tokens from '../../utils/extendedTokens';
 import {
   AlertDialogBody,
   AlertDialogContent,
@@ -22,6 +21,7 @@ import { useEffect, useRef } from 'react';
 import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import { useAccount } from 'wagmi';
 import * as Yup from 'yup';
+import tokens from '../../utils/extendedTokens';
 import { useJoinState } from '../../context/appState';
 import useSubmit from '../../hooks/useSubmit';
 import Link from '../atoms/ChakraNextLink';

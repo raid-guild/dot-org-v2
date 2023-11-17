@@ -1,7 +1,7 @@
-import { Button, HStack, Heading, Stack, Text } from '@raidguild/design-system';
-import GradientButton from 'components/atoms/GradientButton';
+import { HStack, Heading, Stack, Text } from '@raidguild/design-system';
 import Link from '../atoms/ChakraNextLink';
 import { ConnectWallet } from '../atoms/ConnectWallet';
+import GradientButton from '../atoms/GradientButton';
 
 type Props = {
   handleNext: () => void;

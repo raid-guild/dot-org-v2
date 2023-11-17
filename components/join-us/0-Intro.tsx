@@ -1,5 +1,5 @@
 import { Stack, Heading, Text, HStack, Button } from '@raidguild/design-system';
-import GradientButton from 'components/atoms/GradientButton';
+import GradientButton from '../atoms/GradientButton';
 import { ConnectWallet } from '../atoms/ConnectWallet';
 
 interface Props {
