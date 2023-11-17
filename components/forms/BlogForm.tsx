@@ -7,6 +7,7 @@ import _ from 'lodash';
 import Link from '../atoms/ChakraNextLink';
 import useSubmit from '../../hooks/useSubmit';
 import ImageUpload from '../atoms/ImageUpload';
+import GradientButton from 'components/atoms/GradientButton';
 
 type PortfolioFormProps = {
   isEditable?: boolean;
@@ -108,8 +109,8 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
           </Link>
         </Text>
       </Stack>
-      <Box pt={8}>
-        <Button onClick={handleSubmit(onSubmit)}>{isEditable ? 'Save Changes' : 'Publish Blog'}</Button>
+      <Box pt={8} fontFamily='mono'>
+        <GradientButton width='max' onClick={handleSubmit(onSubmit)}>{isEditable ? 'Save Changes' : 'Publish Blog'}</GradientButton>
       </Box>
     </VStack>
   );

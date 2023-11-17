@@ -6,13 +6,16 @@ const GradientButton = ({
   children,
   gradient = tokens.orangeToPurpleGradient,
   width = '120px',
+  onClick,
 }: {
   children: React.ReactNode;
   gradient?: string;
   width?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }) => {
   return (
     <Button
+      onClick={onClick}
       bgGradient={gradient}
       borderRadius={2}
       width={width}
