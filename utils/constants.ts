@@ -185,7 +185,7 @@ export const NavMenuData = [
     ],
   },
   {
-    category: 'Visuals',
+    category: 'Design',
     items: [
       {
         name: 'UX Design',

@@ -6,6 +6,7 @@ import {
   Flex,
   HStack,
   Image,
+  Knight,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -151,7 +152,7 @@ const Nav = () => {
                               _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
                               w='full'
                               p={2.5}>
-                              <Castle fontSize={28} />
+                              <Knight fontSize={28} />
                               Design
                               <Spacer />
                               <FaChevronRight fontSize={12} />
@@ -246,21 +247,25 @@ const Nav = () => {
           <ConnectWallet />
         </HStack>
       ) : (
-        <Flex>
-          <Flex align='center' height='8rem'>
-            <Button fontSize='2rem' onClick={() => onOpen((o) => !o)} variant='link' zIndex={7}>
+        <Flex position={!isOpen ? 'absolute' : 'fixed'} zIndex={100}>
+          <HStack align='center' height='8rem' minW='88vw'>
+            <Link href='/' passHref zIndex={7} w='full' hidden={!isOpen}>
+              <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' maxWidth='200px' />
+            </Link>
+            <Spacer />
+            <Button fontSize='2rem' onClick={() => onOpen((o) => !o)} variant='link' zIndex={7} mr={8}>
               <span style={{ width: '25px', color: defaultTheme.colors.red[500] }}>
                 {!isOpen ? <FaBars /> : <FaTimes />}
               </span>
             </Button>
-          </Flex>
-          <Flex
+          </HStack>
+          <VStack
             zIndex={6}
             position='fixed'
             left='0'
             top='0'
             bg='black'
-            h='100%'
+            minH='100%'
             w='full'
             direction='column'
             justify='center'
@@ -288,7 +293,7 @@ const Nav = () => {
                   textColor='white'
                   textDecor='none'
                   display='flex'
-                  gap={4}
+                  gap={2}
                   flexDir='row'
                   _hover={
                     item.name !== 'Services'
@@ -321,13 +326,11 @@ const Nav = () => {
                   ) : (
                     <Box as='text'> {item.name}</Box>
                   )}
-
-                  <Spacer />
                 </Link>
               );
             })}
             <ConnectWallet />
-          </Flex>
+          </VStack>
         </Flex>
       )}
     </HStack>

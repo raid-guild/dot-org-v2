@@ -1,4 +1,4 @@
-import { VStack, Box, Text, Spacer, Link, defaultTheme } from '@raidguild/design-system';
+import { VStack, Box, Text, Spacer, Link, defaultTheme, Castle, Knight, Wizard2 } from '@raidguild/design-system';
 import { useState } from 'react';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import { NavMenuData } from '../../utils/constants';
@@ -31,9 +31,13 @@ const SubMenu = ({ NavMenu }: { NavMenu: (typeof NavMenuData)[0] }) => {
         w='full'
         py={2.5}
         px={3.5}>
+        {NavMenu.category === 'Development' && <Castle fontSize={28} />}
+        {NavMenu.category === 'Design' && <Knight fontSize={28} />}
+        {NavMenu.category === 'Web3 Specifics' && <Wizard2 fontSize={28} />}
+
         {NavMenu.category}
         <Spacer />
-        {isMenuOpen ? <FaChevronDown fontSize={18} /> : <FaChevronRight fontSize={18} />}
+        {isMenuOpen ? <FaChevronDown fontSize={18} /> : <FaChevronRight fontSize={14} />}
       </Box>
       <Box hidden={!isMenuOpen} w='full'>
         {NavMenu.items.map((menuItem) => (
