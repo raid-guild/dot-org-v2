@@ -1,7 +1,5 @@
 import {
   Button,
-  Card,
-  CardBody,
   Castle,
   Flex,
   HStack,
@@ -68,38 +66,40 @@ function PortfolioPage({ initialData }: Props) {
           </Link>
         </Stack>
       )}
-      <Flex minH='30vh' maxH='max-content' justify='center' align='center'>
-        <Text maxW='900px' p='2rem' textAlign='center' lineHeight='taller' mb={8}>
-          {_.get(initialData, 'description')}
-        </Text>
-      </Flex>
 
-      <Card layerStyle='redToPurpleVerticalGradient' border='none' w='100vw'>
+      <VStack
+        layerStyle='redToPurpleVerticalGradient'
+        border='none'
+        w='100vw'
+        h='500px'
+        justify='center'
+        align='center'
+        overflow='hidden'
+        position='relative'>
         <Image
           src={raidFantasy.src}
           alt='raid fantasy'
           alignSelf='center'
-          height='full'
+          minW='50vw'
+          maxWidth='100%'
           position='absolute'
           opacity={0.15}
-          overflow='clip'
         />
-        <Stack p='2rem' align='center'>
-          <HStack align='center' gap={6}>
+        <Stack p='2rem' align='center' zIndex={100}>
+          <HStack align='center' gap={6} justify='center'>
             <Icon as={Castle} w='32px' h='32px' />
             <Heading variant='shadow' size='md'>
-              The Challenge
+              What We Did
             </Heading>
           </HStack>
-          <CardBody textAlign='center' lineHeight='taller'>
+          <Flex textAlign='center' lineHeight='taller'>
             <Text lineHeight='taller' maxW='900px'>
-              {_.map(_.get(initialData, 'challenge.content'), (content: any) => (
-                <Markdown key={content}>{content}</Markdown>
-              ))}
+              {_.get(initialData, 'description')}
             </Text>
-          </CardBody>
+          </Flex>
         </Stack>
-      </Card>
+      </VStack>
+
       <Stack
         direction={{ base: 'column', xl: 'row' }}
         align={{ base: 'center', xl: 'flex-start' }}
@@ -114,6 +114,19 @@ function PortfolioPage({ initialData }: Props) {
         />
 
         <VStack maxW={900} gap={12}>
+          <Stack spacing={6} align={{ base: 'center', lg: 'flex-start' }} maxW='80vw'>
+            <Stack flexDir={{ base: 'column', md: 'row' }} align='center' gap={6}>
+              <Icon as={Castle} w='32px' h='32px' />
+              <Heading variant='shadow' size='md'>
+                The Challenge
+              </Heading>
+            </Stack>
+            <Stack spacing={6} lineHeight='taller'>
+              {_.map(_.get(initialData, 'challenge.content'), (content: any) => (
+                <Markdown key={content}>{content}</Markdown>
+              ))}
+            </Stack>
+          </Stack>
           <Stack spacing={6} align={{ base: 'center', lg: 'flex-start' }} maxW='80vw'>
             <Stack flexDir={{ base: 'column', md: 'row' }} align='center' gap={6}>
               <Icon as={Swords} w='32px' h='32px' />
