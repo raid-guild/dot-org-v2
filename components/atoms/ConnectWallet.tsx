@@ -14,6 +14,7 @@ import {
   MenuItem,
   MenuList,
   Text,
+  defaultTheme,
 } from '@raidguild/design-system';
 import { FiChevronDown, FiKey, FiXCircle } from 'react-icons/fi';
 import { useDisconnect } from 'wagmi';
@@ -80,25 +81,39 @@ export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
                       </Button>
                     )}
 
-                    <MenuButton as={Button} variant='outline' width='fit'>
+                    <MenuButton as={Button} variant='outline' width='fit' borderRadius={2} >
                       <HStack spacing={3}>
-                        <Text color='white'>
+                        <Text color='white' fontFamily='mono'>
                           {account.ensName ? account.ensName : truncateAddress(account.address)}
                         </Text>
                         <Icon as={FiChevronDown} color='primary.500' />
                       </HStack>
                     </MenuButton>
-                    <MenuList minWidth='none'>
-                      <MenuItem onClick={() => openAccountModal()} _hover={{ backgroundColor: 'gray.600' }}>
-                        <HStack>
-                          <Icon as={FiKey} color='white' />
-                          <Box color='white'>Wallet</Box>
+                    <MenuList minWidth='none' >
+                      <MenuItem onClick={() => openAccountModal()} borderRadius={0} p={0}>
+                        <HStack
+                          spacing={2}
+                          h='full'
+                          w='full'
+                          p={2}
+                          color='primary.500'
+                          fontFamily='mono'
+                          _hover={{ color: 'white', backgroundColor: 'primary.500' }}>
+                          <Icon as={FiKey} />
+                          <Box>Wallet</Box>
                         </HStack>
                       </MenuItem>
-                      <MenuItem onClick={() => disconnect()} _hover={{ backgroundColor: 'gray.600' }}>
-                        <HStack spacing={2}>
-                          <Icon as={FiXCircle} color='primary.500' />
-                          <Box color='primary.500'>Sign Out</Box>
+                      <MenuItem onClick={() => disconnect()} borderRadius={0} p={0}>
+                        <HStack
+                          spacing={2}
+                          h='full'
+                          w='full'
+                          p={2}
+                          color='primary.500'
+                          fontFamily='mono'
+                          _hover={{ backgroundColor: defaultTheme.colors.primary[500], color: 'white' }}>
+                          <Icon as={FiXCircle} />
+                          <Box>Sign Out</Box>
                         </HStack>
                       </MenuItem>
                     </MenuList>
