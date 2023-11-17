@@ -1,4 +1,4 @@
-import { VStack, Box, Text, Textarea, Input, Select, Button, Stack } from '@raidguild/design-system';
+import { VStack, Box, Text, Textarea, Input, Select, Button, Stack, defaultTheme } from '@raidguild/design-system';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import { useSession } from 'next-auth/react';
@@ -76,25 +76,50 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
   };
 
   return (
-    <VStack width='60vw' margin='0 auto' pb='2rem'>
+    <VStack width='60vw' margin='0 auto' pb='2rem' gap={14} fontFamily='texturina'>
       <Input
         label='Project Name'
         name='projectName'
         localForm={localForm}
         defaultValue={isEditable && initialData?.name}
+        border={`1px solid ${defaultTheme.colors.primary[400]}`}
+        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+        p={4}
+        borderRadius={0}
+        variant='unstyled'
       />
-      <Input label='Project Slug:' name='slug' localForm={localForm} defaultValue={isEditable && initialData?.slug} />
+      <Input
+        label='Project Slug:'
+        name='slug'
+        localForm={localForm}
+        defaultValue={isEditable && initialData?.slug}
+        border={`1px solid ${defaultTheme.colors.primary[400]}`}
+        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+        p={4}
+        borderRadius={0}
+        variant='unstyled'
+      />
       <Input
         label='Github:'
         name='githubUrl'
         localForm={localForm}
         defaultValue={isEditable && initialData?.repoLink}
+        border={`1px solid ${defaultTheme.colors.primary[400]}`}
+        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+        p={4}
+        borderRadius={0}
+        variant='unstyled'
       />
       <Input
         label='Description:'
         name='description'
         localForm={localForm}
         defaultValue={isEditable && initialData?.description}
+        border={`1px solid ${defaultTheme.colors.primary[400]}`}
+        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+        p={4}
+        borderRadius={0}
+        variant='unstyled'
       />
 
       <VStack alignItems='flex-start' width='100%'>
@@ -111,6 +136,7 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
             label={question.label}
             name={question.name}
             localForm={localForm}
+            fontFamily='texturina'
             defaultValue={
               // eslint-disable-next-line no-nested-ternary
               question.name === 'challenge'
@@ -119,6 +145,11 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
                 ? initialData?.approach.content[0]
                 : initialData?.result.content[0]
             }
+            border={`1px solid ${defaultTheme.colors.primary[400]}`}
+            _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
+            p={4}
+            borderRadius={0}
+            variant='unstyled'
           />
           <Text fontSize='0.8rem'>
             This textarea accepts{' '}
@@ -128,10 +159,10 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
           </Text>
         </Stack>
       ))}
-      <Select name='categoryOptions' localForm={localForm} options={categoryOptions} />
+      <Select name='categoryOptions' localForm={localForm} options={categoryOptions} variant='outline' />
 
       <Box pt={8} onClick={handleSubmit(onSubmit)}>
-        <GradientButton>{isEditable ? 'Save Changes' : 'Ship Project'}</GradientButton>
+        <GradientButton width='200px'>{isEditable ? 'Save Changes' : 'Ship Project'}</GradientButton>
       </Box>
     </VStack>
   );

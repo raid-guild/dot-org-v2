@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { VStack, Input, Image } from '@raidguild/design-system';
+import { VStack, Input, Image, defaultTheme } from '@raidguild/design-system';
 import { UseFormReturn } from 'react-hook-form';
 import useImageUpload from '../../hooks/useImageUpload';
 
@@ -24,8 +24,21 @@ const ImageUpload = ({ localForm, defaultValue, label, name }: Props) => {
   getImageUrl();
 
   return (
-    <VStack align='flex-start' w='100%'>
-      <Input w='100%' name={name} label={label} localForm={localForm} type='file' />
+    <VStack align='flex-start' w='100%' p={12} border={`1px solid ${defaultTheme.colors.primary[500]}`} gap={8}>
+      <Input
+        w='100%'
+        name={name}
+        label={label}
+        localForm={localForm}
+        type='file'
+        border={`1px solid ${defaultTheme.colors.primary[500]}`}
+        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[500]}` }}
+        p={4}
+        borderRadius={0}
+        variant='unstyled'
+        fontFamily='mono'
+        gap={4}
+      />
       {imagePath ? <Image src={imagePath} alt='image' w='200px' /> : <Image src={defaultValue} alt='image' w='200px' />}
     </VStack>
   );
