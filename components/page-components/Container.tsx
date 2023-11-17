@@ -1,5 +1,5 @@
-import { Box, Card, Flex, HStack, Heading, Image, SimpleGrid, defaultTheme } from '@raidguild/design-system';
-
+import { Box, Card, Flex, HStack, Heading, Image, SimpleGrid, VStack, defaultTheme } from '@raidguild/design-system';
+import Decor from '../../assets/illustrations/decor.svg';
 import Castle from '../../assets/illustrations/castle.svg';
 import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
@@ -26,7 +26,7 @@ const Container = ({
   bgImage?: string;
   cta?: boolean;
 }) => (
-  <Box bg={bg ?? tokens.purpleToIndigoGradient} w='full' bgImage={bgImage} height='max-content'>
+  <VStack bg={bg ?? tokens.purpleToIndigoGradient} w='100vw' bgImage={bgImage} height='max-content'>
     <SimpleGrid placeItems='flex-start' p={{ base: '1rem', lg: '4rem' }} maxH='max-content' gap={8}>
       <Flex
         flexDirection={{ base: 'column-reverse', xl: imagePosition ?? 'row' }}
@@ -40,10 +40,14 @@ const Container = ({
           direction='column'
           justifyContent='center'
           minW='360px'
-          maxW={{ lg: '50%' }}
-          border='1px solid'
-          borderColor={defaultTheme.colors.primary[500]}
+          maxW='580px'
+          p={{ base: 6, md: 12 }}
+          backgroundColor={imagePosition === 'row' ? `black` : 'transparent'}
+          border={imagePosition === 'row' ? `1px solid ${defaultTheme.colors.primary[500]}` : 'none'}
           lineHeight='tall'>
+          {imagePosition === 'row-reverse' && (
+            <Image src={Decor.src} position='absolute' top='0' right='0' zIndex='200' />
+          )}
           <HStack gap={6}>
             <Image src={icon} height='48px' alt='raidguild wand' />
             <Heading variant='shadow' fontSize='2xl'>
@@ -64,12 +68,12 @@ const Container = ({
         </Card>
 
         {/* Column 2 */}
-        <Box width={{ md: '500px', lg: '900px' }} hideBelow='xl'>
+        <Box width={{ xl: '750px', lg: '900px' }} hideBelow='xl'>
           <Image src={imageUrl ?? Castle.src} placeholder='blur' alt='raid-banner' />
         </Box>
       </Flex>
     </SimpleGrid>
-  </Box>
+  </VStack>
 );
 
 export default Container;

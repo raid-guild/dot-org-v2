@@ -81,7 +81,7 @@ export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
                       </Button>
                     )}
 
-                    <MenuButton as={Button} variant='outline' width='fit' borderRadius={2} >
+                    <MenuButton as={Button} variant='outline' width='fit' borderRadius={2}>
                       <HStack spacing={3}>
                         <Text color='white' fontFamily='mono'>
                           {account.ensName ? account.ensName : truncateAddress(account.address)}
@@ -89,7 +89,7 @@ export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
                         <Icon as={FiChevronDown} color='primary.500' />
                       </HStack>
                     </MenuButton>
-                    <MenuList minWidth='none' >
+                    <MenuList minWidth='none'>
                       <MenuItem onClick={() => openAccountModal()} borderRadius={0} p={0}>
                         <HStack
                           spacing={2}

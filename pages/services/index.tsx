@@ -1,11 +1,11 @@
-import { Button, Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
-import Footer from 'components/page-components/Footer';
-import GradientBorderButton from '../../components/atoms/GradientBorderButton';
+import { Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
 import Link from '../../components/atoms/ChakraNextLink';
+import GradientBorderButton from '../../components/atoms/GradientBorderButton';
 import GradientButton from '../../components/atoms/GradientButton';
+import Footer from '../../components/page-components/Footer';
+import Nav from '../../components/page-components/Nav';
 import { services } from '../../utils/constants';
 import tokens from '../../utils/extendedTokens';
-import Nav from '../../components/page-components/Nav';
 
 const SectionThree = () => (
   <>

@@ -74,7 +74,7 @@ const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, roleIma
   return (
     <SiteLayout bg={tokens.purpleToIndigoGradient}>
       <Box background='blackDark' textColor='white'>
-        <Container content={pageDescription} title={pageTitle} icon={WallSconce.src} />
+        <Container content={pageDescription} imagePosition='row' title={pageTitle} icon={WallSconce.src} />
       </Box>
       <Box background='blackDark' textColor='white'>
         <Container
