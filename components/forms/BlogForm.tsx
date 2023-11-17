@@ -4,7 +4,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
 import _ from 'lodash';
 
-import GradientButton from 'components/atoms/GradientButton';
+import GradientButton from '../atoms/GradientButton';
 import Link from '../atoms/ChakraNextLink';
 import useSubmit from '../../hooks/useSubmit';
 import ImageUpload from '../atoms/ImageUpload';
