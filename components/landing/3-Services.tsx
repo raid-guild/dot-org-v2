@@ -1,9 +1,9 @@
-import { Button, Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
-import GradientBorderButton from '../atoms/GradientBorderButton';
-import Link from '../atoms/ChakraNextLink';
-import GradientButton from '../atoms/GradientButton';
+import { Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
 import { services } from '../../utils/constants';
 import tokens from '../../utils/extendedTokens';
+import Link from '../atoms/ChakraNextLink';
+import GradientBorderButton from '../atoms/GradientBorderButton';
+import GradientButton from '../atoms/GradientButton';
 
 const SectionThree = () => (
   <SimpleGrid

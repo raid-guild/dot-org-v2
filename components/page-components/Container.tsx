@@ -42,7 +42,7 @@ const Container = ({
           minW='360px'
           maxW='580px'
           p={{ base: 6, md: 12 }}
-          backgroundColor={imagePosition === 'row' ? `black` : 'transparent'}
+          background={imagePosition === 'row' ? `black` : 'rgba(0, 0, 0, 0.65)'}
           border={imagePosition === 'row' ? `1px solid ${defaultTheme.colors.primary[500]}` : 'none'}
           lineHeight='tall'>
           {imagePosition === 'row-reverse' && (
