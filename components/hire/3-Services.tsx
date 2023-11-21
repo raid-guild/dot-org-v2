@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { Flex, Box, Stack, DatePicker, useToast, Select } from '@raidguild/design-system';
+import { Flex, Box, Stack, DatePicker, useToast, Select, VStack, SimpleGrid } from '@raidguild/design-system';
 import { useHireState } from '../../context/appState';
 import FormNavigation from './FormNavigation';
 import RadioBox from '../atoms/RadioBox';
@@ -63,9 +63,9 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
   const servicesOptions = hireUsServices.map((s: string) => ({ value: mapConsultationService(s), label: s }));
 
   return (
-    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py={8}>
-      <Stack direction={{ base: 'column', lg: 'row' }} mb={10} spacing={10}>
-        <Box width={{ base: '100%', lg: '50%' }}>
+    <VStack py={8}>
+      <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }} w='100%' mb='2rem'>
+        <Box width='100%'>
           <Select
             name='services'
             localForm={localForm}
@@ -90,9 +90,9 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
             onChange={handleDateChange}
           />
         </Stack>
-      </Stack>
+      </SimpleGrid>
       <FormNavigation handleBack={handleBack} handleNext={handleSubmit(onNext, handleError(toast))} />
-    </Flex>
+    </VStack>
   );
 };
 

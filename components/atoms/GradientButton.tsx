@@ -5,7 +5,7 @@ import tokens from '../../utils/extendedTokens';
 const GradientButton = ({
   children,
   gradient = tokens.orangeToPurpleGradient,
-  width = 'max-content',
+  width = '150px',
   onClick,
   isDisabled,
   isLoading,

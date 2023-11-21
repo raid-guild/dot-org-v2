@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Flex, GridItem, SimpleGrid, Textarea, defaultTheme, useToast } from '@raidguild/design-system';
+import { Flex, GridItem, HStack, SimpleGrid, Textarea, defaultTheme, useToast } from '@raidguild/design-system';
 import { useEffect } from 'react';
 import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
@@ -89,11 +89,11 @@ const StepFour = ({ handleNext, handleBack }: Props) => {
         ))}
       </SimpleGrid>
 
-      <Flex gap={4} justify='center' mt='2rem'>
+      <HStack gap={4} justify='center' mt='2rem'>
         <GradientBorderButton onClick={handleBack} label='Back' />
 
         <GradientButton onClick={handleSubmit(onNext, onError)}>Next</GradientButton>
-      </Flex>
+      </HStack>
     </Flex>
   );
 };

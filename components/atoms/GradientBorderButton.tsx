@@ -6,7 +6,7 @@ const GradientBorderButton = ({
   color1 = '#ca2c8c',
   color2 = '#8b1dba',
   color3 = '#8021b8',
-  width = 'max-content',
+  width = '150px',
   onClick,
   ref,
 }: {

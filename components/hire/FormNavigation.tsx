@@ -10,8 +10,10 @@ interface Props {
 const FormNavigation = ({ handleBack, handleNext }: Props) => {
   return (
     <HStack>
-      <GradientBorderButton onClick={handleBack} label='Back' />
-      <GradientButton onClick={handleNext}>Next</GradientButton>
+      <GradientBorderButton onClick={handleBack} label='Back' width='150px' />
+      <GradientButton onClick={handleNext} width='150px'>
+        Next
+      </GradientButton>
     </HStack>
   );
 };
