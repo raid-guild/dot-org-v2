@@ -161,7 +161,7 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
       ))}
       <Select name='categoryOptions' localForm={localForm} options={categoryOptions} variant='outline' />
 
-      <Box pt={8} onClick={handleSubmit(onSubmit)}>
+      <Box pt={8} onClick={handleSubmit(onSubmit)} fontFamily='mono'>
         <GradientButton width='200px'>{isEditable ? 'Save Changes' : 'Ship Project'}</GradientButton>
       </Box>
     </VStack>

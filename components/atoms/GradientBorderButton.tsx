@@ -10,7 +10,7 @@ const GradientBorderButton = ({
   onClick,
   ref,
 }: {
-  label: string;
+  label: string | React.ReactNode;
   color1?: string;
   color2?: string;
   color3?: string;
@@ -70,7 +70,7 @@ const GradientBorderButton = ({
   return (
     <CustomButton
       variant='link'
-      _hover={{ textDecor: 'none', bgColor: '#00000040' }}
+      _hover={{ textDecor: 'none', bgColor: '#00000040', opacity: 0.8 }}
       height={10}
       onClick={onClick}
       ref={ref}>

@@ -1,9 +1,11 @@
 import { Box, Button, Card, Flex, Heading, Image, Stack, Text, VStack, defaultTheme } from '@raidguild/design-system';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
-import { FaEdit } from 'react-icons/fa';
+import { useRouter } from 'next/router';
+import { FiEdit } from 'react-icons/fi';
 import wallSconce from '../../assets/illustrations/wallSconce.svg';
 import Link from '../../components/atoms/ChakraNextLink';
+import GradientBorderButton from '../../components/atoms/GradientBorderButton';
 import PageEnd from '../../components/page-components/PageEnd';
 import PageTitle from '../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
@@ -68,6 +70,7 @@ const AllPosts = ({ initialData }: Props) => {
   const { data: blogs } = useBlogsList({ initialData, token });
 
   const canCreate = checkPermission(session);
+  const router = useRouter();
 
   return (
     <Box>
@@ -75,11 +78,15 @@ const AllPosts = ({ initialData }: Props) => {
         <PageTitle title='State of The Raid' />
         {canCreate && (
           <Stack alignItems='center' pt='6'>
-            <Link href='/state-of-the-raid/publish'>
-              <Button variant='link' leftIcon={<FaEdit />}>
-                Create new Post
-              </Button>
-            </Link>
+            <GradientBorderButton
+              width='max-content'
+              label={
+                <Flex w='max-content' px={4} gap={2} alignItems='center' justifyContent='center'>
+                  <FiEdit fontSize='16px' color={defaultTheme.colors.purple[500]} /> Create new Post
+                </Flex>
+              }
+              onClick={() => router.push('/state-of-the-raid/publish')}
+            />
           </Stack>
         )}
         <VStack mt={16} alignItems={{ base: 'center' }} spacing={20}>

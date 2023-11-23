@@ -1,16 +1,28 @@
-import { Flex, Heading, Text, VStack, Image, Stack, Link, Button, Divider } from '@raidguild/design-system';
+import {
+  Flex,
+  Heading,
+  Text,
+  VStack,
+  Image,
+  Stack,
+  Link,
+  Button,
+  Divider,
+  defaultTheme,
+} from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetStaticPropsContext } from 'next';
 import { NextSeo } from 'next-seo';
 import { useSession } from 'next-auth/react';
-
-import { FaEdit } from 'react-icons/fa';
+import { FiEdit } from 'react-icons/fi';
+import { useRouter } from 'next/router';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import PageTitle from '../../../components/page-components/PageTitle';
 import Markdown from '../../../components/atoms/Markdown';
 import { getBlogDetail, getBlogsList } from '../../../gql';
 import { getMonthString, checkPermission } from '../../../utils';
 import fallBackBanner from '../../../assets/illustrations/fallBackBanner.png';
+import GradientBorderButton from '../../../components/atoms/GradientBorderButton';
 
 type Props = {
   initialData: any;
@@ -24,6 +36,8 @@ function PostPage({ initialData }: Props) {
   const publishTime = new Date(_.get(initialData, 'createdAt'));
 
   const publishString = `${getMonthString(publishTime)} ${publishTime.getDate()} ${publishTime.getFullYear()}`;
+
+  const router = useRouter();
 
   if (!initialData?.slug) {
     return (
@@ -60,12 +74,16 @@ function PostPage({ initialData }: Props) {
         pt={8}
         textColor='white'>
         {canEdit && (
-          <Stack alignItems='center' pb={8}>
-            <Link href={`/state-of-the-raid/${initialData.slug}/edit`}>
-              <Button variant='link' leftIcon={<FaEdit />}>
-                Edit Post
-              </Button>
-            </Link>
+          <Stack alignItems='center' py='6'>
+            <GradientBorderButton
+              width='max-content'
+              label={
+                <Flex w='max-content' px={4} gap={2} alignItems='center' justifyContent='center'>
+                  <FiEdit fontSize='16px' color={defaultTheme.colors.purple[500]} /> Create new Post
+                </Flex>
+              }
+              onClick={() => router.push(`/state-of-the-raid/${initialData.slug}/edit`)}
+            />
           </Stack>
         )}
 

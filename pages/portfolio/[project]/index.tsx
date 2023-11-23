@@ -1,5 +1,4 @@
 import {
-  Button,
   Castle,
   Flex,
   HStack,
@@ -10,12 +9,14 @@ import {
   Swords,
   Text,
   VStack,
+  defaultTheme
 } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
 import { useSession } from 'next-auth/react';
 import { NextSeo } from 'next-seo';
-import { FaEdit } from 'react-icons/fa';
+import { useRouter } from 'next/router';
+import { FiEdit } from 'react-icons/fi';
 import Wand from '../../../assets/illustrations/wand.svg';
 import GradientButton from '../../../components/atoms/GradientButton';
 import Markdown from '../../../components/atoms/Markdown';
@@ -38,6 +39,7 @@ function PortfolioPage({ initialData }: Props) {
 
   const canEdit = checkPermission(session);
 
+  const router = useRouter();
   return (
     <CMSPageTemplate>
       <PageTitle title={_.get(initialData, 'name')} />
@@ -58,12 +60,16 @@ function PortfolioPage({ initialData }: Props) {
         }}
       />
       {canEdit && (
-        <Stack alignItems='center' pb={8}>
-          <Link href={`/portfolio/${initialData.slug}/edit`}>
-            <Button variant='link' leftIcon={<FaEdit />}>
-              Edit Portfolio
-            </Button>
-          </Link>
+        <Stack alignItems='center' py='6'>
+          <GradientBorderButton
+            width='max-content'
+            label={
+              <Flex w='max-content' px={4} gap={2} alignItems='center' justifyContent='center'>
+                <FiEdit fontSize='16px' color={defaultTheme.colors.purple[500]} /> Create new Post
+              </Flex>
+            }
+            onClick={() => router.push(`/portfolio/${initialData.slug}/edit`)}
+          />
         </Stack>
       )}
 
