@@ -130,7 +130,6 @@ const Nav = () => {
                                   fontFamily='monospace'
                                   textTransform='full-size-kana'
                                   key={menuItem.name}
-                                  fontWeight='normal'
                                   display='flex'
                                   flexDir='row'
                                   alignItems='center'
