@@ -21,6 +21,7 @@ import {
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FaBars, FaChevronDown, FaChevronRight, FaTimes } from 'react-icons/fa';
+import { number } from 'yup';
 import { NavMenuData } from '../../utils/constants';
 import Link from '../atoms/ChakraNextLink';
 import { ConnectWallet } from '../atoms/ConnectWallet';
@@ -63,7 +64,8 @@ const Nav = () => {
   const hideOnBase = useBreakpointValue({ base: true, lg: false });
   const router = useRouter();
   const basePath = router.route.split('/')[1];
-  const [isServicesOpen, setServicesOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [openSubMenu, setOpenSubMenu] = useState<null | number>(null);
 
   return (
     <HStack justifyContent='space-between' width='full' color='white' id='Navigation Bar'>
@@ -265,19 +267,18 @@ const Nav = () => {
             left='0'
             top='0'
             bg='black'
-            minH='100%'
+            maxH='max-content'
+            minH='100vh'
             w='full'
+            pt={32}
+            _focus={{ overflow: 'auto' }}
             direction='column'
-            justify='center'
+            justify='flex-start'
             align='flex-start'
-            p={8}
+            px={8}
             textDecoration='none !important'
             hidden={!isOpen}
-            transition='all .8s ease-out'
-            pointerEvents={isOpen ? 'all' : 'none'}
-            css={{
-              clipPath: isOpen ? 'circle(calc(100vw + 100vh) at 90% -10%)' : 'circle(100px at 90% -20%)',
-            }}>
+            pointerEvents={isOpen ? 'all' : 'none'}>
             {navItems.map((item) => {
               return (
                 <Link
@@ -310,18 +311,40 @@ const Nav = () => {
                       <Box
                         as='text'
                         w='full'
-                        onClick={() => setServicesOpen(!isServicesOpen)}
+                        onClick={() => setIsServicesOpen(!isServicesOpen)}
                         display='flex'
                         flexDir='row'
                         justifyContent='center'
-                        alignItems='center'>
+                        alignItems='center'
+                        my={4}>
                         {item.name}
                         <Spacer />
                         {isServicesOpen ? <FaChevronDown fontSize={18} /> : <FaChevronRight fontSize={18} />}
                       </Box>
-                      {isServicesOpen && <SubMenu NavMenu={NavMenuData[0]} />}
-                      {isServicesOpen && <SubMenu NavMenu={NavMenuData[1]} />}
-                      {isServicesOpen && <SubMenu NavMenu={NavMenuData[2]} />}
+                      {isServicesOpen && (
+                        <SubMenu
+                          NavMenu={NavMenuData[0]}
+                          SubMenuHandler={setOpenSubMenu}
+                          openSubMenu={openSubMenu}
+                          id={0}
+                        />
+                      )}
+                      {isServicesOpen && (
+                        <SubMenu
+                          NavMenu={NavMenuData[1]}
+                          SubMenuHandler={setOpenSubMenu}
+                          openSubMenu={openSubMenu}
+                          id={1}
+                        />
+                      )}
+                      {isServicesOpen && (
+                        <SubMenu
+                          NavMenu={NavMenuData[2]}
+                          SubMenuHandler={setOpenSubMenu}
+                          openSubMenu={openSubMenu}
+                          id={2}
+                        />
+                      )}
                     </Box>
                   ) : (
                     <Box as='text'> {item.name}</Box>

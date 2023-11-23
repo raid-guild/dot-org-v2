@@ -1,10 +1,19 @@
-import { VStack, Box, Text, Spacer, Link, defaultTheme, Castle, Knight, Wizard2 } from '@raidguild/design-system';
-import { useState } from 'react';
+import { Box, Castle, Knight, Link, Spacer, VStack, Wizard2, defaultTheme } from '@raidguild/design-system';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import { NavMenuData } from '../../utils/constants';
 
-const SubMenu = ({ NavMenu }: { NavMenu: (typeof NavMenuData)[0] }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const SubMenu = ({
+  NavMenu,
+  openSubMenu,
+  SubMenuHandler,
+  id,
+}: {
+  NavMenu: (typeof NavMenuData)[0];
+  SubMenuHandler: React.Dispatch<React.SetStateAction<null | number>>;
+  openSubMenu: number | null;
+  id: number;
+}) => {
+  const isMenuOpen = openSubMenu === id;
 
   return (
     <VStack
@@ -18,7 +27,7 @@ const SubMenu = ({ NavMenu }: { NavMenu: (typeof NavMenuData)[0] }) => {
       fontSize={18}>
       <Box
         fontFamily='monospace'
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        onClick={() => SubMenuHandler(id)}
         textTransform='full-size-kana'
         key={NavMenu.category}
         display='flex'
