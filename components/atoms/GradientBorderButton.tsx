@@ -70,7 +70,7 @@ const GradientBorderButton = ({
   return (
     <CustomButton
       variant='link'
-      _hover={{ textDecor: 'none', bgColor: '#00000020' }}
+      _hover={{ textDecor: 'none', bgColor: '#00000040' }}
       height={10}
       onClick={onClick}
       ref={ref}>

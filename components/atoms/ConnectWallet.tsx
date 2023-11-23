@@ -14,12 +14,13 @@ import {
   MenuItem,
   MenuList,
   Text,
-  defaultTheme,
+  defaultTheme
 } from '@raidguild/design-system';
 import { FiChevronDown, FiKey, FiXCircle } from 'react-icons/fi';
+import { MdReportGmailerrorred } from 'react-icons/md';
 import { useDisconnect } from 'wagmi';
 import { truncateAddress } from '../../utils';
-import tokens from '../../utils/extendedTokens';
+import GradientButton from './GradientButton';
 
 type Props = {
   label?: string;
@@ -49,23 +50,18 @@ export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
             {(() => {
               if (!connected) {
                 return (
-                  <Button
-                    variant='outline'
-                    transition='all 100ms ease-in-out'
-                    leftIcon={<Icon as={FiKey} color='primary.500' w='20px' h='20px' textColor='white' />}
-                    onClick={openConnectModal}
-                    data-cy='connect-wallet'
-                    fontFamily='mono'
-                    bgGradient={tokens.orangeToPurpleGradient}
-                    borderRadius={2}>
+                  <GradientButton onClick={openConnectModal} width='max-content'>
+                    <Icon as={FiKey} color='primary.500' w='18px' h='18px' textColor='white' />
+                    <Box w={4} />
                     {label || 'Connect'}
-                  </Button>
+                  </GradientButton>
                 );
               }
 
               if (chain.unsupported) {
                 return (
-                  <Button onClick={openChainModal} variant='outline' borderRadius={2}>
+                  <Button onClick={openChainModal} variant='outline' bg='red.500' borderRadius={2}>
+                    <Icon as={MdReportGmailerrorred} color='primary.500' w='18px' h='18px' textColor='white' />
                     Unsupported network
                   </Button>
                 );

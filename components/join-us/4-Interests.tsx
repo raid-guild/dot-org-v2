@@ -70,9 +70,9 @@ const StepFour = ({ handleNext, handleBack }: Props) => {
 
   return (
     <Flex direction='column' py={8}>
-      <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }}>
+      <SimpleGrid columns={{ base: 1, lg: 2 }} placeItems='center' gap={{ base: 8, lg: 2 }}>
         {inputs.map((input) => (
-          <GridItem minH='175px' key={input.label}>
+          <GridItem minH='175px' key={input.label} maxW='520px'>
             <Textarea
               label={input.label}
               placeholder={input.placeholder}
@@ -81,7 +81,6 @@ const StepFour = ({ handleNext, handleBack }: Props) => {
               border={`1px solid ${defaultTheme.colors.primary[400]}`}
               _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
               p={4}
-              textStyle={{ maxWidth: '400px' }}
               borderRadius={0}
               variant='unstyled'
             />
