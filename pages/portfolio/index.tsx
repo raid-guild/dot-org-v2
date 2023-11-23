@@ -46,7 +46,7 @@ function PortfolioPage({ initialData }: Props) {
         </Stack>
       )}
       <SimpleGrid
-        minChildWidth='120px'
+        minChild
         spacing='60px'
         alignItems='center'
         justifyContent='center'

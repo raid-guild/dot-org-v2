@@ -24,7 +24,12 @@ const NavLink: React.FC<NavLinkProps> = ({ item, basePath }) => {
   };
 
   return (
-    <Link key={item.name} href={item.href} id={item.name} _hover={hoverStyles} style={linkStyles}>
+    <Link
+      key={item.name}
+      href={item.href}
+      id={item.name}
+      _hover={item.name !== 'Services' ? hoverStyles : { fontStyle: 'none' }}
+      style={linkStyles}>
       {item.name}
     </Link>
   );

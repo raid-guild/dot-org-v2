@@ -48,7 +48,7 @@ const SectionOne = () => (
             </Link>
             <Link href='/join/1'>
               {/* <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill='transparent'> */}
-              <GradientBorderButton label='JOIN US' width='120px' />
+              <GradientBorderButton label='JOIN US' />
               {/* </Box> */}
             </Link>
           </Flex>

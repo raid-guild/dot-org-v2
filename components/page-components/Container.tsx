@@ -61,7 +61,7 @@ const Container = ({
                 <GradientButton>Hire Us</GradientButton>
               </Link>
               <Link href='/join/1'>
-                <GradientBorderButton label='JOIN US' width='120px' />
+                <GradientBorderButton label='JOIN US'  />
               </Link>
             </Flex>
           )}

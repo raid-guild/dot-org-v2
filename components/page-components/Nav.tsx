@@ -79,9 +79,13 @@ const Nav = () => {
               item.name === 'Services' ? (
                 <Popover trigger='hover' placement='bottom-start' key='services'>
                   <PopoverTrigger>
-                    <span>
+                    <Box
+                      _hover={{
+                        opacity: '80%',
+                        borderBottom: `2px solid ${defaultTheme.colors.red[500]}`,
+                      }}>
                       <NavLink item={item} basePath={basePath} key={item.name} />
-                    </span>
+                    </Box>
                   </PopoverTrigger>
                   <PopoverContent bg='black' borderColor={defaultTheme.colors.primary[500]} borderRadius={2}>
                     <PopoverArrow bg='black' shadowColor={defaultTheme.colors.primary[500]} />
@@ -255,7 +259,16 @@ const Nav = () => {
               <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' maxWidth='200px' />
             </Link>
             <Spacer />
-            <Button fontSize='2rem' onClick={() => onOpen((o) => !o)} variant='link' zIndex={7} mr={8}>
+            <Button
+              fontSize='2rem'
+              onClick={() => {
+                onOpen((o) => !o);
+                setIsServicesOpen(false);
+                setOpenSubMenu(null);
+              }}
+              variant='link'
+              zIndex={7}
+              mr={8}>
               <span style={{ width: '25px', color: defaultTheme.colors.red[500] }}>
                 {!isOpen ? <FaBars /> : <FaTimes />}
               </span>
@@ -310,7 +323,6 @@ const Nav = () => {
                     <Box as='text' w='full' gap={2}>
                       <Box
                         as='text'
-                        w='full'
                         onClick={() => setIsServicesOpen(!isServicesOpen)}
                         display='flex'
                         flexDir='row'
