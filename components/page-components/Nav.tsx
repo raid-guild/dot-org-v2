@@ -21,12 +21,11 @@ import {
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FaBars, FaChevronDown, FaChevronRight, FaTimes } from 'react-icons/fa';
-import { number } from 'yup';
+import GuildLogo from '../../assets/illustrations/raidguild.webp';
 import { NavMenuData } from '../../utils/constants';
 import Link from '../atoms/ChakraNextLink';
 import { ConnectWallet } from '../atoms/ConnectWallet';
 import SubMenu from './SubMenuMobile';
-import GuildLogo from '../../assets/illustrations/raidguild.webp';
 // import PopoverMenu from './PopOverMenu';
 import NavLink from './NavLink';
 
@@ -66,7 +65,6 @@ const Nav = () => {
   const basePath = router.route.split('/')[1];
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState<null | number>(null);
-
   return (
     <HStack justifyContent='space-between' width='full' color='white' id='Navigation Bar'>
       <Link href='/' passHref zIndex={100}>
@@ -83,7 +81,10 @@ const Nav = () => {
                       _hover={{
                         opacity: '80%',
                         borderBottom: `2px solid ${defaultTheme.colors.red[500]}`,
-                      }}>
+                      }}
+                      borderBottom={
+                        item.href.split('/')[1] === basePath ? `2px solid ${defaultTheme.colors.red[500]}` : ''
+                      }>
                       <NavLink item={item} basePath={basePath} key={item.name} />
                     </Box>
                   </PopoverTrigger>

@@ -10,6 +10,7 @@ export interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ item, basePath }) => {
+  const isServices = item.name === 'Services';
   const isActive = basePath === item.href.split('/')[1];
 
   const hoverStyles = {
@@ -18,7 +19,7 @@ const NavLink: React.FC<NavLinkProps> = ({ item, basePath }) => {
   };
 
   const linkStyles = {
-    borderBottom: isActive ? `2px solid ${defaultTheme.colors.red[500]}` : '',
+    borderBottom: isActive && !isServices ? `2px solid ${defaultTheme.colors.red[500]}` : '',
     fontWeight: 600,
     color: defaultTheme.colors.primary[500],
   };
@@ -28,7 +29,7 @@ const NavLink: React.FC<NavLinkProps> = ({ item, basePath }) => {
       key={item.name}
       href={item.href}
       id={item.name}
-      _hover={item.name !== 'Services' ? hoverStyles : { fontStyle: 'none' }}
+      _hover={!isServices ? hoverStyles : { fontStyle: 'none' }}
       style={linkStyles}>
       {item.name}
     </Link>
