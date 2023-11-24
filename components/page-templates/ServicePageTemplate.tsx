@@ -15,15 +15,13 @@ type Props = {
   children: React.ReactNode;
 };
 
-
-
 const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, roleImage, children, ...props }: Props) => {
   return (
     <SiteLayout bg={tokens.purpleToIndigoGradient}>
       <Box background='blackDark' textColor='white'>
         <Container content={pageDescription} imagePosition='row' title={pageTitle} icon={WallSconce.src} />
       </Box>
-      <Box background='blackDark' textColor='white'>
+      <Box background='blackDark' textColor='white' zIndex={30}>
         <Container
           content={salesContent}
           icon={Wand.src}
