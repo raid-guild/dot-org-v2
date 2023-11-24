@@ -1,8 +1,21 @@
-import { Box, Button, Card, Flex, Heading, Image, Stack, Text, VStack, defaultTheme } from '@raidguild/design-system';
+import {
+  Box,
+  Button,
+  Card,
+  Flex,
+  HStack,
+  Heading,
+  Image,
+  Stack,
+  Text,
+  VStack,
+  defaultTheme,
+} from '@raidguild/design-system';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { FiEdit } from 'react-icons/fi';
+import { useEffect, useState } from 'react';
 import wallSconce from '../../assets/illustrations/wallSconce.svg';
 import Link from '../../components/atoms/ChakraNextLink';
 import GradientBorderButton from '../../components/atoms/GradientBorderButton';
@@ -14,6 +27,7 @@ import useBlogsList from '../../hooks/useBlogsList';
 import { checkPermission } from '../../utils';
 import tokens from '../../utils/extendedTokens';
 
+const Topics = ['Raid', 'Guild', 'DAO', 'Community'];
 interface PostProps {
   post: any;
 }
@@ -72,6 +86,18 @@ const AllPosts = ({ initialData }: Props) => {
   const canCreate = checkPermission(session);
   const router = useRouter();
 
+  const [filteredblogs, setFilteredblogs] = useState(blogs);
+  const { q } = router.query;
+
+  useEffect(() => {
+    if (q) {
+      const f = _.filter(blogs, (blog) =>
+        _.some(blog, (value) => _.includes(String(value).toLowerCase(), String(q).toLowerCase())),
+      );
+      setFilteredblogs(f);
+    }
+  }, [q, blogs]);
+
   return (
     <Box>
       <CMSPageTemplate>
@@ -89,11 +115,31 @@ const AllPosts = ({ initialData }: Props) => {
             />
           </Stack>
         )}
-        <VStack mt={16} alignItems={{ base: 'center' }} spacing={20}>
-          {_.map(blogs, (post) => (
-            <Post post={post} key={_.get(post, 'slug')} />
-          ))}
-        </VStack>
+        <HStack placeItems='flex-start'>
+          <VStack mt={16} alignItems={{ base: 'center' }} spacing={20}>
+            {_.map(filteredblogs, (post) => (
+              <Post post={post} key={_.get(post, 'slug')} />
+            ))}
+          </VStack>
+          <VStack border={`1px solid ${defaultTheme.colors.primary[500]}`} p={16} placeItems='flex-start' mt='5%'>
+            <Heading fontSize='3xl' fontFamily='texturina'>
+              Topics
+            </Heading>
+            <ul>
+              {Topics.map((topic) => (
+                <li key={topic}>
+                  <Text
+                    mt={3}
+                    pl={4}
+                    onClick={() => router.push(`/state-of-the-raid?q=${topic.toLowerCase()}`)}
+                    _hover={{ cursor: 'pointer' }}>
+                    {topic}
+                  </Text>
+                </li>
+              ))}
+            </ul>
+          </VStack>
+        </HStack>
         <PageEnd />
       </CMSPageTemplate>
     </Box>
