@@ -14,7 +14,7 @@ import {
   MenuItem,
   MenuList,
   Text,
-  defaultTheme
+  defaultTheme,
 } from '@raidguild/design-system';
 import { FiChevronDown, FiKey, FiXCircle } from 'react-icons/fi';
 import { MdReportGmailerrorred } from 'react-icons/md';

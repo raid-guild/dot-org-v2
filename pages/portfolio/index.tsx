@@ -1,5 +1,5 @@
 // A page that displays all of the projects in the portfolio
-import { Flex, Image, SimpleGrid, Stack, Text } from '@raidguild/design-system';
+import { Flex, Image, SimpleGrid, Stack, Text, defaultTheme } from '@raidguild/design-system';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -11,7 +11,7 @@ import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import { getPortfolioList } from '../../gql';
 import usePortfolioList from '../../hooks/usePortfolioList';
 import { checkPermission } from '../../utils';
-import { defaultTheme } from '@raidguild/design-system';
+
 interface Props {
   initialData: any;
 }

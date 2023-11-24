@@ -9,7 +9,7 @@ import {
   Swords,
   Text,
   VStack,
-  defaultTheme
+  defaultTheme,
 } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';

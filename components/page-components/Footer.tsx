@@ -80,7 +80,7 @@ const Footer = () => {
           </Link>
           <Link href='/join/1'>
             {/* <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill='transparent'> */}
-            <GradientBorderButton label='JOIN US'  />
+            <GradientBorderButton label='JOIN US' />
             {/* </Box> */}
           </Link>
         </Stack>

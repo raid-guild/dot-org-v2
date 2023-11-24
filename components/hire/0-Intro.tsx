@@ -59,7 +59,9 @@ const Intro = ({ handleNext, isConnected }: Props) => (
       {!isConnected ? (
         <ConnectWallet label='Sign in to Continue' />
       ) : (
-        <GradientButton onClick={handleNext} width='max-content'>New Consultation</GradientButton>
+        <GradientButton onClick={handleNext} width='max-content'>
+          New Consultation
+        </GradientButton>
       )}
     </HStack>
   </Stack>
