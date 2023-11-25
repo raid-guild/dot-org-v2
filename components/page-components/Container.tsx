@@ -46,7 +46,7 @@ const Container: React.FC<ContainerProps> = ({
             justifyContent='center'
             minW='360px'
             maxW='580px'
-            borderTopRightRadius='3xl'
+            borderTopRightRadius={imagePosition === 'row' ? `none` : '3xl'}
             p={{ base: 6, md: 12 }}
             background={imagePosition === 'row' ? `black` : 'rgba(0, 0, 0, 0.65)'}
             border={imagePosition === 'row' ? `1px solid ${defaultTheme.colors.primary[500]}` : 'none'}
