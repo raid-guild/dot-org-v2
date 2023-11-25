@@ -1,25 +1,18 @@
 import Alchemist from '../../assets/characters/alchemist.svg';
 
 const tokenomics = {
-  title: 'Tokenomics',
-  slug: 'tokenomics',
-  description: `Your project's "look" is the first impression your users get. A poor first impressions can damage your brand and cause users to leave your app.
-  People will call your project "unprofessional" or "sloppy."
-  Your project needs to be cohesive, sensible, and easy to understand. This can be the difference between your protocol being the next unicorn, or just another copy-pasta of Uniswap.
+  title: 'Web3 Tokenomics',
+  slug: 'web3-tokenomics',
+  description: `Tokenomics, Game-Theory, Inflation, Deflation, Systems Design, Governance, ERC 20's
+
+  The rabbithole of Incentive Alignment and Token Theory is an endless one. Riddled with Jargon and far-reaching Philosophy that could take one Years to decode... 
+
+  Or, You could let our Wizards and Tokenomics specialist's short-cut the Hard Stuff so you can get to building your Next-Gen Dreams. 
   `,
   roleImage: Alchemist.src,
-  salesContent: `Raid Guild's visual designers have an eye for subtlety. We obsess over small details. We'll ensure your project has have a gorgeous, easy-to-use interface that aligns with your brand's image.
-
-  From when your users first land on your app, to when they connect their wallet, then send money to your smart contracts, the experience will be seamless. 
+  salesContent: `Raid Guild is here to help your community dissect and simplify the Incentive Models you'll use to Super-Power your impact in the Web3 World.
   
-  We'll use the most up-to-date technology to make sure your app not only looks great, but functions flawlessly too. Mobile, desktop, or tablet, your app will look great on any device.
-  
-  Don't take our word for it! Look at some of the apps we've built and let our work speak for itself:
-  * BoredApes dot com
-  * BasedGhouls dot com
-  * (best looking UI we've built)
-  
-  Let us handle UI design for you. Schedule a consultation now.`,
+  Weather you're focused on Grants, Distribution, or Impact. Our Tokenomics specialist will help you illuminate the possibilities of Token Distribution for your Community!`,
 };
 
 export default tokenomics;

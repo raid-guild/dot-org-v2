@@ -26,7 +26,7 @@ import { NavMenuData } from '../../utils/constants';
 import Link from '../atoms/ChakraNextLink';
 import { ConnectWallet } from '../atoms/ConnectWallet';
 import SubMenu from './SubMenuMobile';
-// import PopoverMenu from './PopOverMenu';
+
 import NavLink from './NavLink';
 
 const StyledButton = styled(Button)`

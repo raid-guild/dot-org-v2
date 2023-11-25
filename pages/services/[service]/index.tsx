@@ -38,9 +38,10 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   const service = _.isArray(_.get(params, 'service')) ? _.first(_.get(params, 'service')) : _.get(params, 'service');
   console.log(service);
   let copy = null;
-  if (service && _.includes(_.keys(services), service)) {
-    copy = _.get(services, service);
-    console.log(copy);
+
+  if (service && !_.isEmpty(service)) {
+    copy = _.find(_.flatMapDeep(services, (value) => (value.slug === service ? value : [])))
+
   }
 
   return {

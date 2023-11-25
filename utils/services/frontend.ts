@@ -1,8 +1,8 @@
 import Warrior from '../../assets/characters/warrior.svg';
 
 const web3Frontend = {
-  title: 'Web3 Front End',
-  slug: 'frontend',
+  title: 'Web3 FrontEnd',
+  slug: 'web3-frontend',
   description: `If your frontend has vulnerabilities, your users can lose money.
 
   Form validations, smart contract connections, gas estimates, conversions to Solidity "Big Number." These critical details might cause "leaks" in your app. 
@@ -19,7 +19,7 @@ const web3Frontend = {
   
   Humans' attention spans are at an all time low. A split second in your apps performance will cause users to leave.`,
 
-  roleImage: Warrior,
+  roleImage: Warrior.src,
 
   salesContent: `We've been building frontends since the start of the web. We've seen how tech has evolved. Our engineers know the small details that keep users coming back. We have experience using the most bleeding-edge tools for the job.
 

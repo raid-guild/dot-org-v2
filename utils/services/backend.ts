@@ -1,8 +1,11 @@
 import Paladin from '../../assets/characters/paladin.svg';
+import { contentType } from './type';
 
-const web3backend = {
+const web3backend: contentType = {
   title: 'Web3 Backend',
-  slug: 'backend',
+  slug: 'web3-backend',
+
+  // todo: update description for paladin
   description: `Data security is one of the main use cases for Web3. The average Web3 users demands security, and is why they use blockchains in the first place.
 
   But decentralization is a spectrum.

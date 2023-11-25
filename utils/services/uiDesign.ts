@@ -1,28 +1,19 @@
-import Archer from '../../assets/characters/archer.svg';
+import Archer from '../../assets/characters/ranger.svg';
+import { contentType } from './type';
 
-const web3UiDesign = {
+const web3UIdesign: contentType = {
   title: 'Web3 UI Design',
-  slug: 'ui-design',
-  description: `Your project's "look" is the first impression your users get. A poor first impressions can damage your brand and cause users to leave your app.
-
-  People will call your project "unprofessional" or "sloppy."
+  slug: 'web3-ui-design',
+  description: `The way your Protocol 'Looks' is the first thing your community will experience, Making sure that it's cohesive, sensible, and easy to mentally navigate can be the difference between your Protocol being the next Unicorn, or just another Copy-Pasta of Uniswap. 
   
-  Your project needs to be cohesive, sensible, and easy to understand. This can be the difference between your protocol being the next unicorn, or just another copy-pasta of Uniswap.`,
+  Let Raid Guilds Visual Designers make sure it's the former, with Visually appealing websites and easy to understand interfaces, You're project will out-shine and out-perform your Competitors! 
+  
+  Already aligned with another Project? Our adept Designers can build upon that as well, Staying cohesive to your brand and recognizable to your community.`,
 
   roleImage: Archer.src,
+  salesContent: `Creating a consistent and visually pleasing web-site is Raid Guilds top priority while helping you summon your vision. Typography, Style, and Color Themes can make or break an already Great Project. Let our Web3 Design specialist's work alongside your visionaries to Create a website that fully displays the greatness of your project!
 
-  salesContent: `Raid Guild's visual designers have an eye for subtlety. We obsess over small details. We'll ensure your project has have a gorgeous, easy-to-use interface that aligns with your brand's image.
-
-  From when your users first land on your app, to when they connect their wallet, then send money to your smart contracts, the experience will be seamless. 
-  
-  We'll use the most up-to-date technology to make sure your app not only looks great, but functions flawlessly too. Mobile, desktop, or tablet, your app will look great on any device.
-  
-  Don't take our word for it! Look at some of the apps we've built and let our work speak for itself:
-  * BoredApes dot com
-  * BasedGhouls dot com
-  * (best looking UI we've built)
-  
-  Let us handle UI design for you. Schedule a consultation now.`,
+  Raid Guild is excited to work one on one with you to Craft a unique and unforgettable experience for All your Customers and Community Members.`,
 };
 
-export default web3UiDesign;
+export default web3UIdesign;

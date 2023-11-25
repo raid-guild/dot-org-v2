@@ -172,15 +172,15 @@ export const NavMenuData = [
     items: [
       {
         name: 'Front End',
-        slug: 'frontend',
+        slug: 'web3-frontend',
       },
       {
         name: 'Back End',
-        slug: 'web3backend',
+        slug: 'web3-backend',
       },
       {
         name: 'Smart Contracts',
-        slug: 'smart-contract-development',
+        slug: 'smart-contracts',
       },
     ],
   },
@@ -189,15 +189,15 @@ export const NavMenuData = [
     items: [
       {
         name: 'UX Design',
-        slug: 'ux-design',
+        slug: 'web3-ux-design',
       },
       {
         name: 'UI Design',
-        slug: 'ui-design',
+        slug: 'web3-ui-design',
       },
       {
         name: 'Visual Design',
-        slug: 'visual-design',
+        slug: 'web3-visual-design',
       },
     ],
   },
@@ -206,23 +206,23 @@ export const NavMenuData = [
     items: [
       {
         name: 'Community Management',
-        slug: 'community-management',
+        slug: 'web3-community-management',
       },
       {
         name: 'DAO Consulting',
-        slug: 'dao-consulting',
+        slug: 'web3-dao-consulting',
       },
       {
         name: 'Content',
-        slug: 'content-strategy',
+        slug: 'web3-content',
       },
       {
         name: 'Tokenomics',
-        slug: 'tokenomics',
+        slug: 'web3-tokenomics',
       },
       {
         name: 'Marketing',
-        slug: 'marketing',
+        slug: 'web3-marketing',
       },
     ],
   },
