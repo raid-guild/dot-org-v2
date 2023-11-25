@@ -40,8 +40,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   let copy = null;
 
   if (service && !_.isEmpty(service)) {
-    copy = _.find(_.flatMapDeep(services, (value) => (value.slug === service ? value : [])))
-
+    copy = _.find(_.flatMapDeep(services, (value) => (value.slug === service ? value : [])));
   }
 
   return {
