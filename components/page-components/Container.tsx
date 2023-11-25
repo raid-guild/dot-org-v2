@@ -46,12 +46,13 @@ const Container: React.FC<ContainerProps> = ({
             justifyContent='center'
             minW='360px'
             maxW='580px'
+            borderTopRightRadius='3xl'
             p={{ base: 6, md: 12 }}
             background={imagePosition === 'row' ? `black` : 'rgba(0, 0, 0, 0.65)'}
             border={imagePosition === 'row' ? `1px solid ${defaultTheme.colors.primary[500]}` : 'none'}
             lineHeight='tall'>
             {imagePosition === 'row-reverse' && (
-              <Image src={Decor.src} position='absolute' top='0' right='0' zIndex={0} />
+              <Image src={Decor.src} position='absolute' top='0' right='0' zIndex={0} maxH='full' />
             )}
             <HStack gap={6} zIndex={30}>
               <Image src={icon} height='48px' alt='raidguild wand' />
