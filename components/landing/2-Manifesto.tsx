@@ -1,9 +1,8 @@
-import { SimpleGrid, VStack, Box, Heading, Text, Button, Image } from '@raidguild/design-system';
+import { Box, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
 import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
 
 import raidFantasy from '../../assets/illustrations/raid__fantasy.webp';
-import GradientBorderButton from '../atoms/GradientBorderButton';
 import GradientButton from '../atoms/GradientButton';
 
 const SectionTwo = () => {

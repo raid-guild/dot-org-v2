@@ -9,7 +9,7 @@ interface PageTitleProps {
   hideIcon?: boolean;
 }
 
-const PageTitle = ({ title, hideIcon=false }: PageTitleProps) => (
+const PageTitle = ({ title, hideIcon = false }: PageTitleProps) => (
   <Center py='2rem'>
     <VStack gap={8}>
       <Image src={Swords.src} w='48px' h='48px' hidden={hideIcon} />
