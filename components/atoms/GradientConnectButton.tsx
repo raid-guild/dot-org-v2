@@ -20,13 +20,13 @@ const GradientConnectButton = ({
 }) => (
   <Button
     height={10}
+    minW='max-content'
     borderRadius={2}
     bgGradient={gradient}
     onClick={onClick}
     sx={{
       position: 'relative',
       display: 'block',
-      width: `${width}`,
       fontWeight: 'bold',
       textDecoration: 'none',
       textAlign: 'center',
@@ -36,7 +36,7 @@ const GradientConnectButton = ({
       transition: 'all .35s',
       '&:hover': {
         span: {
-          right: '-25%',
+          right: '-36px',
           opacity: 1,
           transform: 'rotate(45deg)',
           svg: {
