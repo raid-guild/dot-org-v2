@@ -44,7 +44,6 @@ const GradientBorderButton = ({
     backgroundPosition: '2px 0, 2px 100%',
     backgroundRepeat: 'no-repeat',
     backgroundSize: `calc(100% - 4px) 2px`,
-    padding: '14px 24px',
     borderRadius: '2px',
     border: 'none',
     backgroundColor: 'transparent',
@@ -53,14 +52,27 @@ const GradientBorderButton = ({
   return (
     <Button
       variant='link'
-      _hover={{ textDecor: 'none', bgColor: linearGradient, opacity: 0.8 }}
+      _hover={{
+        textDecor: 'none',
+        _before: { content: 'none' },
+        _after: { content: 'none' },
+        backgroundSize: '100%',
+        '.text-gradient': { bgClip: 'initial', textColor: '#fff' },
+      }}
       height={10}
       onClick={onClick}
       ref={ref}
       _before={borderStyle('left', color1)}
       _after={borderStyle('right', color3)}
       sx={commonStyle}>
-      <Box bg={linearGradient} bgClip='text'>
+      <Box
+        className='text-gradient'
+        bg={linearGradient}
+        bgClip='text'
+        w='100%'
+        h='100%'
+        padding='7px 24px'
+        borderRadius={2}>
         {label}
       </Box>
     </Button>
