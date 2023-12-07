@@ -42,7 +42,7 @@ const SectionThree = () => (
             <GradientButton width='160px'>Hire Us</GradientButton>
           </Link>
           <Link href='/services'>
-            <GradientBorderButton label='All Services' width='160px' />
+            <GradientBorderButton label='All Services' width='max-content' />
           </Link>
         </Flex>
       </Link>

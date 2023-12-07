@@ -106,6 +106,7 @@ const GradientBorderButton = ({
         w='100%'
         h='100%'
         zIndex={10}
+        width={width}
         padding='7px 24px'
         borderRadius={2}>
         {label}
