@@ -38,8 +38,8 @@ const GradientConnectButton = ({
         span: {
           right: '-25%',
           opacity: 1,
+          transform: 'rotate(45deg)',
           svg: {
-            transform: 'rotate(-45deg)',
             opacity: 1,
           },
         },
@@ -79,7 +79,7 @@ const GradientConnectButton = ({
         sx={{
           opacity: 0,
           stroke: 'url(#gradient)',
-          strokeWidth: '2',
+          strokeWidth: '2.5',
           strokeLinecap: 'round',
           strokeLinejoin: 'round',
           height: '24px',
