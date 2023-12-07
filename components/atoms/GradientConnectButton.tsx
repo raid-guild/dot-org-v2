@@ -34,6 +34,9 @@ const GradientConnectButton = ({
       textTransform: 'uppercase',
       letterSpacing: '1px',
       transition: 'all .35s',
+      border: '3px solid',
+      borderImageSlice: 1,
+      borderImageSource: `${gradient}`,
       '&:hover': {
         span: {
           right: '-36px',
@@ -60,7 +63,7 @@ const GradientConnectButton = ({
       sx={{
         position: 'absolute',
         right: 0,
-        top: 0,
+        top: -0.5,
         opacity: 0,
         width: '40px',
         height: '40px',
