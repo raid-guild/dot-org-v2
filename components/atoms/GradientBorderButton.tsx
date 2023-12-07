@@ -71,7 +71,7 @@ const GradientBorderButton = ({
       variant='link'
       _hover={{
         textDecor: 'none',
-        '.text-gradient': { bgClip: 'initial', textColor: '#fff' },
+        '.text-gradient': { bgClip: 'initial', textColor: '#fff', bg: 'transparent' },
       }}
       height={10}
       onClick={onClick}
