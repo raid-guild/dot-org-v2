@@ -26,13 +26,13 @@ const GradientButton = ({
       borderRadius={2}
       width={width}
       justifyItems='center'
-      transition='all 100ms ease-in-out'
+      transition='all 0.38 ease'
       shadow='none'
       alignItems='center'
       isDisabled={isDisabled}
       isLoading={isLoading}
       _hover={{
-        bgGradient: tokens.purpleToOrangeGradient,
+        bgGradient: tokens.orangeToPurpleGradientHover,
         shadow: 'none',
       }}>
       {isLoading ? loadingText : children}
