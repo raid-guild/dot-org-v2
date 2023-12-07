@@ -20,7 +20,7 @@ import { FiChevronDown, FiKey, FiXCircle } from 'react-icons/fi';
 import { MdReportGmailerrorred } from 'react-icons/md';
 import { useDisconnect } from 'wagmi';
 import { truncateAddress } from '../../utils';
-import GradientButton from './GradientButton';
+import GradientConnectButton from './GradientConnectButton';
 
 type Props = {
   label?: string;
@@ -49,13 +49,7 @@ export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
             })}>
             {(() => {
               if (!connected) {
-                return (
-                  <GradientButton onClick={openConnectModal} width='max-content'>
-                    <Icon as={FiKey} color='primary.500' w='18px' h='18px' textColor='white' />
-                    <Box w={4} />
-                    {label || 'Connect'}
-                  </GradientButton>
-                );
+                return <GradientConnectButton onClick={openConnectModal} label={label} />;
               }
 
               if (chain.unsupported) {
