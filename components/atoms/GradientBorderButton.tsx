@@ -74,6 +74,7 @@ const GradientBorderButton = ({
         '.text-gradient': { bgClip: 'initial', textColor: '#fff', bg: 'transparent' },
       }}
       height={10}
+      width={width}
       onClick={onClick}
       ref={ref}
       onMouseEnter={() => setIsHovered(true)}
@@ -93,7 +94,7 @@ const GradientBorderButton = ({
             bg={linearGradient}
             variants={variants}
             initial='initial'
-            width={width}
+            w={width}
             animate='animate'
             exit='exit'
           />
@@ -103,11 +104,12 @@ const GradientBorderButton = ({
         className='text-gradient'
         bg={linearGradient}
         bgClip='text'
-        w='100%'
-        h='100%'
+        w={width}
+        h='max'
+        p={6}
         zIndex={10}
-        width={width}
-        padding='7px 24px'
+        alignItems='center'
+        justifyContent='center'
         borderRadius={2}>
         {label}
       </Box>
