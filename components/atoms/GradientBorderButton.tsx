@@ -93,6 +93,7 @@ const GradientBorderButton = ({
             bg={linearGradient}
             variants={variants}
             initial='initial'
+            width={width}
             animate='animate'
             exit='exit'
           />
