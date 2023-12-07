@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { Box, Button } from '@raidguild/design-system';
 
 const GradientBorderButton = ({
@@ -10,74 +9,61 @@ const GradientBorderButton = ({
   onClick,
   ref,
 }: {
-  label: string | React.ReactNode;
+  label: string;
   color1?: string;
   color2?: string;
   color3?: string;
   width?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  ref?: React.Ref<HTMLButtonElement>;
+  onClick?: () => void;
+  ref?: any;
 }) => {
   const linearGradient = `linear-gradient(96deg, ${color1} -44.29%, ${color2} 53.18%, ${color3} 150.65%)`;
-  const CustomButton = styled(Button)`
-    --border-width: 2px;
-    --border-radius: 2px;
-    --color-1: ${color1};
-    --color-2: ${color2};
-    --color-3: ${color3};
 
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: #ddd;
-    width: ${width};
-    position: relative;
-    background: ${linearGradient}, ${linearGradient};
-    background-position: var(--border-radius) 0, var(--border-radius) 100%;
-    background-repeat: no-repeat;
-    background-size: calc(100% - var(--border-radius) - var(--border-radius)) var(--border-width);
-    padding: 14px 24px;
-    border-radius: var(--border-radius);
-    border: none;
-    background-color: transparent;
+  const borderStyle = (side: string, color: string) => ({
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    width: '2px',
+    top: 0,
+    bottom: 0,
+    [side]: 0,
+    border: '2px solid',
+    borderColor: color,
+    [`borderTop${side === 'left' ? 'Left' : 'Right'}Radius`]: '2px',
+    [`borderBottom${side === 'left' ? 'Left' : 'Right'}Radius`]: '2px',
+    [`border${side === 'left' ? 'Right' : 'Left'}Color`]: 'transparent',
+  });
 
-    ::before,
-    ::after {
-      content: '';
-      display: block;
-      position: absolute;
-      width: var(--border-radius);
-      top: 0;
-      bottom: 0;
-    }
-
-    ::before {
-      left: 0;
-      border: var(--border-width) solid var(--color-1);
-      border-top-left-radius: var(--border-radius);
-      border-bottom-left-radius: var(--border-radius);
-      border-right-color: transparent;
-    }
-
-    ::after {
-      right: 0;
-      border: var(--border-width) solid var(--color-2);
-      border-top-right-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
-      border-left-color: transparent;
-    }
-  `;
+  const commonStyle = {
+    fontWeight: 'bold',
+    letterSpacing: '1px',
+    color: '#ddd',
+    width,
+    position: 'relative',
+    background: `${linearGradient}, ${linearGradient}`,
+    backgroundPosition: '2px 0, 2px 100%',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: `calc(100% - 4px) 2px`,
+    padding: '14px 24px',
+    borderRadius: '2px',
+    border: 'none',
+    backgroundColor: 'transparent',
+  };
 
   return (
-    <CustomButton
+    <Button
       variant='link'
-      _hover={{ textDecor: 'none', bgColor: '#00000040', opacity: 0.8 }}
+      _hover={{ textDecor: 'none', bgColor: linearGradient, opacity: 0.8 }}
       height={10}
       onClick={onClick}
-      ref={ref}>
+      ref={ref}
+      _before={borderStyle('left', color1)}
+      _after={borderStyle('right', color3)}
+      sx={commonStyle}>
       <Box bg={linearGradient} bgClip='text'>
         {label}
       </Box>
-    </CustomButton>
+    </Button>
   );
 };
 
