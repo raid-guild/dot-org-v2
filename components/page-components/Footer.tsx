@@ -110,10 +110,10 @@ const Footer = () => {
             <Text fontFamily='spaceMono' fontWeight={800}>
               For Clients
             </Text>
-            <Link href='/hire' _hover={{ opacity: '80%' }} id='Hire'>
+            <Link href='/hire' _hover={{ textColor: 'primary.500', opacity: '80%' }} id='Hire'>
               Hire Us
             </Link>
-            <Link href='/#portfolio' _hover={{ opacity: '80%' }}>
+            <Link href='/#portfolio' _hover={{ textColor: 'primary.500', opacity: '80%' }}>
               Our Portfolio
             </Link>
           </VStack>
@@ -121,10 +121,13 @@ const Footer = () => {
             <Text fontFamily='spaceMono' fontWeight={800}>
               For Raiders
             </Text>
-            <Link href='/join' _hover={{ opacity: '80%' }} id='Join'>
+            <Link href='/join' _hover={{ textColor: 'primary.500', opacity: '80%' }} id='Join'>
               Join Us
             </Link>
-            <Link href='https://handbook.raidguild.org' _hover={{ opacity: '80%' }} isExternal>
+            <Link
+              href='https://handbook.raidguild.org'
+              _hover={{ textColor: 'primary.500', opacity: '80%' }}
+              isExternal>
               Our Handbook
             </Link>
           </VStack>
@@ -141,7 +144,12 @@ const Footer = () => {
             </HStack>
 
             {forAllLinks.slice(3, 5).map((link) => (
-              <Link href={link.link} id={link.label} isExternal key={link.link} _hover={{ opacity: '80%' }}>
+              <Link
+                href={link.link}
+                id={link.label}
+                isExternal
+                key={link.link}
+                _hover={{ textColor: 'primary.500', opacity: '80%' }}>
                 {link.label}
               </Link>
             ))}
