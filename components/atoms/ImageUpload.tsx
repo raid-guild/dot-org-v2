@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { VStack, Input, Image, defaultTheme } from '@raidguild/design-system';
+import { defaultTheme, Image, Input, Stack } from '@raidguild/design-system';
+import { useMemo, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import useImageUpload from '../../hooks/useImageUpload';
+import usePinataUpload from '../../hooks/usePinataUpload';
 
 interface Props {
   localForm: UseFormReturn;
@@ -15,16 +15,21 @@ const ImageUpload = ({ localForm, defaultValue, label, name }: Props) => {
   const { watch } = localForm;
   const file = watch(name);
 
-  const getImageUrl = async () => {
-    if (file?.length) {
-      const imageUrl = await useImageUpload(file[0]);
-      setImagePath(imageUrl || '');
+  const { data } = usePinataUpload({
+    imageFile: file?.[0],
+    imageName: name,
+  });
+
+  useMemo(() => {
+    if (data) {
+      setImagePath(`https://gateway.pinata.cloud/ipfs/${data}`);
+    } else {
+      setImagePath('');
     }
-  };
-  getImageUrl();
+  }, [data]);
 
   return (
-    <VStack align='flex-start' w='100%' p={12} border={`1px solid ${defaultTheme.colors.primary[500]}`} gap={8}>
+    <Stack w='100%' p={12} border={`1px solid ${defaultTheme.colors.primary[500]}`} gap={8}>
       <Input
         w='100%'
         name={name}
@@ -39,8 +44,8 @@ const ImageUpload = ({ localForm, defaultValue, label, name }: Props) => {
         fontFamily='mono'
         gap={4}
       />
-      {imagePath ? <Image src={imagePath} alt='image' w='200px' /> : <Image src={defaultValue} alt='image' w='200px' />}
-    </VStack>
+      {imagePath && <Image src={imagePath || defaultValue} alt='image' w='200px' />}
+    </Stack>
   );
 };
 
