@@ -1,6 +1,5 @@
 import { Button, Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
 import Link from '../../components/atoms/ChakraNextLink';
-import GradientBorderButton from '../../components/atoms/AnimatedButton';
 
 import Footer from '../../components/page-components/Footer';
 import Nav from '../../components/page-components/Nav';
@@ -44,12 +43,14 @@ const SectionThree = () => (
               alignItems={{ base: 'center', lg: 'flex-start' }}
               gap={2}>
               <Link href='/hire/1'>
-                <Button variant='gradientOutline' width='160px'>
+                <Button variant='bright' width='160px'>
                   Hire Us
                 </Button>
               </Link>
               <Link href='/join/1'>
-                <GradientBorderButton label='Join Us' width='160px' />
+                <Button variant='gradientOutline' width='160px'>
+                  Join Us
+                </Button>
               </Link>
             </Flex>
           </Link>

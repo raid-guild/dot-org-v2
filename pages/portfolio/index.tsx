@@ -1,11 +1,11 @@
 // A page that displays all of the projects in the portfolio
-import { Box, Flex, Image, SimpleGrid, Stack, Text, VStack, defaultTheme } from '@raidguild/design-system';
+import { Box, Button, Flex, Image, SimpleGrid, Stack, Text, VStack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { FiEdit } from 'react-icons/fi';
+
+import { FiPlusCircle } from 'react-icons/fi';
 import Link from '../../components/atoms/ChakraNextLink';
-import GradientBorderButton from '../../components/atoms/AnimatedButton';
 import PageTitle from '../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import { getPortfolioList } from '../../gql';
@@ -54,7 +54,7 @@ function PortfolioContent({ project }: { project: any }) {
   const link = `/portfolio/${project.slug}`;
   return (
     <Link href={link}>
-      <Image src={_.get(project, 'imageUrl')} maxH='40px' objectFit='cover' />
+      <Image src={_.get(project, 'imageUrl')} boxSize={32} objectFit='contain' />
     </Link>
   );
 }
@@ -74,15 +74,11 @@ function PortfolioPage({ initialData }: Props) {
       </Text>
       {canCreate && (
         <Stack alignItems='center' pt='6'>
-          <GradientBorderButton
-            width='max-content'
-            label={
-              <Flex w='max-content' px={4} gap={2}>
-                <FiEdit fontSize='16px' color={defaultTheme.colors.purple[500]} /> Add Portfolio
-              </Flex>
-            }
-            onClick={() => router.push('/portfolio/new')}
-          />
+          <Button variant='bright' width='max-content' onClick={() => router.push('/portfolio/new')} gap={2}>
+            {/* <Flex w='max-content' px={4} gap={2}> */}
+            <FiPlusCircle fontSize='16px' color='white' /> Add Portfolio
+            {/* </Flex> */}
+          </Button>
         </Stack>
       )}
 
@@ -105,17 +101,19 @@ function PortfolioPage({ initialData }: Props) {
           </VStack>
         ))}
       </SimpleGrid>
-      <Flex gap={8} alignItems='center' justifyContent='center' m={20} flexWrap='wrap' maxW='1200px'>
+      <SimpleGrid gap={{ base: 12, xl: 10 }} columns={{ base: 2, xl: 5 }} py={20} justifyItems='center'>
         {labels.map((label) => (
-          <GradientBorderButton key={label} label={label} width='200px' />
+          <Button variant='gradientOutline' key={label} minW='max-content' w='200px'>
+            {label}
+          </Button>
         ))}
-      </Flex>
+      </SimpleGrid>
       <PageTitle title='' hideIcon />
-      <Flex gap={40} alignItems='center' justifyContent='center' mx={8} my={16} flexWrap='wrap'>
+      <SimpleGrid gap={{ base: 12, xl: 10 }} columns={{ base: 2, xl: 5 }} py={20} justifyItems='center'>
         {_.map(portfolioList, (project) => (
           <PortfolioContent project={project} key={_.get(project, 'name')} />
         ))}
-      </Flex>
+      </SimpleGrid>
     </CMSPageTemplate>
   );
 }

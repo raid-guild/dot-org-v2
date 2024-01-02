@@ -6,6 +6,7 @@ import {
   HStack,
   Heading,
   Image,
+  Link,
   SimpleGrid,
   VStack,
   defaultTheme,
@@ -14,7 +15,6 @@ import { useRouter } from 'next/router';
 import Castle from '../../assets/illustrations/castle.svg';
 import Decor from '../../assets/illustrations/decor.svg';
 import tokens from '../../utils/extendedTokens';
-import GradientBorderButton from '../atoms/AnimatedButton';
 
 import Markdown from '../atoms/Markdown';
 
@@ -75,11 +75,19 @@ const Container: React.FC<ContainerProps> = ({
               <Markdown>{content}</Markdown>
             </VStack>
             {cta && (
-              <Flex w='100%' mt={{ base: '2rem' }} justifyContent='center' alignItems='center' gap={2} zIndex={30}>
-                <Button variant='gradientOutline' onClick={() => router.push('/hire/1')}>
-                  Hire Us
-                </Button>
-                <GradientBorderButton label='JOIN US' onClick={() => router.push('/hire/1')} />
+              <Flex
+                w='100%'
+                mt={{ base: '2rem' }}
+                direction={{ base: 'column', lg: 'row' }}
+                justifyContent='center'
+                alignItems={{ base: 'center', xl: 'flex-start' }}
+                gap={2}>
+                <Link href='/hire/1'>
+                  <Button variant='bright'>Hire Us</Button>
+                </Link>
+                <Link href='/join/1'>
+                  <Button variant='gradientOutline'>Join Us</Button>
+                </Link>
               </Flex>
             )}
           </Card>

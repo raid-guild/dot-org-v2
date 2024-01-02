@@ -7,7 +7,6 @@ import { FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { useHireState } from '../../context/appState';
 import handleError from '../../utils/forms';
-import GradientBorderButton from '../atoms/GradientBorderButton';
 // import Link from '../atoms/ChakraNextLink';
 import RadioBox from '../atoms/RadioBox';
 // import { SUBMISSION_REQUEST_FEE } from '../../utils/config';
