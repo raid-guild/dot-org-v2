@@ -1,8 +1,7 @@
-import { Box, Flex, Heading, Text } from '@raidguild/design-system';
+import { Box, Button, Flex, Heading, Text } from '@raidguild/design-system';
 import Image from 'next/image';
 import signalFire from '../../assets/illustrations/signal_fire.webp';
 import Link from '../atoms/ChakraNextLink';
-import GradientButton from '../atoms/GradientButton';
 
 const Confirmation = () => (
   <Flex w='100%' direction='column' alignItems='center' px={{ base: '2rem', lg: '5rem' }} py='5rem' gap={10}>
@@ -19,7 +18,9 @@ const Confirmation = () => (
     </Text>
 
     <Link href='https://discord.gg/rGFpfQf' isExternal>
-      <GradientButton>Join Discord</GradientButton>
+      <Button width='max-content' variant='gradientOutline'>
+        Join Discord
+      </Button>
     </Link>
   </Flex>
 );

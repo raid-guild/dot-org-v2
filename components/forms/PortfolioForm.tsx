@@ -7,7 +7,6 @@ import _ from 'lodash';
 import Link from '../atoms/ChakraNextLink';
 import useSubmit from '../../hooks/useSubmit';
 import ImageUpload from '../atoms/ImageUpload';
-import GradientButton from '../atoms/GradientButton';
 
 type PortfolioFormProps = {
   isEditable?: boolean;
@@ -162,7 +161,9 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
       <Select name='categoryOptions' localForm={localForm} options={categoryOptions} variant='outline' />
 
       <Box pt={8} onClick={handleSubmit(onSubmit)} fontFamily='mono'>
-        <GradientButton width='200px'>{isEditable ? 'Save Changes' : 'Ship Project'}</GradientButton>
+        <Button variant='gradientOutline' width='200px'>
+          {isEditable ? 'Save Changes' : 'Ship Project'}
+        </Button>
       </Box>
     </VStack>
   );

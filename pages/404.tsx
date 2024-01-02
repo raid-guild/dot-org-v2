@@ -1,11 +1,10 @@
-import { Box, Flex, Heading } from '@raidguild/design-system';
+import { Box, Button, Flex, Heading } from '@raidguild/design-system';
 import Image from 'next/image';
 import tokens from '../utils/extendedTokens';
 import Link from '../components/atoms/ChakraNextLink';
 import Nav from '../components/page-components/Nav';
 import raidBanner from '../assets/illustrations/raid__banner.webp';
-import GradientBorderButton from '../components/atoms/GradientBorderButton';
-import GradientButton from '../components/atoms/GradientButton';
+import GradientBorderButton from '../components/atoms/AnimatedButton';
 
 const NotFound = () => (
   <Flex
@@ -32,7 +31,7 @@ const NotFound = () => (
       alignItems='center'
       gap={2}>
       <Link href='/hire/1'>
-        <GradientButton>Hire Us</GradientButton>
+        <Button variant='gradientOutline'>Hire Us</Button>
       </Link>
       <Link href='/join/1'>
         {/* <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill='transparent'> */}

@@ -1,4 +1,5 @@
 import {
+  Button,
   Center,
   Flex,
   HStack,
@@ -16,8 +17,6 @@ import raidGuildFooter from '../../assets/illustrations/raidguild-footer.png';
 import raidGuildLogo from '../../assets/illustrations/raidguild.webp';
 import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
-import GradientBorderButton from '../atoms/GradientBorderButton';
-import GradientButton from '../atoms/GradientButton';
 
 const forAllLinks = [
   {
@@ -74,14 +73,19 @@ const Footer = () => {
           Hire Raidguild
         </Heading>
         <Stack flexDirection={{ base: 'column', lg: 'row' }} gap={6}>
+          {/* <Flex
+            w='100%'
+            direction={{ base: 'column', lg: 'row' }}
+            justifyContent={{ base: 'center', xl: 'flex-start' }}
+            alignItems={{ base: 'center', xl: 'flex-start' }}
+            gap={2}> */}
           <Link href='/hire/1'>
-            <GradientButton>Hire Us</GradientButton>
+            <Button variant='bright'>Hire Us</Button>
           </Link>
           <Link href='/join/1'>
-            {/* <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill='transparent'> */}
-            <GradientBorderButton label='JOIN US' />
-            {/* </Box> */}
+            <Button variant='gradientOutline'>Join Us</Button>
           </Link>
+          {/* </Flex> */}
         </Stack>
       </Center>
       <Flex

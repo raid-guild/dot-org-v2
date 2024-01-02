@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
-import { VStack, useToast, GridItem, SimpleGrid, Input, Textarea, defaultTheme } from '@raidguild/design-system';
-import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { GridItem, Input, SimpleGrid, Textarea, VStack, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import FormNavigation from './FormNavigation';
 import { useHireState } from '../../context/appState';
 import handleError from '../../utils/forms';
 import RadioBox from '../atoms/RadioBox';
+import FormNavigation from './FormNavigation';
 
 interface Props {
   handleBack: () => void;
@@ -60,22 +60,14 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
           name='projectName'
           placeholder='Project Name'
           localForm={localForm}
-          border={`1px solid ${defaultTheme.colors.primary[400]}`}
-          _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
-          p={4}
-          borderRadius={0}
-          variant='unstyled'
+          variant='solidOutline'
         />
         <Input
           label='Link to Specs'
           name='projectLink'
           placeholder='Any link related to the project'
           localForm={localForm}
-          border={`1px solid ${defaultTheme.colors.primary[400]}`}
-          _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
-          p={4}
-          borderRadius={0}
-          variant='unstyled'
+          variant='solidOutline'
         />
         <GridItem gridColumn={{ base: 1, lg: 'span 2' }}>
           <Textarea
@@ -83,11 +75,7 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
             placeholder='Describe your project, goals, vision, etc.'
             name='projectDescription'
             localForm={localForm}
-            border={`1px solid ${defaultTheme.colors.primary[400]}`}
-            _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
-            p={4}
-            borderRadius={0}
-            variant='unstyled'
+            variant='solidOutline'
           />
         </GridItem>
       </SimpleGrid>

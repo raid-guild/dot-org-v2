@@ -1,5 +1,4 @@
-import { Box, HStack, Heading, Image, Link, Stack, Text, defaultTheme } from '@raidguild/design-system';
-import GradientButton from '../atoms/GradientButton';
+import { Box, Button, HStack, Heading, Image, Link, Stack, Text, defaultTheme } from '@raidguild/design-system';
 
 interface ProjectCardProps {
   name: string;
@@ -47,7 +46,9 @@ const ProjectCard = ({ name, logo, website, roles }: ProjectCardProps) => {
 
         {website && (
           <Link href={website} isExternal>
-            <GradientButton width='max'>Visit Website</GradientButton>
+            <Button variant='gradientOutline' width='max'>
+              Visit Website
+            </Button>
           </Link>
         )}
       </Stack>

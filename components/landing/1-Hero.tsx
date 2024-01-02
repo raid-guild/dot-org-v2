@@ -1,8 +1,6 @@
-import { Box, Flex, Heading, SimpleGrid } from '@raidguild/design-system';
+import { Box, Button, Flex, Heading, SimpleGrid } from '@raidguild/design-system';
 import Image from 'next/image';
 import tokens from '../../utils/extendedTokens';
-import GradientBorderButton from '../atoms/GradientBorderButton';
-import GradientButton from '../atoms/GradientButton';
 
 import Link from '../atoms/ChakraNextLink';
 import Nav from '../page-components/Nav';
@@ -44,12 +42,10 @@ const SectionOne = () => (
             alignItems={{ base: 'center', xl: 'flex-start' }}
             gap={2}>
             <Link href='/hire/1'>
-              <GradientButton>Hire Us</GradientButton>
+              <Button variant='bright'>Hire Us</Button>
             </Link>
             <Link href='/join/1'>
-              {/* <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill='transparent'> */}
-              <GradientBorderButton label='JOIN US' />
-              {/* </Box> */}
+              <Button variant='gradientOutline'>Join Us</Button>
             </Link>
           </Flex>
         </Flex>

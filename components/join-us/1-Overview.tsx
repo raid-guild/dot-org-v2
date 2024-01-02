@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Flex, Input, SimpleGrid, Textarea, defaultTheme, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { Flex, SimpleGrid, Input, Textarea, Button, useToast, defaultTheme } from '@raidguild/design-system';
-import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
-import GradientButton from '../atoms/GradientButton';
-import GradientBorderButton from '../atoms/GradientBorderButton';
 import { useJoinState } from '../../context/appState';
+import GradientBorderButton from '../atoms/AnimatedButton';
 
 const inputs = [
   {
@@ -83,11 +82,7 @@ const StepOne = ({ handleNext, handleBack }: Props) => {
               name={input.name}
               placeholder={input.placeholder}
               localForm={localForm}
-              border={`1px solid ${defaultTheme.colors.primary[400]}`}
-              _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
-              p={4}
-              borderRadius={0}
-              variant='unstyled'
+              variant='solidOutline'
             />
           ) : (
             <Textarea
@@ -96,20 +91,19 @@ const StepOne = ({ handleNext, handleBack }: Props) => {
               name={input.name}
               placeholder={input.placeholder}
               localForm={localForm}
-              border={`1px solid ${defaultTheme.colors.primary[400]}`}
-              _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
-              p={4}
-              borderRadius={0}
-              variant='unstyled'
+              variant='solidOutline'
             />
           ),
         )}
       </SimpleGrid>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <GradientBorderButton onClick={handleBack} label='Back' />
-
-        <GradientButton onClick={handleSubmit(onNext, onError)}>Next</GradientButton>
+        <Button width='max-content' variant='gradientOutline' onClick={handleBack}>
+          Back
+        </Button>
+        <Button width='max-content' variant='bright' onClick={handleSubmit(onNext, onError)}>
+          Next
+        </Button>
       </Flex>
     </Flex>
   );

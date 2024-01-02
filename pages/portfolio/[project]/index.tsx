@@ -24,7 +24,7 @@ import ProjectCard from '../../../components/page-components/ProjectCard';
 
 import raidFantasy from '../../../assets/illustrations/raid__fantasy.webp';
 import Link from '../../../components/atoms/ChakraNextLink';
-import GradientBorderButton from '../../../components/atoms/GradientBorderButton';
+import GradientBorderButton from '../../../components/atoms/AnimatedButton';
 import PageTitle from '../../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import { getPortfolioDetail } from '../../../gql';
@@ -167,7 +167,9 @@ function PortfolioPage({ initialData }: Props) {
             w='full'>
             {_.get(initialData, 'resultLink') && (
               <Link href={_.get(initialData, 'resultLink')} isExternal>
-                <GradientButton width='180px'>View Project</GradientButton>
+                <Button variant='gradientOutline' width='180px'>
+                  View Project
+                </Button>
               </Link>
             )}
 

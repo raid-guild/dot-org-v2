@@ -1,4 +1,4 @@
-import { Divider, Flex, Heading, Image, Stack, Text, VStack, defaultTheme } from '@raidguild/design-system';
+import { Button, Divider, Flex, Heading, Image, Stack, Text, VStack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetStaticPropsContext } from 'next';
 import { useSession } from 'next-auth/react';
@@ -6,7 +6,6 @@ import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { FiEdit } from 'react-icons/fi';
 import fallBackBanner from '../../../assets/illustrations/fallBackBanner.png';
-import GradientBorderButton from '../../../components/atoms/GradientBorderButton';
 import Markdown from '../../../components/atoms/Markdown';
 import PageTitle from '../../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
@@ -64,15 +63,14 @@ function PostPage({ initialData }: Props) {
         textColor='white'>
         {canEdit && (
           <Stack alignItems='center' py='6'>
-            <GradientBorderButton
+            <Button
+              variant='bright'
               width='max-content'
-              label={
-                <Flex w='max-content' px={4} gap={2} alignItems='center' justifyContent='center'>
-                  <FiEdit fontSize='16px' color={defaultTheme.colors.purple[500]} /> Create new Post
-                </Flex>
-              }
-              onClick={() => router.push(`/state-of-the-raid/${initialData.slug}/edit`)}
-            />
+              onClick={() => router.push(`/state-of-the-raid/${initialData.slug}/edit`)}>
+              <Flex w='max-content' px={4} gap={2} alignItems='center' justifyContent='center'>
+                <FiEdit fontSize='16px' color='white' /> Edit Post
+              </Flex>
+            </Button>
           </Stack>
         )}
 

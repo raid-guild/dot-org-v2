@@ -1,9 +1,9 @@
 import { Box, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
+import AnimatedButton from '../atoms/AnimatedButton';
 import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
 
 import raidFantasy from '../../assets/illustrations/raid__fantasy.webp';
-import GradientButton from '../atoms/GradientButton';
 
 const SectionTwo = () => {
   return (
@@ -42,7 +42,7 @@ const SectionTwo = () => {
         </div>
         <br />
         <Link href='https://handbook.raidguild.org' isExternal>
-          <GradientButton>Handbook</GradientButton>
+          <AnimatedButton>Handbook</AnimatedButton>
         </Link>
       </VStack>
     </SimpleGrid>

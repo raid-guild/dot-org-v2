@@ -1,11 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Flex, GridItem, HStack, SimpleGrid, Textarea, defaultTheme, useToast } from '@raidguild/design-system';
+import { Button, Flex, GridItem, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
 import { useEffect } from 'react';
 import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { useJoinState } from '../../context/appState';
-import GradientBorderButton from '../atoms/GradientBorderButton';
-import GradientButton from '../atoms/GradientButton';
 
 interface Props {
   handleBack: () => void;
@@ -78,21 +76,20 @@ const StepFour = ({ handleNext, handleBack }: Props) => {
               placeholder={input.placeholder}
               name={input.name}
               localForm={localForm}
-              border={`1px solid ${defaultTheme.colors.primary[400]}`}
-              _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
-              p={4}
-              borderRadius={0}
-              variant='unstyled'
+              variant='solidOutline'
             />
           </GridItem>
         ))}
       </SimpleGrid>
 
-      <HStack gap={4} justify='center' mt='2rem'>
-        <GradientBorderButton onClick={handleBack} label='Back' />
-
-        <GradientButton onClick={handleSubmit(onNext, onError)}>Next</GradientButton>
-      </HStack>
+      <Flex gap={4} justify='center' mt='2rem'>
+        <Button width='max-content' variant='gradientOutline' onClick={handleBack}>
+          Back
+        </Button>
+        <Button width='max-content' variant='bright' onClick={handleSubmit(onNext, onError)}>
+          Next
+        </Button>
+      </Flex>
     </Flex>
   );
 };

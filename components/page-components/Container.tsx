@@ -1,10 +1,21 @@
-import { Box, Card, Flex, HStack, Heading, Image, SimpleGrid, VStack, defaultTheme } from '@raidguild/design-system';
+import {
+  Box,
+  Button,
+  Card,
+  Flex,
+  HStack,
+  Heading,
+  Image,
+  SimpleGrid,
+  VStack,
+  defaultTheme,
+} from '@raidguild/design-system';
 import { useRouter } from 'next/router';
 import Castle from '../../assets/illustrations/castle.svg';
 import Decor from '../../assets/illustrations/decor.svg';
 import tokens from '../../utils/extendedTokens';
-import GradientBorderButton from '../atoms/GradientBorderButton';
-import GradientButton from '../atoms/GradientButton';
+import GradientBorderButton from '../atoms/AnimatedButton';
+
 import Markdown from '../atoms/Markdown';
 
 interface ContainerProps {
@@ -65,7 +76,9 @@ const Container: React.FC<ContainerProps> = ({
             </VStack>
             {cta && (
               <Flex w='100%' mt={{ base: '2rem' }} justifyContent='center' alignItems='center' gap={2} zIndex={30}>
-                <GradientButton onClick={() => router.push('/hire/1')}>Hire Us</GradientButton>
+                <Button variant='gradientOutline' onClick={() => router.push('/hire/1')}>
+                  Hire Us
+                </Button>
                 <GradientBorderButton label='JOIN US' onClick={() => router.push('/hire/1')} />
               </Flex>
             )}

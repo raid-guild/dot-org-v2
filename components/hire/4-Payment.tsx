@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Flex, HStack, Stack, Textarea, VStack, useMediaQuery, useToast } from '@raidguild/design-system';
+import { Button, HStack, Stack, Textarea, VStack, useMediaQuery, useToast } from '@raidguild/design-system';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
@@ -8,7 +8,6 @@ import * as Yup from 'yup';
 import { useHireState } from '../../context/appState';
 import handleError from '../../utils/forms';
 import GradientBorderButton from '../atoms/GradientBorderButton';
-import GradientButton from '../atoms/GradientButton';
 // import Link from '../atoms/ChakraNextLink';
 import RadioBox from '../atoms/RadioBox';
 // import { SUBMISSION_REQUEST_FEE } from '../../utils/config';
@@ -169,15 +168,18 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
         </Link>
       </Flex> */}
       <HStack gap='2'>
-        <GradientBorderButton onClick={handleBack} label='Back' />
+        <Button variant='gradientOutline' onClick={handleBack} width='150px'>
+          Back
+        </Button>
 
-        <GradientButton
+        <Button
+          variant='gradientOutline'
           isDisabled={isSubmitting}
           isLoading={isSubmitting}
           loadingText='Submitting'
           onClick={handleSubmit(onNext, handleError(toast))}>
           Submit
-        </GradientButton>
+        </Button>
         {/* {formStatus === FORM_STATE.AWAITING_PAYMENT && (
           <Button fontFamily='spaceMono' onClick={paymentHandler}>
             Pay {SUBMISSION_REQUEST_FEE} $RAID

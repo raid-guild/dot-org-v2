@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
-import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Box, DatePicker, Select, SimpleGrid, Stack, VStack, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { Flex, Box, Stack, DatePicker, useToast, Select, VStack, SimpleGrid } from '@raidguild/design-system';
 import { useHireState } from '../../context/appState';
-import FormNavigation from './FormNavigation';
-import RadioBox from '../atoms/RadioBox';
 import { hireUsServices } from '../../utils/constants';
 import handleError from '../../utils/forms';
 import { mapConsultationService } from '../../utils/mapping';
+import RadioBox from '../atoms/RadioBox';
+import FormNavigation from './FormNavigation';
 
 type Props = {
   handleNext: () => void;

@@ -5,12 +5,12 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogOverlay,
+  Button,
   ChakraAlertDialog,
   ChakraCheckbox,
   Flex,
   FormControl,
   Heading,
-  Spacer,
   Stack,
   useDisclosure,
   useToast,
@@ -21,12 +21,11 @@ import { useEffect, useRef } from 'react';
 import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import { useAccount } from 'wagmi';
 import * as Yup from 'yup';
-import tokens from '../../utils/extendedTokens';
 import { useJoinState } from '../../context/appState';
 import useSubmit from '../../hooks/useSubmit';
+import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
-import GradientBorderButton from '../atoms/GradientBorderButton';
-import GradientButton from '../atoms/GradientButton';
+import GradientBorderButton from '../atoms/AnimatedButton';
 
 interface Props {
   handleBack: () => void;
@@ -112,10 +111,12 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
         </FormControl>
       </Stack>
 
-      <Flex gap={8} justify='center' mt='2rem'>
-        <GradientBorderButton onClick={handleBack} label='Back' />
-        <Spacer />
-        <GradientButton onClick={handleSubmit(onNext, onError)}>Next</GradientButton>
+      <Flex gap={4} justify='center' mt='2rem'>
+        <GradientBorderButton onClick={handleBack}>Back</GradientBorderButton>
+
+        <Button width='max-content' variant='gradientOutline' onClick={handleSubmit(onNext, onError)}>
+          Next
+        </Button>
       </Flex>
 
       <ChakraAlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>
@@ -137,9 +138,14 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
             </AlertDialogBody>
 
             <AlertDialogFooter gap={4}>
-              <GradientBorderButton ref={cancelRef} onClick={handleModalCancel} label='Cancel' />
-
-              <GradientButton onClick={modalConfirmHandler}>Continue</GradientButton>
+              {/* <Flex gap={4} justify='center' mt='2rem'> */}
+              <Button width='max-content' variant='gradientOutline' onClick={handleBack}>
+                Back
+              </Button>
+              <Button width='max-content' variant='bright' onClick={handleSubmit(onNext, onError)}>
+                Next
+              </Button>
+              {/* </Flex> */}
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialogOverlay>

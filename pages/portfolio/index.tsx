@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { FiEdit } from 'react-icons/fi';
 import Link from '../../components/atoms/ChakraNextLink';
-import GradientBorderButton from '../../components/atoms/GradientBorderButton';
+import GradientBorderButton from '../../components/atoms/AnimatedButton';
 import PageTitle from '../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import { getPortfolioList } from '../../gql';
