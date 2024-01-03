@@ -1,5 +1,5 @@
 // A page that displays all of the projects in the portfolio
-import { Box, Button, Flex, Image, SimpleGrid, Stack, Text, VStack } from '@raidguild/design-system';
+import { Box, Button, Image, SimpleGrid, Stack, Text, VStack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';

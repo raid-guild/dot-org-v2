@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Heading, SimpleGrid } from '@raidguild/design-system';
 import Image from 'next/image';
+import ShimmerButton from '../atoms/ShimmerButton';
 import tokens from '../../utils/extendedTokens';
 
 import Link from '../atoms/ChakraNextLink';
@@ -45,7 +46,7 @@ const SectionOne = () => (
               <Button variant='bright'>Hire Us</Button>
             </Link>
             <Link href='/join/1'>
-              <Button variant='gradientOutline'>Join Us</Button>
+              <ShimmerButton>Join Us</ShimmerButton>
             </Link>
           </Flex>
         </Flex>
