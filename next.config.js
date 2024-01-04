@@ -1,7 +1,8 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const withTM = require('next-transpile-modules')(['@raidguild/design-system']);
 
-module.exports = withTM({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   async headers() {
     return [
       {
@@ -20,4 +21,11 @@ module.exports = withTM({
       // },
     ];
   },
-});
+  webpack: (config) => {
+    // eslint-disable-next-line no-param-reassign
+    config.resolve.fallback = { fs: false, net: false, tls: false };
+    return config;
+  },
+};
+
+module.exports = withTM(nextConfig);

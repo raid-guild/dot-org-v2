@@ -1,8 +1,7 @@
-import { Box, Button, Input, Select, Stack, Text, Textarea, VStack, defaultTheme } from '@raidguild/design-system';
-import { FieldValues, useForm } from 'react-hook-form';
-
+import { Box, Button, Input, Select, Stack, Text, Textarea, VStack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
+import { FieldValues, useForm } from 'react-hook-form';
 
 import useSubmit from '../../hooks/useSubmit';
 import Link from '../atoms/ChakraNextLink';
@@ -57,14 +56,13 @@ const categoryOptions = [
 ];
 
 const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
-  const localForm = useForm();
+  const localForm = useForm({
+    mode: 'all',
+  });
   const { handleSubmit } = localForm;
   const { data: session } = useSession();
   const token = _.get(session, 'token') || '';
   const { submitProjectForm, submitProjectEditForm } = useSubmit(token);
-  // const clearData = () => {
-  //   reset();
-  // };
 
   const onSubmit = (data: FieldValues) => {
     if (isEditable && slug) {
@@ -81,44 +79,28 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
         name='projectName'
         localForm={localForm}
         defaultValue={isEditable && initialData?.name}
-        border={`1px solid ${defaultTheme.colors.primary[400]}`}
-        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
-        p={4}
-        borderRadius={0}
-        variant='unstyled'
+        variant='solidOutline'
       />
       <Input
         label='Project Slug:'
         name='slug'
         localForm={localForm}
         defaultValue={isEditable && initialData?.slug}
-        border={`1px solid ${defaultTheme.colors.primary[400]}`}
-        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
-        p={4}
-        borderRadius={0}
-        variant='unstyled'
+        variant='solidOutline'
       />
       <Input
         label='Github:'
         name='githubUrl'
         localForm={localForm}
         defaultValue={isEditable && initialData?.repoLink}
-        border={`1px solid ${defaultTheme.colors.primary[400]}`}
-        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
-        p={4}
-        borderRadius={0}
-        variant='unstyled'
+        variant='solidOutline'
       />
       <Input
         label='Description:'
         name='description'
         localForm={localForm}
         defaultValue={isEditable && initialData?.description}
-        border={`1px solid ${defaultTheme.colors.primary[400]}`}
-        _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
-        p={4}
-        borderRadius={0}
-        variant='unstyled'
+        variant='solidOutline'
       />
 
       <VStack alignItems='flex-start' width='100%'>
@@ -144,11 +126,7 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
                 ? initialData?.approach.content[0]
                 : initialData?.result.content[0]
             }
-            border={`1px solid ${defaultTheme.colors.primary[400]}`}
-            _focus={{ border: `1.5px solid ${defaultTheme.colors.purple[400]}` }}
-            p={4}
-            borderRadius={0}
-            variant='unstyled'
+            variant='solidOutline'
           />
           <Text fontSize='0.8rem'>
             This textarea accepts{' '}
@@ -158,11 +136,19 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
           </Text>
         </Stack>
       ))}
-      <Select name='categoryOptions' localForm={localForm} options={categoryOptions} variant='outline' />
+      <Select
+        name='categoryOptions'
+        label='Project Category'
+        defaultValue={_.find(categoryOptions, {
+          value: initialData?.category,
+        })}
+        options={categoryOptions}
+        localForm={localForm}
+      />
 
       <Box pt={8} onClick={handleSubmit(onSubmit)} fontFamily='mono'>
-        <Button variant='gradientOutline' width='200px'>
-          {isEditable ? 'Save Changes' : 'Ship Project'}
+        <Button variant='bright' width='200px'>
+          {isEditable ? 'Save Changes' : 'Publish Project'}
         </Button>
       </Box>
     </VStack>
