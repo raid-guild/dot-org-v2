@@ -11,7 +11,6 @@ import {
   VStack,
   defaultTheme,
 } from '@raidguild/design-system';
-import { useRouter } from 'next/router';
 import Castle from '../../assets/illustrations/castle.svg';
 import Decor from '../../assets/illustrations/decor.svg';
 import tokens from '../../utils/extendedTokens';
@@ -39,8 +38,6 @@ const Container: React.FC<ContainerProps> = ({
   bgImage,
   cta = false,
 }: ContainerProps) => {
-  const router = useRouter();
-
   return (
     <VStack bg={bg ?? tokens.purpleToIndigoGradient} w='100vw' bgImage={bgImage} height='max-content'>
       <SimpleGrid placeItems='flex-start' p={{ base: '1rem', lg: '4rem' }} maxH='max-content' gap={8}>

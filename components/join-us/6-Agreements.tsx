@@ -24,8 +24,8 @@ import * as Yup from 'yup';
 import { useJoinState } from '../../context/appState';
 import useSubmit from '../../hooks/useSubmit';
 import tokens from '../../utils/extendedTokens';
-import Link from '../atoms/ChakraNextLink';
 import GradientBorderButton from '../atoms/AnimatedButton';
+import Link from '../atoms/ChakraNextLink';
 
 interface Props {
   handleBack: () => void;

@@ -1,10 +1,9 @@
 import { Box, Button, Flex, Heading } from '@raidguild/design-system';
 import Image from 'next/image';
-import tokens from '../utils/extendedTokens';
+import raidBanner from '../assets/illustrations/raid__banner.webp';
 import Link from '../components/atoms/ChakraNextLink';
 import Nav from '../components/page-components/Nav';
-import raidBanner from '../assets/illustrations/raid__banner.webp';
-import GradientBorderButton from '../components/atoms/AnimatedButton';
+import tokens from '../utils/extendedTokens';
 
 const NotFound = () => (
   <Flex
@@ -35,7 +34,7 @@ const NotFound = () => (
       </Link>
       <Link href='/join/1'>
         {/* <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill='transparent'> */}
-        <GradientBorderButton label='JOIN US' />
+        <Button variant='bright'>JOIN US</Button>
         {/* </Box> */}
       </Link>
     </Flex>

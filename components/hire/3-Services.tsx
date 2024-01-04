@@ -87,7 +87,7 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
             label='Expected Deadline*'
             name='desiredDeliveryDate'
             localForm={localForm}
-            onChange={handleDateChange}
+            // onChange={handleDateChange}
           />
         </Stack>
       </SimpleGrid>

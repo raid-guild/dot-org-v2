@@ -1,8 +1,7 @@
-import { Button, Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
-import CTABtnGroup from 'components/atoms/CTABtnGroup';
+import { Card, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
 import { services } from '../../utils/constants';
 import tokens from '../../utils/extendedTokens';
-import AnimatedButton from '../atoms/AnimatedButton';
+import CTABtnGroup from '../atoms/CTABtnGroup';
 import Link from '../atoms/ChakraNextLink';
 
 const SectionThree = () => (

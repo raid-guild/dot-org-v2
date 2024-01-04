@@ -1,10 +1,8 @@
-import { Box, Button, Flex, Heading, SimpleGrid, Stack } from '@raidguild/design-system';
+import { Box, Flex, Heading, SimpleGrid, Stack } from '@raidguild/design-system';
 import Image from 'next/image';
-import CTABtnGroup from 'components/atoms/CTABtnGroup';
-import ShimmerButton from '../atoms/ShimmerButton';
 import tokens from '../../utils/extendedTokens';
+import CTABtnGroup from '../atoms/CTABtnGroup';
 
-import Link from '../atoms/ChakraNextLink';
 import Nav from '../page-components/Nav';
 
 import raidBanner from '../../assets/illustrations/raid__banner.webp';

@@ -10,7 +10,6 @@ import {
   Swords,
   Text,
   VStack,
-  defaultTheme,
 } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
@@ -23,7 +22,6 @@ import Markdown from '../../../components/atoms/Markdown';
 import ProjectCard from '../../../components/page-components/ProjectCard';
 
 import raidFantasy from '../../../assets/illustrations/raid__fantasy.webp';
-import GradientBorderButton from '../../../components/atoms/AnimatedButton';
 import Link from '../../../components/atoms/ChakraNextLink';
 import PageTitle from '../../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';

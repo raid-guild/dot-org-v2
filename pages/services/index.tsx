@@ -1,6 +1,5 @@
-import { Button, Card, Flex, Heading, Image, SimpleGrid, Stack, Text, VStack } from '@raidguild/design-system';
-import CTABtnGroup from 'components/atoms/CTABtnGroup';
-import Link from '../../components/atoms/ChakraNextLink';
+import { Card, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
+import CTABtnGroup from '../../components/atoms/CTABtnGroup';
 
 import Footer from '../../components/page-components/Footer';
 import Nav from '../../components/page-components/Nav';

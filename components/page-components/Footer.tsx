@@ -1,5 +1,4 @@
 import {
-  Button,
   Center,
   Flex,
   HStack,
@@ -13,7 +12,7 @@ import {
   useBreakpointValue,
 } from '@raidguild/design-system';
 import { FaDiscord, FaGithub, FaMedium, FaNewspaper, FaTwitter } from 'react-icons/fa';
-import CTABtnGroup from 'components/atoms/CTABtnGroup';
+import CTABtnGroup from '../atoms/CTABtnGroup';
 import raidGuildFooter from '../../assets/illustrations/raidguild-footer.png';
 import raidGuildLogo from '../../assets/illustrations/raidguild.webp';
 import tokens from '../../utils/extendedTokens';

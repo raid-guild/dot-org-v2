@@ -1,10 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Flex, Input, SimpleGrid, Textarea, defaultTheme, useToast } from '@raidguild/design-system';
+import { Button, Flex, Input, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
 import { useEffect } from 'react';
 import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { useJoinState } from '../../context/appState';
-import GradientBorderButton from '../atoms/AnimatedButton';
 
 const inputs = [
   {

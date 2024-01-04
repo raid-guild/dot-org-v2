@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, Heading, Image, Stack, Text, VStack } from '@raidguild/design-system';
+import { Button, Divider, Flex, Heading, Image, Stack, Text, VStack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetStaticPropsContext } from 'next';
 import { useSession } from 'next-auth/react';

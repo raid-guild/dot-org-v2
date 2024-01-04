@@ -13,7 +13,6 @@ import { useEffect } from 'react';
 import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { useJoinState } from '../../context/appState';
-import GradientBorderButton from '../atoms/AnimatedButton';
 import RadioBox from '../atoms/RadioBox';
 
 interface Props {
