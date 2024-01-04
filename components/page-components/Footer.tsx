@@ -13,6 +13,7 @@ import {
   useBreakpointValue,
 } from '@raidguild/design-system';
 import { FaDiscord, FaGithub, FaMedium, FaNewspaper, FaTwitter } from 'react-icons/fa';
+import CTABtnGroup from 'components/atoms/CTABtnGroup';
 import raidGuildFooter from '../../assets/illustrations/raidguild-footer.png';
 import raidGuildLogo from '../../assets/illustrations/raidguild.webp';
 import tokens from '../../utils/extendedTokens';
@@ -67,25 +68,12 @@ const Footer = () => {
         m={{ base: 8, md: 24 }}
         justifyContent='center'
         alignItems='center'
-        flexDir='column'
-        gap={2}>
-        <Heading hidden={hideOnBase} fontSize={24} mb={6} variant='shadow' color='white'>
+        flexDir='column'>
+        <Heading hidden={hideOnBase} fontSize={24} variant='shadow' color='white'>
           Hire Raidguild
         </Heading>
         <Stack flexDirection={{ base: 'column', lg: 'row' }} gap={6}>
-          {/* <Flex
-            w='100%'
-            direction={{ base: 'column', lg: 'row' }}
-            justifyContent={{ base: 'center', xl: 'flex-start' }}
-            alignItems={{ base: 'center', xl: 'flex-start' }}
-            gap={2}> */}
-          <Link href='/hire/1'>
-            <Button variant='bright'>Hire Us</Button>
-          </Link>
-          <Link href='/join/1'>
-            <Button variant='gradientOutline'>Join Us</Button>
-          </Link>
-          {/* </Flex> */}
+          <CTABtnGroup />
         </Stack>
       </Center>
       <Flex

@@ -48,7 +48,7 @@ const Intro = ({ handleNext, isConnected }: Props) => (
 
     <Text fontFamily='spaceMono'>
       For more info about the consultation process, join our{' '}
-      <Link href='https://handbook.raidguild.org/' isExternal color='red.500'>
+      <Link href='https://discord.com/invite/rGFpfQf' isExternal color='red.500'>
         discord
       </Link>
       .

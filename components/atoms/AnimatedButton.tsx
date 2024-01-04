@@ -3,16 +3,16 @@ import { Box, Button, ChakraButtonProps } from '@raidguild/design-system';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const MotionBox = motion(Box);
+const gradient = 'linear-gradient(96deg, #FF3864 0%, #8B1DBA 71.35%)';
 
 interface AnimatedButtonProps extends ChakraButtonProps {
   children: React.ReactNode;
-  gradient?: string;
   width?: string;
 }
 
 const AnimatedButton = ({
   children,
-  gradient = 'linear-gradient(96deg, #ca2c8c -44.29%, #8b1dba 53.18%, #8021b8 150.65%)',
+
   width = '150px',
   ...props
 }: AnimatedButtonProps) => {
@@ -34,6 +34,7 @@ const AnimatedButton = ({
       variant='gradientOutline'
       _hover={{
         textDecor: 'none',
+        background: 'transparent',
         '.text-gradient': { bgClip: 'initial', textColor: '#fff', bg: 'transparent' },
       }}
       width={width}
@@ -49,7 +50,7 @@ const AnimatedButton = ({
             top={0}
             bottom={0}
             height='100%'
-            borderRadius={2}
+            borderRadius={0}
             bg={gradient}
             variants={variants}
             initial='initial'
@@ -65,6 +66,7 @@ const AnimatedButton = ({
         w={width}
         h='max'
         p={6}
+        mb={0.5}
         zIndex={10}
         alignItems='center'
         justifyContent='center'

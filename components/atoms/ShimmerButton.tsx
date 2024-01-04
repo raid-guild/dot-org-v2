@@ -23,12 +23,13 @@ const ShimmerButton = ({ children, ...props }: ShimmerButtonProps) => {
     <Button
       variant='gradientOutline'
       minW='max-content'
-      w='180px'
       _hover={{
-        animation: `${rotateAnimation} 2s ease-in-out infinite alternate`,
+        animation: `${rotateAnimation} 2s ease-in-out infinite`,
         bgClip: 'text',
         color: 'transparent',
-      }}>
+      }}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}>
       {children}
     </Button>
   );

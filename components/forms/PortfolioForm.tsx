@@ -1,11 +1,11 @@
-import { VStack, Box, Text, Textarea, Input, Select, Button, Stack, defaultTheme } from '@raidguild/design-system';
+import { Box, Button, Input, Select, Stack, Text, Textarea, VStack, defaultTheme } from '@raidguild/design-system';
 import { FieldValues, useForm } from 'react-hook-form';
 
-import { useSession } from 'next-auth/react';
 import _ from 'lodash';
+import { useSession } from 'next-auth/react';
 
-import Link from '../atoms/ChakraNextLink';
 import useSubmit from '../../hooks/useSubmit';
+import Link from '../atoms/ChakraNextLink';
 import ImageUpload from '../atoms/ImageUpload';
 
 type PortfolioFormProps = {

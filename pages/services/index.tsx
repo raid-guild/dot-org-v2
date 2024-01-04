@@ -1,4 +1,5 @@
-import { Button, Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
+import { Button, Card, Flex, Heading, Image, SimpleGrid, Stack, Text, VStack } from '@raidguild/design-system';
+import CTABtnGroup from 'components/atoms/CTABtnGroup';
 import Link from '../../components/atoms/ChakraNextLink';
 
 import Footer from '../../components/page-components/Footer';
@@ -20,7 +21,7 @@ const SectionThree = () => (
         gap={12}
         py={{ base: 16, xl: 24 }}
         placeItems='center'>
-        <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500' textColor='white'>
+        <VStack spacing={5} justifyContent='center' align='center' ml={{ md: '1rem' }} maxW='500' textColor='white'>
           <Heading variant='shadow' color='white'>
             Our Services
           </Heading>
@@ -34,26 +35,7 @@ const SectionThree = () => (
             lean to the core and deliver high quality results with quick turnarounds.
           </Text>
           <br />
-          <Link href='/hire'>
-            <Flex
-              w='100%'
-              mt={{ base: '2rem' }}
-              direction={{ base: 'column', lg: 'row' }}
-              justifyContent={{ base: 'center', lg: 'flex-start' }}
-              alignItems={{ base: 'center', lg: 'flex-start' }}
-              gap={2}>
-              <Link href='/hire/1'>
-                <Button variant='bright' width='160px'>
-                  Hire Us
-                </Button>
-              </Link>
-              <Link href='/join/1'>
-                <Button variant='gradientOutline' width='160px'>
-                  Join Us
-                </Button>
-              </Link>
-            </Flex>
-          </Link>
+          <CTABtnGroup />
         </VStack>
         <VStack height={{ base: 'max', md: 'full' }}>
           <SimpleGrid columns={{ base: 1, lg: 2 }} gap={5} my='auto' ml={{ lg: '1.5rem' }}>

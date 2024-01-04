@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Heading, Image, Stack, Text, VStack } from '@raidguild/design-system';
+import { Box, Button, Divider, Flex, Heading, Image, Stack, Text, VStack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetStaticPropsContext } from 'next';
 import { useSession } from 'next-auth/react';
@@ -38,6 +38,7 @@ function PostPage({ initialData }: Props) {
   return (
     <CMSPageTemplate>
       <PageTitle title='State of the Raid' />
+
       <NextSeo
         title={_.get(initialData, 'title')}
         description={_.get(initialData, 'description')}
@@ -54,13 +55,8 @@ function PostPage({ initialData }: Props) {
           ],
         }}
       />
-      <Flex
-        width={['90%', '90%', '60vw', '60vw', '60vw']}
-        mx='auto'
-        direction='column'
-        gap={4}
-        pt={8}
-        textColor='white'>
+
+      <Flex maxW='1000px' mx='auto' direction='column' gap={4} py={4} textColor='white'>
         {canEdit && (
           <Stack alignItems='center' py='6'>
             <Button
@@ -74,7 +70,7 @@ function PostPage({ initialData }: Props) {
           </Stack>
         )}
 
-        {_.get(initialData, 'image') && <Image src={_.get(initialData, 'image')} w='auto' mb={8} />}
+        {_.get(initialData, 'image') && <Image src={_.get(initialData, 'image')} mb={8} />}
         <VStack direction='column' alignItems='flex-start'>
           <Image src={_.get(initialData, 'image') || fallBackBanner.src} w='max' mb={8} />
           <Heading variant='shadow' color='white' fontFamily='uncial' textAlign='left'>

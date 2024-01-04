@@ -49,7 +49,7 @@ export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
             })}>
             {(() => {
               if (!connected) {
-                return <GradientConnectButton onClick={openConnectModal} label={label} />;
+                return <GradientConnectButton onClick={openConnectModal}>{label}</GradientConnectButton>;
               }
 
               if (chain.unsupported) {

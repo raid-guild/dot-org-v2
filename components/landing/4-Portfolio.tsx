@@ -24,7 +24,7 @@ const SectionFour = ({ portfolioList }: SectionFourProps) => {
       minH='max'
       flexDir='column'>
       <PageTitle title='Our Portfolio' />
-      <Stack gap={4} align='center'>
+      <Stack gap={10} align='center'>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} alignItems='center' gap={[`8rem`, `8rem`]} maxW='80%'>
           {_.map(portfolioList, (project) => (
             <Link key={_.get(project, 'imageUrl')} href={`/portfolio/${_.get(project, 'slug')}`}>
@@ -35,7 +35,7 @@ const SectionFour = ({ portfolioList }: SectionFourProps) => {
           ))}
         </SimpleGrid>
         <Link href='/portfolio'>
-          <Button variant='gradientOutline' width='max-content'>
+          <Button variant='bright' width='max-content'>
             View All Projects
           </Button>
         </Link>

@@ -1,4 +1,5 @@
 import { Button, Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
+import CTABtnGroup from 'components/atoms/CTABtnGroup';
 import { services } from '../../utils/constants';
 import tokens from '../../utils/extendedTokens';
 import AnimatedButton from '../atoms/AnimatedButton';
@@ -30,22 +31,7 @@ const SectionThree = () => (
       </Text>
       <br />
       <Link href='/hire'>
-        <Flex
-          w='100%'
-          mt={{ base: '2rem' }}
-          direction={{ base: 'column', lg: 'row' }}
-          justifyContent={{ base: 'center', lg: 'flex-start' }}
-          alignItems={{ base: 'center', lg: 'flex-start' }}
-          gap={2}>
-          <Link href='/hire/1'>
-            <Button variant='bright' width='160px'>
-              Hire Us
-            </Button>
-          </Link>
-          <Link href='/services'>
-            <AnimatedButton width='160px'>All Services</AnimatedButton>
-          </Link>
-        </Flex>
+        <CTABtnGroup />
       </Link>
     </VStack>
     <VStack height={{ base: 'max', md: 'full' }}>

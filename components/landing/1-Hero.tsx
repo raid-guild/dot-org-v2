@@ -1,5 +1,6 @@
-import { Box, Button, Flex, Heading, SimpleGrid } from '@raidguild/design-system';
+import { Box, Button, Flex, Heading, SimpleGrid, Stack } from '@raidguild/design-system';
 import Image from 'next/image';
+import CTABtnGroup from 'components/atoms/CTABtnGroup';
 import ShimmerButton from '../atoms/ShimmerButton';
 import tokens from '../../utils/extendedTokens';
 
@@ -26,7 +27,7 @@ const SectionOne = () => (
         justifyContent='space-between'
         px={{ base: '1rem', xl: '8rem' }}
         width='full'>
-        <Flex direction='column' justifyContent='center' alignItems='start' maxW={{ lg: '50%' }}>
+        <Stack maxW={{ lg: '50%' }} alignItems={{ base: 'center', xl: 'flex-start' }}>
           <Heading
             maxW='720px'
             fontSize={{ base: 'medium', md: '3xl', xl: '4xl' }}
@@ -35,21 +36,8 @@ const SectionOne = () => (
             color='white'>
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3 Product Demons.
           </Heading>
-          <Flex
-            w='100%'
-            mt={{ base: '2rem' }}
-            direction={{ base: 'column', lg: 'row' }}
-            justifyContent={{ base: 'center', xl: 'flex-start' }}
-            alignItems={{ base: 'center', xl: 'flex-start' }}
-            gap={2}>
-            <Link href='/hire/1'>
-              <Button variant='bright'>Hire Us</Button>
-            </Link>
-            <Link href='/join/1'>
-              <ShimmerButton>Join Us</ShimmerButton>
-            </Link>
-          </Flex>
-        </Flex>
+          <CTABtnGroup />
+        </Stack>
         <Box width={{ md: '500px', lg: '550px' }}>
           <Image src={raidBanner} placeholder='blur' alt='raid-banner' />
         </Box>

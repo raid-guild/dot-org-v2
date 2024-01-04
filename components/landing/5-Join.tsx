@@ -1,5 +1,5 @@
 import { Card, Center, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
-import AnimatedButton from '../atoms/AnimatedButton';
+import ShimmerButton from '../atoms/ShimmerButton';
 import Link from '../atoms/ChakraNextLink';
 
 import { culture, swordsImage } from '../../utils/constants';
@@ -25,7 +25,7 @@ const SectionFive = () => (
       </Text>
       <br />
       <Link href='/join'>
-        <AnimatedButton>Join Us</AnimatedButton>
+        <ShimmerButton>Join Us</ShimmerButton>
       </Link>
     </VStack>
 

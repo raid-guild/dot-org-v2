@@ -1,4 +1,5 @@
 import {
+  Button,
   Castle,
   Flex,
   HStack,
@@ -18,13 +19,12 @@ import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { FiEdit } from 'react-icons/fi';
 import Wand from '../../../assets/illustrations/wand.svg';
-import GradientButton from '../../../components/atoms/GradientButton';
 import Markdown from '../../../components/atoms/Markdown';
 import ProjectCard from '../../../components/page-components/ProjectCard';
 
 import raidFantasy from '../../../assets/illustrations/raid__fantasy.webp';
-import Link from '../../../components/atoms/ChakraNextLink';
 import GradientBorderButton from '../../../components/atoms/AnimatedButton';
+import Link from '../../../components/atoms/ChakraNextLink';
 import PageTitle from '../../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
 import { getPortfolioDetail } from '../../../gql';
@@ -61,15 +61,14 @@ function PortfolioPage({ initialData }: Props) {
       />
       {canEdit && (
         <Stack alignItems='center' py='6'>
-          <GradientBorderButton
+          <Button
+            variant='bright'
             width='max-content'
-            label={
-              <Flex w='max-content' px={4} gap={2} alignItems='center' justifyContent='center'>
-                <FiEdit fontSize='16px' color={defaultTheme.colors.purple[500]} /> Create new Post
-              </Flex>
-            }
-            onClick={() => router.push(`/portfolio/${initialData.slug}/edit`)}
-          />
+            onClick={() => router.push(`/portfolio/${initialData.slug}/edit`)}>
+            <Flex w='max-content' px={4} gap={2} alignItems='center' justifyContent='center'>
+              <FiEdit fontSize='16px' color='white' /> Create new Post
+            </Flex>
+          </Button>
         </Stack>
       )}
 
@@ -119,7 +118,7 @@ function PortfolioPage({ initialData }: Props) {
           logo={_.get(initialData, 'imageUrl')}
         />
 
-        <VStack maxW={900} gap={12}>
+        <VStack maxW={900} gap={12} my={10}>
           <Stack spacing={6} align={{ base: 'center', lg: 'flex-start' }} maxW='80vw'>
             <Stack flexDir={{ base: 'column', md: 'row' }} align='center' gap={6}>
               <Icon as={Castle} w='32px' h='32px' />
@@ -167,7 +166,7 @@ function PortfolioPage({ initialData }: Props) {
             w='full'>
             {_.get(initialData, 'resultLink') && (
               <Link href={_.get(initialData, 'resultLink')} isExternal>
-                <Button variant='gradientOutline' width='180px'>
+                <Button variant='bright' width='180px'>
                   View Project
                 </Button>
               </Link>
@@ -175,7 +174,9 @@ function PortfolioPage({ initialData }: Props) {
 
             {_.get(initialData, 'repoLink') && (
               <Link href={_.get(initialData, 'repoLink')} isExternal>
-                <GradientBorderButton width='180px' label='View Codebase' />
+                <Button variant='gradientOutline' width='180px'>
+                  View Codebase
+                </Button>
               </Link>
             )}
           </Stack>
