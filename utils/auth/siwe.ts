@@ -19,49 +19,40 @@ const parseCredentials = ({ credentials, req }: SiweAuthorizeParams) => {
 };
 
 const checkNonce = async ({ siwe, credentials, req }: SiweMessageAuthorizeParams) => {
-  // ? leaving this because getCsrfToken is not doesn't appear to use
-  // ? the entire IncomingMessage so this could be Partial<IncomingMessage>
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore next-line
-  return getCsrfToken({ req }).then((nonce) => {
-    if (!_.eq(_.get(siwe, 'nonce'), nonce)) {
-      return Promise.reject(Error('Invalid nonce'));
-    }
-    return Promise.resolve({ siwe, credentials, req });
-  });
+  const nonce = await getCsrfToken({ req: { headers: req?.headers } });
+  if (!_.eq(_.get(siwe, 'nonce'), nonce)) {
+    throw new Error('Invalid nonce');
+  }
+  return { siwe, credentials, req };
 };
 
 const checkDomain = ({ siwe, credentials }: SiweCredentialParams): Promise<SiweCredentialParams> => {
   if (!NEXTAUTH_URL) {
-    return Promise.reject(Error('Invalid domain'));
+    throw new Error('Invalid set domain');
+  }
+  if (process.env.NODE_ENV === 'development') {
+    return Promise.resolve({ siwe, credentials });
   }
   if (!_.eq(_.get(siwe, 'domain'), new URL(NEXTAUTH_URL).host)) {
-    return Promise.reject(Error('Invalid domain'));
+    throw new Error('Invalid domain');
   }
   return Promise.resolve({ siwe, credentials });
 };
 
-const checkSignature = ({ siwe, credentials }: SiweCredentialParams): Promise<SiweCredentialParams> =>
-  siwe
-    .verify({
-      signature: _.get(credentials, 'signature', ''),
-      domain: new URL(NEXTAUTH_URL as string).host,
-    })
-    .then(() => Promise.resolve({ siwe, credentials }))
-    .catch((error: Error) => {
-      console.log(error);
-      return Promise.reject(Error('Invalid signature'));
-    });
+const checkSignature = async ({ siwe, credentials }: SiweCredentialParams) => {
+  await siwe.verify({ signature: _.get(credentials, 'signature', '') });
+  return { siwe, credentials };
+};
 
-export const authorizeSiweMessage = (data: SiweAuthorizeParams): Promise<User | null> =>
-  parseCredentials(data)
-    .then((d) => checkNonce(d))
-    .then((d) => checkDomain(d))
-    .then((d) => checkSignature(d))
-    .then(({ siwe }) => {
-      return { id: _.get(siwe, 'address'), address: _.get(siwe, 'address') }; // TODO _.toLower
-    })
-    .catch((e) => {
-      console.log(e);
-      return null;
-    });
+export const authorizeSiweMessage = async (data: SiweAuthorizeParams): Promise<User | null> => {
+  try {
+    const parsedData = await parseCredentials(data);
+    const nonceChecked = await checkNonce(parsedData);
+    const domainChecked = await checkDomain(nonceChecked);
+    const signatureChecked = await checkSignature(domainChecked);
+    return { id: _.toLower(_.get(signatureChecked.siwe, 'address')), address: _.get(signatureChecked.siwe, 'address') };
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};

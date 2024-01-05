@@ -8,12 +8,15 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "@emotion/react": "11.9.3",
     "@emotion/styled": "11.9.3",
     "@ethersproject/address": "^5.7.0",
     "@hookform/resolvers": "^2.9.10",
-    "@raidguild/design-system": "^0.5.5",
+    "@raidguild/design-system": "^0.5.7",
     "@rainbow-me/rainbowkit": "^1.3.0",
     "@rainbow-me/rainbowkit-siwe-next-auth": "^0.3.2",
     "@tanstack/react-query": "^4.19.1",
@@ -33,7 +36,7 @@
     "graphql-request": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "next": "^13.5",
+    "next": "^13.5.0",
     "next-auth": "^4.16.4",
     "next-compose-plugins": "^2.2.1",
     "next-seo": "^5.14.1",
@@ -79,7 +82,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "7.30.1",
     "eslint-plugin-react-hooks": "4.6.0",
-    "hasura-cli": "latest",
     "jest": "^29.5.0",
     "prettier": "^2.6.2",
     "react-test-renderer": "18.2.0",

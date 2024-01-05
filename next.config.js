@@ -1,8 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const withTM = require('next-transpile-modules')(['@raidguild/design-system']);
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
+  transpilePackages: ['@raidguild/design-system'],
   async headers() {
     return [
       {
@@ -27,5 +24,3 @@ const nextConfig = {
     return config;
   },
 };
-
-module.exports = withTM(nextConfig);

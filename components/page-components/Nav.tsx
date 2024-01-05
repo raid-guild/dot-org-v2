@@ -45,7 +45,7 @@ const Nav = () => {
   const [openSubMenu, setOpenSubMenu] = useState<null | number>(null);
   return (
     <HStack justifyContent='space-between' width='full' color='white' id='Navigation Bar'>
-      <Link href='/' passHref zIndex={100}>
+      <Link href='/' zIndex={100}>
         <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' maxWidth='200px' />
       </Link>
       {!hideOnBase ? (
@@ -233,7 +233,7 @@ const Nav = () => {
       ) : (
         <Flex position={!isOpen ? 'absolute' : 'fixed'} zIndex={100}>
           <HStack align='center' height='8rem' minW='88vw'>
-            <Link href='/' passHref zIndex={7} w='full' hidden={!isOpen}>
+            <Link href='/' zIndex={7} w='full' hidden={!isOpen}>
               <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' maxWidth='200px' />
             </Link>
             <Spacer />
