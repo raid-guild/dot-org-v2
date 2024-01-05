@@ -16,7 +16,7 @@ const Intro = ({ handleNext, isConnected }: Props) => (
       space for information about you / your team, background, and description for your project, specs for the work, as
       well as a few questions to give us an initial feel for your needs.
     </Text>
-    <br />
+
     {/* disabled $500 RAID spam filter payment for now */}
 
     {/* <Text fontSize={{ base: '1rem', lg: '18px' }}>
@@ -44,7 +44,7 @@ const Intro = ({ handleNext, isConnected }: Props) => (
       </Link>{' '}
       to secure your spot for a consultation from your dashboard.
     </Text> */}
-    <br />
+    {/* <br /> */}
 
     <Text fontFamily='spaceMono'>
       For more info about the consultation process, join our{' '}
@@ -54,7 +54,7 @@ const Intro = ({ handleNext, isConnected }: Props) => (
       .
     </Text>
     <br />
-    <HStack mt='2rem'>
+    <HStack>
       {!isConnected ? (
         <ConnectWallet label='Sign in to Continue' />
       ) : (

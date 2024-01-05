@@ -7,15 +7,9 @@ const gradient = 'linear-gradient(96deg, #FF3864 0%, #8B1DBA 71.35%)';
 
 interface AnimatedButtonProps extends ChakraButtonProps {
   children: React.ReactNode;
-  width?: string;
 }
 
-const AnimatedButton = ({
-  children,
-
-  width = '150px',
-  ...props
-}: AnimatedButtonProps) => {
+const AnimatedButton = ({ children, ...props }: AnimatedButtonProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const variants = {
     initial: { width: 0 },
@@ -37,7 +31,8 @@ const AnimatedButton = ({
         background: 'transparent',
         '.text-gradient': { bgClip: 'initial', textColor: '#fff', bg: 'transparent' },
       }}
-      width={width}
+      fontWeight='medium'
+      fontFamily='monospace'
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -63,7 +58,6 @@ const AnimatedButton = ({
         className='text-gradient'
         bg={gradient}
         bgClip='text'
-        w={width}
         h='max'
         p={6}
         mb={0.5}

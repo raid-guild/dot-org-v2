@@ -20,13 +20,13 @@ import { FiChevronDown, FiKey, FiXCircle } from 'react-icons/fi';
 import { MdReportGmailerrorred } from 'react-icons/md';
 import { useDisconnect } from 'wagmi';
 import { truncateAddress } from '../../utils';
-import GradientConnectButton from './GradientConnectButton';
+import RGConnectButton from './RGConnectButton';
 
 type Props = {
   label?: string;
 };
 
-export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
+export const ConnectWallet: React.FC<Props> = ({ label = 'Connect Wallet' }: Props) => {
   const { disconnect } = useDisconnect();
   const showNetwork = false; // maybe unhide, in some cases
 
@@ -49,7 +49,7 @@ export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
             })}>
             {(() => {
               if (!connected) {
-                return <GradientConnectButton onClick={openConnectModal} label={label} />;
+                return <RGConnectButton onClick={openConnectModal}>{label}</RGConnectButton>;
               }
 
               if (chain.unsupported) {

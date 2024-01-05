@@ -1,28 +1,20 @@
-import { Box, Button } from '@raidguild/design-system';
+import { Box, Button, ChakraButtonProps } from '@raidguild/design-system';
 import tokens from '../../utils/extendedTokens';
 
+interface RGButtonProps extends ChakraButtonProps {
+  children: React.ReactNode;
+}
 const linearGradient = tokens.orangeToPurpleGradient;
-const GradientConnectButton = ({
-  label,
-  gradient = linearGradient,
-  width = '150px',
-  onClick,
-}: {
-  label?: string;
-  gradient?: string;
-  width?: string;
-  onClick?: () => void;
-}) => (
+const RGConnectButton = ({ children, ...props }: RGButtonProps) => (
   <Button
     height={10}
     minW='max-content'
     borderRadius={2}
-    bgGradient={gradient}
-    onClick={onClick}
+    bgGradient={linearGradient}
     sx={{
       position: 'relative',
       display: 'block',
-      fontWeight: 'bold',
+      fontFamily: 'monospace',
       textDecoration: 'none',
       textAlign: 'center',
       color: '#ddd',
@@ -31,7 +23,7 @@ const GradientConnectButton = ({
       transition: 'all .35s',
       border: '3px solid',
       borderImageSlice: 1,
-      borderImageSource: `${gradient}`,
+      borderImageSource: `${linearGradient}`,
       '&:hover': {
         span: {
           right: '-36px',
@@ -44,15 +36,16 @@ const GradientConnectButton = ({
       },
     }}
     _hover={{
-      width: `${width}`,
-      background: `${gradient}`,
+      background: `${linearGradient}`,
       backgroundClip: 'text',
       border: '3px solid',
       borderColor: 'transparent',
       backgroundOrigin: 'border-box',
       borderImageSlice: 1,
-      borderImageSource: `${gradient}`,
-    }}>
+      borderImageSource: `${linearGradient}`,
+    }}
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...props}>
     <Box
       as='span'
       sx={{
@@ -68,7 +61,7 @@ const GradientConnectButton = ({
         transform: 'rotate(45deg)',
         transition: 'all .35s',
         borderImageSlice: 1,
-        borderImageSource: `${gradient}`,
+        borderImageSource: `${linearGradient}`,
       }}>
       <Box
         as='svg'
@@ -76,7 +69,7 @@ const GradientConnectButton = ({
         xmlns='http://www.w3.org/2000/svg'
         sx={{
           opacity: 0,
-          stroke: 'url(#gradient)',
+          stroke: 'url(#linearGradient)',
           strokeWidth: '2.5',
           strokeLinecap: 'round',
           strokeLinejoin: 'round',
@@ -90,7 +83,7 @@ const GradientConnectButton = ({
           transition: 'all .35s',
         }}>
         <defs>
-          <linearGradient id='gradient' x1='0%' y1='0%' x2='100%' y2='0%'>
+          <linearGradient id='linearGradient' x1='0%' y1='0%' x2='100%' y2='0%'>
             <stop offset='0%' style={{ stopColor: '#FF5A00', stopOpacity: 1 }} />
             <stop offset='50%' style={{ stopColor: '#D62789', stopOpacity: 1 }} />
             <stop offset='100%' style={{ stopColor: '#AD17AD', stopOpacity: 1 }} />
@@ -99,8 +92,8 @@ const GradientConnectButton = ({
         <path d='M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4' />
       </Box>
     </Box>
-    {label || 'Connect'}
+    {children}
   </Button>
 );
 
-export default GradientConnectButton;
+export default RGConnectButton;

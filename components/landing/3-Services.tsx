@@ -29,9 +29,8 @@ const SectionThree = () => (
         lean to the core and deliver high quality results with quick turnarounds.
       </Text>
       <br />
-      <Link href='/hire'>
-        <CTABtnGroup />
-      </Link>
+
+      <CTABtnGroup />
     </VStack>
     <VStack height={{ base: 'max', md: 'full' }}>
       <SimpleGrid columns={{ base: 1, lg: 2 }} gap={5} my='auto' ml={{ lg: '1.5rem' }}>

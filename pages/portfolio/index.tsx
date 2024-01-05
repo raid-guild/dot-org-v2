@@ -91,7 +91,7 @@ function PortfolioPage({ initialData }: Props) {
         {portfolioStats.map((stat) => (
           <VStack key={stat.label} spacing={1} textAlign='center'>
             <Box bg={tokens.purpleToBlueGradient} bgClip='text'>
-              <Text fontSize='5xl' fontWeight='normal' fontFamily='uncial'>
+              <Text fontSize='5xl' fontWeight='medium' fontFamily='uncial'>
                 {stat.numbers}
               </Text>
             </Box>
