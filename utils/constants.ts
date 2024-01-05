@@ -174,10 +174,10 @@ export const NavMenuData = [
         name: 'Front End',
         slug: 'web3-frontend',
       },
-      {
-        name: 'Back End',
-        slug: 'web3-backend',
-      },
+      // {
+      //   name: 'Back End',
+      //   slug: 'web3-backend',
+      // },
       {
         name: 'Smart Contracts',
         slug: 'smart-contracts',
@@ -191,14 +191,14 @@ export const NavMenuData = [
         name: 'UX Design',
         slug: 'web3-ux-design',
       },
-      {
-        name: 'UI Design',
-        slug: 'web3-ui-design',
-      },
-      {
-        name: 'Visual Design',
-        slug: 'web3-visual-design',
-      },
+      // {
+      //   name: 'UI Design',
+      //   slug: 'web3-ui-design',
+      // },
+      // {
+      //   name: 'Visual Design',
+      //   slug: 'web3-visual-design',
+      // },
     ],
   },
   {
@@ -220,10 +220,10 @@ export const NavMenuData = [
         name: 'Tokenomics',
         slug: 'web3-tokenomics',
       },
-      {
-        name: 'Marketing',
-        slug: 'web3-marketing',
-      },
+      // {
+      //   name: 'Marketing',
+      //   slug: 'web3-marketing',
+      // },
     ],
   },
 ];

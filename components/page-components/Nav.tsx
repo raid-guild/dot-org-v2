@@ -86,7 +86,10 @@ const Nav = () => {
                               alignItems='center'
                               justifyItems='center'
                               gap={8}
-                              _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                              _hover={{
+                                bgColor: `${defaultTheme.colors.primary[500]}40`,
+                                textColor: defaultTheme.colors.primary[500],
+                              }}
                               w='full'
                               p={2.5}>
                               <Castle fontSize={28} />
@@ -115,7 +118,10 @@ const Nav = () => {
                                   justifyItems='center'
                                   href={`/services/${menuItem.slug}`}
                                   gap={8}
-                                  _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                                  _hover={{
+                                    bgColor: `${defaultTheme.colors.primary[500]}40`,
+                                    textColor: defaultTheme.colors.primary[500],
+                                  }}
                                   w='full'
                                   py={2.5}
                                   px={3.5}>
@@ -133,7 +139,10 @@ const Nav = () => {
                               alignItems='center'
                               justifyItems='center'
                               gap={8}
-                              _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                              _hover={{
+                                bgColor: `${defaultTheme.colors.primary[500]}40`,
+                                textColor: defaultTheme.colors.primary[500],
+                              }}
                               w='full'
                               p={2.5}>
                               <Knight fontSize={28} />
@@ -162,7 +171,10 @@ const Nav = () => {
                                   justifyItems='center'
                                   href={`/services/${menuItem.slug}`}
                                   gap={8}
-                                  _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                                  _hover={{
+                                    bgColor: `${defaultTheme.colors.primary[500]}40`,
+                                    textColor: defaultTheme.colors.primary[500],
+                                  }}
                                   w='full'
                                   py={2.5}
                                   px={3.5}>
@@ -180,11 +192,15 @@ const Nav = () => {
                               alignItems='center'
                               justifyItems='center'
                               gap={8}
-                              _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                              _hover={{
+                                bgColor: `${defaultTheme.colors.primary[500]}40`,
+
+                                textColor: defaultTheme.colors.primary[500],
+                              }}
                               w='full'
                               p={2.5}>
                               <Wizard2 fontSize={28} />
-                              Development
+                              Web3
                               <Spacer />
                               <FaChevronRight fontSize={12} />
                             </Box>
@@ -209,7 +225,10 @@ const Nav = () => {
                                   justifyItems='center'
                                   href={`/services/${menuItem.slug}`}
                                   gap={8}
-                                  _hover={{ bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }}
+                                  _hover={{
+                                    bgColor: `${defaultTheme.colors.primary[500]}40`,
+                                    textColor: defaultTheme.colors.primary[500],
+                                  }}
                                   w='full'
                                   py={2.5}
                                   px={3.5}>
@@ -289,7 +308,10 @@ const Nav = () => {
                   flexDir='row'
                   _hover={
                     item.name !== 'Services'
-                      ? { bgColor: '#330F00', textColor: defaultTheme.colors.primary[500] }
+                      ? {
+                          bgColor: `${defaultTheme.colors.primary[500]}20`,
+                          textColor: defaultTheme.colors.primary[500],
+                        }
                       : { bgColor: 'none' }
                   }
                   height='max-content'
