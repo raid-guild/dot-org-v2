@@ -105,10 +105,20 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
       </Stack>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <Button width='max-content' variant='gradientOutline' onClick={handleBack}>
+        <Button
+          width='max-content'
+          variant='gradientOutline'
+          onClick={handleBack}
+          fontWeight={500}
+          fontFamily='spaceMono'>
           Back
         </Button>
-        <Button width='max-content' variant='bright' onClick={handleSubmit(onNext, onError)}>
+        <Button
+          width='max-content'
+          variant='bright'
+          onClick={handleSubmit(onNext, onError)}
+          fontWeight={500}
+          fontFamily='spaceMono'>
           Next
         </Button>
       </Flex>

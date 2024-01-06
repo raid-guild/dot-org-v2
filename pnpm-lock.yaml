@@ -57,7 +57,7 @@ dependencies:
     specifier: ^6.7.1
     version: 6.9.2
   fathom-client:
-    specifier: ^3.5.0
+    specifier: ^3.6.0
     version: 3.6.0
   framer-motion:
     specifier: ^10.16.15

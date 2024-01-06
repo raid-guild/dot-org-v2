@@ -1,7 +1,8 @@
-import { Card, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
+import { Button, Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
+import { base } from 'viem/chains';
 import { services } from '../../utils/constants';
 import tokens from '../../utils/extendedTokens';
-import CTABtnGroup from '../atoms/CTABtnGroup';
+import AnimatedButton from '../atoms/AnimatedButton';
 import Link from '../atoms/ChakraNextLink';
 
 const SectionThree = () => (
@@ -30,7 +31,18 @@ const SectionThree = () => (
       </Text>
       <br />
 
-      <CTABtnGroup />
+      <Flex gap={2} flexWrap={{ base: 'wrap', md: 'nowrap' }} w='100%' justify='center'>
+        <Link href='/hire/1'>
+          <Button variant='bright' w='160px' fontWeight={500}>
+            Hire Us
+          </Button>
+        </Link>
+        <Link href='/join/1'>
+          <AnimatedButton w='160px' fontWeight={500}>
+            All Services
+          </AnimatedButton>
+        </Link>
+      </Flex>
     </VStack>
     <VStack height={{ base: 'max', md: 'full' }}>
       <SimpleGrid columns={{ base: 1, lg: 2 }} gap={5} my='auto' ml={{ lg: '1.5rem' }}>

@@ -150,6 +150,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
           placeholder='Tell us how you think we can best help you?'
           name='additionalInfo'
           localForm={localForm}
+          fontFamily='texturina'
         />
 
         <RadioBox
@@ -158,6 +159,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
           options={['Fast & Polished', 'Fast & Inexpensive', 'Polished & Inexpensive']}
           stack={upTo780 ? 'vertical' : 'horizontal'}
           localForm={localForm}
+          fontFamily='texturina'
         />
       </Stack>
 
@@ -167,16 +169,18 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
         </Link>
       </Flex> */}
       <HStack gap='2'>
-        <Button variant='gradientOutline' onClick={handleBack} width='150px'>
+        <Button variant='gradientOutline' onClick={handleBack} fontFamily='monospace' fontWeight={500}>
           Back
         </Button>
 
         <Button
-          variant='gradientOutline'
+          variant='bright'
           isDisabled={isSubmitting}
           isLoading={isSubmitting}
           loadingText='Submitting'
-          onClick={handleSubmit(onNext, handleError(toast))}>
+          onClick={handleSubmit(onNext, handleError(toast))}
+          fontWeight={500}
+          fontFamily='monospace'>
           Submit
         </Button>
         {/* {formStatus === FORM_STATE.AWAITING_PAYMENT && (

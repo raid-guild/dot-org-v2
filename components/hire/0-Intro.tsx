@@ -58,7 +58,7 @@ const Intro = ({ handleNext, isConnected }: Props) => (
       {!isConnected ? (
         <ConnectWallet label='Sign in to Continue' />
       ) : (
-        <Button variant='bright' onClick={handleNext} width='max-content'>
+        <Button variant='bright' onClick={handleNext} width='max-content' fontFamily='monospace' fontWeight={500}>
           New Consultation
         </Button>
       )}

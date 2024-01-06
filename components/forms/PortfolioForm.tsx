@@ -146,8 +146,8 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
         localForm={localForm}
       />
 
-      <Box pt={8} onClick={handleSubmit(onSubmit)} fontFamily='mono'>
-        <Button variant='bright' width='200px'>
+      <Box pt={8} onClick={handleSubmit(onSubmit)}>
+        <Button variant='bright' width='200px' fontFamily='monospace' fontWeight={500}>
           {isEditable ? 'Save Changes' : 'Publish Project'}
         </Button>
       </Box>

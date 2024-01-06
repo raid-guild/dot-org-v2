@@ -88,7 +88,7 @@ export default function StepOne({ handleNext, handleBack }: Props) {
 
   return (
     <VStack py={8}>
-      <SimpleGrid columns={{ base: 1, md: 2 }} gap='2rem' w='100%' mb='2rem'>
+      <SimpleGrid columns={{ base: 1, md: 2 }} gap='2rem' w='100%' mb='2rem' fontFamily='texturina'>
         {formFields.map((field) => {
           if (field.type === 'textarea') {
             return (
@@ -100,6 +100,7 @@ export default function StepOne({ handleNext, handleBack }: Props) {
                   placeholder={field.placeholder}
                   key={field.name}
                   variant='solidOutline'
+                  fontFamily='texturina'
                 />
               </Box>
             );

@@ -2,18 +2,27 @@ import Ranger from '../../assets/characters/ranger.svg';
 import { contentType } from './type';
 
 const web3UxDesign: contentType = {
-  title: 'Web3 UX Design',
+  meta: {
+    title: 'Hire Web3 Designer | Web3 UX Design | Raid Guild',
+    description:
+      'Elevate your web3 project with a skilled web3 designer. Raid Guild brings a wealth of collective experience to seamlessly integrate web3 design into branding projects.',
+  },
+  title: 'Web3 UX/UI Design',
   slug: 'web3-ux-design',
-  description: `Tired of losing your customers to poor navigation or Tracking Tools, and fed up with Poor Flows leading to drop-off of your community members?
+  description: `### Crafting Intuitive Digital Experiences 
+  Are you grappling with the loss of valuable customers due to ineffective navigation, inadequate tracking tools, and suboptimal user flows, leading to diminished community engagement? The journey through the Crypto Dark Forest is daunting, but our proficient **Web3 Designers** at Raid Guild are prepared to light the way, ensuring a rapid and smooth transition from the initial stages to a fully-realized digital presence.
 
-    Crypto is an endless Dark Forest, so let our Raiders shed the light on well-established paths and help you go from 0-1 that much faster!
-
-    Let our Raiders build a seamless experience for your consumers while allowing you to focus on what's most important to you!`,
+  In the nuanced world of **Web3 Design**, our experienced team comprehends the complexities inherent in the crypto environment. We dedicate ourselves to creating a tailor-made **Web3 UX Design** that resonates with your vision, guaranteeing a fluid and captivating user experience. With Raid Guild as your strategic partner, the intricacies of Web3 design are in the hands of seasoned experts, allowing you to concentrate on your project’s core objectives while we navigate the intricate waters of Web3 for you.
+  `,
 
   roleImage: Ranger.src,
-  salesContent: `We at Raid Guild love a good adventure, and our approach to User Journeys puts that ethic front and center. From scoping the project and properly framing your goals to exploring the edge cases of use, we fully articulate your imagination to create the best user experience possible.
+  salesContent: `### Pioneering the User Journey in Web3
 
-    Our UX Specialists take your project from imagination to fruition! Wireframe or not, our specialist team will help you discern your unique User-Journey. Define your perfect customer, iterate around higher-level ideas you want to see on your website, and prototype the whole thing in Figma where it's easily updated and polished.`,
+  At Raid Guild, we embrace the spirit of adventure, and this enthusiasm is evident in our approach to user journeys. We start by thoroughly understanding your project's scope and objectives, delving into the nuances of your vision. Our **Web3 UX Design** specialists then embark on a meticulous journey from conceptualization to realization.
+  
+  Whether you're starting with wireframes or beginning from scratch, our **Web3 Designers** are adept at guiding you through the process of defining a unique and compelling user journey. We collaborate closely with you to identify your target audience, iterate on high-level concepts for your digital platform, and develop prototypes in tools like Figma. This ensures your vision is not only brought to life but is also adaptable and polished, ready to engage and mesmerize your users.
+  
+  `,
 };
 
 export default web3UxDesign;

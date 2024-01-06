@@ -1,7 +1,6 @@
 import Wizard from '../../assets/characters/wizard.svg';
-import { contentType } from './type';
 
-const smartContracts: contentType = {
+const smartContracts = {
   title: 'Web3 Smart Contracts',
   slug: 'web3-smart-contracts',
   description: `Custom contract's could be your projects ticket to web3 Stardom! Or, they could lead to a wild and novel Exploitation. Smart Contracts are not just hard, but also potentially put your consumers at risk. Put your worries aside and let our Experienced Smart Contract wizards turn your Idea's loose on the Meta-Verse! 

@@ -9,6 +9,7 @@ import handleError from '../../utils/forms';
 import { mapConsultationService } from '../../utils/mapping';
 import RadioBox from '../atoms/RadioBox';
 import FormNavigation from './FormNavigation';
+import 'react-datepicker/dist/react-datepicker.css';
 
 type Props = {
   handleNext: () => void;
@@ -33,7 +34,9 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
   const { hireState, setHireState } = useHireState();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const toast = useToast();
-  const { handleSubmit, reset } = localForm;
+  const { handleSubmit, reset, watch } = localForm;
+
+  const desiredDeliveryDate = watch('desiredDeliveryDate');
 
   useEffect(() => {
     const currData = {
@@ -53,12 +56,11 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
     });
     handleNext();
   };
-  const handleDateChange = (date: any) => {
-    if (new Date() > date) {
+  const handleDateChange = () => {
+    console.log(desiredDeliveryDate);
+    if (new Date() > desiredDeliveryDate) {
       toast.error({ title: 'Please choose a future date', iconName: 'alert' });
-      return;
     }
-    localForm.setValue('desiredDeliveryDate', date);
   };
   const servicesOptions = hireUsServices.map((s: string) => ({ value: mapConsultationService(s), label: s }));
 
@@ -83,12 +85,15 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
             stack='vertical'
             localForm={localForm}
           />
-          <DatePicker
-            label='Expected Deadline*'
-            name='desiredDeliveryDate'
-            localForm={localForm}
-            // onChange={handleDateChange}
-          />
+          <Box w='50%'>
+            <DatePicker
+              label='Expected Deadline*'
+              name='desiredDeliveryDate'
+              localForm={localForm}
+              selected={desiredDeliveryDate}
+              onCalendarClose={handleDateChange}
+            />
+          </Box>
         </Stack>
       </SimpleGrid>
       <FormNavigation handleBack={handleBack} handleNext={handleSubmit(onNext, handleError(toast))} />

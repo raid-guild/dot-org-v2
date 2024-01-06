@@ -12,7 +12,7 @@ const CTABtnGroup = () => {
       justifyContent='center'
       gap={2}>
       <Link href='/hire/1'>
-        <Button variant='bright' w='150px'>
+        <Button variant='bright' w='150px' fontWeight={500} fontFamily='spaceMono'>
           Hire Us
         </Button>
       </Link>

@@ -4,4 +4,8 @@ export type contentType = {
   description: string;
   roleImage: string;
   salesContent: string;
+  meta: {
+    title: string;
+    description: string;
+  };
 };

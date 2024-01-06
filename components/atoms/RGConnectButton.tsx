@@ -1,4 +1,5 @@
 import { Box, Button, ChakraButtonProps } from '@raidguild/design-system';
+import { color } from 'framer-motion';
 import tokens from '../../utils/extendedTokens';
 
 interface RGButtonProps extends ChakraButtonProps {
@@ -10,12 +11,12 @@ const RGConnectButton = ({ children, ...props }: RGButtonProps) => (
     height={10}
     minW='max-content'
     borderRadius={2}
+    fontWeight={500}
+    fontFamily='spaceMono'
     bgGradient={linearGradient}
     sx={{
       position: 'relative',
       display: 'block',
-      fontFamily: 'monospace',
-      textDecoration: 'none',
       textAlign: 'center',
       color: '#ddd',
       textTransform: 'uppercase',

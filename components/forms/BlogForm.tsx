@@ -86,7 +86,7 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
         </Text>
       </Stack>
       <Box pt={8} fontFamily='mono'>
-        <Button variant='bright' width='max' onClick={handleSubmit(onSubmit)}>
+        <Button variant='bright' width='max' onClick={handleSubmit(onSubmit)} fontFamily='monospace' fontWeight={500}>
           {isEditable ? 'Save Changes' : 'Publish Blog'}
         </Button>
       </Box>

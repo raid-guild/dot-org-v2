@@ -13,7 +13,7 @@ const Confirmation = () => {
         The Fires Have Been Lit!
       </Heading>
 
-      <Text fontFamily='spaceMono'>
+      <Text fontFamily='spaceMono' textAlign='center'>
         Your request has been received. A member of the Guild will be in touch with you soon.
       </Text>
     </VStack>

@@ -1,4 +1,4 @@
-import { Button, Center, Flex, Image, SimpleGrid, Stack } from '@raidguild/design-system';
+import { Button, Flex, Image, SimpleGrid, Stack } from '@raidguild/design-system';
 import _ from 'lodash';
 import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
@@ -14,7 +14,7 @@ interface SectionFourProps {
 
 const SectionFour = ({ portfolioList }: SectionFourProps) => {
   return (
-    <Center
+    <Flex
       id='portfolio'
       bgImage={Clouds.src}
       bg={tokens.backgroundImageOverlay}
@@ -35,12 +35,12 @@ const SectionFour = ({ portfolioList }: SectionFourProps) => {
           ))}
         </SimpleGrid>
         <Link href='/portfolio'>
-          <Button variant='bright' width='max-content'>
+          <Button variant='bright' width='max-content' fontWeight={500} fontFamily='spaceMono'>
             View All Projects
           </Button>
         </Link>
       </Stack>
-    </Center>
+    </Flex>
   );
 };
 

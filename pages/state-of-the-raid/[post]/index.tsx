@@ -63,7 +63,14 @@ function PostPage({ initialData }: Props) {
               variant='bright'
               width='max-content'
               onClick={() => router.push(`/state-of-the-raid/${initialData.slug}/edit`)}>
-              <Flex w='max-content' px={4} gap={2} alignItems='center' justifyContent='center'>
+              <Flex
+                w='max-content'
+                px={4}
+                gap={2}
+                alignItems='center'
+                justifyContent='center'
+                fontFamily='monospace'
+                fontWeight={500}>
                 <FiEdit fontSize='16px' color='white' /> Edit Post
               </Flex>
             </Button>

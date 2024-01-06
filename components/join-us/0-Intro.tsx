@@ -25,7 +25,7 @@ const Intro = ({ handleNext, isConnected }: Props) => (
       {!isConnected ? (
         <ConnectWallet label='Sign in to Continue' />
       ) : (
-        <Button onClick={handleNext} width='max-content' variant='bright'>
+        <Button onClick={handleNext} width='max-content' variant='bright' fontWeight={500} fontFamily='spaceMono'>
           Start Application
         </Button>
       )}

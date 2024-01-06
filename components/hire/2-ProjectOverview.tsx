@@ -40,7 +40,7 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
   };
   return (
     <VStack py={8}>
-      <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }} w='100%' mb='2rem'>
+      <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }} w='100%' mb='2rem' fontFamily='texturina'>
         <RadioBox
           name='projectType'
           label='New or Existing Project*'
@@ -76,6 +76,7 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
             name='projectDescription'
             localForm={localForm}
             variant='solidOutline'
+            fontFamily='texturina'
           />
         </GridItem>
       </SimpleGrid>

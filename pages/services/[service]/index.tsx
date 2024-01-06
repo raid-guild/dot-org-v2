@@ -1,6 +1,8 @@
 import { Flex, Grid } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetServerSidePropsContext } from 'next';
+
+import Head from 'next/head';
 import ProjectCard from '../../../components/page-components/ProjectCard';
 import ServicePageTemplate from '../../../components/page-templates/ServicePageTemplate';
 import services from '../../../utils/services';
@@ -11,15 +13,25 @@ type Props = {
   roleImage: string;
   salesContent: string;
   data?: any;
+  meta: {
+    title: string;
+    description: string;
+  };
 };
 
-const Service = ({ title, description, roleImage, salesContent, data }: Props) => {
+const Service = ({ title, description, roleImage, salesContent, data, meta }: Props) => {
   return (
     <ServicePageTemplate
       pageTitle={title}
       pageDescription={description}
       roleImage={roleImage}
       salesContent={salesContent}>
+      <Head>
+        <title>{meta?.title}</title>
+        <meta name='description' content={meta?.description} />
+        <meta name='og:title' content={meta?.title} />
+        <meta name='og:description' content={meta?.description} />
+      </Head>
       <Flex direction='column'>
         {data?.length > 0 && (
           <Grid gridTemplateColumns='1fr 1fr 1fr'>
@@ -49,7 +61,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       description: _.get(copy, 'description', ''),
       roleImage: _.get(copy, 'roleImage', ''),
       salesContent: _.get(copy, 'salesContent', ''),
-
+      meta: _.get(copy, 'meta'),
       data: null,
     },
   };

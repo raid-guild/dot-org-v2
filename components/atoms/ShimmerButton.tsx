@@ -23,6 +23,8 @@ const ShimmerButton = ({ children, ...props }: ShimmerButtonProps) => {
     <Button
       variant='gradientOutline'
       minW='max-content'
+      fontWeight={500}
+      fontFamily='spaceMono'
       _hover={{
         animation: `${rotateAnimation} 2s ease-in-out infinite`,
         bgClip: 'text',

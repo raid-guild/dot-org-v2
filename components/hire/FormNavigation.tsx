@@ -8,10 +8,10 @@ interface Props {
 const FormNavigation = ({ handleBack, handleNext }: Props) => {
   return (
     <HStack>
-      <Button variant='gradientOutline' onClick={handleBack} width='150px'>
+      <Button variant='gradientOutline' onClick={handleBack} width='150px' fontWeight={500} fontFamily='spaceMono'>
         Back
       </Button>
-      <Button variant='bright' onClick={handleNext} width='150px'>
+      <Button variant='bright' onClick={handleNext} width='150px' fontWeight={500} fontFamily='spaceMono'>
         Next
       </Button>
     </HStack>

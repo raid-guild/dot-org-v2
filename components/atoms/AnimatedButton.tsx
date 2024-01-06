@@ -26,13 +26,12 @@ const AnimatedButton = ({ children, ...props }: AnimatedButtonProps) => {
   return (
     <Button
       variant='gradientOutline'
+      fontFamily='spaceMono'
+      fontWeight={500}
       _hover={{
-        textDecor: 'none',
         background: 'transparent',
         '.text-gradient': { bgClip: 'initial', textColor: '#fff', bg: 'transparent' },
       }}
-      fontWeight='medium'
-      fontFamily='monospace'
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -60,7 +59,6 @@ const AnimatedButton = ({ children, ...props }: AnimatedButtonProps) => {
         bgClip='text'
         h='max'
         p={6}
-        mb={0.5}
         zIndex={10}
         alignItems='center'
         justifyContent='center'

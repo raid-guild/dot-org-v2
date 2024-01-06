@@ -206,7 +206,7 @@ export const NavMenuData = [
     items: [
       {
         name: 'Community Management',
-        slug: 'web3-community-management',
+        slug: 'community-management',
       },
       {
         name: 'DAO Consulting',
