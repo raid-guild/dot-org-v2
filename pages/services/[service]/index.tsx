@@ -1,7 +1,6 @@
 import { Flex, Grid } from '@raidguild/design-system';
 import _ from 'lodash';
-import { GetServerSidePropsContext } from 'next';
-
+import { GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 import ProjectCard from '../../../components/page-components/ProjectCard';
 import ServicePageTemplate from '../../../components/page-templates/ServicePageTemplate';
@@ -33,11 +32,11 @@ const Service = ({ title, description, roleImage, salesContent, data, meta }: Pr
         <meta name='og:description' content={meta?.description} />
       </Head>
       <Flex direction='column'>
-        {data?.length > 0 && (
+        {!_.isEmpty(data) && (
           <Grid gridTemplateColumns='1fr 1fr 1fr'>
-            {data.map((item: any) => {
-              return <ProjectCard name={item.name} logo={item.logo} website={item.website} key={item.id} />;
-            })}
+            {_.map(data, (item) => (
+              <ProjectCard name={item.name} logo={item.logo} website={item.website} key={item.id} />
+            ))}
           </Grid>
         )}
       </Flex>
@@ -45,15 +44,9 @@ const Service = ({ title, description, roleImage, salesContent, data, meta }: Pr
   );
 };
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  const { params } = context;
-  const service = _.isArray(_.get(params, 'service')) ? _.first(_.get(params, 'service')) : _.get(params, 'service');
-  console.log(service);
-  let copy = null;
-
-  if (service && !_.isEmpty(service)) {
-    copy = _.find(_.flatMapDeep(services, (value) => (value.slug === service ? value : [])));
-  }
+export const getStaticProps = async (context: GetStaticPropsContext) => {
+  const serviceSlug = _.get(context, 'params.service', '') as string;
+  const copy = _.find(services, { slug: serviceSlug }) || {};
 
   return {
     props: {
@@ -61,10 +54,20 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       description: _.get(copy, 'description', ''),
       roleImage: _.get(copy, 'roleImage', ''),
       salesContent: _.get(copy, 'salesContent', ''),
-      meta: _.get(copy, 'meta'),
+      meta: _.get(copy, 'meta', {}),
       data: null,
     },
+    // revalidate: 60,
   };
 };
 
 export default Service;
+
+// If using dynamic routes, add getStaticPaths here
+export const getStaticPaths = async () => {
+  const paths = _.map(services, (service) => ({
+    params: { service: service.slug },
+  }));
+
+  return { paths, fallback: 'blocking' };
+};

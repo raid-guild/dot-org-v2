@@ -37,7 +37,7 @@ const navItems = [
 ];
 
 const Nav = () => {
-  const [isOpen, onOpen] = useState<boolean>(false);
+  const [isOpen, onOpen] = useState(false);
   const hideOnBase = useBreakpointValue({ base: true, lg: false });
   const router = useRouter();
   const basePath = router.route.split('/')[1];
