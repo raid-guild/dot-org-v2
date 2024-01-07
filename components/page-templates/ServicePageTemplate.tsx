@@ -1,11 +1,11 @@
-import { Box } from '@raidguild/design-system';
+import { Box, Container } from '@raidguild/design-system';
 import Clouds from '../../assets/illustrations/clouds.webp';
 import Valhalla from '../../assets/illustrations/valhalla.svg';
 import WallSconce from '../../assets/illustrations/wallSconce.svg';
 import Wand from '../../assets/illustrations/wand.svg';
 import tokens from '../../utils/extendedTokens';
-import Container from '../page-components/Container';
 import SiteLayout from '../page-components/SiteLayout';
+import ServiceSectionContainer from '../page-components/ServiceSectionContainer';
 
 type Props = {
   pageTitle: string;
@@ -19,10 +19,15 @@ const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, roleIma
   return (
     <SiteLayout bg={tokens.purpleToIndigoGradient}>
       <Box background='blackDark' textColor='white'>
-        <Container content={pageDescription} imagePosition='row' title={pageTitle} icon={WallSconce.src} />
+        <ServiceSectionContainer
+          content={pageDescription}
+          imagePosition='row'
+          title={pageTitle}
+          icon={WallSconce.src}
+        />
       </Box>
       <Box background='blackDark' textColor='white' zIndex={30}>
-        <Container
+        <ServiceSectionContainer
           content={salesContent}
           icon={Wand.src}
           bg='black'

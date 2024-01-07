@@ -1,7 +1,6 @@
 import Paladin from '../../assets/characters/paladin.svg';
-import { contentType } from './type';
 
-const web3backend: contentType = {
+const web3backend = {
   title: 'Web3 Backend',
   slug: 'web3-backend',
 

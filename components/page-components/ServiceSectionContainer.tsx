@@ -1,16 +1,5 @@
-import {
-  Box,
-  Button,
-  Card,
-  Flex,
-  HStack,
-  Heading,
-  Image,
-  Link,
-  SimpleGrid,
-  VStack,
-  defaultTheme,
-} from '@raidguild/design-system';
+import { Box, Card, Flex, HStack, Heading, Image, SimpleGrid, VStack, defaultTheme } from '@raidguild/design-system';
+import CTABtnGroup from '../atoms/CTABtnGroup';
 import Castle from '../../assets/illustrations/castle.svg';
 import Decor from '../../assets/illustrations/decor.svg';
 import tokens from '../../utils/extendedTokens';
@@ -28,7 +17,7 @@ interface ContainerProps {
   cta?: boolean;
 }
 
-const Container: React.FC<ContainerProps> = ({
+const ServiceSectionContainer: React.FC<ContainerProps> = ({
   content,
   bg,
   imageUrl,
@@ -71,22 +60,7 @@ const Container: React.FC<ContainerProps> = ({
             <VStack spacing={4} mt={6} zIndex={30}>
               <Markdown>{content}</Markdown>
             </VStack>
-            {cta && (
-              <Flex
-                w='100%'
-                mt={{ base: '2rem' }}
-                direction={{ base: 'column', lg: 'row' }}
-                justifyContent='center'
-                alignItems={{ base: 'center', xl: 'flex-start' }}
-                gap={2}>
-                <Link href='/hire/1'>
-                  <Button variant='bright'>Hire Us</Button>
-                </Link>
-                <Link href='/join/1'>
-                  <Button variant='gradientOutline'>Join Us</Button>
-                </Link>
-              </Flex>
-            )}
+            {cta && <CTABtnGroup />}
           </Card>
 
           {/* Column 2 */}
@@ -99,4 +73,4 @@ const Container: React.FC<ContainerProps> = ({
   );
 };
 
-export default Container;
+export default ServiceSectionContainer;

@@ -3,35 +3,23 @@ import Warrior from '../../assets/characters/warrior.svg';
 const web3Frontend = {
   title: 'Web3 FrontEnd',
   slug: 'web3-frontend',
-  description: `If your frontend has vulnerabilities, your users can lose money.
+  meta: {
+    title: 'Hire Web3 Developer | dApp Development | Raid Guild',
+    description: `Looking to build the ideal frontend for your web3 dApp? Raid Guild's Web3 Developers have over 100 years of collective experience in Web3 dApp Development.`,
+  },
+  description: `### Crafting the Future of dApps with Expertise and Innovation
 
-  Form validations, smart contract connections, gas estimates, conversions to Solidity "Big Number." These critical details might cause "leaks" in your app. 
+  Are you on the quest to create the perfect frontend for your web3 decentralized application (dApp)? Look no further! At Raid Guild, our team of **Web3 Developers** brings together more than 100 years of collective experience in the cutting-edge field of **Web3 dApp Development**.
   
-  These "leaks" will create a headache for your team. Funds might disappear, and people will not be happy.
-  
-  Everybody but the most sophisticated crypto users need a frontend. Your smart contracts can work perfectly, but if your frontend has bugs, funds can get lost forever.
-  
-  For example, if your frontend has an input where users enter an amount of Ether, you need to convert it to a "BigNumber." Failure to do this will cause unexpected results.
-  
-  Your users also want feedback when using your frontend. For example, when money is sent to your smart contract, people will panic if they don't get feedback that the transaction is processing.
-  
-  Modern frontend technology changes fast! New frameworks and libraries are always being created. Not using these tools correctly can lead to "bloating" and slow down your app. 
-  
-  Humans' attention spans are at an all time low. A split second in your apps performance will cause users to leave.`,
-
+  Our experts are not just developers; they are visionaries in the Web3 domain. They possess the skills and insights necessary to bring your dApp from concept to reality, ensuring it's not only functional but also ahead of its time. Whether it's intuitive user interfaces, seamless integration with blockchain technology, or innovative features that set your dApp apart, our team is equipped to deliver.
+  `,
   roleImage: Warrior.src,
+  salesContent: `### Our Approach: Transforming Your Vision into a Web3 Reality
 
-  salesContent: `We've been building frontends since the start of the web. We've seen how tech has evolved. Our engineers know the small details that keep users coming back. We have experience using the most bleeding-edge tools for the job.
-
-  A nice frontend is powerful enough to make a lousy app appear great.
+  When you **Hire a Web3 Developer** from Raid Guild, you're not just getting a programmer. You're engaging with a professional who understands the nuances of the Web3 ecosystem and can translate that into a user-friendly, highly efficient, and secure dApp.
   
-  "Your users crave a great frontend experience..."
-  
-  Let Raid Guild build your app's frontend for you. Don't take my word for it when I say we're great at (and love) what we do. 
-  
-  Here are some of the frontends we've built: [App #1](https://), [App #2](https://), [App #3](https://).
-  
-  Schedule your appointment with Raid Guild now, and let us handle the tedious work of frontend for you.`,
+  Our approach is centered around understanding your unique vision and needs, and then leveraging our extensive experience in dApp development to create a product that is not just technologically advanced but also aligns with your goals. Our commitment to excellence in dApp development is unmatched, and we’re eager to help you lead the charge in the evolving world of decentralized applications.
+  `,
 };
 
 export default web3Frontend;

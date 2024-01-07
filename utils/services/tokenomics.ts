@@ -7,7 +7,7 @@ const tokenomics = {
     title: 'Design DAO Tokenomics | Token Incentives',
     description: `Raid Guild's smart contract developers streamline complex tokenomics models, blending game theory and systems design for impactful Web3 projects.`,
   },
-  description: `### **Mastering the Art of Digital Value Creation**
+  description: `### Mastering the Art of Digital Value Creation
 
   Tokenomics, a fusion of Game-Theory, Inflation, Deflation, Systems Design, Governance, and ERC-20 tokens, forms the backbone of any successful project in the Web3 space. The journey through the realms of Incentive Alignment and Token Theory is complex, laden with jargon, and filled with philosophical intricacies that could take years to unravel.
   

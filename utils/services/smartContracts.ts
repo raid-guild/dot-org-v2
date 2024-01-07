@@ -2,17 +2,26 @@ import Wizard from '../../assets/characters/wizard.svg';
 
 const smartContracts = {
   title: 'Web3 Smart Contracts',
-  slug: 'web3-smart-contracts',
-  description: `Custom contract's could be your projects ticket to web3 Stardom! Or, they could lead to a wild and novel Exploitation. Smart Contracts are not just hard, but also potentially put your consumers at risk. Put your worries aside and let our Experienced Smart Contract wizards turn your Idea's loose on the Meta-Verse! 
+  slug: 'smart-contracts',
+  meta: {
+    title: 'Hire Solidity Developer | Ethereum Developer | Raid Guild',
+    description:
+      'The backbone of any web3 dApp is its smart contracts. Raid Guild leads in web3 smart contract audits and blockchain engineering.',
+  },
+  description: `### Unleashing the Power of Custom Contracts in the Web3 Universe
+
+  Custom smart contracts could be the key to your project's ascent to Web3 stardom. However, without proper handling, they could also lead to unforeseen vulnerabilities and risks. Navigating the complexities of smart contract development is not just challenging—it's a critical task that demands expertise to safeguard your consumers.
   
-  Are you going Cross-Chain? Using the DAO-Haus Platform? Or dont' even know where to start, Let Raid Guild guide you through the Dark Forest of Protocols and Tools and get you from Zero to Hero! `,
+  Cast your worries aside and entrust your visionary ideas to our team of **Experienced Smart Contract Wizards**. At Raid Guild, we're equipped with top-tier **Blockchain Engineers** and **Solidity Developers** who are masters in crafting secure and innovative contracts, ready to make a mark in the Meta-Verse.
+  `,
 
   roleImage: Wizard.src,
+  salesContent: `### Ensuring Security and Innovation in Smart Contract Development
 
-  // todo: update sales content for wizard
-  salesContent: `Creating a consistent and visually pleasing web-site is Raid Guilds top priority while helping you summon your vision. Typography, Style, and Color Themes can make or break an already Great Project. Let our Web3 Design specialist's work alongside your visionaries to Create a website that fully displays the greatness of your project!
-
-  Raid Guild is excited to work one on one with you to Craft a unique and unforgettable experience for All your Customers and Community Members.`,
+  Whether you're venturing into Cross-Chain applications, leveraging the DAO-Haus Platform, or are at the initial stages of understanding this new realm, let us be your guide. Our team is well-versed in a spectrum of protocols and tools, ensuring a seamless and secure journey through the intricate landscape of Web3. With our expertise in **Smart Contract Audits**, you can rest assured that your project is fortified against vulnerabilities.
+  
+  **Hire a Blockchain Developer** or **Hire an Ethereum Developer** from Raid Guild and experience a transformation from zero to hero in the digital world. Our commitment is to not just meet but exceed the expectations of the ever-evolving Web3 landscape, ensuring your project is not just successful but also secure and future-proof.
+  `,
 };
 
 export default smartContracts;

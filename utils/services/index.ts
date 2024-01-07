@@ -1,6 +1,7 @@
 import web3CommunityManagement from './communityManagement';
 import web3Content from './content';
 import tokenomics from './tokenomics';
+import daoConsulting from './daoConsulting';
 // import web3backend from './backend';
 import web3Frontend from './frontend';
 // import web3Marketing from './marketing';
@@ -13,6 +14,7 @@ const services = {
   tokenomics,
   web3CommunityManagement,
   web3Content,
+  daoConsulting,
   // web3Marketing,
   // web3backend,
   web3Frontend,

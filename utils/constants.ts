@@ -210,7 +210,7 @@ export const NavMenuData = [
       },
       {
         name: 'DAO Consulting',
-        slug: 'web3-dao-consulting',
+        slug: 'dao-consulting',
       },
       {
         name: 'Content',

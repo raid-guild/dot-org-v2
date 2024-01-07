@@ -1,7 +1,6 @@
 import Archer from '../../assets/characters/ranger.svg';
-import { contentType } from './type';
 
-const web3UIdesign: contentType = {
+const web3UIdesign = {
   title: 'Web3 UI Design',
   slug: 'web3-ui-design',
   description: `The way your Protocol 'Looks' is the first thing your community will experience, Making sure that it's cohesive, sensible, and easy to mentally navigate can be the difference between your Protocol being the next Unicorn, or just another Copy-Pasta of Uniswap. 
