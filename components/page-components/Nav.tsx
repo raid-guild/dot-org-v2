@@ -20,12 +20,12 @@ import {
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FaBars, FaChevronDown, FaChevronRight, FaTimes } from 'react-icons/fa';
+import * as Fathom from 'fathom-client';
 import GuildLogo from '../../assets/illustrations/raidguild.webp';
 import { NavMenuData } from '../../utils/constants';
 import Link from '../atoms/ChakraNextLink';
 import { ConnectWallet } from '../atoms/ConnectWallet';
 import SubMenu from './SubMenuMobile';
-
 import NavLink from './NavLink';
 
 const navItems = [
@@ -117,6 +117,7 @@ const Nav = () => {
                                   alignItems='center'
                                   justifyItems='center'
                                   href={`/services/${menuItem.slug}`}
+                                  onClick={() => Fathom.trackEvent(`Service ${menuItem.slug} Clicked`)}
                                   gap={8}
                                   _hover={{
                                     bgColor: `${defaultTheme.colors.primary[500]}40`,
@@ -170,6 +171,7 @@ const Nav = () => {
                                   alignItems='center'
                                   justifyItems='center'
                                   href={`/services/${menuItem.slug}`}
+                                  onClick={() => Fathom.trackEvent(`Service ${menuItem.slug} Clicked`)}
                                   gap={8}
                                   _hover={{
                                     bgColor: `${defaultTheme.colors.primary[500]}40`,
@@ -224,6 +226,7 @@ const Nav = () => {
                                   alignItems='center'
                                   justifyItems='center'
                                   href={`/services/${menuItem.slug}`}
+                                  onClick={() => Fathom.trackEvent(`Service ${menuItem.slug} Clicked`)}
                                   gap={8}
                                   _hover={{
                                     bgColor: `${defaultTheme.colors.primary[500]}40`,

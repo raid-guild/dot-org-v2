@@ -1,5 +1,6 @@
 import { Box, Castle, Knight, Link, Spacer, VStack, Wizard2, defaultTheme } from '@raidguild/design-system';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
+import * as Fathom from 'fathom-client';
 import { NavMenuData } from '../../utils/constants';
 
 const SubMenu = ({
@@ -60,6 +61,7 @@ const SubMenu = ({
             flexDirection='row'
             mx={4}
             href={`/services/${menuItem.slug}`}
+            onClick={() => Fathom.trackEvent(`Service ${menuItem.slug} Clicked`)}
             gap={8}
             _hover={{ bgColor: `${defaultTheme.colors.primary[500]}20`, textColor: defaultTheme.colors.primary[500] }}
             w='full'

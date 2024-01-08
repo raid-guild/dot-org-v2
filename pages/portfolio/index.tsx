@@ -3,7 +3,7 @@ import { Box, Button, Image, SimpleGrid, Stack, Text, VStack } from '@raidguild/
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-
+import * as Fathom from 'fathom-client';
 import { FiPlusCircle } from 'react-icons/fi';
 import Link from '../../components/atoms/ChakraNextLink';
 import PageTitle from '../../components/page-components/PageTitle';
@@ -53,7 +53,7 @@ const portfolioStats = [
 function PortfolioContent({ project }: { project: any }) {
   const link = `/portfolio/${project.slug}`;
   return (
-    <Link href={link}>
+    <Link href={link} onClick={() => Fathom.trackEvent(`Portfolio ${project.slug} Clicked`)}>
       <Image src={_.get(project, 'imageUrl')} boxSize={32} objectFit='contain' />
     </Link>
   );
@@ -110,7 +110,7 @@ function PortfolioPage({ initialData }: Props) {
       </SimpleGrid>
       <PageTitle title='' hideIcon />
       <SimpleGrid gap={{ base: 12, xl: 10 }} columns={{ base: 2, xl: 5 }} py={20} justifyItems='center'>
-        {_.map(portfolioList, (project) => (
+        {_.map(portfolioList, (project: any) => (
           <PortfolioContent project={project} key={_.get(project, 'name')} />
         ))}
       </SimpleGrid>

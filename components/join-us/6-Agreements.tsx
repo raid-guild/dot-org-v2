@@ -15,6 +15,7 @@ import {
   useDisclosure,
   useToast,
 } from '@raidguild/design-system';
+import * as Fathom from 'fathom-client';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useEffect, useRef } from 'react';
@@ -72,6 +73,7 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
     };
     setJoinState(currJoinState);
     submitJoinForm(currJoinState);
+    Fathom.trackEvent('Join Form Submitted');
     handleNext();
   };
   const onError = (data: FieldErrorsImpl) => {

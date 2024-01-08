@@ -1,5 +1,5 @@
-import React from 'react';
 import { Link, defaultTheme } from '@raidguild/design-system';
+import React from 'react';
 
 export interface NavLinkProps {
   item: {

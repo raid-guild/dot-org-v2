@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, HStack, Stack, Textarea, VStack, useMediaQuery, useToast } from '@raidguild/design-system';
 import _ from 'lodash';
+import * as Fathom from 'fathom-client';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -116,7 +117,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
 
   const onNext = async (data: FieldValues) => {
     setIsSubmitting(true);
-
+    Fathom.trackEvent('Hire Form Submission Attempted');
     const currState = {
       ...hireState,
       hire4: { ...data },
@@ -131,8 +132,9 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
         iconName: 'alert',
       });
     } else {
+      Fathom.trackEvent('form submit success');
       toast.success({
-        title: 'Form submitted successfully!',
+        title: 'Hire Form Submitted successfully!',
         iconName: 'crown',
       });
       handleNext();
