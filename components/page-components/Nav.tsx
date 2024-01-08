@@ -52,7 +52,6 @@ const Nav = () => {
       {!hideOnBase ? (
         <HStack justifyContent='space-between' w='50vw'>
           <HStack spacing={8} alignItems='center' w='full'>
-            {/* Use lodash to map over navItems and generate navigation links */}
             {_.map(navItems, (item) =>
               item.name === 'Services' ? (
                 <Popover trigger='hover' placement='bottom-start' key='services'>
@@ -81,10 +80,10 @@ const Nav = () => {
                         textTransform='uppercase'
                         fontSize={18}>
                         {/* Code for Services menu */}
-                        {_.map(NavMenuData, (menuItem: any, index: any) => (
+                        {_.map(NavMenuData, (menuItem: Record<string, string>, index: any) => (
                           <Popover trigger='hover' placement='end-start' key={`services-${index}`}>
-                            <PopoverTrigger>
-                              <Box
+                            <PopoverTrigger color='white'>
+                              <Flex
                                 display='flex'
                                 flexDir='row'
                                 alignItems='center'
@@ -97,10 +96,10 @@ const Nav = () => {
                                 w='full'
                                 p={2.5}>
                                 <Castle fontSize={28} />
-                                {menuItem.name}
+                                {menuItem.category}
                                 <Spacer />
                                 <FaChevronRight fontSize={12} />
-                              </Box>
+                              </Flex>
                             </PopoverTrigger>
                             <PopoverContent bg='black' borderColor={defaultTheme.colors.primary[500]} borderRadius={2}>
                               <VStack
@@ -180,6 +179,7 @@ const Nav = () => {
             minH='100vh'
             w='full'
             pt={32}
+            color='white'
             _focus={{ overflow: 'auto' }}
             direction='column'
             justify='flex-start'
@@ -201,7 +201,6 @@ const Nav = () => {
                   textTransform='uppercase'
                   borderBottom='0.5px solid #FFFFFF30'
                   p={2.5}
-                  textColor='white'
                   textDecor='none'
                   display='flex'
                   gap={2}
