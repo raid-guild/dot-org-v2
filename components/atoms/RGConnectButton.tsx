@@ -1,5 +1,4 @@
 import { Box, Button, ChakraButtonProps } from '@raidguild/design-system';
-import { color } from 'framer-motion';
 import tokens from '../../utils/extendedTokens';
 
 interface RGButtonProps extends ChakraButtonProps {

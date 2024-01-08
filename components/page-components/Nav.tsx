@@ -5,7 +5,6 @@ import {
   Flex,
   HStack,
   Image,
-  Knight,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -13,20 +12,21 @@ import {
   PopoverTrigger,
   Spacer,
   VStack,
-  Wizard2,
   defaultTheme,
   useBreakpointValue,
 } from '@raidguild/design-system';
+import * as Fathom from 'fathom-client';
+import _ from 'lodash'; // Import lodash
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FaBars, FaChevronDown, FaChevronRight, FaTimes } from 'react-icons/fa';
-import * as Fathom from 'fathom-client';
+
 import GuildLogo from '../../assets/illustrations/raidguild.webp';
 import { NavMenuData } from '../../utils/constants';
 import Link from '../atoms/ChakraNextLink';
 import { ConnectWallet } from '../atoms/ConnectWallet';
-import SubMenu from './SubMenuMobile';
 import NavLink from './NavLink';
+import SubMenu from './SubMenuMobile';
 
 const navItems = [
   { name: 'Blog', href: '/state-of-the-raid' },
@@ -43,6 +43,7 @@ const Nav = () => {
   const basePath = router.route.split('/')[1];
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState<null | number>(null);
+
   return (
     <HStack justifyContent='space-between' width='full' color='white' id='Navigation Bar'>
       <Link href='/' zIndex={100}>
@@ -51,7 +52,8 @@ const Nav = () => {
       {!hideOnBase ? (
         <HStack justifyContent='space-between' w='50vw'>
           <HStack spacing={8} alignItems='center' w='full'>
-            {navItems.map((item) =>
+            {/* Use lodash to map over navItems and generate navigation links */}
+            {_.map(navItems, (item) =>
               item.name === 'Services' ? (
                 <Popover trigger='hover' placement='bottom-start' key='services'>
                   <PopoverTrigger>
@@ -78,169 +80,63 @@ const Nav = () => {
                         fontWeight='bold'
                         textTransform='uppercase'
                         fontSize={18}>
-                        <Popover trigger='hover' placement='end-start' key='services'>
-                          <PopoverTrigger>
-                            <Box
-                              display='flex'
-                              flexDir='row'
-                              alignItems='center'
-                              justifyItems='center'
-                              gap={8}
-                              _hover={{
-                                bgColor: `${defaultTheme.colors.primary[500]}40`,
-                                textColor: defaultTheme.colors.primary[500],
-                              }}
-                              w='full'
-                              p={2.5}>
-                              <Castle fontSize={28} />
-                              Development
-                              <Spacer />
-                              <FaChevronRight fontSize={12} />
-                            </Box>
-                          </PopoverTrigger>
-                          <PopoverContent bg='black' borderColor={defaultTheme.colors.primary[500]} borderRadius={2}>
-                            <VStack
-                              gap={1}
-                              justify='flex-start'
-                              align='flex-start'
-                              fontFamily='mono'
-                              fontWeight='bold'
-                              textTransform='uppercase'
-                              fontSize={18}>
-                              {NavMenuData[0].items.map((menuItem: Record<string, string>) => (
-                                <Link
-                                  fontFamily='monospace'
-                                  textTransform='full-size-kana'
-                                  key={menuItem.name}
-                                  display='flex'
-                                  flexDir='row'
-                                  alignItems='center'
-                                  justifyItems='center'
-                                  href={`/services/${menuItem.slug}`}
-                                  onClick={() => Fathom.trackEvent(`Service ${menuItem.slug} Clicked`)}
-                                  gap={8}
-                                  _hover={{
-                                    bgColor: `${defaultTheme.colors.primary[500]}40`,
-                                    textColor: defaultTheme.colors.primary[500],
-                                  }}
-                                  w='full'
-                                  py={2.5}
-                                  px={3.5}>
-                                  {menuItem.name}
-                                </Link>
-                              ))}
-                            </VStack>
-                          </PopoverContent>
-                        </Popover>
-                        <Popover trigger='hover' placement='end-start' key='services'>
-                          <PopoverTrigger>
-                            <Box
-                              display='flex'
-                              flexDir='row'
-                              alignItems='center'
-                              justifyItems='center'
-                              gap={8}
-                              _hover={{
-                                bgColor: `${defaultTheme.colors.primary[500]}40`,
-                                textColor: defaultTheme.colors.primary[500],
-                              }}
-                              w='full'
-                              p={2.5}>
-                              <Knight fontSize={28} />
-                              Design
-                              <Spacer />
-                              <FaChevronRight fontSize={12} />
-                            </Box>
-                          </PopoverTrigger>
-                          <PopoverContent bg='black' borderColor={defaultTheme.colors.primary[500]} borderRadius={2}>
-                            <VStack
-                              gap={1}
-                              justify='flex-start'
-                              align='flex-start'
-                              fontFamily='mono'
-                              fontWeight='bold'
-                              textTransform='uppercase'
-                              fontSize={18}>
-                              {NavMenuData[1].items.map((menuItem: Record<string, string>) => (
-                                <Link
-                                  fontFamily='monospace'
-                                  textTransform='full-size-kana'
-                                  key={menuItem.name}
-                                  display='flex'
-                                  flexDir='row'
-                                  alignItems='center'
-                                  justifyItems='center'
-                                  href={`/services/${menuItem.slug}`}
-                                  onClick={() => Fathom.trackEvent(`Service ${menuItem.slug} Clicked`)}
-                                  gap={8}
-                                  _hover={{
-                                    bgColor: `${defaultTheme.colors.primary[500]}40`,
-                                    textColor: defaultTheme.colors.primary[500],
-                                  }}
-                                  w='full'
-                                  py={2.5}
-                                  px={3.5}>
-                                  {menuItem.name}
-                                </Link>
-                              ))}
-                            </VStack>
-                          </PopoverContent>
-                        </Popover>
-                        <Popover trigger='hover' placement='end-start' key='services'>
-                          <PopoverTrigger>
-                            <Box
-                              display='flex'
-                              flexDir='row'
-                              alignItems='center'
-                              justifyItems='center'
-                              gap={8}
-                              _hover={{
-                                bgColor: `${defaultTheme.colors.primary[500]}40`,
-
-                                textColor: defaultTheme.colors.primary[500],
-                              }}
-                              w='full'
-                              p={2.5}>
-                              <Wizard2 fontSize={28} />
-                              Web3
-                              <Spacer />
-                              <FaChevronRight fontSize={12} />
-                            </Box>
-                          </PopoverTrigger>
-                          <PopoverContent bg='black' borderColor={defaultTheme.colors.primary[500]} borderRadius={2}>
-                            <VStack
-                              gap={1}
-                              justify='flex-start'
-                              align='flex-start'
-                              fontFamily='mono'
-                              fontWeight='bold'
-                              textTransform='uppercase'
-                              fontSize={18}>
-                              {NavMenuData[2].items.map((menuItem: Record<string, string>) => (
-                                <Link
-                                  fontFamily='monospace'
-                                  textTransform='full-size-kana'
-                                  key={menuItem.name}
-                                  display='flex'
-                                  flexDir='row'
-                                  alignItems='center'
-                                  justifyItems='center'
-                                  href={`/services/${menuItem.slug}`}
-                                  onClick={() => Fathom.trackEvent(`Service ${menuItem.slug} Clicked`)}
-                                  gap={8}
-                                  _hover={{
-                                    bgColor: `${defaultTheme.colors.primary[500]}40`,
-                                    textColor: defaultTheme.colors.primary[500],
-                                  }}
-                                  w='full'
-                                  py={2.5}
-                                  px={3.5}>
-                                  {menuItem.name}
-                                </Link>
-                              ))}
-                            </VStack>
-                          </PopoverContent>
-                        </Popover>
+                        {/* Code for Services menu */}
+                        {_.map(NavMenuData, (menuItem: any, index: any) => (
+                          <Popover trigger='hover' placement='end-start' key={`services-${index}`}>
+                            <PopoverTrigger>
+                              <Box
+                                display='flex'
+                                flexDir='row'
+                                alignItems='center'
+                                justifyItems='center'
+                                gap={8}
+                                _hover={{
+                                  bgColor: `${defaultTheme.colors.primary[500]}40`,
+                                  textColor: defaultTheme.colors.primary[500],
+                                }}
+                                w='full'
+                                p={2.5}>
+                                <Castle fontSize={28} />
+                                {menuItem.name}
+                                <Spacer />
+                                <FaChevronRight fontSize={12} />
+                              </Box>
+                            </PopoverTrigger>
+                            <PopoverContent bg='black' borderColor={defaultTheme.colors.primary[500]} borderRadius={2}>
+                              <VStack
+                                gap={1}
+                                justify='flex-start'
+                                align='flex-start'
+                                fontFamily='mono'
+                                fontWeight='bold'
+                                textTransform='uppercase'
+                                fontSize={18}>
+                                {_.map(menuItem.items, (subMenuItem: Record<string, string>) => (
+                                  <Link
+                                    fontFamily='monospace'
+                                    textTransform='full-size-kana'
+                                    key={subMenuItem.name}
+                                    display='flex'
+                                    flexDir='row'
+                                    alignItems='center'
+                                    justifyItems='center'
+                                    href={`/services/${subMenuItem.slug}`}
+                                    onClick={() => Fathom.trackEvent(`Service ${subMenuItem.slug} Clicked`)}
+                                    gap={8}
+                                    _hover={{
+                                      bgColor: `${defaultTheme.colors.primary[500]}40`,
+                                      textColor: defaultTheme.colors.primary[500],
+                                    }}
+                                    w='full'
+                                    py={2.5}
+                                    px={3.5}>
+                                    {subMenuItem.name}
+                                  </Link>
+                                ))}
+                              </VStack>
+                            </PopoverContent>
+                          </Popover>
+                        ))}
                       </VStack>
                     </PopoverBody>
                   </PopoverContent>
@@ -296,10 +192,11 @@ const Nav = () => {
               return (
                 <Link
                   as='text'
-                  href={item.href}
+                  href={item?.href}
                   key={item.name}
                   borderRadius={0}
                   w='full'
+                  onClick={() => router.push(item.href)}
                   textAlign='left'
                   textTransform='uppercase'
                   borderBottom='0.5px solid #FFFFFF30'
@@ -336,30 +233,16 @@ const Nav = () => {
                         <Spacer />
                         {isServicesOpen ? <FaChevronDown fontSize={18} /> : <FaChevronRight fontSize={18} />}
                       </Box>
-                      {isServicesOpen && (
-                        <SubMenu
-                          NavMenu={NavMenuData[0]}
-                          SubMenuHandler={setOpenSubMenu}
-                          openSubMenu={openSubMenu}
-                          id={0}
-                        />
-                      )}
-                      {isServicesOpen && (
-                        <SubMenu
-                          NavMenu={NavMenuData[1]}
-                          SubMenuHandler={setOpenSubMenu}
-                          openSubMenu={openSubMenu}
-                          id={1}
-                        />
-                      )}
-                      {isServicesOpen && (
-                        <SubMenu
-                          NavMenu={NavMenuData[2]}
-                          SubMenuHandler={setOpenSubMenu}
-                          openSubMenu={openSubMenu}
-                          id={2}
-                        />
-                      )}
+                      {isServicesOpen &&
+                        _.map(NavMenuData, (menuItem: any, index: any) => (
+                          <SubMenu
+                            NavMenu={menuItem}
+                            SubMenuHandler={setOpenSubMenu}
+                            openSubMenu={openSubMenu}
+                            id={index}
+                            key={index}
+                          />
+                        ))}
                     </Box>
                   ) : (
                     <Box as='text'> {item.name}</Box>

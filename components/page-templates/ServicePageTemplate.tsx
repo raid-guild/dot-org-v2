@@ -1,11 +1,11 @@
-import { Box, Container } from '@raidguild/design-system';
+import { Box } from '@raidguild/design-system';
 import Clouds from '../../assets/illustrations/clouds.webp';
 import Valhalla from '../../assets/illustrations/valhalla.svg';
 import WallSconce from '../../assets/illustrations/wallSconce.svg';
 import Wand from '../../assets/illustrations/wand.svg';
 import tokens from '../../utils/extendedTokens';
-import SiteLayout from '../page-components/SiteLayout';
 import ServiceSectionContainer from '../page-components/ServiceSectionContainer';
+import SiteLayout from '../page-components/SiteLayout';
 
 type Props = {
   pageTitle: string;

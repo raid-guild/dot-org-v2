@@ -134,7 +134,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
     } else {
       Fathom.trackEvent('form submit success');
       toast.success({
-        title: 'Hire Form Submitted successfully!',
+        title: 'Form Submitted successfully!',
         iconName: 'crown',
       });
       handleNext();

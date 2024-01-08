@@ -1,5 +1,4 @@
 import { Button, Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
-import { base } from 'viem/chains';
 import { services } from '../../utils/constants';
 import tokens from '../../utils/extendedTokens';
 import AnimatedButton from '../atoms/AnimatedButton';
