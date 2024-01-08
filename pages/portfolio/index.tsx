@@ -43,10 +43,6 @@ const portfolioStats = [
     numbers: '54',
     label: 'Active Raiders',
   },
-  {
-    numbers: '54',
-    label: 'Active Raiders',
-  },
 ];
 
 // a component for displaying a portfolio project in a list
