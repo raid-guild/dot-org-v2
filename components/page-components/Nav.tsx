@@ -82,7 +82,7 @@ const Nav = () => {
                         {/* Code for Services menu */}
                         {_.map(NavMenuData, (menuItem: Record<string, string>, index: any) => (
                           <Popover trigger='hover' placement='end-start' key={`services-${index}`}>
-                            <PopoverTrigger color='white'>
+                            <PopoverTrigger>
                               <Flex
                                 display='flex'
                                 flexDir='row'
