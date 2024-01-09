@@ -81,7 +81,7 @@ function PortfolioPage({ initialData }: Props) {
       <SimpleGrid
         m={12}
         gap={{ base: 12, xl: 36 }}
-        columns={{ base: 2, xl: 4 }}
+        columns={{ base: 1, md: 3 }}
         alignItems='center'
         justifyContent='center'>
         {portfolioStats.map((stat) => (
@@ -105,7 +105,7 @@ function PortfolioPage({ initialData }: Props) {
         ))}
       </SimpleGrid>
       <PageTitle title='' hideIcon />
-      <SimpleGrid gap={{ base: 12, xl: 10 }} columns={{ base: 2, xl: 5 }} py={20} justifyItems='center'>
+      <SimpleGrid gap={{ base: 6, xl: 10 }} columns={{ base: 2, xl: 5 }} py={20} justifyItems='center'>
         {_.map(portfolioList, (project: any) => (
           <PortfolioContent project={project} key={_.get(project, 'name')} />
         ))}
