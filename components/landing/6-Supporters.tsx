@@ -19,9 +19,8 @@ const SectionSix = () => {
       minH={{ base: 'max', md: '80vh' }}>
       <PageTitle title='Our Ecosystem' />
       <Text maxW='560px' textAlign='center' textColor='white'>
-        We believe workers should be self-sovereign and able to work when, where and how they want, as long as they
-        create high value output. We&apos;re looking for top talent that can take things into their own hands and bring
-        unique value to the guild.
+        Raid Guild is a collective of developers with a multitude of talents building the future of the web. It wouldn’t
+        be possibly without the help of other DAOs such as..
       </Text>
       <Flex
         w='100%'
