@@ -22,14 +22,15 @@ const SectionFour = ({ portfolioList }: SectionFourProps) => {
       minW='100%'
       py='8rem'
       minH='max'
-      flexDir='column'>
+      flexDir='column'
+      gap={20}>
       <PageTitle title='Our Portfolio' />
-      <Stack gap={10} align='center'>
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} alignItems='center' gap={[`8rem`, `8rem`]} maxW='80%'>
+      <Stack gap={20} align='center'>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} alignItems='center' gap={{ base: 16, md: 20 }} maxW='80%'>
           {_.map(portfolioList, (project) => (
             <Link key={_.get(project, 'imageUrl')} href={`/portfolio/${_.get(project, 'slug')}`}>
-              <Flex height='200px' width='200px' justify='center' align='center'>
-                <Image src={_.get(project, 'imageUrl', wallSconce.src)} width='100%' />
+              <Flex width='200px' justify='center' align='center'>
+                <Image src={_.get(project, 'imageUrl', wallSconce.src)} width='80%' />
               </Flex>
             </Link>
           ))}
