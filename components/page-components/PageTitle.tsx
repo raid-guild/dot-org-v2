@@ -15,7 +15,13 @@ const PageTitle = ({ title, hideIcon = false }: PageTitleProps) => (
       <Image src={Swords.src} w='48px' h='48px' hidden={hideIcon} />
       <HStack justifyContent='center'>
         <Image src={LeftWing.src} width={[`25vw`, `30vw`]} />
-        <Heading variant='shadow' color='white' fontFamily='uncial' minW='200px' textAlign='center'>
+        <Heading
+          variant='shadow'
+          color='white'
+          fontFamily='uncial'
+          minW='200px'
+          textAlign='center'
+          sx={{ whiteSpace: 'balance' }}>
           {title}
         </Heading>
         <Image src={RightWing.src} width={[`25vw`, `30vw`]} />

@@ -31,7 +31,8 @@ const SectionOne = () => (
             fontSize={{ base: 'medium', md: '3xl', xl: '4xl' }}
             textAlign={{ base: 'center', xl: 'left' }}
             variant='shadow'
-            color='white'>
+            color='white'
+            whiteSpace='balance'>
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3 Product Demons.
           </Heading>
           <CTABtnGroup />
