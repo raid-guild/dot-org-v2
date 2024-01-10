@@ -92,10 +92,8 @@ function PortfolioPage(props: any) {
               What We Did
             </Heading>
           </HStack>
-          <Flex textAlign='center' lineHeight='taller'>
-            <Text lineHeight='taller' maxW='900px'>
-              {_.get(initialData, 'description')}
-            </Text>
+          <Flex textAlign='center'>
+            <Text maxW='900px'>{_.get(initialData, 'description')}</Text>
           </Flex>
         </Stack>
       </VStack>
@@ -121,7 +119,7 @@ function PortfolioPage(props: any) {
                 The Challenge
               </Heading>
             </Stack>
-            <Stack spacing={6} lineHeight='taller'>
+            <Stack spacing={6}>
               {_.map(_.get(initialData, 'challenge.content'), (content: any) => (
                 <Markdown key={content}>{content}</Markdown>
               ))}
@@ -134,7 +132,7 @@ function PortfolioPage(props: any) {
                 Our Approach
               </Heading>
             </Stack>
-            <Stack spacing={6} lineHeight='taller'>
+            <Stack spacing={6}>
               {_.map(_.get(initialData, 'approach.content'), (content: any) => (
                 <Markdown key={content}>{content}</Markdown>
               ))}
@@ -148,17 +146,19 @@ function PortfolioPage(props: any) {
               </Heading>
             </Stack>
 
-            <Stack spacing={6} lineHeight='taller'>
+            <Stack spacing={6}>
               {_.map(_.get(initialData, 'result.content'), (content: any) => (
                 <Markdown key={content}>{content}</Markdown>
               ))}
             </Stack>
           </Stack>
-          <Stack
-            gap={2}
-            flexDir={{ base: 'column', lg: 'row' }}
-            alignItems={{ base: 'center', lg: 'flex-start' }}
-            w='full'>
+          <Flex
+            w='max-content'
+            mt={{ base: '2rem' }}
+            direction={{ base: 'column', lg: 'row' }}
+            alignItems='center'
+            justifyContent='center'
+            gap={2}>
             {_.get(initialData, 'resultLink') && (
               <Link href={_.get(initialData, 'resultLink')} isExternal>
                 <Button variant='bright' width='180px' fontFamily='monospace' fontWeight={500}>
@@ -174,7 +174,7 @@ function PortfolioPage(props: any) {
                 </Button>
               </Link>
             )}
-          </Stack>
+          </Flex>
         </VStack>
       </Stack>
     </CMSPageTemplate>

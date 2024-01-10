@@ -46,7 +46,7 @@ const ProjectCard = ({ name, logo, website, roles }: ProjectCardProps) => {
 
         {website && (
           <Link href={website} isExternal>
-            <Button variant='gradientOutline' width='max'>
+            <Button variant='gradientOutline' width='max' fontFamily='monospace' fontWeight={500}>
               Visit Website
             </Button>
           </Link>
