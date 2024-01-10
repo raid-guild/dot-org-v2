@@ -24,7 +24,7 @@ const SectionFive = () => (
         unique value to the guild.
       </Text>
       <br />
-      <Link href='/join'>
+      <Link href='/join/1'>
         <ShimmerButton>Join Us</ShimmerButton>
       </Link>
     </VStack>
