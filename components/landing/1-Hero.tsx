@@ -14,7 +14,7 @@ const SectionOne = () => (
       border='2px solid'
       borderColor='primary.500'
       py='2rem'
-      px={{ base: '1rem', lg: '4rem' }}
+      px={{ base: '1rem', lg: '3rem' }}
       m='1rem'
       minH='90vh'
       maxH='max-content'>
