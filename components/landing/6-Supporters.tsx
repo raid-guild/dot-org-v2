@@ -18,9 +18,9 @@ const SectionSix = () => {
       padding={{ base: '2rem', lg: '10rem 4rem' }}
       minH={{ base: 'max', md: '80vh' }}>
       <PageTitle title='Our Ecosystem' />
-      <Text maxW='560px' textAlign='center' textColor='white'>
-        Raid Guild is a collective of developers with a multitude of talents building the future of the web. It wouldn’t
-        be possibly without the help of other DAOs such as..
+      <Text maxW='560px' textAlign='center' textColor='white' sx={{ whiteSpace: 'balance' }}>
+        {`Raid Guild is a collective of developers with a multitude of talents building the future of the web. It wouldn't
+        be possibly without the help of other DAOs such as..`}
       </Text>
       <Flex
         w='100%'
