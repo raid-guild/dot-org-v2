@@ -202,7 +202,7 @@ export const NavMenuData = [
     ],
   },
   {
-    category: 'Web3 Specifics',
+    category: 'Web3',
     items: [
       {
         name: 'Community Management',

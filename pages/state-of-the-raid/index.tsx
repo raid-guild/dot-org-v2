@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Card,
   Flex,
   HStack,
   Heading,
@@ -34,42 +33,46 @@ interface PostProps {
 
 const Post = ({ post }: PostProps) => {
   const link = `/state-of-the-raid/${post.slug}`;
+
   return (
-    <Link href={link} w='100%'>
-      <Card py={4} px={2} _hover={{ bg: '#FFFFFF08' }} border='none'>
-        <Flex minH='250px' align='center'>
-          <Stack
-            spacing='2rem'
-            flexDir={{ base: 'column', md: 'row' }}
-            alignItems={{ base: 'center', md: 'flex-start' }}
-            textAlign={{ base: 'center', md: 'left' }}>
-            <Image src={_.get(post, 'imageUrl', wallSconce.src)} width='200px' height='250px' />
-            <VStack maxWidth='50ch' spacing={6} color='white' align={{ base: 'center', md: 'start' }}>
-              <Heading fontSize='2xl' fontFamily='texturina'>
-                {_.get(post, 'title')}
-              </Heading>
-              <Text noOfLines={3}>{_.get(post, 'description')}</Text>
-              <Link href={link} width='full'>
-                <Button
-                  as='u'
-                  variant='link'
-                  bg={tokens.purpleToBlueGradient}
-                  bgClip='text'
-                  pb={1.5}
-                  borderRadius='none'
-                  borderBottom={`2px solid ${defaultTheme.colors.purple[500]}`}
-                  _hover={{
-                    opacity: '90%',
-                  }}>
-                  <Text fontFamily={defaultTheme.fonts.spaceMono} borderBottom={1}>
-                    Read More
-                  </Text>
-                </Button>
-              </Link>
-            </VStack>
-          </Stack>
-        </Flex>
-      </Card>
+    <Link
+      href={link}
+      w='100%'
+      _hover={{
+        bg: '#101010',
+      }}>
+      <Stack p={8} border='none' align='center' flexDir={{ base: 'column', md: 'row' }}>
+        <Image src={_.get(post, 'imageUrl', wallSconce.src)} width='200px' height='250px' />
+        <VStack
+          maxWidth='50ch'
+          width='full'
+          spacing={6}
+          color='white'
+          align={{ base: 'center', md: 'flex-start' }}
+          textAlign={{ base: 'center', md: 'left' }}>
+          <Heading fontSize='2xl' fontFamily='texturina'>
+            {_.get(post, 'title')}
+          </Heading>
+          <Text noOfLines={3}>{_.get(post, 'description')}</Text>
+          <Link href={link} width='full'>
+            <Button
+              as='u'
+              variant='link'
+              bg={tokens.purpleToBlueGradient}
+              bgClip='text'
+              pb={1.5}
+              borderRadius='none'
+              borderBottom={`2px solid ${defaultTheme.colors.purple[500]}`}
+              _hover={{
+                opacity: '90%',
+              }}>
+              <Text fontFamily={defaultTheme.fonts.spaceMono} borderBottom={1}>
+                Read More
+              </Text>
+            </Button>
+          </Link>
+        </VStack>
+      </Stack>
     </Link>
   );
 };
@@ -120,7 +123,7 @@ const AllPosts = ({ initialData }: Props) => {
           maxW='100vw'
           gap={20}
           p={10}>
-          <VStack mt={16} alignItems={{ base: 'center' }} spacing={10}>
+          <VStack mt={16} alignItems='center' gap={10}>
             {_.map(filteredblogs, (post) => (
               <Post post={post} key={_.get(post, 'slug')} />
             ))}

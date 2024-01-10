@@ -1,9 +1,9 @@
 // A page that displays all of the projects in the portfolio
 import { Box, Button, Image, SimpleGrid, Stack, Text, VStack } from '@raidguild/design-system';
+import * as Fathom from 'fathom-client';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import * as Fathom from 'fathom-client';
 import { FiPlusCircle } from 'react-icons/fi';
 import Link from '../../components/atoms/ChakraNextLink';
 import PageTitle from '../../components/page-components/PageTitle';
@@ -121,6 +121,7 @@ export const getStaticProps = async () => {
     props: {
       initialData: result,
     },
+    revalidate: 10,
   };
 };
 

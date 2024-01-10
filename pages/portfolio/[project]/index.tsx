@@ -28,13 +28,10 @@ import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate'
 import { getPortfolioDetail } from '../../../gql';
 import { checkPermission } from '../../../utils';
 
-interface Props {
-  initialData: any;
-}
-
-function PortfolioPage({ initialData }: Props) {
+function PortfolioPage(props: any) {
   const { data: session } = useSession();
 
+  const { initialData } = props;
   const canEdit = checkPermission(session);
 
   const router = useRouter();
@@ -88,7 +85,7 @@ function PortfolioPage({ initialData }: Props) {
           position='absolute'
           opacity={0.15}
         />
-        <Stack p='2rem' align='center' zIndex={100}>
+        <Stack p='2rem' align='center' zIndex={50}>
           <HStack align='center' gap={6} justify='center'>
             <Icon as={Castle} w='32px' h='32px' />
             <Heading variant='shadow' size='md'>
@@ -116,7 +113,7 @@ function PortfolioPage({ initialData }: Props) {
           logo={_.get(initialData, 'imageUrl')}
         />
 
-        <VStack maxW={900} gap={12} my={10}>
+        <VStack maxW={900} gap={12} my={10} justify='flex-start' align='flex-start'>
           <Stack spacing={6} align={{ base: 'center', lg: 'flex-start' }} maxW='80vw'>
             <Stack flexDir={{ base: 'column', md: 'row' }} align='center' gap={6}>
               <Icon as={Castle} w='32px' h='32px' />
@@ -164,7 +161,7 @@ function PortfolioPage({ initialData }: Props) {
             w='full'>
             {_.get(initialData, 'resultLink') && (
               <Link href={_.get(initialData, 'resultLink')} isExternal>
-                <Button variant='bright' width='180px'>
+                <Button variant='bright' width='180px' fontFamily='monospace' fontWeight={500}>
                   View Project
                 </Button>
               </Link>
@@ -172,7 +169,7 @@ function PortfolioPage({ initialData }: Props) {
 
             {_.get(initialData, 'repoLink') && (
               <Link href={_.get(initialData, 'repoLink')} isExternal>
-                <Button variant='gradientOutline' width='180px'>
+                <Button variant='gradientOutline' width='180px' fontFamily='monospace' fontWeight={500}>
                   View Codebase
                 </Button>
               </Link>

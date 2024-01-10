@@ -10,7 +10,7 @@ const SubMenu = ({
   id,
 }: {
   NavMenu: (typeof NavMenuData)[0];
-  SubMenuHandler: React.Dispatch<React.SetStateAction<null | number>>;
+  SubMenuHandler: any;
   openSubMenu: number | null;
   id: number;
 }) => {
@@ -43,7 +43,7 @@ const SubMenu = ({
         px={3.5}>
         {NavMenu.category === 'Development' && <Castle fontSize={28} />}
         {NavMenu.category === 'Design' && <Knight fontSize={28} />}
-        {NavMenu.category === 'Web3 Specifics' && <Wizard2 fontSize={28} />}
+        {NavMenu.category === 'Web3' && <Wizard2 fontSize={28} />}
 
         {NavMenu.category}
         <Spacer />
