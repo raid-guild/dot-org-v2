@@ -1,4 +1,4 @@
-import { Flex, Box, Text, Center } from '@raidguild/design-system';
+import { Flex, Box, Text, Center, Link } from '@raidguild/design-system';
 import Image from 'next/image';
 
 import PageTitle from '../page-components/PageTitle';
@@ -29,13 +29,19 @@ const SectionSix = () => {
         mt={24}
         direction={{ base: 'column', md: 'row', lg: 'row' }}>
         <Box w={{ base: '120px', lg: '200px' }}>
-          <Image src={metacartel} alt='metacartel' placeholder='blur' />
+          <Link href='https://www.metacartel.org/'>
+            <Image src={metacartel} alt='metacartel' placeholder='blur' />
+          </Link>
         </Box>
         <Box w={{ base: '120px', lg: '200px' }}>
-          <Image src={daohaus} alt='daohaus' placeholder='blur' />
+          <Link href='https://daohaus.club/'>
+            <Image src={daohaus} alt='daohaus' placeholder='blur' />
+          </Link>
         </Box>
         <Box w={{ base: '120px', lg: '200px' }}>
-          <Image src={moloch} alt='molochdao' placeholder='blur' />
+          <Link href='https://molochdao.com/'>
+            <Image src={moloch} alt='molochdao' placeholder='blur' />
+          </Link>
         </Box>
       </Flex>
     </Center>

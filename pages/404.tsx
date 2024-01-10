@@ -33,9 +33,7 @@ const NotFound = () => (
         <Button variant='gradientOutline'>Hire Us</Button>
       </Link>
       <Link href='/join/1'>
-        {/* <Box bgGradient={tokens.purpleToBlueGradient} p={1} borderRadius={2} fill='transparent'> */}
         <Button variant='bright'>JOIN US</Button>
-        {/* </Box> */}
       </Link>
     </Flex>
   </Flex>
