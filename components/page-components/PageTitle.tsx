@@ -12,9 +12,9 @@ interface PageTitleProps {
 const PageTitle = ({ title, hideIcon = false }: PageTitleProps) => (
   <Center py='2rem'>
     <VStack gap={8}>
-      <Image src={Swords.src} w='48px' h='48px' hidden={hideIcon} />
+      <Image src={Swords.src} w='48px' h='48px' hidden={hideIcon} hideBelow='lg' />
       <HStack justifyContent='center'>
-        <Image src={LeftWing.src} width={[`25vw`, `30vw`]} />
+        <Image src={LeftWing.src} width={[`25vw`, `30vw`]} hideBelow='lg' />
         <Heading
           variant='shadow'
           color='white'
@@ -24,7 +24,7 @@ const PageTitle = ({ title, hideIcon = false }: PageTitleProps) => (
           sx={{ whiteSpace: 'balance' }}>
           {title}
         </Heading>
-        <Image src={RightWing.src} width={[`25vw`, `30vw`]} />
+        <Image src={RightWing.src} width={[`25vw`, `30vw`]} hideBelow='lg' />
       </HStack>
     </VStack>
   </Center>
