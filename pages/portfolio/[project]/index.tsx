@@ -153,7 +153,7 @@ function PortfolioPage(props: any) {
             </Stack>
           </Stack>
           <Flex
-            w='max-content'
+            w='full'
             mt={{ base: '2rem' }}
             direction={{ base: 'column', lg: 'row' }}
             alignItems='center'
