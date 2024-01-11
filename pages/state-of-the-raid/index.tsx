@@ -35,13 +35,17 @@ const Post = ({ post }: PostProps) => {
   const link = `/state-of-the-raid/${post.slug}`;
 
   return (
-    <Link
-      href={link}
-      w='100%'
-      _hover={{
-        bg: '#101010',
-      }}>
-      <Stack p={8} border='none' align='center' flexDir={{ base: 'column', md: 'row' }}>
+    <Link href={link} w='full'>
+      <Stack
+        p={8}
+        border='1px solid #00000000'
+        align='center'
+        flexDir={{ base: 'column', md: 'row' }}
+        boxSizing='border-box'
+        _hover={{
+          bg: '#101010',
+          border: '1px solid red',
+        }}>
         <Image src={_.get(post, 'imageUrl', wallSconce.src)} width='200px' height='250px' />
         <VStack
           maxWidth='50ch'
@@ -116,19 +120,14 @@ const AllPosts = ({ initialData }: Props) => {
             </Button>
           </Stack>
         )}
-        <Stack
-          justify='center'
-          align='flex-start'
-          flexDir={{ base: 'column-reverse', xl: 'row' }}
-          maxW='100vw'
-          gap={20}
-          p={10}>
-          <VStack mt={16} alignItems='center' gap={10}>
+        <Stack justify='center' flexDir={{ base: 'column-reverse', xl: 'row' }} maxW='100vw' gap={20} p={10}>
+          <VStack mt={16} gap={10}>
             {_.map(filteredblogs, (post) => (
               <Post post={post} key={_.get(post, 'slug')} />
             ))}
           </VStack>
-          <VStack
+          {/* Hide Filter Options untill further CMS functionalities */}
+          {/* <VStack
             border={`1px solid ${defaultTheme.colors.primary[500]}`}
             p={{ base: 0, xl: 8 }}
             mt={16}
@@ -185,7 +184,7 @@ const AllPosts = ({ initialData }: Props) => {
                 )}
               </ul>
             </Box>
-          </VStack>
+          </VStack> */}
         </Stack>
         <PageEnd />
       </CMSPageTemplate>
