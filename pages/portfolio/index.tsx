@@ -97,14 +97,15 @@ function PortfolioPage({ initialData }: Props) {
           </VStack>
         ))}
       </SimpleGrid>
-      <SimpleGrid gap={{ base: 12, xl: 10 }} columns={{ base: 2, xl: 5 }} py={20} justifyItems='center'>
+      {/* Grid to show different categories of Projects done */}
+      {/* <SimpleGrid gap={{ base: 12, xl: 10 }} columns={{ base: 2, xl: 5 }} py={20} justifyItems='center'>
         {labels.map((label) => (
           <Button variant='gradientOutline' key={label} minW='max-content' w='200px'>
             {label}
           </Button>
         ))}
-      </SimpleGrid>
-      <PageTitle title='' hideIcon />
+      </SimpleGrid> */}
+      {/* <PageTitle title='' hideIcon /> */}
       <SimpleGrid gap={{ base: 6, xl: 10 }} columns={{ base: 2, xl: 5 }} py={20} justifyItems='center'>
         {_.map(portfolioList, (project: any) => (
           <PortfolioContent project={project} key={_.get(project, 'name')} />
