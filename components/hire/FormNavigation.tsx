@@ -1,4 +1,5 @@
 import { Button, HStack } from '@raidguild/design-system';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 
 interface Props {
   handleBack: () => void;
@@ -11,9 +12,9 @@ const FormNavigation = ({ handleBack, handleNext }: Props) => {
       <Button variant='gradientOutline' onClick={handleBack} width='150px' fontWeight={500} fontFamily='spaceMono'>
         Back
       </Button>
-      <Button variant='bright' onClick={handleNext} width='150px' fontWeight={500} fontFamily='spaceMono'>
+      <GradientShiftButton onClick={handleNext} width='150px' fontWeight={500}>
         Next
-      </Button>
+      </GradientShiftButton>
     </HStack>
   );
 };

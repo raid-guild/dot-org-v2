@@ -1,11 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, HStack, Stack, Textarea, VStack, useMediaQuery, useToast } from '@raidguild/design-system';
-import _ from 'lodash';
 import * as Fathom from 'fathom-client';
+import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import { useHireState } from '../../context/appState';
 import handleError from '../../utils/forms';
 // import Link from '../atoms/ChakraNextLink';
@@ -175,8 +176,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
           Back
         </Button>
 
-        <Button
-          variant='bright'
+        <GradientShiftButton
           isDisabled={isSubmitting}
           isLoading={isSubmitting}
           loadingText='Submitting'
@@ -184,7 +184,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
           fontWeight={500}
           fontFamily='monospace'>
           Submit
-        </Button>
+        </GradientShiftButton>
         {/* {formStatus === FORM_STATE.AWAITING_PAYMENT && (
           <Button fontFamily='spaceMono' onClick={paymentHandler}>
             Pay {SUBMISSION_REQUEST_FEE} $RAID

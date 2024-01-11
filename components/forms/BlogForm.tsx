@@ -1,9 +1,10 @@
-import { Box, Button, Input, Stack, Text, Textarea, VStack } from '@raidguild/design-system';
+import { Box, Input, Stack, Text, Textarea, VStack } from '@raidguild/design-system';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import useSubmit from '../../hooks/useSubmit';
 import Link from '../atoms/ChakraNextLink';
 import ImageUpload from '../atoms/ImageUpload';
@@ -86,9 +87,9 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
         </Text>
       </Stack>
       <Box pt={8} fontFamily='mono'>
-        <Button variant='bright' width='max' onClick={handleSubmit(onSubmit)} fontFamily='monospace' fontWeight={500}>
+        <GradientShiftButton width='max' onClick={handleSubmit(onSubmit)} fontFamily='monospace' fontWeight={500}>
           {isEditable ? 'Save Changes' : 'Publish Blog'}
-        </Button>
+        </GradientShiftButton>
       </Box>
     </VStack>
   );

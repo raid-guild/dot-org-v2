@@ -3,6 +3,7 @@ import { Button, Flex, GridItem, SimpleGrid, Textarea, useToast } from '@raidgui
 import { useEffect } from 'react';
 import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import { useJoinState } from '../../context/appState';
 
 interface Props {
@@ -92,14 +93,9 @@ const StepFour = ({ handleNext, handleBack }: Props) => {
           fontFamily='spaceMono'>
           Back
         </Button>
-        <Button
-          width='max-content'
-          variant='bright'
-          onClick={handleSubmit(onNext, onError)}
-          fontWeight={500}
-          fontFamily='spaceMono'>
+        <GradientShiftButton width='max-content' onClick={handleSubmit(onNext, onError)}>
           Next
-        </Button>
+        </GradientShiftButton>
       </Flex>
     </Flex>
   );

@@ -1,10 +1,11 @@
-import { Box, Button, Input, Select, Stack, Text, Textarea, VStack } from '@raidguild/design-system';
+import { Box, Input, Select, Stack, Text, Textarea, VStack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import useSubmit from '../../hooks/useSubmit';
 import Link from '../atoms/ChakraNextLink';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import ImageUpload from '../atoms/ImageUpload';
 
 type PortfolioFormProps = {
@@ -147,9 +148,7 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
       />
 
       <Box pt={8} onClick={handleSubmit(onSubmit)}>
-        <Button variant='bright' width='200px' fontFamily='monospace' fontWeight={500}>
-          {isEditable ? 'Save Changes' : 'Publish Project'}
-        </Button>
+        <GradientShiftButton width='200px'>{isEditable ? 'Save Changes' : 'Publish Project'}</GradientShiftButton>
       </Box>
     </VStack>
   );

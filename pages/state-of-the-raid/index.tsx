@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Flex,
-  HStack,
   Heading,
   Image,
   Stack,
@@ -15,7 +14,8 @@ import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { FiEdit, FiFilter } from 'react-icons/fi';
+import { FiEdit } from 'react-icons/fi';
+import GradientShiftButton from '../../components/atoms/GradientShiftButton';
 import wallSconce from '../../assets/illustrations/wallSconce.svg';
 import Link from '../../components/atoms/ChakraNextLink';
 import PageEnd from '../../components/page-components/PageEnd';
@@ -26,7 +26,7 @@ import useBlogsList from '../../hooks/useBlogsList';
 import { checkPermission } from '../../utils';
 import tokens from '../../utils/extendedTokens';
 
-const Topics = ['', 'Raid', 'Guild', 'Community'];
+// const Topics = ['', 'Raid', 'Guild', 'Community'];
 interface PostProps {
   post: any;
 }
@@ -44,7 +44,8 @@ const Post = ({ post }: PostProps) => {
         boxSizing='border-box'
         _hover={{
           bg: '#101010',
-          border: '1px solid red',
+          border: '1px solid',
+          borderColor: 'primary.500',
         }}>
         <Image src={_.get(post, 'imageUrl', wallSconce.src)} width='200px' height='250px' />
         <VStack
@@ -93,8 +94,8 @@ const AllPosts = ({ initialData }: Props) => {
   const canCreate = checkPermission(session);
   const router = useRouter();
 
-  const [hideFilters, setHideFilters] = useState(false);
-  const isXL = useBreakpointValue({ base: false, xl: true });
+  // const [hideFilters, setHideFilters] = useState(false);
+  // const isXL = useBreakpointValue({ base: false, xl: true });
   const [filteredblogs, setFilteredblogs] = useState(blogs);
   const { q } = router.query;
 
@@ -113,11 +114,11 @@ const AllPosts = ({ initialData }: Props) => {
         <PageTitle title='State of The Raid' />
         {canCreate && (
           <Stack alignItems='center' pt='6'>
-            <Button variant='bright' width='max-content' onClick={() => router.push('/state-of-the-raid/publish')}>
+            <GradientShiftButton width='max-content' onClick={() => router.push('/state-of-the-raid/publish')}>
               <Flex w='max-content' px={4} gap={2} alignItems='center' justifyContent='center'>
                 <FiEdit fontSize='16px' color='white' /> Create new Post
               </Flex>
-            </Button>
+            </GradientShiftButton>
           </Stack>
         )}
         <Stack justify='center' flexDir={{ base: 'column-reverse', xl: 'row' }} maxW='100vw' gap={20} p={10}>

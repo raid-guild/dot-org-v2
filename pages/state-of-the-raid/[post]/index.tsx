@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Heading, Image, Stack, Text, VStack } from '@raidguild/design-system';
+import { Divider, Flex, Heading, Image, Stack, Text, VStack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetStaticPropsContext } from 'next';
 import { useSession } from 'next-auth/react';
@@ -6,6 +6,7 @@ import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { FiEdit } from 'react-icons/fi';
 import fallBackBanner from '../../../assets/illustrations/fallBackBanner.png';
+import GradientShiftButton from '../../../components/atoms/GradientShiftButton';
 import Markdown from '../../../components/atoms/Markdown';
 import PageTitle from '../../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
@@ -59,8 +60,7 @@ function PostPage({ initialData }: Props) {
       <Flex maxW='1000px' mx='auto' direction='column' gap={4} py={4} textColor='white'>
         {canEdit && (
           <Stack alignItems='center' py='6'>
-            <Button
-              variant='bright'
+            <GradientShiftButton
               width='max-content'
               onClick={() => router.push(`/state-of-the-raid/${initialData.slug}/edit`)}>
               <Flex
@@ -73,7 +73,7 @@ function PostPage({ initialData }: Props) {
                 fontWeight={500}>
                 <FiEdit fontSize='16px' color='white' /> Edit Post
               </Flex>
-            </Button>
+            </GradientShiftButton>
           </Stack>
         )}
 

@@ -1,5 +1,6 @@
-import { Button, HStack, Heading, Stack, Text } from '@raidguild/design-system';
+import { HStack, Heading, Stack, Text } from '@raidguild/design-system';
 import { ConnectWallet } from '../atoms/ConnectWallet';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 
 interface Props {
   handleNext: () => void;
@@ -25,9 +26,9 @@ const Intro = ({ handleNext, isConnected }: Props) => (
       {!isConnected ? (
         <ConnectWallet label='Sign in to Continue' />
       ) : (
-        <Button onClick={handleNext} width='max-content' variant='bright' fontWeight={500} fontFamily='spaceMono'>
+        <GradientShiftButton onClick={handleNext} width='max-content' fontWeight={500} fontFamily='spaceMono'>
           Start Application
-        </Button>
+        </GradientShiftButton>
       )}
     </HStack>
   </Stack>

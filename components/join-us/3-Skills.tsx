@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { useJoinState } from '../../context/appState';
 import { skills } from '../../utils/constants';
 import RadioBox from '../atoms/RadioBox';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 
 const validationSchema = Yup.object().shape({
   primarySkills: Yup.array()
@@ -113,14 +114,9 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
           fontFamily='spaceMono'>
           Back
         </Button>
-        <Button
-          width='max-content'
-          variant='bright'
-          onClick={handleSubmit(onNext, onError)}
-          fontWeight={500}
-          fontFamily='spaceMono'>
+        <GradientShiftButton width='max-content' onClick={handleSubmit(onNext, onError)}>
           Next
-        </Button>
+        </GradientShiftButton>
       </Flex>
     </Flex>
   );

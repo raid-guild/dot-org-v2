@@ -1,11 +1,12 @@
 // A page that displays all of the projects in the portfolio
-import { Box, Button, Image, SimpleGrid, Stack, Text, VStack } from '@raidguild/design-system';
+import { Box, Image, SimpleGrid, Stack, Text, VStack } from '@raidguild/design-system';
 import * as Fathom from 'fathom-client';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { FiPlusCircle } from 'react-icons/fi';
 import Link from '../../components/atoms/ChakraNextLink';
+import GradientShiftButton from '../../components/atoms/GradientShiftButton';
 import PageTitle from '../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import { getPortfolioList } from '../../gql';
@@ -32,11 +33,11 @@ interface Props {
 
 const portfolioStats = [
   {
-    numbers: '69+',
+    numbers: '150+',
     label: 'Unique Clients',
   },
   {
-    numbers: '120',
+    numbers: '187',
     label: 'Raids Completed',
   },
   {
@@ -70,11 +71,11 @@ function PortfolioPage({ initialData }: Props) {
       </Text>
       {canCreate && (
         <Stack alignItems='center' pt='6'>
-          <Button variant='bright' width='max-content' onClick={() => router.push('/portfolio/new')} gap={2}>
+          <GradientShiftButton width='max-content' onClick={() => router.push('/portfolio/new')} gap={2}>
             {/* <Flex w='max-content' px={4} gap={2}> */}
             <FiPlusCircle fontSize='16px' color='white' /> Add Portfolio
             {/* </Flex> */}
-          </Button>
+          </GradientShiftButton>
         </Stack>
       )}
 

@@ -1,5 +1,6 @@
-import { Flex, Button } from '@raidguild/design-system';
+import { Flex } from '@raidguild/design-system';
 import Link from 'next/link';
+import GradientShiftButton from './GradientShiftButton';
 import ShimmerButton from './ShimmerButton';
 
 const CTABtnGroup = () => {
@@ -11,11 +12,8 @@ const CTABtnGroup = () => {
       alignItems='center'
       justifyContent='center'
       gap={2}>
-      <Link href='/hire/1'>
-        <Button variant='bright' w='150px' fontWeight={500} fontFamily='spaceMono'>
-          Hire Us
-        </Button>
-      </Link>
+      <Link href='/hire/1' />
+      <GradientShiftButton w='150px'>Hire Us</GradientShiftButton>
       <Link href='/join/1'>
         <ShimmerButton w='150px'>Join Us</ShimmerButton>
       </Link>

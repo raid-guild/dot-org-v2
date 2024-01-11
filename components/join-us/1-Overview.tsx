@@ -3,6 +3,7 @@ import { Button, Flex, Input, SimpleGrid, Textarea, useToast } from '@raidguild/
 import { useEffect } from 'react';
 import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import { useJoinState } from '../../context/appState';
 
 const inputs = [
@@ -106,14 +107,13 @@ const StepOne = ({ handleNext, handleBack }: Props) => {
           fontFamily='spaceMono'>
           Back
         </Button>
-        <Button
+        <GradientShiftButton
           width='max-content'
-          variant='bright'
           onClick={handleSubmit(onNext, onError)}
           fontWeight={500}
           fontFamily='spaceMono'>
           Next
-        </Button>
+        </GradientShiftButton>
       </Flex>
     </Flex>
   );

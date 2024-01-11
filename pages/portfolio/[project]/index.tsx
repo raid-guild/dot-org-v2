@@ -17,6 +17,7 @@ import { useSession } from 'next-auth/react';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { FiEdit } from 'react-icons/fi';
+import GradientShiftButton from '../../../components/atoms/GradientShiftButton';
 import Wand from '../../../assets/illustrations/wand.svg';
 import Markdown from '../../../components/atoms/Markdown';
 import ProjectCard from '../../../components/page-components/ProjectCard';
@@ -56,14 +57,11 @@ function PortfolioPage(props: any) {
       />
       {canEdit && (
         <Stack alignItems='center' py='6'>
-          <Button
-            variant='bright'
-            width='max-content'
-            onClick={() => router.push(`/portfolio/${initialData.slug}/edit`)}>
+          <GradientShiftButton width='max-content' onClick={() => router.push(`/portfolio/${initialData.slug}/edit`)}>
             <Flex w='max-content' px={4} gap={2} alignItems='center' justifyContent='center'>
               <FiEdit fontSize='16px' color='white' /> Create new Post
             </Flex>
-          </Button>
+          </GradientShiftButton>
         </Stack>
       )}
 
@@ -157,13 +155,11 @@ function PortfolioPage(props: any) {
             mt={{ base: '2rem' }}
             direction={{ base: 'column', lg: 'row' }}
             alignItems='center'
-            justifyContent='center'
+            justifyContent={{ base: 'center', lg: 'flex-start' }}
             gap={2}>
             {_.get(initialData, 'resultLink') && (
               <Link href={_.get(initialData, 'resultLink')} isExternal>
-                <Button variant='bright' width='180px' fontFamily='monospace' fontWeight={500}>
-                  View Project
-                </Button>
+                <GradientShiftButton width='180px'>View Project</GradientShiftButton>
               </Link>
             )}
 

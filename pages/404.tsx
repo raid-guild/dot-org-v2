@@ -4,6 +4,7 @@ import raidBanner from '../assets/illustrations/raid__banner.webp';
 import Link from '../components/atoms/ChakraNextLink';
 import Nav from '../components/page-components/Nav';
 import tokens from '../utils/extendedTokens';
+import GradientShiftButton from '../components/atoms/GradientShiftButton';
 
 const NotFound = () => (
   <Flex
@@ -33,7 +34,7 @@ const NotFound = () => (
         <Button variant='gradientOutline'>Hire Us</Button>
       </Link>
       <Link href='/join/1'>
-        <Button variant='bright'>JOIN US</Button>
+        <GradientShiftButton>JOIN US</GradientShiftButton>
       </Link>
     </Flex>
   </Flex>
