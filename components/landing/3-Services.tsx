@@ -36,7 +36,7 @@ const SectionThree = () => (
           <GradientShiftButton w='160px'>Hire Us</GradientShiftButton>
         </Link>
         <Link href='/join/1'>
-          <AnimatedButton w='160px' fontWeight={500}>
+          <AnimatedButton w='160px' start='right' fontWeight={500}>
             All Services
           </AnimatedButton>
         </Link>

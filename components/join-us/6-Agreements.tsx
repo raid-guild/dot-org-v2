@@ -22,12 +22,11 @@ import { useEffect, useRef } from 'react';
 import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import { useAccount } from 'wagmi';
 import * as Yup from 'yup';
-import GradientShiftButton from '../atoms/GradientShiftButton';
 import { useJoinState } from '../../context/appState';
 import useSubmit from '../../hooks/useSubmit';
 import tokens from '../../utils/extendedTokens';
-import GradientBorderButton from '../atoms/AnimatedButton';
 import Link from '../atoms/ChakraNextLink';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 
 interface Props {
   handleBack: () => void;
@@ -115,11 +114,13 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
       </Stack>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <GradientBorderButton onClick={handleBack}>Back</GradientBorderButton>
-
-        <Button width='max-content' variant='gradientOutline' onClick={handleSubmit(onNext, onError)}>
-          Next
+        <Button onClick={handleBack} variant='gradientOutline'>
+          Back
         </Button>
+
+        <GradientShiftButton width='max-content' onClick={handleSubmit(onNext, onError)}>
+          Next
+        </GradientShiftButton>
       </Flex>
 
       <ChakraAlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>

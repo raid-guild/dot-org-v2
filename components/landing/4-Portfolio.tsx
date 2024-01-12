@@ -1,8 +1,8 @@
 import { Flex, Image, SimpleGrid, Stack } from '@raidguild/design-system';
 import _ from 'lodash';
+import AnimatedButton from '../atoms/AnimatedButton';
 import tokens from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
-import GradientShiftButton from '../atoms/GradientShiftButton';
 
 import wallSconce from '../../assets/illustrations/wallSconce.svg';
 import PageTitle from '../page-components/PageTitle';
@@ -37,9 +37,9 @@ const SectionFour = ({ portfolioList }: SectionFourProps) => {
           ))}
         </SimpleGrid>
         <Link href='/portfolio'>
-          <GradientShiftButton width='max-content' px={8}>
+          <AnimatedButton width='max-content' start='bottom'>
             View All Projects
-          </GradientShiftButton>
+          </AnimatedButton>
         </Link>
       </Stack>
     </Flex>

@@ -42,7 +42,7 @@ const SectionTwo = () => {
         </div>
         <br />
         <Link href='https://handbook.raidguild.org' isExternal>
-          <AnimatedButton>Handbook</AnimatedButton>
+          <AnimatedButton start='left'>Handbook</AnimatedButton>
         </Link>
       </VStack>
     </SimpleGrid>
