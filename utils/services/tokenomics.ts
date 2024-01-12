@@ -4,7 +4,7 @@ const tokenomics = {
   title: 'Web3 Tokenomics',
   slug: 'web3-tokenomics',
   meta: {
-    title: 'Design DAO Tokenomics | Token Incentives',
+    title: 'Tokenomics Design | Tokenomics Model | Raid Guild',
     description: `Raid Guild's smart contract developers streamline complex tokenomics models, blending game theory and systems design for impactful Web3 projects.`,
   },
   description: `### Mastering the Art of Digital Value Creation
