@@ -12,13 +12,12 @@ import {
   VStack,
 } from '@raidguild/design-system';
 import _ from 'lodash';
-import { GetServerSidePropsContext } from 'next';
 import { useSession } from 'next-auth/react';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { FiEdit } from 'react-icons/fi';
-import GradientShiftButton from '../../../components/atoms/GradientShiftButton';
 import Wand from '../../../assets/illustrations/wand.svg';
+import GradientShiftButton from '../../../components/atoms/GradientShiftButton';
 import Markdown from '../../../components/atoms/Markdown';
 import ProjectCard from '../../../components/page-components/ProjectCard';
 
@@ -26,7 +25,7 @@ import raidFantasy from '../../../assets/illustrations/raid__fantasy.webp';
 import Link from '../../../components/atoms/ChakraNextLink';
 import PageTitle from '../../../components/page-components/PageTitle';
 import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
-import { getPortfolioDetail } from '../../../gql';
+import { getPortfolioDetail, getPortfolioList } from '../../../gql';
 import { checkPermission } from '../../../utils';
 
 function PortfolioPage(props: any) {
@@ -177,22 +176,22 @@ function PortfolioPage(props: any) {
   );
 }
 
-// export async function getStaticPaths() {
-//   const portfolios = await getPortfolioList();
+export async function getStaticPaths() {
+  const portfolios = await getPortfolioList();
 
-//   const paths = portfolios.map((portfolio: any) => ({
-//     params: { project: portfolio.slug },
-//   }));
+  const paths = portfolios.map((portfolio: any) => ({
+    params: { project: portfolio.slug },
+  }));
 
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
+  return {
+    paths,
+    fallback: false,
+  };
+}
 
 // This function gets called at build time
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  let projectSlug = _.get(context, 'params.project');
+export async function getStaticProps(params: { slug: string | string[] }) {
+  let projectSlug = _.get(params, 'params.project');
   if (_.isArray(projectSlug)) projectSlug = _.first(projectSlug);
 
   if (!projectSlug) {
