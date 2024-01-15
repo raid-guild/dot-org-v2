@@ -28,7 +28,8 @@ const ShimmerButton = ({ children, ...props }: ShimmerButtonProps) => {
       _hover={{
         animation: `${rotateAnimation} 2s ease-in-out infinite`,
         bgClip: 'text',
-        color: 'transparent',
+        color: 'white',
+        transition: 'color 0.4s ease-in-out',
       }}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}>

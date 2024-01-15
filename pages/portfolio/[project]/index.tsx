@@ -16,6 +16,7 @@ import { useSession } from 'next-auth/react';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { FiEdit } from 'react-icons/fi';
+import ShimmerButton from 'components/atoms/ShimmerButton';
 import Wand from '../../../assets/illustrations/wand.svg';
 import GradientShiftButton from '../../../components/atoms/GradientShiftButton';
 import Markdown from '../../../components/atoms/Markdown';
@@ -164,9 +165,7 @@ function PortfolioPage(props: any) {
 
             {_.get(initialData, 'repoLink') && (
               <Link href={_.get(initialData, 'repoLink')} isExternal>
-                <Button variant='gradientOutline' width='180px' fontFamily='monospace' fontWeight={500}>
-                  View Codebase
-                </Button>
+                <ShimmerButton>View Codebase</ShimmerButton>
               </Link>
             )}
           </Flex>
