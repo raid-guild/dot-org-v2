@@ -14,7 +14,7 @@ interface ContainerProps {
   imagePosition?: 'row' | 'row-reverse';
   title: string;
   bgImage?: string;
-  cta?: boolean;
+  cta?: React.ReactNode;
 }
 
 const ServiceSectionContainer: React.FC<ContainerProps> = ({
@@ -25,7 +25,7 @@ const ServiceSectionContainer: React.FC<ContainerProps> = ({
   imagePosition,
   title,
   bgImage,
-  cta = false,
+  cta,
 }: ContainerProps) => {
   return (
     <VStack bg={bg ?? tokens.purpleToIndigoGradient} w='100vw' bgImage={bgImage} height='max-content'>
@@ -60,7 +60,7 @@ const ServiceSectionContainer: React.FC<ContainerProps> = ({
             <VStack spacing={4} mt={6} zIndex={30}>
               <Markdown>{content}</Markdown>
             </VStack>
-            {cta && <CTABtnGroup />}
+            {cta}
           </Card>
 
           {/* Column 2 */}

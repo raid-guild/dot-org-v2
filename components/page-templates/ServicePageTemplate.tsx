@@ -1,9 +1,11 @@
-import { Box } from '@raidguild/design-system';
+import { Box, Link } from '@raidguild/design-system';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import Clouds from '../../assets/illustrations/clouds.webp';
 import Valhalla from '../../assets/illustrations/valhalla.svg';
 import WallSconce from '../../assets/illustrations/wallSconce.svg';
 import Wand from '../../assets/illustrations/wand.svg';
 import tokens from '../../utils/extendedTokens';
+import CTABtnGroup from '../atoms/CTABtnGroup';
 import ServiceSectionContainer from '../page-components/ServiceSectionContainer';
 import SiteLayout from '../page-components/SiteLayout';
 
@@ -24,6 +26,11 @@ const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, roleIma
           imagePosition='row'
           title={pageTitle}
           icon={WallSconce.src}
+          cta={
+            <Link href='#Projects'>
+              <GradientShiftButton>View Projects</GradientShiftButton>
+            </Link>
+          }
         />
       </Box>
       <Box background='blackDark' textColor='white' zIndex={30}>
@@ -35,7 +42,7 @@ const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, roleIma
           bgImage={Clouds.src}
           imagePosition='row-reverse'
           title='Our Approach'
-          cta
+          cta={<CTABtnGroup />}
         />
       </Box>
       {children}
