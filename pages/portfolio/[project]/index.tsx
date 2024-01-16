@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { FiEdit } from 'react-icons/fi';
-import ShimmerButton from '../atoms/ShimmerButton';
+import ShimmerButton from '../../../components/atoms/ShimmerButton';
 import Wand from '../../../assets/illustrations/wand.svg';
 import GradientShiftButton from '../../../components/atoms/GradientShiftButton';
 import Markdown from '../../../components/atoms/Markdown';
