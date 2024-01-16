@@ -1,22 +1,10 @@
-import {
-  Button,
-  Castle,
-  Flex,
-  HStack,
-  Heading,
-  Icon,
-  Image,
-  Stack,
-  Swords,
-  Text,
-  VStack,
-} from '@raidguild/design-system';
+import { Castle, Flex, HStack, Heading, Icon, Image, Stack, Swords, Text, VStack } from '@raidguild/design-system';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { FiEdit } from 'react-icons/fi';
-import ShimmerButton from 'components/atoms/ShimmerButton';
+import ShimmerButton from '../atoms/ShimmerButton';
 import Wand from '../../../assets/illustrations/wand.svg';
 import GradientShiftButton from '../../../components/atoms/GradientShiftButton';
 import Markdown from '../../../components/atoms/Markdown';
