@@ -13,7 +13,6 @@ const SectionOne = () => (
       placeItems='flex-start'
       border='2px solid'
       borderColor='primary.500'
-      py='2rem'
       px={{ base: '1rem', lg: '3rem' }}
       m='1rem'
       minH='90vh'

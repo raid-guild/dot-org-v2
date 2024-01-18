@@ -14,7 +14,7 @@ const NotFound = () => (
     alignItems='center'
     justifyContent='flex-start'
     bg={tokens.darkBrownRedGradient}>
-    <Box px={{ base: '1rem', lg: '4rem' }} m='3rem' w='100%'>
+    <Box px={{ base: '1rem', xl: '4rem' }} m='3rem' w='100%'>
       <Nav />
     </Box>
     <Box width={{ base: '450px', md: '500px', lg: '550px' }}>

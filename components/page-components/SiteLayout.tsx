@@ -12,12 +12,11 @@ interface Props {
 const SiteLayout: React.FC<Props> = ({ children, bg }: Props) => (
   <Flex w='100%' mx='auto' overflowX='hidden' flexDirection='column' id='SiteLayout' bg={bg ?? 'none'}>
     <Box
-      py='3rem'
       bg={bg ? 'none' : tokens.purpleToIndigoGradient}
       alignItems='center'
       justifyContent='center'
       id='NavBar'
-      px={{ base: '1rem', lg: '4rem' }}>
+      px={{ base: '1rem', xl: '4rem' }}>
       <Nav />
     </Box>
     <Flex direction='column' alignItems='center' w='100%' gap={10} bgColor='black'>

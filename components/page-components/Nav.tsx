@@ -12,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   Spacer,
+  Stack,
   VStack,
   Wizard2,
   defaultTheme,
@@ -67,7 +68,7 @@ const createMobileNavItemStyle = (name: string) => {
 
 const DesktopNav = ({ basePath }: { basePath: string }) => {
   return (
-    <HStack justifyContent='space-between' w='full'>
+    <HStack justifyContent='space-around' w='full'>
       <HStack spacing={8} alignItems='center' w='full' justifyContent='center'>
         {_.map(navItems, (item) =>
           item.name === 'Services' ? (
@@ -164,6 +165,7 @@ const DesktopNav = ({ basePath }: { basePath: string }) => {
           ),
         )}
       </HStack>
+
       <ConnectWallet />
     </HStack>
   );
@@ -174,29 +176,27 @@ const MobileNav = ({ isOpen, setIsOpen }: any) => {
   const [openSubMenu, setOpenSubMenu] = useState(null);
 
   return (
-    <Flex position={!isOpen ? 'absolute' : 'fixed'} zIndex={isOpen ? 100 : 50}>
-      <HStack align='center' justifyContent='space-between' height='8rem' minW='90vw'>
-        <Link href='/' zIndex={7} w='full' hidden={!isOpen}>
-          <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' maxWidth='200px' />
-        </Link>
+    <Stack zIndex={95}>
+      <HStack align='center' justifyContent='space-around' height='8rem' w='100%' position='relative'>
         <Spacer />
         <Button
           fontSize='2rem'
+          right='3rem'
+          position='fixed'
           onClick={() => {
             setIsOpen(!isOpen);
             setIsServicesOpen(false);
             setOpenSubMenu(null);
           }}
-          mr={{ base: 4, lg: 0 }}
           variant='link'
-          zIndex={7}>
+          zIndex={100}>
           <span style={{ width: '25px', color: defaultTheme.colors.red[500] }}>
             {!isOpen ? <FaBars /> : <FaTimes />}
           </span>
         </Button>
       </HStack>
       <VStack
-        zIndex={6}
+        zIndex={95}
         position='fixed'
         left='0'
         top='0'
@@ -204,7 +204,7 @@ const MobileNav = ({ isOpen, setIsOpen }: any) => {
         maxH='max-content'
         minH='100vh'
         w='full'
-        pt={32}
+        pt='150px'
         color='white'
         _focus={{ overflow: 'auto' }}
         direction='column'
@@ -249,23 +249,36 @@ const MobileNav = ({ isOpen, setIsOpen }: any) => {
             </Box>
           ),
         )}
-
         <ConnectWallet />
       </VStack>
-    </Flex>
+    </Stack>
   );
 };
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const basePath = router.route.split('/')[1];
-  const isMobile = useBreakpointValue({ base: true, lg: false });
+  const isMobile = useBreakpointValue({ base: true, xl: false });
   return (
-    <HStack zIndex={100} width='100%' color='white' id='Navigation Bar'>
-      <Link href='/' zIndex={80}>
+    <HStack
+      zIndex={100}
+      width='100%'
+      color='white'
+      id='Navigation Bar'
+      position='relative'
+      px={{ base: 0, xl: '4rem' }}
+      my={{ base: 0, xl: '3rem' }}>
+      <Link
+        href='/'
+        zIndex={100}
+        w={isMobile ? '100%' : 'max-content'}
+        position={isOpen ? 'fixed' : 'relative'}
+        left='50px'>
         <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' minW='100px' maxW='200px' />
       </Link>
-      {isMobile ? <MobileNav isOpen={isOpen} setIsOpen={setIsOpen} /> : <DesktopNav basePath={basePath} />}
+      <Box w='100%'>
+        {isMobile ? <MobileNav isOpen={isOpen} setIsOpen={setIsOpen} /> : <DesktopNav basePath={basePath} />}
+      </Box>
     </HStack>
   );
 };

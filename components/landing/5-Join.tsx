@@ -25,7 +25,7 @@ const SectionFive = () => (
       </Text>
       <br />
       <Link href='/join/1'>
-        <ShimmerButton>Join Us</ShimmerButton>
+        <ShimmerButton w='150px'>Join Us</ShimmerButton>
       </Link>
     </VStack>
 

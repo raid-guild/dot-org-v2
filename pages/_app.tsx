@@ -8,18 +8,18 @@ import {
   // RGThemeProvider,
   useToast,
 } from '@raidguild/design-system';
-import * as Fathom from 'fathom-client';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import { RainbowKitSiweNextAuthProvider } from '@rainbow-me/rainbowkit-siwe-next-auth';
 import '@rainbow-me/rainbowkit/styles.css';
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Analytics } from '@vercel/analytics/react';
+import * as Fathom from 'fathom-client';
 import { SessionProvider } from 'next-auth/react';
 import { DefaultSeo } from 'next-seo';
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { WagmiConfig } from 'wagmi';
 import { AppContextProvider } from '../context/appState';
 import SEO from '../next-seo.config';
@@ -68,6 +68,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ColorModeScript initialColorMode='dark' />
       <Fonts />
       <DefaultSeo {...SEO} />
+
       <WagmiConfig config={wagmiClient}>
         <SessionProvider refetchInterval={120} session={pageProps.session}>
           <RainbowKitSiweNextAuthProvider>
