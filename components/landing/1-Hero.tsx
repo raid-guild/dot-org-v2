@@ -24,7 +24,7 @@ const SectionOne = () => (
         justifyContent='space-between'
         px={{ base: '1rem', xl: '8rem' }}
         width='full'>
-        <Stack maxW={{ lg: '50%' }} alignItems={{ base: 'center', xl: 'flex-start' }}>
+        <Stack maxW={{ lg: '50%' }} alignItems={{ base: 'center', xl: 'flex-start' }} pb={3}>
           <Heading
             maxW='720px'
             fontSize={{ base: 'medium', md: '3xl', xl: '4xl' }}
