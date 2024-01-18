@@ -177,12 +177,12 @@ const MobileNav = ({ isOpen, setIsOpen }: any) => {
 
   return (
     <Stack zIndex={95}>
-      <HStack align='center' justifyContent='space-around' height='8rem' w='100%' position='relative'>
+      <HStack align='center' justifyContent='space-around' height='8rem' w='100%'>
         <Spacer />
         <Button
           fontSize='2rem'
-          right='3rem'
-          position='fixed'
+          position={isOpen ? 'fixed' : 'relative'}
+          right='5%'
           onClick={() => {
             setIsOpen(!isOpen);
             setIsServicesOpen(false);
@@ -265,7 +265,6 @@ const Nav = () => {
       width='100%'
       color='white'
       id='Navigation Bar'
-      position='relative'
       px={{ base: 0, xl: '4rem' }}
       my={{ base: 0, xl: '3rem' }}>
       <Link
@@ -273,7 +272,7 @@ const Nav = () => {
         zIndex={100}
         w={isMobile ? '100%' : 'max-content'}
         position={isOpen ? 'fixed' : 'relative'}
-        left='50px'>
+        left='5%'>
         <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' minW='100px' maxW='200px' />
       </Link>
       <Box w='100%'>
