@@ -57,10 +57,10 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
   const pledgeReadinessCheckBoxChangeHandler = () => {
     onOpen();
   };
-  const handleModalCancel = () => {
-    setValue('pledgeReadiness', false);
-    onClose();
-  };
+  // const handleModalCancel = () => {
+  //   setValue('pledgeReadiness', false);
+  //   onClose();
+  // };
 
   useEffect(() => {
     reset({ ...joinState.join6 });
@@ -84,10 +84,10 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
       });
     }
   };
-  const modalConfirmHandler = () => {
-    setValue('pledgeReadiness', !watch('pledgeReadiness'));
-    onClose();
-  };
+  // const modalConfirmHandler = () => {
+  //   setValue('pledgeReadiness', !watch('pledgeReadiness'));
+  //   onClose();
+  // };
 
   return (
     <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py={8}>

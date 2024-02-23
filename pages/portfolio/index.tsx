@@ -14,18 +14,18 @@ import usePortfolioList from '../../hooks/usePortfolioList';
 import { checkPermission } from '../../utils';
 import layerStyles from '../../utils/extendedTokens';
 
-const labels = [
-  'TOKEN',
-  'NFT DROP',
-  'LAUNCHPAD',
-  'DEFI',
-  'DAPP',
-  'COMMUNITY',
-  'NFT MARKET',
-  'DEX',
-  'PUBLIC GOODS',
-  'INFRASTRUCTURE',
-];
+// const labels = [
+//   'TOKEN',
+//   'NFT DROP',
+//   'LAUNCHPAD',
+//   'DEFI',
+//   'DAPP',
+//   'COMMUNITY',
+//   'NFT MARKET',
+//   'DEX',
+//   'PUBLIC GOODS',
+//   'INFRASTRUCTURE',
+// ];
 
 interface Props {
   initialData: any;

@@ -1,5 +1,4 @@
 import { Box, Card, Flex, HStack, Heading, Image, SimpleGrid, VStack, defaultTheme } from '@raidguild/design-system';
-import CTABtnGroup from '../atoms/CTABtnGroup';
 import Castle from '../../assets/illustrations/castle.svg';
 import Decor from '../../assets/illustrations/decor.svg';
 import layerStyles from '../../utils/extendedTokens';

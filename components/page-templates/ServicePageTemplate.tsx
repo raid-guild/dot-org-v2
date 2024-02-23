@@ -17,7 +17,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, roleImage, children, ...props }: Props) => {
+const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, children, roleImage }: Props) => {
   return (
     <SiteLayout bg={layerStyles.purpleToIndigoGradient}>
       <Box background='blackDark' textColor='white'>

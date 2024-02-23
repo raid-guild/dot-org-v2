@@ -1,15 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Image,
-  Stack,
-  Text,
-  VStack,
-  defaultTheme,
-  useBreakpointValue,
-} from '@raidguild/design-system';
+import { Box, Button, Flex, Heading, Image, Stack, Text, VStack, defaultTheme } from '@raidguild/design-system';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
