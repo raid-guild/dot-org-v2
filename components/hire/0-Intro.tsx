@@ -1,24 +1,23 @@
-import { Flex, Heading, Text, HStack, Button } from '@raidguild/design-system';
-import { ConnectWallet } from '../atoms/ConnectWallet';
+import { HStack, Heading, Stack, Text } from '@raidguild/design-system';
 import Link from '../atoms/ChakraNextLink';
+import { ConnectWallet } from '../atoms/ConnectWallet';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 
 type Props = {
   handleNext: () => void;
   isConnected: boolean;
 };
 const Intro = ({ handleNext, isConnected }: Props) => (
-  <Flex direction='column' py='2rem' px={{ base: '1rem', lg: '4rem' }} mx='auto' maxW='900px'>
-    <Heading fontSize={{ base: '1.5rem', lg: '36px' }} mb='1rem'>
-      Hiring RaidGuild
-    </Heading>
+  <Stack spacing={10} maxW={{ base: '100%', md: '60%' }} py={8}>
+    <Heading mb='1rem'>Hiring RaidGuild</Heading>
 
-    <Text fontSize={{ base: '1rem', lg: '18px' }}>
+    <Text fontFamily='spaceMono'>
       To request a consultation, please fill out the form starting on the next screen after connecting your wallet. The
       more information you can provide about the work you want to hire RaidGuild for, the better. The form will have
       space for information about you / your team, background, and description for your project, specs for the work, as
       well as a few questions to give us an initial feel for your needs.
     </Text>
-    <br />
+
     {/* disabled $500 RAID spam filter payment for now */}
 
     {/* <Text fontSize={{ base: '1rem', lg: '18px' }}>
@@ -46,26 +45,26 @@ const Intro = ({ handleNext, isConnected }: Props) => (
       </Link>{' '}
       to secure your spot for a consultation from your dashboard.
     </Text> */}
-    <br />
+    {/* <br /> */}
 
-    <Text>
+    <Text fontFamily='spaceMono'>
       For more info about the consultation process, join our{' '}
-      <Link href='https://handbook.raidguild.org/' isExternal color='red.500'>
+      <Link href='https://discord.com/invite/rGFpfQf' isExternal color='red.500'>
         discord
       </Link>
       .
     </Text>
     <br />
-    <HStack mt='2rem'>
+    <HStack>
       {!isConnected ? (
         <ConnectWallet label='Sign in to Continue' />
       ) : (
-        <Button fontFamily='spaceMono' onClick={handleNext}>
+        <GradientShiftButton onClick={handleNext} width='max-content' fontFamily='monospace' fontWeight={500}>
           New Consultation
-        </Button>
+        </GradientShiftButton>
       )}
     </HStack>
-  </Flex>
+  </Stack>
 );
 
 export default Intro;

@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
+import { Button, Flex, Select, Stack, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { Flex, Stack, Button, useToast, Select } from '@raidguild/design-system';
 import { useJoinState } from '../../context/appState';
-import RadioBox from '../atoms/RadioBox';
 import { skills } from '../../utils/constants';
+import RadioBox from '../atoms/RadioBox';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 
 const validationSchema = Yup.object().shape({
   primarySkills: Yup.array()
@@ -24,7 +25,6 @@ const validationSchema = Yup.object().shape({
   ),
   technicalSkillType: Yup.string(),
 });
-
 interface Props {
   handleBack: () => void;
   handleNext: () => void;
@@ -72,7 +72,7 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
   const multiOptions = skills.map((s: string) => ({ value: s, label: s }));
 
   return (
-    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
+    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py={8}>
       <Stack direction={{ base: 'column', lg: 'row' }} mb={10} spacing={10}>
         <Stack direction='column' w={{ base: 'auto', lg: '50%' }}>
           <Select
@@ -81,6 +81,7 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
             isMulti
             options={multiOptions}
             label="What say'st are your primary skills?*"
+            variant='solidOutline'
           />
           <Select
             name='secondarySkills'
@@ -88,6 +89,7 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
             isMulti
             options={multiOptions}
             label='And your secondary skills?'
+            variant='solidOutline'
           />
         </Stack>
         <Stack w={{ base: 'auto', lg: '50%' }}>
@@ -95,17 +97,26 @@ const StepThree = ({ handleNext, handleBack }: Props) => {
             name='technicalSkillType'
             label='Do you bethink yourself as technical, or non-technical?'
             localForm={localForm}
+            size='lg'
             options={['Technical', 'Non - Technical', 'Other']}
             stack='horizontal'
+            variant='solidOutline'
           />
         </Stack>
       </Stack>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <Button onClick={handleBack} variant='outline'>
+        <Button
+          width='max-content'
+          variant='gradientOutline'
+          onClick={handleBack}
+          fontWeight={500}
+          fontFamily='spaceMono'>
           Back
         </Button>
-        <Button onClick={handleSubmit(onNext, onError)}>Next</Button>
+        <GradientShiftButton width='max-content' onClick={handleSubmit(onNext, onError)}>
+          Next
+        </GradientShiftButton>
       </Flex>
     </Flex>
   );

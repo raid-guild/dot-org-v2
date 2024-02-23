@@ -1,11 +1,11 @@
-import { VStack, Box, Text, Textarea, Input, Select, Button, Stack } from '@raidguild/design-system';
+import { Box, Input, Select, Stack, Text, Textarea, VStack } from '@raidguild/design-system';
+import _ from 'lodash';
+import { useSession } from 'next-auth/react';
 import { FieldValues, useForm } from 'react-hook-form';
 
-import { useSession } from 'next-auth/react';
-import _ from 'lodash';
-
-import Link from '../atoms/ChakraNextLink';
 import useSubmit from '../../hooks/useSubmit';
+import Link from '../atoms/ChakraNextLink';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import ImageUpload from '../atoms/ImageUpload';
 
 type PortfolioFormProps = {
@@ -57,14 +57,13 @@ const categoryOptions = [
 ];
 
 const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
-  const localForm = useForm();
+  const localForm = useForm({
+    mode: 'all',
+  });
   const { handleSubmit } = localForm;
   const { data: session } = useSession();
   const token = _.get(session, 'token') || '';
   const { submitProjectForm, submitProjectEditForm } = useSubmit(token);
-  // const clearData = () => {
-  //   reset();
-  // };
 
   const onSubmit = (data: FieldValues) => {
     if (isEditable && slug) {
@@ -75,25 +74,34 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
   };
 
   return (
-    <VStack width='60vw' margin='0 auto' pb='2rem'>
+    <VStack width='60vw' margin='0 auto' pb='2rem' gap={14} fontFamily='texturina'>
       <Input
         label='Project Name'
         name='projectName'
         localForm={localForm}
         defaultValue={isEditable && initialData?.name}
+        variant='solidOutline'
       />
-      <Input label='Project Slug:' name='slug' localForm={localForm} defaultValue={isEditable && initialData?.slug} />
+      <Input
+        label='Project Slug:'
+        name='slug'
+        localForm={localForm}
+        defaultValue={isEditable && initialData?.slug}
+        variant='solidOutline'
+      />
       <Input
         label='Github:'
         name='githubUrl'
         localForm={localForm}
         defaultValue={isEditable && initialData?.repoLink}
+        variant='solidOutline'
       />
       <Input
         label='Description:'
         name='description'
         localForm={localForm}
         defaultValue={isEditable && initialData?.description}
+        variant='solidOutline'
       />
 
       <VStack alignItems='flex-start' width='100%'>
@@ -110,6 +118,7 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
             label={question.label}
             name={question.name}
             localForm={localForm}
+            fontFamily='texturina'
             defaultValue={
               // eslint-disable-next-line no-nested-ternary
               question.name === 'challenge'
@@ -118,6 +127,7 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
                 ? initialData?.approach.content[0]
                 : initialData?.result.content[0]
             }
+            variant='solidOutline'
           />
           <Text fontSize='0.8rem'>
             This textarea accepts{' '}
@@ -127,10 +137,18 @@ const PortfolioForm = ({ isEditable, slug, initialData }: PortfolioFormProps) =>
           </Text>
         </Stack>
       ))}
-      <Select name='categoryOptions' localForm={localForm} options={categoryOptions} />
+      <Select
+        name='categoryOptions'
+        label='Project Category'
+        defaultValue={_.find(categoryOptions, {
+          value: initialData?.category,
+        })}
+        options={categoryOptions}
+        localForm={localForm}
+      />
 
-      <Box pt={8}>
-        <Button onClick={handleSubmit(onSubmit)}>{isEditable ? 'Save Changes' : 'Ship Project'}</Button>
+      <Box pt={8} onClick={handleSubmit(onSubmit)}>
+        <GradientShiftButton width='200px'>{isEditable ? 'Save Changes' : 'Publish Project'}</GradientShiftButton>
       </Box>
     </VStack>
   );

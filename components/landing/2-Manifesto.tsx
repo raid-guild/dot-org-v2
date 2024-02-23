@@ -1,4 +1,5 @@
-import { SimpleGrid, VStack, Box, Heading, Text, Button, Image } from '@raidguild/design-system';
+import { Box, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
+import AnimatedButton from '../atoms/AnimatedButton';
 import Link from '../atoms/ChakraNextLink';
 
 import raidFantasy from '../../assets/illustrations/raid__fantasy.webp';
@@ -6,17 +7,22 @@ import raidFantasy from '../../assets/illustrations/raid__fantasy.webp';
 const SectionTwo = () => {
   return (
     <SimpleGrid
-      layerStyle='redToPurpleHorizontalGradient'
+      bg='black'
       id='manifesto'
       columns={{ base: 1, md: 1, lg: 2 }}
       px={{ base: '2rem', lg: '8rem' }}
       py='4rem'
+      minH={{ base: 'max-contnt', lg: '100vh' }}
+      maxH='max-content'
+      gap={6}
       placeItems='center'>
       <Box width={{ base: '250px', lg: '400px' }}>
         <Image src={raidFantasy.src} alt='raid fantasy' placeholder='blur' />
       </Box>
-      <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }}>
-        <Heading>Manifesto</Heading>
+      <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500' textColor='white'>
+        <Heading variant='shadow' color='white'>
+          Manifesto
+        </Heading>
         <div>
           <Text>
             We believe that DAOs will power the future of work. Through the MetaCartel network, we assembled a
@@ -35,7 +41,7 @@ const SectionTwo = () => {
         </div>
         <br />
         <Link href='https://handbook.raidguild.org' isExternal>
-          <Button>Handbook</Button>
+          <AnimatedButton start='left'>Handbook</AnimatedButton>
         </Link>
       </VStack>
     </SimpleGrid>

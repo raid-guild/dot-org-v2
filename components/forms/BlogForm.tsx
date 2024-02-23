@@ -1,11 +1,12 @@
-import { VStack, Box, Text, Textarea, Input, Button, Stack } from '@raidguild/design-system';
+import { Box, Input, Stack, Text, Textarea, VStack } from '@raidguild/design-system';
 import { FieldValues, useForm } from 'react-hook-form';
 
-import { useSession } from 'next-auth/react';
 import _ from 'lodash';
+import { useSession } from 'next-auth/react';
 
-import Link from '../atoms/ChakraNextLink';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import useSubmit from '../../hooks/useSubmit';
+import Link from '../atoms/ChakraNextLink';
 import ImageUpload from '../atoms/ImageUpload';
 
 type PortfolioFormProps = {
@@ -18,12 +19,8 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
   const localForm = useForm();
   const { handleSubmit } = localForm;
   const { data: session } = useSession();
-  const token = _.get(session, 'token') || '';
+  const token = _.get(session, 'token') ?? '';
   const { submitBlogForm, submitBlogEditForm } = useSubmit(token);
-
-  // const clearData = () => {
-  //   reset();
-  // };
 
   const onSubmit = (data: FieldValues) => {
     if (isEditable && slug) {
@@ -34,15 +31,34 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
   };
 
   return (
-    <VStack width='60vw' margin='0 auto' pb='2rem'>
-      <Input label='Blog Title' name='title' localForm={localForm} defaultValue={isEditable && initialData?.title} />
-      <Input label='Blog Slug:' name='slug' localForm={localForm} defaultValue={isEditable && initialData?.slug} />
-      <Input label='Author:' name='author' localForm={localForm} defaultValue={isEditable && initialData?.author} />
+    <VStack minW='50vw' maxW='1000px' margin='0 auto' p={10} fontFamily='texturina' gap={14}>
+      <Input
+        label='Blog Title'
+        name='title'
+        localForm={localForm}
+        defaultValue={isEditable && initialData?.title}
+        variant='solidOutline'
+      />
+      <Input
+        label='Blog Slug:'
+        name='slug'
+        localForm={localForm}
+        defaultValue={isEditable && initialData?.slug}
+        variant='solidOutline'
+      />
+      <Input
+        label='Author:'
+        name='author'
+        localForm={localForm}
+        defaultValue={isEditable && initialData?.author}
+        variant='solidOutline'
+      />
       <Input
         label='Description:'
         name='description'
         localForm={localForm}
         defaultValue={isEditable && initialData?.description}
+        variant='solidOutline'
       />
 
       <VStack alignItems='flex-start' width='100%'>
@@ -59,7 +75,9 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
           name='content'
           localForm={localForm}
           defaultValue={initialData?.content}
-          height='500px'
+          variant='solidOutline'
+          noOfLines={20}
+          overflowY='scroll'
         />
         <Text fontSize='0.8rem'>
           This textarea accepts{' '}
@@ -68,8 +86,10 @@ const BlogForm = ({ isEditable, slug, initialData }: PortfolioFormProps) => {
           </Link>
         </Text>
       </Stack>
-      <Box pt={8}>
-        <Button onClick={handleSubmit(onSubmit)}>{isEditable ? 'Save Changes' : 'Publish Blog'}</Button>
+      <Box pt={8} fontFamily='mono'>
+        <GradientShiftButton width='max' onClick={handleSubmit(onSubmit)} fontFamily='monospace' fontWeight={500}>
+          {isEditable ? 'Save Changes' : 'Publish Blog'}
+        </GradientShiftButton>
       </Box>
     </VStack>
   );

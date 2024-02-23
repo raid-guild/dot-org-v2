@@ -1,5 +1,6 @@
-import { Stack, Heading, Text, HStack, Button } from '@raidguild/design-system';
+import { HStack, Heading, Stack, Text } from '@raidguild/design-system';
 import { ConnectWallet } from '../atoms/ConnectWallet';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 
 interface Props {
   handleNext: () => void;
@@ -7,7 +8,7 @@ interface Props {
 }
 
 const Intro = ({ handleNext, isConnected }: Props) => (
-  <Stack spacing={10} maxW={{ base: '100%', md: '60%' }}>
+  <Stack spacing={10} maxW={{ base: '100%', md: '60%' }} py={10}>
     <Heading mb='1rem'>Apply to Join RaidGuild</Heading>
 
     <Text fontFamily='spaceMono'>
@@ -25,23 +26,12 @@ const Intro = ({ handleNext, isConnected }: Props) => (
       {!isConnected ? (
         <ConnectWallet label='Sign in to Continue' />
       ) : (
-        <Button fontFamily='spaceMono' onClick={handleNext}>
+        <GradientShiftButton onClick={handleNext} width='max-content' fontWeight={500} fontFamily='spaceMono'>
           Start Application
-        </Button>
+        </GradientShiftButton>
       )}
     </HStack>
   </Stack>
 );
 
 export default Intro;
-
-// <Stack p='0.5rem 1rem' >
-//   <Text>
-//     Status: Season 3
-//   </Text>
-//   <Text>
-//     Cohorts are being trained & building cool stuff. Applications are
-//     closed for season 3 but open for next season. Selected applicants
-//     will be notified via email when it's time.
-//   </Text>
-// </Stack>

@@ -1,70 +1,29 @@
+import { Castle, Flex, HStack, Heading, Icon, Image, Stack, Swords, Text, VStack } from '@raidguild/design-system';
 import _ from 'lodash';
-import {
-  Heading,
-  Stack,
-  Image,
-  Icon,
-  HStack,
-  Card,
-  CardBody,
-  Castle,
-  Text,
-  Button,
-  Flex,
-} from '@raidguild/design-system';
-import { FaEdit } from 'react-icons/fa';
-import { GetServerSidePropsContext } from 'next';
-import { NextSeo } from 'next-seo';
 import { useSession } from 'next-auth/react';
+import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
+import { FiEdit } from 'react-icons/fi';
+import ShimmerButton from '../../../components/atoms/ShimmerButton';
+import Wand from '../../../assets/illustrations/wand.svg';
+import GradientShiftButton from '../../../components/atoms/GradientShiftButton';
 import Markdown from '../../../components/atoms/Markdown';
+import ProjectCard from '../../../components/page-components/ProjectCard';
 
-import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
-import PageTitle from '../../../components/page-components/PageTitle';
+import raidFantasy from '../../../assets/illustrations/raid__fantasy.webp';
 import Link from '../../../components/atoms/ChakraNextLink';
-import { getPortfolioDetail } from '../../../gql';
+import PageTitle from '../../../components/page-components/PageTitle';
+import CMSPageTemplate from '../../../components/page-templates/CMSPageTemplate';
+import { getPortfolioDetail, getPortfolioList } from '../../../gql';
 import { checkPermission } from '../../../utils';
 
-interface ProjectCardProps {
-  name: string;
-  logo: string;
-  website: string;
-}
-
-const ProjectCard = ({ name, logo, website }: ProjectCardProps) => {
-  return (
-    <Stack
-      width={['auto', 'auto', 'auto', '30%', '30%']}
-      border='1px solid #FF3864'
-      px='12'
-      py='8'
-      align='center'
-      spacing={4}>
-      {/* <Box background='linear-gradient(102.93deg, #2B0000 0%, #3D0610 29.17%, #5A1049 61.98%, #461881 100%)' /> */}
-      <Image src={logo} width='96px' height='auto' my={4} />
-      <Stack align='center' spacing={4}>
-        <Heading textAlign='center' size='lg'>
-          {name}
-        </Heading>
-        <Text>{website}</Text>
-        {website && (
-          <Link href={website} isExternal>
-            <Button>Visit Website</Button>
-          </Link>
-        )}
-      </Stack>
-    </Stack>
-  );
-};
-
-interface Props {
-  initialData: any;
-}
-
-function PortfolioPage({ initialData }: Props) {
+function PortfolioPage(props: any) {
   const { data: session } = useSession();
 
+  const { initialData } = props;
   const canEdit = checkPermission(session);
 
+  const router = useRouter();
   return (
     <CMSPageTemplate>
       <PageTitle title={_.get(initialData, 'name')} />
@@ -85,115 +44,141 @@ function PortfolioPage({ initialData }: Props) {
         }}
       />
       {canEdit && (
-        <Stack alignItems='center' pb={8}>
-          <Link href={`/portfolio/${initialData.slug}/edit`}>
-            <Button variant='link' leftIcon={<FaEdit />}>
-              Edit Portfolio
-            </Button>
-          </Link>
+        <Stack alignItems='center' py='6'>
+          <GradientShiftButton width='max-content' onClick={() => router.push(`/portfolio/${initialData.slug}/edit`)}>
+            <Flex w='max-content' px={4} gap={2} alignItems='center' justifyContent='center'>
+              <FiEdit fontSize='16px' color='white' /> Create new Post
+            </Flex>
+          </GradientShiftButton>
         </Stack>
       )}
-      <Flex minH='250px' justify='center' align='center'>
-        <Text maxW='60%' textAlign='center'>
-          {_.get(initialData, 'description')}
-        </Text>
-      </Flex>
 
-      <Card layerStyle='redToPurpleVerticalGradient' border='none'>
-        <Stack p='4rem' align='center'>
-          <HStack align='center' gap={2}>
-            <Icon as={Castle} w='32px' h='32px' />
-            <Heading size='lg'>The Challenge</Heading>
-          </HStack>
-          <CardBody
-            textAlign={['justify', 'justify', 'justify', 'center', 'center']}
-            width={['auto', 'auto', 'auto', '70%', '70%']}
-            lineHeight='taller'>
-            <Stack spacing={6}>
-              {_.map(_.get(initialData, 'challenge.content'), (content: any) => (
-                <Markdown key={content}>{content}</Markdown>
-              ))}
-            </Stack>
-          </CardBody>
-        </Stack>
-      </Card>
-      <Stack
-        direction={['column', 'column', 'column', 'row', 'row']}
+      <VStack
+        layerStyle='redToPurpleVerticalGradient'
+        border='none'
+        w='100vw'
+        h='500px'
+        justify='center'
         align='center'
+        overflow='hidden'
+        position='relative'>
+        <Image
+          src={raidFantasy.src}
+          alt='raid fantasy'
+          alignSelf='center'
+          minW='50vw'
+          maxWidth='100%'
+          position='absolute'
+          opacity={0.15}
+        />
+        <Stack p='2rem' align='center' zIndex={50}>
+          <HStack align='center' gap={6} justify='center'>
+            <Icon as={Castle} w='32px' h='32px' />
+            <Heading variant='shadow' size='md'>
+              What We Did
+            </Heading>
+          </HStack>
+          <Flex textAlign='center'>
+            <Text maxW='900px'>{_.get(initialData, 'description')}</Text>
+          </Flex>
+        </Stack>
+      </VStack>
+
+      <Stack
+        direction={{ base: 'column', xl: 'row' }}
+        align={{ base: 'center', xl: 'flex-start' }}
         spacing={14}
+        mt={12}
         justify='space-around'
-        px={28}
-        py={14}>
+        p={6}>
         <ProjectCard
           name={_.get(initialData, 'name')}
           website={_.get(initialData, 'resultLink')}
           logo={_.get(initialData, 'imageUrl')}
         />
-        <Stack p='4rem' spacing={6} align='center'>
-          <HStack align='center' gap={2}>
-            <Icon as={Castle} w='32px' h='32px' />
-            <Heading size='lg'>The Approach</Heading>
-          </HStack>
-          <Stack spacing={6}>
-            {_.map(_.get(initialData, 'approach.content'), (content: any) => (
-              <Markdown key={content}>{content}</Markdown>
-            ))}
+
+        <VStack maxW={900} gap={12} my={10} justify='flex-start' align='flex-start'>
+          <Stack spacing={6} align={{ base: 'center', lg: 'flex-start' }} maxW='80vw'>
+            <Stack flexDir={{ base: 'column', md: 'row' }} align='center' gap={6}>
+              <Icon as={Castle} w='32px' h='32px' />
+              <Heading variant='shadow' size='md'>
+                The Challenge
+              </Heading>
+            </Stack>
+            <Stack spacing={6}>
+              {_.map(_.get(initialData, 'challenge.content'), (content: any) => (
+                <Markdown key={content}>{content}</Markdown>
+              ))}
+            </Stack>
           </Stack>
-        </Stack>
-      </Stack>
-      <Card layerStyle='redToPurpleVerticalGradient' border='none'>
-        <Stack p='4rem' align='center'>
-          <HStack align='center' gap={2}>
-            <Icon as={Castle} w='32px' h='32px' />
-            <Heading size='lg'>The Result</Heading>
-          </HStack>
-          <CardBody
-            textAlign={['justify', 'justify', 'justify', 'center', 'center']}
-            width={['auto', 'auto', 'auto', '70%', '70%']}
-            lineHeight='taller'>
+          <Stack spacing={6} align={{ base: 'center', lg: 'flex-start' }} maxW='80vw'>
+            <Stack flexDir={{ base: 'column', md: 'row' }} align='center' gap={6}>
+              <Icon as={Swords} w='32px' h='32px' />
+              <Heading variant='shadow' size='md'>
+                Our Approach
+              </Heading>
+            </Stack>
+            <Stack spacing={6}>
+              {_.map(_.get(initialData, 'approach.content'), (content: any) => (
+                <Markdown key={content}>{content}</Markdown>
+              ))}
+            </Stack>
+          </Stack>
+          <Stack spacing={6} align={{ base: 'center', lg: 'flex-start' }} maxW='80vw'>
+            <Stack flexDir={{ base: 'column', md: 'row' }} align='center' gap={6}>
+              <Image src={Wand.src} w='32px' h='32px' />
+              <Heading variant='shadow' size='md'>
+                The Result
+              </Heading>
+            </Stack>
+
             <Stack spacing={6}>
               {_.map(_.get(initialData, 'result.content'), (content: any) => (
                 <Markdown key={content}>{content}</Markdown>
               ))}
             </Stack>
-          </CardBody>
-        </Stack>
-      </Card>
-      <Flex minH='200px' justify='center' align='center'>
-        <HStack gap={2} justify={['center', 'center', 'center', 'start', 'start']}>
-          {_.get(initialData, 'resultLink') && (
-            <Link href={_.get(initialData, 'resultLink')} isExternal>
-              <Button>View Project</Button>
-            </Link>
-          )}
+          </Stack>
+          <Flex
+            w='full'
+            mt={{ base: '2rem' }}
+            direction={{ base: 'column', lg: 'row' }}
+            alignItems='center'
+            justifyContent={{ base: 'center', lg: 'flex-start' }}
+            gap={2}>
+            {_.get(initialData, 'resultLink') && (
+              <Link href={_.get(initialData, 'resultLink')} isExternal>
+                <GradientShiftButton width='180px'>View Project</GradientShiftButton>
+              </Link>
+            )}
 
-          {_.get(initialData, 'repoLink') && (
-            <Link href={_.get(initialData, 'repoLink')} isExternal>
-              <Button variant='outline'>View Codebase</Button>
-            </Link>
-          )}
-        </HStack>
-      </Flex>
+            {_.get(initialData, 'repoLink') && (
+              <Link href={_.get(initialData, 'repoLink')} isExternal>
+                <ShimmerButton>View Codebase</ShimmerButton>
+              </Link>
+            )}
+          </Flex>
+        </VStack>
+      </Stack>
     </CMSPageTemplate>
   );
 }
 
-// export async function getStaticPaths() {
-//   const portfolios = await getPortfolioList();
+export async function getStaticPaths() {
+  const portfolios = await getPortfolioList();
 
-//   const paths = portfolios.map((portfolio: any) => ({
-//     params: { project: portfolio.slug },
-//   }));
+  const paths = portfolios.map((portfolio: any) => ({
+    params: { project: portfolio.slug },
+  }));
 
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
+  return {
+    paths,
+    fallback: false,
+  };
+}
 
 // This function gets called at build time
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  let projectSlug = _.get(context, 'params.project');
+export async function getStaticProps(params: { slug: string | string[] }) {
+  let projectSlug = _.get(params, 'params.project');
   if (_.isArray(projectSlug)) projectSlug = _.first(projectSlug);
 
   if (!projectSlug) {

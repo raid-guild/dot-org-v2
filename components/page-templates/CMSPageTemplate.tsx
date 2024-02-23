@@ -7,7 +7,9 @@ type Props = {
 
 const CMSPageTemplate = ({ children }: Props) => (
   <SiteLayout>
-    <Box background='blackDark'>{children}</Box>
+    <Box background='blackDark' textColor='white' px={2}>
+      {children}
+    </Box>
   </SiteLayout>
 );
 

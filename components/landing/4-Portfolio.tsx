@@ -1,9 +1,10 @@
+import { Flex, Image, SimpleGrid, Stack } from '@raidguild/design-system';
 import _ from 'lodash';
-import { Container, Button, Image, Stack, SimpleGrid, Flex } from '@raidguild/design-system';
+import AnimatedButton from '../atoms/AnimatedButton';
 import Link from '../atoms/ChakraNextLink';
 
-import PageTitle from '../page-components/PageTitle';
 import wallSconce from '../../assets/illustrations/wallSconce.svg';
+import PageTitle from '../page-components/PageTitle';
 
 import Clouds from '../../assets/illustrations/clouds.webp';
 
@@ -13,23 +14,33 @@ interface SectionFourProps {
 
 const SectionFour = ({ portfolioList }: SectionFourProps) => {
   return (
-    <Container id='portfolio' bgImage={Clouds.src} minW='100%' py='8rem'>
+    <Flex
+      id='portfolio'
+      bgImage={Clouds.src}
+      bgColor='black'
+      minW='100%'
+      py='8rem'
+      minH='max'
+      flexDir='column'
+      gap={20}>
       <PageTitle title='Our Portfolio' />
-      <Stack gap={4} align='center'>
-        <SimpleGrid columns={{ base: 1, lg: 3 }} alignItems='center' gap={[`3rem`, `4rem`]} maxW='80%'>
+      <Stack gap={20} align='center'>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} alignItems='center' gap={{ base: 16, md: 20 }} maxW='80%'>
           {_.map(portfolioList, (project) => (
             <Link key={_.get(project, 'imageUrl')} href={`/portfolio/${_.get(project, 'slug')}`}>
-              <Flex height='200px' width='200px' justify='center' align='center'>
-                <Image src={_.get(project, 'imageUrl', wallSconce.src)} width='100%' />
+              <Flex width='200px' justify='center' align='center'>
+                <Image src={_.get(project, 'imageUrl', wallSconce.src)} width='80%' />
               </Flex>
             </Link>
           ))}
         </SimpleGrid>
         <Link href='/portfolio'>
-          <Button margin='1rem auto 0 auto'>View Projects</Button>
+          <AnimatedButton width='max-content' start='bottom'>
+            View All Projects
+          </AnimatedButton>
         </Link>
       </Stack>
-    </Container>
+    </Flex>
   );
 };
 

@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Flex, Input, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { Flex, SimpleGrid, Input, Textarea, Button, useToast } from '@raidguild/design-system';
-import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import { useJoinState } from '../../context/appState';
 
 const inputs = [
@@ -71,22 +72,48 @@ const StepOne = ({ handleNext, handleBack }: Props) => {
   };
 
   return (
-    <Flex direction='column'>
+    <Flex direction='column' py={8}>
       <SimpleGrid spacing={{ base: 0, lg: 5 }} columns={{ base: 1, lg: 2 }}>
         {inputs.map((input) =>
           input.type === 'input' ? (
-            <Input label={input.label} name={input.name} placeholder={input.placeholder} localForm={localForm} />
+            <Input
+              key={input.name}
+              label={input.label}
+              name={input.name}
+              placeholder={input.placeholder}
+              localForm={localForm}
+              variant='solidOutline'
+            />
           ) : (
-            <Textarea label={input.label} name={input.name} placeholder={input.placeholder} localForm={localForm} />
+            <Textarea
+              key={input.name}
+              label={input.label}
+              name={input.name}
+              placeholder={input.placeholder}
+              localForm={localForm}
+              variant='solidOutline'
+              fontFamily='sans-serif'
+            />
           ),
         )}
       </SimpleGrid>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <Button onClick={handleBack} variant='outline'>
+        <Button
+          width='max-content'
+          variant='gradientOutline'
+          onClick={handleBack}
+          fontWeight={500}
+          fontFamily='spaceMono'>
           Back
         </Button>
-        <Button onClick={handleSubmit(onNext, onError)}>Next</Button>
+        <GradientShiftButton
+          width='max-content'
+          onClick={handleSubmit(onNext, onError)}
+          fontWeight={500}
+          fontFamily='spaceMono'>
+          Next
+        </GradientShiftButton>
       </Flex>
     </Flex>
   );

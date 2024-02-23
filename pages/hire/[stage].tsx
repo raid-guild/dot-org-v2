@@ -31,7 +31,7 @@ const HireUs = () => {
 
   return (
     <SiteLayout>
-      <Stack w='80%' spacing={10}>
+      <Stack mt='2rem' mx='auto' w='80%' spacing={10} textColor='white'>
         {/* FORM PARTS */}
         {stage === 1 && <Intro isConnected={Boolean(session)} handleNext={handleNext} />}
         {stage === 2 && <Contact handleNext={handleNext} handleBack={handleBack} />}

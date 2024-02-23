@@ -14,7 +14,7 @@ interface Props {
 
 const EditPost = ({ slug, initialData }: Props) => {
   const { data: session } = useSession();
-  const token = _.get(session, 'token') || '';
+  const token = _.get(session, 'token') ?? '';
 
   const { data: blogData } = useBlogsDetail({ slug, initialData, token });
 

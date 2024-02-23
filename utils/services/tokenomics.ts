@@ -1,22 +1,26 @@
-const tokenomics = {
-  title: 'Tokenomics',
-  description: `Your project's "look" is the first impression your users get. A poor first impressions can damage your brand and cause users to leave your app.
-  People will call your project "unprofessional" or "sloppy."
-  Your project needs to be cohesive, sensible, and easy to understand. This can be the difference between your protocol being the next unicorn, or just another copy-pasta of Uniswap.
-  `,
-  roleImage: '/assets/characters/archer.svg',
-  salesContent: `Raid Guild's visual designers have an eye for subtlety. We obsess over small details. We'll ensure your project has have a gorgeous, easy-to-use interface that aligns with your brand's image.
+import Alchemist from '../../assets/characters/alchemist.svg';
 
-  From when your users first land on your app, to when they connect their wallet, then send money to your smart contracts, the experience will be seamless. 
+const tokenomics = {
+  title: 'Web3 Tokenomics',
+  slug: 'web3-tokenomics',
+  meta: {
+    title: 'Tokenomics Design | Tokenomics Model | Raid Guild',
+    description: `Raid Guild's smart contract developers streamline complex tokenomics models, blending game theory and systems design for impactful Web3 projects.`,
+  },
+  description: `### Mastering the Art of Digital Value Creation
+
+  Tokenomics, a fusion of Game-Theory, Inflation, Deflation, Systems Design, Governance, and ERC-20 tokens, forms the backbone of any successful project in the Web3 space. The journey through the realms of Incentive Alignment and Token Theory is complex, laden with jargon, and filled with philosophical intricacies that could take years to unravel.
   
-  We'll use the most up-to-date technology to make sure your app not only looks great, but functions flawlessly too. Mobile, desktop, or tablet, your app will look great on any device.
+  Alternatively, you can leverage the expertise of a **Smart Contract Developer** and our **Tokenomics Specialists** at Raid Guild. Our team is adept at navigating this labyrinth, providing you with a shortcut through the complexities, so you can concentrate on realizing your Next-Gen dreams. Our proficiency spans across diverse blockchain ecosystems, encompassing **Chainlink Tokenomics**, **Arbitrum Tokenomics**, **Avax Tokenomics**, coupled with advanced **Tokenomics Design** and modeling.
   
-  Don't take our word for it! Look at some of the apps we've built and let our work speak for itself:
-  * BoredApes dot com
-  * BasedGhouls dot com
-  * (best looking UI we've built)
+  `,
+  roleImage: Alchemist.src,
+  salesContent: `### Simplifying and Tailoring Tokenomics for Impact
+
+  At Raid Guild, we are dedicated to helping your community dissect, understand, and simplify the Incentive Models that will amplify your impact in the Web3 world.
   
-  Let us handle UI design for you. Schedule a consultation now.`,
+  Whether your focus is on Grants, Distribution, or broader Impact, our **Tokenomics Specialists** are equipped to enlighten you on the vast possibilities of Token Distribution tailored for your community. Our approach involves developing a customized **Tokenomics Model** that aligns with your project’s unique needs and goals. We aim to demystify the complexities of tokenomics, offering clear, strategic guidance to harness the full potential of this critical aspect of the Web3 ecosystem for your project’s triumph.
+  `,
 };
 
 export default tokenomics;
