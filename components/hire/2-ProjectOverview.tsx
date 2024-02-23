@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
-import { VStack, useToast, GridItem, SimpleGrid, Input, Textarea } from '@raidguild/design-system';
-import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { GridItem, Input, SimpleGrid, Textarea, VStack, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import FormNavigation from './FormNavigation';
 import { useHireState } from '../../context/appState';
 import handleError from '../../utils/forms';
 import RadioBox from '../atoms/RadioBox';
+import FormNavigation from './FormNavigation';
 
 interface Props {
   handleBack: () => void;
@@ -39,8 +39,8 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
     handleNext();
   };
   return (
-    <VStack>
-      <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }} w='100%' mb='2rem'>
+    <VStack py={8}>
+      <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }} w='100%' mb='2rem' fontFamily='texturina'>
         <RadioBox
           name='projectType'
           label='New or Existing Project*'
@@ -55,12 +55,19 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
           stack='horizontal'
           localForm={localForm}
         />
-        <Input label='Project Name?*' name='projectName' placeholder='Project Name' localForm={localForm} />
+        <Input
+          label='Project Name?*'
+          name='projectName'
+          placeholder='Project Name'
+          localForm={localForm}
+          variant='solidOutline'
+        />
         <Input
           label='Link to Specs'
           name='projectLink'
           placeholder='Any link related to the project'
           localForm={localForm}
+          variant='solidOutline'
         />
         <GridItem gridColumn={{ base: 1, lg: 'span 2' }}>
           <Textarea
@@ -68,6 +75,8 @@ const StepTwo = ({ handleNext, handleBack }: Props) => {
             placeholder='Describe your project, goals, vision, etc.'
             name='projectDescription'
             localForm={localForm}
+            variant='solidOutline'
+            fontFamily='texturina'
           />
         </GridItem>
       </SimpleGrid>

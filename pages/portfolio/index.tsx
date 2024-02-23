@@ -1,41 +1,57 @@
 // A page that displays all of the projects in the portfolio
+import { Box, Image, SimpleGrid, Stack, Text, VStack } from '@raidguild/design-system';
+import * as Fathom from 'fathom-client';
 import _ from 'lodash';
 import { useSession } from 'next-auth/react';
-import { Box, Heading, Stack, Image, VStack, Text, Card, Flex, Button } from '@raidguild/design-system';
-import { FaEdit } from 'react-icons/fa';
+import { useRouter } from 'next/router';
+import { FiPlusCircle } from 'react-icons/fi';
 import Link from '../../components/atoms/ChakraNextLink';
-import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
+import GradientShiftButton from '../../components/atoms/GradientShiftButton';
 import PageTitle from '../../components/page-components/PageTitle';
-import usePortfolioList from '../../hooks/usePortfolioList';
+import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import { getPortfolioList } from '../../gql';
+import usePortfolioList from '../../hooks/usePortfolioList';
 import { checkPermission } from '../../utils';
-import wallSconce from '../../assets/illustrations/wallSconce.svg';
+import layerStyles from '../../utils/extendedTokens';
+
+// const labels = [
+//   'TOKEN',
+//   'NFT DROP',
+//   'LAUNCHPAD',
+//   'DEFI',
+//   'DAPP',
+//   'COMMUNITY',
+//   'NFT MARKET',
+//   'DEX',
+//   'PUBLIC GOODS',
+//   'INFRASTRUCTURE',
+// ];
 
 interface Props {
   initialData: any;
 }
 
+const portfolioStats = [
+  {
+    numbers: '150+',
+    label: 'Unique Clients',
+  },
+  {
+    numbers: '187',
+    label: 'Raids Completed',
+  },
+  {
+    numbers: '54',
+    label: 'Active Raiders',
+  },
+];
+
 // a component for displaying a portfolio project in a list
 function PortfolioContent({ project }: { project: any }) {
   const link = `/portfolio/${project.slug}`;
   return (
-    <Link href={link}>
-      <Card border='1px solid #FF3864' w={['90%', '90%', '90%', '100%', '100%']} mx='auto' p={4}>
-        <Flex minH='250px' align='center'>
-          <Stack
-            spacing='4rem'
-            direction={['column', 'column', 'column', 'row', 'row']}
-            alignItems={['flex-start', 'flex-start', 'flex-start', 'center', 'center']}>
-            <Image src={_.get(project, 'imageUrl', wallSconce.src)} w='200px' marginRight='1rem' />
-            <VStack spacing={6} color='white' align='flex-start'>
-              <Heading>{_.get(project, 'name')}</Heading>
-              <Box maxWidth='50ch'>
-                <Text noOfLines={3}>{_.get(project, 'description')}</Text>
-              </Box>
-            </VStack>
-          </Stack>
-        </Flex>
-      </Card>
+    <Link href={link} onClick={() => Fathom.trackEvent(`Portfolio ${project.slug} Clicked`)}>
+      <Image src={_.get(project, 'imageUrl')} boxSize={32} objectFit='contain' />
     </Link>
   );
 }
@@ -46,26 +62,57 @@ function PortfolioPage({ initialData }: Props) {
   const { data: portfolioList } = usePortfolioList({ initialData, token });
 
   const canCreate = checkPermission(session);
+  const router = useRouter();
   return (
-    <Box>
-      <CMSPageTemplate>
-        <PageTitle title='Portfolio' />
-        {canCreate && (
-          <Stack alignItems='center' pt='6'>
-            <Link href='/portfolio/new'>
-              <Button variant='link' leftIcon={<FaEdit />}>
-                Add new Portfolio
-              </Button>
-            </Link>
-          </Stack>
-        )}
-        <VStack mt={16} width='100%' alignItems='center' spacing={20}>
-          {_.map(portfolioList, (project) => (
-            <PortfolioContent project={project} key={_.get(project, 'name')} />
-          ))}
-        </VStack>
-      </CMSPageTemplate>
-    </Box>
+    <CMSPageTemplate>
+      <PageTitle title='Portfolio' />
+      <Text textAlign='center' px='5rem' fontSize='xl' my={8} mx={4}>
+        Our work speaks for itself. Click on one of our clients logos and see the project details page.
+      </Text>
+      {canCreate && (
+        <Stack alignItems='center' pt='6'>
+          <GradientShiftButton width='max-content' onClick={() => router.push('/portfolio/new')} gap={2}>
+            {/* <Flex w='max-content' px={4} gap={2}> */}
+            <FiPlusCircle fontSize='16px' color='white' /> Add Portfolio
+            {/* </Flex> */}
+          </GradientShiftButton>
+        </Stack>
+      )}
+
+      <SimpleGrid
+        m={12}
+        gap={{ base: 12, xl: 36 }}
+        columns={{ base: 1, md: 3 }}
+        alignItems='center'
+        justifyContent='center'>
+        {portfolioStats.map((stat) => (
+          <VStack key={stat.label} spacing={1} textAlign='center'>
+            <Box bg={layerStyles.purpleToBlueGradient} bgClip='text'>
+              <Text fontSize='5xl' fontWeight='medium' fontFamily='uncial'>
+                {stat.numbers}
+              </Text>
+            </Box>
+            <Text fontSize='xl' fontWeight='medium'>
+              {stat.label}
+            </Text>
+          </VStack>
+        ))}
+      </SimpleGrid>
+      {/* Grid to show different categories of Projects done */}
+      {/* <SimpleGrid gap={{ base: 12, xl: 10 }} columns={{ base: 2, xl: 5 }} py={20} justifyItems='center'>
+        {labels.map((label) => (
+          <Button variant='gradientOutline' key={label} minW='max-content' w='200px'>
+            {label}
+          </Button>
+        ))}
+      </SimpleGrid> */}
+      {/* <PageTitle title='' hideIcon /> */}
+      <SimpleGrid gap={{ base: 6, xl: 10 }} columns={{ base: 2, xl: 5 }} py={20} justifyItems='center'>
+        {_.map(portfolioList, (project: any) => (
+          <PortfolioContent project={project} key={_.get(project, 'name')} />
+        ))}
+      </SimpleGrid>
+    </CMSPageTemplate>
   );
 }
 
@@ -76,6 +123,7 @@ export const getStaticProps = async () => {
     props: {
       initialData: result,
     },
+    revalidate: 10,
   };
 };
 

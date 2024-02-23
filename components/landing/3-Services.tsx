@@ -1,55 +1,73 @@
-import { Flex, VStack, SimpleGrid, Image, Heading, Button, Text, Card } from '@raidguild/design-system';
-import Link from '../atoms/ChakraNextLink';
-
+import { Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
 import { services } from '../../utils/constants';
+import layerStyles from '../../utils/extendedTokens';
+import AnimatedButton from '../atoms/AnimatedButton';
+import Link from '../atoms/ChakraNextLink';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 
 const SectionThree = () => (
-  <Flex
-    id='services'
-    layerStyle='purpleToRedDiagonalGradient'
-    minHeight='95vh'
-    direction={['column', null, null, 'row']}
-    px={{ base: '2rem', lg: '8rem' }}
-    py='2rem'>
-    <VStack spacing={5} justifyContent='center' my='5rem' maxW='500px'>
-      <Heading fontSize={{ base: '1.5rem', lg: '36px' }}>Our Services</Heading>
-      <Text fontSize={{ base: '1rem', lg: '18px' }}>
+  <SimpleGrid
+    bg={layerStyles.purpleToRedGradient}
+    id='Our Services'
+    px={{ base: '2rem', xl: '8rem' }}
+    columns={{ base: 1, xl: 2 }}
+    minH={{ base: 'max-content', xl: '120vh' }}
+    maxH={{ base: 'max', xl: 'max-content' }}
+    gap={12}
+    py={{ base: 16, xl: 24 }}
+    placeItems='center'>
+    <VStack spacing={5} justifyContent='center' ml={{ md: '1rem' }} maxW='500' textColor='white'>
+      <Heading variant='shadow' color='white'>
+        Our Services
+      </Heading>
+      <Text>
         RaidGuild is the premier design and dev agency of the Web3 ecosystem. We are deeply entrenched in the bleeding
         edge of DAOs, DeFi, dApps and everything else in between. Hailing from the MetaCartel network, our team consists
         of a diverse group of talent with over 9000 years of combined experience.
       </Text>
-      <Text fontSize={{ base: '1rem', lg: '18px' }}>
+      <Text>
         We know how to buidl and have the connections, talent and experience to turn your ideas into reality. We are
         lean to the core and deliver high quality results with quick turnarounds.
       </Text>
       <br />
-      <Link href='/hire'>
-        <Button fontSize={{ base: '16px', lg: '18px' }}>Hire Us</Button>
-      </Link>
+
+      <Flex gap={2} flexWrap={{ base: 'wrap', md: 'nowrap' }} w='100%' justify='center'>
+        <Link href='/hire/1'>
+          <GradientShiftButton w='160px'>Hire Us</GradientShiftButton>
+        </Link>
+        <Link href='/join/1'>
+          <AnimatedButton w='160px' start='right' fontWeight={500}>
+            All Services
+          </AnimatedButton>
+        </Link>
+      </Flex>
     </VStack>
-    <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} gap={5} my='auto' ml={{ lg: '3rem' }}>
-      {services.map((item) => {
-        return (
-          <Card
-            key={item.name}
-            // direction='column'
-            alignItems='center'
-            justifyContent='space-evenly'
-            variant='topBorderOnly'>
-            <Heading mb={3} size='md'>
-              {item.name}
-            </Heading>
+    <VStack height={{ base: 'max', md: 'full' }}>
+      <SimpleGrid columns={{ base: 1, lg: 2 }} gap={5} my='auto' ml={{ lg: '1.5rem' }}>
+        {services.map((item) => {
+          return (
+            <Card
+              key={item.name}
+              gap={2}
+              alignItems='center'
+              justifyContent='space-evenly'
+              borderColor='primary.500'
+              maxW={{ base: '100%', md: '500px' }}
+              p={6}>
+              <Image src={item.img} alt='consultations' my='.5rem' />
 
-            <Image src={item.img} alt='consultations' my='.5rem' />
-
-            <Text fontSize='sm' textAlign='center'>
-              {item.text}
-            </Text>
-          </Card>
-        );
-      })}
-    </SimpleGrid>
-  </Flex>
+              <Heading mb={3} size='md' textAlign='center'>
+                {item.name}
+              </Heading>
+              <Text fontSize='sm' textAlign='center'>
+                {item.text}
+              </Text>
+            </Card>
+          );
+        })}
+      </SimpleGrid>
+    </VStack>
+  </SimpleGrid>
 );
 
 export default SectionThree;

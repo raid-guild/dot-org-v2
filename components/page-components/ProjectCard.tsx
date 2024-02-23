@@ -1,41 +1,59 @@
-import _ from 'lodash';
-import { Box, Image, Heading, VStack, HStack, Text, Button, Card } from '@raidguild/design-system';
-import Link from '../atoms/ChakraNextLink';
+import { Box, Button, Card, HStack, Heading, Image, Link, Stack, Text, defaultTheme } from '@raidguild/design-system';
 
-interface Props {
-  project: any;
+interface ProjectCardProps {
+  name: string;
+  logo: string;
+  website: string;
+  roles?: string[];
 }
 
-const ProjectCard = ({ project }: Props) => (
-  <Card>
-    <Box layerStyle='redToPurpleVerticalGradient' height='96px' />
-    <VStack align='center' pb='2rem'>
-      <Image
-        src={`${_.get(project, 'imageUrl')}`}
-        width='96px'
-        height='96px'
-        border='1px solid black'
-        borderColor='red'
-        transform='translateY(-48px)'
-      />
-      <Heading>{_.get(project, 'projectName')}</Heading>
-      <Text>{_.get(project, 'description')}</Text>
-      <HStack>
-        {_.map(_.get(project, 'raiders'), (raider: any) => {
-          console.log(raider);
-          return (
-            <Box as='span' key={raider.raider} data-tip={`${raider?.raider} | ${raider?.role}`}>
-              <Image src={`/assets/characters/${raider?.role.toLowerCase()}.svg`} width='28px' height='28px' />
-            </Box>
-          );
-        })}
-      </HStack>
-      <Box minHeight='2rem' />
-      <Link href={_.get(project, 'websiteUrl')} isExternal>
-        <Button>Visit Website</Button>
-      </Link>
-    </VStack>
-  </Card>
-);
+const ProjectCard = ({ name, logo, website, roles }: ProjectCardProps) => {
+  return (
+    <Card maxW='600px' border={`1px solid ${defaultTheme.colors.red[500]}`} align='center' gap={4} pb={6}>
+      <Box layerStyle='redToPurpleVerticalGradient' w='full' height='90px' position='relative'>
+        <Box
+          bg='black'
+          w='100px'
+          h='100px'
+          position='absolute'
+          top='50%'
+          left='50%'
+          transform='translate(-50%, -5%)'
+          border={`1px solid ${defaultTheme.colors.red[500]}`}>
+          <Image
+            src={logo}
+            width='60px'
+            height='auto'
+            position='absolute'
+            top='50%'
+            left='50%'
+            transform='translate(-50%, -50%)'
+          />
+        </Box>
+      </Box>
+      <Stack align='center' spacing={4} px={10} mt={16}>
+        <Heading textAlign='center' size='lg' variant='shadow'>
+          {name}
+        </Heading>
+        <Text p={4}>{website}</Text>
+        {roles && (
+          <HStack gap={2}>
+            {roles.map((role: string) => (
+              <Image key={role} src={role} alt='role' />
+            ))}
+          </HStack>
+        )}
+
+        {website && (
+          <Link href={website} isExternal>
+            <Button variant='gradientOutline' width='max' fontFamily='monospace' fontWeight={500}>
+              Visit Website
+            </Button>
+          </Link>
+        )}
+      </Stack>
+    </Card>
+  );
+};
 
 export default ProjectCard;

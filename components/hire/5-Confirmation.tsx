@@ -1,13 +1,11 @@
-import React from 'react';
-import { Flex, Box, Heading, Button, Text } from '@raidguild/design-system';
+import { Box, Heading, Text, VStack } from '@raidguild/design-system';
 import Image from 'next/image';
-import Link from '../atoms/ChakraNextLink';
 
 import signalFire from '../../assets/illustrations/signal_fire.webp';
 
 const Confirmation = () => {
   return (
-    <Flex w='100%' direction='column' alignItems='center' px={{ base: '2rem', lg: '5rem' }} py='5rem'>
+    <VStack py={8}>
       <Box mb='2rem' w='250px'>
         <Image src={signalFire} placeholder='blur' alt='signal fire' />
       </Box>
@@ -15,10 +13,10 @@ const Confirmation = () => {
         The Fires Have Been Lit!
       </Heading>
 
-      <Text fontFamily='spaceMono'>
+      <Text fontFamily='spaceMono' textAlign='center'>
         Your request has been received. A member of the Guild will be in touch with you soon.
       </Text>
-    </Flex>
+    </VStack>
   );
 };
 

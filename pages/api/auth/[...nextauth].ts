@@ -1,33 +1,39 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { NextApiRequest, NextApiResponse } from 'next';
 import {
-  siweCredentials,
   authorizeSiweMessage,
-  extendSessionWithUserAndToken,
-  encodeAuth,
-  decodeAuth,
   CONFIG,
+  decodeAuth,
+  encodeAuth,
+  extendSessionWithUserAndToken,
+  siweCredentials,
 } from '../../../utils/auth';
-import { AuthRequest } from '../../../types';
 
 const { NEXTAUTH_SECRET } = process.env;
 
 const siweProvider = CredentialsProvider({
   name: 'Ethereum',
   credentials: siweCredentials,
-  authorize: (credentials, req: AuthRequest) => authorizeSiweMessage({ credentials, req }),
+  authorize: (credentials, req) => authorizeSiweMessage({ credentials, req }),
 });
 
 type NextAuthOptions = Parameters<typeof NextAuth>[2];
 
+export const authOptions: NextAuthOptions = {
+  providers: [siweProvider],
+  session: { strategy: 'jwt', maxAge: CONFIG.defaultMaxAge },
+  jwt: {
+    secret: NEXTAUTH_SECRET,
+    encode: encodeAuth,
+    // used any because not sure how to type this
+    decode: decodeAuth as any,
+  },
+  callbacks: { session: extendSessionWithUserAndToken },
+};
+
 const Auth = async (req: NextApiRequest, res: NextApiResponse) => {
-  const options: NextAuthOptions = {
-    providers: [siweProvider],
-    session: { strategy: 'jwt', maxAge: CONFIG.defaultMaxAge },
-    jwt: { secret: NEXTAUTH_SECRET, encode: encodeAuth, decode: decodeAuth },
-    callbacks: { session: extendSessionWithUserAndToken },
-  };
+  const options: NextAuthOptions = authOptions;
 
   return NextAuth(req, res, options);
 };

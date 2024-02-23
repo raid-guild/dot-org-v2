@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
-import { Box, Flex, Button, SimpleGrid, Input, useToast } from '@raidguild/design-system';
-import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Box, Button, Flex, Input, SimpleGrid, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { useJoinState } from '../../context/appState';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 
 const inputs = [
   {
@@ -68,7 +69,7 @@ const StepTwo = ({ handleBack, handleNext }: Props) => {
     }
   };
   return (
-    <Box>
+    <Box py={8}>
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }}>
         {inputs.map((input) => (
           <Input
@@ -77,15 +78,23 @@ const StepTwo = ({ handleBack, handleNext }: Props) => {
             name={input.name}
             placeholder={input.placeholder}
             localForm={localForm}
+            variant='solidOutline'
           />
         ))}
       </SimpleGrid>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <Button onClick={handleBack} variant='outline'>
+        <Button
+          width='max-content'
+          variant='gradientOutline'
+          onClick={handleBack}
+          fontWeight={500}
+          fontFamily='spaceMono'>
           Back
         </Button>
-        <Button onClick={handleSubmit(onNext, onError)}>Next</Button>
+        <GradientShiftButton width='max-content' onClick={handleSubmit(onNext, onError)}>
+          Next
+        </GradientShiftButton>
       </Flex>
     </Box>
   );

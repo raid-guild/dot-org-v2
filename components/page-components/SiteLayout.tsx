@@ -1,29 +1,29 @@
+import { Box, Flex } from '@raidguild/design-system';
 import React, { ReactNode } from 'react';
-import { Flex, Box } from '@raidguild/design-system';
-import Nav from './Nav';
+import layerStyles from '../../utils/extendedTokens';
 import Footer from './Footer';
+import Nav from './Nav';
 
 interface Props {
   children: ReactNode;
+  bg?: string;
 }
 
-const SiteLayout: React.FC<Props> = ({ children }: Props) => (
-  <Flex layerStyle='primaryGradient'>
-    <Flex maxW='100rem' py='1rem' mx='auto' overflowX='hidden'>
-      <Flex width='100vw' minHeight='100vh' direction='column' justifyContent='space-between' alignItems='center'>
-        <Box px={{ base: '2rem', lg: '5rem' }} w='100%'>
-          <Nav />
-        </Box>
-
-        <Flex direction='column' alignItems='center' w='100%' mt='2rem' py={20} gap={10}>
-          {children}
-        </Flex>
-
-        <Box w='100%' mt='200px'>
-          <Footer />
-        </Box>
-      </Flex>
+const SiteLayout: React.FC<Props> = ({ children, bg }: Props) => (
+  <Flex w='100%' mx='auto' overflowX='hidden' flexDirection='column' id='SiteLayout' bg={bg ?? 'none'}>
+    <Box
+      bg={bg ? 'none' : layerStyles.purpleToIndigoGradient}
+      alignItems='center'
+      justifyContent='center'
+      id='NavBar'
+      px={{ base: '1rem', xl: '4rem' }}>
+      <Nav />
+    </Box>
+    <Flex direction='column' alignItems='center' w='100%' gap={10} bgColor='black'>
+      {children}
     </Flex>
+
+    <Footer />
   </Flex>
 );
 

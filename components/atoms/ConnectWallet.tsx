@@ -1,30 +1,32 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import React from 'react';
 
-import { useDisconnect } from 'wagmi';
 import {
+  Box,
+  Button,
+  Flex,
+  HStack,
+  Icon,
+  Image,
   Menu,
   MenuButton,
-  MenuList,
   MenuItem,
-  Icon,
-  HStack,
-  Box,
-  Flex,
-  Image,
+  MenuList,
   Text,
-  Button,
+  defaultTheme,
 } from '@raidguild/design-system';
-import { FiKey, FiChevronDown, FiXCircle } from 'react-icons/fi';
+import { FiChevronDown, FiKey, FiXCircle } from 'react-icons/fi';
+import { MdReportGmailerrorred } from 'react-icons/md';
+import { useDisconnect } from 'wagmi';
 import { truncateAddress } from '../../utils';
+import RGConnectButton from './RGConnectButton';
 
 type Props = {
   label?: string;
 };
 
-export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
-  // const { isConnecting } = useAccount();
+export const ConnectWallet: React.FC<Props> = ({ label = 'Connect Wallet' }: Props) => {
   const { disconnect } = useDisconnect();
   const showNetwork = false; // maybe unhide, in some cases
 
@@ -47,22 +49,13 @@ export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
             })}>
             {(() => {
               if (!connected) {
-                return (
-                  <Button
-                    variant='outline'
-                    transition='all 100ms ease-in-out'
-                    leftIcon={<Icon as={FiKey} color='primary.500' w='20px' h='20px' />}
-                    // isDisabled={isConnecting}
-                    onClick={openConnectModal}
-                    data-cy='connect-wallet'>
-                    {label || 'Connect'}
-                  </Button>
-                );
+                return <RGConnectButton onClick={openConnectModal}>{label}</RGConnectButton>;
               }
 
               if (chain.unsupported) {
                 return (
-                  <Button onClick={openChainModal} variant='outline'>
+                  <Button onClick={openChainModal} variant='outline' bg='red.500' borderRadius={2}>
+                    <Icon as={MdReportGmailerrorred} color='primary.500' w='18px' h='18px' textColor='white' />
                     Unsupported network
                   </Button>
                 );
@@ -78,25 +71,39 @@ export const ConnectWallet: React.FC<Props> = ({ label }: Props) => {
                       </Button>
                     )}
 
-                    <MenuButton as={Button} variant='outline' width='fit'>
+                    <MenuButton as={Button} variant='outline' width='fit' borderRadius={2}>
                       <HStack spacing={3}>
-                        <Text color='white'>
+                        <Text color='white' fontFamily='mono'>
                           {account.ensName ? account.ensName : truncateAddress(account.address)}
                         </Text>
                         <Icon as={FiChevronDown} color='primary.500' />
                       </HStack>
                     </MenuButton>
                     <MenuList minWidth='none'>
-                      <MenuItem onClick={() => openAccountModal()} _hover={{ backgroundColor: 'gray.600' }}>
-                        <HStack>
-                          <Icon as={FiKey} color='white' />
-                          <Box color='white'>Wallet</Box>
+                      <MenuItem onClick={() => openAccountModal()} borderRadius={0} p={0}>
+                        <HStack
+                          spacing={2}
+                          h='full'
+                          w='full'
+                          p={2}
+                          color='primary.500'
+                          fontFamily='mono'
+                          _hover={{ color: 'white', backgroundColor: 'primary.500' }}>
+                          <Icon as={FiKey} />
+                          <Box>Wallet</Box>
                         </HStack>
                       </MenuItem>
-                      <MenuItem onClick={() => disconnect()} _hover={{ backgroundColor: 'gray.600' }}>
-                        <HStack spacing={2}>
-                          <Icon as={FiXCircle} color='primary.500' />
-                          <Box color='primary.500'>Sign Out</Box>
+                      <MenuItem onClick={() => disconnect()} borderRadius={0} p={0}>
+                        <HStack
+                          spacing={2}
+                          h='full'
+                          w='full'
+                          p={2}
+                          color='primary.500'
+                          fontFamily='mono'
+                          _hover={{ backgroundColor: defaultTheme.colors.primary[500], color: 'white' }}>
+                          <Icon as={FiXCircle} />
+                          <Box>Sign Out</Box>
                         </HStack>
                       </MenuItem>
                     </MenuList>

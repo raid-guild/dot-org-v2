@@ -1,23 +1,15 @@
+import Hunter from '../../assets/characters/hunter.svg';
+
 const web3Marketing = {
-  title: 'Web3 Backend',
-  description: `Imagine working 14 hours a day for the past 2 years. Your engineers built your product perfectly. It works without bugs, the UX is great, and the design is eye-catching.
+  title: 'Web3 Marketing',
+  slug: 'web3-marketing',
+  description: `Marketing is at the core of any Product making the leap from Zero to One. Doing Marketing WELL, can be the difference of going from One to Ten or One to Ten Million. In the Web3 world things move FAST and you want your Marketing Team moving that much Faster. 
+  
+  Let Raid Guild be your Guide in the Weird world of Marketing in Web3, as OG's in the Web3 space we know the communities to harken too for your particular Market fit.`,
 
-  But you don't have any users...
-  
-  If nobody knows about your project, your hard work was in vain. It'll end up as a dead product, along with others. 
-  
-  Having a good marketing strategy is what separates popular products from the obscure.
-  
-  Marketing doesn't need to be manipulative, aggressive and annoying. 
-  
-  In fact, people love good marketing?
-  
-  If you saw an ad for a product or service that could make your family's life easier, would you use it?
-  
-  Of course you would! (At least if it was within your financial means).`,
+  roleImage: Hunter.src,
 
-  roleImage: '/assets/characters/archer.svg',
-
+  // todo - update sales content for hunter/bard
   salesContent: `Marketing is both a science and art. If your marketing is put in front of the correct people, it taps into human psychology.
 
   If your product works and can improve somebody's life, wouldn't you *want* as many people to see it as humanly possible?

@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Flex, GridItem, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { Flex, Button, GridItem, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
-import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import { useJoinState } from '../../context/appState';
 
 interface Props {
@@ -67,20 +68,34 @@ const StepFour = ({ handleNext, handleBack }: Props) => {
   };
 
   return (
-    <Flex direction='column'>
-      <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 0, lg: 5 }}>
+    <Flex direction='column' py={8}>
+      <SimpleGrid columns={{ base: 1, lg: 2 }} placeItems='center' gap={{ base: 8, lg: 2 }}>
         {inputs.map((input) => (
-          <GridItem minH='175px' key={input.label}>
-            <Textarea label={input.label} placeholder={input.placeholder} name={input.name} localForm={localForm} />
+          <GridItem minH='175px' key={input.label} maxW='520px'>
+            <Textarea
+              label={input.label}
+              placeholder={input.placeholder}
+              name={input.name}
+              localForm={localForm}
+              variant='solidOutline'
+              fontFamily='sans-serif'
+            />
           </GridItem>
         ))}
       </SimpleGrid>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <Button onClick={handleBack} variant='outline'>
+        <Button
+          width='max-content'
+          variant='gradientOutline'
+          onClick={handleBack}
+          fontWeight={500}
+          fontFamily='spaceMono'>
           Back
         </Button>
-        <Button onClick={handleSubmit(onNext, onError)}>Next</Button>
+        <GradientShiftButton width='max-content' onClick={handleSubmit(onNext, onError)}>
+          Next
+        </GradientShiftButton>
       </Flex>
     </Flex>
   );

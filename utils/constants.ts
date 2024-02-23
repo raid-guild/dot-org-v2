@@ -34,7 +34,7 @@ export const culture = [
   },
   {
     name: 'Tip of the Spear',
-    img: 'https://res.cloudinary.com/saimano/image/upload/v1622037333/RaidGuild/icons/purple/tipofthespear_k2lkvk.png',
+    img: 'https://res.cloudinary.com/saimano/image/upload/v1622036154/RaidGuild/icons/red/tipofthespear_a4qqnj.png',
     text: 'Join the ranks on the front lines and make a direct impact on the world around you.',
   },
 ];
@@ -163,3 +163,68 @@ export const hireUsServices = [
 
 export const messageToSignJoin =
   'I hereby with the information provided would like to submit my cohort application to RaidGuild.';
+
+export const swordsImage =
+  'https://res.cloudinary.com/saimano/image/upload/v1699369142/RaidGuild/icons/roles/swords_tayjw7.png';
+
+export const NavMenuData = [
+  {
+    category: 'Development',
+    items: [
+      {
+        name: 'Front End',
+        slug: 'web3-frontend',
+      },
+      // {
+      //   name: 'Back End',
+      //   slug: 'web3-backend',
+      // },
+      {
+        name: 'Smart Contracts',
+        slug: 'smart-contracts',
+      },
+    ],
+  },
+  {
+    category: 'Design',
+    items: [
+      {
+        name: 'UX Design',
+        slug: 'web3-ux-design',
+      },
+      // {
+      //   name: 'UI Design',
+      //   slug: 'web3-ui-design',
+      // },
+      // {
+      //   name: 'Visual Design',
+      //   slug: 'web3-visual-design',
+      // },
+    ],
+  },
+  {
+    category: 'Web3',
+    items: [
+      {
+        name: 'Community Management',
+        slug: 'community-management',
+      },
+      {
+        name: 'DAO Consulting',
+        slug: 'dao-consulting',
+      },
+      {
+        name: 'Content',
+        slug: 'web3-content',
+      },
+      {
+        name: 'Tokenomics',
+        slug: 'web3-tokenomics',
+      },
+      // {
+      //   name: 'Marketing',
+      //   slug: 'web3-marketing',
+      // },
+    ],
+  },
+];

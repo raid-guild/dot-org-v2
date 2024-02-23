@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, HStack, Stack, Textarea, VStack, useMediaQuery, useToast } from '@raidguild/design-system';
+import * as Fathom from 'fathom-client';
 import _ from 'lodash';
-import * as Yup from 'yup';
-import { Flex, useToast, Stack, Button, Textarea, useMediaQuery } from '@raidguild/design-system';
 import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import { useHireState } from '../../context/appState';
 import handleError from '../../utils/forms';
 // import Link from '../atoms/ChakraNextLink';
@@ -116,7 +118,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
 
   const onNext = async (data: FieldValues) => {
     setIsSubmitting(true);
-
+    Fathom.trackEvent('Hire Form Submission Attempted');
     const currState = {
       ...hireState,
       hire4: { ...data },
@@ -131,8 +133,9 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
         iconName: 'alert',
       });
     } else {
+      Fathom.trackEvent('form submit success');
       toast.success({
-        title: 'Form submitted successfully!',
+        title: 'Form Submitted successfully!',
         iconName: 'crown',
       });
       handleNext();
@@ -143,13 +146,14 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
   };
 
   return (
-    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
+    <VStack py={8} w='full'>
       <Stack direction='column' spacing={{ base: 0, lg: 5 }} mb={10}>
         <Textarea
           label='Do you need something very specific?*'
           placeholder='Tell us how you think we can best help you?'
           name='additionalInfo'
           localForm={localForm}
+          fontFamily='texturina'
         />
 
         <RadioBox
@@ -158,6 +162,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
           options={['Fast & Polished', 'Fast & Inexpensive', 'Polished & Inexpensive']}
           stack={upTo780 ? 'vertical' : 'horizontal'}
           localForm={localForm}
+          fontFamily='texturina'
         />
       </Stack>
 
@@ -166,18 +171,20 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
           Don&apos;t want to pay in $RAID? Give feedback here
         </Link>
       </Flex> */}
-      <Flex direction='row' gap='2'>
-        <Button fontFamily='spaceMono' onClick={handleBack} variant='outline'>
+      <HStack gap='2'>
+        <Button variant='gradientOutline' onClick={handleBack} fontFamily='monospace' fontWeight={500}>
           Back
         </Button>
-        <Button
-          fontFamily='spaceMono'
+
+        <GradientShiftButton
           isDisabled={isSubmitting}
           isLoading={isSubmitting}
           loadingText='Submitting'
-          onClick={handleSubmit(onNext, handleError(toast))}>
+          onClick={handleSubmit(onNext, handleError(toast))}
+          fontWeight={500}
+          fontFamily='monospace'>
           Submit
-        </Button>
+        </GradientShiftButton>
         {/* {formStatus === FORM_STATE.AWAITING_PAYMENT && (
           <Button fontFamily='spaceMono' onClick={paymentHandler}>
             Pay {SUBMISSION_REQUEST_FEE} $RAID
@@ -193,7 +200,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
             Submit as Member
           </Button>
         )} */}
-      </Flex>
+      </HStack>
       {/* {formStatus === FORM_STATE.PAID_AND_SUBMITTED && (
         <Flex direction='column' mt='2rem'>
           <Text fontFamily='spaceMono'>$RAID has been sent to the Guild Bank. Thank you for your submission!</Text>
@@ -258,7 +265,7 @@ const StepFour = ({ handleBack, handleNext }: Props) => {
             consultation queue. You can buy more $RAID from honeyswap on xDai.`}
         alertAction='https://app.honeyswap.org/#/swap?inputCurrency=0x18e9262e68cc6c6004db93105cc7c001bb103e49&outputCurrency=0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1&chainId=100'
       /> */}
-    </Flex>
+    </VStack>
   );
 };
 

@@ -41,7 +41,7 @@ const Join = () => {
 
   return (
     <SiteLayout>
-      <Stack mt='2rem' mx='auto' w='80%' spacing={10}>
+      <Stack mt='2rem' mx='auto' w='80%' spacing={10} textColor='white'>
         {stage > 1 && stage < 8 && (
           <Flex direction='row' alignItems='center'>
             <CircularProgress value={stage - 1} thickness='4px' max={6} color='primary.500'>

@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { Input, Box, VStack, SimpleGrid, Textarea, useToast } from '@raidguild/design-system';
-import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Box, Input, SimpleGrid, Textarea, VStack, useToast } from '@raidguild/design-system';
+import { useEffect } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { useHireState } from '../../context/appState';
-import FormNavigation from './FormNavigation';
 import handleError from '../../utils/forms';
+import FormNavigation from './FormNavigation';
 
 interface Props {
   handleBack: () => void;
@@ -87,8 +87,8 @@ export default function StepOne({ handleNext, handleBack }: Props) {
   };
 
   return (
-    <VStack>
-      <SimpleGrid columns={{ base: 1, md: 2 }} gap='2rem' w='100%' mb='2rem'>
+    <VStack py={8}>
+      <SimpleGrid columns={{ base: 1, md: 2 }} gap='2rem' w='100%' mb='2rem' fontFamily='texturina'>
         {formFields.map((field) => {
           if (field.type === 'textarea') {
             return (
@@ -99,6 +99,8 @@ export default function StepOne({ handleNext, handleBack }: Props) {
                   label={field.label}
                   placeholder={field.placeholder}
                   key={field.name}
+                  variant='solidOutline'
+                  fontFamily='texturina'
                 />
               </Box>
             );
@@ -111,6 +113,7 @@ export default function StepOne({ handleNext, handleBack }: Props) {
               localForm={localForm}
               label={field.label}
               placeholder={field.placeholder}
+              variant='solidOutline'
             />
           );
         })}

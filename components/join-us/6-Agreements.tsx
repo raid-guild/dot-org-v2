@@ -1,29 +1,32 @@
-import React, { useEffect, useRef } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
-  Flex,
-  FormControl,
-  Button,
-  Stack,
-  ChakraCheckbox,
-  useToast,
-  ChakraAlertDialog,
   AlertDialogBody,
+  AlertDialogContent,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogContent,
   AlertDialogOverlay,
+  Button,
+  ChakraAlertDialog,
+  ChakraCheckbox,
+  Flex,
+  FormControl,
   Heading,
+  Stack,
   useDisclosure,
+  useToast,
 } from '@raidguild/design-system';
-import { useAccount } from 'wagmi';
-import { useSession } from 'next-auth/react';
+import * as Fathom from 'fathom-client';
 import _ from 'lodash';
+import { useSession } from 'next-auth/react';
+import { useEffect, useRef } from 'react';
+import { FieldErrorsImpl, FieldValues, useForm } from 'react-hook-form';
+import { useAccount } from 'wagmi';
 import * as Yup from 'yup';
-import { useForm, FieldValues, FieldErrorsImpl } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import Link from '../atoms/ChakraNextLink';
 import { useJoinState } from '../../context/appState';
 import useSubmit from '../../hooks/useSubmit';
+import layerStyles from '../../utils/extendedTokens';
+import Link from '../atoms/ChakraNextLink';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 
 interface Props {
   handleBack: () => void;
@@ -54,10 +57,10 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
   const pledgeReadinessCheckBoxChangeHandler = () => {
     onOpen();
   };
-  const handleModalCancel = () => {
-    setValue('pledgeReadiness', false);
-    onClose();
-  };
+  // const handleModalCancel = () => {
+  //   setValue('pledgeReadiness', false);
+  //   onClose();
+  // };
 
   useEffect(() => {
     reset({ ...joinState.join6 });
@@ -70,6 +73,7 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
     };
     setJoinState(currJoinState);
     submitJoinForm(currJoinState);
+    Fathom.trackEvent('Join Form Submitted');
     handleNext();
   };
   const onError = (data: FieldErrorsImpl) => {
@@ -80,13 +84,13 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
       });
     }
   };
-  const modalConfirmHandler = () => {
-    setValue('pledgeReadiness', !watch('pledgeReadiness'));
-    onClose();
-  };
+  // const modalConfirmHandler = () => {
+  //   setValue('pledgeReadiness', !watch('pledgeReadiness'));
+  //   onClose();
+  // };
 
   return (
-    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py='2rem'>
+    <Flex w='100%' direction='column' px={{ base: '2rem', lg: '5rem' }} py={8}>
       <Stack direction='column' spacing={5}>
         <FormControl>
           <ChakraCheckbox
@@ -110,22 +114,23 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
       </Stack>
 
       <Flex gap={4} justify='center' mt='2rem'>
-        <Button fontFamily='spaceMono' onClick={handleBack} variant='outline'>
+        <Button onClick={handleBack} variant='gradientOutline'>
           Back
         </Button>
-        <Button fontFamily='spaceMono' onClick={handleSubmit(onNext, onError)}>
-          Submit
-        </Button>
+
+        <GradientShiftButton width='max-content' onClick={handleSubmit(onNext, onError)}>
+          Next
+        </GradientShiftButton>
       </Flex>
 
       <ChakraAlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>
         <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader>
+          <AlertDialogContent bg={layerStyles.darkBrownRedGradient} p={10}>
+            <AlertDialogHeader textColor='primary.500'>
               <Heading>Disclaimer</Heading>
             </AlertDialogHeader>
 
-            <AlertDialogBody fontFamily='spaceMono'>
+            <AlertDialogBody fontFamily='spaceMono' textColor='white'>
               You must attend cohort training events and apply your skills in a Raid or RIP to earn a champion for your
               membership.
               <br />
@@ -136,13 +141,18 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
               If you prefer, apprentice, you may sweat your way to glory and tribute funds earned through raids.
             </AlertDialogBody>
 
-            <AlertDialogFooter>
-              <Button fontFamily='spaceMono' variant='outline' ref={cancelRef} onClick={handleModalCancel}>
-                Cancel
+            <AlertDialogFooter gap={4}>
+              <Button
+                width='max-content'
+                variant='gradientOutline'
+                onClick={handleBack}
+                fontWeight={500}
+                fontFamily='spaceMono'>
+                Back
               </Button>
-              <Button fontFamily='spaceMono' onClick={modalConfirmHandler} ml={3}>
-                Continue
-              </Button>
+              <GradientShiftButton width='max-content' onClick={handleSubmit(onNext, onError)}>
+                Next
+              </GradientShiftButton>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialogOverlay>

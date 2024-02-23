@@ -1,29 +1,27 @@
-const web3CommunityManagement = {
+import Tavern from '../../assets/characters/tavernkeeper.svg';
+import { contentType } from './type';
+
+const web3CommunityManagement: contentType = {
+  meta: {
+    title: 'Hire Community Manager | Discord Management | Raid Guild',
+    description:
+      'Ensuring optimal Discord Community settings for capturing high-retention leads is crucial in your web3 community. Hire Raid Guild to assist in building yours.',
+  },
   title: 'Web3 Community Management',
+  slug: 'community-management',
+  description: `Tired of trying to "Gather The Troops" in your **NFT Community**? Can't be bothered to figure out who's the most active Contributor? Or who tweets about your Project the most?
 
-  description: `Do you know how to keep your community engaged?
+  If you're not constantly engaging your **Discord Community** and Rewarding those Top contributors, You're falling behind the curve!
+  
+  Hire a Raid Guild **Community Manager**, adept at a plethora of *DAO Tools, Discord Bots, Tracking Mechanisms, Auto-Mation, and Crypto-Native Engagement Techniques.* Keen to get you and your Project up-to-date and together with the greatest tools currently available for DAOs and other Crypto Native Projects.
+  `,
 
-  With a passionate community, your users will do the “selling” for you. Your users should be spreading the word on your behalf.
-  
-  Projects like Bitcoin and Ethereum grew quickly because of their communities.
-  
-  So you have an idea for a project that can change the world...
-  
-  What's your plan for growing your community, increasing engagement, and onboarding new users?
-  
-  Statistically 99% of crypto projects fail. Many projects were doomed from the start, because they lacked a strong community. 
-  
-  Your message can be strong, but if the right people don't hear it, then it doesn't matter.
-  
-  Community management requires analytics. Who are your most active contributors? Who tweets most about your project? How can you make these contributors feel appreciated?`,
+  roleImage: Tavern.src,
 
-  roleImage: '/assets/characters/tavernkeeper.svg',
+  salesContent: `Get your Community connected in ways that YOU, the project Lead, can fully articulate the level of engagement or participation you've got at your fingertips.
 
-  salesContent: `We have community managers who have been in this industry since its early days. We're members of the biggest, most engaged communities in this space. 
-
-  Our managers have studied Web3 projects and know which communities stand out. We've helped build communities which survived crypto winter. We can help you build a community that advocates for your project as if it was their first born child.
-  
-  We have experience using bleeding-edge DAO tools, Discord and Telegram bots, tracking mechanisms, automation and crypto-native engagement techniques.`,
+  We use the latest technology available, including **Discord Community** and **Telegram Community** bots, and just plain ol' showing up, to get your Community into an organized state. We've got all the tools available for you to reward or engage them in the most effective way possible!
+  `,
 };
 
 export default web3CommunityManagement;
