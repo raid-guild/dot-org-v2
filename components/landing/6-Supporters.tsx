@@ -7,14 +7,13 @@ import daohaus from '../../public/logos/daohaus.webp';
 import metacartel from '../../public/logos/metacartel.webp';
 import metagame from '../../public/logos/metagame.png';
 import moloch from '../../public/logos/moloch.webp';
-import layerStyles from '../../utils/extendedTokens';
 import PageTitle from '../page-components/PageTitle';
 
 const SectionSix = () => {
   return (
     <Center
       id='Our Supporters'
-      bg={layerStyles.darkBrownRedGradient}
+      bg='black'
       flexDirection='column'
       alignItems='center'
       justifyContent='center'

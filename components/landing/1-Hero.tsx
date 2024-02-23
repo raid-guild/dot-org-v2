@@ -1,14 +1,13 @@
-import { Box, Flex, Heading, SimpleGrid, Stack } from '@raidguild/design-system';
+import { Box, Flex, Heading, SimpleGrid, Stack, Link } from '@raidguild/design-system';
 import Image from 'next/image';
-import layerStyles from '../../utils/extendedTokens';
-import CTABtnGroup from '../atoms/CTABtnGroup';
-
+import tokens from '../../utils/extendedTokens';
+import GradientShiftButton from '../atoms/GradientShiftButton';
 import Nav from '../page-components/Nav';
 
 import raidBanner from '../../assets/illustrations/raid__banner.webp';
 
 const SectionOne = () => (
-  <Box bg={layerStyles.purpleToIndigoGradient} w='full'>
+  <Box bg={tokens.purpleToIndigoGradient} w='full'>
     <SimpleGrid
       placeItems='flex-start'
       border='2px solid'
@@ -34,7 +33,11 @@ const SectionOne = () => (
             whiteSpace='balance'>
             A Decentralized Collective of Mercenaries Ready to Slay Your Web3 Product Demons.
           </Heading>
-          <CTABtnGroup />
+          <Flex py={8}>
+            <Link href='/hire/1'>
+              <GradientShiftButton w='200px'>Hire Us</GradientShiftButton>
+            </Link>
+          </Flex>
         </Stack>
         <Box width={{ md: '500px', lg: '550px' }}>
           <Image src={raidBanner} placeholder='blur' alt='raid-banner' />

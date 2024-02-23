@@ -1,7 +1,6 @@
 import { Flex, Image, SimpleGrid, Stack } from '@raidguild/design-system';
 import _ from 'lodash';
 import AnimatedButton from '../atoms/AnimatedButton';
-import layerStyles from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
 
 import wallSconce from '../../assets/illustrations/wallSconce.svg';
@@ -18,8 +17,7 @@ const SectionFour = ({ portfolioList }: SectionFourProps) => {
     <Flex
       id='portfolio'
       bgImage={Clouds.src}
-      bg={layerStyles.backgroundImageOverlay}
-      bgColor='gray.900'
+      bgColor='black'
       minW='100%'
       py='8rem'
       minH='max'
