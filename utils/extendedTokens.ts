@@ -1,4 +1,4 @@
-const tokens = {
+const layerStyles = {
   purpleToIndigoGradient: 'linear-gradient(103deg, #2B0000 0%, #3D0610 29.17%, #5A1049 61.98%, #461881 100%)',
   orangeToPurpleGradient: 'linear-gradient(95deg, #FF5A00 0%, #D62789 70.2%, #AD17AD 100%)',
   orangeToPurpleGradientHover: 'linear-gradient(105deg, #FF5A00 0%, #D62789 20.2%, #AD17AD 80%)',
@@ -10,4 +10,4 @@ const tokens = {
   darkBrownRedGradient: 'linear-gradient(97deg, #2B0722 1.75%, #2E0A17 93.53%)',
 };
 
-export default tokens;
+export default layerStyles;

@@ -24,7 +24,7 @@ import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import { getBlogsList } from '../../gql';
 import useBlogsList from '../../hooks/useBlogsList';
 import { checkPermission } from '../../utils';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 
 // const Topics = ['', 'Raid', 'Guild', 'Community'];
 interface PostProps {
@@ -63,7 +63,7 @@ const Post = ({ post }: PostProps) => {
             <Button
               as='u'
               variant='link'
-              bg={tokens.purpleToBlueGradient}
+              bg={layerStyles.purpleToBlueGradient}
               bgClip='text'
               pb={1.5}
               borderRadius='none'

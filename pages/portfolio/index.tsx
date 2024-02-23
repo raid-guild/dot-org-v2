@@ -12,7 +12,7 @@ import CMSPageTemplate from '../../components/page-templates/CMSPageTemplate';
 import { getPortfolioList } from '../../gql';
 import usePortfolioList from '../../hooks/usePortfolioList';
 import { checkPermission } from '../../utils';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 
 const labels = [
   'TOKEN',
@@ -87,7 +87,7 @@ function PortfolioPage({ initialData }: Props) {
         justifyContent='center'>
         {portfolioStats.map((stat) => (
           <VStack key={stat.label} spacing={1} textAlign='center'>
-            <Box bg={tokens.purpleToBlueGradient} bgClip='text'>
+            <Box bg={layerStyles.purpleToBlueGradient} bgClip='text'>
               <Text fontSize='5xl' fontWeight='medium' fontFamily='uncial'>
                 {stat.numbers}
               </Text>

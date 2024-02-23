@@ -1,7 +1,7 @@
 import { Flex, Grid } from '@raidguild/design-system';
 import _ from 'lodash';
 import { GetStaticPropsContext } from 'next';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import ProjectCard from '../../../components/page-components/ProjectCard';
 import ServicePageTemplate from '../../../components/page-templates/ServicePageTemplate';
 import services from '../../../utils/services';
@@ -25,12 +25,14 @@ const Service = ({ title, description, roleImage, salesContent, data, meta }: Pr
       pageDescription={description}
       roleImage={roleImage}
       salesContent={salesContent}>
-      <Head>
-        <title>{meta?.title}</title>
-        <meta name='description' content={meta?.description} />
-        <meta name='og:title' content={meta?.title} />
-        <meta name='og:description' content={meta?.description} />
-      </Head>
+      <NextSeo
+        title={meta?.title}
+        description={meta?.description}
+        openGraph={{
+          title: meta?.title,
+          description: meta?.description,
+        }}
+      />
       <Flex direction='column'>
         {!_.isEmpty(data) && (
           <Grid gridTemplateColumns='1fr 1fr 1fr'>

@@ -1,6 +1,6 @@
 import { Box, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
 import AnimatedButton from '../atoms/AnimatedButton';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
 
 import raidFantasy from '../../assets/illustrations/raid__fantasy.webp';
@@ -8,7 +8,7 @@ import raidFantasy from '../../assets/illustrations/raid__fantasy.webp';
 const SectionTwo = () => {
   return (
     <SimpleGrid
-      bg={tokens.background}
+      bg={layerStyles.background}
       id='manifesto'
       columns={{ base: 1, md: 1, lg: 2 }}
       px={{ base: '2rem', lg: '8rem' }}

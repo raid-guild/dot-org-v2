@@ -4,7 +4,7 @@ import Clouds from '../../assets/illustrations/clouds.webp';
 import Valhalla from '../../assets/illustrations/valhalla.svg';
 import WallSconce from '../../assets/illustrations/wallSconce.svg';
 import Wand from '../../assets/illustrations/wand.svg';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 import CTABtnGroup from '../atoms/CTABtnGroup';
 import ServiceSectionContainer from '../page-components/ServiceSectionContainer';
 import SiteLayout from '../page-components/SiteLayout';
@@ -19,7 +19,7 @@ type Props = {
 
 const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, roleImage, children, ...props }: Props) => {
   return (
-    <SiteLayout bg={tokens.purpleToIndigoGradient}>
+    <SiteLayout bg={layerStyles.purpleToIndigoGradient}>
       <Box background='blackDark' textColor='white'>
         <ServiceSectionContainer
           content={pageDescription}

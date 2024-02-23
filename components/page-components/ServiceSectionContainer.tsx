@@ -2,7 +2,7 @@ import { Box, Card, Flex, HStack, Heading, Image, SimpleGrid, VStack, defaultThe
 import CTABtnGroup from '../atoms/CTABtnGroup';
 import Castle from '../../assets/illustrations/castle.svg';
 import Decor from '../../assets/illustrations/decor.svg';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 
 import Markdown from '../atoms/Markdown';
 
@@ -28,7 +28,7 @@ const ServiceSectionContainer: React.FC<ContainerProps> = ({
   cta,
 }: ContainerProps) => {
   return (
-    <VStack bg={bg ?? tokens.purpleToIndigoGradient} w='100vw' bgImage={bgImage} height='max-content'>
+    <VStack bg={bg ?? layerStyles.purpleToIndigoGradient} w='100vw' bgImage={bgImage} height='max-content'>
       <SimpleGrid placeItems='flex-start' p={{ base: '1rem', lg: '4rem' }} maxH='max-content' gap={8}>
         <Flex
           flexDirection={{ base: 'column-reverse', xl: imagePosition ?? 'row' }}

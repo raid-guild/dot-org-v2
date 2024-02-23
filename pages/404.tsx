@@ -3,7 +3,7 @@ import Image from 'next/image';
 import raidBanner from '../assets/illustrations/raid__banner.webp';
 import Link from '../components/atoms/ChakraNextLink';
 import Nav from '../components/page-components/Nav';
-import tokens from '../utils/extendedTokens';
+import layerStyles from '../utils/extendedTokens';
 import GradientShiftButton from '../components/atoms/GradientShiftButton';
 
 const NotFound = () => (
@@ -13,7 +13,7 @@ const NotFound = () => (
     direction='column'
     alignItems='center'
     justifyContent='flex-start'
-    bg={tokens.darkBrownRedGradient}>
+    bg={layerStyles.darkBrownRedGradient}>
     <Box px={{ base: '1rem', xl: '4rem' }} m='3rem' w='100%'>
       <Nav />
     </Box>

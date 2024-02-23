@@ -1,20 +1,20 @@
 import { Box, Center, Link, SimpleGrid, Text, Tooltip } from '@raidguild/design-system';
 import Image from 'next/image';
 
-import lexdao from '../../assets/logos/LexDAO-Logo.png';
-import tec from '../../assets/logos/TokenEngCommons.png';
-import daohaus from '../../assets/logos/daohaus.webp';
-import metacartel from '../../assets/logos/metacartel.webp';
-import metagame from '../../assets/logos/metagame.png';
-import moloch from '../../assets/logos/moloch.webp';
-import tokens from '../../utils/extendedTokens';
+import lexdao from '../../public/logos/LexDAO-Logo.png';
+import tec from '../../public/logos/TokenEngCommons.png';
+import daohaus from '../../public/logos/daohaus.webp';
+import metacartel from '../../public/logos/metacartel.webp';
+import metagame from '../../public/logos/metagame.png';
+import moloch from '../../public/logos/moloch.webp';
+import layerStyles from '../../utils/extendedTokens';
 import PageTitle from '../page-components/PageTitle';
 
 const SectionSix = () => {
   return (
     <Center
       id='Our Supporters'
-      bg={tokens.darkBrownRedGradient}
+      bg={layerStyles.darkBrownRedGradient}
       flexDirection='column'
       alignItems='center'
       justifyContent='center'

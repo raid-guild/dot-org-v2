@@ -1,13 +1,13 @@
 import { Card, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@raidguild/design-system';
 import { services } from '../../utils/constants';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 import AnimatedButton from '../atoms/AnimatedButton';
 import Link from '../atoms/ChakraNextLink';
 import GradientShiftButton from '../atoms/GradientShiftButton';
 
 const SectionThree = () => (
   <SimpleGrid
-    bg={tokens.purpleToRedGradient}
+    bg={layerStyles.purpleToRedGradient}
     id='Our Services'
     px={{ base: '2rem', xl: '8rem' }}
     columns={{ base: 1, xl: 2 }}

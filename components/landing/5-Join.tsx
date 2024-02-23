@@ -3,12 +3,12 @@ import ShimmerButton from '../atoms/ShimmerButton';
 import Link from '../atoms/ChakraNextLink';
 
 import { culture, swordsImage } from '../../utils/constants';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 
 const SectionFive = () => (
   <Center
     id='Join Us'
-    bg={tokens.purpleToIndigoGradient}
+    bg={layerStyles.purpleToIndigoGradient}
     flexDirection='column'
     alignItems='center'
     justifyContent='center'

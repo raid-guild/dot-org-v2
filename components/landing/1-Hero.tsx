@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, SimpleGrid, Stack } from '@raidguild/design-system';
 import Image from 'next/image';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 import CTABtnGroup from '../atoms/CTABtnGroup';
 
 import Nav from '../page-components/Nav';
@@ -8,7 +8,7 @@ import Nav from '../page-components/Nav';
 import raidBanner from '../../assets/illustrations/raid__banner.webp';
 
 const SectionOne = () => (
-  <Box bg={tokens.purpleToIndigoGradient} w='full'>
+  <Box bg={layerStyles.purpleToIndigoGradient} w='full'>
     <SimpleGrid
       placeItems='flex-start'
       border='2px solid'

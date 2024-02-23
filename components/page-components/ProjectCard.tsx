@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Heading, Image, Link, Stack, Text, defaultTheme } from '@raidguild/design-system';
+import { Box, Button, Card, HStack, Heading, Image, Link, Stack, Text, defaultTheme } from '@raidguild/design-system';
 
 interface ProjectCardProps {
   name: string;
@@ -9,7 +9,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ name, logo, website, roles }: ProjectCardProps) => {
   return (
-    <Stack maxW='600px' border={`1px solid ${defaultTheme.colors.red[500]}`} align='center' spacing={4} pb={6}>
+    <Card maxW='600px' border={`1px solid ${defaultTheme.colors.red[500]}`} align='center' gap={4} pb={6}>
       <Box layerStyle='redToPurpleVerticalGradient' w='full' height='90px' position='relative'>
         <Box
           bg='black'
@@ -52,7 +52,7 @@ const ProjectCard = ({ name, logo, website, roles }: ProjectCardProps) => {
           </Link>
         )}
       </Stack>
-    </Stack>
+    </Card>
   );
 };
 

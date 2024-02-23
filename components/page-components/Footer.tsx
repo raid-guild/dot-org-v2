@@ -15,7 +15,7 @@ import { FaDiscord, FaGithub, FaMedium, FaNewspaper, FaTwitter } from 'react-ico
 import CTABtnGroup from '../atoms/CTABtnGroup';
 import raidGuildFooter from '../../assets/illustrations/raidguild-footer.png';
 import raidGuildLogo from '../../assets/illustrations/raidguild.webp';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
 
 const forAllLinks = [
@@ -60,7 +60,7 @@ const Footer = () => {
       fontFamily='spaceMono'
       flexDirection='column'>
       <Center
-        bg={{ base: 'transparent', lg: tokens.purpleToIndigoGradient }}
+        bg={{ base: 'transparent', lg: layerStyles.purpleToIndigoGradient }}
         mt={{ base: '2rem' }}
         width={{ base: '100%', lg: '80%' }}
         height={200}

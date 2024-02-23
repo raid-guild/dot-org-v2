@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Castle,
+  Drawer,
   Flex,
   HStack,
   Image,
@@ -21,7 +22,7 @@ import {
 import * as Fathom from 'fathom-client';
 import _ from 'lodash';
 import { useRouter } from 'next/router';
-import { useState } from 'react'; // Import React
+import { useState } from 'react';
 import { FaBars, FaChevronDown, FaChevronRight, FaTimes } from 'react-icons/fa';
 import GuildLogo from '../../assets/illustrations/raidguild.webp';
 import { NavMenuData } from '../../utils/constants';
@@ -66,9 +67,18 @@ const createMobileNavItemStyle = (name: string) => {
   };
 };
 
+const categoryAndIcons = [
+  { category: 'Development', icon: <Castle fontSize={28} /> },
+  { category: 'Design', icon: <Knight fontSize={28} /> },
+  { category: 'Web3', icon: <Wizard2 fontSize={28} /> },
+];
+
 const DesktopNav = ({ basePath }: { basePath: string }) => {
   return (
-    <HStack justifyContent='space-around' w='full'>
+    <HStack justifyContent='space-between' w='full'>
+      <Link href='/' zIndex={100} w='max-content'>
+        <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' minW='100px' maxW='200px' />
+      </Link>
       <HStack spacing={8} alignItems='center' w='full' justifyContent='center'>
         {_.map(navItems, (item) =>
           item.name === 'Services' ? (
@@ -113,10 +123,15 @@ const DesktopNav = ({ basePath }: { basePath: string }) => {
                             }}
                             w='full'
                             p={2.5}>
-                            {menuItem.category === 'Development' && <Castle fontSize={28} />}
-                            {menuItem.category === 'Design' && <Knight fontSize={28} />}
-                            {menuItem.category === 'Web3' && <Wizard2 fontSize={28} />}
-                            {menuItem.category}
+                            {categoryAndIcons.map(
+                              ({ category, icon }) =>
+                                menuItem.category === category && (
+                                  <>
+                                    {icon}
+                                    {category}
+                                  </>
+                                ),
+                            )}
                             <Spacer />
                             <FaChevronRight fontSize={12} />
                           </Flex>
@@ -178,6 +193,9 @@ const MobileNav = ({ isOpen, setIsOpen }: any) => {
   return (
     <Stack zIndex={95}>
       <HStack align='center' justifyContent='space-around' height='8rem' w='100%'>
+        <Link href='/' zIndex={100} w='100%' position={isOpen ? 'fixed' : 'relative'} left='5%'>
+          <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' minW='100px' maxW='200px' />
+        </Link>
         <Spacer />
         <Button
           fontSize='2rem'
@@ -195,62 +213,64 @@ const MobileNav = ({ isOpen, setIsOpen }: any) => {
           </span>
         </Button>
       </HStack>
-      <VStack
-        zIndex={95}
-        position='fixed'
-        left='0'
-        top='0'
-        bg='black'
-        maxH='max-content'
-        minH='100vh'
-        w='full'
-        pt='150px'
-        color='white'
-        _focus={{ overflow: 'auto' }}
-        direction='column'
-        justify='flex-start'
-        align='flex-start'
-        px={8}
-        textDecoration='none !important'
-        hidden={!isOpen}
-        pointerEvents={isOpen ? 'all' : 'none'}>
-        {navItems.map((item) =>
-          item.name === 'Services' ? (
-            <>
-              <Box
-                as='div'
-                gap={2}
-                sx={createMobileNavItemStyle(item.name)}
-                key={item.name}
-                onClick={() => setIsServicesOpen(!isServicesOpen)}
-                display='flex'
-                flexDir='row'
-                justifyContent='center'
-                alignItems='center'
-                my={4}>
+      <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <VStack
+          zIndex={95}
+          position='fixed'
+          left='0'
+          top='0'
+          bg='black'
+          maxH='max-content'
+          minH='100vh'
+          w='full'
+          pt='150px'
+          color='white'
+          _focus={{ overflow: 'auto' }}
+          direction='column'
+          justify='flex-start'
+          align='flex-start'
+          px={8}
+          textDecoration='none !important'
+          hidden={!isOpen}
+          pointerEvents={isOpen ? 'all' : 'none'}>
+          {navItems.map((item) =>
+            item.name === 'Services' ? (
+              <>
+                <Box
+                  as='div'
+                  gap={2}
+                  sx={createMobileNavItemStyle(item.name)}
+                  key={item.name}
+                  onClick={() => setIsServicesOpen(!isServicesOpen)}
+                  display='flex'
+                  flexDir='row'
+                  justifyContent='center'
+                  alignItems='center'
+                  my={4}>
+                  {item.name}
+                  <Spacer />
+                  {isServicesOpen ? <FaChevronDown fontSize={18} /> : <FaChevronRight fontSize={18} />}
+                </Box>
+                {isServicesOpen &&
+                  _.map(NavMenuData, (menuItem, subIndex) => (
+                    <SubMenu
+                      NavMenu={menuItem}
+                      SubMenuHandler={setOpenSubMenu}
+                      openSubMenu={openSubMenu}
+                      id={subIndex}
+                      key={subIndex}
+                    />
+                  ))}
+              </>
+            ) : (
+              <Box as={Link} href={item.href} key={item.name} sx={createMobileNavItemStyle(item.name)}>
                 {item.name}
-                <Spacer />
-                {isServicesOpen ? <FaChevronDown fontSize={18} /> : <FaChevronRight fontSize={18} />}
               </Box>
-              {isServicesOpen &&
-                _.map(NavMenuData, (menuItem, subIndex) => (
-                  <SubMenu
-                    NavMenu={menuItem}
-                    SubMenuHandler={setOpenSubMenu}
-                    openSubMenu={openSubMenu}
-                    id={subIndex}
-                    key={subIndex}
-                  />
-                ))}
-            </>
-          ) : (
-            <Box as={Link} href={item.href} key={item.name} sx={createMobileNavItemStyle(item.name)}>
-              {item.name}
-            </Box>
-          ),
-        )}
-        <ConnectWallet />
-      </VStack>
+            ),
+          )}
+          <ConnectWallet />
+        </VStack>
+      </Drawer>
     </Stack>
   );
 };
@@ -267,14 +287,6 @@ const Nav = () => {
       id='Navigation Bar'
       px={{ base: 0, xl: '4rem' }}
       my={{ base: 0, xl: '3rem' }}>
-      <Link
-        href='/'
-        zIndex={100}
-        w={isMobile ? '100%' : 'max-content'}
-        position={isOpen ? 'fixed' : 'relative'}
-        left='5%'>
-        <Image src={GuildLogo.src} alt='Raidguild Logo / Home Badge' minW='100px' maxW='200px' />
-      </Link>
       <Box w='100%'>
         {isMobile ? <MobileNav isOpen={isOpen} setIsOpen={setIsOpen} /> : <DesktopNav basePath={basePath} />}
       </Box>

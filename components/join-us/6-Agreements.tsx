@@ -24,7 +24,7 @@ import { useAccount } from 'wagmi';
 import * as Yup from 'yup';
 import { useJoinState } from '../../context/appState';
 import useSubmit from '../../hooks/useSubmit';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 import Link from '../atoms/ChakraNextLink';
 import GradientShiftButton from '../atoms/GradientShiftButton';
 
@@ -125,7 +125,7 @@ const StepSix = ({ handleNext, handleBack }: Props) => {
 
       <ChakraAlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>
         <AlertDialogOverlay>
-          <AlertDialogContent bg={tokens.darkBrownRedGradient} p={10}>
+          <AlertDialogContent bg={layerStyles.darkBrownRedGradient} p={10}>
             <AlertDialogHeader textColor='primary.500'>
               <Heading>Disclaimer</Heading>
             </AlertDialogHeader>

@@ -3,10 +3,10 @@ import SiteLayout from '../../components/page-components/SiteLayout';
 import CTABtnGroup from '../../components/atoms/CTABtnGroup';
 
 import { services } from '../../utils/constants';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 
 const SectionThree = () => (
-  <SiteLayout bg={tokens.purpleToIndigoGradient}>
+  <SiteLayout bg={layerStyles.purpleToIndigoGradient}>
     <SimpleGrid
       w='100vw'
       id='Our Services'

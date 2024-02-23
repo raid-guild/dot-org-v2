@@ -1,10 +1,10 @@
 import { Box, Button, ChakraButtonProps } from '@raidguild/design-system';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 
 interface RGButtonProps extends ChakraButtonProps {
   children: React.ReactNode;
 }
-const linearGradient = tokens.orangeToPurpleGradient;
+const linearGradient = layerStyles.orangeToPurpleGradient;
 const RGConnectButton = ({ children, ...props }: RGButtonProps) => (
   <Button
     height={10}

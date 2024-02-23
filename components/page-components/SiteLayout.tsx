@@ -1,6 +1,6 @@
 import { Box, Flex } from '@raidguild/design-system';
 import React, { ReactNode } from 'react';
-import tokens from '../../utils/extendedTokens';
+import layerStyles from '../../utils/extendedTokens';
 import Footer from './Footer';
 import Nav from './Nav';
 
@@ -12,7 +12,7 @@ interface Props {
 const SiteLayout: React.FC<Props> = ({ children, bg }: Props) => (
   <Flex w='100%' mx='auto' overflowX='hidden' flexDirection='column' id='SiteLayout' bg={bg ?? 'none'}>
     <Box
-      bg={bg ? 'none' : tokens.purpleToIndigoGradient}
+      bg={bg ? 'none' : layerStyles.purpleToIndigoGradient}
       alignItems='center'
       justifyContent='center'
       id='NavBar'

@@ -34,7 +34,7 @@ export const culture = [
   },
   {
     name: 'Tip of the Spear',
-    img: 'https://cdn.discordapp.com/attachments/1168646704669663323/1171320352694079540/tipofthespear.png',
+    img: 'https://res.cloudinary.com/saimano/image/upload/v1622036154/RaidGuild/icons/red/tipofthespear_a4qqnj.png',
     text: 'Join the ranks on the front lines and make a direct impact on the world around you.',
   },
 ];
@@ -164,7 +164,8 @@ export const hireUsServices = [
 export const messageToSignJoin =
   'I hereby with the information provided would like to submit my cohort application to RaidGuild.';
 
-export const swordsImage = 'https://cdn.discordapp.com/attachments/1168646704669663323/1171323729968627742/swords.png';
+export const swordsImage =
+  'https://res.cloudinary.com/saimano/image/upload/v1699369142/RaidGuild/icons/roles/swords_tayjw7.png';
 
 export const NavMenuData = [
   {
