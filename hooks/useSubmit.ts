@@ -179,6 +179,7 @@ const useSubmit = (token: string) => {
         specs_key: mapAvailableProjectSpec(data.hire2.specsType),
         link: data.hire2.projectLink,
         name: data.hire2.projectName,
+        referrer: data.hire1.referredBy, // this goes to consultation table although most apt to ask in hire1
         description: data.hire2.projectDescription,
         // 3-Services.tsx
         consultations_services_required: {

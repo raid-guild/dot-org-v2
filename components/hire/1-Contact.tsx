@@ -1,11 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Input, SimpleGrid, Textarea, VStack, useToast } from '@raidguild/design-system';
+import { Box, Input, SimpleGrid, Textarea, VStack, Select, useToast, Option } from '@raidguild/design-system';
 import { useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { useHireState } from '../../context/appState';
 import handleError from '../../utils/forms';
 import FormNavigation from './FormNavigation';
+
+import useReferrerTypes from '../../hooks/useReferrerTypes';
 
 interface Props {
   handleBack: () => void;
@@ -56,6 +58,11 @@ const formFields = [
     type: 'text',
     placeholder: 'Your Telegram',
   },
+  {
+    label: 'Where did you hear about us?',
+    name: 'referredBy',
+    type: 'select',
+  },
 ];
 
 const validationSchema = Yup.object().shape({
@@ -66,12 +73,19 @@ const validationSchema = Yup.object().shape({
   github: Yup.string(),
   twitter: Yup.string(),
   telegram: Yup.string(),
+  referredBy: Yup.array().of(
+    Yup.object().shape({
+      label: Yup.string().required(),
+      value: Yup.string().required(),
+    }),
+  ),
 });
 
 export default function StepOne({ handleNext, handleBack }: Props) {
   const { hireState, setHireState } = useHireState();
   const localForm = useForm({ resolver: yupResolver(validationSchema) });
   const toast = useToast();
+  const { data: referrerTypes } = useReferrerTypes();
   const { handleSubmit, reset } = localForm;
 
   useEffect(() => {
@@ -85,7 +99,6 @@ export default function StepOne({ handleNext, handleBack }: Props) {
     });
     handleNext();
   };
-
   return (
     <VStack py={8}>
       <SimpleGrid columns={{ base: 1, md: 2 }} gap='2rem' w='100%' mb='2rem' fontFamily='texturina'>
@@ -103,6 +116,17 @@ export default function StepOne({ handleNext, handleBack }: Props) {
                   fontFamily='texturina'
                 />
               </Box>
+            );
+          }
+          if (field.type === 'select') {
+            return (
+              <Select
+                name='services'
+                localForm={localForm}
+                options={referrerTypes as Option[]}
+                placeholder={field.placeholder}
+                label={field.label}
+              />
             );
           }
           return (
