@@ -27,7 +27,8 @@ const ServicePageTemplate = ({ pageTitle, pageDescription, salesContent, childre
           title={pageTitle}
           icon={WallSconce.src}
           cta={
-            <Link href='#Projects'>
+            // <Link href='#Projects'>
+            <Link href='/portfolio'>
               <GradientShiftButton>View Projects</GradientShiftButton>
             </Link>
           }
